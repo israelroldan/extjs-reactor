@@ -1,4 +1,4 @@
-# React Ext JS Boilerplate
+# Ext JS React Boilerplate
 
 A foundation for React apps that use Ext JS components.
 
@@ -13,14 +13,14 @@ If you haven't already, download Ext JS 6.2+ and Sencha Cmd 6.2+.
 
 Then, run the following to clone and build the project:
 
-    git clone git@github.com:sencha/react-extjs.git
-    cd react-extjs
+    git clone git@github.com:sencha/extjs-react.git
+    cd extjs-react
     npm install
     lerna bootstrap
 
-Copy your Ext JS SDK into react-extjs/react-extjs-boilerplate/ext, then run:
+Copy your Ext JS SDK into packages/react-boilerplate/ext, then run:
 
-    cd packages/react-extjs-boilerplate
+    cd packages/react-boilerplate
     npm run build
     npm start
 

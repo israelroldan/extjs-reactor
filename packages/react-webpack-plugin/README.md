@@ -26,7 +26,7 @@ The ReactExtJSWebpackPlugin constructor takes an object with the following prope
 
 const path = require('path');
 const webpack = require('webpack');
-const ReactExtJSWebpackPlugin = require('react-extjs-webpack-plugin');
+const ExtJSReactWebpackPlugin = require('@extjs/react-webpack-plugin');
 
 module.exports = {
     devtool: 'inline-source-map',
@@ -38,7 +38,7 @@ module.exports = {
         filename: 'index.js'
     },
     plugins: [
-        new ReactExtJSWebpackPlugin({
+        new ExtJSReactWebpackPlugin({
             debug: true,
             toolkit: 'modern',
             sdk: 'ext',
