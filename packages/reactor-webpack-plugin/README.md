@@ -1,4 +1,4 @@
-# React Ext JS Webpack Plugin
+# Ext JS Reactor Webpack Plugin
 
 This [Webpack](http://webpack.github.io/) plugin produces a minimized build of the [Sencha Ext JS](https://www.sencha.com/products/extjs) framework containing only those classes used by your React app.  Use with the react-extjs custom renderer for React.
 
@@ -26,7 +26,7 @@ The ReactExtJSWebpackPlugin constructor takes an object with the following prope
 
 const path = require('path');
 const webpack = require('webpack');
-const ExtJSReactWebpackPlugin = require('@extjs/react-webpack-plugin');
+const ExtJSReactWebpackPlugin = require('@extjs/reactor-webpack-plugin');
 
 module.exports = {
     devtool: 'inline-source-map',

@@ -1,6 +1,6 @@
-# Ext JS React
+# Ext JS Reactor
 
-The @extjs/react package is a custom renderer that makes it easy to use [Ext JS](https://www.sencha.com/products/extjs) components in your [React](https://facebook.github.io/react) app. Once installed, all JSX tags starting with "x-" are resolved to Ext JS components by xtype.
+The @extjs/reactor package is a custom renderer that makes it easy to use [Ext JS](https://www.sencha.com/products/extjs) components in your [React](https://facebook.github.io/react) app. Once installed, all JSX tags starting with "x-" are resolved to Ext JS components by xtype.
 
 ## Requirements
 
@@ -12,7 +12,7 @@ The @extjs/react package is a custom renderer that makes it easy to use [Ext JS]
 
 ```bash
 # Be sure to install react>=15.3.2 before
-npm install --save-dev @extjs/react
+npm install --save-dev @extjs/reactor
 ```
 
 ## Getting Started
@@ -24,8 +24,8 @@ We recommend you start by cloning the [boilerplate project](https://github.com/s
 First, install the custom renderer.  We recommend doing this in your index.js file (your webpack entry point).  This only needs to be done once in your app.
 
 ```jsx
-import installExtJSRenderer from '@extjs/react';
-installExtJSRenderer();
+import install from '@extjs/reactor';
+install();
 ```
 
 All JSX tags that start with "x-" will be mapped to Ext JS components by xtype. You can override the default prefix when calling `installExtJSRenderer`, for example: `installExtJSRenderer("ext-")`.  Here's a minimal React app that renders an Ext.Panel:
@@ -33,10 +33,10 @@ All JSX tags that start with "x-" will be mapped to Ext JS components by xtype. 
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
-import installExtJSRenderer from '@extjs/react';
+import install from '@extjs/reactor';
 
-// Instal the Ext JS custom renderer
-installExtJSRenderer();
+// Install the Ext JS custom renderer
+install();
 
 // When Ext JS loads, initialize our React app
 Ext.onReady(() => {
@@ -142,10 +142,10 @@ export default class MyComponent {
 ```
 
 
-Select your toolkit, theme, and packages using [@extjs/react-webpack-plugin]. The plugin scans your code and only includes the classes you need in the final bundle.  Here's an example:
+Select your toolkit, theme, and packages using [@extjs/reactor-webpack-plugin]. The plugin scans your code and only includes the classes you need in the final bundle.  Here's an example:
 
 ```JavaScript
-const ExtJSReactWebpackPlugin = require('@extjs/react-webpack-plugin');
+const ExtJSReactWebpackPlugin = require('@extjs/reactor-webpack-plugin');
 
 module.exports = {
     ...
