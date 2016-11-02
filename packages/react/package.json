@@ -1,0 +1,48 @@
+{
+  "name": "@extjs/react",
+  "version": "0.1.0",
+  "description": "Use Ext JS components in React.",
+  "main": "dist/index.js",
+  "scripts": {
+    "watch": "babel ./src --out-dir ./dist --source-maps inline --watch",
+    "build": "babel ./src --out-dir ./dist --source-maps inline",
+    "prepublish": "npm run build",
+    "postinstall": "npm run build",
+    "test": "jest"
+  },
+  "jest": {
+    "rootDir": "src",
+    "scriptPreprocessor": "../node_modules/babel-jest",
+    "setupFiles": [
+      "../jest/environment.js"
+    ]
+  },
+  "keywords": [
+    "Sencha",
+    "Ext JS",
+    "React"
+  ],
+  "author": "Sencha",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": "^15.3.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.14.0",
+    "babel-jest": "^15.0.0",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-preset-react": "^6.11.1",
+    "babel-preset-stage-2": "^6.13.0",
+    "invariant": "^2.2.1",
+    "jest": "^15.1.1",
+    "lodash.capitalize": "^4.2.1",
+    "lodash.clonedeepwith": "^4.5.0",
+    "lodash.isequal": "^4.4.0",
+    "lodash.union": "^4.6.0",
+    "react": "^15.3.2",
+    "react-addons-test-utils": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "react-test-renderer": "^15.3.2",
+    "sinon": "^1.17.6"
+  }
+}

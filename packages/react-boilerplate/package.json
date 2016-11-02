@@ -1,0 +1,35 @@
+{
+  "name": "@extjs/react-boilerplate",
+  "private": true,
+  "version": "0.1.0",
+  "description": "A boilerplate project showing how to integrate React and Ext JS",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --content-base build --hot",
+    "dev": "npm start & npm run watch",
+    "watch": "npm run clean && webpack --config webpack.config.dev.js --watch",
+    "build": "npm run clean && webpack --config webpack.config.dev.js",
+    "clean": "rimraf build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sencha",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/markbrocato/react-extjs.git"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.17.0",
+    "babel-loader": "^6.2.5",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-preset-react": "^6.11.1",
+    "babel-preset-stage-2": "^6.13.0",
+    "copy-webpack-plugin": "^3.0.1",
+    "react": "15.3.2",
+    "react-dom": "15.3.2",
+    "@extjs/react": "^0.1.0",
+    "@extjs/react-webpack-plugin": "^0.1.0",
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.16.2"
+  }
+}
