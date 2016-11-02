@@ -28,7 +28,7 @@ import install from '@extjs/reactor';
 install();
 ```
 
-All JSX tags that start with "x-" will be mapped to Ext JS components by xtype. You can override the default prefix when calling `installExtJSRenderer`, for example: `installExtJSRenderer("ext-")`.  Here's a minimal React app that renders an Ext.Panel:
+All JSX tags that start with "x-" will be mapped to Ext JS components by xtype. You can override the default prefix when calling `install`, for example: `install("ext-")`.  Here's a minimal React app that renders an Ext.Panel:
 
 ```jsx
 import React from 'react';
