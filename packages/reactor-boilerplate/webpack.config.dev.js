@@ -2,7 +2,7 @@
 
 const path = require('path');
 const webpack = require('webpack');
-const ExtJSReactWebpackPlugin = require('@extjs/react-webpack-plugin');
+const ExtJSReactorWebpackPlugin = require('@extjs/reactor-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
@@ -27,7 +27,7 @@ module.exports = {
 
     plugins: [
         new CopyWebpackPlugin([ { from: 'static' } ]),
-        new ExtJSReactWebpackPlugin({
+        new ExtJSReactorWebpackPlugin({
             sdk: 'ext', // you need to copy the Ext JS SDK to the root of this package, or you can specify a full path to some other location
             theme: 'theme-material',
             packages: ['charts'],
