@@ -7,7 +7,6 @@
     "watch": "babel ./src --out-dir ./dist --source-maps inline --watch",
     "build": "babel ./src --out-dir ./dist --source-maps inline",
     "prepublish": "npm run build",
-    "postinstall": "npm run build",
     "test": "jest"
   },
   "jest": {

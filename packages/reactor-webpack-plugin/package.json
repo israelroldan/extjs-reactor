@@ -5,9 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "watch": "babel ./src --out-dir ./dist --watch",
-    "build": "babel src/ --out-dir dist/",
-    "prepublish": "npm run build",
-    "postinstall": "npm run build"
+    "build": "babel ./src --out-dir ./dist",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
