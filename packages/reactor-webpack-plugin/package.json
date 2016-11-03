@@ -1,13 +1,12 @@
 {
   "name": "@extjs/reactor-webpack-plugin",
-  "version": "0.1.0",
+  "version": "0.1.7",
   "description": "Creates a minimal build of the Ext JS framework for use in React apps.",
   "main": "dist/index.js",
   "scripts": {
     "watch": "babel ./src --out-dir ./dist --watch",
-    "build": "babel src/ --out-dir dist/",
-    "prepublish": "npm run build",
-    "postinstall": "npm run build"
+    "build": "babel ./src --out-dir ./dist",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
