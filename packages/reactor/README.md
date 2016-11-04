@@ -142,7 +142,7 @@ export default class MyComponent {
 ```
 
 
-Select your toolkit, theme, and packages using [@extjs/reactor-webpack-plugin]. The plugin scans your code and only includes the classes you need in the final bundle.  Here's an example:
+Select your toolkit, theme, and packages using [@extjs/reactor-webpack-plugin](https://github.com/sencha/extjs-reactor/tree/master/packages/reactor-webpack-plugin). The plugin scans your code and only includes the classes you need in the final bundle.  Here's an example:
 
 ```JavaScript
 const ExtJSReactorWebpackPlugin = require('@extjs/reactor-webpack-plugin');
