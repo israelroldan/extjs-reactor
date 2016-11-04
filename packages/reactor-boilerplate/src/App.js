@@ -44,15 +44,13 @@ export default class App extends Component {
 
         return (
             <x-container
-                height="100%"
-                width="100%"
                 plugins="responsive"
                 responsiveConfig={{
                     tall: { layout: 'vbox' },
                     wide: { layout: 'hbox' }
                 }}
             >
-                <x-panel title="React Ext JS Boilerplate" layout="fit" flex={1}>
+                <x-panel title="Employees" layout="fit" flex={1} margin="20" shadow={true}>
                     <x-grid
                         plugins={[
                             { type: 'columnresizing' }
