@@ -165,7 +165,7 @@ If you choose to use an Ext JS component at the root of your app to handle the m
 
 ```javascript
 import install from '@extjs/reactor'
-install({ viewport: true })
+install({ viewport: true });
 ```
 
 # Development
