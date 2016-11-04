@@ -13,17 +13,14 @@ If you haven't already, download Ext JS 6.2+ and Sencha Cmd 6.2+.
 
 Then, run the following to clone and build the project:
 
-    git clone git@github.com:sencha/extjs-react.git
-    cd extjs-react
+    git clone git@github.com:sencha/extjs-reactor.git
+    cd extjs-reactor/packages/reactor-boilerplate
     npm install
-    lerna bootstrap
 
-Copy your Ext JS SDK into packages/react-boilerplate/ext, then run:
+Copy your Ext JS SDK into packages/reactor-boilerplate/ext, then run:
 
-    cd packages/react-boilerplate
-    npm run build
-    npm start
+    npm run dev
 
-Go to http://localhost:8080
+This will build the app using webpack and Sencha Cmd and start a webpack-dev-server.
 
-If you'd like to play around and make changes, you can run `npm run watch` to rebuild on save.
+Go to [http://localhost:8080](http://localhost:8080)
