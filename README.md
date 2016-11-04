@@ -28,7 +28,14 @@ import install from '@extjs/reactor';
 install();
 ```
 
-All JSX tags that start with "x-" will be mapped to Ext JS components by xtype. You can override the default prefix when calling `install`, for example: `install("ext-")`.  Here's a minimal React app that renders an Ext.Panel:
+If you choose to use an Ext JS component at the root of your app to handle the main layout, set the `viewport` option to `true` when installing the Ext JS renderer.  This will set the height of the html, body, and react root element to 100% so that your Ext JS root component will fill the full screen. For example:
+
+```javascript
+import install from '@extjs/reactor'
+install({ viewport: true });
+```
+
+With `@extjs/reactor` installed, all JSX tags that start with "x-" will be mapped to Ext JS components by xtype. You can override the default prefix when calling `install`, for example: `install("ext-")`.  Here's a minimal React app that renders an Ext.Panel:
 
 ```jsx
 import React from 'react';
@@ -159,13 +166,6 @@ module.exports = {
     ]
     ...
 }
-```
-# Using an Ext JS Component at the App Root
-If you choose to use an Ext JS component at the root of your app to handle the main layout, set the `viewport` option to `true` when installing the Ext JS renderer.  This will set the height of the html, body, and react root element to 100% so that your Ext JS root component will fill the full screen. For example:
-
-```javascript
-import install from '@extjs/reactor'
-install({ viewport: true });
 ```
 
 # Development
