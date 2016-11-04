@@ -163,10 +163,10 @@ module.exports = {
 # Using an Ext JS Component at the App Root
 If you choose to use an Ext JS component at the root of your app to handle the main layout, set the `viewport` option to `true` when installing the Ext JS renderer.  This will set the height of the html, body, and react root element to 100% so that your Ext JS root component will fill the full screen. For example:
 
-`
+```javascript
 import install from '@extjs/reactor'
 install({ viewport: true })
-`
+```
 
 # Development
 This is a monorepo that uses lerna.  After cloning, run `npm install` then `lerna bootstrap` to install dependencies.
