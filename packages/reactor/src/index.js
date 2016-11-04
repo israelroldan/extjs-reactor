@@ -6,9 +6,11 @@ const original = ReactHostComponent.createInternalComponent;
 /**
  * Configures React to resolve jsx tags.
  * @param {String} [prefix="x-"] All jsx tags with this prefix will be resolved to Ext JS xtypes
- * @param {String} [autoFillContainer=true] Adds a stylesheet that forces all Ext JS components to fill their non-Ext JS containers.
+ * @param {String} [viewport=true] Adds a stylesheet that mimics an Ext JS Viewport
+ *    by setting the html, body, and react root element to height: 100%. Set this to true when using an
+ *    Ext JS component at the root of your app.
  */
-export default function({ prefix="x-", autoFillContainer=true } = {}) {
+export default function({ prefix="x-", viewport=false } = {}) {
     ReactHostComponent.createInternalComponent = function(element) {
         if (element.type.startsWith(prefix)) {
             return new ExtJSComponent(element);
@@ -17,14 +19,13 @@ export default function({ prefix="x-", autoFillContainer=true } = {}) {
         }
     };
 
-    if (autoFillContainer) {
-        const style = document.createElement('style')
-        style.innerHTML = `
-            div[data-reactroot],
-            .react-extjs-host {
-                height: 100%;
-            }
-        `;
-        document.head.appendChild(style);
+    let css = '.react-extjs-host { height: 100%; }';
+
+    if (viewport) {
+        css += '\nhtml, body, div[data-reactroot] { height: 100%; }';
     }
+
+    const style = document.createElement('style')
+    style.innerHTML = css;
+    document.head.appendChild(style);
 }

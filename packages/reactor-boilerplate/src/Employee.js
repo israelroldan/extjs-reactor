@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-Ext.require('Ext.chart.PolarChart');
 Ext.require('Ext.chart.interactions.Rotate');
 Ext.require('Ext.chart.interactions.ItemHighlight');
 Ext.require('Ext.chart.series.Pie');
@@ -50,9 +49,16 @@ export default class Employee extends Component {
                 layout="vbox"
                 plugins="responsive"
                 bodyPadding="10 15"
+                shadow={true}
                 responsiveConfig={{
-                    tall: { height: 390 },
-                    wide: { width: 400 }
+                    tall: {
+                        height: 390,
+                        margin: "0 20 20 20"
+                    },
+                    wide: {
+                        width: 400,
+                        margin: "20 20 20 0"
+                    }
                 }}
                 tools={[
                     { type: 'close', handler: onCloseClick }

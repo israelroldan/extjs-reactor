@@ -27,8 +27,8 @@
     "copy-webpack-plugin": "^3.0.1",
     "react": "15.3.2",
     "react-dom": "15.3.2",
-    "@extjs/reactor": "^0.1.0",
-    "@extjs/reactor-webpack-plugin": "^0.1.0",
+    "@extjs/reactor": "^0.1.7",
+    "@extjs/reactor-webpack-plugin": "^0.1.7",
     "webpack": "^1.13.2",
     "webpack-dev-server": "^1.16.2"
   }
