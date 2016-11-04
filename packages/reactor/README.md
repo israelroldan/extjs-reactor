@@ -145,12 +145,12 @@ export default class MyComponent {
 Select your toolkit, theme, and packages using [@extjs/reactor-webpack-plugin]. The plugin scans your code and only includes the classes you need in the final bundle.  Here's an example:
 
 ```JavaScript
-const ExtJSReactWebpackPlugin = require('@extjs/reactor-webpack-plugin');
+const ExtJSReactorWebpackPlugin = require('@extjs/reactor-webpack-plugin');
 
 module.exports = {
     ...
     plugins: [
-        new ExtJSReactWebpackPlugin({
+        new ExtJSReactorWebpackPlugin({
             sdk: 'ext', // location of Ext JS SDK
             theme: 'theme-material',
             packages: ['charts'],
