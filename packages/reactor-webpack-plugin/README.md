@@ -10,7 +10,7 @@ files into your index.html.
 You must have Ext JS 6.2+ and Sencha Cmd 6.2+ to use this plugin.
 
 ## Options
-The ReactExtJSWebpackPlugin constructor takes an object with the following properties:
+The ExtJSReactorWebpackPlugin constructor takes an object with the following properties:
 
 * debug [boolean] True to output debug information.  Defaults to false.
 * sdk [string] The path to the Ext JS SDK
@@ -26,7 +26,7 @@ The ReactExtJSWebpackPlugin constructor takes an object with the following prope
 
 const path = require('path');
 const webpack = require('webpack');
-const ExtJSReactWebpackPlugin = require('@extjs/reactor-webpack-plugin');
+const ExtJSReactorWebpackPlugin = require('@extjs/reactor-webpack-plugin');
 
 module.exports = {
     devtool: 'inline-source-map',
@@ -38,7 +38,7 @@ module.exports = {
         filename: 'index.js'
     },
     plugins: [
-        new ExtJSReactWebpackPlugin({
+        new ExtJSReactorWebpackPlugin({
             debug: true,
             toolkit: 'modern',
             sdk: 'ext',
