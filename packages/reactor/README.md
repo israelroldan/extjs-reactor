@@ -17,7 +17,7 @@ npm install --save-dev @extjs/reactor
 
 ## Getting Started
 
-We recommend you start by cloning the [boilerplate project](https://github.com/sencha/react-extjs/tree/master/packages/react-extjs-boilerplate) and following the instructions there.
+We recommend you start by cloning the [boilerplate project](https://github.com/sencha/extjs-reactor/tree/master/packages/reactor-boilerplate) and following the instructions there.
 
 ## Basic Concepts
 
