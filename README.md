@@ -21,6 +21,8 @@ We recommend you start by cloning the [boilerplate project](https://github.com/s
 
 ## Basic Concepts
 
+### Configuration
+
 First, install the custom renderer.  We recommend doing this in your index.js file (your webpack entry point).  This only needs to be done once in your app.
 
 ```jsx
@@ -33,6 +35,8 @@ If you choose to use an Ext JS component at the root of your app to handle the m
 ```javascript
 install({ viewport: true });
 ```
+
+### Using Ext JS Components
 
 With `@extjs/reactor` installed, all JSX tags that start with "x-" will be mapped to Ext JS components by xtype. You can override the default prefix when calling `install`, for example: `install("ext-")`.  Here's a minimal React app that renders an Ext.Panel:
 
@@ -87,6 +91,7 @@ export default class MyComponent extends Component {
 }
 ```
 
+### Handling Events
 
 Any prop starting with "on" followed by a capital letter is automatically converted to an Ext JS event listener.  Since Ext JS events are all lower-case, case is not preserved.  You're free to use camel-case, which is common in React.
 
@@ -123,6 +128,7 @@ export default function MyComponent() {
 }
 ```
 
+### Refs
 
 Refs point to Ext JS component instances:
 
@@ -147,6 +153,22 @@ export default class MyComponent {
 }
 ```
 
+### Docked Items (Classic Toolkit)
+
+When using the Classic Toolkit, any component with a `dock` prop is automatically added to (dockedItems)[http://docs.sencha.com/extjs/6.2.0/classic/Ext.panel.Panel.html#cfg-dockedItems] for your convenience.
+
+Here is an example which docks a toolbar above a grid:
+
+```
+<x-panel layout="fit">
+    <x-toolbar dock="top">
+        <x-textfield emptyText="Search..." flex={1}/>
+    </x-toolbar>
+    <x-grid>...</x-grid>
+</x-panel>
+```
+
+### Building
 
 Select your toolkit, theme, and packages using [@extjs/reactor-webpack-plugin]. The plugin scans your code and only includes the classes you need in the final bundle.  Here's an example:
 
