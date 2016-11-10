@@ -3,4 +3,5 @@ dist
 .vscode
 .DS_Store
 .idea
+.sencha
 npm-debug.log

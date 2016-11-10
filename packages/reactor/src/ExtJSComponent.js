@@ -31,7 +31,11 @@ const ContainerMixin = Object.assign({}, ReactMultiChild.Mixin, {
         let childComponent = toComponent(child.cmp || child.getHostNode());
 
         if (childComponent) {
-            this.cmp.insert(toIndex, childComponent);
+            if (childComponent.dock) {
+                this.cmp.insertDocked(toIndex, childComponent);
+            } else {
+                this.cmp.insert(toIndex, childComponent);
+            }
         }
     },
 
@@ -53,10 +57,10 @@ const ContainerMixin = Object.assign({}, ReactMultiChild.Mixin, {
         }
 
         if (afterNode) {
-            const index = this.cmp.items.indexOf(afterNode);
-            this.cmp.insert(index + 1, childNode);
+            const index = this.cmp[childNode.dock ? 'dockedItems' : 'items'].indexOf(afterNode);
+            this.cmp[childNode.dock ? 'insertDocked' : 'insert'](index + 1, childNode);
         } else {
-            this.cmp.add(childNode);
+            this.cmp[childNode.dock ? 'addDocked' : 'add'](childNode);
         }
     },
 
@@ -278,17 +282,23 @@ export default class ExtJSComponent {
 
         config.xtype = type.replace(/^x-/, '');
 
-        const items = this.mountChildren(props.children, transaction, context).map(item => {
+        const items = [], dockedItems = [];
+        const children = this.mountChildren(props.children, transaction, context);
+
+        for (let i=0; i<children.length; i++) {
+            const item = children[i];
+
             if (item instanceof Ext.Component) {
-                return item;
+                (item.dock ? dockedItems : items).push(item);
             } else if (item.node) {
-                return wrapDOMElement(item.node);
+                items.push(wrapDOMElement(item.node));
             } else {
                 throw new Error('Could not render child item: ' + item);
             }
-        });
+        }
 
         if (items.length) config.items = items;
+        if (dockedItems.length) config.dockedItems = dockedItems;
 
         return config;
     }
