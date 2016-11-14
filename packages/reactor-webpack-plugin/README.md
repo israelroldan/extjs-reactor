@@ -18,6 +18,7 @@ The ExtJSReactorWebpackPlugin constructor takes an object with the following pro
 * theme [string] The name of the theme package to use. Defaults to "theme-triton".
 * packages [string[]] Packages to include.  Values correspond to the names of directories in the packages directory of your SDK.
 * output [string] The path to the directory where the Ext JS minimized bundle should be written
+* test [RegExp] All files matching this pattern will be searched for usage of Ext classes to include in the build.  Defaults to `/\.jsx?$/`
 
 ## Example
 
