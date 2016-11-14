@@ -1,6 +1,6 @@
 {
   "name": "@extjs/reactor-webpack-plugin",
-  "version": "0.1.9",
+  "version": "0.1.11",
   "description": "Creates a minimal build of the Ext JS framework for use in React apps.",
   "main": "dist/index.js",
   "scripts": {
@@ -10,11 +10,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/markbrocato/react-extjs.git"
+    "url": "git+https://github.com/sencha/extjs-reactor.git"
   },
   "author": "Sencha",
   "license": "MIT",
-  "homepage": "https://github.com/markbrocato/react-extjs#readme",
+  "homepage": "https://github.com/sencha/extjs-reactor/tree/master/packages/reactor-webpack-plugin",
   "dependencies": {
     "acorn": "^4.0.3",
     "acorn-jsx": "^3.0.1",
