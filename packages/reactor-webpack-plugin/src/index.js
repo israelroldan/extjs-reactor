@@ -32,12 +32,13 @@ module.exports = class ReactExtJSWebpackPlugin {
         prefix='x-',
         debug=false,
         watch=false,
+        test=/\.jsx?$/,
         /* begin single build only */
         sdk,
         toolkit='modern',
         theme='theme-triton',
         packages=[],
-        output="build/ext"
+        output="build/ext",
         /* end single build only */
     }) {
         if (Object.keys(builds).length === 0) {
@@ -58,6 +59,7 @@ module.exports = class ReactExtJSWebpackPlugin {
             packages,
             output,
             dependencies: {},
+            test,
             currentFile: null
         });
     }
@@ -73,12 +75,12 @@ module.exports = class ReactExtJSWebpackPlugin {
             compilation.plugin('build-module', (module) => {
                 this.currentFile = module.resource;
 
-                if (module.resource && module.resource.endsWith('.js')) {
+                if (module.resource && module.resource.match(this.test)) {
                     try {
                         if (this.debug) console.log(module.resource);
                         const contents = fs.readFileSync(module.resource, 'utf8');
                         const statements = extractFromJSX(contents, this.prefix);
-                        if (statements.length) this.dependencies[this.currentFile] = statements;
+                        this.dependencies[this.currentFile] = statements;
                     } catch (e) {
                         console.error('error parsing ' + this.currentFile);
                     }
@@ -86,17 +88,20 @@ module.exports = class ReactExtJSWebpackPlugin {
             });
         });
 
+        const me = this;
+
         /**
          * Adds the code for the specified function call to the manifest.js file
          * @param {Object} call A function call AST node.
          */
-        const addToManifest = (call) => {
+        const addToManifest = function(call) {
             try {
-                let deps = this.dependencies[this.currentFile];
-                if (!deps) deps = this.dependencies[this.currentFile] = [];
+                const file = this.state.module.resource;
+                let deps = me.dependencies[file];
+                if (!deps) deps = me.dependencies[file] = [];
                 deps.push(astring(call));
             } catch (e) {
-                console.error(`Error processing ${this.currentFile}`);
+                console.error(`Error processing ${file}`);
             }
         };
 
