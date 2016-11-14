@@ -23,6 +23,11 @@
   ],
   "author": "Sencha",
   "license": "MIT",
+  "homepage": "https://github.com/sencha/extjs-reactor#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sencha/extjs-reactor.git"
+  },
   "peerDependencies": {
     "react": "^15.3.2"
   },
