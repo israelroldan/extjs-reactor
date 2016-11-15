@@ -111,25 +111,54 @@ module.exports = class ReactExtJSWebpackPlugin {
         // copy Ext.require calls to the manifest.  This allows the users to explicitly require a class if the plugin fails to detect it.
         compiler.parser.plugin('call Ext.require', addToManifest);
 
-        // once all modules are processed, create the optimized Ext JS build.
-        compiler.plugin('after-emit', (compilation, callback) => {
-            if (compilation.chunks.length === 1) {
-                // single build
-                const modules = compilation.chunks.reduce((a, b) => a.concat(b.modules), []);
-                const build = this.builds[Object.keys(this.builds)[0]];
-                this._buildExtBundle('ext', modules, build);
-            } else {
-                // multiple builds, each corresponding to an entry
-                for (let chunk of compilation.chunks) {
-                    if (chunk.entry && this.builds.hasOwnProperty(chunk.name)) {
-                        const build = this.builds[chunk.name];
-                        this._buildExtBundle(chunk.name, chunk.modules, build);
-                    }
-                }
-            }
+        compiler.plugin('compilation', compilation => {
+            compilation.plugin("optimize-chunk-assets", (chunks, callback) => {
+                const promises = [];
 
-            callback();
+                chunks.forEach(function(chunk) {
+                    const modules = chunk.modules;
+                    const target = chunk.files[0];
+                    promises.push(this._buildExtBundle('ext', modules, build).then(output => {
+                        const extBundle = path.join(output, 'ext.js');
+                        compilation.assets[target] = new ConcatSource(compilation.assets[target], fs.readFileSync(extBundle));
+                    }));
+                });
+
+                Promise.all(promises).then(callback);
+            });
         });
+
+        // once all modules are processed, create the optimized Ext JS build.
+        // compiler.plugin('emit', (compilation, callback) => {
+        //     const promises = [];
+        //
+        //     if (compilation.chunks.length === 1) {
+        //         // single build
+        //         const modules = compilation.chunks.reduce((a, b) => a.concat(b.modules), []);
+        //         const build = this.builds[Object.keys(this.builds)[0]];
+        //         promises.push(this._buildExtBundle('ext', modules, build));
+        //     } else {
+        //         // multiple builds, each corresponding to an entry
+        //         for (let chunk of compilation.chunks) {
+        //             if (chunk.entry && this.builds.hasOwnProperty(chunk.name)) {
+        //                 const build = this.builds[chunk.name];
+        //                 promises.push(this._buildExtBundle(chunk.name, chunk.modules, build));
+        //             }
+        //         }
+        //     }
+        //
+        //     Promise.all(promises)
+        //         .then(outputs => {
+        //             for (let output of outputs) {
+        //                 const jsFile = path.join(output, 'ext.js');
+        //                 const js = fs.readFileSync(jsFile, 'utf8');
+        //                 compilation.assets[jsFile] = { source: () => js, size: () => js.length };
+        //             }
+        //
+        //             callback();
+        //         })
+        //         .catch(e => callback(e || new Error('Error building Ext JS bundle')));
+        // });
     }
 
     /**
@@ -156,36 +185,51 @@ module.exports = class ReactExtJSWebpackPlugin {
      * @private
      */
     _buildExtBundle(name, modules, { toolkit='modern', output, theme, packages=[], sdk }) {
-        console.log(`building Ext JS bundle: ${name} => ${output}`);
+        return new Promise((resolve, reject) => {
+            this.onBuildComplete = resolve;
+            this.onBuildFail = reject;
 
-        if (!watching) {
-            rimraf(output);
-            mkdirp(output);
-        }
+            console.log(`building Ext JS bundle: ${name} => ${output}`);
 
-        let statements = [];
+            if (!watching) {
+                rimraf(output);
+                mkdirp(output);
+            }
 
-        for (let module of modules) {
-            const deps = this.dependencies[module.resource];
-            if (deps) statements = statements.concat(deps);
-        }
+            let statements = [];
 
-        const js = statements.join(';\n');
-        const manifest = path.join(output, 'manifest.js');
+            for (let module of modules) {
+                const deps = this.dependencies[module.resource];
+                if (deps) statements = statements.concat(deps);
+            }
 
-        fs.writeFileSync(manifest, js, 'utf8');
+            const js = statements.join(';\n');
+            const manifest = path.join(output, 'manifest.js');
 
-        if (!watching) {
-            fs.writeFileSync(path.join(output, 'build.xml'), buildXML, 'utf8');
-            fs.writeFileSync(path.join(output, 'app.json'), createAppJson({ theme, packages, toolkit }), 'utf8');
-            fs.writeFileSync(path.join(output, 'workspace.json'), createWorkspaceJson(path.resolve(sdk)), 'utf8');
-        }
+            fs.writeFileSync(manifest, js, 'utf8');
 
-        if (this.watch) {
-            if (!watching) watching = spawn('sencha', ['ant', 'watch'], { cwd: output, stdio: 'inherit' });
-        } else {
-            execSync('sencha ant build', { cwd: output, stdio: 'inherit' })
-        }
+            if (!watching) {
+                fs.writeFileSync(path.join(output, 'build.xml'), buildXML, 'utf8');
+                fs.writeFileSync(path.join(output, 'app.json'), createAppJson({ theme, packages, toolkit }), 'utf8');
+                fs.writeFileSync(path.join(output, 'workspace.json'), createWorkspaceJson(path.resolve(sdk)), 'utf8');
+            }
+
+            if (this.watch) {
+                if (!watching) {
+                    watching = spawn('sencha', ['ant', 'watch'], { cwd: output });
+                    watching.stdout.pipe(process.stdout);
+                    watching.stdout.on('data', data => {
+                        if (data.toString().match(/Waiting for changes\.\.\./)) {
+                            this.onBuildComplete(output);
+                        }
+                    });
+                    watching.on('exit', code => this.onBuildFail())
+                }
+            } else {
+                execSync('sencha ant build', { cwd: output, stdio: 'inherit' });
+                resolve(output);
+            }
+        });
     }
 
 };

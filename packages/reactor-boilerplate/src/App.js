@@ -58,7 +58,7 @@ export default class App extends Component {
                         columns={[
                             { text: 'Name', dataIndex: 'name', flex: 2, resizable: true },
                             { text: 'Email', dataIndex: 'email', flex: 3, resizable: true, plugins: 'responsive', responsiveConfig: { tall: { hidden: true } } },
-                            { text: 'Phone #', dataIndex: 'phone', flex: 2, resizable: true }
+                            { text: 'Phone', dataIndex: 'phone', flex: 2, resizable: true }
                         ]}
                         onSelect={this.onPersonSelect.bind(this)}
                         store={this.store}

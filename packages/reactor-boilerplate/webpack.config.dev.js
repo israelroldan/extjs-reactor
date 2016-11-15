@@ -57,5 +57,11 @@ module.exports = {
                 }
             }
         ]
+    },
+
+    devServer: {
+        contentBase: "./build",
+        noInfo: true,
+        hot: true
     }
 };

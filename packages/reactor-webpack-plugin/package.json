@@ -4,7 +4,7 @@
   "description": "Creates a minimal build of the Ext JS framework for use in React apps.",
   "main": "dist/index.js",
   "scripts": {
-    "watch": "babel ./src --out-dir ./dist --watch",
+    "watch": "babel ./src --out-dir ./dist --watch --source-maps",
     "build": "babel ./src --out-dir ./dist",
     "prepublish": "npm run build"
   },

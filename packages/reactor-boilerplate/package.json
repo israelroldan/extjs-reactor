@@ -5,9 +5,7 @@
   "description": "A boilerplate project showing how to integrate React and Ext JS",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --content-base build --hot",
-    "dev": "npm start & npm run watch",
-    "watch": "npm run clean && webpack --config webpack.config.dev.js --watch",
+    "start": "webpack-dev-server --progress --profile --colors --config webpack.config.dev.js",
     "build": "npm run clean && webpack --config webpack.config.dev.js",
     "clean": "rimraf build",
     "test": "echo \"Error: no test specified\" && exit 1"
