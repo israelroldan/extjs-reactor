@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
-import ReactMultiChild from 'react/lib/ReactMultiChild';
-import { precacheNode } from 'react/lib/ReactDOMComponentTree';
-import Flags from 'react/lib/ReactDOMComponentFlags';
+import ReactMultiChild from 'react-dom/lib/ReactMultiChild';
+import { precacheNode } from 'react-dom/lib/ReactDOMComponentTree';
+import Flags from 'react-dom/lib/ReactDOMComponentFlags';
 import union from 'lodash.union';
 import capitalize from 'lodash.capitalize'
 import cloneDeepWith from 'lodash.clonedeepwith';

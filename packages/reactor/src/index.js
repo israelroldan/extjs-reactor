@@ -1,5 +1,5 @@
 import ExtJSComponent from './ExtJSComponent';
-import ReactHostComponent from 'react/lib/ReactHostComponent';
+import ReactHostComponent from 'react-dom/lib/ReactHostComponent';
 
 const original = ReactHostComponent.createInternalComponent;
 
