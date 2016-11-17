@@ -19,8 +19,16 @@ Then, run the following to clone and build the project:
 
 Copy your Ext JS SDK into packages/reactor-boilerplate/ext, then run:
 
-    npm run dev
+    npm start
 
-This will build the app using webpack and Sencha Cmd and start a webpack-dev-server.
+This will build and server the app using webpack-dev-server.  The build is done when you see the following line:
 
-Go to [http://localhost:8080](http://localhost:8080)
+    [INF] Waiting for changes...  
+
+You can view the app by pointing your browser to [http://localhost:8080](http://localhost:8080)
+
+You can also run and serve a production build using:
+
+    npm run build
+    npm run prod
+

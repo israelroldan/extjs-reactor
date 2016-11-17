@@ -34,11 +34,11 @@ module.exports = class ReactExtJSWebpackPlugin {
         watch=false,
         test=/\.jsx?$/,
         /* begin single build only */
+        output='extjs',
         sdk,
         toolkit='modern',
         theme='theme-triton',
-        packages=[],
-        output="build/ext",
+        packages=[]
         /* end single build only */
     }) {
         if (Object.keys(builds).length === 0) {
@@ -49,6 +49,7 @@ module.exports = class ReactExtJSWebpackPlugin {
             this._validateBuildConfig(name, builds[name]);
 
         Object.assign(this, {
+            output,
             prefix,
             builds,
             debug,
@@ -57,7 +58,6 @@ module.exports = class ReactExtJSWebpackPlugin {
             toolkit,
             theme,
             packages,
-            output,
             dependencies: {},
             test,
             currentFile: null
@@ -111,54 +111,34 @@ module.exports = class ReactExtJSWebpackPlugin {
         // copy Ext.require calls to the manifest.  This allows the users to explicitly require a class if the plugin fails to detect it.
         compiler.parser.plugin('call Ext.require', addToManifest);
 
-        compiler.plugin('compilation', compilation => {
-            compilation.plugin("optimize-chunk-assets", (chunks, callback) => {
-                const promises = [];
-
-                chunks.forEach(function(chunk) {
-                    const modules = chunk.modules;
-                    const target = chunk.files[0];
-                    promises.push(this._buildExtBundle('ext', modules, build).then(output => {
-                        const extBundle = path.join(output, 'ext.js');
-                        compilation.assets[target] = new ConcatSource(compilation.assets[target], fs.readFileSync(extBundle));
-                    }));
-                });
-
-                Promise.all(promises).then(callback);
-            });
-        });
-
         // once all modules are processed, create the optimized Ext JS build.
-        // compiler.plugin('emit', (compilation, callback) => {
-        //     const promises = [];
-        //
-        //     if (compilation.chunks.length === 1) {
-        //         // single build
-        //         const modules = compilation.chunks.reduce((a, b) => a.concat(b.modules), []);
-        //         const build = this.builds[Object.keys(this.builds)[0]];
-        //         promises.push(this._buildExtBundle('ext', modules, build));
-        //     } else {
-        //         // multiple builds, each corresponding to an entry
-        //         for (let chunk of compilation.chunks) {
-        //             if (chunk.entry && this.builds.hasOwnProperty(chunk.name)) {
-        //                 const build = this.builds[chunk.name];
-        //                 promises.push(this._buildExtBundle(chunk.name, chunk.modules, build));
-        //             }
-        //         }
-        //     }
-        //
-        //     Promise.all(promises)
-        //         .then(outputs => {
-        //             for (let output of outputs) {
-        //                 const jsFile = path.join(output, 'ext.js');
-        //                 const js = fs.readFileSync(jsFile, 'utf8');
-        //                 compilation.assets[jsFile] = { source: () => js, size: () => js.length };
-        //             }
-        //
-        //             callback();
-        //         })
-        //         .catch(e => callback(e || new Error('Error building Ext JS bundle')));
-        // });
+        compiler.plugin('emit', (compilation, callback) => {
+            const modules = compilation.chunks.reduce((a, b) => a.concat(b.modules), []);
+            const build = this.builds[Object.keys(this.builds)[0]];
+            let outputPath = path.join(compiler.outputPath, this.output);
+
+            // webpack-dev-server overwrites the outputPath to "/", so we need to prepend contentBase
+            if (compiler.outputPath === '/' && compiler.options.devServer) {
+                outputPath = path.join(compiler.options.devServer.contentBase, outputPath);
+            }
+
+            this._buildExtBundle('ext', modules, outputPath, build)
+                .then(() => {
+                    // the following is needed for html-webpack-plugin to include <script> and <link> tags for Ext JS
+                    const jsChunk = compilation.addChunk(`${this.output}-js`);
+                    jsChunk.initial = true;
+                    jsChunk.ids = [0]; // html-webpack-plugin needs ids to be defined so that it can fetch webpack stats
+                    jsChunk.files.push(path.join(this.output, 'ext.js'));
+                    jsChunk.files.push(path.join(this.output, 'ext.css'));
+
+                    // this forces html-webpack-plugin to include ext.js first
+                    jsChunk.entry = true;
+                    jsChunk.id = 9999;
+
+                    callback();
+                })
+                .catch(e => callback(e || new Error('Error building Ext JS bundle')));
+        });
     }
 
     /**
@@ -177,6 +157,7 @@ module.exports = class ReactExtJSWebpackPlugin {
      * Builds a minimal version of the Ext JS framework based on the classes used
      * @param {String} name The name of the build
      * @param {Module[]} modules webpack modules
+     * @param {String} output The path to where the framework build should be written
      * @param {String} [toolkit='modern'] "modern" or "classic"
      * @param {String} output The path to the directory to create which will contain the js and css bundles
      * @param {String} theme The name of the Ext JS theme package to use, for example "theme-material"
@@ -184,7 +165,7 @@ module.exports = class ReactExtJSWebpackPlugin {
      * @param {String} sdk The full path to the Ext JS SDK
      * @private
      */
-    _buildExtBundle(name, modules, { toolkit='modern', output, theme, packages=[], sdk }) {
+    _buildExtBundle(name, modules, output, { toolkit='modern', theme, packages=[], sdk }) {
         return new Promise((resolve, reject) => {
             this.onBuildComplete = resolve;
             this.onBuildFail = reject;
