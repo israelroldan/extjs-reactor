@@ -6,7 +6,7 @@ The @extjs/reactor package is a custom renderer that makes it easy to use [Ext J
 
 * Ext JS 6.2+
 * Sencha Cmd 6.2+
-* React 15.3.2+ (peer dependency)
+* React 15.4.0+ (peer dependency)
 
 ## Installation
 
