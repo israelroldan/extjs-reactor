@@ -1,15 +1,20 @@
 {
   "name": "react-session",
-  "version": "1.0.0",
-  "description": "",
+  "private": true,
+  "version": "0.1.12",
+  "description": "A boilerplate project showing how to integrate React and Ext JS using the classic toolkit.",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --progress --config webpack.config.dev.js --port 8000",
     "build": "npm run clean && webpack --progress --config webpack.config.dev.js",
     "clean": "rimraf build"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Sencha",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sencha/extjs-reactor.git"
+  },
   "devDependencies": {
     "@extjs/reactor": "^0.1.12",
     "@extjs/reactor-webpack-plugin": "^0.1.12",
