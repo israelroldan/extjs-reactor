@@ -1,7 +1,7 @@
 {
   "name": "react-session",
   "private": true,
-  "version": "0.1.12",
+  "version": "0.1.13",
   "description": "A boilerplate project showing how to integrate React and Ext JS using the classic toolkit.",
   "main": "index.js",
   "scripts": {
@@ -16,8 +16,8 @@
     "url": "git+https://github.com/sencha/extjs-reactor.git"
   },
   "devDependencies": {
-    "@extjs/reactor": "^0.1.12",
-    "@extjs/reactor-webpack-plugin": "^0.1.12",
+    "@extjs/reactor": "^0.1.13",
+    "@extjs/reactor-webpack-plugin": "^0.1.13",
     "babel-core": "^6.17.0",
     "babel-loader": "^6.2.5",
     "babel-preset-es2015": "^6.14.0",
