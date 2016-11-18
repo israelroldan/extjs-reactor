@@ -183,8 +183,7 @@ module.exports = {
         new ExtJSReactWebpackPlugin({
             sdk: 'ext', // location of Ext JS SDK
             theme: 'theme-material',
-            packages: ['charts'],
-            output: path.join('build', 'ext')
+            packages: ['charts']
         })
     ]
     ...
