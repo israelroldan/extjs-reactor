@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
-import ReactMultiChild from 'react/lib/ReactMultiChild';
-import { precacheNode } from 'react/lib/ReactDOMComponentTree';
-import Flags from 'react/lib/ReactDOMComponentFlags';
+import ReactMultiChild from 'react-dom/lib/ReactMultiChild';
+import { precacheNode } from 'react-dom/lib/ReactDOMComponentTree';
+import Flags from 'react-dom/lib/ReactDOMComponentFlags';
 import union from 'lodash.union';
 import capitalize from 'lodash.capitalize'
 import cloneDeepWith from 'lodash.clonedeepwith';
@@ -243,17 +243,29 @@ export default class ExtJSComponent {
         // Since unmountComponent destroys the Ext JS component, which removes it's underlying element
         // from the DOM, react would throw an error when attempting to remove the element, which
         // has already been removed.  Adding this host element fixes the issue.
-        this.hostEl = config.renderTo = this._createHostElement(renderToDOMNode);
+        this.hostEl = this._createHostElement(renderToDOMNode);
 
         Ext.applyIf(config, {
             height: '100%',
             width: '100%'
         });
 
-        this.cmp = Ext.create(config);
+        config.renderTo = this.hostEl;
 
         if (Ext.isClassic) {
-            Ext.get(this.hostEl).on('resize', () => this.cmp.updateLayout());
+            // classic doesn't like rendering to a element that hasn't been added to the dom tree.  Here we defer
+            // rendering until it has.
+            const initObserver = new MutationObserver(mutations => {
+                this.cmp = Ext.create(config);
+                this.cmp.on('afterrender', this._precacheComponent.bind(this));
+                initObserver.disconnect();
+            });
+
+            initObserver.observe(this.hostEl, { childList: true, characterData: false, attributes: false });
+
+            Ext.get(this.hostEl).on('resize', () => this.cmp && this.cmp.updateLayout());
+        } else {
+            this.cmp = Ext.create(config);
         }
 
         return { node: this.hostEl };
@@ -322,7 +334,7 @@ export default class ExtJSComponent {
 
                 if (key.match(/^on[A-Z]/)) {
                     // convert all props starting with on to listeners
-                    if (includeEvents) config.listeners[key.slice(2).toLowerCase()] = value;
+                    if (value && includeEvents) config.listeners[key.slice(2).toLowerCase()] = value;
                 } else if (key !== 'children') {
                     config[key] = value;
                 }
@@ -364,22 +376,22 @@ export default class ExtJSComponent {
         }
     }
 
+    _precacheComponent() {
+        // Without this react throws an error when trying to associate each dom element in the ext component tree with
+        // the ext component.  This keeps react from descending into a component's tree when caching.
+        this._flags |= Flags.hasCachedChildNodes;
+
+        this.cmp.el.dom._extCmp = this.cmp;
+
+        if (!this.hostEl) {
+            this.hostEl = this.cmp.el.dom;
+            precacheNode(this, this.hostEl);
+        }
+    }
+
     _precacheNode() {
         // Component's parent is another Ext JS Component
-        this.cmp.on(Ext.isClassic ? 'afterrender' : 'painted', () => {
-
-            // Without this react throws an error when trying to associate each dom element in the ext component tree with
-            // the ext component.  This keeps react from descending into a component's tree when caching.
-            this._flags |= Flags.hasCachedChildNodes;
-
-            this.cmp.el.dom._extCmp = this.cmp;
-
-            if (!this.hostEl) {
-                this.hostEl = this.cmp.el.dom;
-                precacheNode(this, this.hostEl);
-            }
-        }, this, { single: true });
-
+        this.cmp && this.cmp.on(Ext.isClassic ? 'afterrender' : 'painted', this._precacheComponent, this, { single: true });
         if (this.hostEl) precacheNode(this, this.hostEl);
     }
 }

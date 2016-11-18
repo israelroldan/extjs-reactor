@@ -34,11 +34,11 @@ module.exports = class ReactExtJSWebpackPlugin {
         watch=false,
         test=/\.jsx?$/,
         /* begin single build only */
+        output='extjs',
         sdk,
         toolkit='modern',
         theme='theme-triton',
-        packages=[],
-        output="build/ext",
+        packages=[]
         /* end single build only */
     }) {
         if (Object.keys(builds).length === 0) {
@@ -49,6 +49,7 @@ module.exports = class ReactExtJSWebpackPlugin {
             this._validateBuildConfig(name, builds[name]);
 
         Object.assign(this, {
+            output,
             prefix,
             builds,
             debug,
@@ -57,7 +58,6 @@ module.exports = class ReactExtJSWebpackPlugin {
             toolkit,
             theme,
             packages,
-            output,
             dependencies: {},
             test,
             currentFile: null
@@ -112,23 +112,32 @@ module.exports = class ReactExtJSWebpackPlugin {
         compiler.parser.plugin('call Ext.require', addToManifest);
 
         // once all modules are processed, create the optimized Ext JS build.
-        compiler.plugin('after-emit', (compilation, callback) => {
-            if (compilation.chunks.length === 1) {
-                // single build
-                const modules = compilation.chunks.reduce((a, b) => a.concat(b.modules), []);
-                const build = this.builds[Object.keys(this.builds)[0]];
-                this._buildExtBundle('ext', modules, build);
-            } else {
-                // multiple builds, each corresponding to an entry
-                for (let chunk of compilation.chunks) {
-                    if (chunk.entry && this.builds.hasOwnProperty(chunk.name)) {
-                        const build = this.builds[chunk.name];
-                        this._buildExtBundle(chunk.name, chunk.modules, build);
-                    }
-                }
+        compiler.plugin('emit', (compilation, callback) => {
+            const modules = compilation.chunks.reduce((a, b) => a.concat(b.modules), []);
+            const build = this.builds[Object.keys(this.builds)[0]];
+            let outputPath = path.join(compiler.outputPath, this.output);
+
+            // webpack-dev-server overwrites the outputPath to "/", so we need to prepend contentBase
+            if (compiler.outputPath === '/' && compiler.options.devServer) {
+                outputPath = path.join(compiler.options.devServer.contentBase, outputPath);
             }
 
-            callback();
+            this._buildExtBundle('ext', modules, outputPath, build)
+                .then(() => {
+                    // the following is needed for html-webpack-plugin to include <script> and <link> tags for Ext JS
+                    const jsChunk = compilation.addChunk(`${this.output}-js`);
+                    jsChunk.initial = true;
+                    jsChunk.ids = [0]; // html-webpack-plugin needs ids to be defined so that it can fetch webpack stats
+                    jsChunk.files.push(path.join(this.output, 'ext.js'));
+                    jsChunk.files.push(path.join(this.output, 'ext.css'));
+
+                    // this forces html-webpack-plugin to include ext.js first
+                    jsChunk.entry = true;
+                    jsChunk.id = 9999;
+
+                    callback();
+                })
+                .catch(e => callback(e || new Error('Error building Ext JS bundle')));
         });
     }
 
@@ -148,6 +157,7 @@ module.exports = class ReactExtJSWebpackPlugin {
      * Builds a minimal version of the Ext JS framework based on the classes used
      * @param {String} name The name of the build
      * @param {Module[]} modules webpack modules
+     * @param {String} output The path to where the framework build should be written
      * @param {String} [toolkit='modern'] "modern" or "classic"
      * @param {String} output The path to the directory to create which will contain the js and css bundles
      * @param {String} theme The name of the Ext JS theme package to use, for example "theme-material"
@@ -155,37 +165,52 @@ module.exports = class ReactExtJSWebpackPlugin {
      * @param {String} sdk The full path to the Ext JS SDK
      * @private
      */
-    _buildExtBundle(name, modules, { toolkit='modern', output, theme, packages=[], sdk }) {
-        console.log(`building Ext JS bundle: ${name} => ${output}`);
+    _buildExtBundle(name, modules, output, { toolkit='modern', theme, packages=[], sdk }) {
+        return new Promise((resolve, reject) => {
+            this.onBuildComplete = resolve;
+            this.onBuildFail = reject;
 
-        if (!watching) {
-            rimraf(output);
-            mkdirp(output);
-        }
+            console.log(`\nbuilding Ext JS bundle: ${name} => ${output}`);
 
-        let statements = [];
+            if (!watching) {
+                rimraf(output);
+                mkdirp(output);
+            }
 
-        for (let module of modules) {
-            const deps = this.dependencies[module.resource];
-            if (deps) statements = statements.concat(deps);
-        }
+            let statements = ['Ext.require("Ext.Component")']; // for some reason command doesn't load component when only panel is required
 
-        const js = statements.join(';\n');
-        const manifest = path.join(output, 'manifest.js');
+            for (let module of modules) {
+                const deps = this.dependencies[module.resource];
+                if (deps) statements = statements.concat(deps);
+            }
 
-        fs.writeFileSync(manifest, js, 'utf8');
+            const js = statements.join(';\n');
+            const manifest = path.join(output, 'manifest.js');
 
-        if (!watching) {
-            fs.writeFileSync(path.join(output, 'build.xml'), buildXML, 'utf8');
-            fs.writeFileSync(path.join(output, 'app.json'), createAppJson({ theme, packages, toolkit }), 'utf8');
-            fs.writeFileSync(path.join(output, 'workspace.json'), createWorkspaceJson(path.resolve(sdk)), 'utf8');
-        }
+            fs.writeFileSync(manifest, js, 'utf8');
 
-        if (this.watch) {
-            if (!watching) watching = spawn('sencha', ['ant', 'watch'], { cwd: output, stdio: 'inherit' });
-        } else {
-            execSync('sencha ant build', { cwd: output, stdio: 'inherit' })
-        }
+            if (!watching) {
+                fs.writeFileSync(path.join(output, 'build.xml'), buildXML, 'utf8');
+                fs.writeFileSync(path.join(output, 'app.json'), createAppJson({ theme, packages, toolkit }), 'utf8');
+                fs.writeFileSync(path.join(output, 'workspace.json'), createWorkspaceJson(path.resolve(sdk)), 'utf8');
+            }
+
+            if (this.watch) {
+                if (!watching) {
+                    watching = spawn('sencha', ['ant', 'watch'], { cwd: output });
+                    watching.stdout.pipe(process.stdout);
+                    watching.stdout.on('data', data => {
+                        if (data.toString().match(/Waiting for changes\.\.\./)) {
+                            this.onBuildComplete(output);
+                        }
+                    });
+                    watching.on('exit', code => this.onBuildFail())
+                }
+            } else {
+                execSync('sencha ant build', { cwd: output, stdio: 'inherit' });
+                resolve(output);
+            }
+        });
     }
 
 };

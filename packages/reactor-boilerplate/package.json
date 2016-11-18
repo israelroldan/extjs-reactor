@@ -1,14 +1,13 @@
 {
   "name": "@extjs/reactor-boilerplate",
   "private": true,
-  "version": "0.1.11",
+  "version": "0.1.12",
   "description": "A boilerplate project showing how to integrate React and Ext JS",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --content-base build --hot",
-    "dev": "npm start & npm run watch",
-    "watch": "npm run clean && webpack --config webpack.config.dev.js --watch",
-    "build": "npm run clean && webpack --config webpack.config.dev.js",
+    "prod": "webpack-dev-server --content-base ./build --compress",
+    "start": "webpack-dev-server --progress --profile --colors --config webpack.config.dev.js",
+    "build": "npm run clean && webpack --config webpack.config.prod.js --progress --profile --colors",
     "clean": "rimraf build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -19,16 +18,17 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@extjs/reactor": "^0.1.12",
+    "@extjs/reactor-webpack-plugin": "^0.1.12",
     "babel-core": "^6.17.0",
     "babel-loader": "^6.2.5",
     "babel-preset-es2015": "^6.14.0",
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-2": "^6.13.0",
     "copy-webpack-plugin": "^3.0.1",
-    "react": "15.3.2",
-    "react-dom": "15.3.2",
-    "@extjs/reactor": "^0.1.10",
-    "@extjs/reactor-webpack-plugin": "^0.1.11",
+    "react": "^15.4.0",
+    "react-dom": "^15.4.0",
+    "html-webpack-plugin": "^2.24.1",
     "webpack": "^1.13.2",
     "webpack-dev-server": "^1.16.2"
   }

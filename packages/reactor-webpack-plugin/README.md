@@ -12,13 +12,13 @@ You must have Ext JS 6.2+ and Sencha Cmd 6.2+ to use this plugin.
 ## Options
 The ExtJSReactorWebpackPlugin constructor takes an object with the following properties:
 
-* debug [boolean] True to output debug information.  Defaults to false.
 * sdk [string] The path to the Ext JS SDK
-* toolkit [string] "modern" or "classic".  Defaults to "modern".
-* theme [string] The name of the theme package to use. Defaults to "theme-triton".
-* packages [string[]] Packages to include.  Values correspond to the names of directories in the packages directory of your SDK.
-* output [string] The path to the directory where the Ext JS minimized bundle should be written
-* test [RegExp] All files matching this pattern will be searched for usage of Ext classes to include in the build.  Defaults to `/\.jsx?$/`
+* toolkit (optional) [string] "modern" or "classic".  Defaults to "modern".
+* theme (optional) [string] The name of the theme package to use. Defaults to "theme-triton".
+* packages (optional) [string[]] Packages to include.  Values correspond to the names of directories in the packages directory of your SDK.
+* output (optional) [string] The path within the output directory in which the Ext JS build should be created.  Defaults to "extjs"
+* test (optional) [RegExp] All files matching this pattern will be searched for usage of Ext classes to include in the build.  Defaults to `/\.jsx?$/`
+* debug (optional) [boolean] True to output debug information.  Defaults to false.
 
 ## Example
 
@@ -40,12 +40,10 @@ module.exports = {
     },
     plugins: [
         new ExtJSReactorWebpackPlugin({
-            debug: true,
             toolkit: 'modern',
             sdk: 'ext',
-            theme: 'theme-triton',
-            packages: ['ux', 'calendar'],
-            output: path.join('build', 'ext')
+            theme: 'theme-material',
+            packages: ['ux', 'calendar']
         })
     ],
     module: {

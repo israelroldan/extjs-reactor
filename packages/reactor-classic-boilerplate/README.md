@@ -1,6 +1,6 @@
-# Ext JS Reactor Boilerplate
+# Ext JS Reactor Classic Boilerplate
 
-A foundation for React apps that use Ext JS components.
+A foundation for React apps that use Classic Ext JS components.
 
 ## Requirements
 
@@ -25,10 +25,5 @@ This will build and server the app using webpack-dev-server.  The build is done 
 
     [INF] Waiting for changes...  
 
-You can view the app by pointing your browser to [http://localhost:8080](http://localhost:8080)
-
-You can also run and serve a production build using:
-
-    npm run build
-    npm run prod
+You can view the app by pointing your browser to [http://localhost:8000](http://localhost:8000)
 
