@@ -18,8 +18,6 @@ module.exports = {
         filename: 'index.js'
     },
 
-    // This is only needed in the react-extjs monorepo.  You can remove this
-    // in your own project.
     resolve: {
         alias: {
             react: path.resolve('./node_modules/react'),

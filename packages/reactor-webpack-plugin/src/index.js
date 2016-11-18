@@ -170,14 +170,14 @@ module.exports = class ReactExtJSWebpackPlugin {
             this.onBuildComplete = resolve;
             this.onBuildFail = reject;
 
-            console.log(`building Ext JS bundle: ${name} => ${output}`);
+            console.log(`\nbuilding Ext JS bundle: ${name} => ${output}`);
 
             if (!watching) {
                 rimraf(output);
                 mkdirp(output);
             }
 
-            let statements = [];
+            let statements = ['Ext.require("Ext.Component")']; // for some reason command doesn't load component when only panel is required
 
             for (let module of modules) {
                 const deps = this.dependencies[module.resource];
