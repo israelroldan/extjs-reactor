@@ -12,7 +12,7 @@ The @extjs/reactor package is a custom renderer that makes it easy to use [Ext J
 
 ```bash
 # Be sure to install react>=15.3.2 before
-npm install --save-dev @extjs/reactor
+npm install --save @extjs/reactor
 ```
 
 ## Getting Started
