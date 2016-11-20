@@ -16,8 +16,12 @@
     "url": "git+https://github.com/sencha/extjs-reactor.git"
   },
   "license": "MIT",
-  "devDependencies": {
+  "dependencies": {
     "@extjs/reactor": "^0.1.13",
+    "react": "^15.4.0",
+    "react-dom": "^15.4.0"
+  },
+  "devDependencies": {
     "@extjs/reactor-webpack-plugin": "^0.1.13",
     "babel-core": "^6.17.0",
     "babel-loader": "^6.2.5",
@@ -25,8 +29,6 @@
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-2": "^6.13.0",
     "copy-webpack-plugin": "^3.0.1",
-    "react": "^15.4.0",
-    "react-dom": "^15.4.0",
     "html-webpack-plugin": "^2.24.1",
     "webpack": "^1.13.2",
     "webpack-dev-server": "^1.16.2"
