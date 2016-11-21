@@ -10,8 +10,9 @@ const astring = require('astring');
  * @param {String} prefix The prefix that denotes an Ext JS xtype
  * @returns {Array} An array of Ext.create statements
  */
-module.exports = function extractFromJSX(js, prefix='x-') {
+module.exports = function extractFromJSX(js) {
     const statements = [];
+    const xtypes = {};
 
     const ast = acorn.parse(js, {
         ecmaVersion: 7,
@@ -24,11 +25,24 @@ module.exports = function extractFromJSX(js, prefix='x-') {
 
     traverse(ast, {
         pre: function(node) {
+
+            // Look for reactify calls like: const Grid = reactify('grid');
+            // Keep track of the names of each component so we can map JSX tags to xtypes and convert
+            // props to configs so Sencha Cmd can discover automatic dependencies in the manifest.
+            if (node.type == 'VariableDeclarator' && node.init && node.init.type === 'CallExpression' && node.init.callee && node.init.callee.name === 'reactify') {
+                const varName = node.id.name;
+                const arg = node.init.arguments && node.init.arguments[0];
+                if (!arg) return;
+                const xtype = arg && arg.type === 'Literal' && arg.value;
+                if (xtype) xtypes[varName] = xtype;
+            }
+
+            // convert reactified components to Ext.create calls to put in the manifest
             if (node.type === 'JSXOpeningElement') {
                 const tag = node.name.name;
+                const xtype = xtypes[tag];
 
-                if (tag.startsWith(prefix)) {
-                    const xtype = tag.slice(prefix.length);
+                if (xtype) {
                     const configs = { xtype: `"${xtype}"` };
 
                     for (let attribute of node.attributes) {

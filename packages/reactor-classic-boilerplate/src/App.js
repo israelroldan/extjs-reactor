@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 
 import Person from './Person';
 import data from './data';
+import { reactify } from '@extjs/reactor';
+
+const Panel = reactify('panel');
+const Grid = reactify('grid');
+const Toolbar = reactify('toolbar');
+const TextField = reactify('textfield');
 
 Ext.require('Ext.window.Toast');
 
@@ -51,18 +57,7 @@ export default class App extends Component {
         const { person } = this.state;
         
         return (
-            <x-panel layout="fit" title="Employees">
-                <x-toolbar dock="top">
-                    <x-textfield emptyText="Search" onChange={(field, value) => this.onSearch(value)} flex={1}/>
-                </x-toolbar>
-                <x-grid
-                    store={this.store}
-                    columns={[
-                        { text: 'Name', dataIndex: 'name', flex: 1 },
-                        { text: 'Email', dataIndex: 'email', flex: 1 }
-                    ]}
-                    onRowClick={(grid, record) => this.onRowClick(record.data)}
-                />
+            <Panel layout="fit" title="Employees">
                 { person && (
                     <Person
                         person={person}
@@ -70,7 +65,18 @@ export default class App extends Component {
                         onClose={() => this.setState({ person: null })}
                     />
                 ) }
-            </x-panel>
+                <Toolbar dock="top">
+                    <TextField emptyText="Search" onChange={(field, value) => this.onSearch(value)} flex={1}/>
+                </Toolbar>
+                <Grid
+                    store={this.store}
+                    columns={[
+                        { text: 'Name', dataIndex: 'name', flex: 1 },
+                        { text: 'Email', dataIndex: 'email', flex: 1 }
+                    ]}
+                    onRowClick={(grid, record) => this.onRowClick(record.data)}
+                />
+            </Panel>
         );
     }
 }

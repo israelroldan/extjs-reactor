@@ -19,7 +19,6 @@ module.exports = class ReactExtJSWebpackPlugin {
 
     /**
      * @param {Object[]} builds
-     * @param {String} [prefix='x-'] The prefix applied to jsx tags that denotes use of an Ext JS xtype.
      * @param {Boolean} [debug=false] Set to true to prevent cleanup of build temporary build artifacts that might be helpful in troubleshooting issues.
      * @param {String} sdk The full path to the Ext JS SDK
      * @param {String} [toolkit='modern'] "modern" or "classic"
@@ -29,7 +28,6 @@ module.exports = class ReactExtJSWebpackPlugin {
      */
     constructor({
         builds={},
-        prefix='x-',
         debug=false,
         watch=false,
         test=/\.jsx?$/,
@@ -50,7 +48,6 @@ module.exports = class ReactExtJSWebpackPlugin {
 
         Object.assign(this, {
             output,
-            prefix,
             builds,
             debug,
             watch,
@@ -79,7 +76,7 @@ module.exports = class ReactExtJSWebpackPlugin {
                     try {
                         if (this.debug) console.log(module.resource);
                         const contents = fs.readFileSync(module.resource, 'utf8');
-                        const statements = extractFromJSX(contents, this.prefix);
+                        const statements = extractFromJSX(contents);
                         this.dependencies[this.currentFile] = statements;
                     } catch (e) {
                         console.error('error parsing ' + this.currentFile);
@@ -110,6 +107,9 @@ module.exports = class ReactExtJSWebpackPlugin {
 
         // copy Ext.require calls to the manifest.  This allows the users to explicitly require a class if the plugin fails to detect it.
         compiler.parser.plugin('call Ext.require', addToManifest);
+
+        // copy Ext.define calls to the manifest.  This allows users to write standard Ext JS classes.
+        compiler.parser.plugin('call Ext.define', addToManifest);
 
         // once all modules are processed, create the optimized Ext JS build.
         compiler.plugin('emit', (compilation, callback) => {
