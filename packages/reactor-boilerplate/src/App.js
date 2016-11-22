@@ -3,10 +3,7 @@ import data from './data';
 import Employee from './Employee';
 import { reactify } from '@extjs/reactor';
 
-const Grid = reactify('grid');
-const Panel = reactify('panel');
-const Container = reactify('container');
-const SearchField = reactify('searchfield');
+const [ Grid, Panel, Container, SearchField ] = reactify('grid', 'panel', 'container', 'searchfield');
 
 Ext.require([
     'Ext.plugin.Responsive',

@@ -1,15 +1,29 @@
 import { spy } from 'sinon';
 
 export default function() {
-    const Component = function(config) {
+
+    function Base () {
+
+    }
+
+    function Component (config) {
         this.config = config;
         this.items = [];
+        this.events = [];
+        this.render(config.renderTo);
     }
 
     Component.prototype = {
+
+        on(event, handler, scope) {
+            if (event === 'afterrender' || event === 'painted') {
+                handler.call(scope, this.el);
+            }
+        },
+
         render: spy(function(el) {
             const div = document.createElement('div');
-            div.className = 'x-' + this.config.xtype;
+            div.className = this.getClsName();
             if (el) el.appendChild(div);
             this.el = { dom: div };
 
@@ -23,6 +37,10 @@ export default function() {
 
             return div;
         }),
+
+        getClsName() {
+            return 'x-component';
+        },
 
         destroy: spy(function() {
             if (this.el.dom.parentNode) {
@@ -52,10 +70,18 @@ export default function() {
         setConfig: spy(function(config) {
             this.config = config;
         })
-    }
+    };
 
     global.Ext = {
-        create: (config) => new Ext.Component(config),
+        ClassManager: {
+            getByAlias(alias) {
+                return class extends Component {
+                    getClsName() {
+                        return 'x-' + alias.replace(/^widget\./, '');
+                    }
+                };
+            }
+        },
         Array: {
             union: function(a, b) {
                 const result = Array.from(a);
@@ -68,6 +94,7 @@ export default function() {
                 return str[0].toUpperCase() + str.slice(1);
             }
         },
+        Base,
         Component
     };
 };

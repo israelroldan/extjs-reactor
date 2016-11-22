@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import { reactify } from '@extjs/reactor';
 
-const Window = reactify('window');
-const TextField = reactify('textfield');
+const [ Window, TextField ] = reactify('window', 'textfield');
 
-Ext.require([
-    'Ext.button.Button'
-]);
+Ext.require('Ext.button.Button');
 
 export default class Person extends Component {
     

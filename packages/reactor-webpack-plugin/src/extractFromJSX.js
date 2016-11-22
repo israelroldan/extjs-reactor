@@ -1,8 +1,8 @@
 "use strict";
 
 const acorn = require('acorn-object-spread/inject')(require('acorn-jsx'));
-const traverse = require("ast-traverse");
-const astring = require('astring');
+import traverse from 'ast-traverse';
+import astring from 'astring';
 
 /**
  * Extracts Ext.create equivalents from jsx tags so that cmd knows which classes to include in the bundle
@@ -12,7 +12,7 @@ const astring = require('astring');
  */
 module.exports = function extractFromJSX(js) {
     const statements = [];
-    const xtypes = {};
+    const types = {};
 
     const ast = acorn.parse(js, {
         ecmaVersion: 7,
@@ -26,24 +26,42 @@ module.exports = function extractFromJSX(js) {
     traverse(ast, {
         pre: function(node) {
 
-            // Look for reactify calls like: const Grid = reactify('grid');
-            // Keep track of the names of each component so we can map JSX tags to xtypes and convert
-            // props to configs so Sencha Cmd can discover automatic dependencies in the manifest.
+            // Look for reactify calls. Keep track of the names of each component so we can map JSX tags to xtypes and
+            // convert props to configs so Sencha Cmd can discover automatic dependencies in the manifest.
             if (node.type == 'VariableDeclarator' && node.init && node.init.type === 'CallExpression' && node.init.callee && node.init.callee.name === 'reactify') {
-                const varName = node.id.name;
-                const arg = node.init.arguments && node.init.arguments[0];
-                if (!arg) return;
-                const xtype = arg && arg.type === 'Literal' && arg.value;
-                if (xtype) xtypes[varName] = xtype;
+
+                if (node.id.elements) {
+                    // example: const { Panel, Grid } = reactify('Panel', 'Grid');
+                    for (let i = 0; i < node.id.elements.length; i++) {
+                        const tagName = node.id.elements[i].name;
+                        if (!tagName) continue;
+
+                        const valueNode = node.init.arguments[i];
+                        if (!valueNode) continue;
+
+                        if (valueNode.type === 'Literal') {
+                            types[tagName] = { xtype: `"${valueNode.value}"` };
+                        } else {
+                            types[tagName] = { xclass: `"${astring(valueNode)}"` };
+                        }
+                    }
+                } else {
+                    // example: const Grid = reactify('grid');
+                    const varName = node.id.name;
+                    const arg = node.init.arguments && node.init.arguments[0];
+                    if (!arg) return;
+                    const xtype = arg && arg.type === 'Literal' && arg.value;
+                    if (xtype) types[varName] = xtype.toLowerCase();
+                }
             }
 
             // convert reactified components to Ext.create calls to put in the manifest
             if (node.type === 'JSXOpeningElement') {
                 const tag = node.name.name;
-                const xtype = xtypes[tag];
+                const type = types[tag];
 
-                if (xtype) {
-                    const configs = { xtype: `"${xtype}"` };
+                if (type) {
+                    const configs = { ...type };
 
                     for (let attribute of node.attributes) {
                         const name = attribute.name.name;

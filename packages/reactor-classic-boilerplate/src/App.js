@@ -4,10 +4,7 @@ import Person from './Person';
 import data from './data';
 import { reactify } from '@extjs/reactor';
 
-const Panel = reactify('panel');
-const Grid = reactify('grid');
-const Toolbar = reactify('toolbar');
-const TextField = reactify('textfield');
+const [ Panel, Grid, Toolbar, TextField ] = reactify('panel', 'grid', 'toolbar', 'textfield');
 
 Ext.require('Ext.window.Toast');
 

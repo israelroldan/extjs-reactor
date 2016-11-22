@@ -25,7 +25,7 @@ The boilerplate project uses the Ext JS modern toolkit. There is also a [boilerp
 
 ### Configuration
 
-First, install the custom renderer.  We recommend doing this in your index.js file (your webpack entry point).  This only needs to be done once in your app.
+First, install the reactor.  We recommend doing this in your index.js file (your webpack entry point).  This only needs to be done once in your app.
 
 ```jsx
 import install from '@extjs/reactor';
@@ -40,23 +40,25 @@ install({ viewport: true });
 
 ### Using Ext JS Components
 
-With `@extjs/reactor` installed, all JSX tags that start with "x-" will be mapped to Ext JS components by xtype. You can override the default prefix when calling `install`, for example: `install("ext-")`.  Here's a minimal React app that renders an Ext.Panel:
+The `@extjs/reactor` package exports a function called `reactify` that creates a React component for an Ext JS component class. Here's a minimal React app that renders an Ext.Panel:
 
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
-import install from '@extjs/reactor';
+import { install, reactify } from '@extjs/reactor';
 
 // Install the Ext JS custom renderer
 install();
+
+const Panel = reactify('panel'); // reactify takes an xtype or Ext.Class
 
 // When Ext JS loads, initialize our React app
 Ext.onReady(() => {
     ReactDOM.render(
         (
-            <x-panel title="React Ext JS">
+            <Panel title="React Ext JS">
                 Hello World!
-            </x-panel>
+            </Panel>
         ),
         document.getElementById('root')
     );
@@ -68,11 +70,14 @@ React props are converted to Ext JS configs.  Here's a typical use of an Ext.gri
 
 ```jsx
 import React, { Component } from 'react';
+import { reactify } from '@extjs/reactor';
+
+const Grid = reactify('grid');
 
 export default class MyComponent extends Component {
     render() {        
         return (
-            <x-grid
+            <Grid
                 plugins={[                
                     { type: 'columnresizing' }
                 ]}
@@ -99,10 +104,13 @@ Any prop starting with "on" followed by a capital letter is automatically conver
 
 ```jsx
 import React, { Component } from 'react';
+import { reactify } from '@extjs/reactor';
+
+const Slider = reactify('slider');
 
 export default function MyComponent() {
     return (
-        <x-slider
+        <Slider
             minValue={0}
             maxValue={100}
             onChange={(slider, value) => console.log(`Value set to ${value}`)}
@@ -116,6 +124,9 @@ You can also use a listeners object as is common in traditional Ext JS:
 
 ```jsx
 import React, { Component } from 'react';
+import { reactify } from '@extjs/reactor';
+
+const Slider = reactify('slider');
 
 export default function MyComponent() {
     return (
@@ -136,11 +147,14 @@ Refs point to Ext JS component instances:
 
 ```jsx
 import React, { Component } from 'react';
+import { reactify } from '@extjs/reactor';
+
+const Slider = reactify('slider');
 
 export default class MyComponent {
     render() {
         return (
-            <x-slider
+            <Slider
                 ref="slider"
                 minValue={0}
                 maxValue={100}
@@ -162,12 +176,23 @@ When using the Classic Toolkit, any component with a `dock` prop is automaticall
 Here is an example which docks a toolbar above a grid:
 
 ```
-<x-panel layout="fit">
-    <x-toolbar dock="top">
-        <x-textfield emptyText="Search..." flex={1}/>
-    </x-toolbar>
-    <x-grid>...</x-grid>
-</x-panel>
+import { reactify } from '@extjs/reactor';
+
+const Panel = reactify('panel');
+const Grid = reactify('grid');
+const Toolbar = reactify('toolbar');
+const TextField = reactify('textfield');
+
+function MyComponent(props) {
+    return (
+        <Panel layout="fit">
+            <Toolbar dock="top">
+                <TextField emptyText="Search..." flex={1}/>
+            </Toolbar>
+            <Grid>...</Grid>
+        </Panel>
+    )
+}
 ```
 
 ### Building

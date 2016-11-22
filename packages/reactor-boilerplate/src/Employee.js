@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 
 import { reactify } from '@extjs/reactor';
-const Panel = reactify('panel'); // reactify by xtype
-
 import './PTOChart';
-const Chart = reactify(Boilerplate.PTOChart); // you can also reactify by class
+
+const [ Panel, Chart ] = reactify('panel', Boilerplate.PTOChart); // reactify by xtype
 
 Ext.require('Ext.plugin.Responsive');
 
