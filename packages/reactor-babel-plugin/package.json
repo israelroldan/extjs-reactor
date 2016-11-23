@@ -1,13 +1,18 @@
 {
   "name": "@extjs/reactor-babel-plugin",
   "version": "0.1.13",
-  "description": "",
+  "description": "Converts ES6 imports to reactify calls.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sencha/extjs-reactor.git"
+  },
+  "author": "Sencha",
+  "license": "MIT",
+  "homepage": "https://github.com/sencha/extjs-reactor/tree/master/packages/reactor-babel-plugin",
   "dependencies": {
     "babel-core": "^6.18.2"
   }

@@ -20,7 +20,7 @@ npm install --save-dev @extjs/reactor-webpack-plugin @extjs/reactor-babel-plugin
 
 We recommend you start by cloning the [boilerplate project](https://github.com/sencha/extjs-reactor/tree/master/packages/reactor-boilerplate) and following the instructions there.
 
-The boilerplate project uses the Ext JS modern toolkit. There is also a [boilerplate project using the Ext JS classic toolkit](https://github.com/sencha/extjs-reactor/tree/master/packages/reactor-classic-boilerplate).
+The boilerplate project uses Ext JS 6 with the modern toolkit. There is also a [boilerplate project using the classic toolkit](https://github.com/sencha/extjs-reactor/tree/master/packages/reactor-classic-boilerplate).
 
 ## Basic Concepts
 
@@ -41,7 +41,7 @@ install({ viewport: true });
 
 ### Hello World
 
-The `@extjs/reactor` package exports a function called `reactify` that creates a React component for an Ext JS component class. Here's a minimal React app that renders an Ext.Panel:
+The `@extjs/reactor` package exports a function called `reactify` that creates a React component for any Ext JS component class. Here's a minimal React app that renders an Ext.Panel:
 
 ```jsx
 import React from 'react';
@@ -67,17 +67,17 @@ Ext.onReady(() => {
 });
 ```
 
-If you're using Babel, we recommend installing @extjs/reactor-babel-plugin, which allows you to do this...
-
-```jsx
-import { Panel } from '@extjs/reactor';
-```
-
-... instead of this ...
+The reactify function allows you to create React components for multiple xtypes at once using array destructuring:
 
 ```jsx
 import { reactify } from '@extjs/reactor';
-const Panel = reactify('panel');
+const [ Panel, Grid ] = reactify('panel', 'grid');
+```
+
+If you're using Babel, we recommend installing @extjs/reactor-babel-plugin, which allows you to do this instead...
+
+```jsx
+import { Panel, Grid } from '@extjs/reactor/modern';
 ```
 
 ... and so our Hello World app becomes ...
@@ -85,7 +85,8 @@ const Panel = reactify('panel');
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { install, Panel } from '@extjs/reactor';
+import { install } from '@extjs/reactor';
+import { Panel } from '@extjs/reactor/modern';
 
 // Install the Ext JS custom renderer
 install();
@@ -106,13 +107,19 @@ Ext.onReady(() => {
 
 All of the examples below leverage the @extjs/reactor-babel-plugin to achieve this more concise syntax.
 
+When using the classic toolkit, your import statements would look like:
+
+```jsx
+import { Grid } from '@extjs/reactor/classic';
+```
+
 ### Configuring Components
 
 React props are converted to Ext JS configs.  Here's a typical use of an Ext.grid.Grid:
 
 ```jsx
 import React, { Component } from 'react';
-import { Grid } from '@extjs/reactor';
+import { Grid } from '@extjs/reactor/modern';
 
 export default class MyComponent extends Component {
     render() {        
@@ -144,7 +151,7 @@ Any prop starting with "on" followed by a capital letter is automatically conver
 
 ```jsx
 import React, { Component } from 'react';
-import { Slider } from '@extjs/reactor';
+import { Slider } from '@extjs/reactor/modern';
 
 export default function MyComponent() {
     return (
@@ -162,7 +169,7 @@ You can also use a listeners object as is common in traditional Ext JS:
 
 ```jsx
 import React, { Component } from 'react';
-import { Slider } from '@extjs/reactor';
+import { Slider } from '@extjs/reactor/modern';
 
 export default function MyComponent() {
     return (
@@ -183,7 +190,7 @@ Refs point to Ext JS component instances:
 
 ```jsx
 import React, { Component } from 'react';
-import { Slider } from '@extjs/reactor';
+import { Slider } from '@extjs/reactor/modern';
 
 export default class MyComponent {
     render() {
@@ -210,7 +217,7 @@ When using the Classic Toolkit, any component with a `dock` prop is automaticall
 Here is an example which docks a toolbar above a grid:
 
 ```jsx
-import { Grid, Panel, Toolbar, TextField } from '@extjs/reactor';
+import { Grid, Panel, Toolbar, TextField } from '@extjs/reactor/classic';
 
 function MyComponent(props) {
     return (
@@ -244,6 +251,15 @@ module.exports = {
 }
 ```
 
+If you're using Babel, we recommend adding @extjs/reactor-babel-plugin to your .babelrc.  For example:
+
+```javascript
+{
+  "presets": ["es2015", "react"],
+  "plugins": ["@extjs/reactor-babel-plugin"]
+}
+```
+
 # Development
 This is a monorepo that uses lerna.  After cloning, run `npm install` then `lerna bootstrap` to install dependencies.
 
@@ -251,6 +267,6 @@ This is a monorepo that uses lerna.  After cloning, run `npm install` then `lern
 
 * [@extjs/reactor](https://github.com/sencha/extjs-reactor/tree/master/packages/reactor) - A custom React renderer that lets you to use any Ext JS xtype as a JSX tag
 * [@extjs/reactor-webpack-plugin](https://github.com/sencha/extjs-reactor/tree/master/packages/reactor-webpack-plugin) - Integrates Webpack with Sencha Cmd to produce optimized builds of Ext JS
-* [@extjs/reactor-babel-plugin](https://github.com/sencha/extjs-reactor/tree/master/packages/reactor-babel-plugin) - Integrates Webpack with Sencha Cmd to produce optimized builds of Ext JS
+* [@extjs/reactor-babel-plugin](https://github.com/sencha/extjs-reactor/tree/master/packages/reactor-babel-plugin) - Allows you to load reactified Ext JS components using ES6 import syntax.
 * [@extjs/reactor-boilerplate](https://github.com/sencha/extjs-reactor/tree/master/packages/reactor-boilerplate) - An example project using React, Webpack, and Ext JS 6 with the modern toolkit.
 * [@extjs/reactor-classic-boilerplate](https://github.com/sencha/extjs-reactor/tree/master/packages/reactor-boilerplate) - An example project using React, Webpack, and Ext JS 6 with the classic toolkit.

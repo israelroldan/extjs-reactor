@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Person from './Person';
 import data from './data';
-import { Panel, Grid, Toolbar, TextField } from '@extjs/reactor';
+import { Panel, Grid, Toolbar, TextField } from '@extjs/reactor/classic';
 
 Ext.require('Ext.window.Toast');
 

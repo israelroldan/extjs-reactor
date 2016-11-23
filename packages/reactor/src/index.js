@@ -34,8 +34,9 @@ export function reactify(...targets) {
 
     for (let target of targets) {
         if (typeof(target) === 'string') {
+            const name = target;
             target = Ext.ClassManager.getByAlias(`widget.${target}`);
-            if (!target) throw new Error(`No xtype "${target}" found.  Perhaps you need to require it with Ext.require("${target}")?`);
+            if (!target) throw new Error(`No xtype "${name}" found.  Perhaps you need to require it with Ext.require("${name}")?`);
         }
 
         const name = target.getName && target.getName();

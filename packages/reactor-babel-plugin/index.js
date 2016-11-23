@@ -1,3 +1,5 @@
+const COMPONENT_MODULE_PATTERN = /^@extjs\/reactor\/(modern|classic)$/;
+
 module.exports = function(babel) {
     const t = babel.types;
 
@@ -6,26 +8,25 @@ module.exports = function(babel) {
             ImportDeclaration: function(path) {
                 const { node } = path;
 
-                if (node.source && node.source.type === 'StringLiteral' && node.source.value === '@extjs/reactor') {
+                if (node.source && node.source.type === 'StringLiteral' && node.source.value.match(COMPONENT_MODULE_PATTERN)) {
                     const declarations = [];
+                    let transform = false;
 
                     node.specifiers.forEach(spec => {
                         const imported = spec.imported.name;
                         const local = spec.local.name;
 
-                        if (['reactify', 'install'].indexOf(imported) === -1) {
-                            declarations.push(
-                                t.variableDeclaration('const', [
-                                    t.variableDeclarator(
-                                        t.identifier(local),
-                                        t.callExpression(
-                                            t.identifier('reactify'),
-                                            [t.stringLiteral(imported.toLowerCase())]
-                                        )
+                        declarations.push(
+                            t.variableDeclaration('const', [
+                                t.variableDeclarator(
+                                    t.identifier(local),
+                                    t.callExpression(
+                                        t.identifier('reactify'),
+                                        [t.stringLiteral(imported.toLowerCase())]
                                     )
-                                ])
-                            );
-                        }
+                                )
+                            ])
+                        );
                     });
 
                     if (declarations.length) {
