@@ -217,7 +217,7 @@ When using the Classic Toolkit, any component with a `dock` prop is automaticall
 Here is an example which docks a toolbar above a grid:
 
 ```jsx
-import { Grid, Panel, Toolbar, TextField } from '@extjs/reactor/modern';
+import { Grid, Panel, Toolbar, TextField } from '@extjs/reactor/classic';
 
 function MyComponent(props) {
     return (
