@@ -43,7 +43,7 @@ install({ viewport: true });
 
 The `@extjs/reactor` package exports a function called `reactify` that creates a React component for an Ext JS component class. Here's a minimal React app that renders an Ext.Panel:
 
-```jsx harmony
+```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { install, reactify } from '@extjs/reactor';
