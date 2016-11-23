@@ -69,20 +69,20 @@ Ext.onReady(() => {
 
 If you're using Babel, we recommend installing @extjs/reactor-babel-plugin, which allows you to do this...
 
-```jsx harmony
+```jsx
 import { Panel } from '@extjs/reactor';
 ```
 
 ... instead of this ...
 
-```jsx harmony
+```jsx
 import { reactify } from '@extjs/reactor';
 const Panel = reactify('panel');
 ```
 
 ... and so our Hello World app becomes ...
 
-```jsx harmony
+```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { install, Panel } from '@extjs/reactor';
@@ -209,7 +209,7 @@ When using the Classic Toolkit, any component with a `dock` prop is automaticall
 
 Here is an example which docks a toolbar above a grid:
 
-```
+```jsx
 import { Grid, Panel, Toolbar, TextField } from '@extjs/reactor';
 
 function MyComponent(props) {
