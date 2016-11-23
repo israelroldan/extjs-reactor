@@ -4,6 +4,8 @@ const acorn = require('acorn-object-spread/inject')(require('acorn-jsx'));
 import traverse from 'ast-traverse';
 import astring from 'astring';
 
+const concrete = new Set(['install', 'reactify']);
+
 /**
  * Extracts Ext.create equivalents from jsx tags so that cmd knows which classes to include in the bundle
  * @param {String} js The javascript code
@@ -25,6 +27,15 @@ module.exports = function extractFromJSX(js) {
 
     traverse(ast, {
         pre: function(node) {
+
+            // look for: import { Grid } from '@extjs/reactor
+            if (node.type == 'ImportDeclaration' && node.source.value === '@extjs/reactor') {
+                for (let spec of node.specifiers) {
+                    if (!concrete.has(spec.imported.name)) {
+                        types[spec.local.name] = { xtype: `"${spec.imported.name.toLowerCase()}"` };
+                    }
+                }
+            }
 
             // Look for reactify calls. Keep track of the names of each component so we can map JSX tags to xtypes and
             // convert props to configs so Sencha Cmd can discover automatic dependencies in the manifest.

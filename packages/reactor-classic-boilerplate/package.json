@@ -1,5 +1,5 @@
 {
-  "name": "react-session",
+  "name": "react-classic-boilerplate",
   "private": true,
   "version": "0.1.13",
   "description": "A boilerplate project showing how to integrate React and Ext JS using the classic toolkit.",
@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "@extjs/reactor-webpack-plugin": "^0.1.13",
+    "@extjs/reactor-babel-plugin": "^0.1.13",
     "babel-core": "^6.17.0",
     "babel-loader": "^6.2.5",
     "babel-preset-es2015": "^6.14.0",

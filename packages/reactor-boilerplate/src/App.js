@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import data from './data';
 import Employee from './Employee';
-import { reactify } from '@extjs/reactor';
 
-const [ Grid, Panel, Container, SearchField ] = reactify('grid', 'panel', 'container', 'searchfield');
+import { Grid, Panel, Container, SearchField } from '@extjs/reactor';
 
 Ext.require([
     'Ext.plugin.Responsive',

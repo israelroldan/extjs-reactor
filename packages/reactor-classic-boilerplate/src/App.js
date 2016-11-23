@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 
 import Person from './Person';
 import data from './data';
-import { reactify } from '@extjs/reactor';
-
-const [ Panel, Grid, Toolbar, TextField ] = reactify('panel', 'grid', 'toolbar', 'textfield');
+import { Panel, Grid, Toolbar, TextField } from '@extjs/reactor';
 
 Ext.require('Ext.window.Toast');
 
