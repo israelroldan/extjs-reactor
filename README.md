@@ -20,7 +20,7 @@ npm install --save-dev @extjs/reactor-webpack-plugin @extjs/reactor-babel-plugin
 
 We recommend you start by cloning the [boilerplate project](https://github.com/sencha/extjs-reactor/tree/master/packages/reactor-boilerplate) and following the instructions there.
 
-The boilerplate project uses the Ext JS modern toolkit. There is also a [boilerplate project using the Ext JS classic toolkit](https://github.com/sencha/extjs-reactor/tree/master/packages/reactor-classic-boilerplate).
+The boilerplate project uses Ext JS 6 with the modern toolkit. There is also a [boilerplate project using the classic toolkit](https://github.com/sencha/extjs-reactor/tree/master/packages/reactor-classic-boilerplate).
 
 ## Basic Concepts
 
@@ -106,6 +106,12 @@ Ext.onReady(() => {
 ```
 
 All of the examples below leverage the @extjs/reactor-babel-plugin to achieve this more concise syntax.
+
+When using the classic toolkit, your import statements would look like:
+
+```jsx
+import { Grid } from '@extjs/reactor/classic';
+```
 
 ### Configuring Components
 
