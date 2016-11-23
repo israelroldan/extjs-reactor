@@ -144,9 +144,7 @@ Any prop starting with "on" followed by a capital letter is automatically conver
 
 ```jsx
 import React, { Component } from 'react';
-import { reactify } from '@extjs/reactor';
-
-const Slider = reactify('slider');
+import { Slider } from '@extjs/reactor';
 
 export default function MyComponent() {
     return (
