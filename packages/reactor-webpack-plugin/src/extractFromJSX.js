@@ -4,7 +4,7 @@ const acorn = require('acorn-object-spread/inject')(require('acorn-jsx'));
 import traverse from 'ast-traverse';
 import astring from 'astring';
 
-const concrete = new Set(['install', 'reactify']);
+const COMPONENT_MODULE_PATTERN = /^@extjs\/reactor\/(modern|classic)$/;
 
 /**
  * Extracts Ext.create equivalents from jsx tags so that cmd knows which classes to include in the bundle
@@ -29,11 +29,9 @@ module.exports = function extractFromJSX(js) {
         pre: function(node) {
 
             // look for: import { Grid } from '@extjs/reactor
-            if (node.type == 'ImportDeclaration' && node.source.value === '@extjs/reactor') {
+            if (node.type == 'ImportDeclaration' && node.source.value.match(COMPONENT_MODULE_PATTERN)) {
                 for (let spec of node.specifiers) {
-                    if (!concrete.has(spec.imported.name)) {
-                        types[spec.local.name] = { xtype: `"${spec.imported.name.toLowerCase()}"` };
-                    }
+                    types[spec.local.name] = { xtype: `"${spec.imported.name.toLowerCase()}"` };
                 }
             }
 

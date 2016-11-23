@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import data from './data';
 import Employee from './Employee';
-
-import { Grid, Panel, Container, SearchField } from '@extjs/reactor';
+import { Grid, Panel, Container, SearchField } from '@extjs/reactor/modern';
 
 Ext.require([
     'Ext.plugin.Responsive',

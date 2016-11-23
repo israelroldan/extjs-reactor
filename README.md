@@ -41,7 +41,7 @@ install({ viewport: true });
 
 ### Hello World
 
-The `@extjs/reactor` package exports a function called `reactify` that creates a React component for an Ext JS component class. Here's a minimal React app that renders an Ext.Panel:
+The `@extjs/reactor` package exports a function called `reactify` that creates a React component for any Ext JS component class. Here's a minimal React app that renders an Ext.Panel:
 
 ```jsx
 import React from 'react';
@@ -67,17 +67,17 @@ Ext.onReady(() => {
 });
 ```
 
-If you're using Babel, we recommend installing @extjs/reactor-babel-plugin, which allows you to do this...
-
-```jsx
-import { Panel } from '@extjs/reactor';
-```
-
-... instead of this ...
+The reactify function allows you to create React components for multiple xtypes at once using array destructuring:
 
 ```jsx
 import { reactify } from '@extjs/reactor';
-const Panel = reactify('panel');
+const [ Panel, Grid ] = reactify('panel', 'grid');
+```
+
+If you're using Babel, we recommend installing @extjs/reactor-babel-plugin, which allows you to do this instead...
+
+```jsx
+import { Panel, Grid } from '@extjs/reactor/modern';
 ```
 
 ... and so our Hello World app becomes ...
@@ -85,7 +85,8 @@ const Panel = reactify('panel');
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { install, Panel } from '@extjs/reactor';
+import { install } from '@extjs/reactor';
+import { Panel } from '@extjs/reactor/modern';
 
 // Install the Ext JS custom renderer
 install();
@@ -112,7 +113,7 @@ React props are converted to Ext JS configs.  Here's a typical use of an Ext.gri
 
 ```jsx
 import React, { Component } from 'react';
-import { Grid } from '@extjs/reactor';
+import { Grid } from '@extjs/reactor/modern';
 
 export default class MyComponent extends Component {
     render() {        
@@ -144,7 +145,7 @@ Any prop starting with "on" followed by a capital letter is automatically conver
 
 ```jsx
 import React, { Component } from 'react';
-import { Slider } from '@extjs/reactor';
+import { Slider } from '@extjs/reactor/modern';
 
 export default function MyComponent() {
     return (
@@ -162,7 +163,7 @@ You can also use a listeners object as is common in traditional Ext JS:
 
 ```jsx
 import React, { Component } from 'react';
-import { Slider } from '@extjs/reactor';
+import { Slider } from '@extjs/reactor/modern';
 
 export default function MyComponent() {
     return (
@@ -183,7 +184,7 @@ Refs point to Ext JS component instances:
 
 ```jsx
 import React, { Component } from 'react';
-import { Slider } from '@extjs/reactor';
+import { Slider } from '@extjs/reactor/modern';
 
 export default class MyComponent {
     render() {
@@ -210,7 +211,7 @@ When using the Classic Toolkit, any component with a `dock` prop is automaticall
 Here is an example which docks a toolbar above a grid:
 
 ```jsx
-import { Grid, Panel, Toolbar, TextField } from '@extjs/reactor';
+import { Grid, Panel, Toolbar, TextField } from '@extjs/reactor/modern';
 
 function MyComponent(props) {
     return (
@@ -241,6 +242,15 @@ module.exports = {
         })
     ]
     ...
+}
+```
+
+If you're using Babel, we recommend adding @extjs/reactor-babel-plugin to your .babelrc.  For example:
+
+```javascript
+{
+  "presets": ["es2015", "react"],
+  "plugins": ["@extjs/reactor-babel-plugin"]
 }
 ```
 

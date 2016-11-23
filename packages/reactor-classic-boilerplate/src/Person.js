@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { reactify } from '@extjs/reactor';
-
-const [ Window, TextField ] = reactify('window', 'textfield');
+import { Window, TextField } from '@extjs/reactor/classic';
 
 Ext.require('Ext.button.Button');
 
