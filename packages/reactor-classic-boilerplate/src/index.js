@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import install from '@extjs/reactor';
+import { install } from '@extjs/reactor';
 install({ viewport: true });
 
 // app components

@@ -1,27 +1,28 @@
 'use strict';
 
 import React from 'react';
-import configureExtJS from '../index';
-import ReactTestUtils from 'react-addons-test-utils';
-import { getInstanceFromNode } from 'react/lib/ReactDOMComponentTree';
+import { install, reactify } from '../index';
+import { getInstanceFromNode } from 'react-dom/lib/ReactDOMComponentTree';
 import ReactDOM from 'react-dom';
 import expectDOMStructure from './expectDOMStructure';
 import mockExt from './mockExt';
 
-configureExtJS();
+install();
+
 
 describe('ExtJSComponent', () => {
-    let container;
+    let container, Panel, Button;
 
     beforeEach(() => {
         mockExt();
+        [ Panel, Button ] = reactify('panel', 'button');
         container = document.createElement('div');
     });
 
     it('renders the host component', () => {
-        const component = <div><x-panel><x-button></x-button></x-panel></div>;
+        const component = <div><Panel><Button></Button></Panel></div>;
         ReactDOM.render(component, container);
-        
+
         expectDOMStructure(container.firstChild, {
             nodeName: 'DIV',
             children: [{
@@ -36,7 +37,7 @@ describe('ExtJSComponent', () => {
     });
 
     it('renders an Ext JS Component at the root', () => {
-        const component = <x-panel><x-button></x-button></x-panel>;
+        const component = <Panel><Button></Button></Panel>;
         ReactDOM.render(component, container);
         
         expectDOMStructure(container.firstChild, {
@@ -50,7 +51,7 @@ describe('ExtJSComponent', () => {
     })
 
     it('destroys removed components', () => {
-        ReactDOM.render(<div><x-panel>Test</x-panel></div>, container);
+        ReactDOM.render(<div><Panel>Test</Panel></div>, container);
         const panel = container.firstChild.firstChild.firstChild._extCmp;
         ReactDOM.render(<div></div>, container);
 
@@ -61,9 +62,9 @@ describe('ExtJSComponent', () => {
     });
 
     it('inserts new components', () => {
-        ReactDOM.render(<div><x-panel></x-panel></div>, container);
+        ReactDOM.render(<div><Panel></Panel></div>, container);
         const panel = container.firstChild.firstChild.firstChild._extCmp;
-        ReactDOM.render(<div><x-panel><x-button/></x-panel></div>, container);
+        ReactDOM.render(<div><Panel><Button/></Panel></div>, container);
         expect(panel.add.calledOnce).toBe(true);
 
         expectDOMStructure(container.firstChild.firstChild, {
@@ -81,9 +82,9 @@ describe('ExtJSComponent', () => {
     });
 
     it('swaps components', () => {
-        ReactDOM.render(<div><x-panel/></div>, container);
+        ReactDOM.render(<div><Panel/></div>, container);
         const panel = container.firstChild.firstChild.firstChild._extCmp;
-        ReactDOM.render(<div><x-button/></div>, container);
+        ReactDOM.render(<div><Button/></div>, container);
         expect(panel.destroy.calledOnce).toBe(true);
         expectDOMStructure(container.firstChild.firstChild, {
             nodeName: 'DIV',
@@ -96,9 +97,9 @@ describe('ExtJSComponent', () => {
     });
 
     it('inserts a component before an existing child', () => {
-        ReactDOM.render(<div><x-panel><x-panel/></x-panel></div>, container);
+        ReactDOM.render(<div><Panel><Panel/></Panel></div>, container);
         const panel = container.firstChild.firstChild.firstChild._extCmp;
-        ReactDOM.render(<div><x-panel><x-button/><x-panel/></x-panel></div>, container);
+        ReactDOM.render(<div><Panel><Button/><Panel/></Panel></div>, container);
         expect(panel.insert.calledOnce).toBe(true);
 
         expectDOMStructure(container.firstChild.firstChild, {

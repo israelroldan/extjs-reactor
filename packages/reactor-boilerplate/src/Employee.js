@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { reactify } from '@extjs/reactor';
+import { Panel } from '@extjs/reactor/modern';
+import './PTOChart';
 
-Ext.require('Ext.chart.interactions.Rotate');
-Ext.require('Ext.chart.interactions.ItemHighlight');
-Ext.require('Ext.chart.series.Pie');
+const Chart = reactify(Boilerplate.PTOChart); // create a React Component wrapper for a custom class
+
 Ext.require('Ext.plugin.Responsive');
 
 const fontStyles = {
@@ -44,7 +46,7 @@ export default class Employee extends Component {
         const { employee, onCloseClick } = this.props;
 
         return (
-            <x-panel
+            <Panel
                 title={employee.name}
                 layout="vbox"
                 plugins="responsive"
@@ -76,29 +78,11 @@ export default class Employee extends Component {
                     ...fontStyles
                 }}>Vacation Balance</div>
 
-                <x-polar
+                <Chart
                     height={300}
                     store={this.ptoStore}
-                    interactions={['rotate', 'itemhighlight']}
-                    background="#FAFAFA"
-                    series={[{
-                        type: 'pie',
-                        xField: 'hours',
-                        label: {
-                            field: 'text'
-                        },
-                        donut: 20,
-                        colors: ['#4CAF50', '#BDBDBD'],
-                        style: {
-                        stroke: 'white',
-                            miterLimit: 10,
-                            lineCap: 'miter',
-                            lineWidth: 2
-                        }
-                    }]}
-                    axes={[]}
                 />
-            </x-panel>
+            </Panel>
         )
     }
 }

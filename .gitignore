@@ -4,4 +4,4 @@ dist
 .DS_Store
 .idea
 .sencha
-npm-debug.log
+npm-debug.log.*

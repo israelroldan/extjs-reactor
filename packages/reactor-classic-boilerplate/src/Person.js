@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
+import { Window, TextField } from '@extjs/reactor/classic';
 
-Ext.require([
-    'Ext.button.Button'
-]);
+Ext.require('Ext.button.Button');
 
 export default class Person extends Component {
     
@@ -20,7 +19,7 @@ export default class Person extends Component {
         const { person, onClose } = this.props;
 
         return (
-            <x-window 
+            <Window
                 key={person.id}
                 height={500} 
                 width={700} 
@@ -35,9 +34,9 @@ export default class Person extends Component {
                     handler: this.save.bind(this)
                 }]}
             >
-                <x-textfield ref="name" fieldLabel="Name" value={person.name} anchor="100%"/>
-                <x-textfield ref="email" fieldLabel="Email" value={person.email} anchor="100%"/>
-            </x-window>
+                <TextField ref="name" fieldLabel="Name" value={person.name} anchor="100%"/>
+                <TextField ref="email" fieldLabel="Email" value={person.email} anchor="100%"/>
+            </Window>
         )
     }
 

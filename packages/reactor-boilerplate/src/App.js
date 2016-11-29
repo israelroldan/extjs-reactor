@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 import data from './data';
 import Employee from './Employee';
+import { Grid, Panel, Container, SearchField } from '@extjs/reactor/modern';
 
-Ext.require('Ext.plugin.Responsive');
-Ext.require('Ext.grid.plugin.ColumnResizing');
+Ext.require([
+    'Ext.plugin.Responsive',
+    'Ext.grid.plugin.ColumnResizing'
+]);
 
 /**
  * The main application view
@@ -43,33 +46,31 @@ export default class App extends Component {
         const { employee } = this.state;
 
         return (
-            <x-container
+            <Container
                 plugins="responsive"
                 responsiveConfig={{
                     tall: { layout: 'vbox' },
                     wide: { layout: 'hbox' }
                 }}
             >
-                <x-panel title="Employees" layout="fit" flex={1} margin="20" shadow={true}>
-                    <x-grid
-                        plugins={[
-                            { type: 'columnresizing' }
-                        ]}
+                <Panel title="Employees" layout="fit" flex={1} margin="20" shadow={true}>
+                    <Grid
+                        plugins={['columnresizing']}
+                        onSelect={this.onPersonSelect.bind(this)}
+                        store={this.store}
                         columns={[
                             { text: 'Name', dataIndex: 'name', flex: 2, resizable: true },
                             { text: 'Email', dataIndex: 'email', flex: 3, resizable: true, plugins: 'responsive', responsiveConfig: { tall: { hidden: true } } },
                             { text: 'Phone', dataIndex: 'phone', flex: 2, resizable: true }
                         ]}
-                        onSelect={this.onPersonSelect.bind(this)}
-                        store={this.store}
                     >
-                        <x-container layout="hbox" docked="top" padding={5}>
-                            <x-searchfield ref="query" placeHolder="Search..." flex={1} onChange={this.onSearch.bind(this)}/>
-                        </x-container>
-                    </x-grid>
-                </x-panel>
+                        <Container layout="hbox" docked="top" padding={5}>
+                            <SearchField ref="query" placeHolder="Search..." flex={1} onChange={this.onSearch.bind(this)}/>
+                        </Container>
+                    </Grid>
+                </Panel>
                 { employee && <Employee employee={employee} onCloseClick={() => this.setState({ employee: null })}/> }
-            </x-container>
+            </Container>
         )
     }
 
