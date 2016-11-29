@@ -11,10 +11,6 @@ import astring from 'astring';
 
 let watching = false;
 
-function convertPaths(content) {
-    return content.replace(/\n/g, "\r\n");
-}
-
 /**
  * Produces a minimal build of the Ext JS framework by crawling your React source code and extracting the xtypes used
  * in JSX tags
@@ -194,7 +190,7 @@ module.exports = class ReactExtJSWebpackPlugin {
             fs.writeFileSync(manifest, js, 'utf8');
 
             if (!watching) {
-                fs.writeFileSync(path.join(output, 'build.xml'), convertPaths(buildXML), 'utf8');
+                fs.writeFileSync(path.join(output, 'build.xml'), buildXML, 'utf8');
                 fs.writeFileSync(path.join(output, 'app.json'), createAppJson({ theme, packages, toolkit }), 'utf8');
                 fs.writeFileSync(path.join(output, 'workspace.json'), createWorkspaceJson(sdk, output), 'utf8');
             }
