@@ -1,6 +1,6 @@
 {
   "name": "@extjs/reactor-babel-plugin",
-  "version": "0.1.13",
+  "version": "0.2.0",
   "description": "Converts ES6 imports to reactify calls.",
   "main": "index.js",
   "scripts": {
