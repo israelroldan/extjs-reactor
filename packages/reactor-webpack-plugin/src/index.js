@@ -192,7 +192,7 @@ module.exports = class ReactExtJSWebpackPlugin {
             if (!watching) {
                 fs.writeFileSync(path.join(output, 'build.xml'), buildXML, 'utf8');
                 fs.writeFileSync(path.join(output, 'app.json'), createAppJson({ theme, packages, toolkit }), 'utf8');
-                fs.writeFileSync(path.join(output, 'workspace.json'), createWorkspaceJson(path.resolve(sdk)), 'utf8');
+                fs.writeFileSync(path.join(output, 'workspace.json'), createWorkspaceJson(sdk, output), 'utf8');
             }
 
             if (this.watch) {
