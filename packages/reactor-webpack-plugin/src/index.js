@@ -197,7 +197,6 @@ module.exports = class ReactExtJSWebpackPlugin {
 
             if (this.watch) {
                 if (!watching) {
-                    console.log('output', output);
                     watching = spawn('sencha', ['ant', 'watch'], { cwd: output });
                     watching.stdout.pipe(process.stdout);
                     watching.stdout.on('data', data => {
