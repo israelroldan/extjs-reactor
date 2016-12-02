@@ -59,6 +59,8 @@ module.exports = class ReactExtJSWebpackPlugin {
             test,
             currentFile: null
         });
+
+        this.manifest = null;
     }
 
     apply(compiler) {
@@ -187,12 +189,19 @@ module.exports = class ReactExtJSWebpackPlugin {
             const js = statements.join(';\n');
             const manifest = path.join(output, 'manifest.js');
 
-            fs.writeFileSync(manifest, js, 'utf8');
-
             if (!watching) {
                 fs.writeFileSync(path.join(output, 'build.xml'), buildXML, 'utf8');
                 fs.writeFileSync(path.join(output, 'app.json'), createAppJson({ theme, packages, toolkit }), 'utf8');
                 fs.writeFileSync(path.join(output, 'workspace.json'), createWorkspaceJson(sdk, output), 'utf8');
+            }
+
+            let cmdRebuildNeeded = false;
+
+            if (this.manifest === null || js !== this.manifest) {
+                // Only write manifest if it differs from the last run.  This prevents unnecessary cmd rebuilds.
+                this.manifest = js;
+                fs.writeFileSync(manifest, js, 'utf8');
+                cmdRebuildNeeded = true;
             }
 
             if (this.watch) {
@@ -206,6 +215,8 @@ module.exports = class ReactExtJSWebpackPlugin {
                     });
                     watching.on('exit', code => this.onBuildFail())
                 }
+
+                if (!cmdRebuildNeeded) resolve(output);
             } else {
                 execSync('sencha ant build', { cwd: output, stdio: 'inherit' });
                 resolve(output);
