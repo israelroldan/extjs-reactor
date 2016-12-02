@@ -2,6 +2,8 @@
 
 The @extjs/reactor package makes it easy to use [Ext JS](https://www.sencha.com/products/extjs) components in your [React](https://facebook.github.io/react) app. 
 
+[![Join the chat at https://gitter.im/sencha/extjs-reactor](https://badges.gitter.im/gitterHQ/gitterHQ.github.io.svg)](https://gitter.im/sencha/extjs-reactor?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ## Requirements
 
 * Ext JS 6.2+
