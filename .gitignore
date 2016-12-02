@@ -1,7 +1,4 @@
 node_modules
-jspm_packages
-build
-ext
 dist
 .vscode
 .DS_Store
