@@ -50,6 +50,7 @@
     "react-addons-test-utils": "^15.4.0",
     "react-dom": "^15.4.0",
     "react-test-renderer": "^15.3.2",
-    "sinon": "^1.17.6"
+    "sinon": "^1.17.6",
+    "typescript": "^2.2.0-dev.20161201"
   }
 }
