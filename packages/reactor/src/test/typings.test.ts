@@ -6,3 +6,5 @@ interface GridState {}
 interface GridInterface {}
 
 const Grid = reactify<GridInterface, GridProperty, GridState>('grid')
+
+install({ viewport: true })
