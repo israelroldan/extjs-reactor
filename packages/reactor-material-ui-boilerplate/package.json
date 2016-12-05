@@ -1,5 +1,6 @@
 {
   "name": "@extjs/reactor-material-ui-boilerplate",
+  "private": true,
   "version": "0.2.0",
   "description": "A boilerplate project showing the use of Ext JS alongside material-ui.",
   "main": "index.js",
