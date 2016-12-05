@@ -272,3 +272,17 @@ This is a monorepo that uses lerna.  After cloning, run `npm install` then `lern
 * [@extjs/reactor-babel-plugin](https://github.com/sencha/extjs-reactor/tree/master/packages/reactor-babel-plugin) - Allows you to load reactified Ext JS components using ES6 import syntax.
 * [@extjs/reactor-boilerplate](https://github.com/sencha/extjs-reactor/tree/master/packages/reactor-boilerplate) - An example project using React, Webpack, and Ext JS 6 with the modern toolkit.
 * [@extjs/reactor-classic-boilerplate](https://github.com/sencha/extjs-reactor/tree/master/packages/reactor-boilerplate) - An example project using React, Webpack, and Ext JS 6 with the classic toolkit.
+
+# Contributing
+
+## Contributor License Agreement
+
+We'd love to accept patches and new boilerplates.  Before we can take them, we need you to sign [this CLA](Sencha-CLA.PDF).
+
+Once we receive it, we'll be able to accept your pull requests.
+
+## Contributing a Patch
+1. Submit an issue describing your proposed change.
+2. The repo owner will respond to your issue promptly.
+3. If your proposed change is accepted, fork the repo, develop and test your code changes.
+4. Submit a pull request.
