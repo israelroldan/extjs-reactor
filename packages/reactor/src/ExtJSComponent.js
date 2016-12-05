@@ -13,7 +13,7 @@ export default class ExtJSComponent extends Component {
     constructor(element) {
         super(element);
         this.cmp = null;
-        this.hostEl = null;
+        this.el = null;
         this._flags = null;
         this._hostNode = null;
         this._hostParent = null;
@@ -98,7 +98,7 @@ export default class ExtJSComponent extends Component {
      * Returns the Ext JS component instance
      */
     getHostNode() {
-        return this.hostEl;
+        return this.el;
     }
 
     /**
@@ -111,51 +111,23 @@ export default class ExtJSComponent extends Component {
     // end react renderer methods
 
     _renderRootComponent(renderToDOMNode, config) {
-        // Component's parent is a dom element
-        // Here we create a host DOM element to into which the Ext JS component is added
-        // React calls parent.removeChild() when an element is removed from the virtual dom.
-        // Since unmountComponent destroys the Ext JS component, which removes it's underlying element
-        // from the DOM, react would throw an error when attempting to remove the element, which
-        // has already been removed.  Adding this host element fixes the issue.
-        this.hostEl = this._createHostElement(renderToDOMNode);
-
         defaults(config, {
             height: '100%',
             width: '100%'
         });
 
-        config.renderTo = this.hostEl;
+        config.renderTo = renderToDOMNode;
+
+        this.cmp = this.createExtJSComponent(config);
 
         if (Ext.isClassic) {
-            // classic doesn't like rendering to a element that hasn't been added to the dom tree.  Here we defer
-            // rendering until it has.
-            const initObserver = new MutationObserver(mutations => {
-                this.cmp = this.createExtJSComponent(config);
-                this.cmp.on('afterrender', this._precacheComponent.bind(this));
-                initObserver.disconnect();
-            });
-
-            initObserver.observe(this.hostEl, { childList: true, characterData: false, attributes: false });
-
-            Ext.get(this.hostEl).on('resize', () => this.cmp && this.cmp.updateLayout());
+            this.cmp.el.on('resize', () => this.cmp && this.cmp.updateLayout());
+            this.el = this.cmp.el.dom;
         } else {
-            this.cmp = this.createExtJSComponent(config);
+            this.el = this.cmp.renderElement.dom;
         }
 
-        return { node: this.hostEl };
-    }
-
-    /**
-     * Creates the host div into which a root Ext JS component is rendered
-     * @param parent The parent dom element
-     * @returns {Element}
-     * @private
-     */
-    _createHostElement(parent) {
-        const hostEl = document.createElement('div');
-        hostEl.className = "react-extjs-host";
-        parent.appendChild(hostEl);
-        return hostEl;
+        return { node: this.el };
     }
 
     /**
@@ -172,7 +144,7 @@ export default class ExtJSComponent extends Component {
         for (let i=0; i<children.length; i++) {
             const item = children[i];
 
-            if (item instanceof Ext.Component) {
+            if (item instanceof Ext.Base) {
                 (item.dock ? dockedItems : items).push(item);
             } else if (item.node) {
                 items.push(wrapDOMElement(item.node));
@@ -248,28 +220,19 @@ export default class ExtJSComponent extends Component {
         }
     }
 
-    _precacheComponent() {
-        // Without this react throws an error when trying to associate each dom element in the ext component tree with
-        // the ext component.  This keeps react from descending into a component's tree when caching.
+    _precacheNode() {
         this._flags |= Flags.hasCachedChildNodes;
 
-        this.cmp.el.dom._extCmp = this.cmp;
-
-        if (!this.hostEl) {
-            this.hostEl = this.cmp.el.dom;
-            precacheNode(this, this.hostEl);
-        }
-    }
-
-    _precacheNode() {
-        // Component's parent is another Ext JS Component
-        if (this.cmp) {
-            const event = Ext.isClassic ? 'afterrender' : 'painted';
-            this.cmp.on(event, this._precacheComponent, this, { single: true });
-        }
-
-        if (this.hostEl) {
-            precacheNode(this, this.hostEl);
+        if (this.el) {
+            // will get here when rendering root component
+            precacheNode(this, this.el)
+        } else {
+            // when get here when rendering child components due to lazy rendering
+            this.cmp.on(Ext.isClassic ? 'afterrender' : 'painted', () => {
+                this.el = this.cmp.el.dom;
+                this.el._extCmp = this.cmp;
+                precacheNode(this, this.el)
+            }, this, { single: true });
         }
     }
 }
@@ -314,7 +277,7 @@ const ContainerMixin = Object.assign({}, ReactMultiChild.Mixin, {
      * @protected
      */
     createChild(child, afterNode, childNode) {
-        if (!(childNode instanceof Ext.Component)) {
+        if (!(childNode instanceof Ext.Base)) {
             // we're appending a dom node
             childNode = wrapDOMElement(childNode.node);
         }
@@ -371,7 +334,7 @@ function wrapDOMElement(el) {
  * @returns {Ext.Component}
  */
 function toComponent(node) {
-    if (node instanceof Ext.Component) {
+    if (node instanceof Ext.Base) {
         return node;
     } else {
         return node._extCmp;

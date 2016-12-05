@@ -1,8 +1,5 @@
 {
   "private": true,
-  "dependencies": {
-    "lerna": "^1.1.3"
-  },
   "devDependencies": {
     "lerna": "2.0.0-beta.30"
   }

@@ -16,6 +16,9 @@ module.exports = function extractFromJSX(js) {
     const statements = [];
     const types = {};
 
+    // Aliases used for reactify
+    const reactifyAliases = new Set([]);
+
     const ast = acorn.parse(js, {
         ecmaVersion: 7,
         plugins: {
@@ -25,22 +28,42 @@ module.exports = function extractFromJSX(js) {
         sourceType: 'module'
     });
 
+    /**
+     * Adds a type mapping for a reactify call
+     * @param {String} varName The name of the local variable being defined.
+     * @param {Node} reactifyArgNode The argument passed to reactify()
+     */
+    function addType(varName, reactifyArgNode) {
+        if (reactifyArgNode.type === 'Literal') {
+            types[varName] = { xtype: `"${reactifyArgNode.value}"` };
+        } else {
+            types[varName] = { xclass: `"${astring(reactifyArgNode)}"` };
+        }
+    }
+
     traverse(ast, {
         pre: function(node) {
-
-            // look for: import { Grid } from '@extjs/reactor
-            if (node.type == 'ImportDeclaration' && node.source.value.match(COMPONENT_MODULE_PATTERN)) {
-                for (let spec of node.specifiers) {
-                    types[spec.local.name] = { xtype: `"${spec.imported.name.toLowerCase()}"` };
+            if (node.type == 'ImportDeclaration') {
+                if (node.source.value.match(COMPONENT_MODULE_PATTERN)) {
+                    // look for: import { Grid } from '@extjs/reactor
+                    for (let spec of node.specifiers) {
+                        types[spec.local.name] = {xtype: `"${spec.imported.name.toLowerCase()}"`};
+                    }
+                } else if (node.source.value === '@extjs/reactor') {
+                    // identify local names of reactify based on import { reactify as foo } from '@extjs/reactor';
+                    for (let spec of node.specifiers) {
+                        if (spec.imported.name === 'reactify') {
+                            reactifyAliases.add(spec.local.name);
+                        }
+                    }
                 }
             }
 
             // Look for reactify calls. Keep track of the names of each component so we can map JSX tags to xtypes and
             // convert props to configs so Sencha Cmd can discover automatic dependencies in the manifest.
-            if (node.type == 'VariableDeclarator' && node.init && node.init.type === 'CallExpression' && node.init.callee && node.init.callee.name === 'reactify') {
-
+            if (node.type == 'VariableDeclarator' && node.init && node.init.type === 'CallExpression' && node.init.callee && reactifyAliases.has(node.init.callee.name)) {
                 if (node.id.elements) {
-                    // example: const { Panel, Grid } = reactify('Panel', 'Grid');
+                    // example: const [ Panel, Grid ] = reactify('Panel', 'Grid');
                     for (let i = 0; i < node.id.elements.length; i++) {
                         const tagName = node.id.elements[i].name;
                         if (!tagName) continue;
@@ -48,19 +71,13 @@ module.exports = function extractFromJSX(js) {
                         const valueNode = node.init.arguments[i];
                         if (!valueNode) continue;
 
-                        if (valueNode.type === 'Literal') {
-                            types[tagName] = { xtype: `"${valueNode.value}"` };
-                        } else {
-                            types[tagName] = { xclass: `"${astring(valueNode)}"` };
-                        }
+                        addType(tagName, valueNode);
                     }
                 } else {
                     // example: const Grid = reactify('grid');
                     const varName = node.id.name;
                     const arg = node.init.arguments && node.init.arguments[0];
-                    if (!arg) return;
-                    const xtype = arg && arg.type === 'Literal' && arg.value;
-                    if (xtype) types[varName] = xtype.toLowerCase();
+                    if (varName && arg) addType(varName, arg);
                 }
             }
 

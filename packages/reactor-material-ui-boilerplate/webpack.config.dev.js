@@ -42,16 +42,6 @@ module.exports = {
             {
                 test: /\.js$/,
                 loader: 'babel',
-                query: {
-                    presets: [
-                        "es2015",
-                        "stage-2",
-                        "react"
-                    ],
-                    plugins: [
-                        "@extjs/reactor-babel-plugin"
-                    ]
-                },
                 include: [
                     path.join(__dirname, 'src')
                 ]

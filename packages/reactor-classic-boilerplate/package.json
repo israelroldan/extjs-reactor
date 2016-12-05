@@ -5,7 +5,7 @@
   "description": "A boilerplate project showing how to integrate React and Ext JS using the classic toolkit.",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --progress --config webpack.config.dev.js --port 8000",
+    "start": "webpack-dev-server --progress --config webpack.config.dev.js --port 8081",
     "build": "npm run clean && webpack --progress --config webpack.config.dev.js",
     "clean": "rimraf build"
   },
