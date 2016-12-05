@@ -277,7 +277,7 @@ This is a monorepo that uses lerna.  After cloning, run `npm install` then `lern
 
 ## Contributor License Agreement
 
-We'd love to accept patches and new boilerplates.  Before we can take them, we need you to sign [this CLA](Sencha-CLA.PDF).
+We'd love to accept patches and new boilerplates.  Before we can take them, we need you to sign [this CLA](Sencha-CLA.pdf).
 
 Once we receive it, we'll be able to accept your pull requests.
 
