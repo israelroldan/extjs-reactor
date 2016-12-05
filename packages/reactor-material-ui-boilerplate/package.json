@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "prod": "webpack-dev-server --content-base ./build --compress",
-    "start": "webpack-dev-server --progress --profile --colors --config webpack.config.dev.js --port 8081",
+    "start": "webpack-dev-server --progress --profile --colors --config webpack.config.dev.js --port 8082",
     "build": "npm run clean && webpack --config webpack.config.prod.js --progress --profile --colors",
     "clean": "rimraf build"
   },
