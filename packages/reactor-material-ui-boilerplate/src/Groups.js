@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import data from './data';
+import { groups } from './data';
 import TextField from 'material-ui/TextField';
 import { Grid } from '@extjs/reactor/modern';
 import styles from './styles';
@@ -10,9 +10,7 @@ export default class Groups extends Component {
         super(props);
 
         this.store = Ext.create('Ext.data.Store', {
-            data: [
-                { name: 'Admins', members: 'Mark, John, Joe' }
-            ]
+            data: groups
         });
     }
 

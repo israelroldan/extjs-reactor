@@ -1,4 +1,4 @@
-export default [{
+export const users = [{
     "id": 1,
     "name": "Anna Diaz",
     "email": "adiaz0@infoseek.co.jp"
@@ -38,4 +38,14 @@ export default [{
     "id": 10,
     "name": "Bonnie Hughes",
     "email": "bhughes9@blinklist.com"
+}];
+
+export const groups = [{
+    "id": 1,
+    "name": "Admins",
+    "members": "Ryan Riley, Evelyn Ortiz"
+}, {
+    "id": 2,
+    "name": "Guests",
+    "members": "Diana Frazier, Julia Dean, Mary Lane"
 }];

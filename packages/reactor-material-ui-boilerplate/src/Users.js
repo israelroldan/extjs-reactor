@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import data from './data';
+import { users } from './data';
 import TextField from 'material-ui/TextField';
 import { Grid } from '@extjs/reactor/modern';
 import styles from './styles';
@@ -10,7 +10,7 @@ export default class Users extends Component {
         super(props);
 
         this.store = Ext.create('Ext.data.Store', {
-            data
+            data: users
         });
     }
 

@@ -144,7 +144,7 @@ export default class ExtJSComponent extends Component {
         for (let i=0; i<children.length; i++) {
             const item = children[i];
 
-            if (item instanceof Ext.Component) {
+            if (item instanceof Ext.Base) {
                 (item.dock ? dockedItems : items).push(item);
             } else if (item.node) {
                 items.push(wrapDOMElement(item.node));
@@ -277,7 +277,7 @@ const ContainerMixin = Object.assign({}, ReactMultiChild.Mixin, {
      * @protected
      */
     createChild(child, afterNode, childNode) {
-        if (!(childNode instanceof Ext.Component)) {
+        if (!(childNode instanceof Ext.Base)) {
             // we're appending a dom node
             childNode = wrapDOMElement(childNode.node);
         }
@@ -334,7 +334,7 @@ function wrapDOMElement(el) {
  * @returns {Ext.Component}
  */
 function toComponent(node) {
-    if (node instanceof Ext.Component) {
+    if (node instanceof Ext.Base) {
         return node;
     } else {
         return node._extCmp;
