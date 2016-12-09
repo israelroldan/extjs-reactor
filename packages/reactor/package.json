@@ -3,6 +3,7 @@
   "version": "0.2.2",
   "description": "Use Ext JS components in React.",
   "main": "dist/index.js",
+  "typings": "index.d.ts",
   "scripts": {
     "watch": "babel ./src --out-dir ./dist --source-maps inline --watch",
     "build": "babel ./src --out-dir ./dist --source-maps inline",
@@ -40,6 +41,8 @@
     "lodash.union": "^4.6.0"
   },
   "devDependencies": {
+    "@types/react": "^0.14.52",
+    "@types/react-dom": "^0.14.19",
     "babel-cli": "^6.14.0",
     "babel-jest": "^15.0.0",
     "babel-preset-es2015": "^6.14.0",
@@ -50,6 +53,7 @@
     "react-addons-test-utils": "^15.4.0",
     "react-dom": "^15.4.0",
     "react-test-renderer": "^15.3.2",
-    "sinon": "^1.17.6"
+    "sinon": "^1.17.6",
+    "typescript": "^2.2.0-dev.20161202"
   }
 }
