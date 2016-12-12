@@ -25,6 +25,7 @@ module.exports = class ReactExtJSWebpackPlugin {
      * @param {String} theme The name of the Ext JS theme package to use, for example "theme-material"
      * @param {String[]} packages An array of Ext JS packages to include
      * @param {String} output The path to directory where the Ext JS bundle should be written
+     * @param {Boolean} asynchronous Set to true to run Sencha Cmd builds asynchronously. This makes the webpack build finish much faster, but the app may not load correctly in your browser until Sencha Cmd is finished building the Ext JS bundle
      */
     constructor({
         builds={},
@@ -36,7 +37,8 @@ module.exports = class ReactExtJSWebpackPlugin {
         sdk,
         toolkit='modern',
         theme='theme-triton',
-        packages=[]
+        packages=[],
+        asynchronous=false
         /* end single build only */
     }) {
         if (Object.keys(builds).length === 0) {
@@ -57,6 +59,7 @@ module.exports = class ReactExtJSWebpackPlugin {
             packages,
             dependencies: {},
             test,
+            asynchronous,
             currentFile: null
         });
 
@@ -124,22 +127,22 @@ module.exports = class ReactExtJSWebpackPlugin {
                 outputPath = path.join(compiler.options.devServer.contentBase, outputPath);
             }
 
+            // the following is needed for html-webpack-plugin to include <script> and <link> tags for Ext JS
+            const jsChunk = compilation.addChunk(`${this.output}-js`);
+            jsChunk.initial = true;
+            jsChunk.ids = [0]; // html-webpack-plugin needs ids to be defined so that it can fetch webpack stats
+            jsChunk.files.push(path.join(this.output, 'ext.js'));
+            jsChunk.files.push(path.join(this.output, 'ext.css'));
+
+            // this forces html-webpack-plugin to include ext.js first
+            jsChunk.entry = true;
+            jsChunk.id = 9999;
+
+            if (this.asynchronous) callback();
+
             this._buildExtBundle('ext', modules, outputPath, build)
-                .then(() => {
-                    // the following is needed for html-webpack-plugin to include <script> and <link> tags for Ext JS
-                    const jsChunk = compilation.addChunk(`${this.output}-js`);
-                    jsChunk.initial = true;
-                    jsChunk.ids = [0]; // html-webpack-plugin needs ids to be defined so that it can fetch webpack stats
-                    jsChunk.files.push(path.join(this.output, 'ext.js'));
-                    jsChunk.files.push(path.join(this.output, 'ext.css'));
-
-                    // this forces html-webpack-plugin to include ext.js first
-                    jsChunk.entry = true;
-                    jsChunk.id = 9999;
-
-                    callback();
-                })
-                .catch(e => callback(e || new Error('Error building Ext JS bundle')));
+                .then(() => !this.asynchronous && callback())
+                .catch(e => !this.asynchronous && callback(e || new Error('Error building Ext JS bundle')));
         });
     }
 
@@ -172,8 +175,6 @@ module.exports = class ReactExtJSWebpackPlugin {
             this.onBuildComplete = resolve;
             this.onBuildFail = reject;
 
-            console.log(`\nbuilding Ext JS bundle: ${name} => ${output}`);
-
             if (!watching) {
                 rimraf(output);
                 mkdirp(output);
@@ -202,6 +203,7 @@ module.exports = class ReactExtJSWebpackPlugin {
                 this.manifest = js;
                 fs.writeFileSync(manifest, js, 'utf8');
                 cmdRebuildNeeded = true;
+                console.log(`\nbuilding Ext JS bundle: ${name} => ${output}`);
             }
 
             if (this.watch) {
