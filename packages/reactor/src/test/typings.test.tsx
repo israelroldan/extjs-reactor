@@ -2,7 +2,7 @@ import React = require('react')
 import ReactDOM = require('react-dom')
 import { reactify, install } from '../../index'
 
-class Foo {}
+class Foo { constructor(x: string) {}}
 interface Props {}
 interface State {}
 const Grid = reactify<Props, State>('grid')
