@@ -1,0 +1,10 @@
+// matches the base color from material-ui
+$material-ui-base-color: #00BCD4;
+
+// apply to selected and pressed grid rows
+$gridrow-selected-background-color: $material-ui-base-color;
+$gridrow-pressed-background-color: $material-ui-base-color;
+
+// looks better on the new background color
+$gridrow-selected-color: white;
+$gridrow-pressed-color: white;

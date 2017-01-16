@@ -1,6 +1,8 @@
 "use strict";
 
 import path from 'path';
+import fs from 'fs';
+import cjson from 'cjson';
 
 export const buildXML = `
 <project name="simple-build" basedir=".">
@@ -103,10 +105,9 @@ export const buildXML = `
  * @param {String[]} packages The names of packages to include in the build
  */
 export function createAppJson({ theme, packages, toolkit }) {
-    return JSON.stringify({
+    const config = {
         framework: "ext",
         toolkit,
-        theme,
         requires: packages,
         output: {
             base: '.',
@@ -115,7 +116,18 @@ export function createAppJson({ theme, packages, toolkit }) {
                 shared: "./resources"
             }
         }
-    }, null, 4);
+    };
+
+    // if theme is local add it as an additional package dir
+    if (fs.existsSync(theme)) {
+        const packageInfo = cjson.load(path.join(theme, 'package.json'));
+        config.theme = packageInfo.name;
+        config.packages = { dir: path.resolve(theme) };
+    } else {
+        config.theme = theme;
+    }
+
+    return JSON.stringify(config, null, 4);
 }
 
 /**
