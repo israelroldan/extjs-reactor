@@ -26,6 +26,7 @@ module.exports = class ReactExtJSWebpackPlugin {
      * @param {String[]} packages An array of Ext JS packages to include
      * @param {String} output The path to directory where the Ext JS bundle should be written
      * @param {Boolean} asynchronous Set to true to run Sencha Cmd builds asynchronously. This makes the webpack build finish much faster, but the app may not load correctly in your browser until Sencha Cmd is finished building the Ext JS bundle
+     * @param {Boolean} production Set to true for production builds.  This tell Sencha Cmd to compress the generated JS bundle.
      */
     constructor({
         builds={},
@@ -38,7 +39,8 @@ module.exports = class ReactExtJSWebpackPlugin {
         toolkit='modern',
         theme='theme-triton',
         packages=[],
-        asynchronous=false
+        asynchronous=false,
+        production=false
         /* end single build only */
     }) {
         if (Object.keys(builds).length === 0) {
@@ -60,7 +62,8 @@ module.exports = class ReactExtJSWebpackPlugin {
             dependencies: {},
             test,
             asynchronous,
-            currentFile: null
+            currentFile: null,
+            production
         });
 
         this.manifest = null;
@@ -191,7 +194,7 @@ module.exports = class ReactExtJSWebpackPlugin {
             const manifest = path.join(output, 'manifest.js');
 
             if (!watching) {
-                fs.writeFileSync(path.join(output, 'build.xml'), buildXML, 'utf8');
+                fs.writeFileSync(path.join(output, 'build.xml'), buildXML({ compress: this.production }), 'utf8');
                 fs.writeFileSync(path.join(output, 'app.json'), createAppJson({ theme, packages, toolkit }), 'utf8');
                 fs.writeFileSync(path.join(output, 'workspace.json'), createWorkspaceJson(sdk, output), 'utf8');
             }

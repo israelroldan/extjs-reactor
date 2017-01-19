@@ -5,8 +5,9 @@
   "description": "A boilerplate project showing how to integrate React and Ext JS using the classic toolkit.",
   "main": "index.js",
   "scripts": {
+    "prod": "webpack-dev-server --content-base ./build --compress",
     "start": "webpack-dev-server --progress --config webpack.config.dev.js --port 8081",
-    "build": "npm run clean && webpack --progress --config webpack.config.dev.js",
+    "build": "npm run clean && webpack --config webpack.config.prod.js --progress --profile --colors",
     "clean": "rimraf build"
   },
   "author": "Sencha",
