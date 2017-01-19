@@ -12,17 +12,12 @@ export default class App extends Component {
         super(props);
         
         this.state = {
-            person: null,
-            showCmp: false
+            person: null
         };
 
         this.store = Ext.create('Ext.data.Store', {
-            proxy: {
-                type: 'ajax'
-            },
-            data           
+            data
         });
-
     }
 
     onSearch(value) {

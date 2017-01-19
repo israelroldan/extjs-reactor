@@ -28,7 +28,8 @@ module.exports = {
         new CopyWebpackPlugin([ { from: 'static' } ]),
         new ExtJSReactorWebpackPlugin({
             sdk: 'ext', // you need to copy the Ext JS SDK to the root of this package, or you can specify a full path to some other location
-            theme: './ext-theme', // here we use a custom theme to match Ext JS grid colors to the material-ui library's defaults.
+            toolkit: 'classic',
+            theme: 'theme-triton',
             packages: ['charts'],
             production: true
         }),
