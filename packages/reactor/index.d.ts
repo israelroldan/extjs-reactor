@@ -11,7 +11,7 @@ export interface InstallOptions {
 /**
  * Configures React.
  */
-export function install(options: Partial<InstallOptions>): void;
+export function install(options?: Partial<InstallOptions>): void;
 
 /**
  * Creates a react component for a given Ext JS component.
