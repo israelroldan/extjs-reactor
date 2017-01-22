@@ -30,7 +30,8 @@
     "url": "git+https://github.com/sencha/extjs-reactor.git"
   },
   "peerDependencies": {
-    "react": "^15.4.0"
+    "react": "^15.4.0",
+    "react-dom": "^15.4.0"
   },
   "dependencies": {
     "invariant": "^2.2.1",
