@@ -66,35 +66,161 @@ const words = [
     'slot',
     'tool',
     'trigger',
-    'native'
-]
+    'native',
+    'toolbar',
+    'tristate',
+    'preview',
+    'up',
+    'add',
+    'end',
+    'click',
+    'front',
+    'hide',
+    'hidden',
+    'max',
+    'min',
+    'show',
+    'scrollable',
+    'top',
+    'left',
+    'right',
+    'bottom',
+    'width',
+    'height',
+    'item',
+    'active',
+    'disabled',
+    'docked',
+    'centered',
+    'expand',
+    'collapse',
+    'pick',
+    'tap',
+    'node',
+    'update',
+    'direction',
+    'total',
+    'cell',
+    'double',
+    'hold',
+    'sort',
+    'remove',
+    'touch',
+    'start',
+    'submit',
+    'move',
+    'insert',
+    'complete',
+    'dbl',
+    'store',
+    'built',
+    'model',
+    'exception',
+    'done',
+    'leave',
+    'enter',
+    'mouse',
+    'key',
+    'down',
+    'body',
+    'exit',
+    'resize',
+    'action',
+    'success',
+    'failed',
+    'validity',
+    'error',
+    'sync',
+    'sort',
+    'load',
+    'drag',
+    'drop',
+    'over',
+    'setup',
+    'event',
+    'ready',
+    'key',
+    'query',
+    'cls',
+    'layout',
+    'activate',
+    'animation',
+    'cancel',
+    'swipe', 
+    'single',
+    'pressed',
+    'request',
+    'before',
+    'after',
+    'property',
+    'long',
+    'create',
+    'push',
+    'prefetch',
+    'sprite',
+    'group',
+    'extender',
+    'change',
+    'stop',
+    'remove',
+    'context',
+    'reconfigure',
+    'deselect',
+    'arrow',
+    'center',
+    'render',
+    'group',
+    'restore',
+    'save',
+    'out',
+    'toggle',
+    'state',
+    'destroy',
+    'icon',
+    'refresh',
+    'close',
+    'open',
+    'legend',
+    'deactivate',
+    'indicator',
+    'numberer',
+    'orientation',
+    'disclose',
+    'disclosure',
+    'interaction',
+    'build',
+    'rebuild',
+    'reload'
+].sort((a, b) => a.length - b.length);
 
 const replacements = [
-    { find: /preview/gi, replace: 'Preview' },
     { find: /^ux/i, replace: 'UX' },
     { find: /^tb/i, replace: 'TB' },
-    { find: /toolbar/gi, replace: 'Toolbar' },
-    { find: /tristate/gi, replace: 'TriState' },
     { find: /d3/gi, replace: 'D3' },
     { find: /mz/gi, replace: 'MZ' },
     { find: /svg/gi, replace: 'SVG' },
-    { find: /^url/gi, replace: 'URL' }
+    { find: /^url/gi, replace: 'URL' },
+    { find: /itemappend/gi, replace: 'ItemAppend' },
+    { find: /tofront/gi, replace: 'ToFront' },
+    { find: /beforestore/gi, replace: 'BeforeStore' }
 ];
 
-function toComponentName(xtype) {
-    xtype = xtype.split(/-/).map(capitalize).join('');
+const strings = new Set();
+
+function camelize(str) {
+    str = str.split(/-/).map(capitalize).join('');
 
     for (let word of words) {
-        xtype = xtype.replace(word, capitalize(word));
+        str = str.replace(new RegExp(word, 'gi'), capitalize(word));
     }
 
     for (let replacement of replacements) {
-        xtype = xtype.replace(replacement.find, replacement.replace);
+        str = str.replace(replacement.find, replacement.replace);
     }
 
-    console.log(xtype);
+    strings.add(str);
 
-    return xtype;
+    return str;
 }
 
 function typeFor(doxiType) {
@@ -103,7 +229,7 @@ function typeFor(doxiType) {
     return Array.from(new Set(doxiType.split(/\//).map(type => {
         if (type.indexOf('Ext.') === 0) {
             return byClassName[type] || 'any'
-        } else if (type.match(/^(string|number|boolean)(\[\])?$/i) || ['Array'].indexOf(type) !== -1) {
+        } else if (type.match(/^(string|number|boolean)(\[\])?$/i)) {
             return type.toLowerCase();
         } else if (type === 'HTMLElement') {
             return 'HTMLElement';
@@ -111,14 +237,14 @@ function typeFor(doxiType) {
             return 'number';
         } else if (['integer[]', 'decimal[]', 'float[]'].indexOf(type.toLowerCase()) !== -1) {
             return 'number[]';
-        } else if ('Object[]' === type) {
-            return 'any[]';
-        } else if ('Function' === type) {
-            return 'Function'
         } else if (type.match(/^"[^"]*"$/) || type.match(/^'[^']*'$/)) {
             return 'string';
         } else if (type.match(/^[0-9]+$/)) {
             return 'number';
+        } else if (type.match(/^(Function|Object)(\[\])?$/)) {
+            return type;
+        } else if (type === 'Array') {
+            return 'Object[]';
         } else {
             return 'any';
         }
@@ -126,7 +252,7 @@ function typeFor(doxiType) {
 }
 
 for (let toolkit of ['classic', 'modern']) {
-    const output = [];
+    const output = ["import React from 'react';"];
     const data = JSON.parse(fs.readFileSync(path.join(__dirname, 'doxi', '6.2.1', `${toolkit}-all-classes.json`)));
 
     for (let cls of data.global.items) {
@@ -139,7 +265,7 @@ for (let toolkit of ['classic', 'modern']) {
                 if (xtype === componentName.toLowerCase()) {
                     byClassName[cls.name] = componentName;
                 } else {
-                    componentName = toComponentName(xtype);
+                    componentName = camelize(xtype);
                 }
 
                 if (componentName.indexOf('.') === -1) {
@@ -159,12 +285,17 @@ for (let toolkit of ['classic', 'modern']) {
 
         if (configs) for (let { name, type, required, access } of configs.items) {
             
-            if (access === 'private' || 
-                access === 'public' ||
-                name.indexOf('.') !== -1 || 
-                name === 'items' || name === 'dockedItems') continue; // some configs erroneously have '.' in the name - this must be a bug in doxi
+            if (access === 'private' || access === 'protected' || // only show public configs
+                name.indexOf('.') !== -1 || // some configs erroneously have '.' in the name - this must be a bug in doxi
+                ['items', 'dockedItems', 'xtype'].indexOf(name) !== -1) continue; // these are not needed when using reactor
 
             output.push(`\t${name}${required ? '' : '?'}: ${typeFor(type)}`)
+        }
+
+        const events = cls.items && cls.items.find(i => i['$type'] === 'events');
+
+        if (events) for (let { name } of events.items) {
+            output.push(`\ton${camelize(name)}?: Function`)
         }
 
         output.push('}');
@@ -174,5 +305,7 @@ for (let toolkit of ['classic', 'modern']) {
     fs.writeFileSync(target, output.join('\n'), 'utf8');
     console.log(`Wrote ${target}`);
 }
+
+fs.writeFileSync(path.join(__dirname, 'words.txt'), Array.from(strings).join('\n'), 'utf8');
 
 console.log('done');

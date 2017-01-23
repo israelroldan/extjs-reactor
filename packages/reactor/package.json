@@ -8,6 +8,7 @@
     "watch": "babel ./src --out-dir ./dist --source-maps inline --watch",
     "build": "babel ./src --out-dir ./dist --source-maps inline",
     "prepublish": "npm run build",
+    "create-typings": "node script/create-typings.js",
     "test": "jest"
   },
   "jest": {
