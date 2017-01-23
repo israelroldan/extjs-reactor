@@ -251,6 +251,27 @@ function typeFor(doxiType) {
     }))).join(' | ');
 }
 
+/**
+ * Create a comment that can be inserted above a prop
+ */
+function formatComment(text, indent=0) {
+    if (!text) return '';
+
+    let tabs = '';
+
+    for (let i=0; i<indent; i++) tabs += '\t';
+
+    const body = text && text.replace(/{@link[^}]*}/g, link => {
+        // just return the link text
+        const parts = link.slice(1, link.length-1).split(/\s/);
+        return parts[parts.length-1].replace(/^#/, '');
+    }).replace(/\n/g, `\n${tabs} * `);
+
+    return `\n${tabs}/**\n${tabs} * ${body}\n${tabs} */`;
+}
+
+const version = '6.2.1';
+
 for (let toolkit of ['classic', 'modern']) {
     const output = ["import React from 'react';"];
     const data = JSON.parse(fs.readFileSync(path.join(__dirname, 'doxi', '6.2.1', `${toolkit}-all-classes.json`)));
@@ -280,22 +301,32 @@ for (let toolkit of ['classic', 'modern']) {
         const propsInterface = `${name}Props`;
         const configs = cls.items && cls.items.find(i => i['$type'] === 'configs');
 
+        output.push(formatComment(cls.text));
         output.push(`declare class ${name} extends React.Component<${propsInterface}, any> { }`);
         output.push(`export interface ${propsInterface} {`);
 
-        if (configs) for (let { name, type, required, access } of configs.items) {
+        if (configs) for (let { name, type, required, access, text } of configs.items) {
             
             if (access === 'private' || access === 'protected' || // only show public configs
                 name.indexOf('.') !== -1 || // some configs erroneously have '.' in the name - this must be a bug in doxi
                 ['items', 'dockedItems', 'xtype'].indexOf(name) !== -1) continue; // these are not needed when using reactor
 
-            output.push(`\t${name}${required ? '' : '?'}: ${typeFor(type)}`)
+            output.push(`${formatComment(text, 1)}\n\t${name}${required ? '' : '?'}: ${typeFor(type)}`)
         }
 
         const events = cls.items && cls.items.find(i => i['$type'] === 'events');
 
-        if (events) for (let { name } of events.items) {
-            output.push(`\ton${camelize(name)}?: Function`)
+        if (events) for (let config of events.items) {
+            const { name, text, items } = config;
+            const params = [];
+
+            if (items) for (let item of items) {
+                if (item.$type === 'param') {
+                    params.push(`${item.name}: ${typeFor(item.type)}`)
+                }
+            }
+
+            output.push(`${formatComment(text, 1)}\n\ton${camelize(name)}?: (${params.join(', ')}) => void`)
         }
 
         output.push('}');
