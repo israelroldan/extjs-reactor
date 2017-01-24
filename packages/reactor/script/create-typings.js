@@ -208,7 +208,7 @@ const replacements = [
 const strings = new Set();
 
 function camelize(str) {
-    str = str.split(/-/).map(capitalize).join('');
+    str = str.split(/-/).map(capitalize).join('_');
 
     for (let word of words) {
         str = str.replace(new RegExp(word, 'gi'), capitalize(word));
@@ -274,7 +274,7 @@ const version = '6.2.1';
 
 for (let toolkit of ['classic', 'modern']) {
     const output = ["import React from 'react';"];
-    const data = JSON.parse(fs.readFileSync(path.join(__dirname, 'doxi', '6.2.1', `${toolkit}-all-classes.json`)));
+    const data = JSON.parse(fs.readFileSync(path.join(__dirname, 'doxi', '6.2.1', `${toolkit}-all-classes-flatten.json`)));
 
     for (let cls of data.global.items) {
         if (cls.$type === 'class' && cls.alias && cls.alias.indexOf('widget.') === 0) {
@@ -305,7 +305,9 @@ for (let toolkit of ['classic', 'modern']) {
         output.push(`declare class ${name} extends React.Component<${propsInterface}, any> { }`);
         output.push(`export interface ${propsInterface} {`);
 
-        if (configs) for (let { name, type, required, access, text } of configs.items) {
+        if (configs) for (let config of configs.items) {
+
+            let { name, type, required, access, text } = config;
             
             if (access === 'private' || access === 'protected' || // only show public configs
                 name.indexOf('.') !== -1 || // some configs erroneously have '.' in the name - this must be a bug in doxi
