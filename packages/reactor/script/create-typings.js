@@ -301,8 +301,6 @@ for (let toolkit of ['classic', 'modern']) {
         const propsInterface = `${name}Props`;
         const configs = cls.items && cls.items.find(i => i['$type'] === 'configs');
 
-        if (cls.name === 'Ext.grid.Grid') fs.writeFileSync(path.join(__dirname, 'grid.json'), JSON.stringify(cls, null, '\t'), 'utf8');
-
         output.push(formatComment(cls.text));
         output.push(`declare class ${name} extends React.Component<${propsInterface}, any> { }`);
         output.push(`export interface ${propsInterface} {`);
