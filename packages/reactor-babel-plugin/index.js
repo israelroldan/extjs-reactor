@@ -22,7 +22,7 @@ module.exports = function(babel) {
                                     t.identifier(local),
                                     t.callExpression(
                                         t.identifier('reactify'),
-                                        [t.stringLiteral(imported.toLowerCase())]
+                                        [t.stringLiteral(imported.toLowerCase().replace(/_/g, '-'))]
                                     )
                                 )
                             ])

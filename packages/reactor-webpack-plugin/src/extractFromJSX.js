@@ -47,7 +47,7 @@ module.exports = function extractFromJSX(js) {
                 if (node.source.value.match(COMPONENT_MODULE_PATTERN)) {
                     // look for: import { Grid } from '@extjs/reactor
                     for (let spec of node.specifiers) {
-                        types[spec.local.name] = {xtype: `"${spec.imported.name.toLowerCase()}"`};
+                        types[spec.local.name] = {xtype: `"${spec.imported.name.toLowerCase().replace(/_/g, '-')}"`};
                     }
                 } else if (node.source.value === '@extjs/reactor') {
                     // identify local names of reactify based on import { reactify as foo } from '@extjs/reactor';
