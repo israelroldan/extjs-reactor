@@ -1,0 +1,71 @@
+export default [{
+  "id": 1,
+  "first_name": "Jerry",
+  "last_name": "Woods",
+  "email": "jwoods0@hp.com",
+  "gender": "Male",
+  "ip_address": "153.116.29.168"
+}, {
+  "id": 2,
+  "first_name": "Todd",
+  "last_name": "Medina",
+  "email": "tmedina1@altervista.org",
+  "gender": "Male",
+  "ip_address": "232.80.114.75"
+}, {
+  "id": 3,
+  "first_name": "Roy",
+  "last_name": "Andrews",
+  "email": "randrews2@berkeley.edu",
+  "gender": "Male",
+  "ip_address": "146.231.62.140"
+}, {
+  "id": 4,
+  "first_name": "Russell",
+  "last_name": "Cooper",
+  "email": "rcooper3@yandex.ru",
+  "gender": "Male",
+  "ip_address": "118.135.35.155"
+}, {
+  "id": 5,
+  "first_name": "Adam",
+  "last_name": "Gonzales",
+  "email": "agonzales4@yellowpages.com",
+  "gender": "Male",
+  "ip_address": "225.132.24.150"
+}, {
+  "id": 6,
+  "first_name": "Nicholas",
+  "last_name": "Martinez",
+  "email": "nmartinez5@nyu.edu",
+  "gender": "Male",
+  "ip_address": "63.88.181.86"
+}, {
+  "id": 7,
+  "first_name": "Michael",
+  "last_name": "Hunter",
+  "email": "mhunter6@narod.ru",
+  "gender": "Male",
+  "ip_address": "201.26.139.28"
+}, {
+  "id": 8,
+  "first_name": "Shirley",
+  "last_name": "Burton",
+  "email": "sburton7@i2i.jp",
+  "gender": "Female",
+  "ip_address": "249.243.219.143"
+}, {
+  "id": 9,
+  "first_name": "Keith",
+  "last_name": "Palmer",
+  "email": "kpalmer8@vistaprint.com",
+  "gender": "Male",
+  "ip_address": "18.96.108.188"
+}, {
+  "id": 10,
+  "first_name": "Bruce",
+  "last_name": "Shaw",
+  "email": "bshaw9@elpais.com",
+  "gender": "Male",
+  "ip_address": "170.3.117.25"
+}];
