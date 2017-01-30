@@ -48,6 +48,7 @@ export default class Layout extends React.Component {
                     itemTpl="{name}"
                     onSelect={(select, record) => router.push(record.get('path'))}
                     shadow={true}
+                    selection={this.navStore.findRecord('path', location.pathname)}
                     emptyText="No items found."
                 >
                     <SearchField ref="search" docked="top" onChange={this.filterNav.bind(this)} style="padding: 5px" placeHolder="Filter..."/>
@@ -60,18 +61,15 @@ export default class Layout extends React.Component {
                         shadow={true}
                         ref="examples"
                     >
-                        <Toolbar docked="top">
-                            <Button text="Edit in Fiddle"/>
-                        </Toolbar>
-                        { files.map((file, i) => {
-                            return <Panel 
+                        { files.map((file, i) => (
+                            <Panel 
                                 key={i}
                                 scrollable={true}
                                 title={file.file}
                                 layout="fit"
                                 html={'<pre><code class="code jsx">' + file.content.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</code></pre>'}
                             />
-                        })}
+                        ))}
                     </TabPanel>
                 )}
             </Panel>
