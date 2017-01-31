@@ -141,15 +141,21 @@ export default class ExtJSComponent extends Component {
         const items = [], dockedItems = [];
         const children = this.mountChildren(props.children, transaction, context);
 
-        for (let i=0; i<children.length; i++) {
-            const item = children[i];
+        if (children.length === 1 && children[0].node instanceof DocumentFragment) {
+            const el = document.createElement('div');
+            el.appendChild(children[0].node);
+            config.html = el.innerHTML;
+        } else {
+            for (let i=0; i<children.length; i++) {
+                const item = children[i];
 
-            if (item instanceof Ext.Base) {
-                (item.dock ? dockedItems : items).push(item);
-            } else if (item.node) {
-                items.push(wrapDOMElement(item.node));
-            } else {
-                throw new Error('Could not render child item: ' + item);
+                if (item instanceof Ext.Base) {
+                    (item.dock ? dockedItems : items).push(item);
+                } else if (item.node) {
+                    items.push(wrapDOMElement(item.node));
+                } else {
+                    throw new Error('Could not render child item: ' + item);
+                }
             }
         }
 

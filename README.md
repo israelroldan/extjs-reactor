@@ -233,6 +233,47 @@ function MyComponent(props) {
 }
 ```
 
+### Using HTML Elements and Non-Ext JS Components Inside of Ext JS Components
+
+HTML elements and other non-Ext JS React components are wrapped in an Ext.Component instance when they appear within an Ext JS Component.  This is allows Ext JS layouts to work with non-Ext JS components.  For example...
+
+```jsx
+<Panel layout="hbox">
+    <div>left</div>
+    <div>right</div>
+</Panel>
+```
+... will result in two divs side-by-side.  The component structure created is equivalent to:
+
+```javascript
+Ext.create({
+    xtype: 'panel',
+    layout: 'hbox'
+    items: [{
+        xtype: 'component',
+        html: '<div>left</div>'
+    }, {
+        xtype: 'component',
+        html: '<div>right</div>'
+    }]
+});
+```
+
+When an Ext JS component contains only text, that text will be set as the html config of the component.  For example...
+
+```jsx
+<Panel>Hello World!</Panel>
+```
+
+... results in ...
+
+```javascript
+Ext.create({
+    xtype: 'panel',
+    html: 'Hello World!'
+});
+```
+
 ### Building
 
 Select your toolkit, theme, and packages using [@extjs/reactor-webpack-plugin]. The plugin scans your code and only includes the classes you need in the final bundle.  Here's an example:
