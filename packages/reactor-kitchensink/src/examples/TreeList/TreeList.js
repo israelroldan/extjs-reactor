@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Panel, TreeList, Toolbar, SegmentedButton, Button } from '@extjs/reactor/modern';
 import data from './data';
 
-Ext.require('Ext.app.ViewModel');
-
 export default class TreeListExample extends Component {
 
     constructor() {
