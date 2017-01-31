@@ -20,7 +20,8 @@ module.exports = {
 
     resolve: {
         alias: {
-            "react-dom": path.resolve('./node_modules/react-dom')
+            "react-dom": path.resolve('./node_modules/react-dom'),
+            "react": path.resolve('./node_modules/react')
         }
     },
 
