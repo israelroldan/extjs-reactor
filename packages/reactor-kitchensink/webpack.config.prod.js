@@ -6,7 +6,7 @@ const ExtJSReactorWebpackPlugin = require('@extjs/reactor-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    devtool: 'inline-source-map',
+    devtool: 'cheap-module-source-map',
 
     entry: [
         './src/index'
@@ -27,9 +27,25 @@ module.exports = {
     plugins: [
         new ExtJSReactorWebpackPlugin({
             sdk: 'ext', // you need to copy the Ext JS SDK to the root of this package, or you can specify a full path to some other location
-            theme: './ext-material',
-            asynchronous: true,
-            packages: []
+            theme: './ext-material', // here we use a custom theme to match Ext JS grid colors to the material-ui library's defaults.
+            packages: ['charts'],
+            production: true
+        }),
+        new webpack.optimize.OccurenceOrderPlugin(true),
+        new webpack.optimize.DedupePlugin(),
+        new webpack.DefinePlugin({
+            'process.env': {
+                'NODE_ENV': JSON.stringify('production'),
+            }
+        }),
+        new webpack.optimize.UglifyJsPlugin({
+            output: {
+                comments: false
+            },
+            compress: {
+                warnings: false,
+                screw_ie8: false
+            }
         }),
         new HtmlWebpackPlugin({
             template: 'src/index.html',
