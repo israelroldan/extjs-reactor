@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ExtJSComponent from './ExtJSComponent';
 
+let settings = {};
+
 /**
  * Configures React to resolve jsx tags.
  * @param {String} [viewport=true] Adds a stylesheet that mimics an Ext JS Viewport
@@ -8,6 +10,8 @@ import ExtJSComponent from './ExtJSComponent';
  *    Ext JS component at the root of your app.
  */
 export function install({ viewport=false } = {}) {
+    settings.viewport = viewport;
+
     if (viewport) {
         const style = document.createElement('style');
         style.innerHTML = 'html, body, div[data-reactroot] { height: 100%; }';
@@ -40,6 +44,10 @@ export function reactify(...targets) {
         result.push(class extends ExtJSComponent {
             static get name() {
                 return name;
+            }
+
+            get reactorSettings() {
+                return settings;
             }
 
             createExtJSComponent(config) {

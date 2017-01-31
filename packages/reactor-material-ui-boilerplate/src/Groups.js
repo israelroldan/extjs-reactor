@@ -36,6 +36,8 @@ export default class Groups extends Component {
                 <Grid
                     store={this.store}
                     shadow={true}
+                    height="100%"
+                    width="100%"
                     style={{flex: 1}}
                     margin="0 0 10 0"
                     columns={[
