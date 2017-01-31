@@ -111,10 +111,12 @@ export default class ExtJSComponent extends Component {
     // end react renderer methods
 
     _renderRootComponent(renderToDOMNode, config) {
-        defaults(config, {
-            height: '100%',
-            width: '100%'
-        });
+        if (this.reactorSettings.viewport) {
+            defaults(config, {
+                height: '100%',
+                width: '100%'
+            });
+        }
 
         config.renderTo = renderToDOMNode;
 
@@ -141,15 +143,19 @@ export default class ExtJSComponent extends Component {
         const items = [], dockedItems = [];
         const children = this.mountChildren(props.children, transaction, context);
 
-        for (let i=0; i<children.length; i++) {
-            const item = children[i];
+        if (children.length === 1 && children[0].node instanceof DocumentFragment) {
+            config.html = this._toHTML(children[0].node);
+        } else {
+            for (let i=0; i<children.length; i++) {
+                const item = children[i];
 
-            if (item instanceof Ext.Base) {
-                (item.dock ? dockedItems : items).push(item);
-            } else if (item.node) {
-                items.push(wrapDOMElement(item.node));
-            } else {
-                throw new Error('Could not render child item: ' + item);
+                if (item instanceof Ext.Base) {
+                    (item.dock ? dockedItems : items).push(item);
+                } else if (item.node) {
+                    items.push(wrapDOMElement(item.node));
+                } else {
+                    throw new Error('Could not render child item: ' + item);
+                }
             }
         }
 
@@ -157,6 +163,17 @@ export default class ExtJSComponent extends Component {
         if (dockedItems.length) config.dockedItems = dockedItems;
 
         return config;
+    }
+
+    /**
+     * Converts a DocumentFragment to html
+     * @param {DocumentFragment} docFragment
+     * @return {String}
+     */
+    _toHTML(docFragment) {
+        const el = document.createElement('div');
+        el.appendChild(docFragment);
+        return el.innerHTML;
     }
 
     /**

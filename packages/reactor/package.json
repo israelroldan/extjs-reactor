@@ -1,6 +1,6 @@
 {
   "name": "@extjs/reactor",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "description": "Use Ext JS components in React.",
   "main": "dist/index.js",
   "typings": "index.d.ts",
@@ -13,7 +13,6 @@
   },
   "jest": {
     "rootDir": "src",
-    "scriptPreprocessor": "../node_modules/babel-jest",
     "setupFiles": [
       "../jest/environment.js"
     ]
@@ -46,7 +45,7 @@
     "@types/react": "^0.14.52",
     "@types/react-dom": "^0.14.19",
     "babel-cli": "^6.14.0",
-    "babel-jest": "^15.0.0",
+    "babel-jest": "^18.0.0",
     "babel-preset-es2015": "^6.14.0",
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-2": "^6.13.0",

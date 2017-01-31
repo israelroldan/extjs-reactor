@@ -9,7 +9,6 @@ import mockExt from './mockExt';
 
 install();
 
-
 describe('ExtJSComponent', () => {
     let container, Panel, Button;
 
@@ -26,11 +25,11 @@ describe('ExtJSComponent', () => {
         expectDOMStructure(container.firstChild, {
             nodeName: 'DIV',
             children: [{
-                nodeName: 'DIV',
-                class: 'react-extjs-host',
+                nodeName: 'DIV', 
+                class: 'x-panel',
                 children: [{
-                    nodeName: 'DIV', 
-                    class: 'x-panel'
+                    nodeName: 'DIV',
+                    class: 'x-button'
                 }]
             }]
         })
@@ -41,18 +40,14 @@ describe('ExtJSComponent', () => {
         ReactDOM.render(component, container);
         
         expectDOMStructure(container.firstChild, {
-            nodeName: 'DIV',
-            class: 'react-extjs-host',
-            children: [{
-                nodeName: 'DIV', 
-                class: 'x-panel'
-            }]
+            nodeName: 'DIV', 
+            class: 'x-panel'
         })
     })
 
     it('destroys removed components', () => {
         ReactDOM.render(<div><Panel>Test</Panel></div>, container);
-        const panel = container.firstChild.firstChild.firstChild._extCmp;
+        const panel = container.firstChild.firstChild._extCmp;
         ReactDOM.render(<div></div>, container);
 
         expect(panel.destroy.calledOnce).toBe(true);
@@ -63,13 +58,12 @@ describe('ExtJSComponent', () => {
 
     it('inserts new components', () => {
         ReactDOM.render(<div><Panel></Panel></div>, container);
-        const panel = container.firstChild.firstChild.firstChild._extCmp;
+        const panel = container.firstChild.firstChild._extCmp;
         ReactDOM.render(<div><Panel><Button/></Panel></div>, container);
         expect(panel.add.calledOnce).toBe(true);
 
-        expectDOMStructure(container.firstChild.firstChild, {
+        expectDOMStructure(container.firstChild, {
             nodeName: 'DIV',
-            class: 'react-extjs-host',
             children: [{
                 nodeName: 'DIV', 
                 class: 'x-panel',
@@ -83,12 +77,11 @@ describe('ExtJSComponent', () => {
 
     it('swaps components', () => {
         ReactDOM.render(<div><Panel/></div>, container);
-        const panel = container.firstChild.firstChild.firstChild._extCmp;
+        const panel = container.firstChild.firstChild._extCmp;
         ReactDOM.render(<div><Button/></div>, container);
         expect(panel.destroy.calledOnce).toBe(true);
-        expectDOMStructure(container.firstChild.firstChild, {
+        expectDOMStructure(container.firstChild, {
             nodeName: 'DIV',
-            class: 'react-extjs-host',
             children: [{
                 nodeName: 'DIV', 
                 class: 'x-button'
@@ -98,13 +91,12 @@ describe('ExtJSComponent', () => {
 
     it('inserts a component before an existing child', () => {
         ReactDOM.render(<div><Panel><Panel/></Panel></div>, container);
-        const panel = container.firstChild.firstChild.firstChild._extCmp;
+        const panel = container.firstChild.firstChild._extCmp;
         ReactDOM.render(<div><Panel><Button/><Panel/></Panel></div>, container);
         expect(panel.insert.calledOnce).toBe(true);
 
-        expectDOMStructure(container.firstChild.firstChild, {
+        expectDOMStructure(container.firstChild, {
             nodeName: 'DIV',
-            class: 'react-extjs-host',
             children: [{
                 nodeName: 'DIV', 
                 class: 'x-panel',
@@ -117,6 +109,12 @@ describe('ExtJSComponent', () => {
                 }]
             }]
         });
+    });
+
+    it('sets the html config when props.children is a string', () => {
+        ReactDOM.render(<Panel>Test</Panel>, container);
+        const panel = container.firstChild._extCmp;
+        expect(panel.config.html).toBe('<!-- react-text: 1 -->Test<!-- /react-text -->');
     })
 });
 
