@@ -2,8 +2,7 @@ const Missing = {};
 
 export default function expectDOMStructure(domNode, expectedStructure) {
     // console.log('expected:\n' + JSON.stringify(expectedStructure, null, '\t'));
-    console.log('actual:\n' + domNode.outerHTML);
-    // throw new Error(domNode.outerHTML);
+    // console.log('actual:\n' + domNode.outerHTML);
     expect(domNode).toBeDefined();
     expect(domNode.nodeName).toBe(expectedStructure.nodeName);
 
