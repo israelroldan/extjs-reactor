@@ -47,7 +47,10 @@ export default function() {
 
                 destroy: spy(function() {
                     const el = this.el || this.renderElement;
-                    el.dom.parentNode && el.dom.parentNode.removeChild(el.dom);
+    
+                    if (el.dom.parentNode && el.dom.parentNode._extCmp) {
+                        el.dom.parentNode && el.dom.parentNode.removeChild(el.dom);
+                    }
                 }),
 
                 insert: spy(function(index, child) {
