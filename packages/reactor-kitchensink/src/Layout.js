@@ -1,5 +1,5 @@
 import React from 'react';
-import { TabPanel, Panel, Component, Container, Toolbar, Button, List, SearchField } from '@extjs/reactor/modern';
+import { TitleBar, TabPanel, Panel, Component, Container, Toolbar, Button, List, SearchField } from '@extjs/reactor/modern';
 import { highlightBlock } from 'highlightjs';
 import code from './code';
 
@@ -41,7 +41,11 @@ export default class Layout extends React.Component {
         const files = code[location.pathname.slice(1)];
 
         return (
-            <Panel layout={{type: 'hbox', align: 'stretch'}} title="Ext JS Reactor Kitchen Sink" bodyPadding="0">
+            <Panel layout={{type: 'hbox', align: 'stretch'}} bodyPadding="0">
+                <TitleBar docked="top">
+                    <div className="ext-sencha"/>
+                    Ext JS Reactor Kitchen Sink
+                </TitleBar>
                 <List
                     width={250}
                     store={this.navStore}

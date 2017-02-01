@@ -31,14 +31,16 @@ export default class ListExample extends Component {
                 grouped={true}
                 pinHeaders={true}
                 store={this.store}
-                onItemTap={(view, index, target, record) => {
+                onSelect={(list, record) => {
                     Ext.toast(`You selected ${record.get('first_name')} ${record.get('last_name')}.`)
                 }}
-                onItemDisclosure={(record, btn, index) => {
-                    Ext.Msg.alert('Tap', 'Disclose more info for ' + record.get('first_name'), Ext.emptyFn);
+                config={{
+                    onItemDisclosure: (record, btn, index) => {
+                        Ext.Msg.alert('Tap', 'Disclose more info for ' + record.get('first_name'), Ext.emptyFn);
+                    }
                 }}
             />
         )
     }
-    
+
 }
