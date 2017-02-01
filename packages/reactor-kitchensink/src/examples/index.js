@@ -7,3 +7,7 @@ export { default as TreeList } from './TreeList/TreeList';
 export { default as List } from './List/List';
 export { default as NestedList } from './NestedList/NestedList';
 export { default as Animations } from './Animations/Animations';
+export { default as Button } from './Button/Button';
+export { default as Carousel } from './Carousel/Carousel';
+export { default as TextField } from './TextField/TextField';
+export { default as EmailField } from './EmailField/EmailField';
