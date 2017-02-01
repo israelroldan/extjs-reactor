@@ -68,7 +68,7 @@ export default {
 	"Panel": [
 		{
 			"file": "Panel.js",
-			"content": "import React from 'react';\nimport { Panel } from '@extjs/reactor/modern';\n\nexport default function PanelExample() {\n    return (\n        <Panel \n            shadow={true} \n            title=\"Panel\" \n            html=\"Panel Body\" \n            height={300}\n            width={500}\n        />\n    )\n}"
+			"content": "import React from 'react';\nimport { Panel } from '@extjs/reactor/modern';\n\nExt.require('Ext.Toast');\n\nfunction toolHandler(owner, tool) {\n    Ext.toast(`You clicked ${tool.config.type}`);\n}\n\nexport default function PanelExample() {\n    return (\n        <Panel \n            shadow={true} \n            title=\"Panel\" \n            html=\"Panel Body\" \n            height={300}\n            width={500}\n            tools={[\n                { type: 'minimize', handler: toolHandler },\n                { type: 'refresh', handler: toolHandler },\n                { type: 'save', handler: toolHandler },\n                { type: 'search', handler: toolHandler },\n                { type: 'close', handler: toolHandler }\n            ]}\n        />\n    )\n}"
 		}
 	],
 	"PasswordField": [
