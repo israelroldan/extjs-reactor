@@ -1,21 +1,27 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Tree } from '@extjs/reactor/modern';
 import data from './data';
 
 Ext.require('Ext.app.ViewModel');
 
-export default function TreeExample() {
-    const store = Ext.create('Ext.data.TreeStore', {
-        rootVisible: true,
-        root: data
-    })
+export default class TreeExample extends Component {
 
-    return (
-        <Tree
-            width={350}
-            height={400}
-            store={store}
-            shadow={true}
-        />
-    )
+    constructor() {
+        super();
+        this.store = Ext.create('Ext.data.TreeStore', {
+            rootVisible: true,
+            root: data
+        })
+    }
+
+    render() {
+        return (
+            <Tree
+                width={350}
+                height={400}
+                store={this.store}
+                shadow={true}
+            />
+        )
+    }
 }
