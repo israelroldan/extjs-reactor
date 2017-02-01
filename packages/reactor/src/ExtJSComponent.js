@@ -193,7 +193,9 @@ export default class ExtJSComponent extends Component {
             if (props.hasOwnProperty(key)) {
                 const value = props[key];
 
-                if (key.match(/^on[A-Z]/)) {
+                if (key === 'config') {
+                    Object.assign(config, value);
+                } else if (key.match(/^on[A-Z]/)) {
                     // convert all props starting with on to listeners
                     if (value && includeEvents) config.listeners[key.slice(2).toLowerCase()] = value;
                 } else if (key !== 'children') {
@@ -231,10 +233,24 @@ export default class ExtJSComponent extends Component {
             if (key === 'children' || typeof newValue === 'function') continue;
 
             if (!isEqual(oldValue, newValue)) {
-                const setter = `set${capitalize(key)}`;
-                if (this.cmp[setter]) this.cmp[setter](this._cloneProps(newValue));
+                const setter = `set${this._capitalize(key)}`;
+
+                if (this.cmp[setter]) {
+                    const value = this._cloneProps(newValue);
+                    this.cmp[setter](value);
+                }
             }
         }
+    }
+
+    /**
+     * Capitalizes the first letter in the string
+     * @param {String} str
+     * @return {String}
+     * @private
+     */
+    _capitalize(str) {
+        return capitalize(str[0]) + str.slice(1);
     }
 
     _precacheNode() {
@@ -281,6 +297,9 @@ const ContainerMixin = Object.assign({}, ReactMultiChild.Mixin, {
             if (childComponent.dock) {
                 this.cmp.insertDocked(toIndex, childComponent);
             } else {
+                // reordering docked components is known to cause issues in modern
+                // place items in a container instead
+                if (childComponent.config.docked) return; 
                 this.cmp.insert(toIndex, childComponent);
             }
         }
