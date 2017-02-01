@@ -90,6 +90,7 @@ module.exports = function extractFromJSX(js) {
                     const configs = { ...type };
 
                     for (let attribute of node.attributes) {
+                        if (!attribute.name) continue; // will get here when using object spread, for example: <Panel {...props}/>
                         const name = attribute.name.name;
                         const valueNode = attribute.value;
 
