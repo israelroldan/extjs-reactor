@@ -28,7 +28,7 @@ module.exports = {
         new ExtJSReactorWebpackPlugin({
             sdk: 'ext', // you need to copy the Ext JS SDK to the root of this package, or you can specify a full path to some other location
             theme: './ext-material', // here we use a custom theme to match Ext JS grid colors to the material-ui library's defaults.
-            packages: ['charts'],
+            packages: ['font-ext'],
             production: true
         }),
         new webpack.optimize.OccurenceOrderPlugin(true),
