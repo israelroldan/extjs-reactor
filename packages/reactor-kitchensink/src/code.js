@@ -14,13 +14,25 @@ export default {
 	"Carousel": [
 		{
 			"file": "Carousel.js",
-			"content": "import React from 'react';\nimport { Component, Carousel, Container } from '@extjs/reactor/modern';\n\nexport default function CarouselExample() {\n    return (\n        <Container layout={{ type: 'vbox', align: 'stretch' }} shadow={true}>\n            <Carousel flex={1}>\n                <Container {...cardProps}>\n                    <div style={styles.card}>Swipe left to show the next card...</div>\n                </Container>\n                <Container {...cardProps}>\n                    <div style={styles.card}>You can also tap on either side of the indicators.</div>\n                </Container>\n                <Container {...cardProps}>\n                    <div style={styles.card}>Card #3</div>\n                </Container>\n            </Carousel>\n            <Carousel ui=\"light\" direction=\"vertical\" flex={1}>\n                <Container {...cardProps} style={styles.cardDark}>\n                    <div style={styles.card}>Carousels can also be vertical <em>(swipe up)...</em></div>\n                </Container>\n                <Container {...cardProps} style={styles.cardDark}>\n                    <div style={styles.card}>And can also use <code style={styles.code}>ui:light</code>.</div>\n                </Container>\n                <Container {...cardProps} style={styles.cardDark}>\n                    <div style={styles.card}>Card #3</div>\n                </Container>\n            </Carousel>\n        </Container>\n    )\n}\n\nconst cardProps = {\n    flex: 1,\n    layout: {\n        type: 'vbox',\n        align: 'center',\n        pack: 'center'\n    }\n};\n\nconst styles = {\n    card: {\n        fontSize: '18px'\n    },\n    cardDark: {\n        backgroundColor: '#303030',\n        color: 'white'\n    },\n    code: {\n        color: '#859900'\n    }\n};\n"
+			"content": "import React from 'react';\nimport { Component, Carousel, Container } from '@extjs/reactor/modern';\n\nexport default function CarouselExample() {\n    return (\n        <Container layout={{ type: 'vbox', align: 'stretch' }} shadow={true}>\n            <Carousel flex={1}>\n                <Container {...cardProps} >\n                    <div>Swipe left to show the next card...</div>\n                </Container>\n                <Container {...cardProps}>\n                    <div>You can also tap on either side of the indicators.</div>\n                </Container>\n                <Container {...cardProps}>\n                    <div>Card #3</div>\n                </Container>\n            </Carousel>\n            <Carousel ui=\"light\" direction=\"vertical\" flex={1}>\n                <Container {...cardProps} style={{...styles.cardDark, ...styles.card}}>\n                    <div>Carousels can also be vertical <em>(swipe up)...</em></div>\n                </Container>\n                <Container {...cardProps} style={{...styles.cardDark, ...styles.card}}>\n                    <div>And can also use <code style={styles.code}>ui:light</code>.</div>\n                </Container>\n                <Container {...cardProps} style={{...styles.cardDark, ...styles.card}}>\n                    <div>Card #3</div>\n                </Container>\n            </Carousel>\n        </Container>\n    )\n}\n\nconst styles = {\n    card: {\n        fontSize: '18px'\n    },\n    cardLight: {\n        backgroundColor: 'white',\n    },\n    cardDark: {\n        backgroundColor: '#303030',\n        color: 'white'\n    },\n    code: {\n        color: '#859900'\n    }\n};\n\nconst cardProps = {\n    flex: 1,\n    style: { ...styles.cardLight, ...styles.card },\n    layout: {\n        type: 'vbox',\n        align: 'center',\n        pack: 'center'\n    }\n};\n\n"
+		}
+	],
+	"CheckBoxField": [
+		{
+			"file": "CheckBoxField.js",
+			"content": "import React from 'react';\nimport { FormPanel, CheckBoxField } from '@extjs/reactor/modern';\n\nexport default function CheckBoxFieldExample() {\n    return (\n        <FormPanel shadow={true} layout={{type: 'vbox', align: 'left'}}>\n            <CheckBoxField \n                label=\"Label Right\" \n                labelAlign=\"right\"\n                labelWidth=\"auto\"\n            />\n            <CheckBoxField \n                label=\"Label Left\" \n                labelAlign=\"left\"\n                labelWidth=\"auto\"\n            />\n        </FormPanel>\n    )\n}"
+		}
+	],
+	"DatePickerField": [
+		{
+			"file": "DatePickerField.js",
+			"content": "import React from 'react';\nimport { FormPanel, DatePickerField } from '@extjs/reactor/modern';\n\nexport default function DatePickerFieldExample() {\n    return (\n        <FormPanel shadow={true}>\n            <DatePickerField \n                value={new Date()}\n                destroyPickerOnHide={true}\n                label=\"Date\"\n                picker={{\n                    yearFrom: 1990\n                }}\n            />\n        </FormPanel>\n    )\n}"
 		}
 	],
 	"EmailField": [
 		{
 			"file": "EmailField.js",
-			"content": "import React from 'react';\nimport { FormPanel, EmailField } from '@extjs/reactor/modern';\n\nexport default function EmailFieldExample() {\n    return (\n        <FormPanel shadow={true}>\n            <EmailField placeHolder=\"me@sencha.com\" label=\"Email\"/>\n        </FormPanel>\n    )\n}"
+			"content": "import React from 'react';\nimport { FormPanel, EmailField } from '@extjs/reactor/modern';\n\nexport default function EmailFieldExample() {\n    return (\n        <FormPanel shadow={true}>\n            <EmailField \n                placeHolder=\"me@sencha.com\" \n                label=\"Email\"\n            />\n        </FormPanel>\n    )\n}"
 		}
 	],
 	"Grid": [
@@ -59,16 +71,58 @@ export default {
 			"content": "import React from 'react';\nimport { Panel } from '@extjs/reactor/modern';\n\nexport default function PanelExample() {\n    return (\n        <Panel \n            shadow={true} \n            title=\"Panel\" \n            html=\"Panel Body\" \n            height={300}\n            width={500}\n        />\n    )\n}"
 		}
 	],
+	"PasswordField": [
+		{
+			"file": "PasswordField.js",
+			"content": "import React from 'react';\nimport { FormPanel, PasswordField } from '@extjs/reactor/modern';\n\nexport default function PasswordFieldExample() {\n    return (\n        <FormPanel shadow={true}>\n            <PasswordField \n                label=\"Password\" \n                required={true} \n                revealable={true}\n            />\n        </FormPanel>\n    )\n}"
+		}
+	],
+	"RadioField": [
+		{
+			"file": "RadioField.js",
+			"content": "import React from 'react';\nimport { FormPanel, RadioField, FieldSet } from '@extjs/reactor/modern';\n\nconst radioProps = {\n    name: 'color',\n    labelAlign: 'right',\n    labelWidth: 'auto'\n};\n\nexport default function RadioFieldExample() {\n    return (\n        <FormPanel shadow={true}>\n            <FieldSet title=\"Favorite Color\" layout={{type: 'vbox', align: 'left'}}>\n                <RadioField {...radioProps} label=\"Red\" value=\"red\"/>\n                <RadioField {...radioProps} label=\"Blue\" value=\"blue\"/>\n                <RadioField {...radioProps} label=\"Green\" value=\"green\"/>\n                <RadioField {...radioProps} label=\"Purple\" value=\"purple\"/>\n            </FieldSet>\n        </FormPanel>\n    )\n}"
+		}
+	],
+	"SelectField": [
+		{
+			"file": "SelectField.js",
+			"content": "import React from 'react';\nimport { FormPanel, SelectField } from '@extjs/reactor/modern';\n\nExt.require('Ext.Toast');\n\nexport default function SelectFieldExample() {\n    return (\n        <FormPanel shadow={true}>\n            <SelectField \n                label=\"Select\"  \n                onChange={value => Ext.toast(`You selected ${value}`)}\n                options={[\n                    { text: 'Option 1', value: 1 },\n                    { text: 'Option 2', value: 2 },\n                    { text: 'Option 3', value: 3 }\n                ]}\n            />\n        </FormPanel>\n    )\n}"
+		}
+	],
+	"SliderField": [
+		{
+			"file": "SliderField.js",
+			"content": "import React, { Component } from 'react';\nimport { FormPanel, SliderField } from '@extjs/reactor/modern';\n\nexport default class SliderFieldExample extends Component {\n\n    constructor() {\n        super();\n\n        this.state = {\n            singleValue: 20,\n            multipleValue: [10, 70]\n        };\n    }\n\n    onSingleChange(field, value) {\n        this.setState({ singleValue: value });\n    }\n\n    onMultipleChange(field, value) {\n        this.setState({ multipleValue: value });\n    }\n\n    render() {\n        const { singleValue, multipleValue } = this.state;\n\n        return (\n            <FormPanel shadow={true}>\n                <SliderField \n                    onChange={this.onSingleChange.bind(this)}\n                    label=\"Single Thumb\"\n                    value={singleValue}\n                />\n                <div style={{marginBottom: '20px'}}>Value: {singleValue}</div>\n                <SliderField \n                    onChange={this.onMultipleChange.bind(this)}\n                    label=\"Multiple Thumbs\"\n                    values={multipleValue}\n                />\n                <div>Values: {multipleValue.join(', ')}</div>\n            </FormPanel>\n        )\n    }\n\n}"
+		}
+	],
+	"SpinnerField": [
+		{
+			"file": "SpinnerField.js",
+			"content": "import React from 'react';\nimport { FormPanel, SpinnerField } from '@extjs/reactor/modern';\n\nexport default function SpinnerFieldExample() {\n    return (\n        <FormPanel shadow={true}>\n            <SpinnerField \n                label=\"Spinner\" \n                minValue={0} \n                maxValue={10} \n                stepValue={1} \n                cycle={true}\n            />\n        </FormPanel>\n    )\n}"
+		}
+	],
 	"TabPanel": [
 		{
 			"file": "TabPanel.js",
 			"content": "import React from 'react';\nimport { TabPanel, Panel, Component } from '@extjs/reactor/modern';\n\nexport default function TabPanelExample() {\n    return (\n        <TabPanel height={300} width={500} shadow={true}>\n            <Panel title=\"Tab 1\">\n                <Component html=\"Tab 1 content\"/>\n            </Panel>\n            <Panel title=\"Tab 2\">\n                <Component html=\"Tab 2 content\"/>\n            </Panel>\n        </TabPanel>\n    )\n}"
 		}
 	],
+	"TextAreaField": [
+		{
+			"file": "TextAreaField.js",
+			"content": "import React from 'react';\nimport { FormPanel, TextAreaField } from '@extjs/reactor/modern';\n\nexport default function TextAreaFieldExample() {\n    return (\n        <FormPanel shadow={true}>\n            <TextAreaField \n                label=\"Description\"\n                maxRows={10}\n            />\n        </FormPanel>\n    )\n}"
+		}
+	],
 	"TextField": [
 		{
 			"file": "TextField.js",
 			"content": "import React from 'react';\nimport { FormPanel, Container, TextField, FieldSet } from '@extjs/reactor/modern';\n\nexport default function TextFieldExample() {\n    return (\n        <Container layout={{type: 'vbox', align: 'stretch'}}>\n            <FormPanel shadow={true} flex={1} margin=\"0 0 20 0\">\n                <FieldSet title=\"Separate Label and Placeholder\">\n                    <TextField placeHolder=\"Enter Name...\" label=\"Name\" required={true}/>\n                </FieldSet>\n            </FormPanel>\n            <FormPanel shadow={true} flex={1} height={100}>\n                <FieldSet title=\"Label as Placeholder\">\n                    <TextField labelAlign=\"placeholder\" label=\"Name\" required={true}/>\n                </FieldSet>\n            </FormPanel>\n        </Container>\n    )\n}"
+		}
+	],
+	"ToggleField": [
+		{
+			"file": "ToggleField.js",
+			"content": "import React from 'react';\nimport { FormPanel, ToggleField } from '@extjs/reactor/modern';\n\nexport default function ToggleFieldExample() {\n    return (\n        <FormPanel shadow={true}>\n            <ToggleField \n                label=\"Toggle\"\n            />\n        </FormPanel>\n    )\n}"
 		}
 	],
 	"Toolbar": [
@@ -95,6 +149,12 @@ export default {
 		{
 			"file": "data.js",
 			"content": "export default {\n    expanded: true,\n    text: 'All',\n    iconCls: 'x-fa fa-sitemap',\n    children: [{\n        text: 'Home',\n        iconCls: 'x-fa fa-home',\n        children: [{\n            text: 'Messages',\n            iconCls: 'x-fa fa-inbox',\n            leaf: true\n        }, {\n            text: 'Archive',\n            iconCls: 'x-fa fa-database',\n            children: [{\n                text: 'First',\n                iconCls: 'x-fa fa-sliders',\n                leaf: true\n            }, {\n                text: 'No Icon',\n                iconCls: null,\n                leaf: true\n            }]\n        }, {\n            text: 'Music',\n            iconCls: 'x-fa fa-music',\n            leaf: true\n        }, {\n            text: 'Video',\n            iconCls: 'x-fa fa-film',\n            leaf: true\n        }]\n    }, {\n        text: 'Users',\n        iconCls: 'x-fa fa-user',\n        children: [{\n            text: 'Tagged',\n            iconCls: 'x-fa fa-tag',\n            leaf: true\n        }, {\n            text: 'Inactive',\n            iconCls: 'x-fa fa-trash',\n            leaf: true\n        }]\n    }, {\n        text: 'Groups',\n        iconCls: 'x-fa fa-group',\n        leaf: true\n    }, {\n        text: 'Settings',\n        iconCls: 'x-fa fa-wrench',\n        children: [{\n            text: 'Sharing',\n            iconCls: 'x-fa fa-share-alt',\n            leaf: true\n        }, {\n            text: 'Notifications',\n            iconCls: 'x-fa fa-flag',\n            leaf: true\n        }, {\n            text: 'Network',\n            iconCls: 'x-fa fa-signal',\n            leaf: true\n        }]\n    }]\n};"
+		}
+	],
+	"UrlField": [
+		{
+			"file": "UrlField.js",
+			"content": "import React from 'react';\nimport { FormPanel, UrlField } from '@extjs/reactor/modern';\n\nexport default function UrlFieldExample() {\n    return (\n        <FormPanel shadow={true}>\n            <UrlField placeHolder=\"http://www.sencha.com\" label=\"URL\"/>\n        </FormPanel>\n    )\n} "
 		}
 	]
 }

@@ -41,7 +41,7 @@ export default class Layout extends React.Component {
         const files = code[location.pathname.slice(1)];
 
         return (
-            <Panel layout={{type: 'hbox', align: 'stretch'}} bodyPadding="0">
+            <Container layout={{type: 'hbox', align: 'stretch'}} cls="main-background">
                 <TitleBar docked="top">
                     <div className="ext-sencha"/>
                     Ext JS Reactor Kitchen Sink
@@ -57,7 +57,7 @@ export default class Layout extends React.Component {
                 >
                     <SearchField ref="search" docked="top" onChange={this.filterNav.bind(this)} style="padding: 5px" placeHolder="Filter..."/>
                 </List>
-                <Container layout="fit" margin="20" flex={4}>{ children }</Container>
+                <Container layout="fit" flex={4} margin={20}>{ children }</Container>
                 { files && (
                     <TabPanel 
                         flex={3}
@@ -76,7 +76,7 @@ export default class Layout extends React.Component {
                         ))}
                     </TabPanel>
                 )}
-            </Panel>
+            </Container>
         );
     }
 }
