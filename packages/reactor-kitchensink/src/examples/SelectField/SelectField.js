@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormPanel, SelectField } from '@extjs/reactor/modern';
+import { FormPanel, SelectField, Container } from '@extjs/reactor/modern';
 
 Ext.require('Ext.Toast');
 

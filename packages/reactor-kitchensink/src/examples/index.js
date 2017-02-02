@@ -21,3 +21,5 @@ export { default as SliderField } from './SliderField/SliderField';
 export { default as ToggleField } from './ToggleField/ToggleField';
 export { default as TextAreaField } from './TextAreaField/TextAreaField';
 export { default as RadioField } from './RadioField/RadioField';
+export { default as Gauge } from './Gauge/Gauge';
+export { default as FormPanel } from './FormPanel/FormPanel';
