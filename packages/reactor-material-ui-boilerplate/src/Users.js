@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { users } from './data';
 import TextField from 'material-ui/TextField';
-import { Grid } from '@extjs/reactor/modern';
+import { Grid, SelectField } from '@extjs/reactor/modern';
 import styles from './styles';
 
 export default class Users extends Component {
@@ -33,6 +33,7 @@ export default class Users extends Component {
                     style={{ margin: '10px' }}
                     onChange={() => this.onSearch()} 
                 />
+                <SelectField options={[{ text: 'Foo', value: 'Foo'}]}/>
                 <Grid
                     store={this.store}
                     shadow={true}

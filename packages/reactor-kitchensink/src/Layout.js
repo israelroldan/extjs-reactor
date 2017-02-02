@@ -1,9 +1,8 @@
 import React from 'react';
-import { TitleBar, TabPanel, Panel, Component, Container, Toolbar, Button, List, SearchField } from '@extjs/reactor/modern';
+import { ViewPort, TitleBar, TabPanel, Panel, Component, Container, Toolbar, Button, List, SearchField } from '@extjs/reactor/modern';
 import { highlightBlock } from 'highlightjs';
 import code from './code';
-
-require('highlightjs/styles/atom-one-light.css');
+import 'highlightjs/styles/atom-one-light.css';
 
 export default class Layout extends React.Component {
     
@@ -41,42 +40,49 @@ export default class Layout extends React.Component {
         const files = code[location.pathname.slice(1)];
 
         return (
-            <Container layout={{type: 'hbox', align: 'stretch'}} cls="main-background">
-                <TitleBar docked="top">
-                    <div className="ext-sencha"/>
-                    Ext JS Reactor Kitchen Sink
-                </TitleBar>
-                <List
-                    width={250}
-                    store={this.navStore}
-                    itemTpl="{name}"
-                    onSelect={(select, record) => router.push(record.get('path'))}
-                    shadow={true}
-                    selection={this.navStore.findRecord('path', location.pathname)}
-                    emptyText="No items found."
-                >
-                    <SearchField ref="search" docked="top" onChange={this.filterNav.bind(this)} style="padding: 5px" placeHolder="Filter..."/>
-                </List>
-                <Container layout="fit" flex={4} margin={20}>{ children }</Container>
-                { files && (
-                    <TabPanel 
-                        flex={3}
-                        bodyPadding="0"
-                        shadow={true}
-                        ref="examples"
-                    >
-                        { files.map((file, i) => (
-                            <Panel 
-                                key={i}
-                                scrollable={true}
-                                title={file.file}
-                                layout="fit"
-                                html={'<pre><code class="code jsx">' + file.content.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</code></pre>'}
-                            />
-                        ))}
-                    </TabPanel>
-                )}
-            </Container>
+            // <ViewPort>
+                <Container layout={{type: 'hbox', align: 'stretch'}} cls="main-background">
+                    <Container layout="fit" flex={4}>
+                        <TitleBar docked="top">
+                            <div className="ext-sencha"/>
+                            Ext JS Reactor Kitchen Sink
+                        </TitleBar>
+                        <Container layout={{type: 'hbox', align: 'stretch'}} flex={1}>
+                            <List
+                                width={250}
+                                store={this.navStore}
+                                itemTpl="{name}"
+                                onSelect={(select, record) => router.push(record.get('path'))}
+                                shadow={true}
+                                selection={this.navStore.findRecord('path', location.pathname)}
+                                emptyText="No items found."
+                            >
+                                <SearchField ref="search" docked="top" onChange={this.filterNav.bind(this)} style="padding: 5px" placeHolder="Filter..."/>
+                            </List>
+                            <Container layout="fit" flex={1} margin={30}>{ children }</Container>
+                        </Container>
+                    </Container>
+                    { files && (
+                        <TabPanel 
+                            title="Code"
+                            flex={2}
+                            bodyPadding="0"
+                            shadow={true}
+                            ref="examples"
+                        >
+                            { files.map((file, i) => (
+                                <Panel 
+                                    key={i}
+                                    scrollable={true}
+                                    title={file.file}
+                                    layout="fit"
+                                    html={'<pre><code class="code jsx">' + file.content.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</code></pre>'}
+                                />
+                            ))}
+                        </TabPanel>
+                    )}
+                </Container>
+            // </ViewPort>
         );
     }
 }

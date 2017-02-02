@@ -1,10 +1,10 @@
 import React from 'react';
-import { Component, Carousel, Container } from '@extjs/reactor/modern';
+import { Carousel, Container } from '@extjs/reactor/modern';
 
 export default function CarouselExample() {
     return (
         <Container layout={{ type: 'vbox', align: 'stretch' }} shadow={true}>
-            <Carousel flex={1}>
+            <Carousel flex={1} >
                 <Container {...cardProps} >
                     <div>Swipe left to show the next card...</div>
                 </Container>

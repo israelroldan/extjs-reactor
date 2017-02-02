@@ -51,7 +51,9 @@ export function reactify(...targets) {
             }
 
             createExtJSComponent(config) {
-                return new target(config)
+                const result = new target(config)
+                if (config.floated && result.show) result.show(); // floated components are hidden by default in modern
+                return result;
             }
         })
     }
