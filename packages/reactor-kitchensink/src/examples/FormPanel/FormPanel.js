@@ -25,7 +25,11 @@ export default class FormPanelExample extends Component {
 
         this.state = {
             disabled: false
-        }
+        };
+    }
+
+    toggleDisabled() {
+        this.setState({ disabled: !this.state.disabled });
     }
 
     render() {
@@ -59,7 +63,7 @@ export default class FormPanelExample extends Component {
                     <RadioField {...radioProps} label="Purple" value="purple"/>
                 </FieldSet>
                 <Toolbar docked="bottom">
-                    <Button ui="action" text="Disable All" margin="0 10 0 0" handler={() => this.setState({ state: !disabled })}/>
+                    <Button ui="action" text={disabled ? 'Enable All' : 'Disable All'} margin="0 10 0 0" handler={this.toggleDisabled.bind(this)}/>
                     <Button ui="action" text="Reset" handler={() => this.refs.form.reset()}/>
                 </Toolbar>
             </FormPanel>
