@@ -3,6 +3,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtJSReactorWebpackPlugin = require('@extjs/reactor-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const extJSConfig = require('./extjs.config');
 
@@ -27,6 +28,7 @@ module.exports = {
 
     plugins: [
         new ExtJSReactorWebpackPlugin(Object.assign({}, extJSConfig, { production: true })),
+        new CopyWebpackPlugin([{ from: 'resources', to: 'resources' }]),        
         new webpack.optimize.OccurenceOrderPlugin(true),
         new webpack.optimize.DedupePlugin(),
         new webpack.DefinePlugin({
