@@ -18,7 +18,7 @@ function extractAll() {
         }
     }
 
-    fs.writeFile(path.join(__dirname, 'src', 'code.js'), `export default ${JSON.stringify(result, null, '\t')}`, 'utf8');
+    fs.writeFileSync(path.join(__dirname, 'src', 'code.js'), `export default ${JSON.stringify(result, null, '\t')}`, 'utf8');
     console.log('wrote code.js');
 }
 

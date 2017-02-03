@@ -2,6 +2,7 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtJSReactorWebpackPlugin = require('@extjs/reactor-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const extJSConfig = require('./extjs.config');
@@ -27,6 +28,7 @@ module.exports = {
 
     plugins: [
         new ExtJSReactorWebpackPlugin(extJSConfig),
+        new CopyWebpackPlugin([{ from: 'resources', to: 'resources' }]),        
         new HtmlWebpackPlugin({
             template: 'src/index.html',
             hash: true

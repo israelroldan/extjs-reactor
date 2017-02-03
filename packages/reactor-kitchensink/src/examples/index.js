@@ -24,3 +24,7 @@ export { default as RadioField } from './RadioField/RadioField';
 export { default as Gauge } from './Gauge/Gauge';
 export { default as FormPanel } from './FormPanel/FormPanel';
 export { default as PivotGrid } from './PivotGrid/PivotGrid';
+export { default as Video } from './Video/Video';
+export { default as Audio } from './Audio/Audio';
+export { default as ProgressBar } from './ProgressBar/ProgressBar';
+
