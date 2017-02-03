@@ -4,6 +4,7 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtJSReactorWebpackPlugin = require('@extjs/reactor-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const extJSConfig = require('./extjs.config');
 
 module.exports = {
     devtool: 'inline-source-map',
@@ -25,12 +26,7 @@ module.exports = {
     },
 
     plugins: [
-        new ExtJSReactorWebpackPlugin({
-            sdk: 'ext', // you need to copy the Ext JS SDK to the root of this package, or you can specify a full path to some other location
-            theme: './ext-material',
-            asynchronous: true,
-            packages: ['font-ext', 'ux', 'font-awesome']
-        }),
+        new ExtJSReactorWebpackPlugin(extJSConfig),
         new HtmlWebpackPlugin({
             template: 'src/index.html',
             hash: true
