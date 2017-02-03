@@ -1,11 +1,4 @@
 .card {
-    > .x-inner, .x-body > .x-inner, .x-inner:not(.x-toolbar-inner).x-scroll-scroller {
-        @include st-box;
-        @include st-box-orient(vertical);
-        @include st-box-align(center);
-        @include st-box-pack(center);
-    }
-
     .x-innerhtml {
         text-align: center;
         font-size: 18px;
