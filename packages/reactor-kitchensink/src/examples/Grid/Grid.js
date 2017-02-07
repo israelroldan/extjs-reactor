@@ -133,10 +133,6 @@ export default class GridExample extends Component {
                                     cls:'big-data-ratings-cell'
                                     //innerCls: '(get) => under4'
                                 }
-                                /*cell: {
-                                    cls: 'big-data-ratings-cell'}*/
-                                    //innerCls: '(get) => under5'
-                                    //innerCls: 'under5'
                                     
                             }, {
                                 text: 'All',

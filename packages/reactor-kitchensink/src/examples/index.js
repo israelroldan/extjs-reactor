@@ -23,3 +23,4 @@ export { default as TextAreaField } from './TextAreaField/TextAreaField';
 export { default as RadioField } from './RadioField/RadioField';
 export { default as Gauge } from './Gauge/Gauge';
 export { default as FormPanel } from './FormPanel/FormPanel';
+export { default as PivotGrid } from './PivotGrid/PivotGrid';
