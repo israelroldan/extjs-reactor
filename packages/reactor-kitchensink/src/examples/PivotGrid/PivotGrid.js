@@ -37,6 +37,37 @@ export default class PivotGridExample extends Component{
     collapseAll(){
         this.refs.mypivotgrid.collapseAll();
     }
+    testObject(get){
+        //var pivot=this.refs.mypivotgrid;
+        if(typeof this.refs.mypivotgrid!=='undefined')
+        {
+           /* console.log('check')
+            console.log(this.refs.mypivotgrid.getTopAxisCellConfig());
+            console.log('menim farbu');
+            this.refs.mypivotgrid.setTopAxisCellConfig({userCls:'pivotCellAbove500'})*/
+            // var isGrandTotal = get('record.isRowGrandTotal') || get('column.isColGrandTotal');
+             //console.log(isGrandTotal);
+             console.log(this.refs.mypivotgrid);
+             console.log(this.refs.mypivotgrid)
+        }
+/*            var isGrandTotal = get('record.isRowGrandTotal') || get('column.isColGrandTotal'),
+                isHeader = get('record.isRowGroupHeader') || get('column.isColGroupTotal'),
+                isFooter = get('record.isRowGroupTotal'),
+                value = get('value'),
+                cls = get('column.topAxisColumn') ? (value >= 500 ? 'pivotCellAbove500' : 'pivotCellUnder500') : '';
+
+            if(isGrandTotal){
+                cls = 'pivotCellGrandTotal';
+            }else if(isFooter){
+                cls = 'pivotCellGroupFooter';
+            }else if(isHeader){
+                cls = 'pivotCellGroupHeader';
+            }
+
+            return cls;
+        }*/
+            
+    }
 
     render(){
         var yearLabelRenderer = function(value){
@@ -45,15 +76,20 @@ export default class PivotGridExample extends Component{
         var monthLabelRenderer = function(value){
             return Ext.Date.monthNames[value];
         }
-
+        var test=function(){
+            console.log('test1');
+            console.log("test2");
+            /*var pivot = this.refs.mypivotgrid;
+            console.log(pivot);*/
+        }
         return(
             <Container layout="fit">
-                <PivotGrid ref="mypivotgrid"
+                <PivotGrid ref="mypivotgrid" id="mypivotgrid"
                    plugins={[
                        {
                             type:'pivotdrilldown'
                        },
-                       /* {
+                       {
                             type:'pivotconfigurator',
                             fields:[{
                                 dataIndex: 'quantity',
@@ -123,7 +159,7 @@ export default class PivotGridExample extends Component{
                                 allowed: ['leftAxis', 'topAxis']
                             }
                         }]
-                        }*/
+                        }
                     ]}
                     matrix={{
                         type : 'local',
@@ -149,6 +185,17 @@ export default class PivotGridExample extends Component{
                             labelRenderer: yearLabelRenderer
                         }]
                     }}
+                    /*listeners={
+                        {
+                            show:() => console.log('show listener')//Doesn't work
+                        }
+                    }*/
+                    topAxisCellConfig={
+                        {userCls:'pivotCellUnder500'}
+                    }
+                    onShow={
+                        this.testObject()
+                    }
                     >
                     <Toolbar 
                         docked={'top'}>
