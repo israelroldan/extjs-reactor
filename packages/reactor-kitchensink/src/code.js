@@ -57,6 +57,12 @@ export default {
 			"content": "export default [{\n  \"id\": 1,\n  \"first_name\": \"Jerry\",\n  \"last_name\": \"Woods\",\n  \"email\": \"jwoods0@hp.com\",\n  \"gender\": \"Male\",\n  \"ip_address\": \"153.116.29.168\"\n}, {\n  \"id\": 2,\n  \"first_name\": \"Todd\",\n  \"last_name\": \"Medina\",\n  \"email\": \"tmedina1@altervista.org\",\n  \"gender\": \"Male\",\n  \"ip_address\": \"232.80.114.75\"\n}, {\n  \"id\": 3,\n  \"first_name\": \"Roy\",\n  \"last_name\": \"Andrews\",\n  \"email\": \"randrews2@berkeley.edu\",\n  \"gender\": \"Male\",\n  \"ip_address\": \"146.231.62.140\"\n}, {\n  \"id\": 4,\n  \"first_name\": \"Russell\",\n  \"last_name\": \"Cooper\",\n  \"email\": \"rcooper3@yandex.ru\",\n  \"gender\": \"Male\",\n  \"ip_address\": \"118.135.35.155\"\n}, {\n  \"id\": 5,\n  \"first_name\": \"Adam\",\n  \"last_name\": \"Gonzales\",\n  \"email\": \"agonzales4@yellowpages.com\",\n  \"gender\": \"Male\",\n  \"ip_address\": \"225.132.24.150\"\n}, {\n  \"id\": 6,\n  \"first_name\": \"Nicholas\",\n  \"last_name\": \"Martinez\",\n  \"email\": \"nmartinez5@nyu.edu\",\n  \"gender\": \"Male\",\n  \"ip_address\": \"63.88.181.86\"\n}, {\n  \"id\": 7,\n  \"first_name\": \"Michael\",\n  \"last_name\": \"Hunter\",\n  \"email\": \"mhunter6@narod.ru\",\n  \"gender\": \"Male\",\n  \"ip_address\": \"201.26.139.28\"\n}, {\n  \"id\": 8,\n  \"first_name\": \"Shirley\",\n  \"last_name\": \"Burton\",\n  \"email\": \"sburton7@i2i.jp\",\n  \"gender\": \"Female\",\n  \"ip_address\": \"249.243.219.143\"\n}, {\n  \"id\": 9,\n  \"first_name\": \"Keith\",\n  \"last_name\": \"Palmer\",\n  \"email\": \"kpalmer8@vistaprint.com\",\n  \"gender\": \"Male\",\n  \"ip_address\": \"18.96.108.188\"\n}, {\n  \"id\": 10,\n  \"first_name\": \"Bruce\",\n  \"last_name\": \"Shaw\",\n  \"email\": \"bshaw9@elpais.com\",\n  \"gender\": \"Male\",\n  \"ip_address\": \"170.3.117.25\"\n}];"
 		}
 	],
+	"PivotGrid":[
+		{
+			"file":"PivotGrid.js",
+			"content":"One Love and justice"
+		}
+	],
 	"List": [
 		{
 			"file": "List.js",

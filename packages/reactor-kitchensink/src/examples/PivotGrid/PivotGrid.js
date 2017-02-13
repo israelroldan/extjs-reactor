@@ -37,20 +37,14 @@ export default class PivotGridExample extends Component{
     collapseAll(){
         this.refs.mypivotgrid.collapseAll();
     }
-    testObject(get){
-        //var pivot=this.refs.mypivotgrid;
+    testObject(){
         if(typeof this.refs.mypivotgrid!=='undefined')
         {
-           /* console.log('check')
             console.log(this.refs.mypivotgrid.getTopAxisCellConfig());
-            console.log('menim farbu');
-            this.refs.mypivotgrid.setTopAxisCellConfig({userCls:'pivotCellAbove500'})*/
-            // var isGrandTotal = get('record.isRowGrandTotal') || get('column.isColGrandTotal');
-             //console.log(isGrandTotal);
-             console.log(this.refs.mypivotgrid);
-             console.log(this.refs.mypivotgrid)
+            console.log('changing color to green...');
+            this.refs.mypivotgrid.setTopAxisCellConfig({userCls:'pivotCellAbove500'})
         }
-/*            var isGrandTotal = get('record.isRowGrandTotal') || get('column.isColGrandTotal'),
+        /* var isGrandTotal = get('record.isRowGrandTotal') || get('column.isColGrandTotal'),
                 isHeader = get('record.isRowGroupHeader') || get('column.isColGroupTotal'),
                 isFooter = get('record.isRowGroupTotal'),
                 value = get('value'),
@@ -185,17 +179,17 @@ export default class PivotGridExample extends Component{
                             labelRenderer: yearLabelRenderer
                         }]
                     }}
-                    /*listeners={
+                    listeners={
                         {
-                            show:() => console.log('show listener')//Doesn't work
+                            afterrender:() => console.log('After render event invoked')//Doesn't work
                         }
-                    }*/
+                    }
                     topAxisCellConfig={
                         {userCls:'pivotCellUnder500'}
                     }
-                    onShow={
+                    /*onShow={
                         this.testObject()
-                    }
+                    }*/
                     >
                     <Toolbar 
                         docked={'top'}>
