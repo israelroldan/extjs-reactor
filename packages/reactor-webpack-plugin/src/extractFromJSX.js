@@ -1,6 +1,6 @@
 "use strict";
 
-const acorn = require('acorn-object-spread/inject')(require('acorn-jsx'));
+import { parse } from 'babylon';
 import traverse from 'ast-traverse';
 import astring from 'astring';
 
@@ -19,12 +19,19 @@ module.exports = function extractFromJSX(js) {
     // Aliases used for reactify
     const reactifyAliases = new Set([]);
 
-    const ast = acorn.parse(js, {
-        ecmaVersion: 7,
-        plugins: {
-            jsx: true,
-            objectSpread: true
-        },
+    const ast = parse(js, {
+        plugins: [
+            'jsx',
+            'flow',
+            'doExpressions',
+            'objectRestSpread',
+            'classProperties',
+            'exportExtensions',
+            'asyncGenerators',
+            'functionBind',
+            'functionSent',
+            'dynamicImport'
+        ],
         sourceType: 'module'
     });
 
@@ -94,7 +101,9 @@ module.exports = function extractFromJSX(js) {
                         const name = attribute.name.name;
                         const valueNode = attribute.value;
 
-                        if (valueNode.type === 'JSXExpressionContainer') {
+                        if (!valueNode) {
+                            configs[name] = 'true';
+                        } else if (valueNode.type === 'JSXExpressionContainer') {
                             try {
                                 const { expression } = valueNode;
 

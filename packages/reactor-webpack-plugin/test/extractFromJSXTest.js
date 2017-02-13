@@ -11,4 +11,38 @@ describe('extractFromJSX', () => {
 
         expect(statements).to.include('Ext.create({xtype: "panel"})')
     });
+
+    it('should handle class properties', () => {
+        const statements = extractFromJSX(`
+            import { Panel } from '@extjs/reactor/modern';
+            import { Component, PropTypes } from 'react';
+
+            class MyComponent extends Component {
+                static propTypes = {
+                    foo: PropTypes.string.isRequired
+                }
+
+                render () {
+                    return <Panel shadow/>
+                }
+            }
+        `);
+
+        expect(statements).to.include('Ext.create({xtype: "panel"})')
+    });
+
+    it('should handle a prop without a value', () => {
+        const statements = extractFromJSX(`
+            import { Panel } from '@extjs/reactor/modern';
+            import { Component, PropTypes } from 'react';
+
+            class MyComponent extends Component {
+                render () {
+                    return <Panel shadow/>
+                }
+            }
+        `);
+
+        expect(statements).to.include('Ext.create({xtype: "panel"})')
+    })
 });
