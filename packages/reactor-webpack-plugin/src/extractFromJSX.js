@@ -1,8 +1,7 @@
 "use strict";
 
-const acorn = require('acorn-object-spread/inject')(require('acorn-jsx'));
+import { parse } from 'babylon';
 import traverse from 'ast-traverse';
-import astring from 'astring';
 
 const COMPONENT_MODULE_PATTERN = /^@extjs\/reactor\/(modern|classic)$/;
 
@@ -19,12 +18,19 @@ module.exports = function extractFromJSX(js) {
     // Aliases used for reactify
     const reactifyAliases = new Set([]);
 
-    const ast = acorn.parse(js, {
-        ecmaVersion: 7,
-        plugins: {
-            jsx: true,
-            objectSpread: true
-        },
+    const ast = parse(js, {
+        plugins: [
+            'jsx',
+            'flow',
+            'doExpressions',
+            'objectRestSpread',
+            'classProperties',
+            'exportExtensions',
+            'asyncGenerators',
+            'functionBind',
+            'functionSent',
+            'dynamicImport'
+        ],
         sourceType: 'module'
     });
 
@@ -37,7 +43,7 @@ module.exports = function extractFromJSX(js) {
         if (reactifyArgNode.type === 'Literal') {
             types[varName] = { xtype: `"${reactifyArgNode.value}"` };
         } else {
-            types[varName] = { xclass: `"${astring(reactifyArgNode)}"` };
+            types[varName] = { xclass: `"${js.slice(reactifyArgNode.start, reactifyArgNode.end)}"` };
         }
     }
 
@@ -94,18 +100,19 @@ module.exports = function extractFromJSX(js) {
                         const name = attribute.name.name;
                         const valueNode = attribute.value;
 
-                        if (valueNode.type === 'JSXExpressionContainer') {
+                        if (!valueNode) {
+                            configs[name] = 'true';
+                        } else if (valueNode.type === 'JSXExpressionContainer') {
                             try {
                                 const { expression } = valueNode;
 
                                 if (expression.type.indexOf('Function') === -1) {
-                                    let js = astring(valueNode.expression);
-                                    configs[name] = js;
+                                    configs[name] = js.slice(expression.start, expression.end);
                                 }
                             } catch (e) {
                                 // will get here if the value contains jsx or something else that can't be converted back to js
                             }
-                        } else if (valueNode.type === 'Literal') {
+                        } else if (valueNode.type.match(/Literal$/i)) {
                             configs[name] = `"${valueNode.value}"`;
                         }
                     }
