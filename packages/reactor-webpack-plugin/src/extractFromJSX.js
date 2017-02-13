@@ -2,7 +2,6 @@
 
 import { parse } from 'babylon';
 import traverse from 'ast-traverse';
-import astring from 'astring';
 
 const COMPONENT_MODULE_PATTERN = /^@extjs\/reactor\/(modern|classic)$/;
 
@@ -44,7 +43,7 @@ module.exports = function extractFromJSX(js) {
         if (reactifyArgNode.type === 'Literal') {
             types[varName] = { xtype: `"${reactifyArgNode.value}"` };
         } else {
-            types[varName] = { xclass: `"${astring(reactifyArgNode)}"` };
+            types[varName] = { xclass: `"${js.slice(reactifyArgNode.start, reactifyArgNode.end)}"` };
         }
     }
 
@@ -108,13 +107,12 @@ module.exports = function extractFromJSX(js) {
                                 const { expression } = valueNode;
 
                                 if (expression.type.indexOf('Function') === -1) {
-                                    let js = astring(valueNode.expression);
-                                    configs[name] = js;
+                                    configs[name] = js.slice(expression.start, expression.end);
                                 }
                             } catch (e) {
                                 // will get here if the value contains jsx or something else that can't be converted back to js
                             }
-                        } else if (valueNode.type === 'Literal') {
+                        } else if (valueNode.type.match(/Literal$/i)) {
                             configs[name] = `"${valueNode.value}"`;
                         }
                     }
