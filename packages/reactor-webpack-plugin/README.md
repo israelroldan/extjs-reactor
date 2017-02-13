@@ -16,6 +16,7 @@ The ExtJSReactorWebpackPlugin constructor takes an object with the following pro
 * toolkit (optional) [string] "modern" or "classic".  Defaults to "modern".
 * theme (optional) [string] The name of the theme package to use, or the path to a custom theme package. Defaults to "theme-triton".
 * packages (optional) [string[]] Packages to include.  Values correspond to the names of directories in the packages directory of your SDK.
+* overrides (optional) [string[]] Paths to directories or files containing Ext JS overrides.
 * output (optional) [string] The path within the output directory in which the Ext JS build should be created.  Defaults to "extjs"
 * production (optional) [boolean] Set to true for production builds.  This compresses the generated Ext JS bundle.  Defaults to false.
 * test (optional) [RegExp] All files matching this pattern will be searched for usage of Ext classes to include in the build.  Defaults to `/\.jsx?$/`

@@ -32,6 +32,7 @@ module.exports = {
             toolkit: 'classic',
             theme: 'theme-triton',
             packages: ['charts'],
+            overrides: [],
             production: true
         }),
         new webpack.optimize.OccurenceOrderPlugin(true),
