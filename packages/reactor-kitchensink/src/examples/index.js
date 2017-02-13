@@ -27,4 +27,5 @@ export { default as PivotGrid } from './PivotGrid/PivotGrid';
 export { default as Video } from './Video/Video';
 export { default as Audio } from './Audio/Audio';
 export { default as ProgressBar } from './ProgressBar/ProgressBar';
+export { default as Menu } from './Menu/Menu';
 

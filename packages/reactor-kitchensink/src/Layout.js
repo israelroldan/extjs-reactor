@@ -40,7 +40,6 @@ export default class Layout extends React.Component {
         const files = code[location.pathname.slice(1)];
 
         return (
-            // <ViewPort>
                 <Container layout={{type: 'hbox', align: 'stretch'}} cls="main-background">
                     <Container layout="fit" flex={4}>
                         <TitleBar docked="top">
@@ -82,7 +81,6 @@ export default class Layout extends React.Component {
                         </TabPanel>
                     )}
                 </Container>
-            // </ViewPort>
         );
     }
 }
