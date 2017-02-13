@@ -17,7 +17,7 @@ $content-panel-grid-background: dynamic(darken($content-panel-grid-line, 5%));
     }
 }
 
-
+//Grid example
 .under4 {
     color: #c83c3c;
 }
@@ -37,3 +37,27 @@ $content-panel-grid-background: dynamic(darken($content-panel-grid-line, 5%));
     font-weight: 35;
 }
 
+//PivotGrid example
+.pivotCellGroupFooter {
+  .x-inner-el {
+    font-weight: bold;
+  }
+}
+
+.pivotCellGroupHeader {
+  .x-inner-el {
+    color: blue;
+  }
+}
+
+.pivotCellAbove500 {
+  .x-inner-el {
+    color: green;
+  }
+}
+
+.pivotCellUnder500 {
+  .x-inner-el {
+    color: red;
+  }
+}
