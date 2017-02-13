@@ -114,11 +114,12 @@ export const buildXML = function({ compress }) {
  * @param {String} theme The name of the theme to use.
  * @param {String[]} packages The names of packages to include in the build
  */
-export function createAppJson({ theme, packages, toolkit }) {
+export function createAppJson({ theme, packages, toolkit, overrides=[] }) {
     const config = {
         framework: "ext",
         toolkit,
         requires: packages,
+        overrides: overrides.map(dir => path.resolve(dir)),
         output: {
             base: '.',
             resources: {

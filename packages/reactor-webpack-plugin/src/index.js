@@ -24,6 +24,11 @@ module.exports = class ReactExtJSWebpackPlugin {
      * @param {String} [toolkit='modern'] "modern" or "classic"
      * @param {String} theme The name of the Ext JS theme package to use, for example "theme-material"
      * @param {String[]} packages An array of Ext JS packages to include
+     * @param {String[]} overrides An array with the paths of directories or files to search. Any classes
+     * declared in these locations will be automatically required and included in the build.
+     * If any file defines an Ext JS override (using Ext.define with an "override" property),
+     * that override will in fact only be included in the build if the target class specified
+     * in the "override" property is also included.
      * @param {String} output The path to directory where the Ext JS bundle should be written
      * @param {Boolean} asynchronous Set to true to run Sencha Cmd builds asynchronously. This makes the webpack build finish much faster, but the app may not load correctly in your browser until Sencha Cmd is finished building the Ext JS bundle
      * @param {Boolean} production Set to true for production builds.  This tell Sencha Cmd to compress the generated JS bundle.
@@ -39,12 +44,13 @@ module.exports = class ReactExtJSWebpackPlugin {
         toolkit='modern',
         theme='theme-triton',
         packages=[],
+        overrides=[],
         asynchronous=false,
         production=false
         /* end single build only */
     }) {
         if (Object.keys(builds).length === 0) {
-            builds.ext = { sdk, toolkit, theme, packages, output };
+            builds.ext = { sdk, toolkit, theme, packages, overrides, output };
         }
 
         for (let name in builds)
@@ -59,6 +65,7 @@ module.exports = class ReactExtJSWebpackPlugin {
             toolkit,
             theme,
             packages,
+            overrides,
             dependencies: {},
             test,
             asynchronous,
@@ -123,6 +130,7 @@ module.exports = class ReactExtJSWebpackPlugin {
         compiler.plugin('emit', (compilation, callback) => {
             const modules = compilation.chunks.reduce((a, b) => a.concat(b.modules), []);
             const build = this.builds[Object.keys(this.builds)[0]];
+
             let outputPath = path.join(compiler.outputPath, this.output);
 
             // webpack-dev-server overwrites the outputPath to "/", so we need to prepend contentBase
@@ -170,10 +178,11 @@ module.exports = class ReactExtJSWebpackPlugin {
      * @param {String} output The path to the directory to create which will contain the js and css bundles
      * @param {String} theme The name of the Ext JS theme package to use, for example "theme-material"
      * @param {String[]} packages An array of Ext JS packages to include
+     * @param {String[]} overrides An array of locations for overrides
      * @param {String} sdk The full path to the Ext JS SDK
      * @private
      */
-    _buildExtBundle(name, modules, output, { toolkit='modern', theme, packages=[], sdk }) {
+    _buildExtBundle(name, modules, output, { toolkit='modern', theme, packages=[], sdk, overrides }) {
         return new Promise((resolve, reject) => {
             this.onBuildComplete = resolve;
             this.onBuildFail = reject;
@@ -195,7 +204,7 @@ module.exports = class ReactExtJSWebpackPlugin {
 
             if (!watching) {
                 fs.writeFileSync(path.join(output, 'build.xml'), buildXML({ compress: this.production }), 'utf8');
-                fs.writeFileSync(path.join(output, 'app.json'), createAppJson({ theme, packages, toolkit }), 'utf8');
+                fs.writeFileSync(path.join(output, 'app.json'), createAppJson({ theme, packages, toolkit, overrides }), 'utf8');
                 fs.writeFileSync(path.join(output, 'workspace.json'), createWorkspaceJson(sdk, output), 'utf8');
             }
 
