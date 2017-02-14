@@ -124,7 +124,6 @@ export default class ExtJSComponent extends Component {
             if (this.reactorSettings.viewport) {
                 delete config.renderTo;
                 config.fullscreen = true;
-                console.log('rendering fullscreen');
             }
         }
 

@@ -38,6 +38,12 @@ $content-panel-grid-background: dynamic(darken($content-panel-grid-line, 5%));
 }
 
 //PivotGrid example
+.pivotCellGrandTotal {
+  .x-inner-el {
+    color: brown;
+  }
+}
+
 .pivotCellGroupFooter {
   .x-inner-el {
     font-weight: bold;
