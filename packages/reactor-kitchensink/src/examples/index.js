@@ -28,4 +28,5 @@ export { default as Video } from './Video/Video';
 export { default as Audio } from './Audio/Audio';
 export { default as ProgressBar } from './ProgressBar/ProgressBar';
 export { default as Menu } from './Menu/Menu';
-
+export { default as ActionSheet } from './ActionSheet/ActionSheet';
+export { default as ToolTip } from './ToolTip/ToolTip';

@@ -31,7 +31,7 @@ module.exports = {
         new CopyWebpackPlugin([{ from: 'resources', to: 'resources' }]),        
         new HtmlWebpackPlugin({
             template: 'src/index.html',
-            hash: true
+            cache: true
         })
     ],
 

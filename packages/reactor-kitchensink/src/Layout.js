@@ -51,7 +51,9 @@ export default class Layout extends React.Component {
                                 width={250}
                                 store={this.navStore}
                                 itemTpl="{name}"
-                                onSelect={(select, record) => router.push(record.get('path'))}
+                                onSelect={(select, records) => {
+                                    router.push(records[0].get('path'))
+                                }}
                                 shadow={true}
                                 selection={this.navStore.findRecord('path', location.pathname)}
                                 emptyText="No items found."

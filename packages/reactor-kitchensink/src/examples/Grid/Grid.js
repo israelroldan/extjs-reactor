@@ -159,7 +159,6 @@ export default class GridExample extends Component {
                             dataIndex: 'verified',
                             text: 'Verified'
                         }, {
-                            xtype: 'gridheadergroup',
                             text: 'Ratings',
                             columns: [{
                                 text: 'Avg',
