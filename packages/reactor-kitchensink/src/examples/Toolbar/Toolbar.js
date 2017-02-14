@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Toolbar, Panel, Button, SegmentedButton, Spacer } from '@extjs/reactor/modern';
+import { Toolbar, Panel, Button, SegmentedButton, Spacer, SearchField } from '@extjs/reactor/modern';
 
 export default class ToolbarExample extends Component {
 
@@ -8,24 +8,24 @@ export default class ToolbarExample extends Component {
         this.state = { message: '' }
     }
 
-    tapHandler(button) {
-        this.setState({ message: `User tapped "${button.getText()}"` })
+    buttonHandler(button) {
+        this.setState({ message: `User clicked "${button.getText()}"` })
     }
 
     render() {
         const { message } = this.state;
 
         return (
-            <Panel height={300} width={500} shadow={true} bodyPadding={0}>
+            <Panel height={300} width={500} shadow bodyPadding={0}>
                 <Toolbar docked="top">
-                    <Button text="Default" onTap={this.tapHandler.bind(this)}/>
+                    <Button text="Default" onTap={this.buttonHandler.bind(this)} badgeText="2"/>
                     <Spacer/>
                     <SegmentedButton>
-                        <Button text="Option 1" pressed={true}  onTap={this.tapHandler.bind(this)}/>
-                        <Button text="Option 2" onTap={this.tapHandler.bind(this)}/>
+                        <Button text="Option 1" pressed={true} handler={this.buttonHandler.bind(this)}/>
+                        <Button text="Option 2" handler={this.buttonHandler.bind(this)}/>
                     </SegmentedButton>
                     <Spacer/>
-                    <Button ui="action" text="Action" onTap={this.tapHandler.bind(this)}/>
+                    <Button ui="action" text="Action" handler={this.buttonHandler.bind(this)}/>
                 </Toolbar>
                <div style={{padding: '20px'}}>{ message }</div>
             </Panel>

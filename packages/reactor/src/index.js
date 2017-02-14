@@ -6,16 +6,25 @@ let settings = {};
 /**
  * Configures React to resolve jsx tags.
  * @param {String} [viewport=true] Adds a stylesheet that mimics an Ext JS Viewport
- *    by setting the html, body, and react root element to height: 100%. Set this to true when using an
- *    Ext JS component at the root of your app.
+ *  by setting the html, body, and react root element to height: 100%. Set this to true when using an
+ *  Ext JS component at the root of your app.
+ * @param {Function} [launch] A function to call when the application is launched with viewport: true.  The initial ReactDOM.render 
+ *  call should be made inside this function. This function is passed a single argument, target, which is the DOM element
+ *  into which your app should be rendered.
  */
-export function install({ viewport=false } = {}) {
+export function install({ viewport=false, launch=Function.prototype } = {}) {
     settings.viewport = viewport;
 
     if (viewport) {
         const style = document.createElement('style');
         style.innerHTML = 'html, body, div[data-reactroot] { height: 100%; }';
         document.head.appendChild(style);
+
+        Ext.application({
+            launch: () => launch(Ext.Viewport.getRenderTarget().dom)
+        })
+    } else {
+        Ext.onReady(() => launch())
     }
 };
 
