@@ -8,6 +8,7 @@ import { sync as rimraf } from 'rimraf';
 import { buildXML, createAppJson, createWorkspaceJson } from './artifacts';
 import { execSync, spawn } from 'child_process';
 import astring from 'astring';
+import { transform } from 'babel-core';
 
 let watching = false;
 
@@ -199,7 +200,11 @@ module.exports = class ReactExtJSWebpackPlugin {
                 if (deps) statements = statements.concat(deps);
             }
 
-            const js = statements.join(';\n');
+            const js = transform(statements.join(';\n'), {
+                presets: ['es2015'],
+                plugins: ['transform-object-rest-spread']
+            }).code;
+
             const manifest = path.join(output, 'manifest.js');
 
             if (!watching) {

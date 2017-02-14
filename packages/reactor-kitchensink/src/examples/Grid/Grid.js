@@ -1,18 +1,46 @@
 import React, { Component } from 'react';
 import { Grid, ActionSheet, Toolbar, Container, Button } from '@extjs/reactor/modern';
-import data from './data';
+import './data';
 import model from './model';
 
 Ext.require('Ext.grid.plugin.*');
 Ext.require('Ext.tip.ToolTip');
 Ext.require('Ext.*');
 
+Ext.define('KitchenSink.view.grid.BigDataRowModel', {
+    extend: 'Ext.app.ViewModel',
+    alias: 'viewmodel.grid-bigdata-row',
+    formulas: {
+        ratingGroup: function (get) {
+            var age = get('record.averageRating');
+
+            if (age < 4) {
+                return 0;
+            }
+            if (age < 5) {
+                return 1;
+            }
+            if (age < 6) {
+                return 2;
+            }
+
+            return 3;
+        }
+    }
+});
+
 export default class GridExample extends Component {
     constructor() {
         super();
         this.store = Ext.create('Ext.data.Store', {
-            data: data,
-            model: model
+            model: model,
+            autoLoad: true,
+            groupField: 'department',
+            pageSize: 0,
+            proxy: {
+                type: 'ajax',
+                url: '/KitchenSink/BigData'
+            }            
         }); 
     }
 
@@ -75,19 +103,20 @@ export default class GridExample extends Component {
     
         return (
             <Container layout="fit">
-                <ActionSheet ref="exportMenu">
+                {/*<ActionSheet ref="exportMenu">
                     <Button handler={this.exportToXlsx.bind(this)} text="Excel xlsx (all Items)"/>
                     <Button handler={this.exportToXml.bind(this)} text="Excel xml (all Items)"/>
                     <Button handler={this.exportToCSV.bind(this)} text="CSV (all Items)"/>
                     <Button handler={this.exportToTSV.bind(this)} text="TSV (all Items)"/>
                     <Button handler={this.exportToHtml.bind(this)} text="HTML (all Items)"/>
                     <Button handler={() => this.refs.exportMenu.hide()} text="Cancel"/>
-                </ActionSheet>
+                </ActionSheet>*/}
                 <Grid
                     ref="grid"
                     title="Big Data Grid"
                     store={this.store}
-                    shadow={true}
+                    shadow
+                    grouped
                     plugins={[
                         { type: 'grideditable' },
                         { type: 'gridviewoptions' },
@@ -98,6 +127,14 @@ export default class GridExample extends Component {
                         { type: 'multiselection' },
                         { type: 'gridexporter' }
                     ]}
+                    itemConfig={{
+                        viewModel: {
+                            type: 'grid-bigdata-row'
+                        },
+                        body: {
+                            tpl: '<img src="{avatar}" height="100px" style="float:left;margin:0 10px 5px 0"><b>{name}<br></b>{dob:date}'
+                        }
+                    }}
                     columns={[
                         { 
                             xtype: 'rownumberer' 
@@ -176,8 +213,9 @@ export default class GridExample extends Component {
                                 widget: {
                                     xtype: 'button',
                                     ui: 'action',
+                                    text: 'Verify',
                                     //bind: 'Verify',// {record.firstName}', ExtJS bug in widgetcell
-                                    handler:onVerifyTap
+                                    handler: onVerifyTap
                                 }
                             }
                         }, {
