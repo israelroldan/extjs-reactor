@@ -12,7 +12,7 @@ Ext.define('KitchenSink.view.grid.BigDataRowModel', {
     alias: 'viewmodel.grid-bigdata-row',
     formulas: {
         ratingGroup: function (get) {
-            var age = get('record.averageRating');
+            const age = get('record.averageRating');
 
             if (age < 4) {
                 return 0;
@@ -47,7 +47,7 @@ export default class GridExample extends Component {
     exportToXlsx() {
         this.doExport({
             type: 'excel07',
-            title: 'Pivot grid export demo',
+            title: 'Grid Export Demo',
             fileName: 'GridExport.xlsx'
         });
     }
@@ -55,7 +55,7 @@ export default class GridExample extends Component {
     exportToXml() {
         this.doExport({
             type:       'excel03',
-            title:      'Pivot grid export demo',
+            title:      'Grid Export Demo',
             fileName:   'GridExport.xml'
         });
     }
@@ -63,7 +63,7 @@ export default class GridExample extends Component {
     exportToCSV() {
         this.doExport({
             type:       'csv',
-            title:      'Pivot grid export demo',
+            title:      'Grid Export Demo',
             fileName:   'GridExport.csv'
         });
     }
@@ -71,7 +71,7 @@ export default class GridExample extends Component {
     exportToTSV() {
          this.doExport({
             type:       'tsv',
-            title:      'Pivot grid export demo',
+            title:      'Grid Export Demo',
             fileName:   'GridExport.csv'
         });
     }
@@ -79,7 +79,7 @@ export default class GridExample extends Component {
     exportToHtml() {
          this.doExport({
             type:       'html',
-            title:      'Pivot grid export demo',
+            title:      'Grid Export Demo',
             fileName:   'GridExport.html'
         });
     }
@@ -89,31 +89,29 @@ export default class GridExample extends Component {
         this.refs.grid.saveDocumentAs(config);
     }
 
-    render() {
-        var onVerifyTap = (btn) => {
-            var cell = btn.getParent(),
-                record = cell.getRecord();
-            record.set('verified', true);
-            Ext.Msg.alert('Verify', 'Verify ' + record.get('forename') + ' ' + record.get('surname'));
-        }
+    onVerify(btn) {
+        const cell = btn.getParent(), record = cell.getRecord();
+        record.set('verified', true);
+        Ext.Msg.alert('Verify', 'Verify ' + record.get('forename') + ' ' + record.get('surname'));
+    }
 
-        var salarySummaryRenderer = (value) => {
-            return Ext.util.Format.usMoney(value);
-        }
-    
+    salarySummaryRenderer(value) {
+        return Ext.util.Format.usMoney(value);
+    }
+
+    render() {
         return (
             <Container layout="fit">
-                {/*<ActionSheet ref="exportMenu">
+                <ActionSheet ref="exportMenu">
                     <Button handler={this.exportToXlsx.bind(this)} text="Excel xlsx (all Items)"/>
                     <Button handler={this.exportToXml.bind(this)} text="Excel xml (all Items)"/>
                     <Button handler={this.exportToCSV.bind(this)} text="CSV (all Items)"/>
                     <Button handler={this.exportToTSV.bind(this)} text="TSV (all Items)"/>
                     <Button handler={this.exportToHtml.bind(this)} text="HTML (all Items)"/>
                     <Button handler={() => this.refs.exportMenu.hide()} text="Cancel"/>
-                </ActionSheet>*/}
+                </ActionSheet>
                 <Grid
                     ref="grid"
-                    title="Big Data Grid"
                     store={this.store}
                     shadow
                     grouped
@@ -213,8 +211,7 @@ export default class GridExample extends Component {
                                     xtype: 'button',
                                     ui: 'action',
                                     text: 'Verify',
-                                    //bind: 'Verify',// {record.firstName}', ExtJS bug in widgetcell
-                                    handler: onVerifyTap
+                                    handler: this.onVerify.bind(this)
                                 }
                             }
                         }, {
@@ -246,7 +243,6 @@ export default class GridExample extends Component {
                         },
                         {
                             text: 'Absences',
-                            xtype: 'headergroup',
                             columns: [{
                                 text: 'Illness',
                                 dataIndex: 'sickDays',
@@ -273,7 +269,7 @@ export default class GridExample extends Component {
                             editable: true,
                             width: 150,
                             summaryType: 'sum',
-                            summaryRenderer: salarySummaryRenderer,
+                            summaryRenderer: this.salarySummaryRenderer.bind(this),
                             exportStyle: {
                                 format: 'Currency',
                                 alignment: {
