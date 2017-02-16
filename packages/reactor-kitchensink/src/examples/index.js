@@ -30,3 +30,9 @@ export { default as ProgressBar } from './ProgressBar/ProgressBar';
 export { default as Menu } from './Menu/Menu';
 export { default as ActionSheet } from './ActionSheet/ActionSheet';
 export { default as ToolTip } from './ToolTip/ToolTip';
+export { default as Picker } from './Picker/Picker';
+export { default as TouchEvents } from './TouchEvents/TouchEvents';
+export { default as Msg } from './Msg/Msg';
+export { default as Toast } from './Toast/Toast';
+export { default as Calendar } from './Calendar/Calendar';
+

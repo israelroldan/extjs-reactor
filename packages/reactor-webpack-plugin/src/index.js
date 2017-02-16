@@ -193,7 +193,7 @@ module.exports = class ReactExtJSWebpackPlugin {
                 mkdirp(output);
             }
 
-            let statements = ['Ext.require(["Ext.Component", "Ext.Widget"])']; // for some reason command doesn't load component when only panel is required
+            let statements = ['Ext.require(["Ext.app.Application", "Ext.Component", "Ext.Widget"])']; // for some reason command doesn't load component when only panel is required
 
             for (let module of modules) {
                 const deps = this.dependencies[module.resource];

@@ -40,7 +40,7 @@ export default function TabPanelExample() {
                     <div>Tabbars are <code>ui:"dark"</code> by default, but also have light variants.</div>
                 </Container>
                 <Container title="More" iconCls="fa fa-ellipsis-h" {...tabProps}>
-                    <span class="action">User tapped User</span>
+                    <span className="action">User tapped User</span>
                 </Container>
             </TabPanel>
         </Container>

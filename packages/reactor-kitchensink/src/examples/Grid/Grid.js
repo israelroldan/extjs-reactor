@@ -5,7 +5,6 @@ import model from './model';
 
 Ext.require('Ext.grid.plugin.*');
 Ext.require('Ext.tip.ToolTip');
-Ext.require('Ext.*');
 
 Ext.define('KitchenSink.view.grid.BigDataRowModel', {
     extend: 'Ext.app.ViewModel',
@@ -150,6 +149,7 @@ export default class GridExample extends Component {
                         }, {
                             text: 'Name',
                             dataIndex: 'fullName',
+                            styleHtmlContent: true,
                             minWidth: 150
                         }, {
                             xtype: 'checkcolumn',
@@ -163,9 +163,8 @@ export default class GridExample extends Component {
                                 xtype: 'numbercolumn',
                                 dataIndex: 'averageRating',
                                 width: 75,
-                                cell:{
+                                cell: {
                                     cls:'big-data-ratings-cell'
-                                    //innerCls: '(get) => under4'
                                 }
                                     
                             }, {
@@ -284,9 +283,7 @@ export default class GridExample extends Component {
                             message: 'Document is prepared for export. Please wait ...'
                         })
                     }}
-                    onDocumentSave={(view) =>
-                        view.unmask()
-                    }
+                    onDocumentSave={(view) => view.unmask()}
                 >
                     <Toolbar docked="top">
                         <Button text="Export to..." handler={() => this.refs.exportMenu.show()}/>
