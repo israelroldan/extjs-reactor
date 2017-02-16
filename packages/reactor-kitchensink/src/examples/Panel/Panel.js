@@ -9,14 +9,6 @@ function toolHandler(owner, tool) {
 
 export default class PanelExample extends Component {
 
-    constructor() {
-        super();
-
-        this.state = { 
-            showFloated: false
-        }
-    }
-
     render() {
         return (
             <Container>

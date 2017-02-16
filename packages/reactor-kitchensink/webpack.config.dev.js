@@ -39,19 +39,19 @@ module.exports = {
         loaders: [
             {
                 test: /\.js$/,
-                loader: 'babel',
+                loader: 'babel-loader',
                 include: [
                     path.join(__dirname, 'src')
                 ]
             },
             {
                 test: /\.css$/,
-                loader: 'style!css'
+                loader: 'style-loader!css-loader'
             },
             {
                 test: /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)(\?.*)?$/,
                 exclude: /\/favicon.ico$/,
-                loader: 'file',
+                loader: 'file-loader',
                 query: {
                     name: 'static/media/[name].[hash:8].[ext]'
                 }
@@ -62,6 +62,6 @@ module.exports = {
     devServer: {
         contentBase: "./build",
         noInfo: true,
-        hot: true
+        hot: false
     }
 };

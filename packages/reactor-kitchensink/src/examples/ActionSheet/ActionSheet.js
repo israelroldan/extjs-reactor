@@ -3,20 +3,33 @@ import { Container, Panel, ActionSheet, Button } from '@extjs/reactor/modern';
 
 export default class ActionSheetExample extends Component {
 
+    constructor() {
+        super();
+        this.state = {
+            showActionSheet: false
+        };
+    }
+
     hideActionSheet() {
-        this.refs.sheet.hide();
+        this.setState({ showActionSheet: false })
+    }
+
+    showActionSheet() {
+        this.setState({ showActionSheet: true })
     }
 
     render() {
+        const { showActionSheet } = this.state;
+
         return (
             <Container>
                 <Panel shadow>
-                    <Button handler={() => this.refs.sheet.show()}>Show Action Sheet</Button>
+                    <Button handler={this.showActionSheet.bind(this)}>Show Action Sheet</Button>
                 </Panel>
-                <ActionSheet ref="sheet">
+                <ActionSheet hidden={!showActionSheet}>
                     <Button ui="decline" handler={this.hideActionSheet.bind(this)}>Delete Draft</Button>
                     <Button handler={this.hideActionSheet.bind(this)}>Save Draft</Button>
-                    <Button handler={this.hideActionSheet.bind(this)}>Delete Draft</Button>
+                    <Button handler={this.hideActionSheet.bind(this)}>Cancel</Button>
                 </ActionSheet>
             </Container>
         )

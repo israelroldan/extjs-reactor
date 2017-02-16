@@ -4,4 +4,9 @@ code.hljs {
 
 code {
     font-family: Menlo, monospace;
+    font-size: 13px;
+}
+
+.code-panel .x-innerhtml {
+    background-color: #282c34
 }
