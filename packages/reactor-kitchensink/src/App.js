@@ -20,10 +20,7 @@ export default class App extends Component {
     render() {
         return (
             <Router history={hashHistory}>
-                <Route path="/" component={Layout}>
-                    <Route path="/home" component={Home}/>
-                    { Object.keys(code).map(entry => <Route key={entry} path={`/${entry}`} component={examples[entry]}/>) }
-                </Route>
+                <Route path="/:component" component={Layout}/>
             </Router>
         )
     }
