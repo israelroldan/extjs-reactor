@@ -13,4 +13,4 @@ This project shows off all Ext JS components running within React.
 7. `npm install`
 8. `npm start`
 
-The application runs on http://localhost:8084
+The application runs on [http://localhost:8084](http://localhost:8084)
