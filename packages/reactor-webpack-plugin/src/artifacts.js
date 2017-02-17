@@ -114,12 +114,15 @@ export const buildXML = function({ compress }) {
  * @param {String} theme The name of the theme to use.
  * @param {String[]} packages The names of packages to include in the build
  */
-export function createAppJson({ theme, packages, toolkit, overrides=[] }) {
+export function createAppJson({ theme, packages, toolkit, overrides=[], packageDirs=[] }) {
     const config = {
         framework: "ext",
         toolkit,
         requires: packages,
         overrides: overrides.map(dir => path.resolve(dir)),
+        packages: {
+            dir: packageDirs.map(dir => path.resolve(dir))
+        },
         output: {
             base: '.',
             resources: {
@@ -133,7 +136,7 @@ export function createAppJson({ theme, packages, toolkit, overrides=[] }) {
     if (fs.existsSync(theme)) {
         const packageInfo = cjson.load(path.join(theme, 'package.json'));
         config.theme = packageInfo.name;
-        config.packages = { dir: path.resolve(theme) };
+        config.packages.dir.push(path.resolve(theme));
     } else {
         config.theme = theme;
     }

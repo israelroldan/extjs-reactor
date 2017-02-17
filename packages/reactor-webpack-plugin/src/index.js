@@ -45,13 +45,14 @@ module.exports = class ReactExtJSWebpackPlugin {
         toolkit='modern',
         theme='theme-triton',
         packages=[],
+        packageDirs=[],
         overrides=[],
         asynchronous=false,
         production=false
         /* end single build only */
     }) {
         if (Object.keys(builds).length === 0) {
-            builds.ext = { sdk, toolkit, theme, packages, overrides, output };
+            builds.ext = { sdk, toolkit, theme, packages, packageDirs, overrides, output };
         }
 
         for (let name in builds)
@@ -66,6 +67,7 @@ module.exports = class ReactExtJSWebpackPlugin {
             toolkit,
             theme,
             packages,
+            packageDirs,
             overrides,
             dependencies: {},
             test,
@@ -179,11 +181,12 @@ module.exports = class ReactExtJSWebpackPlugin {
      * @param {String} output The path to the directory to create which will contain the js and css bundles
      * @param {String} theme The name of the Ext JS theme package to use, for example "theme-material"
      * @param {String[]} packages An array of Ext JS packages to include
+     * @param {String[]} packageDirs Directories containing packages
      * @param {String[]} overrides An array of locations for overrides
      * @param {String} sdk The full path to the Ext JS SDK
      * @private
      */
-    _buildExtBundle(name, modules, output, { toolkit='modern', theme, packages=[], sdk, overrides }) {
+    _buildExtBundle(name, modules, output, { toolkit='modern', theme, packages=[], packageDirs=[], sdk, overrides }) {
         return new Promise((resolve, reject) => {
             this.onBuildComplete = resolve;
             this.onBuildFail = reject;
@@ -205,11 +208,13 @@ module.exports = class ReactExtJSWebpackPlugin {
                 plugins: ['transform-object-rest-spread']
             }).code;
 
+            console.log('here!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+
             const manifest = path.join(output, 'manifest.js');
 
             if (!watching) {
                 fs.writeFileSync(path.join(output, 'build.xml'), buildXML({ compress: this.production }), 'utf8');
-                fs.writeFileSync(path.join(output, 'app.json'), createAppJson({ theme, packages, toolkit, overrides }), 'utf8');
+                fs.writeFileSync(path.join(output, 'app.json'), createAppJson({ theme, packages, toolkit, overrides, packageDirs }), 'utf8');
                 fs.writeFileSync(path.join(output, 'workspace.json'), createWorkspaceJson(sdk, output), 'utf8');
             }
 

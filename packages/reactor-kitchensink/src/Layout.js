@@ -56,7 +56,8 @@ export default class Layout extends React.Component {
         const files = code[key];
         const docsMode = location.query.mode === 'docs';
         const selectedNode = this.navTreeStore.getNodeById(key);
-        selectedNode.parentNode.expand();
+        
+        if (selectedNode) selectedNode.parentNode.expand();
         const component = selectedNode && selectedNode.get('component');
 
         return (

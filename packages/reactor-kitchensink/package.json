@@ -6,6 +6,7 @@
   "scripts": {
     "prod": "webpack-dev-server --content-base ./build --compress",
     "start": "webpack-dev-server --progress --profile --colors --config webpack.config.dev.js --port 8084",
+    "local": "webpack-dev-server --progress --profile --colors --config webpack.config.local.js --port 8084",
     "extract-code": "node extract-code.js",
     "build": "npm run clean && webpack --config webpack.config.prod.js --progress --profile --colors",
     "clean": "rimraf build"
