@@ -2,6 +2,7 @@ import React from 'react';
 import { ViewPort, TitleBar, TabPanel, Panel, Component, Container, Toolbar, Button, List, TreeList, SearchField } from '@extjs/reactor/modern';
 import hljs, { highlightBlock } from 'highlightjs';
 import code from './code';
+import examples from './examples';
 
 // JSX syntax highlighting
 import 'highlightjs/styles/atom-one-dark.css';
@@ -14,24 +15,9 @@ export default class Layout extends React.Component {
         super();
         this.codePanels = [];
 
-        this.navStore = Ext.create('Ext.data.Store', {
-            data: Object.keys(code).map(entry => {
-                return { name: entry, path: '/' + entry };
-            })
-        });
-
         this.navTreeStore = Ext.create('Ext.data.TreeStore', {
             rootVisible: true,
-            root: {
-                children: Object.keys(code).map(entry => {
-                    return { 
-                        id: entry,
-                        text: entry, 
-                        path: '/' + entry,
-                        leaf: true
-                    };
-                })
-            }
+            root: examples
         });
     }
 
@@ -54,8 +40,10 @@ export default class Layout extends React.Component {
         this.navStore.filterBy(record => value === '' || record.get('name').toLowerCase().indexOf(value.toLowerCase()) !== -1);
     }
 
-    onNavChange(path) {
+    onNavChange(node) {
+        if (!node.isLeaf()) return;
         const { router, location } = this.props;
+        const path = `/${node.get('text')}`;
         
         if (location.pathname !== path) {
             router.push(path)
@@ -67,7 +55,9 @@ export default class Layout extends React.Component {
         const key = location.pathname.slice(1);
         const files = code[key];
         const docsMode = location.query.mode === 'docs';
-        
+        const selectedNode = this.navTreeStore.getNodeById(key);
+        const component = selectedNode && selectedNode.get('component');
+
         return (
             <Container layout={{type: 'hbox', align: 'stretch'}} cls="main-background">
                 { !docsMode && (
@@ -83,13 +73,14 @@ export default class Layout extends React.Component {
                                     style={{backgroundColor: 'white'}}
                                     width={250}
                                     store={this.navTreeStore}
+                                    expanderFirst={false}
                                     expanderOnly={false}
                                     shadow
-                                    onSelectionChange={(tree, record) => this.onNavChange(record.get('path'))}
-                                    selection={this.navTreeStore.getNodeById(key)}
+                                    onSelectionChange={(tree, record) => this.onNavChange(record)}
+                                    selection={selectedNode}
                                 />
                             </Container>
-                            <Container layout="fit" flex={1} margin={30}>{ children }</Container>
+                            <Container layout="fit" flex={1} margin={30}>{ component && React.createElement(component) }</Container>
                         </Container>
                     </Container>
                 )}

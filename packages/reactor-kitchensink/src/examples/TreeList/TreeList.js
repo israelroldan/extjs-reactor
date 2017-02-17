@@ -49,6 +49,7 @@ export default class TreeListExample extends Component {
                     expanderOnly={false}
                     store={this.store}
                     micro={micro}
+                    expanderFirst={!nav}
                     ui={nav ? 'nav' : null}
                 />
             </Panel>
