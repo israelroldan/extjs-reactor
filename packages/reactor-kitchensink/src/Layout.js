@@ -43,7 +43,7 @@ export default class Layout extends React.Component {
     onNavChange(node) {
         if (!node.isLeaf()) return;
         const { router, location } = this.props;
-        const path = `/${node.get('text')}`;
+        const path = `/${node.getId()}`;
         
         if (location.pathname !== path) {
             router.push(path)
@@ -56,6 +56,7 @@ export default class Layout extends React.Component {
         const files = code[key];
         const docsMode = location.query.mode === 'docs';
         const selectedNode = this.navTreeStore.getNodeById(key);
+        selectedNode.parentNode.expand();
         const component = selectedNode && selectedNode.get('component');
 
         return (

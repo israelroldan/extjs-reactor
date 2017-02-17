@@ -35,54 +35,65 @@ import TouchEvents from './TouchEvents/TouchEvents';
 import Msg from './Msg/Msg';
 import Toast from './Toast/Toast';
 import Calendar from './Calendar/Calendar';
+import BasicScatterChart from './BasicScatterChart/BasicScatterChart';
 
 const root = {
     id: 'root',
     children: [
-        { text: 'Grid', component: Grid },
-        { text: 'Panel', component: Panel },
-        { text: 'TabPanel', component: TabPanel },
-        { text: 'Toolbar', component: Toolbar },
-        { text: 'Tree', component: Tree },
-        { text: 'TreeList', component: TreeList },
-        { text: 'List', component: List },
-        { text: 'NestedList', component: NestedList },
+        { text: 'ActionSheet', component: ActionSheet },
         { text: 'Animations', component: Animations },
         { text: 'Button', component: Button },
+        { text: 'Calendar', component: Calendar },
         { text: 'Carousel', component: Carousel },
+        { text: 'Charts', children: [
+            { text: 'Bar Chart', children: [
+                { text: 'Basic Bar Chart' }
+            ] },
+            { text: 'Scatter Chart', children: [
+                { text: 'Basic Scatter Chart', component: BasicScatterChart }
+            ] }
+        ] },
         { text: 'Form Fields', children: [
-            { text: 'TextField', component: TextField },
-            { text: 'EmailField', component: EmailField },
-            { text: 'UrlField', component: UrlField },
-            { text: 'PasswordField', component: PasswordField },
-            { text: 'SpinnerField', component: SpinnerField },
             { text: 'CheckBoxField', component: CheckBoxField },
             { text: 'DatePickerField', component: DatePickerField },
+            { text: 'EmailField', component: EmailField },
+            { text: 'FormPanel', component: FormPanel },
+            { text: 'PasswordField', component: PasswordField },
+            { text: 'RadioField', component: RadioField },
             { text: 'SelectField', component: SelectField },
             { text: 'SliderField', component: SliderField },
-            { text: 'ToggleField', component: ToggleField },
+            { text: 'SpinnerField', component: SpinnerField },
             { text: 'TextAreaField', component: TextAreaField },
-            { text: 'RadioField', component: RadioField },
-            { text: 'FormPanel', component: FormPanel }
+            { text: 'TextField', component: TextField },
+            { text: 'ToggleField', component: ToggleField },
+            { text: 'UrlField', component: UrlField }
         ] },
-        { text: 'PivotGrid', component: PivotGrid },
+        { text: 'Grids', children: [
+            { text: 'Grid', component: Grid },
+            { text: 'PivotGrid', component: PivotGrid }
+        ] },
+        { text: 'List', component: List },
         { text: 'Media', children: [
             { text: 'Video', component: Video },
             { text: 'Audio', component: Audio }
         ] },
-        { text: 'ProgressBar', component: ProgressBar },
         { text: 'Menu', component: Menu },
-        { text: 'ActionSheet', component: ActionSheet },
-        { text: 'Picker', component: Picker },
-        { text: 'TouchEvents', component: TouchEvents },
         { text: 'Msg', component: Msg },
+        { text: 'NestedList', component: NestedList },
+        { text: 'Panel', component: Panel },
+        { text: 'Picker', component: Picker },
+        { text: 'ProgressBar', component: ProgressBar },
+        { text: 'TabPanel', component: TabPanel },
         { text: 'Toast', component: Toast },
-        { text: 'Calendar', component: Calendar }
+        { text: 'Toolbar', component: Toolbar },
+        { text: 'TouchEvents', component: TouchEvents },
+        { text: 'Tree', component: Tree },
+        { text: 'TreeList', component: TreeList }
     ]
 };
 
 function transform(node) {
-    if (!node.id) node.id = node.text;
+    if (!node.id) node.id = node.text.replace(/\s/g, '');
     node.leaf = !node.hasOwnProperty('children');
 
     if (node.children) {
@@ -91,7 +102,5 @@ function transform(node) {
 }
 
 transform(root);
-
-console.log({root})
 
 export default root;
