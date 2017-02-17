@@ -4,6 +4,7 @@ import createData from './data';
 import ChartToolbar from '../Charts/ChartToolbar';
 
 Ext.require([
+    'Ext.chart.*',
     'Ext.chart.series.Scatter',
     'Ext.chart.axis.Numeric',
     'Ext.chart.axis.Category'
