@@ -36,6 +36,10 @@ import Msg from './Msg/Msg';
 import Toast from './Toast/Toast';
 import Calendar from './Calendar/Calendar';
 import BasicScatterChart from './BasicScatterChart/BasicScatterChart';
+import BasicRadarChart from './BasicRadarChart/BasicRadarChart';
+import BasicPieChart from './BasicPieChart/BasicPieChart';
+import BasicLineChart from './BasicLineChart/BasicLineChart';
+import BasicGaugeChart from './BasicGaugeChart/BasicGaugeChart';
 
 const root = {
     id: 'root',
@@ -49,7 +53,19 @@ const root = {
             { text: 'Bar Chart', children: [
                 { text: 'Basic Bar Chart' }
             ] },
-            { text: 'Scatter Chart', children: [
+            { text: 'Gauge Charts', children: [
+                { text: 'Basic Gauge Chart', component: BasicGaugeChart }
+            ] },
+            { text: 'Line Charts', children: [
+                { text: 'Basic Line Chart', component: BasicLineChart }
+            ] },
+            { text: 'Pie Charts', children: [
+                { text: 'Basic Pie Chart', component: BasicPieChart }
+            ] },
+            { text: 'Radar Charts', children: [
+                { text: 'Basic Radar Chart', component: BasicRadarChart }
+            ] },
+            { text: 'Scatter Charts', children: [
                 { text: 'Basic Scatter Chart', component: BasicScatterChart }
             ] }
         ] },
@@ -72,14 +88,17 @@ const root = {
             { text: 'Grid', component: Grid },
             { text: 'PivotGrid', component: PivotGrid }
         ] },
-        { text: 'List', component: List },
+        { text: 'Lists', children: [
+            { text: 'List', component: List },
+            { text: 'NestedList', component: NestedList },
+            { text: 'TreeList', component: TreeList }
+        ]},
         { text: 'Media', children: [
             { text: 'Video', component: Video },
             { text: 'Audio', component: Audio }
         ] },
         { text: 'Menu', component: Menu },
         { text: 'Msg', component: Msg },
-        { text: 'NestedList', component: NestedList },
         { text: 'Panel', component: Panel },
         { text: 'Picker', component: Picker },
         { text: 'ProgressBar', component: ProgressBar },
@@ -87,8 +106,10 @@ const root = {
         { text: 'Toast', component: Toast },
         { text: 'Toolbar', component: Toolbar },
         { text: 'TouchEvents', component: TouchEvents },
-        { text: 'Tree', component: Tree },
-        { text: 'TreeList', component: TreeList }
+        { text: 'Trees', children: [
+            { text: 'Tree', component: Tree },
+            { text: 'TreeList', component: TreeList }
+        ] }
     ]
 };
 

@@ -22,27 +22,33 @@ export default function ChartToolbar({
 }) {
     return (
         <Toolbar docked="top">
-            <Label>Theme:</Label>
-            <SelectField
-                {...toolbarItemDefaults}
-                onChange={onThemeChange}
-                value={theme}
-                options={[
-                    { text: 'default', value: 'default' },
-                    { text: 'green', value: 'green' },
-                    { text: 'midnight', value: 'midnight' },
-                    { text: 'muted', value: 'muted' },
-                    { text: 'red', value: 'red' },
-                    { text: 'sky', value: 'sky' },
-                    { text: 'yellow', value: 'yellow' },
-                ]}
-            />                    
+            { theme && <Label>Theme:</Label> }
+            { theme && (
+                    <SelectField
+                    {...toolbarItemDefaults}
+                    onChange={onThemeChange}
+                    value={theme}
+                    options={[
+                        { text: 'default', value: 'default' },
+                        { text: 'green', value: 'green' },
+                        { text: 'midnight', value: 'midnight' },
+                        { text: 'muted', value: 'muted' },
+                        { text: 'red', value: 'red' },
+                        { text: 'sky', value: 'sky' },
+                        { text: 'yellow', value: 'yellow' },
+                    ]}
+                />                    
+            )}
             <Spacer/>
-            <Button {...toolbarItemDefaults} iconCls="fa fa-refresh" handler={onRefreshClick}>Refresh</Button>
-            <SegmentedButton {...toolbarItemDefaults}>
-                <Button ui="default-toolbar" handler={() => onToggleZoomOnPan(false)} pressed>Pan</Button>
-                <Button ui="default-toolbar" handler={() => onToggleZoomOnPan(true)}>Zoom</Button>
-            </SegmentedButton>
+            { onRefreshClick && (
+                <Button {...toolbarItemDefaults} iconCls="fa fa-refresh" handler={onRefreshClick}>Refresh</Button>
+            )}
+            { onToggleZoomOnPan && (
+                <SegmentedButton {...toolbarItemDefaults}>
+                    <Button ui="default-toolbar" handler={() => onToggleZoomOnPan(false)} pressed>Pan</Button>
+                    <Button ui="default-toolbar" handler={() => onToggleZoomOnPan(true)}>Zoom</Button>
+                </SegmentedButton>
+            )}
         </Toolbar>
     )
 }

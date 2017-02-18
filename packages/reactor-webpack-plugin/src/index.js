@@ -208,8 +208,6 @@ module.exports = class ReactExtJSWebpackPlugin {
                 plugins: ['transform-object-rest-spread']
             }).code;
 
-            console.log('here!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
-
             const manifest = path.join(output, 'manifest.js');
 
             if (!watching) {

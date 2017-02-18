@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Cartesian, Panel, Button, Toolbar, SegmentedButton, Spacer, Label } from '@extjs/reactor/modern';
-import createData from './data';
+import { Cartesian, Panel } from '@extjs/reactor/modern';
+import createData from './createData';
 import ChartToolbar from '../Charts/ChartToolbar';
 
 Ext.require([
