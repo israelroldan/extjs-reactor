@@ -35,7 +35,7 @@ export default class TreeListExample extends Component {
         const { micro, nav, width } = this.state;
 
         return (
-            <Panel title="TreeList" shadow={true} layout="fit">
+            <Panel shadow={true} layout="fit">
                 <Toolbar docked="top">
                     <SegmentedButton allowMultiple={true}>
                         <Button text="Nav" pressed={nav} onPressedChange={this.toggleNav.bind(this)} disabled={micro}/>

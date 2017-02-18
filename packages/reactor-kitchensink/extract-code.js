@@ -13,7 +13,11 @@ function extractAll() {
 
         for (let file of files) {
             if (file === `${dir}.js`) {
-                extractFrom(dir, file);
+                try {
+                    extractFrom(dir, file);
+                } catch (e) {
+                    console.log(`Error extracting code from ${file}`, e);
+                }
             }
         }
     }

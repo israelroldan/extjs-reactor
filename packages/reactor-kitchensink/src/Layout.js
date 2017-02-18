@@ -69,19 +69,17 @@ export default class Layout extends React.Component {
                             Ext JS Reactor Kitchen Sink
                         </TitleBar>
                         <Container layout={{type: 'hbox', align: 'stretch'}} flex={1}>
-                            <Container scrollable="y">
+                            <Panel scrollable="y">
                                 <TreeList
                                     ui="component-tree"
-                                    style={{backgroundColor: 'white'}}
                                     width={250}
                                     store={this.navTreeStore}
                                     expanderFirst={false}
                                     expanderOnly={false}
-                                    shadow
                                     onSelectionChange={(tree, record) => this.onNavChange(record)}
                                     selection={selectedNode}
                                 />
-                            </Container>
+                            </Panel>
                             <Container layout="fit" flex={1} margin={30}>{ component && React.createElement(component) }</Container>
                         </Container>
                     </Container>

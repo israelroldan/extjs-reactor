@@ -56,7 +56,7 @@
     $row-selected-background-color: $base-color
 );
 
-$component-tree-background: white;
+$component-tree-background: #fafafa;
 $component-tree-text-color: #212121;
 
 @include treelist-ui(
