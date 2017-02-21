@@ -4,12 +4,12 @@
   "description": "A boilerplate project showing all Ext JS modern components.",
   "main": "index.js",
   "scripts": {
-    "prod": "webpack-dev-server --content-base ./build --compress",
-    "start": "webpack-dev-server --progress --profile --colors --config webpack.config.dev.js --port 8084",
-    "local": "webpack-dev-server --progress --profile --colors --config webpack.config.local.js --port 8084",
-    "extract-code": "node extract-code.js",
-    "build": "npm run clean && webpack --config webpack.config.prod.js --progress --profile --colors",
-    "clean": "rimraf build"
+    "clean": "rimraf build",
+    "start": "webpack-dev-server --progress",
+    "build": "npm run clean && NODE_ENV=production webpack --env.prod=true",
+    "prod": "NODE_ENV=production webpack-dev-server --env.prod=true",
+    "local": "export EXTJS_LOCAL_SDK=true; webpack-dev-server --progress",
+    "extract-code": "node extract-code.js"
   },
   "repository": {
     "type": "git",
@@ -41,7 +41,7 @@
     "html-webpack-plugin": "^2.24.1",
     "rimraf": "^2.5.4",
     "style-loader": "^0.13.1",
-    "webpack": "^1.13.2",
-    "webpack-dev-server": "^1.16.2"
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.4.1"
   }
 }
