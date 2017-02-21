@@ -117,11 +117,6 @@ module.exports = class ReactExtJSWebpackPlugin {
                 }
             });
 
-            compilation.plugin("additional-assets", function(callback) {
-                const deps = me.dependencies;
-                callback();
-            })
-
             data.normalModuleFactory.plugin("parser", function(parser, options) {
                 // extract xtypes and classes from Ext.create calls
                 parser.plugin('call Ext.create', addToManifest);
