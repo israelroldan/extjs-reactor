@@ -77,28 +77,6 @@ module.exports = class ReactExtJSWebpackPlugin {
     }
 
     apply(compiler) {
-        compiler.plugin('watch-run', (watching, cb) => {
-            this.watch = true;
-            cb();
-        });
-
-        // extract xtypes from JSX tags
-        compiler.plugin('compilation', (compilation, params) => {
-            compilation.plugin('build-module', (module) => {
-                this.currentFile = module.resource;
-
-                if (module.resource && module.resource.match(this.test)) {
-                    try {
-                        if (this.debug) console.log(module.resource);
-                        const contents = fs.readFileSync(module.resource, 'utf8');
-                        const statements = extractFromJSX(contents);
-                        this.dependencies[this.currentFile] = statements;
-                    } catch (e) {
-                        console.error('error parsing ' + this.currentFile);
-                    }
-                }
-            });
-        });
 
         const me = this;
 
@@ -117,14 +95,44 @@ module.exports = class ReactExtJSWebpackPlugin {
             }
         };
 
-        // extract xtypes and classes from Ext.create calls
-        compiler.parser.plugin('call Ext.create', addToManifest);
+        compiler.plugin('watch-run', (watching, cb) => {
+            this.watch = true;
+            cb();
+        });
 
-        // copy Ext.require calls to the manifest.  This allows the users to explicitly require a class if the plugin fails to detect it.
-        compiler.parser.plugin('call Ext.require', addToManifest);
+        // extract xtypes from JSX tags
+        compiler.plugin('compilation', (compilation, data) => {
+            compilation.plugin('build-module', (module) => {
+                this.currentFile = module.resource;
 
-        // copy Ext.define calls to the manifest.  This allows users to write standard Ext JS classes.
-        compiler.parser.plugin('call Ext.define', addToManifest);
+                if (module.resource && module.resource.match(this.test)) {
+                    try {
+                        if (this.debug) console.log(module.resource);
+                        const contents = fs.readFileSync(module.resource, 'utf8');
+                        const statements = extractFromJSX(contents);
+                        this.dependencies[this.currentFile] = statements;
+                    } catch (e) {
+                        console.error('error parsing ' + this.currentFile);
+                    }
+                }
+            });
+
+            compilation.plugin("additional-assets", function(callback) {
+                const deps = me.dependencies;
+                callback();
+            })
+
+            data.normalModuleFactory.plugin("parser", function(parser, options) {
+                // extract xtypes and classes from Ext.create calls
+                parser.plugin('call Ext.create', addToManifest);
+
+                // copy Ext.require calls to the manifest.  This allows the users to explicitly require a class if the plugin fails to detect it.
+                parser.plugin('call Ext.require', addToManifest);
+
+                // copy Ext.define calls to the manifest.  This allows users to write standard Ext JS classes.
+                parser.plugin('call Ext.define', addToManifest);
+            })
+        });
 
         // once all modules are processed, create the optimized Ext JS build.
         compiler.plugin('emit', (compilation, callback) => {
@@ -140,14 +148,11 @@ module.exports = class ReactExtJSWebpackPlugin {
 
             // the following is needed for html-webpack-plugin to include <script> and <link> tags for Ext JS
             const jsChunk = compilation.addChunk(`${this.output}-js`);
-            jsChunk.initial = true;
-            jsChunk.ids = [0]; // html-webpack-plugin needs ids to be defined so that it can fetch webpack stats
+
+            jsChunk.hasRuntime = jsChunk.isInitial = () => true;
             jsChunk.files.push(path.join(this.output, 'ext.js'));
             jsChunk.files.push(path.join(this.output, 'ext.css'));
-
-            // this forces html-webpack-plugin to include ext.js first
-            jsChunk.entry = true;
-            jsChunk.id = 9999;
+            jsChunk.id = -1; // this forces html-webpack-plugin to include ext.js first
 
             if (this.asynchronous) callback();
 
