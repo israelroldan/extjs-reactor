@@ -9,7 +9,6 @@ This project shows off all Ext JS components running within React.
 3. `npm install`
 4. `lerna bootstrap` - If this fails, ensure ./node_modules/.bin is in your path by adding the following to ~/.bash_profile and restarting terminal: `export PATH=./node_modules/.bin:$PATH`
 5. `cd packages/reactor-kitchensink`
-6. `npm install`
 7. `ln -s /path/to/ExtJS ext`
 8. `npm start`  - or, if running against a clone of the SDK repo - `npm run local`
 
