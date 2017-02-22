@@ -35,11 +35,15 @@ import TouchEvents from './TouchEvents/TouchEvents';
 import Msg from './Msg/Msg';
 import Toast from './Toast/Toast';
 import Calendar from './Calendar/Calendar';
+import TitleBar from './TitleBar/TitleBar';
 import BasicScatterChart from './BasicScatterChart/BasicScatterChart';
 import BasicRadarChart from './BasicRadarChart/BasicRadarChart';
 import BasicPieChart from './BasicPieChart/BasicPieChart';
 import BasicLineChart from './BasicLineChart/BasicLineChart';
 import BasicGaugeChart from './BasicGaugeChart/BasicGaugeChart';
+import BasicBarChart from './BasicBarChart/BasicBarChart';
+import BasicAreaChart from './BasicAreaChart/BasicAreaChart';
+import BasicColumnChart from './BasicColumnChart/BasicColumnChart';
 
 const root = {
     id: 'root',
@@ -50,8 +54,14 @@ const root = {
         { text: 'Calendar', component: Calendar },
         { text: 'Carousel', component: Carousel },
         { text: 'Charts', children: [
+            { text: 'Area Chart', children: [
+                { text: 'Basic Area Chart', component: BasicAreaChart }
+            ] },
             { text: 'Bar Chart', children: [
-                { text: 'Basic Bar Chart' }
+                { text: 'Basic Bar Chart', component: BasicBarChart }
+            ] },
+            { text: 'Column Chart', children: [
+                { text: 'Basic Column Chart', component: BasicColumnChart }
             ] },
             { text: 'Gauge Charts', children: [
                 { text: 'Basic Gauge Chart', component: BasicGaugeChart }
@@ -103,6 +113,7 @@ const root = {
         { text: 'Picker', component: Picker },
         { text: 'ProgressBar', component: ProgressBar },
         { text: 'TabPanel', component: TabPanel },
+        { text: 'TitleBar', component: TitleBar },
         { text: 'Toast', component: Toast },
         { text: 'Toolbar', component: Toolbar },
         { text: 'TouchEvents', component: TouchEvents },
