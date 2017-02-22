@@ -1,14 +1,14 @@
 {
   "name": "@extjs/react-classic-boilerplate",
   "private": true,
-  "version": "0.2.10",
+  "version": "0.2.11",
   "description": "A boilerplate project showing how to integrate React and Ext JS using the classic toolkit.",
   "main": "index.js",
   "scripts": {
-    "prod": "webpack-dev-server --content-base ./build --compress",
-    "start": "webpack-dev-server --progress --config webpack.config.dev.js --port 8081",
-    "build": "npm run clean && webpack --config webpack.config.prod.js --progress --profile --colors",
-    "clean": "rimraf build"
+    "clean": "rimraf build",
+    "start": "webpack-dev-server --progress --colors",
+    "build": "npm run clean && NODE_ENV=production webpack --env.prod=true --progress --colors",
+    "prod": "NODE_ENV=production webpack-dev-server --env.prod=true --progress --colors"
   },
   "author": "Sencha",
   "license": "MIT",
@@ -22,16 +22,15 @@
     "react-dom": "^15.4.0"
   },
   "devDependencies": {
-    "@extjs/reactor-webpack-plugin": "^0.2.10",
     "@extjs/reactor-babel-plugin": "^0.2.9",
+    "@extjs/reactor-webpack-plugin": "^0.2.11",
     "babel-core": "^6.17.0",
     "babel-loader": "^6.2.5",
     "babel-preset-es2015": "^6.14.0",
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-2": "^6.13.0",
-    "copy-webpack-plugin": "^3.0.1",
     "html-webpack-plugin": "^2.24.1",
-    "webpack": "^1.13.2",
-    "webpack-dev-server": "^1.16.2"
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.4.1"
   }
 }
