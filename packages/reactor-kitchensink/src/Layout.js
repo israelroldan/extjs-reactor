@@ -30,7 +30,7 @@ export default class Layout extends React.Component {
     }
     
     highlightCode() {
-        for (let el of this.refs.examples.el.query('.code')) {
+        if (this.refs.examples) for (let el of this.refs.examples.el.query('.code')) {
             highlightBlock(el);
         }
     }
@@ -65,8 +65,8 @@ export default class Layout extends React.Component {
                 { !docsMode && (
                     <Container layout="fit" flex={4}>
                         <TitleBar docked="top">
-                            <div className="ext-sencha"/>
-                            Ext JS Reactor Kitchen Sink
+                            <div className="ext ext-sencha" style={{marginRight: '7px', fontSize: '20px'}}/>
+                            ExtReact Kitchen Sink
                         </TitleBar>
                         <Container layout={{type: 'hbox', align: 'stretch'}} flex={1}>
                             <Panel scrollable="y">

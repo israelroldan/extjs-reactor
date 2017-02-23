@@ -36,14 +36,19 @@ import Msg from './Msg/Msg';
 import Toast from './Toast/Toast';
 import Calendar from './Calendar/Calendar';
 import TitleBar from './TitleBar/TitleBar';
-import BasicScatterChart from './BasicScatterChart/BasicScatterChart';
-import BasicRadarChart from './BasicRadarChart/BasicRadarChart';
-import BasicPieChart from './BasicPieChart/BasicPieChart';
-import BasicLineChart from './BasicLineChart/BasicLineChart';
-import BasicGaugeChart from './BasicGaugeChart/BasicGaugeChart';
-import BasicBarChart from './BasicBarChart/BasicBarChart';
-import BasicAreaChart from './BasicAreaChart/BasicAreaChart';
-import BasicColumnChart from './BasicColumnChart/BasicColumnChart';
+import BasicScatter from './BasicScatter/BasicScatter';
+import BasicRadar from './BasicRadar/BasicRadar';
+import BasicPie from './BasicPie/BasicPie';
+import BasicLine from './BasicLine/BasicLine';
+import BasicGauge from './BasicGauge/BasicGauge';
+import BasicBar from './BasicBar/BasicBar';
+import BasicArea from './BasicArea/BasicArea';
+import BasicColumn from './BasicColumn/BasicColumn';
+import Basic3DColumn from './Basic3DColumn/Basic3DColumn';
+import Candlestick from './Candlestick/Candlestick';
+import OHLC from './OHLC/OHLC';
+import Navigator from './Navigator/Navigator';
+import Draw from './Draw/Draw';
 
 const root = {
     id: 'root',
@@ -54,36 +59,46 @@ const root = {
         { text: 'Calendar', component: Calendar },
         { text: 'Carousel', component: Carousel },
         { text: 'Charts', children: [
-            { text: 'Area Chart', children: [
-                { text: 'Basic Area Chart', component: BasicAreaChart }
+            { text: 'Area', children: [
+                { text: 'Basic Area', component: BasicArea }
             ] },
-            { text: 'Bar Chart', children: [
-                { text: 'Basic Bar Chart', component: BasicBarChart }
+            { text: 'Bar', children: [
+                { text: 'Basic Bar', component: BasicBar }
             ] },
-            { text: 'Column Chart', children: [
-                { text: 'Basic Column Chart', component: BasicColumnChart }
+            { text: 'Column', children: [
+                { text: 'Basic Column', component: BasicColumn }
             ] },
-            { text: 'Gauge Charts', children: [
-                { text: 'Basic Gauge Chart', component: BasicGaugeChart }
+            { text: '3D Column', children: [
+                { text: 'Basic 3D Column', component: Basic3DColumn }
             ] },
-            { text: 'Line Charts', children: [
-                { text: 'Basic Line Chart', component: BasicLineChart }
+            { text: 'Financial', children: [
+                { text: 'Candlestick', component: Candlestick },
+                { text: 'OHLC', component: OHLC }
             ] },
-            { text: 'Pie Charts', children: [
-                { text: 'Basic Pie Chart', component: BasicPieChart }
+            { text: 'Gauge', children: [
+                { text: 'Basic Gauge', component: BasicGauge }
             ] },
-            { text: 'Radar Charts', children: [
-                { text: 'Basic Radar Chart', component: BasicRadarChart }
+            { text: 'Line', children: [
+                { text: 'Basic Line', component: BasicLine }
             ] },
-            { text: 'Scatter Charts', children: [
-                { text: 'Basic Scatter Chart', component: BasicScatterChart }
+            { text: 'Navigator', component: Navigator },
+            { text: 'Pie', children: [
+                { text: 'Basic Pie', component: BasicPie }
+            ] },
+            { text: 'Radar', children: [
+                { text: 'Basic Radar', component: BasicRadar }
+            ] },
+            { text: 'Scatter', children: [
+                { text: 'Basic Scatter', component: BasicScatter }
             ] }
         ] },
+        { text: 'Draw', component: Draw },
         { text: 'Form Fields', children: [
             { text: 'CheckBoxField', component: CheckBoxField },
             { text: 'DatePickerField', component: DatePickerField },
             { text: 'EmailField', component: EmailField },
             { text: 'FormPanel', component: FormPanel },
+            { text: 'Gauge', component: Gauge },
             { text: 'PasswordField', component: PasswordField },
             { text: 'RadioField', component: RadioField },
             { text: 'SelectField', component: SelectField },

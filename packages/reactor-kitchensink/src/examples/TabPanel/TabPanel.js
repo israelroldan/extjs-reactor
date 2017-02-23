@@ -27,19 +27,19 @@ export default function TabPanelExample() {
                     docked: 'bottom'
                 }}
             >
-                <Container title="Info" iconCls="fa fa-info-circle" {...tabProps}>
+                <Container title="Info" iconCls="x-fa fa-info-circle" {...tabProps}>
                     <div>Docking tabs to the bottom will automatically change their style.</div>
                 </Container>
-                <Container title="Download" iconCls="fa fa-download" badgeText="4" {...tabProps}>
+                <Container title="Download" iconCls="x-fa fa-download" badgeText="4" {...tabProps}>
                     <div>Badges <em>(like the 4, below)</em> can be added by setting <code>badgeText</code> when creating a tab or by using <code>setBadgeText()</code> on the tab later.</div>
                 </Container>
-                <Container title="Favorites" iconCls="fa fa-star" badgeText="Overflow Test" {...tabProps}>
+                <Container title="Favorites" iconCls="x-fa fa-star" badgeText="Overflow Test" {...tabProps}>
                     <div>Badge labels will truncate if the text is wider than the tab.</div>
                 </Container>
-                <Container title="Bookmarks" iconCls="fa fa-bookmark" {...tabProps}>
+                <Container title="Bookmarks" iconCls="x-fa fa-bookmark" {...tabProps}>
                     <div>Tabbars are <code>ui:"dark"</code> by default, but also have light variants.</div>
                 </Container>
-                <Container title="More" iconCls="fa fa-ellipsis-h" {...tabProps}>
+                <Container title="More" iconCls="x-fa fa-ellipsis-h" {...tabProps}>
                     <span className="action">User tapped User</span>
                 </Container>
             </TabPanel>

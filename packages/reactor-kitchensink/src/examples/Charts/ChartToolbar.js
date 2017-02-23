@@ -18,6 +18,7 @@ export default function ChartToolbar({
     theme, 
     onThemeChange, 
     onToggleZoomOnPan, 
+    onToggleCrosshair,
     onRefreshClick 
 }) {
     return (
@@ -41,12 +42,13 @@ export default function ChartToolbar({
             )}
             <Spacer/>
             { onRefreshClick && (
-                <Button {...toolbarItemDefaults} iconCls="fa fa-refresh" handler={onRefreshClick}>Refresh</Button>
+                <Button {...toolbarItemDefaults} iconCls="x-fa fa-refresh" handler={onRefreshClick}>Refresh</Button>
             )}
             { onToggleZoomOnPan && (
                 <SegmentedButton {...toolbarItemDefaults}>
                     <Button ui="default-toolbar" handler={() => onToggleZoomOnPan(false)} pressed>Pan</Button>
                     <Button ui="default-toolbar" handler={() => onToggleZoomOnPan(true)}>Zoom</Button>
+                    { onToggleCrosshair && <Button ui="default-toolbar" handler={() => onToggleCrosshair(true)}>Crosshair</Button> }
                 </SegmentedButton>
             )}
         </Toolbar>
