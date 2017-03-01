@@ -4,26 +4,22 @@ import data from './data';
 
 export default class TreeListExample extends Component {
 
-    constructor() {
-        super();
+    store = Ext.create('Ext.data.TreeStore', {
+        rootVisible: true,
+        root: data
+    });
 
-        this.store = Ext.create('Ext.data.TreeStore', {
-            rootVisible: true,
-            root: data
-        });
+    state = {
+        nav: false,
+        micro: false,
+        width: undefined
+    };
 
-        this.state = {
-            nav: false,
-            micro: false,
-            width: undefined
-        };
-    }
-
-    toggleNav(button, nav) {
+    toggleNav = (button, nav) => {
         this.setState({ nav });
     }
 
-    toggleMicro(button, micro) {
+    toggleMicro = (button, micro) => {
         this.setState({ 
             micro, 
             nav: micro || this.state.nav,
@@ -35,11 +31,11 @@ export default class TreeListExample extends Component {
         const { micro, nav, width } = this.state;
 
         return (
-            <Panel shadow={true} layout="fit">
+            <Panel shadow layout="fit">
                 <Toolbar docked="top">
-                    <SegmentedButton allowMultiple={true}>
-                        <Button text="Nav" pressed={nav} onPressedChange={this.toggleNav.bind(this)} disabled={micro}/>
-                        <Button text="Micro" pressed={micro} onPressedChange={this.toggleMicro.bind(this)}/>
+                    <SegmentedButton allowMultiple>
+                        <Button ui="default-toolbar" text="Nav" pressed={nav} onPressedChange={this.toggleNav} disabled={micro}/>
+                        <Button ui="default-toolbar" text="Micro" pressed={micro} onPressedChange={this.toggleMicro}/>
                     </SegmentedButton>
                 </Toolbar>
 

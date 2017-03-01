@@ -35,7 +35,7 @@ export default class Animations extends Component {
 
     render() {
         return (
-            <Container ref="cards" layout="card" activeItem={this.state.activeCard} shadow={true}>
+            <Container ref="cards" layout="card" activeItem={this.state.activeCard} shadow>
                 <Panel title="Card 1" layout="vbox">
                     {this.createCardContents()}
                 </Panel>

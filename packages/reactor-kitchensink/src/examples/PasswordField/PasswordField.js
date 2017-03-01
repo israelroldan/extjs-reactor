@@ -3,11 +3,11 @@ import { FormPanel, PasswordField } from '@extjs/reactor/modern';
 
 export default function PasswordFieldExample() {
     return (
-        <FormPanel shadow={true}>
+        <FormPanel shadow>
             <PasswordField 
                 label="Password" 
-                required={true} 
-                revealable={true}
+                required 
+                revealable
             />
         </FormPanel>
     )

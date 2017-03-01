@@ -24,7 +24,7 @@ export default class SliderFieldExample extends Component {
         const { singleValue, multipleValue } = this.state;
 
         return (
-            <FormPanel shadow={true}>
+            <FormPanel shadow>
                 <SliderField 
                     onChange={this.onSingleChange.bind(this)}
                     label="Single Thumb"

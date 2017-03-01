@@ -3,9 +3,9 @@ import { Panel, Video } from '@extjs/reactor/modern';
 
 export default function VideoExample() {
     return (
-        <Panel shadow={true} layout="fit">
+        <Panel shadow layout="fit">
             <Video 
-                loop={true} 
+                loop 
                 url={['resources/video/BigBuck.m4v', 'resources/video/BigBuck.webm']}
                 posterUrl="resources/images/cover.jpg"
             />

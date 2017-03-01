@@ -20,7 +20,7 @@ export default class TreeExample extends Component {
                 width={350}
                 height={400}
                 store={this.store}
-                shadow={true}
+                shadow
             />
         )
     }

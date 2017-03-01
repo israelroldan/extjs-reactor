@@ -25,11 +25,11 @@ export default class ListExample extends Component {
     render() {
         return (
             <List
-                indexBar={true}
-                shadow={true}
+                indexBar
+                shadow
                 itemTpl="{first_name} {last_name}"
-                grouped={true}
-                pinHeaders={true}
+                grouped
+                pinHeaders
                 store={this.store}
                 onSelect={(list, record) => {
                     Ext.toast(`You selected ${record.get('first_name')} ${record.get('last_name')}.`)

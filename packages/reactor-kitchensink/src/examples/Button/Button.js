@@ -23,9 +23,9 @@ export default class ButtonExample extends Component {
         const checkboxProps = { labelWidth: 'auto', labelAlign: 'right', margin: '0 20 0 0' };
 
         return (
-            <Panel shadow={true} height={300} width={380} layout={{type: 'vbox', align: 'center', pack: 'center'}}>
+            <Panel shadow height={300} width={380} layout={{type: 'vbox', align: 'center', pack: 'center'}}>
                 <Button ref="button" text="Button" ui={ui.join(' ')} handler={() => Ext.toast('Clicked')}/>
-                <Toolbar docked="bottom" layout="vbox" shadow={true}>
+                <Toolbar docked="bottom" layout="vbox" shadow>
                     <div style={{marginBottom: '10px', textAlign: 'center'}}>Button UIs</div>
                     <Container layout="hbox">
                         <CheckBoxField {...checkboxProps} label="action" onChange={() => this.toggleUI('action')} />

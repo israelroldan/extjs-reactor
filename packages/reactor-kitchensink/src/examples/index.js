@@ -8,6 +8,7 @@ import List from './List/List';
 import NestedList from './NestedList/NestedList';
 import Animations from './Animations/Animations';
 import Button from './Button/Button';
+import SegmentedButton from './SegmentedButton/SegmentedButton';
 import Carousel from './Carousel/Carousel';
 import TextField from './TextField/TextField';
 import EmailField from './EmailField/EmailField';
@@ -55,7 +56,10 @@ const root = {
     children: [
         { text: 'ActionSheet', component: ActionSheet },
         { text: 'Animations', component: Animations },
-        { text: 'Button', component: Button },
+        { text: 'Buttons', children: [
+            { text: 'Button', component: Button },
+            { text: 'SegmentedButton', component: SegmentedButton },
+        ]},
         { text: 'Calendar', component: Calendar },
         { text: 'Carousel', component: Carousel },
         { text: 'Charts', children: [

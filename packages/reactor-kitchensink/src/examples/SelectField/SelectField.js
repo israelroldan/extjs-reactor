@@ -5,7 +5,7 @@ Ext.require('Ext.Toast');
 
 export default function SelectFieldExample() {
     return (
-        <FormPanel shadow={true}>
+        <FormPanel shadow>
             <SelectField 
                 label="Select"  
                 onChange={value => Ext.toast(`You selected ${value}`)}

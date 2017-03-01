@@ -17,7 +17,7 @@ export default class ListExample extends Component {
         return (
             <NestedList
                 title="Products"
-                shadow={true}
+                shadow
                 displayField="text"
                 store={this.store}
                 onLeafItemTap={(nestedList, list, index, target, record) => Ext.toast(`You selected ${record.get('text')}`)}

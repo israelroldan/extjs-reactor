@@ -3,10 +3,10 @@ import { FormPanel, DatePickerField } from '@extjs/reactor/modern';
 
 export default function DatePickerFieldExample() {
     return (
-        <FormPanel shadow={true}>
+        <FormPanel shadow>
             <DatePickerField 
                 value={new Date()}
-                destroyPickerOnHide={true}
+                destroyPickerOnHide
                 label="Date"
                 picker={{
                     yearFrom: 1990

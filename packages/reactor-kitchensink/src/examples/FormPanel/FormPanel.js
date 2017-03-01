@@ -36,13 +36,13 @@ export default class FormPanelExample extends Component {
         const { disabled } = this.state;
         
         return (
-            <FormPanel ref="form" shadow={true}>
+            <FormPanel ref="form" shadow>
                 <FieldSet disabled={disabled} ref="personal" title="Personal Info" layout={{ type: 'vbox', align: 'stretch' }} instructions="Please enter the information above.">
-                    <TextField {...defaults} label="Name" required={true}/>
-                    <PasswordField {...defaults} label="Password" required={true} revealable={true}/>
+                    <TextField {...defaults} label="Name" required/>
+                    <PasswordField {...defaults} label="Password" required revealable/>
                     <EmailField {...defaults} label="Email" placeHolder="me@sencha.com"/>
                     <UrlField {...defaults} label="URL" placeHolder="http://sencha.com"/>
-                    <SpinnerField label="Spinner" minValue={0} maxValue={0} stepValue={1} cycle={true} margin="15 0 0 0"/>
+                    <SpinnerField label="Spinner" minValue={0} maxValue={0} stepValue={1} cycle margin="15 0 0 0"/>
                     <CheckBoxField label="Active"/>
                     <DatePickerField {...defaults} label="Start Date"/>
                     <SelectField {...defaults} label="Rank"
@@ -52,6 +52,7 @@ export default class FormPanelExample extends Component {
                             { text: 'Apprentice', value: 'apprentice' }
                         ]}
                     />
+                    <TextField {...defaults} label="With Error" errorMessage="This field is invalid" errorTarget="under"/>
                     <SliderField label="Slider"/>
                     <ToggleField label="Toggle"/>
                     <TextAreaField label="Bio" maxRows={5}/>

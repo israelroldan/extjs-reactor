@@ -30,12 +30,12 @@ export default class AudioExample extends Component {
         return (
             <Container layout={{ type: 'vbox', align: 'stretch', pack: 'center' }}>
                 <Container 
-                    shadow={true} 
+                    shadow 
                     layout={Ext.os.is.Android ? { type: 'vbox', align: 'center', pack: 'center' } : 'fit'}
                 >
                     <Audio
                         ref="audio"
-                        loop={true} 
+                        loop 
                         url="resources/audio/crash.mp3"
                         posterUrl="resources/images/cover.jpg"
                         enableControls={!Ext.os.is.Android}

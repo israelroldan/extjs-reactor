@@ -6,7 +6,7 @@ export default function TabPanelExample() {
         <Container layout={{type: 'vbox', align: 'stretch'}}>
             <TabPanel 
                 flex={1}
-                shadow={true} 
+                shadow 
             >
                 <Container title="Tab 1" {...tabProps}>
                     <div>By default, tabs are aligned to the top of a view.</div>
@@ -21,7 +21,7 @@ export default function TabPanelExample() {
 
             <TabPanel 
                 flex={1}
-                shadow={true}
+                shadow
                 margin="20 0 0 0"
                 tabBar={{ 
                     docked: 'bottom'

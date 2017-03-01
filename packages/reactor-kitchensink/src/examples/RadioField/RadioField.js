@@ -9,7 +9,7 @@ const radioProps = {
 
 export default function RadioFieldExample() {
     return (
-        <FormPanel shadow={true}>
+        <FormPanel shadow>
             <FieldSet title="Favorite Color" layout={{type: 'vbox', align: 'left'}}>
                 <RadioField {...radioProps} label="Red" value="red"/>
                 <RadioField {...radioProps} label="Blue" value="blue"/>

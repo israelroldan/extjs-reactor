@@ -21,7 +21,7 @@ export default class ToolbarExample extends Component {
                     <Button text="Default" onTap={this.buttonHandler.bind(this)} badgeText="2"/>
                     <Spacer/>
                     <SegmentedButton>
-                        <Button text="Option 1" pressed={true} handler={this.buttonHandler.bind(this)}/>
+                        <Button text="Option 1" pressed handler={this.buttonHandler.bind(this)}/>
                         <Button text="Option 2" handler={this.buttonHandler.bind(this)}/>
                     </SegmentedButton>
                     <Spacer/>

@@ -19,7 +19,7 @@ export default class GaugeExample extends Component {
         const { value } = this.state;
 
         return (
-            <Panel shadow={true} layout="vbox">
+            <Panel shadow layout="vbox">
                 <SliderField label="Value" onChange={this.updateGauges.bind(this)} value={value}/>
                 <Gauge flex={1} value={value}/>
                 <Gauge flex={1} value={value} ui="green" trackStart={180} trackLength={360}/>
