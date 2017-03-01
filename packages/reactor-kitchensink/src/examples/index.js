@@ -51,8 +51,8 @@ import OHLC from './OHLC/OHLC';
 import Navigator from './Navigator/Navigator';
 import Draw from './Draw/Draw';
 import Ripple from './Ripple/Ripple';
-
 import InProgress from '../InProgress';
+import SalesPerEmployee from './SalesPerEmployee/SalesPerEmployee';
 
 const root = {
     id: 'root',
@@ -99,6 +99,11 @@ const root = {
             { text: 'Scatter', children: [
                 { text: 'Basic Scatter', component: BasicScatter }
             ] }
+        ] },
+        { text: 'D3', children: [
+            { text: 'Heatmap', children: [
+                { text: 'Sales Per Employee', component: SalesPerEmployee }
+            ]}
         ] },
         { text: 'Draw', component: Draw },
         { text: 'Form Fields', children: [

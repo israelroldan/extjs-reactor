@@ -19,6 +19,7 @@ module.exports = function (env) {
             packages: [
                 'font-ext', 
                 'ux', 
+                'd3',
                 'font-awesome', 
                 'exporter', 
                 'pivot', 
