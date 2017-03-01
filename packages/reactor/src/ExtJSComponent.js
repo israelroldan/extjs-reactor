@@ -120,13 +120,6 @@ export default class ExtJSComponent extends Component {
 
         config.renderTo = renderToDOMNode;
 
-        if (Ext.isModern) {
-            if (this.reactorSettings.viewport) {
-                delete config.renderTo;
-                config.fullscreen = true;
-            }
-        }
-
         this.cmp = this.createExtJSComponent(config);
 
         if (Ext.isClassic) {

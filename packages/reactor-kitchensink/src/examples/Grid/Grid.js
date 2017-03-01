@@ -1,112 +1,35 @@
 import React, { Component } from 'react';
 import { Grid, ActionSheet, Toolbar, Container, Button } from '@extjs/reactor/modern';
-import './data';
 import model from './model';
+import './data';
 
-Ext.require('Ext.grid.plugin.*');
-Ext.require('Ext.tip.ToolTip');
-
-Ext.define('KitchenSink.view.grid.BigDataRowModel', {
-    extend: 'Ext.app.ViewModel',
-    alias: 'viewmodel.grid-bigdata-row',
-    formulas: {
-        ratingGroup: function (get) {
-            const age = get('record.averageRating');
-
-            if (age < 4) {
-                return 0;
-            }
-            if (age < 5) {
-                return 1;
-            }
-            if (age < 6) {
-                return 2;
-            }
-
-            return 3;
-        }
-    }
-});
+Ext.require([
+    'Ext.grid.plugin.*',
+    'Ext.tip.ToolTip'
+]);
 
 export default class GridExample extends Component {
-    constructor() {
-        super();
-        this.store = Ext.create('Ext.data.Store', {
-            model: model,
-            autoLoad: true,
-            groupField: 'department',
-            pageSize: 0,
-            proxy: {
-                type: 'ajax',
-                url: '/KitchenSink/BigData'
-            }            
-        }); 
-    }
 
-    exportToXlsx() {
-        this.doExport({
-            type: 'excel07',
-            title: 'Grid Export Demo',
-            fileName: 'GridExport.xlsx'
-        });
-    }
-
-    exportToXml() {
-        this.doExport({
-            type:       'excel03',
-            title:      'Grid Export Demo',
-            fileName:   'GridExport.xml'
-        });
-    }
-
-    exportToCSV() {
-        this.doExport({
-            type:       'csv',
-            title:      'Grid Export Demo',
-            fileName:   'GridExport.csv'
-        });
-    }
-
-    exportToTSV() {
-         this.doExport({
-            type:       'tsv',
-            title:      'Grid Export Demo',
-            fileName:   'GridExport.csv'
-        });
-    }
-
-    exportToHtml() {
-         this.doExport({
-            type:       'html',
-            title:      'Grid Export Demo',
-            fileName:   'GridExport.html'
-        });
-    }
-
-    doExport(config) {
-        this.refs.exportMenu.hide();
-        this.refs.grid.saveDocumentAs(config);
-    }
-
-    onVerify(btn) {
-        const cell = btn.getParent(), record = cell.getRecord();
-        record.set('verified', true);
-        Ext.Msg.alert('Verify', 'Verify ' + record.get('forename') + ' ' + record.get('surname'));
-    }
-
-    salarySummaryRenderer(value) {
-        return Ext.util.Format.usMoney(value);
-    }
+    store = Ext.create('Ext.data.Store', {
+        model,
+        autoLoad: true,
+        groupField: 'department',
+        pageSize: 0,
+        proxy: {
+            type: 'ajax',
+            url: '/KitchenSink/BigData'
+        }            
+    })
 
     render() {
         return (
             <Container layout="fit">
                 <ActionSheet ref="exportMenu">
-                    <Button handler={this.exportToXlsx.bind(this)} text="Excel xlsx (all Items)"/>
-                    <Button handler={this.exportToXml.bind(this)} text="Excel xml (all Items)"/>
-                    <Button handler={this.exportToCSV.bind(this)} text="CSV (all Items)"/>
-                    <Button handler={this.exportToTSV.bind(this)} text="TSV (all Items)"/>
-                    <Button handler={this.exportToHtml.bind(this)} text="HTML (all Items)"/>
+                    <Button handler={this.exportToXlsx} text="Excel xlsx (all Items)"/>
+                    <Button handler={this.exportToXml} text="Excel xml (all Items)"/>
+                    <Button handler={this.exportToCSV} text="CSV (all Items)"/>
+                    <Button handler={this.exportToTSV} text="TSV (all Items)"/>
+                    <Button handler={this.exportToHtml} text="HTML (all Items)"/>
                     <Button handler={() => this.refs.exportMenu.hide()} text="Cancel"/>
                 </ActionSheet>
                 <Grid
@@ -210,7 +133,7 @@ export default class GridExample extends Component {
                                     xtype: 'button',
                                     ui: 'action',
                                     text: 'Verify',
-                                    handler: this.onVerify.bind(this)
+                                    handler: this.onVerify
                                 }
                             }
                         }, {
@@ -268,7 +191,7 @@ export default class GridExample extends Component {
                             editable: true,
                             width: 150,
                             summaryType: 'sum',
-                            summaryRenderer: this.salarySummaryRenderer.bind(this),
+                            summaryRenderer: this.salarySummaryRenderer,
                             exportStyle: {
                                 format: 'Currency',
                                 alignment: {
@@ -291,5 +214,83 @@ export default class GridExample extends Component {
                 </Grid>
             </Container>
         )
+    } // end render
+
+    exportToXlsx = () => {
+        this.doExport({
+            type: 'excel07',
+            title: 'Grid Export Demo',
+            fileName: 'GridExport.xlsx'
+        });
     }
+
+    exportToXml = () => {
+        this.doExport({
+            type:       'excel03',
+            title:      'Grid Export Demo',
+            fileName:   'GridExport.xml'
+        });
+    }
+
+    exportToCSV = () => {
+        this.doExport({
+            type:       'csv',
+            title:      'Grid Export Demo',
+            fileName:   'GridExport.csv'
+        });
+    }
+
+    exportToTSV = () => {
+         this.doExport({
+            type:       'tsv',
+            title:      'Grid Export Demo',
+            fileName:   'GridExport.csv'
+        });
+    }
+
+    exportToHtml = () => {
+         this.doExport({
+            type:       'html',
+            title:      'Grid Export Demo',
+            fileName:   'GridExport.html'
+        });
+    }
+
+    onVerify = (btn) => {
+        const cell = btn.getParent(), record = cell.getRecord();
+        record.set('verified', true);
+        Ext.Msg.alert('Verify', 'Verify ' + record.get('forename') + ' ' + record.get('surname'));
+    }
+
+    salarySummaryRenderer = (value) => {
+        return Ext.util.Format.usMoney(value);
+    }
+
+    doExport(config) {
+        this.refs.exportMenu.hide();
+        this.refs.grid.saveDocumentAs(config);
+    }
+
 }
+
+Ext.define('KitchenSink.view.grid.BigDataRowModel', {
+    extend: 'Ext.app.ViewModel',
+    alias: 'viewmodel.grid-bigdata-row',
+    formulas: {
+        ratingGroup: function (get) {
+            const age = get('record.averageRating');
+
+            if (age < 4) {
+                return 0;
+            }
+            if (age < 5) {
+                return 1;
+            }
+            if (age < 6) {
+                return 2;
+            }
+
+            return 3;
+        }
+    }
+});

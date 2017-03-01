@@ -50,11 +50,15 @@ import Candlestick from './Candlestick/Candlestick';
 import OHLC from './OHLC/OHLC';
 import Navigator from './Navigator/Navigator';
 import Draw from './Draw/Draw';
+import Ripple from './Ripple/Ripple';
+
+import InProgress from '../InProgress';
 
 const root = {
     id: 'root',
     children: [
         { text: 'ActionSheet', component: ActionSheet },
+        { text: 'Accordion', component: InProgress },
         { text: 'Animations', component: Animations },
         { text: 'Buttons', children: [
             { text: 'Button', component: Button },
@@ -99,6 +103,7 @@ const root = {
         { text: 'Draw', component: Draw },
         { text: 'Form Fields', children: [
             { text: 'CheckBoxField', component: CheckBoxField },
+            { text: 'ComboBoxField', component: InProgress },
             { text: 'DatePickerField', component: DatePickerField },
             { text: 'EmailField', component: EmailField },
             { text: 'FormPanel', component: FormPanel },
@@ -131,6 +136,7 @@ const root = {
         { text: 'Panel', component: Panel },
         { text: 'Picker', component: Picker },
         { text: 'ProgressBar', component: ProgressBar },
+        { text: 'Ripple', component: Ripple },
         { text: 'TabPanel', component: TabPanel },
         { text: 'TitleBar', component: TitleBar },
         { text: 'Toast', component: Toast },

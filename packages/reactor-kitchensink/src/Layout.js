@@ -90,7 +90,7 @@ export default class Layout extends React.Component {
                         title="Code"
                         flex={2}
                         bodyPadding="0"
-                        shadow={true}
+                        shadow
                         ref="examples"
                         style={{backgroundColor: '#282c34'}}
                     >

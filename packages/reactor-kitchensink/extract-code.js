@@ -28,12 +28,14 @@ function extractAll() {
 
 function extractFrom(dir, file) {
     const content = fs.readFileSync(path.join(examples, dir, file), 'utf8');
-    const importRegex = /import .* from '([^']+)'/gi;
+    const importRegex = /import[^']+'([^']+)';/gi;
     let match;
 
     (result[dir] = result[dir] || []).push({ file, content });
 
     while (match = importRegex.exec(content)) {
+        console.log(file, match[1]);
+
         if (match[1].startsWith('./')) {
             extractFrom(dir, match[1].replace(/\.\//, '') + '.js');
         }

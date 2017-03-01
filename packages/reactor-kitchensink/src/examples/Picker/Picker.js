@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Panel, Picker, Button } from '@extjs/reactor/modern';
+import { Container, Picker, Button } from '@extjs/reactor/modern';
 
 export default class PickerExample extends Component {
 
@@ -9,8 +9,8 @@ export default class PickerExample extends Component {
 
     render() {
         return (
-            <Panel shadow>
-                <Button handler={this.showPicker.bind(this)}>Show Picker</Button>
+            <Container>
+                <Button ui="action" handler={this.showPicker.bind(this)}>Show Picker</Button>
                 <Picker 
                     ref="picker"
                     slots={[
@@ -26,7 +26,7 @@ export default class PickerExample extends Component {
                         }
                     ]}
                 />
-            </Panel>
+            </Container>
         )
     }
     

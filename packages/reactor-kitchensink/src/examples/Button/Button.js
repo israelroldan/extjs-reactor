@@ -3,39 +3,67 @@ import { Container, Panel, Button, CheckBoxField, Toolbar } from '@extjs/reactor
 
 Ext.require('Ext.Toast');
 
-export default class ButtonExample extends Component {
+require('./button.css');
 
-    constructor() {
-        super();
-        this.state = { ui: [] };
-    }
+const menu = [
+    { text: 'Item 1' },
+    { text: 'Item 2' },
+    { text: 'Item 3' },
+];
 
-    toggleUI(ui) {
-        if (this.state.ui.indexOf(ui) !== -1) {
-            this.setState({ ui: this.state.ui.filter(u => u !== ui) })
-        } else {
-            this.setState({ ui: [...this.state.ui, ui]})
-        }
-    }
+function handler() {
+    Ext.toast("You clicked the button");
+}
 
-    render() {
-        const { ui } = this.state;
-        const checkboxProps = { labelWidth: 'auto', labelAlign: 'right', margin: '0 20 0 0' };
-
-        return (
-            <Panel shadow height={300} width={380} layout={{type: 'vbox', align: 'center', pack: 'center'}}>
-                <Button ref="button" text="Button" ui={ui.join(' ')} handler={() => Ext.toast('Clicked')}/>
-                <Toolbar docked="bottom" layout="vbox" shadow>
-                    <div style={{marginBottom: '10px', textAlign: 'center'}}>Button UIs</div>
-                    <Container layout="hbox">
-                        <CheckBoxField {...checkboxProps} label="action" onChange={() => this.toggleUI('action')} />
-                        <CheckBoxField {...checkboxProps} label="alt" onChange={() => this.toggleUI('alt')} />
-                        <CheckBoxField {...checkboxProps} label="confirm" onChange={() => this.toggleUI('confirm')} />
-                        <CheckBoxField {...checkboxProps} label="decline"onChange={() => this.toggleUI('decline')} />
-                        <CheckBoxField {...checkboxProps} label="round" onChange={() => this.toggleUI('round')} />
-                    </Container>
-                </Toolbar>
+export default function ButtonExample() {
+    return (
+        <Container layout={{ type: 'hbox', pack: 'left', align: 'left' }}>
+            <Panel shadow layout="auto" bodyPadding="0 20 0 0">
+                <table className="button-table">
+                    <tr>
+                        <td>Flat</td>
+                        <td><Button handler={handler}>Normal</Button></td>
+                        <td><Button handler={handler} ui="decline" handler={handler}>Decline</Button></td>
+                        <td><Button handler={handler} ui="confirm" handler={handler}>Confirm</Button></td>
+                        <td><Button handler={handler} disabled>Disabled</Button></td>
+                    </tr>
+                    <tr>
+                        <td>Action</td>
+                        <td><Button handler={handler} ui="action">Normal</Button></td>
+                        <td><Button handler={handler} ui="action decline">Decline</Button></td>
+                        <td><Button handler={handler} ui="action confirm">Confirm</Button></td>
+                        <td><Button handler={handler} ui="action" disabled>Disabled</Button></td>
+                    </tr>
+                    <tr>
+                        <td>Round</td>
+                        <td><Button handler={handler} ui="round action">Normal</Button></td>
+                        <td><Button handler={handler} ui="round action decline">Decline</Button></td>
+                        <td><Button handler={handler} ui="round action confirm">Confirm</Button></td>
+                        <td><Button handler={handler} ui="round action" disabled>Disabled</Button></td>
+                    </tr>
+                    <tr>
+                        <td>Raised</td>
+                        <td><Button handler={handler} ui="raised">Normal</Button></td>
+                        <td><Button handler={handler} ui="raised decline">Decline</Button></td>
+                        <td><Button handler={handler} ui="raised confirm">Confirm</Button></td>
+                        <td><Button handler={handler} ui="raised" disabled>Disabled</Button></td>
+                    </tr>
+                    <tr>
+                        <td>Menu</td>
+                        <td><Button handler={handler} menu={menu}>Normal</Button></td>
+                        <td><Button handler={handler} menu={menu} ui="decline">Decline</Button></td>
+                        <td><Button handler={handler} menu={menu} ui="confirm">Confirm</Button></td>
+                        <td><Button handler={handler} menu={menu} disabled>Disabled</Button></td>
+                    </tr>
+                    <tr>
+                        <td>Icon</td>
+                        <td><Button handler={handler} iconCls="x-fa fa-home"/></td>
+                        <td><Button handler={handler} iconCls="x-fa fa-home" ui="round action"/></td>
+                        <td><Button handler={handler} iconCls="x-fa fa-home">Home</Button></td>
+                        <td><Button handler={handler} iconCls="x-fa fa-home" menu={menu}>Home</Button></td>
+                    </tr>
+                </table>
             </Panel>
-        )
-    }
+        </Container>
+    )
 }

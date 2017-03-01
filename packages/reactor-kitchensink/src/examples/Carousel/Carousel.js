@@ -3,8 +3,8 @@ import { Carousel, Container } from '@extjs/reactor/modern';
 
 export default function CarouselExample() {
     return (
-        <Container layout={{ type: 'vbox', align: 'stretch' }} shadow>
-            <Carousel flex={1} >
+        <Container layout={{ type: 'vbox', align: 'stretch' }}>
+            <Carousel flex={1} shadow>
                 <Container {...cardProps} >
                     <div>Swipe left to show the next card...</div>
                 </Container>
@@ -15,7 +15,7 @@ export default function CarouselExample() {
                     <div>Card #3</div>
                 </Container>
             </Carousel>
-            <Carousel ui="light" direction="vertical" flex={1}>
+            <Carousel ui="light" direction="vertical" flex={1} shadow margin="20 0 0 0">
                 <Container {...cardProps} style={{...styles.cardDark, ...styles.card}}>
                     <div>Carousels can also be vertical <em>(swipe up)...</em></div>
                 </Container>
