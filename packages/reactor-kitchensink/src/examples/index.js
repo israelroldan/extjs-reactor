@@ -53,6 +53,7 @@ import Draw from './Draw/Draw';
 import Ripple from './Ripple/Ripple';
 import InProgress from '../InProgress';
 import SalesPerEmployee from './SalesPerEmployee/SalesPerEmployee';
+import PurchasesByDay from './PurchasesByDay/PurchasesByDay';
 
 const root = {
     id: 'root',
@@ -102,6 +103,7 @@ const root = {
         ] },
         { text: 'D3', children: [
             { text: 'Heatmap', children: [
+                { text: 'Purchases By Day', component: PurchasesByDay },
                 { text: 'Sales Per Employee', component: SalesPerEmployee }
             ]}
         ] },

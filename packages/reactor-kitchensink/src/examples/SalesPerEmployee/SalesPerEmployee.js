@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import {D3_Heatmap, Panel, Toolbar, Button} from '@extjs/reactor/modern';
 import {refreshData, refreshSize} from './createData';
 
-Ext.require('Ext.d3.*');
-
-export default class HeatmapExample extends Component {
+export default class SalesPerEmployee extends Component {
 
     constructor() {
         super();
