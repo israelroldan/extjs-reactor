@@ -30,8 +30,7 @@ export function refreshData(iCount=employees.length, jCount=days.length) {
             });
         }
     }
-
-    console.log(data);
+    
     return data;
 }
 

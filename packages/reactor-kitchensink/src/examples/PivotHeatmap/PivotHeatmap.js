@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Panel, PivotHeatmap, Toolbar, Spacer, Button } from '@extjs/reactor/modern';
+import { Panel, PivotHeatMap, Toolbar, Spacer, Button } from '@extjs/reactor/modern';
 import createData from './createData';
 
-export default class PivotHeatmapExample extends Component {
+export default class PivotHeatMapExample extends Component {
     constructor() {
         super();
         this.refreshData();
@@ -53,13 +53,9 @@ export default class PivotHeatmapExample extends Component {
             >
                 <Toolbar docked="top">
                     <Spacer/>
-                    <Button
-                        iconCls="x-fa fa-refresh"
-                        text="Refresh Data"
-                        handler={this.refreshData}
-                    />
+                    <Button iconCls="x-fa fa-refresh" handler={this.refreshData}>Refresh Data</Button>
                 </Toolbar>
-                <PivotHeatmap
+                <PivotHeatMap
                     matrix={{
                         store: this.store,
                         leftAxis: {

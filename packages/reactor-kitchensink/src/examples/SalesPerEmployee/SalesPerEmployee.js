@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {D3_Heatmap, Panel, Toolbar, Button} from '@extjs/reactor/modern';
+import {D3_HeatMap, Panel, Toolbar, Button} from '@extjs/reactor/modern';
 import {refreshData, refreshSize} from './createData';
 
 export default class SalesPerEmployee extends Component {
@@ -40,10 +40,10 @@ export default class SalesPerEmployee extends Component {
         return (
             <Panel shadow layout="vbox">
                 <Toolbar hidden docked="top" platformConfig={{'!phone': {hidden: false}}}>
-                    <Button iconCls="x-fa fa-refresh" text="Refresh Data" handler={this.refreshData}/>
-                    <Button iconCls="x-fa fa-table" text="Refresh Size" handler={this.refreshSize}/>
+                    <Button iconCls="x-fa fa-refresh" handler={this.refreshData}>Refresh Data</Button>
+                    <Button iconCls="x-fa fa-table" handler={this.refreshSize}>Refresh Size</Button>
                 </Toolbar>
-                <D3_Heatmap 
+                <D3_HeatMap 
                     store={this.store}
                     padding="30 30 40 100"
                     flex={1}

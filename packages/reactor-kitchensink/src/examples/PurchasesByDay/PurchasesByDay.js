@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Panel, D3_Heatmap} from '@extjs/reactor/modern';
+import {Panel, D3_HeatMap} from '@extjs/reactor/modern';
 import storeData from './storeData';
 
 export default class PurchasesByDay extends Component {
@@ -35,7 +35,7 @@ export default class PurchasesByDay extends Component {
 
         return (
             <Panel shadow layout="fit">
-                <D3_Heatmap
+                <D3_HeatMap
                     store={this.store}
                     padding="20 20 40 60"
                     platformConfig={{
