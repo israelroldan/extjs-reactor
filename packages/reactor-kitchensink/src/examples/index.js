@@ -51,8 +51,11 @@ import OHLC from './OHLC/OHLC';
 import Navigator from './Navigator/Navigator';
 import Draw from './Draw/Draw';
 import Ripple from './Ripple/Ripple';
-
 import InProgress from '../InProgress';
+import SalesPerEmployee from './SalesPerEmployee/SalesPerEmployee';
+import PurchasesByDay from './PurchasesByDay/PurchasesByDay';
+import PivotHeatmap from './PivotHeatmap/PivotHeatmap';
+import ConfigurablePivotHeatmap from './ConfigurablePivotHeatmap/ConfigurablePivotHeatmap';
 
 const root = {
     id: 'root',
@@ -99,6 +102,14 @@ const root = {
             { text: 'Scatter', children: [
                 { text: 'Basic Scatter', component: BasicScatter }
             ] }
+        ] },
+        { text: 'D3', children: [
+            { text: 'Heatmap', children: [
+                { text: 'Purchases By Day', component: PurchasesByDay },
+                { text: 'Sales Per Employee', component: SalesPerEmployee },
+                { text: 'Pivot Heatmap', component: PivotHeatmap },
+                { text: 'Configurable Pivot Heatmap', component: ConfigurablePivotHeatmap }
+            ]}
         ] },
         { text: 'Draw', component: Draw },
         { text: 'Form Fields', children: [

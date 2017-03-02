@@ -23,6 +23,7 @@
   "homepage": "https://github.com/sencha/extjs-reactor#readme",
   "dependencies": {
     "@extjs/reactor": "^0.2.9",
+    "d3": "4.5.0",
     "highlightjs": "^9.8.0",
     "react": "^15.4.0",
     "react-dom": "^15.4.0",
