@@ -18,7 +18,7 @@ function handler() {
 export default function ButtonExample() {
     return (
         <Container layout={{ type: 'hbox', pack: 'left', align: 'left' }}>
-            <Panel shadow layout="auto" bodyPadding="0 20 0 0">
+            <Panel shadow bodyPadding="0 20 0 0">
                 <table className="button-table">
                     <tr>
                         <td>Flat</td>

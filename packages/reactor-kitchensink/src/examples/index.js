@@ -51,6 +51,7 @@ import OHLC from './OHLC/OHLC';
 import Navigator from './Navigator/Navigator';
 import Draw from './Draw/Draw';
 import Ripple from './Ripple/Ripple';
+import ComboBoxField from './ComboBoxField/ComboBoxField';
 import InProgress from '../InProgress';
 import SalesPerEmployee from './SalesPerEmployee/SalesPerEmployee';
 import PurchasesByDay from './PurchasesByDay/PurchasesByDay';
@@ -114,7 +115,7 @@ const root = {
         { text: 'Draw', component: Draw },
         { text: 'Form Fields', children: [
             { text: 'CheckBoxField', component: CheckBoxField },
-            { text: 'ComboBoxField', component: InProgress },
+            { text: 'ComboBoxField', component: ComboBoxField },
             { text: 'DatePickerField', component: DatePickerField },
             { text: 'EmailField', component: EmailField },
             { text: 'FormPanel', component: FormPanel },

@@ -5,13 +5,10 @@ export default function CheckBoxFieldExample() {
     return (
         <FormPanel shadow layout={{type: 'vbox', align: 'left'}}>
             <CheckBoxField 
-                label="Label Right" 
-                labelAlign="right"
-                labelWidth="auto"
+                boxLabel="Box Label"
             />
             <CheckBoxField 
-                label="Label Left" 
-                labelAlign="left"
+                label="Label" 
                 labelWidth="auto"
             />
         </FormPanel>
