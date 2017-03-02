@@ -55,6 +55,7 @@ import InProgress from '../InProgress';
 import SalesPerEmployee from './SalesPerEmployee/SalesPerEmployee';
 import PurchasesByDay from './PurchasesByDay/PurchasesByDay';
 import PivotHeatmap from './PivotHeatmap/PivotHeatmap';
+import ConfigurablePivotHeatmap from './ConfigurablePivotHeatmap/ConfigurablePivotHeatmap';
 
 const root = {
     id: 'root',
@@ -106,7 +107,8 @@ const root = {
             { text: 'Heatmap', children: [
                 { text: 'Purchases By Day', component: PurchasesByDay },
                 { text: 'Sales Per Employee', component: SalesPerEmployee },
-                { text: 'Pivot Heatmap', component: PivotHeatmap }
+                { text: 'Pivot Heatmap', component: PivotHeatmap },
+                { text: 'Configurable Pivot Heatmap', component: ConfigurablePivotHeatmap }
             ]}
         ] },
         { text: 'Draw', component: Draw },
