@@ -43,7 +43,7 @@ export default class FormPanelExample extends Component {
                     <EmailField {...defaults} label="Email" placeHolder="me@sencha.com"/>
                     <UrlField {...defaults} label="URL" placeHolder="http://sencha.com"/>
                     <SpinnerField label="Spinner" minValue={0} maxValue={0} stepValue={1} cycle margin="15 0 0 0"/>
-                    <CheckBoxField label="Active"/>
+                    <CheckBoxField boxLabel="Active"/>
                     <DatePickerField {...defaults} label="Start Date"/>
                     <SelectField {...defaults} label="Rank"
                         options={[

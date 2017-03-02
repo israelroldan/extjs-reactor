@@ -150,7 +150,11 @@ export default class ExtJSComponent extends Component {
                 const item = children[i];
 
                 if (item instanceof Ext.Base) {
-                    (item.dock ? dockedItems : items).push(item);
+                    if (item.initialConfig.rel) {
+                        config[item.initialConfig.rel] = item;
+                    } else {
+                        (item.dock ? dockedItems : items).push(item);
+                    }
                 } else if (item.node) {
                     items.push(wrapDOMElement(item.node));
                 } else {

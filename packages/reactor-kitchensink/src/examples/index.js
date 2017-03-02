@@ -28,7 +28,7 @@ import PivotGrid from './PivotGrid/PivotGrid';
 import Video from './Video/Video';
 import Audio from './Audio/Audio';
 import ProgressBar from './ProgressBar/ProgressBar';
-import Menu from './Menu/Menu';
+import EdgeMenu from './EdgeMenu/EdgeMenu';
 import ActionSheet from './ActionSheet/ActionSheet';
 import ToolTip from './ToolTip/ToolTip';
 import Picker from './Picker/Picker';
@@ -52,11 +52,14 @@ import Navigator from './Navigator/Navigator';
 import Draw from './Draw/Draw';
 import Ripple from './Ripple/Ripple';
 import ComboBoxField from './ComboBoxField/ComboBoxField';
-import InProgress from '../InProgress';
 import SalesPerEmployee from './SalesPerEmployee/SalesPerEmployee';
 import PurchasesByDay from './PurchasesByDay/PurchasesByDay';
 import PivotHeatmap from './PivotHeatmap/PivotHeatmap';
 import ConfigurablePivotHeatmap from './ConfigurablePivotHeatmap/ConfigurablePivotHeatmap';
+import SearchField from './SearchField/SearchField';
+import FileField from './FileField/FileField';
+
+import InProgress from '../InProgress';
 
 const root = {
     id: 'root',
@@ -112,16 +115,20 @@ const root = {
                 { text: 'Configurable Pivot Heatmap', component: ConfigurablePivotHeatmap }
             ]}
         ] },
+        { text: 'DatePanel', component: InProgress },
         { text: 'Draw', component: Draw },
+        { text: 'EdgeMenu', component: EdgeMenu },
         { text: 'Form Fields', children: [
             { text: 'CheckBoxField', component: CheckBoxField },
             { text: 'ComboBoxField', component: ComboBoxField },
             { text: 'DatePickerField', component: DatePickerField },
             { text: 'EmailField', component: EmailField },
+            { text: 'FileField', component: FileField },
             { text: 'FormPanel', component: FormPanel },
             { text: 'Gauge', component: Gauge },
             { text: 'PasswordField', component: PasswordField },
             { text: 'RadioField', component: RadioField },
+            { text: 'SearchField', component: SearchField },
             { text: 'SelectField', component: SelectField },
             { text: 'SliderField', component: SliderField },
             { text: 'SpinnerField', component: SpinnerField },
@@ -136,14 +143,12 @@ const root = {
         ] },
         { text: 'Lists', children: [
             { text: 'List', component: List },
-            { text: 'NestedList', component: NestedList },
-            { text: 'TreeList', component: TreeList }
+            { text: 'NestedList', component: NestedList }
         ]},
         { text: 'Media', children: [
             { text: 'Video', component: Video },
             { text: 'Audio', component: Audio }
         ] },
-        { text: 'Menu', component: Menu },
         { text: 'Msg', component: Msg },
         { text: 'Panel', component: Panel },
         { text: 'Picker', component: Picker },

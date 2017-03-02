@@ -68,6 +68,7 @@ $component-tree-text-color: #212121;
     $item-expander-color: $component-tree-text-color,
     $item-text-color: $component-tree-text-color,
     $row-over-background-color: darken($component-tree-background, 10%),
+    $item-expanded-background-color: darken($component-tree-background, 10%),
 
     $item-icon-over-color: $component-tree-text-color,
     $item-expander-over-color: $component-tree-text-color,
