@@ -367,12 +367,6 @@ export default {
 			"content": "import React, { Component } from 'react';\nimport { Container } from '@extjs/reactor/modern';\n\nexport default class RippleExample extends React.Component {\n\n    render() {\n        return (\n            <Container>\n                <div onClick={e => Ext.fly(e.target).ripple()}>Click Me</div>\n            </Container>\n        )\n    }\n\n}"
 		}
 	],
-	"SegmentedButton": [
-		{
-			"file": "SegmentedButton.js",
-			"content": "import React from 'react';\n\nimport { SegmentedButton, Button, Container, Toolbar } from '@extjs/reactor/modern';\n\nexport default function SegementedButtonExample() {\n    return (\n        <Container>\n            <Toolbar>\n                <div style={{marginRight: '10px'}}>Default UI:</div>\n                <SegmentedButton>\n                    <Button pressed>Low</Button>\n                    <Button>Medium</Button>\n                    <Button>High</Button>\n                </SegmentedButton>\n            </Toolbar>\n            <Toolbar margin=\"0 0 20 0\">\n                <div style={{marginRight: '10px'}}>Toolbar UI:</div>\n                <SegmentedButton>\n                    <Button ui=\"default-toolbar\" pressed>Low</Button>\n                    <Button ui=\"default-toolbar\">Medium</Button>\n                    <Button ui=\"default-toolbar\">High</Button>\n                </SegmentedButton>\n            </Toolbar>\n        </Container>\n    )\n}"
-		}
-	],
 	"SalesPerEmployee": [
 		{
 			"file": "SalesPerEmployee.js",
@@ -381,6 +375,12 @@ export default {
 		{
 			"file": "createData.js",
 			"content": "const employees = [\n        'Alex',\n        'Kevin',\n        'Nige',\n        'Phil',\n        'Don',\n        'Ross',\n        'Vitaly'\n    ],\n    days = [\n        'Monday',\n        'Tuesday',\n        'Wednesday',\n        'Thursday',\n        'Friday'\n    ];\n\nexport function refreshData(iCount=employees.length, jCount=days.length) {\n    const data = [],\n        min = 20,\n        delta = 20 + Math.floor(Math.random() * 260);\n\n    for(let i=0; i<iCount; i++) {\n        for(let j=0; j<jCount; j++) {\n            data.push({\n                employee: employees[i],\n                dayNumber: j,\n                day: days[j],\n                sales: min + Math.floor(Math.random() * delta)\n            });\n        }\n    }\n\n    console.log(data);\n    return data;\n}\n\nexport function refreshSize() {\n    const minSize = 1;\n\n    return refreshData(\n        minSize + Math.round(Math.random() * (employees.length - minSize)),\n        minSize + Math.round(Math.random() * (days.length - minSize))\n    );\n}"
+		}
+	],
+	"SegmentedButton": [
+		{
+			"file": "SegmentedButton.js",
+			"content": "import React from 'react';\n\nimport { SegmentedButton, Button, Container, Toolbar } from '@extjs/reactor/modern';\n\nexport default function SegementedButtonExample() {\n    return (\n        <Container>\n            <Toolbar>\n                <div style={{marginRight: '10px'}}>Default UI:</div>\n                <SegmentedButton>\n                    <Button pressed>Low</Button>\n                    <Button>Medium</Button>\n                    <Button>High</Button>\n                </SegmentedButton>\n            </Toolbar>\n            <Toolbar margin=\"0 0 20 0\">\n                <div style={{marginRight: '10px'}}>Toolbar UI:</div>\n                <SegmentedButton>\n                    <Button ui=\"default-toolbar\" pressed>Low</Button>\n                    <Button ui=\"default-toolbar\">Medium</Button>\n                    <Button ui=\"default-toolbar\">High</Button>\n                </SegmentedButton>\n            </Toolbar>\n        </Container>\n    )\n}"
 		}
 	],
 	"SelectField": [
