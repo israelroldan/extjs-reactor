@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Pivotd3container } from '@extjs/reactor/modern';
+import { PivotD3Container, Button, Toolbar, Spacer } from '@extjs/reactor/modern';
 import salesData from './salesData';
 
 Ext.require('Ext.pivot.d3.HeatMap');
@@ -93,16 +93,12 @@ export default class ConfigurablePivotHeatmap extends Component {
         const { theme } = this.state;
 
         return (
-            <Pivotd3container
+            <PivotD3Container
                 ref="mainCtn"
                 shadow
                 layout="fit"
                 onBeforeMoveConfigField={this.onBeforeAddConfigField}
                 onShowConfigFieldSettings={this.onShowFieldSettings}
-                tbar={['->', {
-                    text: 'Show configurator',
-                    handler: this.showConfigurator
-                }]}
                 matrix={{
                     store: this.store,
                     aggregate: [{
@@ -240,7 +236,15 @@ export default class ConfigurablePivotHeatmap extends Component {
                         }
                     }]
                 }}
-            />
+            >
+                <Toolbar docked="top">
+                    <Spacer/>
+                    <Button
+                        text="Show configurator"
+                        handler={this.showConfigurator}
+                    />
+                </Toolbar>
+            </PivotD3Container>
         )
     }
 }

@@ -32,7 +32,6 @@ export default function refreshRandomData(size=100) {
             sales: 20 + Math.floor(Math.random() * delta)
         });
     }
-
-    console.log(data);
+    
     return data;
 };
