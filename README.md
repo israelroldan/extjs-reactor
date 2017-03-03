@@ -28,22 +28,27 @@ The boilerplate project uses Ext JS 6 with the modern toolkit. There is also a [
 
 ### Configuration
 
-First, install the reactor.  We recommend doing this in your index.js file (your webpack entry point).  This only needs to be done once in your app.
+First, install reactor.  We recommend doing this in your index.js file (your webpack entry point).  This only needs to be done once in your app.
 
 ```jsx
 import { install } from '@extjs/reactor';
 install();
 ```
 
-If you choose to use an Ext JS component at the root of your app to handle the main layout, set the `viewport` option to `true` when installing the Ext JS renderer.  This will set the height of the html, body, and react root element to 100% so that your Ext JS root component will fill the full screen. For example:
+If you want to use Ext JS to control your application's layout, call `install` with `viewport: true` and provide a launch callback function:
 
 ```javascript
-install({ viewport: true });
+install({ 
+    viewport: true,
+    launch: target => ReactDOM.render(<App/>, target)
+});
 ```
+
+The target element passed to `launch` is the element into which your react app should be rendered.
 
 ### Hello World
 
-The `@extjs/reactor` package exports a function called `reactify` that creates a React component for any Ext JS component class. Here's a minimal React app that renders an Ext.Panel:
+Here's a minimal React app that renders an Ext.Panel using the modern toolkit:
 
 ```jsx
 import React from 'react';
@@ -258,6 +263,20 @@ You could import and use that component using:
 
 ```jsx
 import { MyGrid } from '@extjs/reactor/modern';
+```
+
+If your component doesn't have an xtype, you can using the `reactify` function to convert any Ext JS component into a react component:
+
+```jsx
+import { reactify } from '@extjs/reactor';
+
+const MyGrid = reactify(MyPackage.view.MyGrid);
+
+function MyComponent() {
+    return (
+        <MyGrid/>
+    )
+}
 ```
 
 ### Building
