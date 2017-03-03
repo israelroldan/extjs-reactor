@@ -57,6 +57,7 @@ import PurchasesByDay from './PurchasesByDay/PurchasesByDay';
 import PivotHeatmap from './PivotHeatmap/PivotHeatmap';
 import ConfigurablePivotHeatmap from './ConfigurablePivotHeatmap/ConfigurablePivotHeatmap';
 import D3TreeHierarchy from './D3TreeHierarchy/D3TreeHierarchy';
+import TreeMap from './TreeMap/TreeMap';
 import SearchField from './SearchField/SearchField';
 import FileField from './FileField/FileField';
 import CardLayout from './card/card';
@@ -120,7 +121,8 @@ const root = {
                 { text: 'Configurable Pivot Heatmap', component: ConfigurablePivotHeatmap }
             ]},
             { text: 'Hierarchy', children: [
-                { text: 'D3 Tree Hierarchy', component: D3TreeHierarchy }
+                { text: 'D3 Tree Hierarchy', component: D3TreeHierarchy },
+                { text: 'TreeMap', component: TreeMap }
             ]}
         ] },
         { text: 'DatePanel', component: InProgress },
