@@ -27,7 +27,7 @@ export default class PanelExample extends Component {
                 >
                     <p>Panel Body</p>
                 </Panel>
-                <Button ui="action" handler={() => this.refs.modal.show()} margin="20 0 0 0">Show Modal</Button>
+                <Button ui="action" handler={() => this.refs.modal.show()} margin="20 0 0 0" text="Show Modal"/>
                 <Panel 
                     ref="modal"
                     title="Floated Panel"

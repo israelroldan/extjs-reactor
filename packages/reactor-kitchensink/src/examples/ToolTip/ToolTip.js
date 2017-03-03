@@ -19,51 +19,71 @@ export default class ToolTipExample extends Component {
         return (
             <Panel layout="vbox" shadow>
                 <Container {...containerDefaults}>
-                    <Button {...buttonDefaults} tooltip="A simple tooltip">Basic Tip</Button>
+                    <Button {...buttonDefaults} tooltip="A simple tooltip" text="Basic Tip"/>
                     
-                    <Button {...buttonDefaults} tooltip={{ 
-                        autoHide: false, 
-                        title: 'Tip Title',
-                        html: 'A simple tooltip',
-                        closable: true 
-                    }}>autoHide: false</Button>
+                    <Button 
+                        {...buttonDefaults} 
+                        text="autoHide: false"
+                        tooltip={{ 
+                            autoHide: false, 
+                            title: 'Tip Title',
+                            html: 'A simple tooltip',
+                            closable: true 
+                        }}
+                    />
                     
-                    <Button {...buttonDefaults} tooltip={{
-                        title: 'Mouse Track',
-                        html: 'This tip will follow the mouse while it is over the element',
-                        trackMouse: true
-                    }}>Mouse Track</Button>
+                    <Button 
+                        {...buttonDefaults} 
+                        text="Mouse Track"
+                        tooltip={{
+                            title: 'Mouse Track',
+                            html: 'This tip will follow the mouse while it is over the element',
+                            trackMouse: true
+                        }}
+                    />
                 </Container>
 
                 <Container {...containerDefaults}>
-                    <Button {...buttonDefaults} tooltip={{
-                        styleHtmlContent: true,
-                        html: '<ul style="margin-bottom: 15px;">' +
-                                '<li>5 bedrooms</li>' + 
-                                '<li>Close to transport</li>' +
-                                '<li>Large backyard</li>' +
-                            '</ul>' +
-                            '<img style="width: 400px; height: 300px;" src="resources/images/house.jpg" />',
-                        align: 'tl-tr',
-                        anchorToTarget: true,
-                        anchor: true,
-                        autoHide: false,
-                        closable: true
-                    }}>Anchor Right, Rich Content</Button>
+                    <Button 
+                        {...buttonDefaults} 
+                        text="Anchor Right, Rich Content"
+                        tooltip={{
+                            styleHtmlContent: true,
+                            html: '<ul style="margin-bottom: 15px;">' +
+                                    '<li>5 bedrooms</li>' + 
+                                    '<li>Close to transport</li>' +
+                                    '<li>Large backyard</li>' +
+                                '</ul>' +
+                                '<img style="width: 400px; height: 300px;" src="resources/images/house.jpg" />',
+                            align: 'tl-tr',
+                            anchorToTarget: true,
+                            anchor: true,
+                            autoHide: false,
+                            closable: true
+                        }}
+                    />
 
-                    <Button {...buttonDefaults} tooltip={{
-                        html: 'The anchor is centered',
-                        anchorToTarget: true,
-                        align: 'tc-bc',
-                        anchor: true
-                    }}>Anchor Below</Button>
+                    <Button 
+                        {...buttonDefaults} 
+                        text="Anchor Below"
+                        tooltip={{
+                            html: 'The anchor is centered',
+                            anchorToTarget: true,
+                            align: 'tc-bc',
+                            anchor: true
+                        }}
+                    />
 
-                    <Button {...buttonDefaults} tooltip={{
-                        html: 'Following the mouse with an anchor',
-                        trackMouse: true,
-                        align: 'l-r',
-                        anchor: true
-                    }}>Anchor with Tracking</Button>
+                    <Button 
+                        {...buttonDefaults} 
+                        text="Anchor with Tracking"
+                        tooltip={{
+                            html: 'Following the mouse with an anchor',
+                            trackMouse: true,
+                            align: 'l-r',
+                            anchor: true
+                        }}
+                    />
                 </Container>
 
                 <Container {...containerDefaults}>

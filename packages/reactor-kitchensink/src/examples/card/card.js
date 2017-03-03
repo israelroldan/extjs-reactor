@@ -26,9 +26,9 @@ export default class CardLayoutExample extends Component {
                 <Toolbar shadow margin="20 0 0 0" layout="vbox">
                     <div style={{marginBottom: '10px'}}>Switch Cards</div>
                     <SegmentedButton>
-                        <Button ui="toolbar-default" handler={() => this.changeCard(0)} pressed>Card 1</Button>
-                        <Button ui="toolbar-default" handler={() => this.changeCard(1)}>Card 2</Button>
-                        <Button ui="toolbar-default" handler={() => this.changeCard(2)}>Card 3</Button>
+                        <Button ui="toolbar-default" handler={() => this.changeCard(0)} pressed text="Card 1"/>
+                        <Button ui="toolbar-default" handler={() => this.changeCard(1)} text="Card 2"/>
+                        <Button ui="toolbar-default" handler={() => this.changeCard(2)} text="Card 3"/>
                     </SegmentedButton>
                 </Toolbar>
             </Container>

@@ -9,7 +9,8 @@ export default function ToastExample() {
             <Button 
                 ui="action" 
                 handler={() => Ext.toast('Hello World!')}
-            >Show Toast</Button>
+                text="Show Toast"
+            />
         </Container>
     )
 }

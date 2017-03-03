@@ -239,7 +239,7 @@ export default class ConfigurablePivotHeatmap extends Component {
             >
                 <Toolbar docked="top">
                     <Spacer/>
-                    <Button handler={this.showConfigurator}>Show configurator</Button>
+                    <Button handler={this.showConfigurator} text="Show configurator"/>
                 </Toolbar>
             </PivotD3Container>
         )

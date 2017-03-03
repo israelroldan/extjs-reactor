@@ -53,7 +53,7 @@ export default class PivotHeatMapExample extends Component {
             >
                 <Toolbar docked="top">
                     <Spacer/>
-                    <Button iconCls="x-fa fa-refresh" handler={this.refreshData}>Refresh Data</Button>
+                    <Button iconCls="x-fa fa-refresh" handler={this.refreshData} text="Refresh Data"/>
                 </Toolbar>
                 <PivotHeatMap
                     matrix={{

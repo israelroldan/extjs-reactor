@@ -24,12 +24,12 @@ export default class ActionSheetExample extends Component {
         return (
             <Container>
                 <Panel shadow>
-                    <Button handler={this.showActionSheet.bind(this)}>Show Action Sheet</Button>
+                    <Button handler={this.showActionSheet.bind(this)} text="Show Action Sheet"/>
                 </Panel>
                 <ActionSheet hidden={!showActionSheet}>
-                    <Button ui="decline" handler={this.hideActionSheet.bind(this)}>Delete Draft</Button>
-                    <Button handler={this.hideActionSheet.bind(this)}>Save Draft</Button>
-                    <Button handler={this.hideActionSheet.bind(this)}>Cancel</Button>
+                    <Button ui="decline" handler={this.hideActionSheet.bind(this)} text="Delete Draft"/>
+                    <Button handler={this.hideActionSheet.bind(this)} text="Save Draft"/>
+                    <Button handler={this.hideActionSheet.bind(this)} text="Cancel"/>
                 </ActionSheet>
             </Container>
         )

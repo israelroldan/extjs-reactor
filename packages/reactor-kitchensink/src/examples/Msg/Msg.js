@@ -16,9 +16,9 @@ export default class MsgExample extends Component {
     render() {
         return (
             <Panel shadow layout={{type: 'vbox', align: 'stretch'}}>
-                <Button handler={() => Ext.Msg.alert('Title', 'The quick brown fox jumped over the lazy dog.')}>Alert</Button>
-                <Button handler={() => Ext.Msg.prompt('Welcome!', "What's your first name?", this.onPromptResult.bind(this))}>Prompt</Button>
-                <Button handler={() => Ext.Msg.confirm("Confirmation", "Are you sure you want to do that?", this.onConfirmResult.bind(this))}>Confirm</Button>
+                <Button handler={() => Ext.Msg.alert('Title', 'The quick brown fox jumped over the lazy dog.')} text="Alert"/>
+                <Button handler={() => Ext.Msg.prompt('Welcome!', "What's your first name?", this.onPromptResult.bind(this))} text="Prompt"/>
+                <Button handler={() => Ext.Msg.confirm("Confirmation", "Are you sure you want to do that?", this.onConfirmResult.bind(this))} text="Confirm"/>
             </Panel>
         )
     }

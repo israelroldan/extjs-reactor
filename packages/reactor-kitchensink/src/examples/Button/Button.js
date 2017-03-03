@@ -12,31 +12,31 @@ export default function ButtonExample() {
                     <tbody>
                         <tr>
                             <td>Flat</td>
-                            <td><Button handler={handler}>Normal</Button></td>
-                            <td><Button handler={handler} ui="decline" handler={handler}>Decline</Button></td>
-                            <td><Button handler={handler} ui="confirm" handler={handler}>Confirm</Button></td>
-                            <td><Button handler={handler} disabled>Disabled</Button></td>
+                            <td><Button handler={handler} text="Normal"/></td>
+                            <td><Button handler={handler} ui="decline" handler={handler} text="Decline"/></td>
+                            <td><Button handler={handler} ui="confirm" handler={handler} text="Confirm"/></td>
+                            <td><Button handler={handler} disabled text="Disabled"/></td>
                         </tr>
                         <tr>
                             <td>Action</td>
-                            <td><Button handler={handler} ui="action">Normal</Button></td>
-                            <td><Button handler={handler} ui="action decline">Decline</Button></td>
-                            <td><Button handler={handler} ui="action confirm">Confirm</Button></td>
-                            <td><Button handler={handler} ui="action" disabled>Disabled</Button></td>
+                            <td><Button handler={handler} ui="action" text="Normal"/></td>
+                            <td><Button handler={handler} ui="action decline" text="Decline"/></td>
+                            <td><Button handler={handler} ui="action confirm" text="Confirm"/></td>
+                            <td><Button handler={handler} ui="action" disabled text="Disabled"/></td>
                         </tr>
                         <tr>
                             <td>Round</td>
-                            <td><Button handler={handler} ui="round action">Normal</Button></td>
-                            <td><Button handler={handler} ui="round action decline">Decline</Button></td>
-                            <td><Button handler={handler} ui="round action confirm">Confirm</Button></td>
-                            <td><Button handler={handler} ui="round action" disabled>Disabled</Button></td>
+                            <td><Button handler={handler} ui="round action" text="Normal"/></td>
+                            <td><Button handler={handler} ui="round action decline" text="Decline"/></td>
+                            <td><Button handler={handler} ui="round action confirm" text="Confirm"/></td>
+                            <td><Button handler={handler} ui="round action" disabled text="Disabled"/></td>
                         </tr>
                         <tr>
                             <td>Raised</td>
-                            <td><Button handler={handler} ui="raised">Normal</Button></td>
-                            <td><Button handler={handler} ui="raised decline">Decline</Button></td>
-                            <td><Button handler={handler} ui="raised confirm">Confirm</Button></td>
-                            <td><Button handler={handler} ui="raised" disabled>Disabled</Button></td>
+                            <td><Button handler={handler} ui="raised" text="Normal"/></td>
+                            <td><Button handler={handler} ui="raised decline" text="Decline"/></td>
+                            <td><Button handler={handler} ui="raised confirm" text="Confirm"/></td>
+                            <td><Button handler={handler} ui="raised" disabled text="Disabled"/></td>
                         </tr>
                         <tr>
                             <td>Menu</td>
@@ -49,7 +49,7 @@ export default function ButtonExample() {
                             <td>Icon</td>
                             <td><Button handler={handler} iconCls="x-fa fa-home"/></td>
                             <td><Button handler={handler} iconCls="x-fa fa-home" ui="round action"/></td>
-                            <td><Button handler={handler} iconCls="x-fa fa-home">Home</Button></td>
+                            <td><Button handler={handler} iconCls="x-fa fa-home" text="Home"/></td>
                             <td><Button handler={handler} iconCls="x-fa fa-home" text="Home">{menu}</Button></td>
                         </tr>
                     </tbody>

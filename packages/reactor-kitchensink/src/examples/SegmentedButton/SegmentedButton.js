@@ -8,17 +8,17 @@ export default function SegementedButtonExample() {
             <Toolbar>
                 <div style={{marginRight: '10px'}}>Default UI:</div>
                 <SegmentedButton>
-                    <Button pressed>Low</Button>
-                    <Button>Medium</Button>
-                    <Button>High</Button>
+                    <Button pressed text="Low"/>
+                    <Button text="Medium"/>
+                    <Button text="High"/>
                 </SegmentedButton>
             </Toolbar>
             <Toolbar margin="0 0 20 0">
                 <div style={{marginRight: '10px'}}>Toolbar UI:</div>
                 <SegmentedButton>
-                    <Button ui="default-toolbar" pressed>Low</Button>
-                    <Button ui="default-toolbar">Medium</Button>
-                    <Button ui="default-toolbar">High</Button>
+                    <Button ui="default-toolbar" pressed text="Low"/>
+                    <Button ui="default-toolbar" text="Medium"/>
+                    <Button ui="default-toolbar" text="High"/>
                 </SegmentedButton>
             </Toolbar>
         </Container>

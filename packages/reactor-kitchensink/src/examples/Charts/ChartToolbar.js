@@ -46,9 +46,9 @@ export default function ChartToolbar({
             )}
             { onToggleZoomOnPan && (
                 <SegmentedButton {...toolbarItemDefaults}>
-                    <Button ui="default-toolbar" handler={() => onToggleZoomOnPan(false)} pressed>Pan</Button>
-                    <Button ui="default-toolbar" handler={() => onToggleZoomOnPan(true)}>Zoom</Button>
-                    { onToggleCrosshair && <Button ui="default-toolbar" handler={() => onToggleCrosshair(true)}>Crosshair</Button> }
+                    <Button ui="default-toolbar" handler={() => onToggleZoomOnPan(false)} pressed text="Pan"/>
+                    <Button ui="default-toolbar" handler={() => onToggleZoomOnPan(true)} text="Zoom"/>
+                    { onToggleCrosshair && <Button ui="default-toolbar" handler={() => onToggleCrosshair(true)} text="Crosshair"/> }
                 </SegmentedButton>
             )}
         </Toolbar>

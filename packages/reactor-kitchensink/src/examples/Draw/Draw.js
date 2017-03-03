@@ -100,7 +100,7 @@ export default class DrawExample extends Component {
                 <Toolbar docked="top">
                     <div>Use your {Ext.supports.Touch ? 'finger' : 'mouse'} to paint on the surface below.</div>
                     <Spacer/>
-                    <Button handler={this.clear}>Clear</Button>
+                    <Button handler={this.clear} text="Clear"/>
                 </Toolbar>
                 <Draw ref="draw"/>  
             </Panel>

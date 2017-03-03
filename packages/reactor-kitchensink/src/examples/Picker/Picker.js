@@ -10,7 +10,7 @@ export default class PickerExample extends Component {
     render() {
         return (
             <Container>
-                <Button ui="action" handler={this.showPicker.bind(this)}>Show Picker</Button>
+                <Button ui="action" handler={this.showPicker.bind(this)} text="Show Picker"/>
                 <Picker 
                     ref="picker"
                     slots={[
