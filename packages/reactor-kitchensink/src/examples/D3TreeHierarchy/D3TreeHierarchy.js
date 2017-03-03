@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Panel, D3_Tree } from '@extjs/reactor/modern';
-import createData from './createData';
+import treeDataReader from './treeDataReader';
 
 Ext.require([
     'Ext.d3.interaction.PanZoom',
@@ -10,8 +10,17 @@ Ext.require([
 export default class D3TreeHierarchy extends Component {
 
     store = Ext.create('Ext.data.TreeStore', {
+        autoLoad: true,
         fields: ['state', 'text', 'salary'],
-        data: createData()
+        root: { text: 'States' },
+        proxy: {
+            type: 'ajax',
+            url: 'data/tree/salary.json',
+            reader: {
+                type: 'json',
+                getResponseData: treeDataReader
+            }
+        }
     })
 
     getNodeText = (tree, node) => {

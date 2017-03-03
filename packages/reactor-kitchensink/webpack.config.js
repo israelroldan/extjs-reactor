@@ -36,6 +36,9 @@ module.exports = function (env) {
         new CopyWebpackPlugin([{
             from: path.join(__dirname, 'resources'), 
             to: 'resources'
+        }, {
+            from: path.join(__dirname, 'data'),
+            to: 'data'
         }])
     ];
 
@@ -74,7 +77,7 @@ module.exports = function (env) {
 
         output: {
             path: path.join(__dirname, 'build'),
-            filename: 'bundle.js',
+            filename: 'bundle.js'
         },
 
         module: {
