@@ -58,6 +58,7 @@ import PivotHeatmap from './PivotHeatmap/PivotHeatmap';
 import ConfigurablePivotHeatmap from './ConfigurablePivotHeatmap/ConfigurablePivotHeatmap';
 import D3TreeHierarchy from './D3TreeHierarchy/D3TreeHierarchy';
 import TreeMap from './TreeMap/TreeMap';
+import TreeMapTooltip from './TreeMapTooltip/TreeMapTooltip';
 import Pack from './Pack/Pack';
 import Sunburst from './Sunburst/Sunburst';
 import ZoomableSunburst from './ZoomableSunburst/ZoomableSunburst';
@@ -126,6 +127,7 @@ const root = {
             { text: 'Hierarchy', children: [
                 { text: 'D3 Tree Hierarchy', component: D3TreeHierarchy },
                 { text: 'TreeMap', component: TreeMap },
+                { text: 'TreeMap Tooltip', component: TreeMapTooltip },
                 { text: 'Pack', component: Pack },
                 { text: 'Sunburst', component: Sunburst },
                 { text: 'Zoomable Sunburst', component: ZoomableSunburst }
