@@ -9,6 +9,14 @@ import 'highlightjs/styles/atom-one-dark.css';
 import H_js from './H_js';
 hljs.registerLanguage('js', H_js);
 
+function codeClassFor(file)  {
+    if (file.endsWith('.css')) {
+        return 'css';
+    } else {
+        return 'js xml'
+    }
+}
+
 export default class Layout extends React.Component {
     
     constructor() {
@@ -101,7 +109,7 @@ export default class Layout extends React.Component {
                                 title={file.file}
                                 layout="fit"
                                 style={{backgroundColor: '#282c34'}}
-                                html={'<pre><code class="code js xml">' + file.content.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</code></pre>'}
+                                html={`<pre><code class="code ${codeClassFor(file.file)}">${file.content.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code></pre>`}
                             />
                         ))}
                     </TabPanel>

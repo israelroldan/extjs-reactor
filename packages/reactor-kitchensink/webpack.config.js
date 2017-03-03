@@ -64,7 +64,8 @@ module.exports = function (env) {
     }));
 
     return {
-        devtool: isProd ? 'source-map' : 'eval-source-map',
+        
+        devtool: isProd ? 'source-map' : 'eval',
         context: sourcePath,
 
         entry: [

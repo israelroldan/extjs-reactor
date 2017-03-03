@@ -8,7 +8,7 @@ function extractAll() {
     const dirs = fs.readdirSync(examples);
 
     for (let dir of dirs) {
-        if (dir === 'index.js') continue;
+        if (!fs.lstatSync(path.join(examples, dir)).isDirectory()) continue;
         const files = fs.readdirSync(path.join(examples, dir));
 
         for (let file of files) {
@@ -27,17 +27,23 @@ function extractAll() {
 }
 
 function extractFrom(dir, file) {
+    console.log('extractFrom', dir, file);
+
     const content = fs.readFileSync(path.join(examples, dir, file), 'utf8');
-    const importRegex = /import[^']+'([^']+)';/gi;
+    const importRegex = /import[^'"]+['"]([^'"]+)['"];/gi;
     let match;
 
     (result[dir] = result[dir] || []).push({ file, content });
 
     while (match = importRegex.exec(content)) {
-        console.log(file, match[1]);
-
         if (match[1].startsWith('./')) {
-            extractFrom(dir, match[1].replace(/\.\//, '') + '.js');
+            let file = match[1].replace(/\.\//, '');
+
+            if (!file.match(/\..*$/)) {
+                file = file + '.js'
+            }
+
+            extractFrom(dir, file);
         }
     }
 }

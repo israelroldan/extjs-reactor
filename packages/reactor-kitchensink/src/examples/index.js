@@ -58,7 +58,11 @@ import PivotHeatmap from './PivotHeatmap/PivotHeatmap';
 import ConfigurablePivotHeatmap from './ConfigurablePivotHeatmap/ConfigurablePivotHeatmap';
 import SearchField from './SearchField/SearchField';
 import FileField from './FileField/FileField';
-
+import CardLayout from './card/card';
+import FitLayout from './fit/fit';
+import HboxLayout from './hbox/hbox';
+import VboxLayout from './vbox/vbox';
+import FormLayout from './form/form';
 import InProgress from '../InProgress';
 
 const root = {
@@ -141,6 +145,13 @@ const root = {
             { text: 'Grid', component: Grid },
             { text: 'PivotGrid', component: PivotGrid }
         ] },
+        { text: 'Layouts', children: [
+            { text: 'card', component: CardLayout },
+            { text: 'fit', component: FitLayout },
+            { text: 'form', component: FormLayout },
+            { text: 'hbox', component: HboxLayout },
+            { text: 'vbox', component: VboxLayout }
+        ]},
         { text: 'Lists', children: [
             { text: 'List', component: List },
             { text: 'NestedList', component: NestedList }

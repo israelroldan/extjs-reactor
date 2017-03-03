@@ -68,7 +68,7 @@ $component-tree-text-color: #212121;
     $item-expander-color: $component-tree-text-color,
     $item-text-color: $component-tree-text-color,
     $row-over-background-color: darken($component-tree-background, 10%),
-    $item-expanded-background-color: darken($component-tree-background, 10%),
+    $item-expanded-background-color: #eee,
 
     $item-icon-over-color: $component-tree-text-color,
     $item-expander-over-color: $component-tree-text-color,
@@ -87,7 +87,7 @@ $component-tree-text-color: #212121;
     $tool-indicator-selected-width: 6px,
 
     $item-icon-font-size: 18px,
-    $item-icon-width: 24px,
+    $item-icon-width: 15px,
     $item-expander-font-size: 22px,
     $item-expander-width: 24px,
     $item-expander-color: lighten($component-tree-text-color, 30%),

@@ -16,6 +16,8 @@ import {
     CheckBoxField,
     Button,
     SelectField,
+    Container,
+    Label,
     Toolbar
 } from '@extjs/reactor/modern';
 
@@ -37,13 +39,12 @@ export default class FormPanelExample extends Component {
         
         return (
             <FormPanel ref="form" shadow>
-                <FieldSet disabled={disabled} ref="personal" title="Personal Info" layout={{ type: 'vbox', align: 'stretch' }} instructions="Please enter the information above.">
-                    <TextField {...defaults} label="Name" required/>
+                <FieldSet disabled={disabled} ref="personal" title="Personal Info" instructions="Please enter the information above.">
+                    <TextField {...defaults} label="Name" required placeholder="This fields is required"/>
                     <PasswordField {...defaults} label="Password" required revealable/>
-                    <EmailField {...defaults} label="Email" placeHolder="me@sencha.com"/>
-                    <UrlField {...defaults} label="URL" placeHolder="http://sencha.com"/>
+                    <EmailField {...defaults} label="Email" placeholder="me@sencha.com"/>
+                    <UrlField {...defaults} label="URL" placeholder="http://sencha.com"/>
                     <SpinnerField label="Spinner" minValue={0} maxValue={0} stepValue={1} cycle margin="15 0 0 0"/>
-                    <CheckBoxField boxLabel="Active"/>
                     <DatePickerField {...defaults} label="Start Date"/>
                     <SelectField {...defaults} label="Rank"
                         options={[
@@ -57,11 +58,15 @@ export default class FormPanelExample extends Component {
                     <ToggleField label="Toggle"/>
                     <TextAreaField label="Bio" maxRows={5}/>
                 </FieldSet>
+                <FieldSet title="Roles" layout={{type: 'vbox', align: 'left'}} margin="15 0">
+                    <CheckBoxField boxLabel="Admin"/>
+                    <CheckBoxField boxLabel="Power User"/>
+                </FieldSet>
                 <FieldSet disabled={disabled} title="Favorite Color" layout={{type: 'vbox', align: 'left'}}>
-                    <RadioField {...radioProps} label="Red" value="red"/>
-                    <RadioField {...radioProps} label="Blue" value="blue"/>
-                    <RadioField {...radioProps} label="Green" value="green"/>
-                    <RadioField {...radioProps} label="Purple" value="purple"/>
+                    <RadioField {...radioProps} boxLabel="Red" value="red"/>
+                    <RadioField {...radioProps} boxLabel="Blue" value="blue"/>
+                    <RadioField {...radioProps} boxLabel="Green" value="green"/>
+                    <RadioField {...radioProps} boxLabel="Purple" value="purple"/>
                 </FieldSet>
                 <Toolbar docked="bottom">
                     <Button ui="action" text={disabled ? 'Enable All' : 'Disable All'} margin="0 10 0 0" handler={this.toggleDisabled.bind(this)}/>
