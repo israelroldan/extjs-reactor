@@ -7,17 +7,17 @@ export default {
     card: {
         blue: {
             ...cardDefaults,
-            backgroundColor: '#03A9F4', 
-            color: 'black'
+            backgroundColor: '#673ab7', 
+            color: 'white'
         },
         green: {
             ...cardDefaults,
-            backgroundColor: '#A5D6A7', 
-            color: 'black'
+            backgroundColor: '#7c4dff', 
+            color: 'white'
         },
         red: {
             ...cardDefaults,
-            backgroundColor: '#009688', 
+            backgroundColor: '#00bcd4', 
             color: 'white'
         }
     }
