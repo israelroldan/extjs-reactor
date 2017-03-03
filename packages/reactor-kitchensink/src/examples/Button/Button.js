@@ -1,21 +1,8 @@
 import React, { Component } from 'react';
 import { Container, Panel, Button, Menu, MenuItem } from '@extjs/reactor/modern';
+import './button.css';
 
 Ext.require('Ext.Toast');
-
-require('./button.css');
-
-const menu = (
-    <Menu rel="menu">
-        <MenuItem text="Item 1"/>
-        <MenuItem text="Item 2"/>
-        <MenuItem text="Item 3"/>
-    </Menu>
-);
-
-function handler() {
-    Ext.toast("You clicked the button");
-}
 
 export default function ButtonExample() {
     return (
@@ -70,4 +57,16 @@ export default function ButtonExample() {
             </Panel>
         </Container>
     )
+}
+
+const menu = (
+    <Menu rel="menu">
+        <MenuItem text="Item 1"/>
+        <MenuItem text="Item 2"/>
+        <MenuItem text="Item 3"/>
+    </Menu>
+);
+
+function handler() {
+    Ext.toast("You clicked the button");
 }
