@@ -60,6 +60,7 @@ import D3TreeHierarchy from './D3TreeHierarchy/D3TreeHierarchy';
 import TreeMap from './TreeMap/TreeMap';
 import Pack from './Pack/Pack';
 import Sunburst from './Sunburst/Sunburst';
+import ZoomableSunburst from './ZoomableSunburst/ZoomableSunburst';
 import SearchField from './SearchField/SearchField';
 import FileField from './FileField/FileField';
 import CardLayout from './card/card';
@@ -126,7 +127,8 @@ const root = {
                 { text: 'D3 Tree Hierarchy', component: D3TreeHierarchy },
                 { text: 'TreeMap', component: TreeMap },
                 { text: 'Pack', component: Pack },
-                { text: 'Sunburst', component: Sunburst }
+                { text: 'Sunburst', component: Sunburst },
+                { text: 'Zoomable Sunburst', component: ZoomableSunburst }
             ]}
         ] },
         { text: 'DatePanel', component: InProgress },

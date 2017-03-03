@@ -541,6 +541,12 @@ export default {
 			"content": "import React, { Component } from 'react'\nimport { Panel, Video } from '@extjs/reactor/modern';\n\nexport default function VideoExample() {\n    return (\n        <Panel shadow layout=\"fit\">\n            <Video \n                loop \n                url={['resources/video/BigBuck.m4v', 'resources/video/BigBuck.webm']}\n                posterUrl=\"resources/images/cover.jpg\"\n            />\n        </Panel>\n    );\n}"
 		}
 	],
+	"ZoomableSunburst": [
+		{
+			"file": "ZoomableSunburst.js",
+			"content": "import React, { Component } from 'react';\nimport { Panel, D3_Sunburst } from '@extjs/reactor/modern';\n\nexport default class ZoomableSunburst extends Component {\n\n    store = Ext.create('Ext.data.TreeStore', {\n        autoLoad: true,\n        defaultRootText: 'd3',\n        fields: [\n            'name',\n            'path',\n            'size',\n            {\n                name: 'leaf',\n                calculate: function (data) {\n                    return data.root ? false : !data.children;\n                }\n            },\n            {\n                name: 'text',\n                calculate: function (data) {\n                    return data.name;\n                }\n            }\n        ],\n        proxy: {\n            type: 'ajax',\n            url: 'data/tree/tree.json'\n        },\n        idProperty: 'path'\n    })\n\n    onTooltip = (component, tooltip, node) => {\n        const record = node.data,\n            size = record.get('size'),\n            n = record.childNodes.length;\n\n        tooltip.setHtml(size ?\n            Ext.util.Format.fileSize(size) :\n            n + ' file' + (n === 1 ? '' : 's') + ' inside.'\n        );\n    }\n\n    render() {\n        return (\n            <Panel shadow layout=\"fit\">\n                <D3_Sunburst\n                    padding={20}\n                    store={this.store}\n                    tooltip={{ renderer: this.onTooltip }}\n                    transitions={{ select: false }}\n                    onSelectionChange={(sunburst, node) => sunburst.zoomInNode(node)}\n                    expandEventName={false}\n                />\n            </Panel>\n        )\n    }\n}"
+		}
+	],
 	"card": [
 		{
 			"file": "card.js",
