@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Panel, D3_TreeMap } from '@extjs/reactor/modern';
 import onTooltip from './tooltip';
-import './styles.css'
+import './styles.css';
 
 export default class TreeMapTooltip extends Component {
 
