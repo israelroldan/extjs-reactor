@@ -67,18 +67,18 @@ install({
 });
 ```
 
-When using the classic toolkit, your import statements would look like:
-
-```jsx
-import { Grid } from '@extjs/reactor/classic';
-```
-
 ### Importing Components
 
 Any Ext JS component can be imported by the camel-cased version of it's xtype.  For example, 
 
 ```jsx
 import { Grid } from '@extjs/reactor/modern';
+```
+
+When using the classic toolkit, import from `@extjs/reactor/classic`:
+
+```jsx
+import { Grid } from '@extjs/reactor/classic';
 ```
 
 Dashes in xtypes should be converted to underscores.  For example:
