@@ -48,71 +48,38 @@ The `@extjs/reactor` package exports a function called `reactify` that creates a
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { install, reactify } from '@extjs/reactor';
-
-// Install the Ext JS custom renderer
-install();
-
-// Create a React component to wrap Ext.Panel
-const Panel = reactify('panel');
-
-// When Ext JS loads, initialize our React app
-Ext.onReady(() => {
-    ReactDOM.render(
-        (
-            <Panel title="React Ext JS">
-                Hello World!
-            </Panel>
-        ),
-        document.getElementById('root')
-    );
-});
-```
-
-The reactify function allows you to create React components for multiple xtypes at once using array destructuring:
-
-```jsx
-import { reactify } from '@extjs/reactor';
-const [ Panel, Grid ] = reactify('panel', 'grid');
-```
-
-If you're using Babel, we recommend installing @extjs/reactor-babel-plugin, which allows you to do this instead...
-
-```jsx
-import { Panel, Grid } from '@extjs/reactor/modern';
-```
-
-... and so our Hello World app becomes ...
-
-```jsx
-import React from 'react';
-import ReactDOM from 'react-dom';
 import { install } from '@extjs/reactor';
 import { Panel } from '@extjs/reactor/modern';
 
 // Install the Ext JS custom renderer
-install();
-
-// When Ext JS loads, initialize our React app
-Ext.onReady(() => {
-    ReactDOM.render(
-        (
-            <Panel title="React Ext JS">
-                Hello World!
-            </Panel>
-        ),
-        document.getElementById('root')
-    );
+install({ 
+    viewport: true,
+    launch: target => ReactDOM.render((
+        <Panel title="React Ext JS">
+            Hello World!
+        </Panel>
+    ), target)
 });
-
 ```
-
-All of the examples below leverage the @extjs/reactor-babel-plugin to achieve this more concise syntax.
 
 When using the classic toolkit, your import statements would look like:
 
 ```jsx
 import { Grid } from '@extjs/reactor/classic';
+```
+
+### Importing Components
+
+Any Ext JS component can be imported by the camel-cased version of it's xtype.  For example, 
+
+```jsx
+import { Grid } from '@extjs/reactor/modern';
+```
+
+Dashes in xtypes should be converted to underscores.  For example:
+
+```jsx
+import { D3_HeatMap } from '@extjs/reactor/modern';
 ```
 
 ### Configuring Components
@@ -272,6 +239,25 @@ Ext.create({
     xtype: 'panel',
     html: 'Hello World!'
 });
+```
+
+### Using Custom Ext JS Components
+
+You can import custom Ext JS components in much the same way you would those from Ext JS itself.  Just reference the camel-case version of the component's xtype.
+
+For example, given the following component:
+
+```javascript
+Ext.define('MyPackage.view.MyGrid', {
+    extend: 'Ext.grid.Grid',
+    xtype: 'mygrid'
+})
+```
+
+You could import and use that component using:
+
+```jsx
+import { MyGrid } from '@extjs/reactor/modern';
 ```
 
 ### Building
