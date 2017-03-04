@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ViewPort, Panel, Button, Menu as EdgeMenu } from '@extjs/reactor/modern';
+import { ViewPort, Panel, Button, EdgeMenu } from '@extjs/reactor/modern';
 
 export default class MenuExample extends Component {
 
@@ -28,22 +28,22 @@ export default class MenuExample extends Component {
         
         return (
             <Panel>
-                <EdgeMenu side="left" ref="left" reveal hidden={!this.state.left} onHide={() => this.setState({ left: false })}>
+                <EdgeMenu side="left" displayed={left} onHide={() => this.setState({ left: false })}>
                     <Button text="Settings" iconCls="x-fa fa-gear" handler={() => this.setState({left: false})}/>
                     <Button text="New Item" iconCls="x-fa fa-pencil" handler={() => this.setState({left: false})}/>
                     <Button text="Star" iconCls="x-fa fa-star" handler={() => this.setState({left: false})}/>
                 </EdgeMenu>
-                <EdgeMenu side="right" ref="right" reveal hidden={!this.state.right} onHide={() => this.setState({ right: false })}>
+                <EdgeMenu side="right" displayed={right} onHide={() => this.setState({ right: false })}>
                     <Button text="Settings" iconCls="x-fa fa-gear" handler={() => this.setState({right: false})}/>
                     <Button text="New Item" iconCls="x-fa fa-pencil" handler={() => this.setState({right: false})}/>
                     <Button text="Star" iconCls="x-fa fa-star" handler={() => this.setState({right: false})}/>
                 </EdgeMenu>
-                <EdgeMenu side="top" ref="top" cover hidden={!this.state.top} onHide={() => this.setState({ top: false })}>
+                <EdgeMenu side="top" cover displayed={top} onHide={() => this.setState({ top: false })}>
                     <Button text="Settings" iconCls="x-fa fa-gear" handler={() => this.setState({top: false})}/>
                     <Button text="New Item" iconCls="x-fa fa-pencil" handler={() => this.setState({top: false})}/>
                     <Button text="Star" iconCls="x-fa fa-star" handler={() => this.setState({top: false})}/>
                 </EdgeMenu>
-                <EdgeMenu side="bottom" ref="bottom" slide hidden={!this.state.bottom} onHide={() => this.setState({ bottom: false })}>
+                <EdgeMenu side="bottom" slide displayed={bottom} onHide={() => this.setState({ bottom: false })}>
                     <Button text="Settings" iconCls="x-fa fa-gear" handler={() => this.setState({bottom: false})}/>
                     <Button text="New Item" iconCls="x-fa fa-pencil" handler={() => this.setState({bottom: false})}/>
                     <Button text="Star" iconCls="x-fa fa-star" handler={() => this.setState({bottom: false})}/>

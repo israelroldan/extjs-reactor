@@ -7,6 +7,7 @@ export default function TabPanelExample() {
             <TabPanel 
                 flex={1}
                 shadow 
+                plain
             >
                 <Container title="Tab 1" {...tabProps}>
                     <div>By default, tabs are aligned to the top of a view.</div>

@@ -8,7 +8,7 @@ export default class VBoxLayoutExample extends Component {
         return (
             <Container layout="vbox">
                 <Panel shadow ui="instructions" margin="0 0 30 0">
-                    An vbox layout positions items vertically with optional 'pack', and 'align' configs.
+                    A vbox layout positions items vertically with optional 'pack', and 'align' configs.
                 </Panel>
                 <Container layout="hbox" flex={1}>
                     <Container layout="vbox" flex={1}>

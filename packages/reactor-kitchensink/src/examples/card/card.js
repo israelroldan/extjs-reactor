@@ -19,9 +19,9 @@ export default class CardLayoutExample extends Component {
                     Card layouts can optionally be configured to animate when switching cards.
                 </Panel>
                 <Panel flex={1} layout={{ type: 'card', animation: 'slide' }} activeItem={card} shadow height={200}>
-                    <Container {...cardDefaults} style={{...styles.card, ...colors.card.red }}>Card 3</Container>
+                    <Container {...cardDefaults} style={{...styles.card, ...colors.card.red }}>Card 1</Container>
                     <Container {...cardDefaults} style={{...styles.card, ...colors.card.green }}>Card 2</Container>
-                    <Container {...cardDefaults} style={{...styles.card, ...colors.card.blue }}>Card 1</Container>
+                    <Container {...cardDefaults} style={{...styles.card, ...colors.card.blue }}>Card 3</Container>
                 </Panel>
                 <Toolbar shadow margin="20 0 0 0" layout="vbox">
                     <div style={{marginBottom: '10px'}}>Switch Cards</div>

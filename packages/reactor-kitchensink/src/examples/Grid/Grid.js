@@ -10,6 +10,10 @@ Ext.require([
 
 export default class GridExample extends Component {
 
+    state = {
+        showExportSheet: false
+    };
+
     store = Ext.create('Ext.data.Store', {
         model,
         autoLoad: true,
@@ -22,15 +26,17 @@ export default class GridExample extends Component {
     })
 
     render() {
+        const { showExportSheet } = this.state;
+
         return (
             <Container layout="fit">
-                <ActionSheet ref="exportMenu">
+                <ActionSheet displayed={showExportSheet}>
                     <Button handler={this.exportToXlsx} text="Excel xlsx (all Items)"/>
                     <Button handler={this.exportToXml} text="Excel xml (all Items)"/>
                     <Button handler={this.exportToCSV} text="CSV (all Items)"/>
                     <Button handler={this.exportToTSV} text="TSV (all Items)"/>
                     <Button handler={this.exportToHtml} text="HTML (all Items)"/>
-                    <Button handler={() => this.refs.exportMenu.hide()} text="Cancel"/>
+                    <Button handler={() => this.setState({ showExportSheet: false })} text="Cancel"/>
                 </ActionSheet>
                 <Grid
                     ref="grid"
@@ -209,7 +215,7 @@ export default class GridExample extends Component {
                     onDocumentSave={(view) => view.unmask()}
                 >
                     <Toolbar docked="top">
-                        <Button text="Export to..." handler={() => this.refs.exportMenu.show()}/>
+                        <Button text="Export to..." handler={() => this.setState({ showExportSheet: true })}/>
                     </Toolbar>
                 </Grid>
             </Container>
@@ -267,7 +273,7 @@ export default class GridExample extends Component {
     }
 
     doExport(config) {
-        this.refs.exportMenu.hide();
+        this.setState({ showExportSheet: false });
         this.refs.grid.saveDocumentAs(config);
     }
 
