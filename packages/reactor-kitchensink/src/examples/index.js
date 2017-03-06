@@ -63,6 +63,7 @@ import ConfigurablePivotTreeMap from './ConfigurablePivotTreeMap/ConfigurablePiv
 import Pack from './Pack/Pack';
 import Sunburst from './Sunburst/Sunburst';
 import ZoomableSunburst from './ZoomableSunburst/ZoomableSunburst';
+import Spie from './Spie/Spie';
 import SearchField from './SearchField/SearchField';
 import FileField from './FileField/FileField';
 import CardLayout from './card/card';
@@ -109,7 +110,8 @@ const root = {
             ] },
             { text: 'Navigator', component: Navigator },
             { text: 'Pie', children: [
-                { text: 'Basic Pie', component: BasicPie }
+                { text: 'Basic Pie', component: BasicPie },
+                { text: 'Spie', component: Spie }
             ] },
             { text: 'Radar', children: [
                 { text: 'Basic Radar', component: BasicRadar }
