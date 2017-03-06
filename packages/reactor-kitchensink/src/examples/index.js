@@ -64,6 +64,7 @@ import Pack from './Pack/Pack';
 import Sunburst from './Sunburst/Sunburst';
 import ZoomableSunburst from './ZoomableSunburst/ZoomableSunburst';
 import CustomIcons from './CustomIcons/CustomIcons';
+import Bubble from './Bubble/Bubble';
 import SearchField from './SearchField/SearchField';
 import FileField from './FileField/FileField';
 import CardLayout from './card/card';
@@ -117,7 +118,8 @@ const root = {
             ] },
             { text: 'Scatter', children: [
                 { text: 'Basic Scatter', component: BasicScatter },
-                { text: 'Custom Icons', component: CustomIcons }
+                { text: 'Custom Icons', component: CustomIcons },
+                { text: 'Bubble', component: Bubble }
             ] }
         ] },
         { text: 'D3', children: [
