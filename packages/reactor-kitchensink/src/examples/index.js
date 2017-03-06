@@ -66,6 +66,7 @@ import ZoomableSunburst from './ZoomableSunburst/ZoomableSunburst';
 import Spie from './Spie/Spie';
 import Donut from './Donut/Donut';
 import DoubleDonut from './DoubleDonut/DoubleDonut';
+import ThreeDPie from './3DPie/ThreeDPie';
 import SearchField from './SearchField/SearchField';
 import FileField from './FileField/FileField';
 import CardLayout from './card/card';
@@ -115,7 +116,8 @@ const root = {
                 { text: 'Basic Pie', component: BasicPie },
                 { text: 'Spie', component: Spie },
                 { text: 'Donut', component: Donut },
-                { text: 'Double Donut', component: DoubleDonut }
+                { text: 'Double Donut', component: DoubleDonut },
+                { text: '3D Pie', component: ThreeDPie }
             ] },
             { text: 'Radar', children: [
                 { text: 'Basic Radar', component: BasicRadar }
