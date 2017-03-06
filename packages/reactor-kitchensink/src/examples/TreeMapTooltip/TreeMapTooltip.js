@@ -19,6 +19,7 @@ export default class TreeMapTooltip extends Component {
             },
             {
                 name: 'change',
+                type: 'number',
                 calculate: function () {
                     return (-5 + Math.random() * 10).toFixed(2); // percentages
                 }
