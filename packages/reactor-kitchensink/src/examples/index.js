@@ -66,6 +66,7 @@ import ZoomableSunburst from './ZoomableSunburst/ZoomableSunburst';
 import CustomIcons from './CustomIcons/CustomIcons';
 import Bubble from './Bubble/Bubble';
 import Filled from './Filled/Filled';
+import Marked from './Marked/Marked';
 import SearchField from './SearchField/SearchField';
 import FileField from './FileField/FileField';
 import CardLayout from './card/card';
@@ -116,7 +117,8 @@ const root = {
             ] },
             { text: 'Radar', children: [
                 { text: 'Basic Radar', component: BasicRadar },
-                { text: 'Filled', component: Filled }
+                { text: 'Filled', component: Filled },
+                { text: 'Marked', component: Marked }
             ] },
             { text: 'Scatter', children: [
                 { text: 'Basic Scatter', component: BasicScatter },
