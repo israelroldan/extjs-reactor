@@ -11,6 +11,7 @@ import Button from './Button/Button';
 import SegmentedButton from './SegmentedButton/SegmentedButton';
 import Carousel from './Carousel/Carousel';
 import TextField from './TextField/TextField';
+import FieldSet from './FieldSet/FieldSet';
 import EmailField from './EmailField/EmailField';
 import UrlField from './UrlField/UrlField';
 import PasswordField from './PasswordField/PasswordField';
@@ -173,7 +174,6 @@ const root = {
                 { text: 'Zoomable Sunburst', component: ZoomableSunburst }
             ]}
         ] },
-        { text: 'DatePanel', component: InProgress },
         { text: 'Draw', component: Draw },
         { text: 'EdgeMenu', component: EdgeMenu },
         { text: 'Form Fields', children: [
@@ -181,6 +181,7 @@ const root = {
             { text: 'ComboBoxField', component: ComboBoxField },
             { text: 'DatePickerField', component: DatePickerField },
             { text: 'EmailField', component: EmailField },
+            { text: 'FieldSet', component: FieldSet },
             { text: 'FileField', component: FileField },
             { text: 'FormPanel', component: FormPanel },
             { text: 'Gauge', component: Gauge },
