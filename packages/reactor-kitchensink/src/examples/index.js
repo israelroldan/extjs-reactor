@@ -69,6 +69,15 @@ import SplineMarkers from './SplineMarkers/SplineMarkers';
 import Plot from './Plot/Plot';
 import WithRenderer from './WithRenderer/WithRenderer';
 import Realtime from './Realtime/Realtime';
+import Spie from './Spie/Spie';
+import Donut from './Donut/Donut';
+import DoubleDonut from './DoubleDonut/DoubleDonut';
+import ThreeDPie from './3DPie/ThreeDPie';
+import CustomIcons from './CustomIcons/CustomIcons';
+import Bubble from './Bubble/Bubble';
+import Filled from './Filled/Filled';
+import Marked from './Marked/Marked';
+import Multiaxis from './Multiaxis/Multiaxis';
 import SearchField from './SearchField/SearchField';
 import FileField from './FileField/FileField';
 import CardLayout from './card/card';
@@ -121,13 +130,22 @@ const root = {
             ] },
             { text: 'Navigator', component: Navigator },
             { text: 'Pie', children: [
-                { text: 'Basic Pie', component: BasicPie }
+                { text: 'Basic Pie', component: BasicPie },
+                { text: 'Spie', component: Spie },
+                { text: 'Donut', component: Donut },
+                { text: 'Double Donut', component: DoubleDonut },
+                { text: '3D Pie', component: ThreeDPie }
             ] },
             { text: 'Radar', children: [
-                { text: 'Basic Radar', component: BasicRadar }
+                { text: 'Basic Radar', component: BasicRadar },
+                { text: 'Filled', component: Filled },
+                { text: 'Marked', component: Marked },
+                { text: 'Multiaxis', component: Multiaxis }
             ] },
             { text: 'Scatter', children: [
-                { text: 'Basic Scatter', component: BasicScatter }
+                { text: 'Basic Scatter', component: BasicScatter },
+                { text: 'Custom Icons', component: CustomIcons },
+                { text: 'Bubble', component: Bubble }
             ] }
         ] },
         { text: 'D3', children: [
