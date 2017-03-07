@@ -77,7 +77,7 @@ import Realtime from './Realtime/Realtime';
 import Spie from './Spie/Spie';
 import Donut from './Donut/Donut';
 import DoubleDonut from './DoubleDonut/DoubleDonut';
-import ThreeDPie from './3DPie/ThreeDPie';
+import ThreeDPie from './3DPie/3DPie';
 import CustomIcons from './CustomIcons/CustomIcons';
 import Bubble from './Bubble/Bubble';
 import Filled from './Filled/Filled';
@@ -112,10 +112,8 @@ const root = {
                 { text: 'Basic Bar', component: BasicBar }
             ] },
             { text: 'Column', children: [
-                { text: 'Basic Column', component: BasicColumn }
-            ] },
-            { text: '3D Column', children: [
-                { text: 'Basic 3D Column', component: Basic3DColumn },
+                { text: 'Basic Column', component: BasicColumn },
+                { text: '3D Column', component: Basic3DColumn },
                 { text: 'Grouped', component: Grouped },
                 { text: 'Stacked', component: Stacked },
                 { text: 'Negative Values', component: NegativeValues },
