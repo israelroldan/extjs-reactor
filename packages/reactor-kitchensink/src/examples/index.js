@@ -63,6 +63,12 @@ import ConfigurablePivotTreeMap from './ConfigurablePivotTreeMap/ConfigurablePiv
 import Pack from './Pack/Pack';
 import Sunburst from './Sunburst/Sunburst';
 import ZoomableSunburst from './ZoomableSunburst/ZoomableSunburst';
+import BasicMarkers from './BasicMarkers/BasicMarkers';
+import Spline from './Spline/Spline';
+import SplineMarkers from './SplineMarkers/SplineMarkers';
+import Plot from './Plot/Plot';
+import WithRenderer from './WithRenderer/WithRenderer';
+import Realtime from './Realtime/Realtime';
 import Spie from './Spie/Spie';
 import Donut from './Donut/Donut';
 import DoubleDonut from './DoubleDonut/DoubleDonut';
@@ -114,7 +120,13 @@ const root = {
                 { text: 'Basic Gauge', component: BasicGauge }
             ] },
             { text: 'Line', children: [
-                { text: 'Basic Line', component: BasicLine }
+                { text: 'Basic Line', component: BasicLine },
+                { text: 'Basic Markers', component: BasicMarkers },
+                { text: 'Spline', component: Spline },
+                { text: 'Spline Markers', component: SplineMarkers },
+                { text: 'Plot', component: Plot },
+                { text: 'With Renderer', component: WithRenderer },
+                { text: 'Realtime', component: Realtime }
             ] },
             { text: 'Navigator', component: Navigator },
             { text: 'Pie', children: [
