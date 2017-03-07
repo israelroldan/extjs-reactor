@@ -65,7 +65,7 @@ export default function ChartToolbar({
                 />
             )}
             { onRefreshClick && (
-                <Button {...toolbarItemDefaults} iconCls="x-fa fa-refresh" handler={onRefreshClick}>Refresh</Button>
+                <Button {...toolbarItemDefaults} iconCls="x-fa fa-refresh" handler={onRefreshClick} text="Refresh"/>
             )}
             { onStackGroup && (
                 <SegmentedButton onToggle={onStackGroup}>

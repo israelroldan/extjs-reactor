@@ -1,8 +1,9 @@
-import React from 'react';
-import { ViewPort, TitleBar, TabPanel, Panel, Component, Container, Toolbar, Button, List, TreeList, SearchField } from '@extjs/reactor/modern';
+import React, { Component } from 'react';
+import { TitleBar, TabPanel, Panel, Container, Button, List } from '@extjs/reactor/modern';
 import hljs, { highlightBlock } from 'highlightjs';
 import code from './code';
 import examples from './examples';
+import NavTree from './NavTree';
 
 // JSX syntax highlighting
 import 'highlightjs/styles/atom-one-dark.css';
@@ -17,7 +18,7 @@ function codeClassFor(file)  {
     }
 }
 
-export default class Layout extends React.Component {
+export default class Layout extends Component {
     
     constructor() {
         super();
@@ -41,11 +42,6 @@ export default class Layout extends React.Component {
         if (this.refs.examples) for (let el of this.refs.examples.el.query('.code')) {
             highlightBlock(el);
         }
-    }
-
-    filterNav(field, value) {
-        this.navStore.clearFilter();
-        this.navStore.filterBy(record => value === '' || record.get('name').toLowerCase().indexOf(value.toLowerCase()) !== -1);
     }
 
     onNavChange(node) {
@@ -77,17 +73,12 @@ export default class Layout extends React.Component {
                             ExtReact Kitchen Sink
                         </TitleBar>
                         <Container layout={{type: 'hbox', align: 'stretch'}} flex={1}>
-                            <Panel scrollable="y">
-                                <TreeList
-                                    ui="component-tree"
-                                    width={250}
-                                    store={this.navTreeStore}
-                                    expanderFirst={false}
-                                    expanderOnly={false}
-                                    onSelectionChange={(tree, record) => this.onNavChange(record)}
-                                    selection={selectedNode}
-                                />
-                            </Panel>
+                            <NavTree 
+                                width={250} 
+                                store={this.navTreeStore} 
+                                selection={selectedNode}
+                                onSelectionChange={(tree, record) => this.onNavChange(record)}
+                            /> 
                             <Container layout="fit" flex={1} margin={30}>{ component && React.createElement(component) }</Container>
                         </Container>
                     </Container>
