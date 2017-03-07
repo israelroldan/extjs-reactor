@@ -63,6 +63,10 @@ import ConfigurablePivotTreeMap from './ConfigurablePivotTreeMap/ConfigurablePiv
 import Pack from './Pack/Pack';
 import Sunburst from './Sunburst/Sunburst';
 import ZoomableSunburst from './ZoomableSunburst/ZoomableSunburst';
+import Spie from './Spie/Spie';
+import Donut from './Donut/Donut';
+import DoubleDonut from './DoubleDonut/DoubleDonut';
+import ThreeDPie from './3DPie/ThreeDPie';
 import CustomIcons from './CustomIcons/CustomIcons';
 import Bubble from './Bubble/Bubble';
 import Filled from './Filled/Filled';
@@ -114,7 +118,11 @@ const root = {
             ] },
             { text: 'Navigator', component: Navigator },
             { text: 'Pie', children: [
-                { text: 'Basic Pie', component: BasicPie }
+                { text: 'Basic Pie', component: BasicPie },
+                { text: 'Spie', component: Spie },
+                { text: 'Donut', component: Donut },
+                { text: 'Double Donut', component: DoubleDonut },
+                { text: '3D Pie', component: ThreeDPie }
             ] },
             { text: 'Radar', children: [
                 { text: 'Basic Radar', component: BasicRadar },
