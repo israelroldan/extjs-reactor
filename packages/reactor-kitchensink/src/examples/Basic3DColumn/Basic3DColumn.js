@@ -29,15 +29,11 @@ export default class Basic3DColumnChartExample extends Component {
     };
 
     refresh = () => {
-        this.store.loadData(createData());
+        this.store.loadData(createData(15));
     }
 
     changeTheme = (select, choice) => {
         this.setState({ theme: choice.get('value') })
-    }
-
-    toggleZoomOnPan = (zoomOnPan) => {
-        this.refs.chart.getInteraction('panzoom').setZoomOnPan(zoomOnPan);
     }
 
     render() {
@@ -47,27 +43,12 @@ export default class Basic3DColumnChartExample extends Component {
             <Panel shadow layout="fit">
                 <ChartToolbar
                     onThemeChange={this.changeTheme}
-                    onToggleZoomOnPan={this.toggleZoomOnPan}
                     onRefreshClick={this.refresh}
                     theme={theme}
                 />
                 <Cartesian
-                    ref="chart"
                     store={this.store}
                     theme={theme}
-                    interactions={[{
-                        type: 'panzoom',
-                        axes: {
-                            left: {
-                                allowPan: false,
-                                allowZoom: false
-                            },
-                            bottom: {
-                                allowPan: true,
-                                allowZoom: true
-                            }
-                        }
-                    }]}
                     series={{
                         type: 'bar3d',
                         xField: 'name',
@@ -86,8 +67,7 @@ export default class Basic3DColumnChartExample extends Component {
                     }, {
                         type: 'category3d',
                         position: 'bottom',
-                        fields: 'name',
-                        visibleRange: [0, 0.2]
+                        fields: 'name'
                     }]}
                 />
             </Panel>            
