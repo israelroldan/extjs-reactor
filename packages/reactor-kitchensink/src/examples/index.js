@@ -65,6 +65,8 @@ import Sunburst from './Sunburst/Sunburst';
 import ZoomableSunburst from './ZoomableSunburst/ZoomableSunburst';
 import BasicMarkers from './BasicMarkers/BasicMarkers';
 import Spline from './Spline/Spline';
+import SplineMarkers from './SplineMarkers/SplineMarkers';
+import Plot from './Plot/Plot';
 import SearchField from './SearchField/SearchField';
 import FileField from './FileField/FileField';
 import CardLayout from './card/card';
@@ -109,7 +111,9 @@ const root = {
             { text: 'Line', children: [
                 { text: 'Basic Line', component: BasicLine },
                 { text: 'Basic Markers', component: BasicMarkers },
-                { text: 'Spline', component: Spline }
+                { text: 'Spline', component: Spline },
+                { text: 'Spline Markers', component: SplineMarkers },
+                { text: 'Plot', component: Plot }
             ] },
             { text: 'Navigator', component: Navigator },
             { text: 'Pie', children: [
