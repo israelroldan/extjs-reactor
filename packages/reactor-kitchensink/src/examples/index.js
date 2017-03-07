@@ -46,6 +46,7 @@ import BasicBar from './BasicBar/BasicBar';
 import BasicArea from './BasicArea/BasicArea';
 import BasicColumn from './BasicColumn/BasicColumn';
 import Basic3DColumn from './Basic3DColumn/Basic3DColumn';
+import Grouped from './Grouped/Grouped';
 import Candlestick from './Candlestick/Candlestick';
 import OHLC from './OHLC/OHLC';
 import Navigator from './Navigator/Navigator';
@@ -95,7 +96,8 @@ const root = {
                 { text: 'Basic Column', component: BasicColumn }
             ] },
             { text: '3D Column', children: [
-                { text: 'Basic 3D Column', component: Basic3DColumn }
+                { text: 'Basic 3D Column', component: Basic3DColumn },
+                { text: 'Grouped', component: Grouped }
             ] },
             { text: 'Financial', children: [
                 { text: 'Candlestick', component: Candlestick },
