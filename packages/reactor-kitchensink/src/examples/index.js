@@ -63,6 +63,7 @@ import ConfigurablePivotTreeMap from './ConfigurablePivotTreeMap/ConfigurablePiv
 import Pack from './Pack/Pack';
 import Sunburst from './Sunburst/Sunburst';
 import ZoomableSunburst from './ZoomableSunburst/ZoomableSunburst';
+import BasicMarkers from './BasicMarkers/BasicMarkers';
 import SearchField from './SearchField/SearchField';
 import FileField from './FileField/FileField';
 import CardLayout from './card/card';
@@ -105,7 +106,8 @@ const root = {
                 { text: 'Basic Gauge', component: BasicGauge }
             ] },
             { text: 'Line', children: [
-                { text: 'Basic Line', component: BasicLine }
+                { text: 'Basic Line', component: BasicLine },
+                { text: 'Basic Markers', component: BasicMarkers }
             ] },
             { text: 'Navigator', component: Navigator },
             { text: 'Pie', children: [
