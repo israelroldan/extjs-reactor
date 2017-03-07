@@ -48,6 +48,7 @@ import BasicColumn from './BasicColumn/BasicColumn';
 import Basic3DColumn from './Basic3DColumn/Basic3DColumn';
 import Grouped from './Grouped/Grouped';
 import Stacked from './Stacked/Stacked';
+import NegativeValues from './NegativeValues/NegativeValues';
 import Candlestick from './Candlestick/Candlestick';
 import OHLC from './OHLC/OHLC';
 import Navigator from './Navigator/Navigator';
@@ -99,7 +100,8 @@ const root = {
             { text: '3D Column', children: [
                 { text: 'Basic 3D Column', component: Basic3DColumn },
                 { text: 'Grouped', component: Grouped },
-                { text: 'Stacked', component: Stacked }
+                { text: 'Stacked', component: Stacked },
+                { text: 'Negative Values', component: NegativeValues }
             ] },
             { text: 'Financial', children: [
                 { text: 'Candlestick', component: Candlestick },
