@@ -28,7 +28,7 @@ The boilerplate project uses Ext JS 6 with the modern toolkit. There is also a [
 
 ### Launching Your App
 
-To launch your app, add the following to your index.js (your webpack entry point):
+To launch your app, add the following to your index.js file (your webpack entry point):
 
 ```jsx
 import { launch } from '@extjs/reactor';
@@ -37,7 +37,7 @@ import App from './App';
 launch(<App/>);
 ```
 
-The `launch` function renders the `<App/>` component into the document body.  You do not need a separate target `<div/>` in your  index.html file, and should remove it if one exists. The code above replaces the typical code for launching a React app, which generally looks something like:
+The `launch` function renders the `<App/>` component into the document body.  You do not need a separate target `<div/>` in your  index.html file.  If you have one you should remove it. The code above replaces the typical code for launching a React app, which generally looks something like:
 
 ```jsx
 import ReactDOM from 'react-dom';
