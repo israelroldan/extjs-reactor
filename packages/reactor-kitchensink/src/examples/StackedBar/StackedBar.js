@@ -20,14 +20,13 @@ export default class StackedBarChartExample extends Component {
         fields: ['id', 'g1', 'g2', 'g3', 'g4', 'g5', 'g6', 'name']
     });
 
-    refresh = () => {
-        console.log();
-        this.store.loadData(createData(15));
-    }
-
     state = {
         theme: 'default'
     };
+
+    refresh = () => {
+        this.store.loadData(createData(15));
+    }
 
     changeTeam = (select, choice) => {
         this.setState({ theme: choice.get('value') })
@@ -37,7 +36,7 @@ export default class StackedBarChartExample extends Component {
         const { theme } = this.state;
 
         return (
-            <Panel shadow layout="fit" title="Fungujem">
+            <Panel shadow layout="fit">
                 <ChartToolbar
                     onThemeChange={this.changeTheme}
                     onRefreshClick={this.refresh}
