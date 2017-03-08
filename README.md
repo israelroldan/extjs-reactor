@@ -37,9 +37,7 @@ import App from './App';
 launch(<App/>);
 ```
 
-When launching, ExtReact renders `<App/>` into a new viewport DOM element used to manage floating components such as edge menus and dialogs.  You do not need a target `<div/>` in your index.html.
-
-This replaces the typical code for launching a React app, which generally looks something like:
+When launching, ExtReact renders the `<App/>` component into the document body.  You do not need a target `<div/>` in your  index.html file. The code above replaces the typical code for launching a React app, which generally looks something like:
 
 ```jsx
 import ReactDOM from 'react-dom';
