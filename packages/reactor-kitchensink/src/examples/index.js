@@ -47,8 +47,8 @@ import BasicBar from './BasicBar/BasicBar';
 import BasicArea from './BasicArea/BasicArea';
 import BasicColumn from './BasicColumn/BasicColumn';
 import Basic3DColumn from './Basic3DColumn/Basic3DColumn';
-import Grouped from './Grouped/Grouped';
-import Stacked from './Stacked/Stacked';
+import ThreeDGrouped from './3DGrouped/3DGrouped';
+import ThreeDStacked from './3DStacked/3DStacked';
 import ThreeDColumnWithRenderer from './3DColumnWithRenderer/3DColumnWithRenderer';
 import NegativeValues from './NegativeValues/NegativeValues';
 import Candlestick from './Candlestick/Candlestick';
@@ -112,13 +112,15 @@ const root = {
                 { text: 'Basic Bar', component: BasicBar }
             ] },
             { text: 'Column', children: [
-                { text: 'Basic Column', component: BasicColumn },
-                { text: '3D Column', component: Basic3DColumn },
-                { text: 'Grouped', component: Grouped },
-                { text: 'Stacked', component: Stacked },
+                { text: 'Basic Column', component: BasicColumn }
+            ] },
+            { text: '3D Column', children: [
+                { text: 'Basic 3D Column', component: Basic3DColumn },
+                { text: '3D Grouped', component: ThreeDGrouped },
+                { text: '3D Stacked', component: ThreeDStacked },
                 { text: 'Negative Values', component: NegativeValues },
                 { text: '3D Column With Renderer', component: ThreeDColumnWithRenderer }
-            ] },
+            ]},
             { text: 'Financial', children: [
                 { text: 'Candlestick', component: Candlestick },
                 { text: 'OHLC', component: OHLC }
