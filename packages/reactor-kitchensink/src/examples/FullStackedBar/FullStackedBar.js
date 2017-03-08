@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Cartesian, Panel } from '@extjs/reactor/modern';
 import ChartToolbar from '../Charts/ChartToolbar';
-import createData from './createData';
 
 export default class FullStackedBar extends Component {
     constructor() {
