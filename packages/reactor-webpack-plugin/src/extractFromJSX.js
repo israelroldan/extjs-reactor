@@ -113,7 +113,7 @@ module.exports = function extractFromJSX(js) {
                                 // will get here if the value contains jsx or something else that can't be converted back to js
                             }
                         } else if (valueNode.type.match(/Literal$/i)) {
-                            configs[name] = `"${valueNode.value}"`;
+                            configs[name] = `"${valueNode.value.replace(/"/g, '\\"')}"`;
                         }
                     }
 
