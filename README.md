@@ -28,16 +28,7 @@ The boilerplate project uses Ext JS 6 with the modern toolkit. There is also a [
 
 ### Launching Your App
 
-Typically React apps are launched with something like:
-
-```jsx
-import ReactDOM from 'react-dom';
-import App from './App';
-
-ReactDOM.render(<App/>, document.getElementById('root'));
-```
-
-When using ExtReact, remove the root div from your index.html file (the target element for ReactDOM.render) and replace the above code with:
+To launch your app, add the following to your index.js (your webpack entry point):
 
 ```jsx
 import { launch } from '@extjs/reactor';
@@ -46,7 +37,16 @@ import App from './App';
 launch(<App/>);
 ```
 
-When launching, ExtReact renders the `<App/>` component into a viewport element used to manage floating components such as edge menus and dialogs.  You do not need a target `<div/>` in your index.html.
+When launching, ExtReact renders `<App/>` into a new viewport DOM element used to manage floating components such as edge menus and dialogs.  You do not need a target `<div/>` in your index.html.
+
+This replaces the typical code for launching a React app, which generally looks something like:
+
+```jsx
+import ReactDOM from 'react-dom';
+import App from './App';
+
+ReactDOM.render(<App/>, document.getElementById('root'));
+```
 
 ### Hello World
 
