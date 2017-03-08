@@ -6,22 +6,15 @@ Ext.require('Ext.app.ViewModel');
 
 export default class TreeExample extends Component {
 
-    constructor() {
-        super();
-        this.store = Ext.create('Ext.data.TreeStore', {
-            rootVisible: true,
-            root: data
-        })
-    }
+    store = Ext.create('Ext.data.TreeStore', {
+        rootVisible: true,
+        root: data
+    })
 
     render() {
         return (
-            <Tree
-                width={350}
-                height={400}
-                store={this.store}
-                shadow
-            />
+            <Tree store={this.store} shadow/>
         )
     }
+
 }

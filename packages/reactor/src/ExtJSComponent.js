@@ -111,12 +111,10 @@ export default class ExtJSComponent extends Component {
     // end react renderer methods
 
     _renderRootComponent(renderToDOMNode, config) {
-        if (this.reactorSettings.viewport) {
-            defaults(config, {
-                height: '100%',
-                width: '100%'
-            });
-        }
+        defaults(config, {
+            height: '100%',
+            width: '100%'
+        });
 
         config.renderTo = renderToDOMNode;
 

@@ -33,7 +33,6 @@ export default class Users extends Component {
                     style={{ margin: '10px' }}
                     onChange={() => this.onSearch()} 
                 />
-                <SelectField options={[{ text: 'Foo', value: 'Foo'}]}/>
                 <Grid
                     store={this.store}
                     shadow={true}
