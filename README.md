@@ -46,7 +46,7 @@ import App from './App';
 launch(<App/>);
 ```
 
-This allows ExtReact to create a viewport for managing floating elements such as edge menus and dialogs and ensures that your app is rendered into the correct DOM element.
+When launching, ExtReact renders the `<App/>` component into a viewport element used to manage floating components such as edge menus and dialogs.  You do not need a target `<div/>` in your index.html.
 
 ### Hello World
 
