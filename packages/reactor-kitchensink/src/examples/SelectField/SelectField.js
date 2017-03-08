@@ -8,7 +8,7 @@ export default function SelectFieldExample() {
         <FormPanel shadow>
             <SelectField 
                 label="Select"  
-                onChange={value => Ext.toast(`You selected ${value}`)}
+                onChange={(field, newValue) => Ext.toast(`You selected ${newValue.get('value')}`)}
                 options={[
                     { text: 'Option 1', value: 1 },
                     { text: 'Option 2', value: 2 },

@@ -6,13 +6,6 @@ Ext.require('Ext.Toast');
 
 export default class ListExample extends Component {
 
-    constructor() {
-        super();
-        this.store = Ext.create('Ext.data.TreeStore', { 
-            root 
-        });
-    }
-
     render() {
         return (
             <NestedList
@@ -20,9 +13,17 @@ export default class ListExample extends Component {
                 shadow
                 displayField="text"
                 store={this.store}
-                onLeafItemTap={(nestedList, list, index, target, record) => Ext.toast(`You selected ${record.get('text')}`)}
+                onLeafItemTap={this.onLeafItemTap}
             />
         )
+    }
+    
+    store = Ext.create('Ext.data.TreeStore', { 
+        root 
+    });
+
+    onLeafItemTap = (nestedList, list, index, target, record) => {
+        Ext.toast(`You selected ${record.get('text')}`)
     }
     
 }

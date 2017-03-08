@@ -28,22 +28,22 @@ export default class MenuExample extends Component {
         
         return (
             <Panel>
-                <EdgeMenu side="left" displayed={left} onHide={() => this.setState({ left: false })}>
+                <EdgeMenu side="left" displayed={left} modal={false} onHide={() => this.setState({ left: false })}>
                     <Button text="Settings" iconCls="x-fa fa-gear" handler={() => this.setState({left: false})}/>
                     <Button text="New Item" iconCls="x-fa fa-pencil" handler={() => this.setState({left: false})}/>
                     <Button text="Star" iconCls="x-fa fa-star" handler={() => this.setState({left: false})}/>
                 </EdgeMenu>
-                <EdgeMenu side="right" displayed={right} onHide={() => this.setState({ right: false })}>
+                <EdgeMenu side="right" displayed={right} modal={false} onHide={() => this.setState({ right: false })}>
                     <Button text="Settings" iconCls="x-fa fa-gear" handler={() => this.setState({right: false})}/>
                     <Button text="New Item" iconCls="x-fa fa-pencil" handler={() => this.setState({right: false})}/>
                     <Button text="Star" iconCls="x-fa fa-star" handler={() => this.setState({right: false})}/>
                 </EdgeMenu>
-                <EdgeMenu side="top" cover displayed={top} onHide={() => this.setState({ top: false })}>
+                <EdgeMenu side="top" cover displayed={top} modal={false} onHide={() => this.setState({ top: false })}>
                     <Button text="Settings" iconCls="x-fa fa-gear" handler={() => this.setState({top: false})}/>
                     <Button text="New Item" iconCls="x-fa fa-pencil" handler={() => this.setState({top: false})}/>
                     <Button text="Star" iconCls="x-fa fa-star" handler={() => this.setState({top: false})}/>
                 </EdgeMenu>
-                <EdgeMenu side="bottom" slide displayed={bottom} onHide={() => this.setState({ bottom: false })}>
+                <EdgeMenu side="bottom" slide displayed={bottom} modal={false} onHide={() => this.setState({ bottom: false })}>
                     <Button text="Settings" iconCls="x-fa fa-gear" handler={() => this.setState({bottom: false})}/>
                     <Button text="New Item" iconCls="x-fa fa-pencil" handler={() => this.setState({bottom: false})}/>
                     <Button text="Star" iconCls="x-fa fa-star" handler={() => this.setState({bottom: false})}/>

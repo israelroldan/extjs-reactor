@@ -30,6 +30,6 @@ const addTreeLevel = (data, fieldName, fieldsToCopy, notBlank) => {
 
 export default function readTreeData(response) {
     let data = JSON.parse(response.responseText);
-    data = addTreeLevel(data, 'industry', ['salary', 'state'], 'industry');
+    data = addTreeLevel(data, 'industry_type', ['salary', 'state'], 'industry');
     return addTreeLevel(data, 'state', [], 'state');
 }

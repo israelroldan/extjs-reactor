@@ -16,7 +16,7 @@ export default class ToolbarExample extends Component {
         const { message } = this.state;
 
         return (
-            <Panel height={300} width={500} shadow bodyPadding={0}>
+            <Panel shadow bodyPadding={0}>
                 <Toolbar docked="top">
                     <Button text="Default" onTap={this.buttonHandler.bind(this)} badgeText="2"/>
                     <Spacer/>

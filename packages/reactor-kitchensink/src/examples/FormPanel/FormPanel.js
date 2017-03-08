@@ -21,6 +21,8 @@ import {
     Toolbar
 } from '@extjs/reactor/modern';
 
+Ext.require('Ext.field.InputMask'); // need to require this specifically for inputMask props to work
+
 export default class FormPanelExample extends Component {
     constructor() {
         super();
@@ -39,10 +41,11 @@ export default class FormPanelExample extends Component {
         
         return (
             <FormPanel ref="form" shadow>
-                <FieldSet disabled={disabled} ref="personal" title="Personal Info" instructions="Please enter the information above.">
+                <FieldSet disabled={disabled} ref="personal" title="Personal Info">
                     <TextField {...defaults} label="Name" required placeholder="This fields is required"/>
                     <PasswordField {...defaults} label="Password" required revealable/>
                     <EmailField {...defaults} label="Email" placeholder="me@sencha.com"/>
+                    <TextField {...defaults} label="Phone Number" inputMask="(999) 999-9999" inputType="tel"/>
                     <UrlField {...defaults} label="URL" placeholder="http://sencha.com"/>
                     <SpinnerField label="Spinner" minValue={0} maxValue={0} stepValue={1} cycle margin="15 0 0 0"/>
                     <DatePickerField {...defaults} label="Start Date"/>

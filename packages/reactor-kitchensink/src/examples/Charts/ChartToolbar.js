@@ -13,13 +13,23 @@ Ext.require([
 const toolbarItemDefaults = {
     margin: '0 0 0 10px'
 }
+
+const downloadChart = (chart) => {
+    if(Ext.is.Desktop) {
+        chart.download({ filename: 'Chart' });
+    } else {
+        chart.preview();
+    }
+}
     
 export default function ChartToolbar({ 
     theme, 
     onThemeChange, 
     onToggleZoomOnPan, 
     onToggleCrosshair,
-    onRefreshClick 
+    onRefreshClick,
+    downloadChartRef,
+    onStackGroup
 }) {
     return (
         <Toolbar docked="top">
@@ -41,8 +51,27 @@ export default function ChartToolbar({
                 />                    
             )}
             <Spacer/>
+            { downloadChartRef && (
+                <Button 
+                    iconCls="x-fa fa-eye" 
+                    text="Preview" 
+                    handler={downloadChart.bind(null, downloadChartRef)}
+                    platformConfig={{
+                        desktop: {
+                            text: 'Download',
+                            iconCls: 'x-fa fa-download'
+                        }
+                    }}
+                />
+            )}
             { onRefreshClick && (
-                <Button {...toolbarItemDefaults} iconCls="x-fa fa-refresh" handler={onRefreshClick}>Refresh</Button>
+                <Button {...toolbarItemDefaults} iconCls="x-fa fa-refresh" handler={onRefreshClick} text="Refresh"/>
+            )}
+            { onStackGroup && (
+                <SegmentedButton onToggle={onStackGroup}>
+                    <Button ui="default-toolbar" text="Stack" pressed/>
+                    <Button ui="default-toolbar" text="Group"/>
+                </SegmentedButton>
             )}
             { onToggleZoomOnPan && (
                 <SegmentedButton {...toolbarItemDefaults}>
