@@ -7,10 +7,6 @@ export default function CheckBoxFieldExample() {
             <CheckBoxField 
                 boxLabel="Box Label"
             />
-            <CheckBoxField 
-                label="Label" 
-                labelWidth="auto"
-            />
         </FormPanel>
     )
 }

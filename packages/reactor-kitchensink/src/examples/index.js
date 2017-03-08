@@ -11,6 +11,7 @@ import Button from './Button/Button';
 import SegmentedButton from './SegmentedButton/SegmentedButton';
 import Carousel from './Carousel/Carousel';
 import TextField from './TextField/TextField';
+import FieldSet from './FieldSet/FieldSet';
 import EmailField from './EmailField/EmailField';
 import UrlField from './UrlField/UrlField';
 import PasswordField from './PasswordField/PasswordField';
@@ -47,6 +48,10 @@ import BasicBar from './BasicBar/BasicBar';
 import BasicArea from './BasicArea/BasicArea';
 import BasicColumn from './BasicColumn/BasicColumn';
 import Basic3DColumn from './Basic3DColumn/Basic3DColumn';
+import Grouped from './Grouped/Grouped';
+import Stacked from './Stacked/Stacked';
+import ThreeDColumnWithRenderer from './3DColumnWithRenderer/3DColumnWithRenderer';
+import NegativeValues from './NegativeValues/NegativeValues';
 import Candlestick from './Candlestick/Candlestick';
 import OHLC from './OHLC/OHLC';
 import Navigator from './Navigator/Navigator';
@@ -65,6 +70,21 @@ import ConfigurablePivotTreeMap from './ConfigurablePivotTreeMap/ConfigurablePiv
 import Pack from './Pack/Pack';
 import Sunburst from './Sunburst/Sunburst';
 import ZoomableSunburst from './ZoomableSunburst/ZoomableSunburst';
+import BasicMarkers from './BasicMarkers/BasicMarkers';
+import Spline from './Spline/Spline';
+import SplineMarkers from './SplineMarkers/SplineMarkers';
+import Plot from './Plot/Plot';
+import WithRenderer from './WithRenderer/WithRenderer';
+import Realtime from './Realtime/Realtime';
+import Spie from './Spie/Spie';
+import Donut from './Donut/Donut';
+import DoubleDonut from './DoubleDonut/DoubleDonut';
+import ThreeDPie from './3DPie/3DPie';
+import CustomIcons from './CustomIcons/CustomIcons';
+import Bubble from './Bubble/Bubble';
+import Filled from './Filled/Filled';
+import Marked from './Marked/Marked';
+import Multiaxis from './Multiaxis/Multiaxis';
 import SearchField from './SearchField/SearchField';
 import FileField from './FileField/FileField';
 import CardLayout from './card/card';
@@ -96,10 +116,12 @@ const root = {
                 { text: 'Full Stacked Bar', component: FullStackedBar}
             ] },
             { text: 'Column', children: [
-                { text: 'Basic Column', component: BasicColumn }
-            ] },
-            { text: '3D Column', children: [
-                { text: 'Basic 3D Column', component: Basic3DColumn }
+                { text: 'Basic Column', component: BasicColumn },
+                { text: '3D Column', component: Basic3DColumn },
+                { text: 'Grouped', component: Grouped },
+                { text: 'Stacked', component: Stacked },
+                { text: 'Negative Values', component: NegativeValues },
+                { text: '3D Column With Renderer', component: ThreeDColumnWithRenderer }
             ] },
             { text: 'Financial', children: [
                 { text: 'Candlestick', component: Candlestick },
@@ -109,17 +131,32 @@ const root = {
                 { text: 'Basic Gauge', component: BasicGauge }
             ] },
             { text: 'Line', children: [
-                { text: 'Basic Line', component: BasicLine }
+                { text: 'Basic Line', component: BasicLine },
+                { text: 'Basic Markers', component: BasicMarkers },
+                { text: 'Spline', component: Spline },
+                { text: 'Spline Markers', component: SplineMarkers },
+                { text: 'Plot', component: Plot },
+                { text: 'With Renderer', component: WithRenderer },
+                { text: 'Realtime', component: Realtime }
             ] },
             { text: 'Navigator', component: Navigator },
             { text: 'Pie', children: [
-                { text: 'Basic Pie', component: BasicPie }
+                { text: 'Basic Pie', component: BasicPie },
+                { text: 'Spie', component: Spie },
+                { text: 'Donut', component: Donut },
+                { text: 'Double Donut', component: DoubleDonut },
+                { text: '3D Pie', component: ThreeDPie }
             ] },
             { text: 'Radar', children: [
-                { text: 'Basic Radar', component: BasicRadar }
+                { text: 'Basic Radar', component: BasicRadar },
+                { text: 'Filled', component: Filled },
+                { text: 'Marked', component: Marked },
+                { text: 'Multiaxis', component: Multiaxis }
             ] },
             { text: 'Scatter', children: [
-                { text: 'Basic Scatter', component: BasicScatter }
+                { text: 'Basic Scatter', component: BasicScatter },
+                { text: 'Custom Icons', component: CustomIcons },
+                { text: 'Bubble', component: Bubble }
             ] }
         ] },
         { text: 'D3', children: [
@@ -139,7 +176,6 @@ const root = {
                 { text: 'Zoomable Sunburst', component: ZoomableSunburst }
             ]}
         ] },
-        { text: 'DatePanel', component: InProgress },
         { text: 'Draw', component: Draw },
         { text: 'EdgeMenu', component: EdgeMenu },
         { text: 'Form Fields', children: [
@@ -147,6 +183,7 @@ const root = {
             { text: 'ComboBoxField', component: ComboBoxField },
             { text: 'DatePickerField', component: DatePickerField },
             { text: 'EmailField', component: EmailField },
+            { text: 'FieldSet', component: FieldSet },
             { text: 'FileField', component: FileField },
             { text: 'FormPanel', component: FormPanel },
             { text: 'Gauge', component: Gauge },

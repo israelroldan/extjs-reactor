@@ -5,7 +5,7 @@ export default class RippleExample extends React.Component {
 
     render() {
         return (
-            <Container>
+            <Container scrollable>
                 <div 
                     onClick={event => Ext.fly(event.target).ripple({ event })} 
                     style={styles.rippleTarget}
@@ -31,6 +31,7 @@ const styles = {
         textAlign: 'center',
         backgroundColor: 'white',
         cursor: 'pointer',
-        whiteSpace: 'wrap'
+        whiteSpace: 'wrap',
+        border: '2px dashed #D0D0D0'
     }
 }

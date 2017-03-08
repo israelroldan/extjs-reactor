@@ -14,7 +14,7 @@ module.exports = function (env) {
     const plugins = [
         new ExtJSReactorWebpackPlugin({
             sdk: isLocalSdk ? 'ext/ext' : 'ext', // you need to copy the Ext JS SDK to the root of this package, or you can specify a full path to some other location
-            theme: './ext-material',
+            theme: './theme-kitchensink',
             asynchronous: true,
             packages: [
                 'font-ext', 
