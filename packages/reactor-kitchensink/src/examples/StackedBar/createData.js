@@ -2,7 +2,7 @@ let seed = 1.3;
 
 function random() {
     seed *= 7.3;
-    seed *= Math.floor(seed);
+    seed -= Math.floor(seed);
     return seed;
 }
 

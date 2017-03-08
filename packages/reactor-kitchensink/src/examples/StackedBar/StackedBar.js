@@ -21,7 +21,8 @@ export default class StackedBarChartExample extends Component {
     });
 
     refresh = () => {
-        this.store.loadData(createData(25));
+        console.log();
+        this.store.loadData(createData(15));
     }
 
     state = {
@@ -43,7 +44,8 @@ export default class StackedBarChartExample extends Component {
                     theme={theme}
                 />
                 <Cartesian
-                    flipXY={ true }
+                flipXY={true}
+                reference={'chart'}
                     store={this.store}
                     series={[{
                         type: 'bar',

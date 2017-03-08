@@ -43,6 +43,7 @@ import BasicPie from './BasicPie/BasicPie';
 import BasicLine from './BasicLine/BasicLine';
 import BasicGauge from './BasicGauge/BasicGauge';
 import BasicBar from './BasicBar/BasicBar';
+import StackedBar from './StackedBar/StackedBar';
 import BasicArea from './BasicArea/BasicArea';
 import BasicColumn from './BasicColumn/BasicColumn';
 import Basic3DColumn from './Basic3DColumn/Basic3DColumn';
@@ -89,7 +90,8 @@ const root = {
                 { text: 'Basic Area', component: BasicArea }
             ] },
             { text: 'Bar', children: [
-                { text: 'Basic Bar', component: BasicBar }
+                { text: 'Basic Bar', component: BasicBar },
+                { text: 'Stacked Bar', component: StackedBar }
             ] },
             { text: 'Column', children: [
                 { text: 'Basic Column', component: BasicColumn }
