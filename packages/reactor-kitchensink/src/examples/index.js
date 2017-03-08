@@ -47,6 +47,7 @@ import BasicBar from './BasicBar/BasicBar';
 import BasicArea from './BasicArea/BasicArea';
 import BasicColumn from './BasicColumn/BasicColumn';
 import Stacked from './Stacked/Stacked';
+import ColumnWithRenderer from './ColumnWithRenderer/ColumnWithRenderer';
 import Basic3DColumn from './Basic3DColumn/Basic3DColumn';
 import ThreeDGrouped from './3DGrouped/3DGrouped';
 import ThreeDStacked from './3DStacked/3DStacked';
@@ -114,7 +115,8 @@ const root = {
             ] },
             { text: 'Column', children: [
                 { text: 'Basic Column', component: BasicColumn },
-                { text: 'Stacked', component: Stacked }
+                { text: 'Stacked', component: Stacked },
+                { text: 'Column With Renderer', component: ColumnWithRenderer }
             ] },
             { text: '3D Column', children: [
                 { text: 'Basic 3D Column', component: Basic3DColumn },
