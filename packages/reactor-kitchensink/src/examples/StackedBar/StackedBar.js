@@ -28,13 +28,12 @@ export default class StackedBarChartExample extends Component {
         this.store.loadData(createData(15));
     }
 
-    changeTeam = (select, choice) => {
+    changeTheme = (select, choice) => {
         this.setState({ theme: choice.get('value') })
     }
 
     render() {
         const { theme } = this.state;
-
         return (
             <Panel shadow layout="fit">
                 <ChartToolbar
