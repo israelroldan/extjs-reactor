@@ -37,7 +37,7 @@ import App from './App';
 launch(<App/>);
 ```
 
-When launching, ExtReact renders the `<App/>` component into the document body.  You do not need a target `<div/>` in your  index.html file. The code above replaces the typical code for launching a React app, which generally looks something like:
+The `launch` function renders the `<App/>` component into the document body.  You do not need a separate target `<div/>` in your  index.html file, and should remove it if one exists. The code above replaces the typical code for launching a React app, which generally looks something like:
 
 ```jsx
 import ReactDOM from 'react-dom';
