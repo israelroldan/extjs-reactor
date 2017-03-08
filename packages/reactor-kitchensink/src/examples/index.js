@@ -24,6 +24,7 @@ import TextAreaField from './TextAreaField/TextAreaField';
 import RadioField from './RadioField/RadioField';
 import Gauge from './Gauge/Gauge';
 import FormPanel from './FormPanel/FormPanel';
+import FullStackedBar from './FullStackedBar/FullStackedBar';
 import PivotGrid from './PivotGrid/PivotGrid';
 import Video from './Video/Video';
 import Audio from './Audio/Audio';
@@ -91,7 +92,8 @@ const root = {
             ] },
             { text: 'Bar', children: [
                 { text: 'Basic Bar', component: BasicBar },
-                { text: 'Stacked Bar', component: StackedBar }
+                { text: 'Stacked Bar', component: StackedBar },
+                { text: 'Full Stacked Bar', component: FullStackedBar}
             ] },
             { text: 'Column', children: [
                 { text: 'Basic Column', component: BasicColumn }
