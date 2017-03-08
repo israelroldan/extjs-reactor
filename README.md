@@ -37,7 +37,7 @@ import App from './App';
 launch(<App/>);
 ```
 
-The `launch` function renders the `<App/>` component into the document body.  You do not need a separate target `<div/>` in your  index.html file.  If you have one you should remove it. The code above replaces the typical code for launching a React app, which generally looks something like:
+The `launch` function renders the `<App/>` component into the document body.  You do not need a separate target `<div id="root"/>` in your  index.html file.  If you have one you should remove it. The code above replaces the typical code for launching a React app, which generally looks something like:
 
 ```jsx
 import ReactDOM from 'react-dom';
