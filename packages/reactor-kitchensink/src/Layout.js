@@ -32,8 +32,25 @@ export default class Layout extends Component {
         this.highlightCode();
 
         if (Ext.os.is.Phone) {
+            const nav = this.refs.phoneNav;
             const node = this.getNodeForRoute();
-            if (node) this.refs.phoneNav.goToLeaf(node);
+
+            if (node) {
+                /**
+                 * Let's go to the parent's node without animation.
+                 * This is so when someone hits the back button in the toolbar,
+                 * they are taken to the correct list they would expect.
+                 *
+                 * This likely happened when someone is deep linking into
+                 * the application without user interaction
+                 * (changing hash manually or first visiting via bookmark).
+                 */                
+                const anim = nav.getLayout().getAnimation();
+                anim.disable();
+                nav.goToNode(node.parentNode);
+                anim.enable();
+                nav.goToLeaf(node);
+            }
         }
     }
 
