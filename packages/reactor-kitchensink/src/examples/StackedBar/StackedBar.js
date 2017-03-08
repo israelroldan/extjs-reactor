@@ -42,8 +42,8 @@ export default class StackedBarChartExample extends Component {
                     theme={theme}
                 />
                 <Cartesian
-                flipXY={true}
-                reference={'chart'}
+                    flipXY={true}
+                    reference={'chart'}
                     store={this.store}
                     series={[{
                         type: 'bar',
