@@ -20,32 +20,30 @@ export default class StackedBarChartExample extends Component {
         fields: ['id', 'g1', 'g2', 'g3', 'g4', 'g5', 'g6', 'name']
     });
 
-    refresh = () => {
-        console.log();
-        this.store.loadData(createData(15));
-    }
-
     state = {
         theme: 'default'
     };
 
-    changeTeam = (select, choice) => {
+    refresh = () => {
+        this.store.loadData(createData(15));
+    }
+
+    changeTheme = (select, choice) => {
         this.setState({ theme: choice.get('value') })
     }
 
     render() {
         const { theme } = this.state;
-
         return (
-            <Panel shadow layout="fit" title="Fungujem">
+            <Panel shadow layout="fit">
                 <ChartToolbar
                     onThemeChange={this.changeTheme}
                     onRefreshClick={this.refresh}
                     theme={theme}
                 />
                 <Cartesian
-                flipXY={true}
-                reference={'chart'}
+                    flipXY={true}
+                    reference={'chart'}
                     store={this.store}
                     series={[{
                         type: 'bar',
