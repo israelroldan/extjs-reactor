@@ -156,7 +156,10 @@ module.exports = class ReactExtJSWebpackPlugin {
 
             this._buildExtBundle('ext', modules, outputPath, build)
                 .then(() => !this.asynchronous && callback())
-                .catch(e => !this.asynchronous && callback(e || new Error('Error building Ext JS bundle')));
+                .catch(e => {
+                    console.error(e);
+                    compilation.errors.push(new Error('[@extjs/reactor-webpack-plugin]: ' + e.toString()));
+                });
         });
     }
 

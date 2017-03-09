@@ -26,25 +26,25 @@ The boilerplate project uses Ext JS 6 with the modern toolkit. There is also a [
 
 ## Basic Concepts
 
-### Configuration
+### Launching Your App
 
-First, install reactor.  We recommend doing this in your index.js file (your webpack entry point).  This only needs to be done once in your app.
+To launch your app, add the following to your index.js file (your webpack entry point):
 
 ```jsx
-import { install } from '@extjs/reactor';
-install();
+import { launch } from '@extjs/reactor';
+import App from './App';
+
+launch(<App/>);
 ```
 
-If you want to use Ext JS to control your application's layout, call `install` with `viewport: true` and provide a launch callback function:
+The `launch` function renders the `<App/>` component into the document body.  You do not need a separate target `<div id="root"/>` in your  index.html file.  If you have one you should remove it. The code above replaces the typical code for launching a React app, which generally looks something like:
 
-```javascript
-install({ 
-    viewport: true,
-    launch: target => ReactDOM.render(<App/>, target)
-});
+```jsx
+import ReactDOM from 'react-dom';
+import App from './App';
+
+ReactDOM.render(<App/>, document.getElementById('root'));
 ```
-
-The target element passed to `launch` is the element into which your react app should be rendered.
 
 ### Hello World
 
@@ -52,18 +52,14 @@ Here's a minimal React app that renders an Ext.Panel using the modern toolkit:
 
 ```jsx
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { install } from '@extjs/reactor';
+import { launch } from '@extjs/reactor';
 import { Panel } from '@extjs/reactor/modern';
 
 // Install the Ext JS custom renderer
-install({ 
-    viewport: true,
-    launch: target => ReactDOM.render((
-        <Panel title="React Ext JS">
-            Hello World!
-        </Panel>
-    ), target)
+launch(
+    <Panel title="React Ext JS">
+        Hello World!
+    </Panel>
 });
 ```
 

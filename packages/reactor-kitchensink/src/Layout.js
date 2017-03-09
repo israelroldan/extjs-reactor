@@ -1,112 +1,108 @@
 import React, { Component } from 'react';
-import { TitleBar, TabPanel, Panel, Container, Button, List } from '@extjs/reactor/modern';
+import { connect } from 'react-redux';
+import { TitleBar, Container, NestedList } from '@extjs/reactor/modern';
 import hljs, { highlightBlock } from 'highlightjs';
-import code from './code';
-import examples from './examples';
 import NavTree from './NavTree';
-
-// JSX syntax highlighting
-import 'highlightjs/styles/atom-one-dark.css';
-import H_js from './H_js';
-hljs.registerLanguage('js', H_js);
-
-function codeClassFor(file)  {
-    if (file.endsWith('.css')) {
-        return 'css';
-    } else {
-        return 'js xml'
-    }
-}
-
-export default class Layout extends Component {
-    
-    constructor() {
-        super();
-        this.codePanels = [];
-
-        this.navTreeStore = Ext.create('Ext.data.TreeStore', {
-            rootVisible: true,
-            root: examples
-        });
-    }
+import Files from './Files';
+class Layout extends Component {
 
     componentDidMount() {
-        this.highlightCode();
-    }
+        if (Ext.os.is.Phone) {
+            const node = this.props.selectedNavNode;
 
-    componentDidUpdate() {
-        this.highlightCode();
-    }
-    
-    highlightCode() {
-        if (this.refs.examples) for (let el of this.refs.examples.el.query('.code')) {
-            highlightBlock(el);
+            if (node) {
+                /**
+                 * Let's go to the parent's node without animation.
+                 * This is so when someone hits the back button in the toolbar,
+                 * they are taken to the correct list they would expect.
+                 *
+                 * This likely happened when someone is deep linking into
+                 * the application without user interaction
+                 * (changing hash manually or first visiting via bookmark).
+                 */   
+                const nav = this.refs.phoneNav;
+                const anim = nav.getLayout().getAnimation();
+                anim.disable();
+                nav.goToNode(node.parentNode);
+                anim.enable();
+                nav.goToLeaf(node);
+            }
         }
     }
 
     onNavChange(node) {
-        if (!node.isLeaf()) return;
-        const { router, location } = this.props;
-        const path = `/${node.getId()}`;
-        
-        if (location.pathname !== path) {
-            router.push(path)
+        if (node.isLeaf()) {
+            const { router, location } = this.props;
+            const path = `/${node.getId()}`;
+            if (location.pathname !== path) router.push(path)
         }
     }
 
     render() {
-        const { router, children, location } = this.props;
-        const key = location.pathname.slice(1);
-        const files = code[key];
-        const docsMode = location.query.mode === 'docs';
-        const selectedNode = this.navTreeStore.getNodeById(key);
-        
-        if (selectedNode) selectedNode.parentNode.expand();
-        const component = selectedNode && selectedNode.get('component');
+        const { 
+            selectedNavNode, 
+            component, 
+            onSelectComponent, 
+            navStore, 
+            mode, 
+            files 
+        } = this.props;
+
+        let mainView;
+
+        if (Ext.os.is.Phone) {
+            // phone layout
+            mainView = (
+                <NestedList 
+                    ref="phoneNav"
+                    store={navStore} 
+                    title='<i class="ext ext-sencha" style="position: relative; top: 1px; margin-right: 4px"></i> ExtReact Kitchen Sink'
+                    onLeafItemTap={(self, list, index, target, node) => this.onNavChange(node)}
+                    flex={1}
+                >
+                    { component && (
+                        <Container rel="detailCard" layout="fit">
+                            { React.createElement(component) }
+                        </Container>
+                    ) }
+                </NestedList>
+            )
+        } else {
+            // desktop + tablet layout
+            mainView = (
+                <Container layout="fit" flex={4}>
+                    <TitleBar docked="top">
+                        <div className="ext ext-sencha" style={{marginRight: '7px', fontSize: '20px'}}/>
+                        ExtReact Kitchen Sink
+                    </TitleBar>
+                    <Container layout={{type: 'hbox', align: 'stretch'}} flex={1}>
+                        <NavTree 
+                            width={250} 
+                            store={navStore} 
+                            selection={selectedNavNode}
+                            onSelectionChange={(tree, node) => this.onNavChange(node)}
+                        /> 
+                        <Container layout="fit" flex={1} margin={30}>{ component && React.createElement(component) }</Container>
+                    </Container>
+                </Container>             
+            )
+        }
 
         return (
             <Container layout={{type: 'hbox', align: 'stretch'}} cls="main-background">
-                { !docsMode && (
-                    <Container layout="fit" flex={4}>
-                        <TitleBar docked="top">
-                            <div className="ext ext-sencha" style={{marginRight: '7px', fontSize: '20px'}}/>
-                            ExtReact Kitchen Sink
-                        </TitleBar>
-                        <Container layout={{type: 'hbox', align: 'stretch'}} flex={1}>
-                            <NavTree 
-                                width={250} 
-                                store={this.navTreeStore} 
-                                selection={selectedNode}
-                                onSelectionChange={(tree, record) => this.onNavChange(record)}
-                            /> 
-                            <Container layout="fit" flex={1} margin={30}>{ component && React.createElement(component) }</Container>
-                        </Container>
-                    </Container>
-                )}
-                { files && (
-                    <TabPanel 
-                        tabBar={{hidden: docsMode && files.length === 1 }}
-                        title="Code"
-                        flex={2}
-                        bodyPadding="0"
-                        shadow
-                        ref="examples"
-                        style={{backgroundColor: '#282c34'}}
-                    >
-                        { files.map((file, i) => (
-                            <Container 
-                                key={i}
-                                scrollable={true}
-                                title={file.file}
-                                layout="fit"
-                                style={{backgroundColor: '#282c34'}}
-                                html={`<pre><code class="code ${codeClassFor(file.file)}">${file.content.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code></pre>`}
-                            />
-                        ))}
-                    </TabPanel>
-                )}
+                { mode !== 'docs' && mainView }
+                { !Ext.os.is.Phone && files && <Files files={files} mode={mode} /> }
             </Container>
         );
     }
 }
 
+const mapStateToProps = (state) => {
+    return { ...state }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Layout)

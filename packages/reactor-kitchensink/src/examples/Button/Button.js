@@ -7,7 +7,7 @@ Ext.require('Ext.Toast');
 export default function ButtonExample() {
     return (
         <Container layout={{ type: 'hbox', pack: 'left', align: 'left' }} scrollable>
-            <Panel shadow bodyPadding="0 20 0 0">
+            <Panel bodyPadding="0 20 0 0" shadow={!Ext.os.is.Phone}>
                 <table className="button-table">
                     <tbody>
                         <tr>
