@@ -3,20 +3,16 @@ import { FormPanel, SliderField } from '@extjs/reactor/modern';
 
 export default class SliderFieldExample extends Component {
 
-    constructor() {
-        super();
+    state = {
+        singleValue: 20,
+        multipleValue: [10, 70]
+    };
 
-        this.state = {
-            singleValue: 20,
-            multipleValue: [10, 70]
-        };
-    }
-
-    onSingleChange(field, value) {
+    onSingleChange = (field, value) => {
         this.setState({ singleValue: value });
     }
 
-    onMultipleChange(field, value) {
+    onMultipleChange = (field, value) => {
         this.setState({ multipleValue: value });
     }
 
@@ -26,13 +22,13 @@ export default class SliderFieldExample extends Component {
         return (
             <FormPanel shadow>
                 <SliderField 
-                    onChange={this.onSingleChange.bind(this)}
+                    onChange={this.onSingleChange}
                     label="Single Thumb"
                     value={singleValue}
                 />
                 <div style={{marginBottom: '20px'}}>Value: {singleValue}</div>
                 <SliderField 
-                    onChange={this.onMultipleChange.bind(this)}
+                    onChange={this.onMultipleChange}
                     label="Multiple Thumbs"
                     values={multipleValue}
                 />
