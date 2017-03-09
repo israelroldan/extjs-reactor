@@ -27,7 +27,7 @@ export default class NavTree extends Component {
         if (selection) selection.parentNode.expand();
 
         return (
-            <Panel scrollable="y" width={width}>
+            <Panel scrollable="y" width={width} shadow>
                 <SearchField flex={1} docked="top" style={{backgroundColor: '#fafafa', padding: '5px' }} onChange={this.filterNav} />
                 <TreeList
                     ui="component-tree"

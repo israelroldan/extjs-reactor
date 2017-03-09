@@ -4,6 +4,8 @@ import { TitleBar, Container, NestedList } from '@extjs/reactor/modern';
 import hljs, { highlightBlock } from 'highlightjs';
 import NavTree from './NavTree';
 import Files from './Files';
+import Home from './Home';
+
 class Layout extends Component {
 
     componentDidMount() {
@@ -45,8 +47,11 @@ class Layout extends Component {
             onSelectComponent, 
             navStore, 
             mode, 
-            files 
+            files,
+            children
         } = this.props;
+
+        console.log('children', children);
 
         let mainView;
 
@@ -82,7 +87,7 @@ class Layout extends Component {
                             selection={selectedNavNode}
                             onSelectionChange={(tree, node) => this.onNavChange(node)}
                         /> 
-                        <Container layout="fit" flex={1} margin={30}>{ component && React.createElement(component) }</Container>
+                        { component ? <Container layout="fit" flex={1} margin={30}>{ React.createElement(component) }</Container> : <Home flex={1}/> }
                     </Container>
                 </Container>             
             )
