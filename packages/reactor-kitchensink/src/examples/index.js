@@ -99,6 +99,7 @@ import VboxLayout from './vbox/vbox';
 import FormLayout from './form/form';
 import InProgress from '../InProgress';
 import NegativeValuesArea from './NegativeValuesArea/NegativeValuesArea';
+import MonthView from './Calendar/MonthView';
 
 const root = {
     id: 'root',
@@ -110,7 +111,10 @@ const root = {
             { text: 'Button', component: Button },
             { text: 'SegmentedButton', component: SegmentedButton },
         ]},
-        { text: 'Calendar', component: Calendar },
+        { text: 'Calendar', children:[
+            { text: 'Calendar Panel', component: Calendar},
+            { text: 'Month View', component:MonthView}
+        ]},
         { text: 'Carousel', component: Carousel },
         { text: 'Charts', children: [
             { text: 'Area', children: [
