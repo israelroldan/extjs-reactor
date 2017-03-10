@@ -1,4 +1,5 @@
 import Grid from './Grid/Grid';
+import ReduxGrid from './ReduxGrid/ReduxGrid';
 import Panel from './Panel/Panel';
 import TabPanel from './TabPanel/TabPanel';
 import Toolbar from './Toolbar/Toolbar';
@@ -214,7 +215,8 @@ const root = {
         ] },
         { text: 'Grids', children: [
             { text: 'Grid', component: Grid },
-            { text: 'PivotGrid', component: PivotGrid }
+            { text: 'PivotGrid', component: PivotGrid },
+            { text: 'Redux Grid', component: ReduxGrid }
         ] },
         { text: 'Layouts', children: [
             { text: 'card', component: CardLayout },
