@@ -35,7 +35,8 @@ export function reducer(state = initialState, action) {
             gridStore.filter({
                 property: 'fullName', 
                 value: searchStr,
-                disableOnEmpty: true
+                disableOnEmpty: true,
+                anyMatch: true
             });
             return {
                 ...state,
