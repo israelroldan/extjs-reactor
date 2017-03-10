@@ -1,28 +1,30 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Layout from './Layout';
 import { Router, Route, Link, hashHistory } from 'react-router'
-import Home from './Home';
-import code from './code';
-import * as examples from './examples';
+import { Provider } from 'react-redux';
+import { createStore, combineReducers } from 'redux';
+import reducer from './reducer';
+import { routeDidChange } from './actions';
 
-export default class App extends Component {
+const store = createStore(
+    reducer, 
+    undefined, 
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
-    constructor(props) {
-        super(props);
-    }
+// load new component when the route changes
+hashHistory.listen(location => store.dispatch(routeDidChange(location)));
 
-    onRoute(route) {
-        if (route.location.action === 'PUSH') {
-            console.log('onRoute', route.location.pathname.replace(/\//, ''));
-        }
-    }
+// load the component for the initial route
+store.dispatch(routeDidChange(hashHistory.getCurrentLocation()));
 
-    render() {
-        return (
+export default function App() {
+    return (
+        <Provider store={store}>
             <Router history={hashHistory}>
                 <Route path="/" component={Layout}/>
                 <Route path="/:component" component={Layout}/>
             </Router>
-        )
-    }
+        </Provider>
+    )
 }
