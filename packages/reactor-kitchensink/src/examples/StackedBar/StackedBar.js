@@ -43,8 +43,8 @@ export default class StackedBarChartExample extends Component {
                 />
                 <Cartesian
                     flipXY={true}
-                    reference={'chart'}
                     store={this.store}
+                    insetPadding={'20 20 10 10'}
                     series={[{
                         type: 'bar',
                         xField: 'name',
