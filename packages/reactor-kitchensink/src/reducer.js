@@ -22,7 +22,7 @@ export default function(state = initialState, action) {
             
             return {
                 ...state,
-                component: node.get('component'),
+                component: node && node.get('component'),
                 selectedNavNode: node,
                 files: code[location.pathname.slice(1)]
             }
