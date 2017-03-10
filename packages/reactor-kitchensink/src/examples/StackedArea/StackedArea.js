@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { Cartesian, Panel } from '@extjs/reactor/modern';
 import ChartToolbar from '../Charts/ChartToolbar';
 
-export default class FullStackedBar extends Component {
-    constructor() {
+export default class StackedAreaChartExample extends Component{
+    constructor(){
         super();
     }
 
     store = Ext.create('Ext.data.Store', {
-        fields: ['month', 'data1', 'data2', 'data3', 'data4', 'other'],
-        data: [
+        fields:['month', 'data1', 'data2', 'data3', 'data4', 'other'],
+        data:[
             { month: 'Jan', data1: 20, data2: 37, data3: 35, data4: 4, other: 4 },
             { month: 'Feb', data1: 20, data2: 37, data3: 36, data4: 5, other: 2 },
             { month: 'Mar', data1: 19, data2: 36, data3: 37, data4: 4, other: 4 },
@@ -21,8 +21,7 @@ export default class FullStackedBar extends Component {
             { month: 'Sep', data1: 16, data2: 32, data3: 44, data4: 4, other: 4 },
             { month: 'Oct', data1: 16, data2: 32, data3: 45, data4: 4, other: 3 },
             { month: 'Nov', data1: 15, data2: 31, data3: 46, data4: 4, other: 4 },
-            { month: 'Dec', data1: 15, data2: 31, data3: 47, data4: 4, other: 3 }
-        ]
+            { month: 'Dec', data1: 15, data2: 31, data3: 47, data4: 4, other: 3 }]
     });
 
     state = {
@@ -30,74 +29,70 @@ export default class FullStackedBar extends Component {
     };
 
     changeTheme = (select, choice) => {
-        this.setState({ theme: choice.get('value') })
-    };
+        this.setState({ theme: choice.get('value')})
+    }
 
-    onAxisLabelRender = (axis, label, layoutContext) => {
-        // Custom renderer overrides the native axis label renderer.
-        // Since we don't want to do anything fancy with the value
-        // ourselves except appending a '%' sign, but at the same time
-        // don't want to loose the formatting done by the native renderer,
-        // we let the native renderer process the value first.
-        return layoutContext.renderer(label) + '%';
-    };
+    onAxisLabelRender = (axis, label) => {
+        return label.toFixed(label < 10 ? 1 : 0) + '%';
+    }
 
     onSeriesTooltipRender = (tooltip, record, item) => {
         var fieldIndex = Ext.Array.indexOf(item.series.getYField(), item.field),
             browser = item.series.getTitle()[fieldIndex];
-
         tooltip.setHtml(browser + ' on ' + record.get('month') + ': ' +
             record.get(item.field) + '%');
-    };
+    }
 
-    render() {
+    render()
+    {
         const { theme } = this.state;
-
-        return (
+        return(
             <Panel shadow layout="fit">
                 <ChartToolbar
                     onThemeChange={this.changeTheme}
                     theme={theme}
                 />
                 <Cartesian
-                    insetPadding={'20 20 10 10'}
                     store={this.store}
-                     legend={{
-                        type: 'sprite',
-                        docked: 'bottom'
-                    }}
-                    flipXY={true}
+                    insetPadding={'20 20 10 10'}
+                    legend={{type:'sprite'}}
                     axes={[{
                         type: 'numeric',
                         fields: 'data1',
-                        position: 'bottom',
+                        position: 'left',
                         grid: true,
                         minimum: 0,
-                        maximum: 100,
-                        majorTickSteps: 10,
-                        renderer: this.onAxisLabelRender,
-                        label: {
-                            fontSize: 14
-                        }
+                        renderer: this.onAxisLabelRender
                     }, {
                         type: 'category',
                         fields: 'month',
-                        position: 'left',
+                        position: 'bottom',
                         grid: true,
                         label: {
-                            fontSize: 14
+                            rotate: {
+                                degrees: -90
+                            }
                         }
                     }]}
                     series={[{
-                        type: 'bar',
-                        fullStack: true,
-                        title: ['IE', 'Firefox', 'Chrome', 'Safari', 'Others'],
+                        type: 'area',
+                        title: [ 'IE', 'Firefox', 'Chrome', 'Safari' ],
                         xField: 'month',
-                        yField: ['data1', 'data2', 'data3', 'data4', 'other'],
-                        axis: 'bottom',
-                        stacked: true,
+                        yField: [ 'data1', 'data2', 'data3', 'data4' ],
                         style: {
                             opacity: 0.80
+                        },
+                        marker: {
+                            opacity: 0,
+                            scaling: 0.01,
+                            animation: {
+                                duration: 200,
+                                easing: 'easeOut'
+                            }
+                        },
+                        highlightCfg: {
+                            opacity: 1,
+                            scaling: 1.5
                         },
                         tooltip: {
                             trackMouse: true,

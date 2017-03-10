@@ -25,6 +25,7 @@ import TextAreaField from './TextAreaField/TextAreaField';
 import RadioField from './RadioField/RadioField';
 import Gauge from './Gauge/Gauge';
 import FormPanel from './FormPanel/FormPanel';
+import FullStackedArea from './FullStackedArea/FullStackedArea';
 import FullStackedBar from './FullStackedBar/FullStackedBar';
 import PivotGrid from './PivotGrid/PivotGrid';
 import Video from './Video/Video';
@@ -62,6 +63,7 @@ import Draw from './Draw/Draw';
 import Ripple from './Ripple/Ripple';
 import ComboBoxField from './ComboBoxField/ComboBoxField';
 import SalesPerEmployee from './SalesPerEmployee/SalesPerEmployee';
+import StackedArea from './StackedArea/StackedArea';
 import StackedBar from './StackedBar/StackedBar';
 import PurchasesByDay from './PurchasesByDay/PurchasesByDay';
 import PivotHeatmap from './PivotHeatmap/PivotHeatmap';
@@ -96,6 +98,7 @@ import HboxLayout from './hbox/hbox';
 import VboxLayout from './vbox/vbox';
 import FormLayout from './form/form';
 import InProgress from '../InProgress';
+import NegativeValuesArea from './NegativeValuesArea/NegativeValuesArea';
 
 const root = {
     id: 'root',
@@ -111,7 +114,10 @@ const root = {
         { text: 'Carousel', component: Carousel },
         { text: 'Charts', children: [
             { text: 'Area', children: [
-                { text: 'Basic Area', component: BasicArea }
+                { text: 'Basic Area', component: BasicArea },
+                { text: 'Stacked Area', component: StackedArea},
+                { text: 'Full Stacked Area', component: FullStackedArea},
+                { text: 'Negative Values Area', component: NegativeValuesArea}
             ] },
             { text: 'Bar', children: [
                 { text: 'Basic Bar', component: BasicBar },
