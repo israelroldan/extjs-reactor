@@ -37,6 +37,7 @@ class SimpleGrid extends Component {
                 <Toolbar docked="top">
                     <TextField 
                         label="Search name"
+                        labelAlign="placeholder"
                         onChange={(me, value) => dispatch(filterChange(value))}
                     />
                 </Toolbar>
