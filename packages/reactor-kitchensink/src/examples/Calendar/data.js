@@ -235,7 +235,7 @@ Ext.define('KitchenSink.data.calendar.Full', {
                     current = D.add(current, D.DAY, incr);
                 }
 
-                return U.generateIds(data, 9000);
+                return U.generateIds(data, 6000);
             })()
         };
 
@@ -296,28 +296,9 @@ Ext.define('KitchenSink.data.calendar.Full', {
 
 Ext.define('Kitchensink.data.calendar.Week',{
 }, function() {
-
-    function halfhour() {
-        return Math.random() < 0.5 ? 30 : 0;
-    }
-
-    function getRandom(arr) {
-        var n = N.randomInt(0, arr.length - 1);
-        return arr[n];
-    }
-
-    var places = ['London', 'Paris', 'Munich', 'Amsterdam', 'Rome'],
-        people = ['Louis', 'Mitch', 'Ava', 'Shelly', 'Vicki', 'Stefanie', 'Jason', 'Elena', 'Randy', 'Fred', 'Debbie'],
-        teams1 = ['Release', 'QA', 'Development', 'PM', 'R&D'],
-        teams2 = ['Marketing', 'Sales'],
-        clients1 = ['Client A', 'Client B', 'Client C', 'Client D'], 
-        clients2 = ['Client E', 'Client F', 'Client G', 'Client H'],
-        workActions = ['Meet', 'Call', 'Review'],
-        leisure = ['Hike', 'Gallery', 'Gaming', 'Theatre', 'Bowling', 'Concert'];
-
+    
     var U = KitchenSink.data.calendar.Util,
         D = Ext.Date,
-        N = Ext.Number,
         today = D.clearTime(new Date(), true),
         start = U.findPrevious(today, 0),
         data = {
@@ -328,11 +309,27 @@ Ext.define('Kitchensink.data.calendar.Week',{
                     title: 'Release Meeting',
                     startDate: U.setDate(start, sd + 1, 9, 30),
                     endDate: U.setDate(start, sd + 1, 11, 0)
+                }, {
+                    title: 'Ben Farewell Lunch',
+                    startDate: U.setDate(start, sd + 2, 12, 0),
+                    endDate: U.setDate(start, sd + 2, 14, 0)
+                }, {
+                    title: 'Client A Meeting',
+                    startDate: U.setDate(start, sd + 3, 14, 0),
+                    endDate: U.setDate(start, sd + 3, 16, 0)
+                }, {
+                    title: 'Client B Meeting',
+                    startDate: U.setDate(start, sd + 4, 10, 0),
+                    endDate: U.setDate(start, sd + 4, 11, 30)
+                }, {
+                    allDay: true,
+                    title: 'Help Web Team',
+                    startDate: U.setDate(start, sd + 4, 0, 0),
+                    endDate: U.setDate(start, sd + 6, 0, 0)
                 })
-                return U.generateIds(data, 100);
+                return U.generateIds(data, 6000);
             })()
         };
-
     Ext.ux.ajax.SimManager.register({
         '/KitchenSink/CalendarWeek':{
             type: 'json',
@@ -342,11 +339,12 @@ Ext.define('Kitchensink.data.calendar.Week',{
                 eventStore: {
                     proxy: {
                         type: 'ajax',
-                        url: '/Kitchesink/CalendarWeekEvents/1'
+                        url: '/KitchenSink/CalendarWeekEvents/1'
                     }
                 }}]
             },
         '/KitchenSink/CalendarWeekEvents/1': {
+            
             type: 'json',
             data: function(ctx) {
                 return U.generateOutput(data.work, 1, ctx);
