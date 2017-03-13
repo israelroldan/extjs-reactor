@@ -244,7 +244,8 @@ const root = {
         { text: 'TitleBar', component: TitleBar },
         { text: 'Toast', component: Toast },
         { text: 'Toolbar', component: Toolbar },
-        { text: 'TouchEvents', component: TouchEvents },
+        { text: 'ToolTip', component: ToolTip },
+        { text: 'Touch Events', component: TouchEvents },
         { text: 'Trees', children: [
             { text: 'Tree', component: Tree },
             { text: 'TreeList', component: TreeList }

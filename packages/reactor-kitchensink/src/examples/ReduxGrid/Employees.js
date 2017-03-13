@@ -1,49 +1,76 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { filterChange } from './actions';
-import { Grid, Toolbar, TextField, Label } from '@extjs/reactor/modern';
+import { Grid, TitleBar, SearchField, Label } from '@extjs/reactor/modern';
 
 Ext.require(['Ext.grid.plugin.*']);
 
 class Employees extends Component {
 
+    store = Ext.create('Ext.data.Store', {
+        fields: ['employeeNo', 'forename', 'surname', 'email', {
+            name: 'fullName',
+            calculate: ({forename, surname}) => `${forename} ${surname}`
+        }],
+        autoLoad: true,
+        groupField: 'department',
+        pageSize: 0,
+        proxy: {
+            type: 'ajax',
+            url: '/KitchenSink/BigData'
+        }     
+    });
+
+    componentDidUpdate(prevProps, prevState) {
+        const { filter } = this.props;
+
+        if (filter !== prevProps.filter) {
+            this.store.filter({
+                property: 'fullName', 
+                value: filter,
+                disableOnEmpty: true,
+                anyMatch: true
+            })
+        }
+    }
+
     render() {
-        const {store, dispatch} = this.props;
+        const { dispatch } = this.props;
     
         return (
             <Grid
-                store={store}
+                store={this.store}
                 shadow
                 grouped
                 plugins={[
                     { type: 'pagingtoolbar' },
                     { type: 'columnresizing' }
                 ]}
-                columns={[
-                    { 
-                        xtype: 'rownumberer' 
-                    }, {
-                        text: 'Id',
-                        dataIndex: 'employeeNo',
-                        width: 150
-                    }, {
-                        text: 'Name',
-                        dataIndex: 'fullName',
-                        styleHtmlContent: true,
-                        width: 150
-                    }, {
-                        text: 'Email',
-                        dataIndex: 'email',
-                        flex: 1
-                    }]}
+                columns={[{ 
+                    xtype: 'rownumberer' 
+                }, {
+                    text: 'Id',
+                    dataIndex: 'employeeNo',
+                    width: 150
+                }, {
+                    text: 'Name',
+                    dataIndex: 'fullName',
+                    styleHtmlContent: true,
+                    width: 150
+                }, {
+                    text: 'Email',
+                    dataIndex: 'email',
+                    flex: 1
+                }]}
             >
-                <Toolbar docked="top">
-                    <TextField 
-                        label="Search name"
-                        labelAlign="placeholder"
+                <TitleBar title="Employees" docked="top" ui="titlebar-search">
+                    <SearchField 
+                        ui="titlebar-search"
+                        align="right"
+                        placeholder="Search Name..."
                         onChange={(me, value) => dispatch(filterChange(value))}
                     />
-                </Toolbar>
+                </TitleBar>
             </Grid>
         )
     }
@@ -51,10 +78,7 @@ class Employees extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return {
-        store: state.gridStore,
-        searchStr: state.searchStr
-    }
+    return { ...state }
 };
 
 export default connect(mapStateToProps)(Employees);

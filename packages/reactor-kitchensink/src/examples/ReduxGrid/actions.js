@@ -1,8 +1,8 @@
 export const FILTER_CHANGE = 'FILTER_CHANGE';
 
-export function filterChange(searchStr) {
+export function filterChange(filter) {
     return {
         type: FILTER_CHANGE,
-        searchStr
+        filter
     };
 }
