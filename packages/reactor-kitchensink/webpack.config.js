@@ -27,6 +27,7 @@ module.exports = function (env) {
                 'calendar', 
                 'charts'
             ],
+            overrides: ['./overrides'],
             packageDirs: isLocalSdk ? ['ext/packages'] : [],
             production: isProd
         }),

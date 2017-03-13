@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { filterChange } from './reducer';
+import { filterChange } from './actions';
 import { Grid, Toolbar, TextField, Label } from '@extjs/reactor/modern';
 
-class SimpleGrid extends Component {
+Ext.require(['Ext.grid.plugin.*']);
+
+class Employees extends Component {
+
     render() {
         const {store, dispatch} = this.props;
+    
         return (
             <Grid
                 store={store}
                 shadow
                 grouped
                 plugins={[
-                    { type: 'gridviewoptions' },
                     { type: 'pagingtoolbar' },
                     { type: 'columnresizing' }
                 ]}
@@ -44,6 +47,7 @@ class SimpleGrid extends Component {
             </Grid>
         )
     }
+
 }
 
 const mapStateToProps = (state) => {
@@ -52,4 +56,5 @@ const mapStateToProps = (state) => {
         searchStr: state.searchStr
     }
 };
-export default connect(mapStateToProps)(SimpleGrid);
+
+export default connect(mapStateToProps)(Employees);

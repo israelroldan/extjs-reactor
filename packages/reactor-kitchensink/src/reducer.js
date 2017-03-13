@@ -1,4 +1,4 @@
-import { ROUTE_DID_CHANGE } from './actions';
+import { ROUTE_DID_CHANGE, TOGGLE_CODE } from './actions';
 import code from './code';
 import examples from './examples';
 
@@ -9,7 +9,8 @@ const initialState = {
         rootVisible: true,
         root: examples
     }),
-    mode: 'full'
+    mode: 'full',
+    showCode: true
 };
 
 export default function(state = initialState, action) {
@@ -26,6 +27,9 @@ export default function(state = initialState, action) {
                 selectedNavNode: node,
                 files: code[location.pathname.slice(1)]
             }
+        }
+        case TOGGLE_CODE: {
+            return { ...state, showCode: !state.showCode };
         }
         default: {
             return { ...state }

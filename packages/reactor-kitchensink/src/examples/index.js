@@ -100,6 +100,7 @@ import VboxLayout from './vbox/vbox';
 import FormLayout from './form/form';
 import InProgress from '../InProgress';
 import NegativeValuesArea from './NegativeValuesArea/NegativeValuesArea';
+import Resizable from './resizable/resizable';
 
 const root = {
     id: 'root',
@@ -223,6 +224,7 @@ const root = {
             { text: 'fit', component: FitLayout },
             { text: 'form', component: FormLayout },
             { text: 'hbox', component: HboxLayout },
+            { text: 'resizable', component: Resizable },
             { text: 'vbox', component: VboxLayout }
         ]},
         { text: 'Lists', children: [

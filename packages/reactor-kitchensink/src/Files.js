@@ -7,6 +7,8 @@ import 'highlightjs/styles/atom-one-dark.css';
 import H_js from './H_js';
 hljs.registerLanguage('js', H_js);
 
+Ext.require('Ext.panel.Resizer');
+
 function codeClassFor(file)  {
     if (file.endsWith('.css')) {
         return 'css';
@@ -43,10 +45,7 @@ export default class Files extends Component {
             <TabPanel 
                 ref="tabs"
                 tabBar={{hidden: mode === 'docs' && files.length === 1 }}
-                title="Code"
-                flex={2}
                 bodyPadding="0"
-                shadow
                 style={{backgroundColor: '#282c34'}}
             >
                 { Object.keys(files).map((file, i) => (

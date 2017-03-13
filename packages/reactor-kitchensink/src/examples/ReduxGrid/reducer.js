@@ -1,12 +1,4 @@
-// actions
-export const FILTER_CHANGE = 'FILTER_CHANGE';
-
-export function filterChange(searchStr) {
-    return {
-        type: FILTER_CHANGE,
-        searchStr
-    };
-}
+import { FILTER_CHANGE } from './actions';
 
 const gridStore = Ext.create('Ext.data.Store', {
     fields: ['employeeNo', 'forename', 'surname', 'email', {
