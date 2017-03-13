@@ -36,7 +36,6 @@ export default class CalendarMonthViewExample extends Component{
             xtype: 'calendar-list',
             store:this.store
         }]
-        
     }
 
     calendarMonthViewConfig = {
