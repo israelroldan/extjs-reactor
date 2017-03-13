@@ -19,7 +19,7 @@ export default class Files extends Component {
 
     static propTypes = {
         mode: PropTypes.string.isRequired,
-        files: PropTypes.array
+        files: PropTypes.object
     }
 
     componentDidMount() {
@@ -49,14 +49,14 @@ export default class Files extends Component {
                 shadow
                 style={{backgroundColor: '#282c34'}}
             >
-                { files.map((file, i) => (
+                { Object.keys(files).map((file, i) => (
                     <Container 
                         key={i}
                         scrollable={true}
-                        title={file.file}
+                        title={file}
                         layout="fit"
                         style={{backgroundColor: '#282c34'}}
-                        html={`<pre><code class="code ${codeClassFor(file.file)}">${file.content.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code></pre>`}
+                        html={`<pre><code class="code ${codeClassFor(file)}">${files[file].replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code></pre>`}
                     />
                 ))}
             </TabPanel>        
