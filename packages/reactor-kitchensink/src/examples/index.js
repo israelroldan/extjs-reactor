@@ -39,6 +39,8 @@ import TouchEvents from './TouchEvents/TouchEvents';
 import Msg from './Msg/Msg';
 import Toast from './Toast/Toast';
 import Calendar from './Calendar/Calendar';
+import MonthView from './Calendar/MonthView';
+import WeekView from './Calendar/WeekView';
 import TitleBar from './TitleBar/TitleBar';
 import BasicScatter from './BasicScatter/BasicScatter';
 import BasicRadar from './BasicRadar/BasicRadar';
@@ -99,7 +101,7 @@ import VboxLayout from './vbox/vbox';
 import FormLayout from './form/form';
 import InProgress from '../InProgress';
 import NegativeValuesArea from './NegativeValuesArea/NegativeValuesArea';
-import MonthView from './Calendar/MonthView';
+
 
 const root = {
     id: 'root',
@@ -113,7 +115,8 @@ const root = {
         ]},
         { text: 'Calendar', children:[
             { text: 'Calendar Panel', component: Calendar},
-            { text: 'Month View', component:MonthView}
+            { text: 'Month View', component:MonthView},
+            { text: 'Week View', component:WeekView}
         ]},
         { text: 'Carousel', component: Carousel },
         { text: 'Charts', children: [

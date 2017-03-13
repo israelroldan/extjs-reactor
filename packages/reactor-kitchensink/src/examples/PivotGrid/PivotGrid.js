@@ -8,8 +8,9 @@ Ext.require('Ext.pivot.*');
 export default class PivotGridExample extends Component{
     constructor(){
         super();
+    }
 
-        this.store = Ext.create('Ext.data.Store', {
+    store = Ext.create('Ext.data.Store', {
             model,
             autoLoad: true,
             proxy: {
@@ -19,10 +20,10 @@ export default class PivotGridExample extends Component{
                 reader: {
                     type: 'json'
                 }
-            },
+            }
         });
 
-        this.pivotConfig = {
+        pivotConfig = {
             matrix: {
                 type : 'local',
                 store : this.store,
@@ -151,10 +152,9 @@ export default class PivotGridExample extends Component{
                         aggregators: ['count'],
                         allowed: ['leftAxis', 'topAxis']
                     }
-                }] // end fields
-            }] // end plugins
-        } // end pivotConfig
-    }
+                }]
+            }]
+        }
 
     render() {
         return(
