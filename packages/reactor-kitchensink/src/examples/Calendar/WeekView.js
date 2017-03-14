@@ -15,8 +15,6 @@ export default class CalendarWeekViewExample extends Component{
         this.refs.weekview.setConfig('visibleDays',7)
     }
 
-    
-
     store=Ext.create('Ext.calendar.store.Calendars',{
         autoLoad: true,
         proxy:{
@@ -41,7 +39,8 @@ export default class CalendarWeekViewExample extends Component{
                 items:[{
                     text: Ext.os.is.Phone ? null : 'Full Week',
                     iconCls: Ext.os.is.Phone ? 'x-fa fa-calendar-check-o' : null,
-                    value: 'fullweek'
+                    value: 'fullweek',
+                    handler: this.changeToCalendarWeek.bind(this)
                 },{
                     text: Ext.os.is.Phone ? null : 'Work Week',
                     iconCls: Ext.os.is.Phone ? 'x-fa fa-briefcase' : null,
