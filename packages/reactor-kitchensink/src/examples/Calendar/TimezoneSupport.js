@@ -7,7 +7,7 @@ export default class CalendarTimezoneSupportExample extends Component{
         super();
     }
     changeOptions(){
-        let selectorValue = Ext.getCmp('selector').getSelection().data.value;
+        const selectorValue = Ext.getCmp('selector').getSelection().data.value;
         this.refs.timezoneview.setConfig('timezoneOffset', selectorValue)
     }
 
@@ -21,7 +21,6 @@ export default class CalendarTimezoneSupportExample extends Component{
 
     mainPanelConfig={
         title:Ext.Date.format(new Date(),'F Y'),
-        referenceHolder:true,
         layout:'fit',
         header:{
             layout: 'hbox',
@@ -31,7 +30,6 @@ export default class CalendarTimezoneSupportExample extends Component{
             }, {
                 xtype: 'selectfield',
                 id:'selector',
-                reference: 'tzSelector',
                 width: Ext.os.is.Phone ? 150 : 200,
                 value: 0,
                 listeners:{
