@@ -5,7 +5,6 @@ import './data';
 export default class CalendarWeekViewExample extends Component{
     constructor(){
         super();
-        console.log(this.store.data.items);
     }
 
     changeToWorkWeek(){
