@@ -5,7 +5,6 @@ import './data';
 export default class CalendarMonthViewExample extends Component{
     constructor(){
         super();
-        console.log(this.store.data.items);
     }
 
     store = Ext.create('Ext.calendar.store.Calendars',{
