@@ -42,6 +42,7 @@ import Toast from './Toast/Toast';
 import Calendar from './Calendar/Calendar';
 import MonthView from './Calendar/MonthView';
 import WeekView from './Calendar/WeekView';
+import DaysView from './Calendar/DaysView';
 import TitleBar from './TitleBar/TitleBar';
 import BasicScatter from './BasicScatter/BasicScatter';
 import BasicRadar from './BasicRadar/BasicRadar';
@@ -117,8 +118,9 @@ const root = {
         ]},
         { text: 'Calendar', children:[
             { text: 'Calendar Panel', component: Calendar},
-            { text: 'Month View', component:MonthView},
-            { text: 'Week View', component:WeekView}
+            { text: 'Month View', component: MonthView},
+            { text: 'Week View', component: WeekView},
+            { text: 'Days View', component: DaysView}
         ]},
         { text: 'Carousel', component: Carousel },
         { text: 'Charts', children: [
