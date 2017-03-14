@@ -3,10 +3,11 @@
   "version": "0.2.10",
   "description": "Use Ext JS components in React.",
   "main": "dist/index.js",
+  "module": "src/index.js",
   "typings": "index.d.ts",
   "scripts": {
-    "watch": "babel ./src --out-dir ./dist --source-maps inline --watch",
-    "build": "babel ./src --out-dir ./dist --source-maps inline",
+    "watch": "babel ./src --out-dir ./dist --source-maps --watch",
+    "build": "babel ./src --out-dir ./dist --source-maps",
     "prepublish": "npm run build",
     "create-typings": "node script/create-typings.js",
     "test": "jest"
@@ -20,7 +21,8 @@
   "keywords": [
     "Sencha",
     "Ext JS",
-    "React"
+    "React",
+    "ExtReact"
   ],
   "author": "Sencha",
   "license": "MIT",
@@ -34,7 +36,6 @@
     "react-dom": "^15.4.0"
   },
   "dependencies": {
-    "invariant": "^2.2.1",
     "lodash.capitalize": "^4.2.1",
     "lodash.clonedeepwith": "^4.5.0",
     "lodash.defaults": "^4.2.0",
