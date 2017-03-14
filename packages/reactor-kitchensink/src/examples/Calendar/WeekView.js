@@ -5,15 +5,19 @@ import './data';
 export default class CalendarWeekViewExample extends Component{
     constructor(){
         super();
+        console.log(this.store.data.items);
     }
 
-    calendarData = {
-        value : new Date(),
-        visibleDays:7,
-        firstDayOfWeek:0
+    changeToWorkWeek(){
+        this.refs.weekview.setConfig('visibleDays',5)
+    }
+    changeToCalendarWeek(){
+        this.refs.weekview.setConfig('visibleDays',7)
     }
 
-    store=Ext.create('Ext.data.Store',{
+    
+
+    store=Ext.create('Ext.calendar.store.Calendars',{
         autoLoad: true,
         proxy:{
             type:'ajax',
@@ -40,7 +44,9 @@ export default class CalendarWeekViewExample extends Component{
                     value: 'fullweek'
                 },{
                     text: Ext.os.is.Phone ? null : 'Work Week',
-                    iconCls: Ext.os.is.Phone ? 'x-fa fa-briefcase' : null
+                    iconCls: Ext.os.is.Phone ? 'x-fa fa-briefcase' : null,
+                    value: 'workweek',
+                    handler: this.changeToWorkWeek.bind(this)
                 }]
             }]
         }
@@ -54,25 +60,25 @@ export default class CalendarWeekViewExample extends Component{
         hidden: Ext.os.is.Phone,
         items: [{
             xtype: 'calendar-list',
-            //store:this.store
+            store:this.store
         }]
     }
 
     calendarWeekViewConfig={
-        //store: this.store,        
+        store: this.store,        
         flex:1,
         timezoneOffset: 0,
         gestureNavigation: false,
-        value:this.calendarData.value,
-        firstDayOfWeek: this.calendarData.firstDayOfWeek,
-        visibleDays: this.calendarData.visibleDays
+        value:new Date(),
+        firstDayOfWeek: 0,
+        visibleDays: 7
     }
 
     render(){
         return(
             <Panel {...this.mainPanelConfig}>
                 <Panel {...this.leftPanelConfig}/>
-                <Calendar_Week {...this.calendarWeekViewConfig}/>
+                <Calendar_Week ref="weekview" {...this.calendarWeekViewConfig}/>
             </Panel>
         )
     }

@@ -328,6 +328,26 @@ Ext.define('Kitchensink.data.calendar.Week',{
                     endDate: U.setDate(start, sd + 6, 0, 0)
                 })
                 return U.generateIds(data, 6000);
+            })(),
+            personal: (function() {
+                var ret = [],
+                    d;
+
+                ret.push({
+                    title: 'Mom Bday Party',
+                    startDate: U.setHours(start, 11, 0),
+                    endDate: U.setHours(start, 16, 0)
+                });
+
+                d = D.add(start, D.DAY, 3);
+
+                ret.push({
+                    title: 'Book Group',
+                    startDate: U.setHours(d, 18, 30),
+                    endDate: U.setHours(d, 19, 30)
+                });
+
+                return U.generateIds(ret, 200);
             })()
         };
     Ext.ux.ajax.SimManager.register({
@@ -341,13 +361,28 @@ Ext.define('Kitchensink.data.calendar.Week',{
                         type: 'ajax',
                         url: '/KitchenSink/CalendarWeekEvents/1'
                     }
-                }}]
-            },
+                }}, {
+                id: 2,
+                title: 'Personal',
+                eventStore: {
+                    proxy: {
+                        type: 'ajax',
+                        url: '/KitchenSink/CalendarWeekEvents/2'
+                    }
+                }
+            }]
+        },
         '/KitchenSink/CalendarWeekEvents/1': {
             
             type: 'json',
             data: function(ctx) {
                 return U.generateOutput(data.work, 1, ctx);
+            }
+        },
+        '/KitchenSink/CalendarWeekEvents/2': {
+            type: 'json',
+            data: function(ctx) {
+                return U.generateOutput(data.personal, 2, ctx);
             }
         }
     });
