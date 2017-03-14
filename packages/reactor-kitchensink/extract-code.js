@@ -21,7 +21,7 @@ function extractAll() {
             }
         }
     }
-
+    
     fs.writeFileSync(path.join(__dirname, 'src', 'code.js'), `export default ${JSON.stringify(result, null, '\t')}`, 'utf8');
     console.log('wrote code.js');
 }
@@ -33,7 +33,7 @@ function extractFrom(dir, file) {
     const importRegex = /import[^'"]+['"]([^'"]+)['"];/gi;
     let match;
 
-    (result[dir] = result[dir] || []).push({ file, content });
+    (result[dir] = result[dir] || {})[file] = content;
 
     while (match = importRegex.exec(content)) {
         if (match[1].startsWith('./')) {

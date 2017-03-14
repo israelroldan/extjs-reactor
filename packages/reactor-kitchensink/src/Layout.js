@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { TitleBar, Container, NestedList } from '@extjs/reactor/modern';
+import { bindActionCreators } from 'redux'
+import { TitleBar, Container, NestedList, Panel, Button } from '@extjs/reactor/modern';
 import hljs, { highlightBlock } from 'highlightjs';
 import NavTree from './NavTree';
 import Files from './Files';
 import Home from './Home';
+import * as actions from './actions';
 
 class Layout extends Component {
 
@@ -44,14 +46,13 @@ class Layout extends Component {
         const { 
             selectedNavNode, 
             component, 
-            onSelectComponent, 
             navStore, 
             mode, 
             files,
-            children
+            children,
+            showCode,
+            actions
         } = this.props;
-
-        console.log('children', children);
 
         let mainView;
 
@@ -79,6 +80,7 @@ class Layout extends Component {
                     <TitleBar docked="top">
                         <div className="ext ext-sencha" style={{marginRight: '7px', fontSize: '20px'}}/>
                         ExtReact Kitchen Sink
+                        { files && <Button align="right" iconCls="x-fa fa-code" handler={actions.toggleCode} /> }
                     </TitleBar>
                     <Container layout={{type: 'hbox', align: 'stretch'}} flex={1}>
                         <NavTree 
@@ -96,7 +98,20 @@ class Layout extends Component {
         return (
             <Container layout={{type: 'hbox', align: 'stretch'}} cls="main-background">
                 { mode !== 'docs' && mainView }
-                { !Ext.os.is.Phone && files && <Files files={files} mode={mode} /> }
+                { !Ext.os.is.Phone && files && (
+                    <Panel 
+                        resizable={{ edges: 'west', dynamic: true }} 
+                        flex={2}
+                        layout="fit" 
+                        displayed={showCode}
+                        hidden={false}
+                        shadow 
+                        hideAnimation={{type: 'slideOut', direction: 'right'}}
+                        showAnimation={{type: 'slideIn', direction: 'left' }}
+                    >
+                        <Files files={files} mode={mode} /> 
+                    </Panel>
+                )}
             </Container>
         );
     }
@@ -107,7 +122,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return {  }
+    return { actions: bindActionCreators(actions, dispatch) };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Layout)

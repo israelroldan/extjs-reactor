@@ -1,0 +1,43 @@
+@include titlebar-ui(
+    $ui: 'titlebar-search',
+    $title-padding: 0 0 0 10px,
+    $padding: 8px
+);
+
+@include textfield-ui(
+    $ui: 'titlebar-search',
+    $placeholder-color: darken($base-foreground-color, 10%),
+    $input-color: $base-foreground-color,
+    $input-border-color: darken($base-foreground-color, 10%),
+    $input-background-color: darken($base-color, 10%),
+    $input-border-width: 0,
+    $input-font-size: 14px,
+    $focused-input-border-width: 0,
+    $focused-input-color: $base-foreground-color,
+    $focused-input-background-color: darken($base-color, 15%),
+    $input-padding: 8px 0
+);
+
+.x-searchfield-titlebar-search {
+    .x-searchtrigger {
+        width: 32px
+    }
+    .x-input-wrap-el {
+        border-radius: 3px;
+        transition: background-color 0.25s;
+    }
+    .x-input-el {
+        margin-bottom: 0 !important;
+        color: $base-foreground-color;
+        border-radius: 3px;
+    }
+    .x-icon-el {
+        color: darken($base-foreground-color, 10%) !important;
+        &:hover {
+            color: $base-foreground-color !important;
+        }
+    }
+    .x-cleartrigger:hover {
+        color: $base-foreground-color
+    }
+}

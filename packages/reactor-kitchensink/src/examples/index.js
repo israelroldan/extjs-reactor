@@ -1,4 +1,5 @@
 import Grid from './Grid/Grid';
+import ReduxGrid from './ReduxGrid/ReduxGrid';
 import Panel from './Panel/Panel';
 import TabPanel from './TabPanel/TabPanel';
 import Toolbar from './Toolbar/Toolbar';
@@ -101,6 +102,7 @@ import VboxLayout from './vbox/vbox';
 import FormLayout from './form/form';
 import InProgress from '../InProgress';
 import NegativeValuesArea from './NegativeValuesArea/NegativeValuesArea';
+import Resizable from './resizable/resizable';
 
 
 const root = {
@@ -221,13 +223,15 @@ const root = {
         ] },
         { text: 'Grids', children: [
             { text: 'Grid', component: Grid },
-            { text: 'PivotGrid', component: PivotGrid }
+            { text: 'PivotGrid', component: PivotGrid },
+            { text: 'Redux Grid', component: ReduxGrid }
         ] },
         { text: 'Layouts', children: [
             { text: 'card', component: CardLayout },
             { text: 'fit', component: FitLayout },
             { text: 'form', component: FormLayout },
             { text: 'hbox', component: HboxLayout },
+            { text: 'resizable', component: Resizable },
             { text: 'vbox', component: VboxLayout }
         ]},
         { text: 'Lists', children: [
@@ -247,7 +251,8 @@ const root = {
         { text: 'TitleBar', component: TitleBar },
         { text: 'Toast', component: Toast },
         { text: 'Toolbar', component: Toolbar },
-        { text: 'TouchEvents', component: TouchEvents },
+        { text: 'ToolTip', component: ToolTip },
+        { text: 'Touch Events', component: TouchEvents },
         { text: 'Trees', children: [
             { text: 'Tree', component: Tree },
             { text: 'TreeList', component: TreeList }
