@@ -44,6 +44,7 @@ import MonthView from './Calendar/MonthView';
 import WeekView from './Calendar/WeekView';
 import DaysView from './Calendar/DaysView';
 import TimezoneSupport from './Calendar/TimezoneSupport';
+import CalendarValidation from './Calendar/CalendarValidation';
 import TitleBar from './TitleBar/TitleBar';
 import BasicScatter from './BasicScatter/BasicScatter';
 import BasicRadar from './BasicRadar/BasicRadar';
@@ -118,11 +119,12 @@ const root = {
             { text: 'SegmentedButton', component: SegmentedButton },
         ]},
         { text: 'Calendar', children:[
-            { text: 'Calendar Panel', component: Calendar},
-            { text: 'Month View', component: MonthView},
-            { text: 'Week View', component: WeekView},
-            { text: 'Days View', component: DaysView},
-            { text: 'Timezone support', component: TimezoneSupport}
+            { text: 'Calendar Panel', component: Calendar },
+            { text: 'Month View', component: MonthView },
+            { text: 'Week View', component: WeekView },
+            { text: 'Days View', component: DaysView },
+            { text: 'Timezone support', component: TimezoneSupport },
+            { text: 'Drag/Resize Validation', component: CalendarValidation }
         ]},
         { text: 'Carousel', component: Carousel },
         { text: 'Charts', children: [
