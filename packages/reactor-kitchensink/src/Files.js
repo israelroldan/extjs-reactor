@@ -45,6 +45,8 @@ export default class Files extends Component {
             <TabPanel 
                 ref="tabs"
                 tabBar={{hidden: mode === 'docs' && files.length === 1 }}
+                shadow
+                style={{zIndex: 1}}
             >
                 { Object.keys(files).map((file, i) => (
                     <Panel 

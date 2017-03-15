@@ -26,7 +26,7 @@ class SearchOptions extends Component {
         const { criteria } = this.props;
 
         return (
-            <Panel bodyPadding={15} docked="left" width="250" layout="fit" scrollable docked={this.props.docked} hidden={this.props.hidden} border={1}>
+            <Panel bodyPadding={15} docked="left" width="300" layout="fit" scrollable docked={this.props.docked} hidden={this.props.hidden} shadow style={{zIndex: 10}}>
                 <FieldSet title="Search Options">
                     <TextField 
                         ref="firstName"

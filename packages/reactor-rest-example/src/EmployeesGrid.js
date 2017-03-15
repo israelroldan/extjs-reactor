@@ -52,7 +52,7 @@ class EmployeesGrid extends Component {
         this.props.dispatch(
             updateCriteria({ text: this.refs.query.getValue() })
         );
-    })
+    }, 250)
 
     render() {
         return (
@@ -70,7 +70,7 @@ class EmployeesGrid extends Component {
                 ]}
             >
                 <Toolbar docked="top">
-                    <SearchField ref="query" onChange={this.search} placeholder="Find by name..." />
+                    <SearchField ref="query" width="200" onChange={this.search} placeholder="Find by name..." />
                 </Toolbar>
             </Grid>
         )
