@@ -3,3 +3,8 @@
     $body-font-size: 15px,
     $body-padding: 15px
 );
+
+@include panel-ui(
+    $ui: 'code-panel',
+    $body-background-color: #282c34
+);

@@ -1,13 +1,16 @@
 import React from 'react';
-import { FormPanel, TextAreaField } from '@extjs/reactor/modern';
+import { Container, FormPanel, TextAreaField } from '@extjs/reactor/modern';
 
 export default function TextAreaFieldExample() {
     return (
-        <FormPanel shadow>
-            <TextAreaField 
-                label="Description"
-                maxRows={10}
-            />
-        </FormPanel>
+        <Container layout="center">
+            <FormPanel shadow>
+                <TextAreaField 
+                    label="Description"
+                    width="300"
+                    maxRows={10}
+                />
+            </FormPanel>
+        </Container>
     )
 }

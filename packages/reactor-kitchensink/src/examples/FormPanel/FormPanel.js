@@ -40,9 +40,9 @@ export default class FormPanelExample extends Component {
         const { disabled } = this.state;
         
         return (
-            <FormPanel ref="form" shadow>
+            <FormPanel ref="form" shadow height="100%" width="100%">
                 <FieldSet disabled={disabled} ref="personal" title="Personal Info">
-                    <TextField {...defaults} label="Name" required placeholder="This fields is required"/>
+                    <TextField {...defaults} label="Name" required placeholder="This field is required"/>
                     <PasswordField {...defaults} label="Password" required revealable/>
                     <EmailField {...defaults} label="Email" placeholder="me@sencha.com"/>
                     <TextField {...defaults} label="Phone Number" inputMask="(999) 999-9999" inputType="tel"/>

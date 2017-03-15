@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FormPanel, SliderField } from '@extjs/reactor/modern';
+import { Container, FormPanel, SliderField } from '@extjs/reactor/modern';
 
 export default class SliderFieldExample extends Component {
 
@@ -20,20 +20,22 @@ export default class SliderFieldExample extends Component {
         const { singleValue, multipleValue } = this.state;
 
         return (
-            <FormPanel shadow>
-                <SliderField 
-                    onChange={this.onSingleChange}
-                    label="Single Thumb"
-                    value={singleValue}
-                />
-                <div style={{marginBottom: '20px'}}>Value: {singleValue}</div>
-                <SliderField 
-                    onChange={this.onMultipleChange}
-                    label="Multiple Thumbs"
-                    values={multipleValue}
-                />
-                <div>Values: {multipleValue.join(', ')}</div>
-            </FormPanel>
+            <Container layout="center">
+                <FormPanel shadow width="300">
+                    <SliderField 
+                        onChange={this.onSingleChange}
+                        label="Single Thumb"
+                        value={singleValue}
+                    />
+                    <div style={{marginBottom: '20px'}}>Value: {singleValue}</div>
+                    <SliderField 
+                        onChange={this.onMultipleChange}
+                        label="Multiple Thumbs"
+                        values={multipleValue}
+                    />
+                    <div>Values: {multipleValue.join(', ')}</div>
+                </FormPanel>
+            </Container>
         )
     }
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Panel, SearchField } from '@extjs/reactor/modern'
+import { Container, FormPanel, SearchField } from '@extjs/reactor/modern'
 
 export default class SearchFieldExample extends Component {
     
@@ -13,15 +13,16 @@ export default class SearchFieldExample extends Component {
         const { query } = this.state;
 
         return (
-            <Container layout={{ type: 'vbox', align: 'left' }}>
-                <Panel shadow height="200" width="300">
+            <Container layout="center">
+                <FormPanel shadow>
                     <SearchField 
                         value={query}
+                        width="300"
                         placeholder="Search..."
                         onChange={this.search}
                     />
                     { query && <div>You searched for "{query}"</div> }
-                </Panel>
+                </FormPanel>
             </Container>
         )
     }

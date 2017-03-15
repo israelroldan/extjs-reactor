@@ -14,7 +14,7 @@ import Carousel from './Carousel/Carousel';
 import TextField from './TextField/TextField';
 import FieldSet from './FieldSet/FieldSet';
 import EmailField from './EmailField/EmailField';
-import UrlField from './UrlField/UrlField';
+import URLField from './URLField/URLField';
 import PasswordField from './PasswordField/PasswordField';
 import SpinnerField from './SpinnerField/SpinnerField';
 import CheckBoxField from './CheckBoxField/CheckBoxField';
@@ -101,6 +101,7 @@ import FormLayout from './form/form';
 import InProgress from '../InProgress';
 import NegativeValuesArea from './NegativeValuesArea/NegativeValuesArea';
 import Resizable from './resizable/resizable';
+import NumberField from './NumberField/NumberField';
 
 const root = {
     id: 'root',
@@ -203,6 +204,7 @@ const root = {
             { text: 'FileField', component: FileField },
             { text: 'FormPanel', component: FormPanel },
             { text: 'Gauge', component: Gauge },
+            { text: 'NumberField', component: NumberField },
             { text: 'PasswordField', component: PasswordField },
             { text: 'RadioField', component: RadioField },
             { text: 'SearchField', component: SearchField },
@@ -212,7 +214,7 @@ const root = {
             { text: 'TextAreaField', component: TextAreaField },
             { text: 'TextField', component: TextField },
             { text: 'ToggleField', component: ToggleField },
-            { text: 'UrlField', component: UrlField }
+            { text: 'URLField', component: URLField }
         ] },
         { text: 'Grids', children: [
             { text: 'Grid', component: Grid },

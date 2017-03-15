@@ -80,7 +80,7 @@ class Layout extends Component {
                     <TitleBar docked="top">
                         <div className="ext ext-sencha" style={{marginRight: '7px', fontSize: '20px'}}/>
                         ExtReact Kitchen Sink
-                        { files && <Button align="right" iconCls="x-fa fa-code" handler={actions.toggleCode} /> }
+                        { files && <Button align="right" iconCls="x-fa fa-code" handler={actions.toggleCode} ripple={{bound: false}} /> }
                     </TitleBar>
                     <Container layout={{type: 'hbox', align: 'stretch'}} flex={1}>
                         <NavTree 

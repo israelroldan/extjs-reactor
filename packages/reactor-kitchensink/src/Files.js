@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { TabPanel, Container } from '@extjs/reactor/modern';
+import { TabPanel, Panel } from '@extjs/reactor/modern';
 import hljs, { highlightBlock } from 'highlightjs';
 
 // JSX syntax highlighting
@@ -45,16 +45,14 @@ export default class Files extends Component {
             <TabPanel 
                 ref="tabs"
                 tabBar={{hidden: mode === 'docs' && files.length === 1 }}
-                bodyPadding="0"
-                style={{backgroundColor: '#282c34'}}
             >
                 { Object.keys(files).map((file, i) => (
-                    <Container 
+                    <Panel 
                         key={i}
                         scrollable={true}
                         title={file}
                         layout="fit"
-                        style={{backgroundColor: '#282c34'}}
+                        ui="code-panel"
                         html={`<pre><code class="code ${codeClassFor(file)}">${files[file].replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code></pre>`}
                     />
                 ))}
