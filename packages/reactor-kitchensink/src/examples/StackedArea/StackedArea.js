@@ -25,7 +25,7 @@ export default class StackedAreaChartExample extends Component{
     });
 
     state = {
-        theme: 'green'
+        theme: 'default'
     };
 
     changeTheme = (select, choice) => {
@@ -54,6 +54,7 @@ export default class StackedAreaChartExample extends Component{
                 />
                 <Cartesian
                     store={this.store}
+                    theme={theme}
                     insetPadding={'20 20 10 10'}
                     legend={{type:'sprite'}}
                     axes={[{

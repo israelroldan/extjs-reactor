@@ -55,6 +55,7 @@ export default class NegativeValuesAreaChartExample extends Component{
 
     render(){
         const { theme } = this.state;
+        
         return(
             <Panel shadow layout="fit">
                 <ChartToolbar
@@ -64,6 +65,7 @@ export default class NegativeValuesAreaChartExample extends Component{
                 <Cartesian 
                     insetPadding={'20 20 10 10'}
                     store={this.store}
+                    theme={theme}
                     legend={{type:'sprite'}}
                     ref={'negativechart'}
                     axes={[{
