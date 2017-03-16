@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import { Component } from 'react';
 import ReactMultiChild from 'react-dom/lib/ReactMultiChild';
 import { precacheNode } from 'react-dom/lib/ReactDOMComponentTree';
 import Flags from 'react-dom/lib/ReactDOMComponentFlags';

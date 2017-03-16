@@ -34,12 +34,16 @@ class Layout extends Component {
         }
     }
 
-    onNavChange(node) {
+    onNavChange = (node) => {
         if (node.isLeaf()) {
             const { router, location } = this.props;
             const path = `/${node.getId()}`;
             if (location.pathname !== path) router.push(path)
         }
+    }
+
+    onTitleClick = () => {
+        this.props.router.push('/');
     }
 
     render() {
@@ -79,12 +83,12 @@ class Layout extends Component {
                 <Container layout="fit" flex={4}>
                     <TitleBar docked="top">
                         <div className="ext ext-sencha" style={{marginRight: '7px', fontSize: '20px'}}/>
-                        ExtReact Kitchen Sink
-                        { files && <Button align="right" iconCls="x-fa fa-code" handler={actions.toggleCode} /> }
+                        <a href="#" className="app-title">ExtReact Kitchen Sink</a>
+                        { files && <Button align="right" iconCls="x-fa fa-code" handler={actions.toggleCode} ripple={{bound: false}} /> }
                     </TitleBar>
                     <Container layout={{type: 'hbox', align: 'stretch'}} flex={1}>
                         <NavTree 
-                            width={250} 
+                            width={265} 
                             store={navStore} 
                             selection={selectedNavNode}
                             onSelectionChange={(tree, node) => this.onNavChange(node)}
