@@ -15,41 +15,27 @@ export default class CalendarMonthViewExample extends Component{
         }
     })
 
-    mainPanelConfig = {
-        title:Ext.Date.format(new Date(),'F Y'),        
-        layout:{
-            type:'hbox',
-            align:'stretch'
-        },
-        header:{
-            titleAlign:'center'
-        }
-    }
-
-    leftPanelConfig = {
-        title: 'Calendars',
-        ui: 'light',
-        width: 150,
-        bodyPadding: 5,
-        hidden: Ext.os.is.Phone,
-        items: [{
-            xtype: 'calendar-list',
-            store:this.store
-        }]
-    }
-
-    calendarMonthViewConfig = {
-        flex: 1,
-        visibleWeeks: null,
-        timezoneOffset: 0,
-        gestureNavigation: false,
-        store:this.store
-    }
-
     render(){
         return (
-            <Panel {...this.mainPanelConfig}>
-                <Panel {...this.leftPanelConfig}/>
+            <Panel 
+                title={Ext.Date.format(new Date(),'F Y')}
+                layout={{
+                    type:'hbox',
+                    align:'stretch'
+                }}
+                header={{
+                    titleAlign:'center'
+                }}>
+                <Panel 
+                    title={'Calendars'}
+                    ui={'light'}
+                    width={150}
+                    bodyPadding={5}
+                    hidden={Ext.os.is.Phone}
+                    items={[{
+                        xtype: 'calendar-list',
+                        store:this.store
+                    }]}/>
                  <Calendar_Month {...this.calendarMonthViewConfig}/>
             </Panel>
         )

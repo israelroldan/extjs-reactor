@@ -20,13 +20,13 @@ export default class BasicAreaChartExample extends Component {
         fields: ['id', 'g0', 'g1', 'g2', 'g3', 'g4', 'g5', 'g6', 'name'],
     });
 
-    refresh = () => {
-        this.store.loadData(createData(25));
-    }
-
     state = {
         theme: 'default'
     };
+
+    refresh = () => {
+        this.store.loadData(createData(25));
+    }
 
     changeTheme = (select, choice) => {
         this.setState({ theme: choice.get('value') })

@@ -38,12 +38,12 @@ export default class CalendarWeekViewExample extends Component {
                             text: Ext.os.is.Phone ? null : 'Full Week',
                             iconCls: Ext.os.is.Phone ? 'x-fa fa-calendar-check-o' : null,
                             value: 'fullweek',
-                            handler: this.setState({visibleDays:7})
+                            handler: () => this.setState({visibleDays:7})
                         }, {
                             text: Ext.os.is.Phone ? null : 'Work Week',
                             iconCls: Ext.os.is.Phone ? 'x-fa fa-briefcase' : null,
                             value: 'workweek',
-                            handler: this.setState({visibleDays:5})
+                            handler: () => this.setState({visibleDays:5})
                         }]
                     }]
                 }}
