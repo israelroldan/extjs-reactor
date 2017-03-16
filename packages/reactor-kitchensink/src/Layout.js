@@ -55,7 +55,8 @@ class Layout extends Component {
             files,
             children,
             showCode,
-            actions
+            actions,
+            center
         } = this.props;
 
         let mainView;
@@ -71,7 +72,7 @@ class Layout extends Component {
                     flex={1}
                 >
                     { component && (
-                        <Container rel="detailCard" layout="fit">
+                        <Container rel="detailCard" layout={center ? 'center' : 'fit'} scrollable={center} key={selectedNavNode.get('text')}>
                             { React.createElement(component) }
                         </Container>
                     ) }
@@ -93,7 +94,19 @@ class Layout extends Component {
                             selection={selectedNavNode}
                             onSelectionChange={(tree, node) => this.onNavChange(node)}
                         /> 
-                        { component ? <Container layout="fit" flex={1} margin={30}>{ React.createElement(component) }</Container> : <Home flex={1}/> }
+                        { component ? (
+                            <Container 
+                                layout={center ? 'center' : 'fit'} 
+                                scrollable={center} 
+                                flex={1} 
+                                padding="30"
+                                key={selectedNavNode.get('text')}
+                            >
+                                { React.createElement(component) }
+                            </Container>
+                         ) : (
+                             <Home flex={1}/> 
+                         ) }
                     </Container>
                 </Container>             
             )

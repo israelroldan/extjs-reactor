@@ -5,12 +5,10 @@ Ext.require('Ext.Toast');
 
 export default function ToastExample() {
     return (
-        <Container layout={{type: 'vbox', align: 'left'}}>
-            <Button 
-                ui="action" 
-                handler={() => Ext.toast('Hello World!')}
-                text="Show Toast"
-            />
-        </Container>
+        <Button 
+            ui="action" 
+            handler={() => Ext.toast('Hello World!')}
+            text="Show Toast"
+        />
     )
 }
