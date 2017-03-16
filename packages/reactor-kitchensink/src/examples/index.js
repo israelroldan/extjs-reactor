@@ -124,7 +124,7 @@ const root = {
             { text: 'Week View', component: WeekView },
             { text: 'Days View', component: DaysView },
             { text: 'Timezone support', component: TimezoneSupport },
-            { text: 'Drag/Resize Validation', component: CalendarValidation }
+            { text: 'Drag Resize Validation', component: CalendarValidation }
         ]},
         { text: 'Carousel', component: Carousel },
         { text: 'Charts', children: [
