@@ -12,9 +12,7 @@ module.exports = function (env) {
     const plugins = [
         new ExtJSReactorWebpackPlugin({
             sdk: 'ext', // you need to copy the Ext JS SDK to the root of this package, or you can specify a full path to some other location
-            theme: 'theme-material',
-            overrides: ['overrides'],
-            packages: ['charts'],
+            theme: './ext-theme',
             production: isProd
         }),
         new webpack.EnvironmentPlugin({
