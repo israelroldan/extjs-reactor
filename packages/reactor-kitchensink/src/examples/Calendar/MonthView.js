@@ -36,7 +36,12 @@ export default class CalendarMonthViewExample extends Component{
                         xtype: 'calendar-list',
                         store:this.store
                     }]}/>
-                 <Calendar_Month {...this.calendarMonthViewConfig}/>
+                 <Calendar_Month
+                    flex= {1}
+                    visibleWeeks={null}
+                    timezoneOffset={0}
+                    gestureNavigation={false}
+                    store={this.store}/>
             </Panel>
         )
     }
