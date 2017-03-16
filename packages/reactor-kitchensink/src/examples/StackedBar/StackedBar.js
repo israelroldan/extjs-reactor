@@ -29,7 +29,6 @@ export default class StackedBarChartExample extends Component {
     }
 
     changeTheme = (select, choice) => {
-        console.log(choice.get('value'));
         this.setState({ theme: choice.get('value') })
     }
 
