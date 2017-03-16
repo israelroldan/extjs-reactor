@@ -19,7 +19,7 @@ export default class StackedBarChartExample extends Component {
     store = Ext.create('Ext.data.Store', {
         fields: ['id', 'g1', 'g2', 'g3', 'g4', 'g5', 'g6', 'name']
     });
-
+ 
     state = {
         theme: 'default'
     };
@@ -29,6 +29,7 @@ export default class StackedBarChartExample extends Component {
     }
 
     changeTheme = (select, choice) => {
+        console.log(choice.get('value'));
         this.setState({ theme: choice.get('value') })
     }
 
