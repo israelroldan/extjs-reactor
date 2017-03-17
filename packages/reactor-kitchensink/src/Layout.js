@@ -72,8 +72,10 @@ class Layout extends Component {
                     flex={1}
                 >
                     { component && (
-                        <Container rel="detailCard" layout={center ? 'center' : 'fit'} scrollable={center} key={selectedNavNode.get('text')}>
-                            { React.createElement(component) }
+                        <Container rel="detailCard" layout="fit">
+                            <Container key={selectedNavNode.get('text')} layout={center ? 'center' : 'fit'} scrollable={center}>
+                                { React.createElement(component) }
+                            </Container>
                         </Container>
                     ) }
                 </NestedList>
