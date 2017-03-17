@@ -42,12 +42,12 @@ export default class MenuExample extends Component {
         
         return (
             <Panel>
-                <EdgeMenu side="left" displayed={left} modal={false} onHide={() => this.setState({ left: false })}>
+                <EdgeMenu side="left" displayed={left} modal={true} onHide={() => this.setState({ left: false })}>
                     <Button text="Settings" iconCls="x-fa fa-gear" handler={() => this.setState({left: false})}/>
                     <Button text="New Item" iconCls="x-fa fa-pencil" handler={() => this.setState({left: false})}/>
                     <Button text="Star" iconCls="x-fa fa-star" handler={() => this.setState({left: false})}/>
                 </EdgeMenu>
-                <EdgeMenu side="right" displayed={right} modal={false} onHide={() => this.setState({ right: false })}>
+                <EdgeMenu side="right" displayed={right} modal={true} onHide={() => this.setState({ right: false })}>
                     <Button text="Settings" iconCls="x-fa fa-gear" handler={() => this.setState({right: false})}/>
                     <Button text="New Item" iconCls="x-fa fa-pencil" handler={() => this.setState({right: false})}/>
                     <Button text="Star" iconCls="x-fa fa-star" handler={() => this.setState({right: false})}/>
