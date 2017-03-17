@@ -5,21 +5,35 @@ export default class MenuExample extends Component {
 
     constructor() {
         super();
-        this.menus = [];
-        
-        this.state = {
+    }
+
+    state = {
             left: false,
             right: false,
             top: false,
             bottom: false
         };
-    }
 
+    menus = [];
+    
     componentDidUpdate() {
         if (this.state.left) {
             Ext.Viewport.showMenu('left');
-        } else {
+        } 
+        else if(this.state.right){
+            Ext.Viewport.showMenu('right');
+        }
+        else if(this.state.top){
+            Ext.Viewport.showMenu('top');
+        }
+        else if(this.state.bottom){
+            Ext.Viewport.showMenu('bottom');
+        }
+        else {
             Ext.Viewport.hideMenu('left');
+            Ext.Viewport.hideMenu('right');
+            Ext.Viewport.hideMenu('top');
+            Ext.Viewport.hideMenu('bottom');
         }
     }
 
@@ -38,12 +52,12 @@ export default class MenuExample extends Component {
                     <Button text="New Item" iconCls="x-fa fa-pencil" handler={() => this.setState({right: false})}/>
                     <Button text="Star" iconCls="x-fa fa-star" handler={() => this.setState({right: false})}/>
                 </EdgeMenu>
-                <EdgeMenu side="top" cover displayed={top} modal={false} onHide={() => this.setState({ top: false })}>
+                <EdgeMenu side="top" cover displayed={top} modal={true} onHide={() => this.setState({ top: false })}>
                     <Button text="Settings" iconCls="x-fa fa-gear" handler={() => this.setState({top: false})}/>
                     <Button text="New Item" iconCls="x-fa fa-pencil" handler={() => this.setState({top: false})}/>
                     <Button text="Star" iconCls="x-fa fa-star" handler={() => this.setState({top: false})}/>
                 </EdgeMenu>
-                <EdgeMenu side="bottom" slide displayed={bottom} modal={false} onHide={() => this.setState({ bottom: false })}>
+                <EdgeMenu side="bottom" slide displayed={bottom} modal={true} onHide={() => this.setState({ bottom: false })}>
                     <Button text="Settings" iconCls="x-fa fa-gear" handler={() => this.setState({bottom: false})}/>
                     <Button text="New Item" iconCls="x-fa fa-pencil" handler={() => this.setState({bottom: false})}/>
                     <Button text="Star" iconCls="x-fa fa-star" handler={() => this.setState({bottom: false})}/>
