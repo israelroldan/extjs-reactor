@@ -31,7 +31,7 @@ export default class PanelExample extends Component {
                 <Panel 
                     ref="modal"
                     title="Floated Panel"
-                    modal={false}
+                    modal
                     floated
                     centered
                     hideOnMaskTap
