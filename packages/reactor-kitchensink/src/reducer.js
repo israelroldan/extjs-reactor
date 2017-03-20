@@ -10,6 +10,7 @@ const initialState = {
         root: examples
     }),
     mode: 'full',
+    center: false,
     showCode: true
 };
 
@@ -24,6 +25,7 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 component: node && node.get('component'),
+                center: node && node.get('center'),
                 selectedNavNode: node,
                 files: code[location.pathname.slice(1)]
             }

@@ -55,7 +55,8 @@ class Layout extends Component {
             files,
             children,
             showCode,
-            actions
+            actions,
+            center
         } = this.props;
 
         let mainView;
@@ -72,7 +73,9 @@ class Layout extends Component {
                 >
                     { component && (
                         <Container rel="detailCard" layout="fit">
-                            { React.createElement(component) }
+                            <Container key={selectedNavNode.get('text')} layout={center ? 'center' : 'fit'} scrollable={center}>
+                                { React.createElement(component) }
+                            </Container>
                         </Container>
                     ) }
                 </NestedList>
@@ -93,7 +96,19 @@ class Layout extends Component {
                             selection={selectedNavNode}
                             onSelectionChange={(tree, node) => this.onNavChange(node)}
                         /> 
-                        { component ? <Container layout="fit" flex={1} margin={30}>{ React.createElement(component) }</Container> : <Home flex={1}/> }
+                        { component ? (
+                            <Container 
+                                layout={center ? 'center' : 'fit'} 
+                                scrollable={center} 
+                                flex={1} 
+                                padding="30"
+                                key={selectedNavNode.get('text')}
+                            >
+                                { React.createElement(component) }
+                            </Container>
+                         ) : (
+                             <Home flex={1}/> 
+                         ) }
                     </Container>
                 </Container>             
             )
