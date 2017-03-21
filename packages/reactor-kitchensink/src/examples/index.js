@@ -1,5 +1,5 @@
 import Grid from './Grid/Grid';
-import BasicGrid from './Grid/BasicGrid';
+import BasicGrid from './Grid/BasicGrid/BasicGrid';
 import GroupedGrid from './Grid/GroupedGrid/GroupedGrid';
 import ReduxGrid from './ReduxGrid/ReduxGrid';
 import Panel from './Panel/Panel';
