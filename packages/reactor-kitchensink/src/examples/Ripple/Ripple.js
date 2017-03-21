@@ -5,19 +5,17 @@ export default class RippleExample extends React.Component {
 
     render() {
         return (
-            <Container scrollable layout="center">
-                <Container layout="vbox">
-                    <div 
-                        onClick={event => Ext.fly(event.target).ripple({ event })} 
-                        style={styles.rippleTarget}
-                    >I ripple when clicked.</div>
+            <Container layout="vbox">
+                <div 
+                    onClick={event => Ext.fly(event.target).ripple({ event })} 
+                    style={styles.rippleTarget}
+                >I ripple when clicked.</div>
 
-                    <Container 
-                        style={styles.rippleTarget}
-                        ripple={{ }}
-                        margin="30 0 0 0"
-                    >Any ExtReact component can also have a ripple.</Container>
-                </Container>
+                <Container 
+                    style={styles.rippleTarget}
+                    ripple={{ }}
+                    margin="30 0 0 0"
+                >Any ExtReact component can also have a ripple.</Container>
             </Container>
         )
     }

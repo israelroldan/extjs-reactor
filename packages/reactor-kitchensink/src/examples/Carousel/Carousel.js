@@ -3,7 +3,7 @@ import { Carousel, Container } from '@extjs/reactor/modern';
 
 export default function CarouselExample() {
     return (
-        <Container layout={{ type: 'vbox', align: 'stretch' }}>
+        <Container layout={{ type: 'vbox', align: 'stretch' }} padding={10}>
             <Carousel flex={1} shadow>
                 <Container {...cardProps} >
                     <div>Swipe left to show the next card...</div>

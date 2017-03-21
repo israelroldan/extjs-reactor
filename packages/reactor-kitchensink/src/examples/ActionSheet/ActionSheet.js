@@ -23,7 +23,7 @@ export default class ActionSheetExample extends Component {
                 <Panel shadow>
                     <Button handler={this.showActionSheet} text="Show Action Sheet"/>
                 </Panel>
-                <ActionSheet displayed={showActionSheet}>
+                <ActionSheet displayed={showActionSheet} side="bottom" onHide={() => this.setState({ showActionSheet: false })}>
                     <Button ui="decline" handler={this.hideActionSheet} text="Delete Draft"/>
                     <Button handler={this.hideActionSheet} text="Save Draft"/>
                     <Button handler={this.hideActionSheet} text="Cancel"/>

@@ -13,7 +13,7 @@ export default class CardLayoutExample extends Component {
         const { card, animation } = this.state;
 
         return (
-            <Container layout="vbox">
+            <Container layout={{ type: 'vbox', align: 'stretch' }} padding={10}>
                 <Panel shadow ui="instructions" margin="0 0 20 0">
                     A card layout shows one item at a time.  Each item takes on the full height and width of the container.
                     Card layouts can optionally be configured to animate when switching cards.
