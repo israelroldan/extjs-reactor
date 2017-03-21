@@ -8,6 +8,8 @@ import Files from './Files';
 import Home from './Home';
 import * as actions from './actions';
 
+Ext.require('Ext.panel.Collapser');
+
 class Layout extends Component {
 
     componentDidMount() {
@@ -122,8 +124,9 @@ class Layout extends Component {
                         resizable={{ edges: 'west', dynamic: true }} 
                         flex={2}
                         layout="fit" 
-                        displayed={showCode}
-                        hidden={false}
+                        collapsed={!showCode}
+                        header={false}
+                        collapsible={{ direction: 'right' }}
                         shadow 
                         hideAnimation={{type: 'slideOut', direction: 'right'}}
                         showAnimation={{type: 'slideIn', direction: 'left' }}

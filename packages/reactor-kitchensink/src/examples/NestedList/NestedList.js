@@ -14,6 +14,12 @@ export default class ListExample extends Component {
                 displayField="text"
                 store={this.store}
                 onLeafItemTap={this.onLeafItemTap}
+                platformConfig={{
+                    '!phone': {
+                        height: 450,
+                        width: 300
+                    }
+                }}
             />
         )
     }
