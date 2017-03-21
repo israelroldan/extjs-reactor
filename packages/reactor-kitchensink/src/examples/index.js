@@ -1,4 +1,5 @@
 import Grid from './Grid/Grid';
+import BasicGrid from './Grid/BasicGrid';
 import ReduxGrid from './ReduxGrid/ReduxGrid';
 import Panel from './Panel/Panel';
 import TabPanel from './TabPanel/TabPanel';
@@ -230,6 +231,9 @@ const root = {
             { text: 'URLField', component: URLField, center: true }
         ] },
         { text: 'Grids', children: [
+            { text: 'Core Features', children: [
+                { text: 'BasicGrid', component: BasicGrid}
+            ]},
             { text: 'Grid', component: Grid },
             { text: 'PivotGrid', component: PivotGrid },
             { text: 'Redux Grid', component: ReduxGrid }
