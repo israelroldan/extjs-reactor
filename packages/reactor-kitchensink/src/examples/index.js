@@ -1,5 +1,6 @@
 import Grid from './Grid/Grid';
 import BasicGrid from './Grid/BasicGrid';
+import GroupedGrid from './Grid/GroupedGrid/GroupedGrid';
 import ReduxGrid from './ReduxGrid/ReduxGrid';
 import Panel from './Panel/Panel';
 import TabPanel from './TabPanel/TabPanel';
@@ -232,7 +233,8 @@ const root = {
         ] },
         { text: 'Grids', children: [
             { text: 'Core Features', children: [
-                { text: 'BasicGrid', component: BasicGrid}
+                { text: 'BasicGrid', component: BasicGrid},
+                { text: 'GroupedGrid', component: GroupedGrid}
             ]},
             { text: 'Grid', component: Grid },
             { text: 'PivotGrid', component: PivotGrid },
