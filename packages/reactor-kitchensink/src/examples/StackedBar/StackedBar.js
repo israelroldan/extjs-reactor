@@ -19,7 +19,7 @@ export default class StackedBarChartExample extends Component {
     store = Ext.create('Ext.data.Store', {
         fields: ['id', 'g1', 'g2', 'g3', 'g4', 'g5', 'g6', 'name']
     });
-
+ 
     state = {
         theme: 'default'
     };
@@ -34,6 +34,7 @@ export default class StackedBarChartExample extends Component {
 
     render() {
         const { theme } = this.state;
+        
         return (
             <Panel shadow layout="fit">
                 <ChartToolbar
@@ -44,6 +45,7 @@ export default class StackedBarChartExample extends Component {
                 <Cartesian
                     flipXY={true}
                     store={this.store}
+                    theme={theme}
                     insetPadding={'20 20 10 10'}
                     series={[{
                         type: 'bar',

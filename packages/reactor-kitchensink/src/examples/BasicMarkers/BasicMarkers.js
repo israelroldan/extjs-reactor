@@ -41,7 +41,6 @@ export default class BasicMarkers extends Component {
                     insetPadding="20 20 0 10"
                     interactions={[{
                         type: 'panzoom',
-                        zoomOnPanGensture: false
                     }, 'itemhighlight']}
                     legend={{
                         type: 'sprite',

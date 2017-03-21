@@ -62,6 +62,7 @@ export default class FullStackedBar extends Component {
                 <Cartesian
                     insetPadding={'20 20 10 10'}
                     store={this.store}
+                    theme={theme}
                      legend={{
                         type: 'sprite',
                         docked: 'bottom'

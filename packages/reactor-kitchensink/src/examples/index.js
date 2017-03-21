@@ -49,6 +49,11 @@ import TouchEvents from './TouchEvents/TouchEvents';
 import Msg from './Msg/Msg';
 import Toast from './Toast/Toast';
 import Calendar from './Calendar/Calendar';
+import MonthView from './Calendar/MonthView';
+import WeekView from './Calendar/WeekView';
+import DaysView from './Calendar/DaysView';
+import TimezoneSupport from './Calendar/TimezoneSupport';
+import CalendarValidation from './Calendar/CalendarValidation';
 import TitleBar from './TitleBar/TitleBar';
 import BasicScatter from './BasicScatter/BasicScatter';
 import BasicRadar from './BasicRadar/BasicRadar';
@@ -112,6 +117,7 @@ import NegativeValuesArea from './NegativeValuesArea/NegativeValuesArea';
 import Resizable from './resizable/resizable';
 import NumberField from './NumberField/NumberField';
 
+
 const root = {
     id: 'root',
     children: [
@@ -120,7 +126,14 @@ const root = {
             { text: 'Button', component: Button, center: true },
             { text: 'SegmentedButton', component: SegmentedButton, center: true },
         ]},
-        { text: 'Calendar', component: Calendar },
+        { text: 'Calendar', children:[
+            { text: 'Calendar Panel', component: Calendar },
+            { text: 'Month View', component: MonthView },
+            { text: 'Week View', component: WeekView },
+            { text: 'Days View', component: DaysView },
+            { text: 'Timezone support', component: TimezoneSupport },
+            { text: 'Drag Resize Validation', component: CalendarValidation }
+        ]},
         { text: 'Carousel', component: Carousel },
         { text: 'Charts', children: [
             { text: 'Area', children: [

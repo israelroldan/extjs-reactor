@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Cartesian, Panel } from '@extjs/reactor/modern';
 import ChartToolbar from '../Charts/ChartToolbar';
-
+ 
 export default class StackedAreaChartExample extends Component{
     constructor(){
         super();
@@ -43,9 +43,9 @@ export default class StackedAreaChartExample extends Component{
             record.get(item.field) + '%');
     }
 
-    render()
-    {
+    render() {
         const { theme } = this.state;
+
         return(
             <Panel shadow layout="fit">
                 <ChartToolbar
@@ -54,6 +54,7 @@ export default class StackedAreaChartExample extends Component{
                 />
                 <Cartesian
                     store={this.store}
+                    theme={theme}
                     insetPadding={'20 20 10 10'}
                     legend={{type:'sprite'}}
                     axes={[{

@@ -5,15 +5,15 @@ import './data';
 export default class CalendarExample extends Component {
     constructor() {
         super();
+    }
 
-        this.store = Ext.create('Ext.calendar.store.Calendars', {
+    store = Ext.create('Ext.calendar.store.Calendars', {
             autoLoad: true,
             proxy: {
                 type: 'ajax',
                 url: '/KitchenSink/CalendarFull'
             }
         });
-    }
 
     render() {
         return (

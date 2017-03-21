@@ -38,6 +38,10 @@ export default class FullStackedAreaChartExample extends Component{
         return layoutContext.renderer(label) + '%';
     };
 
+    changeTheme = (select, choice) => {
+        this.setState({ theme: choice.get('value') })
+    }
+
     onSeriesTooltipRender = (tooltip, record, item) => {
          var fieldIndex = Ext.Array.indexOf(item.series.getYField(), item.field),
             browser = item.series.getTitle()[fieldIndex];
@@ -56,6 +60,7 @@ export default class FullStackedAreaChartExample extends Component{
                 />
                 <Cartesian 
                     store={this.store}
+                    theme={theme}
                     insetPadding={'20 20 0 0'}
                     legend={{type:'sprite'}}
                     axes={[{
