@@ -45,7 +45,8 @@ export default class BasicGridExample extends Component {
     render(){
 
         return(
-                <Grid title='Grid panel'
+                <Grid 
+                    title='Basic Grid'
                     height={400}
                     width={600}
                     store={this.store}
