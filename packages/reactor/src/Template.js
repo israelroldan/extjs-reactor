@@ -58,10 +58,12 @@ const Template = Ext.define(null, {
      * @private
      * @param {Object} values Values to pass to this.fn
      * @param {HTMLElement} target The element into which the result should be rendered.
+     * @return {HTMLElement} The newly rendered element
      */
     doRender(values, target) {
         const reactElement = this.fn(values);
-        return ReactDOM.render(reactElement, target);
+        ReactDOM.render(reactElement, target);
+        return target.firstChild;
     }
 });
 

@@ -15,15 +15,17 @@ export default class BasicListExample extends Component {
 
     tpl = new Template(data => <div>{data.first_name} {data.last_name}</div>);
 
+    onSelect = (list, record) => {
+        Ext.toast(`You selected ${record.get('first_name')} ${record.get('last_name')}.`)
+    }
+
     render() {
         return (
             <List
                 shadow
                 itemTpl={this.tpl}
                 store={this.store}
-                onSelect={(list, record) => {
-                    Ext.toast(`You selected ${record.get('first_name')} ${record.get('last_name')}.`)
-                }}
+                onSelect={this.onSelect}
                 platformConfig={{
                     '!phone': {
                         height: 450,

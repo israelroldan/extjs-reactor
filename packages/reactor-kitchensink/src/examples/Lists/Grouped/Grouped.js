@@ -19,18 +19,20 @@ export default class GroupedListExample extends Component {
 
     tpl = new Template(data => <div>{data.first_name} {data.last_name}</div>);
 
+    onSelect = (list, record) => {
+        Ext.toast(`You selected ${record.get('first_name')} ${record.get('last_name')}.`)
+    }
+
     render() {
         return (
             <List
                 shadow
-                itemTpl={this.tpl}
+                itemTpl="{first_name} {last_name}"
                 indexBar
                 grouped
                 pinHeaders
                 store={this.store}
-                onSelect={(list, record) => {
-                    Ext.toast(`You selected ${record.get('first_name')} ${record.get('last_name')}.`)
-                }}
+                onSelect={this.onSelect}
                 platformConfig={{
                     '!phone': {
                         height: 450,
