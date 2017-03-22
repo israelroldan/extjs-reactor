@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { List } from '@extjs/reactor/modern';
+import { Template } from '@extjs/reactor';
 import data from './data';
+import ReactDOM from 'react-dom';
 
 Ext.require([
     'Ext.Toast'
@@ -13,11 +15,18 @@ export default class BasicListExample extends Component {
         sorters: ['last_name', 'first_name']
     });
 
+    tpl = new Template(data => (
+        <div>
+            <div>{data.first_name} {data.last_name}</div>
+            <div style={{ color: '#999' }}>Record {data.id}</div>
+        </div>
+    ));
+
     render() {
         return (
             <List
                 shadow
-                itemTpl="{first_name} {last_name}"
+                itemTpl={this.tpl}
                 store={this.store}
                 onSelect={(list, record) => {
                     Ext.toast(`You selected ${record.get('first_name')} ${record.get('last_name')}.`)

@@ -1,6 +1,8 @@
 import ReactDOM from 'react-dom';
 import ExtJSComponent from './ExtJSComponent';
 
+export { default as Template } from './Template';
+
 let settings = {};
 
 /**
@@ -77,3 +79,5 @@ export function install({ viewport=false } = {}) {
         document.head.appendChild(style);
     }
 };
+
+
