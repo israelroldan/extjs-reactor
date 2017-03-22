@@ -4,9 +4,7 @@ import { Template } from '@extjs/reactor';
 import data from '../people';
 import ReactDOM from 'react-dom';
 
-Ext.require([
-    'Ext.Toast'
-]);
+Ext.require('Ext.Toast');
 
 export default class BasicListExample extends Component {
 

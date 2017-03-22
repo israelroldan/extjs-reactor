@@ -19,6 +19,7 @@ export default class CalendarWeekViewExample extends Component {
     render() {
         return (
             <Panel
+                shadow
                 title={Ext.Date.format(new Date(), 'F Y')}
                 layout={{
                     type: 'hbox',

@@ -24,9 +24,10 @@ export default class CalendarTimezoneSupportExample extends Component{
     render(){
         return(
             <Panel
-                title = { Ext.Date.format(new Date(),'F Y') }
-                layout = { 'fit' }
-                header = {{
+                shadow
+                title={ Ext.Date.format(new Date(),'F Y') }
+                layout="fit"
+                header={{
                     layout: 'hbox',
                     items: [{
                         xtype: 'component',

@@ -3,8 +3,17 @@ import ReduxGrid from './ReduxGrid/ReduxGrid';
 import Panel from './Panel/Panel';
 import TabPanel from './TabPanel/TabPanel';
 import Toolbar from './Toolbar/Toolbar';
+import Animations from './Animations/Animations';
+import Button from './Button/Button';
+import SegmentedButton from './SegmentedButton/SegmentedButton';
+import Carousel from './Carousel/Carousel';
+
+// Trees
+
 import Tree from './Tree/Tree';
 import TreeList from './TreeList/TreeList';
+
+// Lists 
 
 import BasicList from './Lists/BasicList/BasicList';
 import GroupedList from './Lists/Grouped/Grouped';
@@ -14,12 +23,9 @@ import PagingList from './Lists/Paging/Paging';
 import SimpleActions from './Lists/SimpleActions/SimpleActions';
 import MultipleActions from './Lists/MultipleActions/MultipleActions';
 import UndoableActions from './Lists/UndoableActions/UndoableActions';
+import NestedList from './Lists/NestedList/NestedList';
 
-import NestedList from './NestedList/NestedList';
-import Animations from './Animations/Animations';
-import Button from './Button/Button';
-import SegmentedButton from './SegmentedButton/SegmentedButton';
-import Carousel from './Carousel/Carousel';
+// Form Fields
 
 import ComboBoxField from './FormFields/ComboBoxField/ComboBoxField';
 import TextField from './FormFields/TextField/TextField';
@@ -41,8 +47,6 @@ import SearchField from './FormFields/SearchField/SearchField';
 import FileField from './FormFields/FileField/FileField';
 import NumberField from './FormFields/NumberField/NumberField';
 
-import FullStackedArea from './FullStackedArea/FullStackedArea';
-import FullStackedBar from './FullStackedBar/FullStackedBar';
 import PivotGrid from './PivotGrid/PivotGrid';
 import Video from './Video/Video';
 import Audio from './Audio/Audio';
@@ -54,37 +58,96 @@ import Picker from './Picker/Picker';
 import TouchEvents from './TouchEvents/TouchEvents';
 import Msg from './Msg/Msg';
 import Toast from './Toast/Toast';
+import TitleBar from './TitleBar/TitleBar';
+
+// Calendar
+
 import Calendar from './Calendar/CalendarPanel/CalendarPanel';
 import MonthView from './Calendar/MonthView/MonthView';
 import WeekView from './Calendar/WeekView/WeekView';
 import DaysView from './Calendar/DaysView/DaysView';
 import TimezoneSupport from './Calendar/TimezoneSupport/TimezoneSupport';
 import DragResizeValidation from './Calendar/DragResizeValidation/DragResizeValidation';
-import TitleBar from './TitleBar/TitleBar';
-import BasicScatter from './BasicScatter/BasicScatter';
-import BasicRadar from './BasicRadar/BasicRadar';
-import BasicPie from './BasicPie/BasicPie';
-import BasicLine from './BasicLine/BasicLine';
-import BasicGauge from './BasicGauge/BasicGauge';
-import BasicBar from './BasicBar/BasicBar';
-import BasicArea from './BasicArea/BasicArea';
-import BasicColumn from './BasicColumn/BasicColumn';
-import Stacked from './Stacked/Stacked';
-import ColumnWithRenderer from './ColumnWithRenderer/ColumnWithRenderer';
-import MultiaxisColumn from './MultiaxisColumn/MultiaxisColumn';
-import Basic3DColumn from './Basic3DColumn/Basic3DColumn';
-import ThreeDGrouped from './3DGrouped/3DGrouped';
-import ThreeDStacked from './3DStacked/3DStacked';
-import ThreeDColumnWithRenderer from './3DColumnWithRenderer/3DColumnWithRenderer';
-import NegativeValues from './NegativeValues/NegativeValues';
-import Candlestick from './Candlestick/Candlestick';
-import OHLC from './OHLC/OHLC';
-import Navigator from './Navigator/Navigator';
+
+// Begin Charts
+
+// 3D Column
+
+import ThreeDColumnWithRenderer from './Charts/3DColumn/3DColumnWithRenderer/3DColumnWithRenderer';
+import ThreeDGrouped from './Charts/3DColumn/3DGrouped/3DGrouped';
+import ThreeDStacked from './Charts/3DColumn/3DStacked/3DStacked';
+import Basic3DColumn from './Charts/3DColumn/Basic3DColumn/Basic3DColumn';
+import NegativeValues from './Charts/3DColumn/NegativeValues/NegativeValues';
+
+// Area
+
+import BasicArea from './Charts/Area/BasicArea/BasicArea';
+import FullStackedArea from './Charts/Area/FullStackedArea/FullStackedArea';
+import StackedArea from './Charts/Area/StackedArea/StackedArea';
+import NegativeValuesArea from './Charts/Area/NegativeValuesArea/NegativeValuesArea';
+
+// Bar
+
+import BasicBar from './Charts/Bar/BasicBar/BasicBar';
+import FullStackedBar from './Charts/Bar/FullStackedBar/FullStackedBar';
+import StackedBar from './Charts/Bar/StackedBar/StackedBar';
+
+// Column
+
+import BasicColumn from './Charts/Column/BasicColumn/BasicColumn';
+import ColumnWithRenderer from './Charts/Column/ColumnWithRenderer/ColumnWithRenderer';
+import MultiaxisColumn from './Charts/Column/MultiaxisColumn/MultiaxisColumn';
+import Stacked from './Charts/Column/Stacked/Stacked';
+
+// Financial
+
+import Candlestick from './Charts/Financial/Candlestick/Candlestick';
+import OHLC from './Charts/Financial/OHLC/OHLC';
+
+// Gauge
+
+import BasicGauge from './Charts/Gauge/BasicGauge/BasicGauge';
+
+// Line
+
+import BasicLine from './Charts/Line/BasicLine/BasicLine';
+import BasicMarkers from './Charts/Line/BasicMarkers/BasicMarkers';
+import Plot from './Charts/Line/Plot/Plot';
+import Realtime from './Charts/Line/Realtime/Realtime';
+import Spline from './Charts/Line/Spline/Spline';
+import SplineMarkers from './Charts/Line/SplineMarkers/SplineMarkers';
+import WithRenderer from './Charts/Line/WithRenderer/WithRenderer';
+
+// Navigator
+
+import Navigator from './Charts/Navigator/Navigator';
+
+// Pie
+
+import ThreeDPie from './Charts/Pie/3DPie/3DPie';
+import BasicPie from './Charts/Pie/BasicPie/BasicPie';
+import Donut from './Charts/Pie/Donut/Donut';
+import DoubleDonut from './Charts/Pie/DoubleDonut/DoubleDonut';
+import Spie from './Charts/Pie/Spie/Spie';
+
+// Radar
+
+import BasicRadar from './Charts/Radar/BasicRadar/BasicRadar';
+import Filled from './Charts/Radar/Filled/Filled';
+import Marked from './Charts/Radar/Marked/Marked';
+import Multiaxis from './Charts/Radar/Multiaxis/Multiaxis';
+
+// Scatter
+
+import BasicScatter from './Charts/Scatter/BasicScatter/BasicScatter';
+import Bubble from './Charts/Scatter/Bubble/Bubble';
+import CustomIcons from './Charts/Scatter/CustomIcons/CustomIcons';
+
+// End Charts
+
 import Draw from './Draw/Draw';
 import Ripple from './Ripple/Ripple';
 import SalesPerEmployee from './SalesPerEmployee/SalesPerEmployee';
-import StackedArea from './StackedArea/StackedArea';
-import StackedBar from './StackedBar/StackedBar';
 import PurchasesByDay from './PurchasesByDay/PurchasesByDay';
 import PivotHeatmap from './PivotHeatmap/PivotHeatmap';
 import ConfigurablePivotHeatmap from './ConfigurablePivotHeatmap/ConfigurablePivotHeatmap';
@@ -95,29 +158,17 @@ import ConfigurablePivotTreeMap from './ConfigurablePivotTreeMap/ConfigurablePiv
 import Pack from './Pack/Pack';
 import Sunburst from './Sunburst/Sunburst';
 import ZoomableSunburst from './ZoomableSunburst/ZoomableSunburst';
-import BasicMarkers from './BasicMarkers/BasicMarkers';
-import Spline from './Spline/Spline';
-import SplineMarkers from './SplineMarkers/SplineMarkers';
-import Plot from './Plot/Plot';
-import WithRenderer from './WithRenderer/WithRenderer';
-import Realtime from './Realtime/Realtime';
-import Spie from './Spie/Spie';
-import Donut from './Donut/Donut';
-import DoubleDonut from './DoubleDonut/DoubleDonut';
-import ThreeDPie from './3DPie/3DPie';
-import CustomIcons from './CustomIcons/CustomIcons';
-import Bubble from './Bubble/Bubble';
-import Filled from './Filled/Filled';
-import Marked from './Marked/Marked';
-import Multiaxis from './Multiaxis/Multiaxis';
-import CardLayout from './card/card';
-import FitLayout from './fit/fit';
-import HboxLayout from './hbox/hbox';
-import VboxLayout from './vbox/vbox';
-import FormLayout from './form/form';
+
+// Layouts
+
+import CardLayout from './Layouts/card/card';
+import FitLayout from './Layouts/fit/fit';
+import HboxLayout from './Layouts/hbox/hbox';
+import VboxLayout from './Layouts/vbox/vbox';
+import FormLayout from './Layouts/form/form';
+import Resizable from './Layouts/resizable/resizable';
+
 import InProgress from '../InProgress';
-import NegativeValuesArea from './NegativeValuesArea/NegativeValuesArea';
-import Resizable from './resizable/resizable';
 
 const root = {
     id: 'root',

@@ -35,7 +35,9 @@ export default class CalendarValidationExample extends Component {
     render() {
         return (
             <Panel
-                layout={"fit"}>
+                layout="fit"
+                shadow
+            >
                 <Calendar_Day
                     startTime={8}
                     endTime={18}
