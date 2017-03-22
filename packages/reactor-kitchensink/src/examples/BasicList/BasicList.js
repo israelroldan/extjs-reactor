@@ -15,12 +15,7 @@ export default class BasicListExample extends Component {
         sorters: ['last_name', 'first_name']
     });
 
-    tpl = new Template(data => (
-        <div>
-            <div>{data.first_name} {data.last_name}</div>
-            <div style={{ color: '#999' }}>Record {data.id}</div>
-        </div>
-    ));
+    tpl = new Template(data => <div>{data.first_name} {data.last_name}</div>);
 
     render() {
         return (

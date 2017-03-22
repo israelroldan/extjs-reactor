@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { List } from '@extjs/reactor/modern';
 import data from '../BasicList/data';
+import { Template } from '@extjs/reactor';
 
 Ext.require([
     'Ext.MessageBox'
@@ -13,11 +14,13 @@ export default class DisclosureListExample extends Component {
         sorters: ['last_name', 'first_name']
     });
 
+    tpl = new Template(data => <div>{data.first_name} {data.last_name}</div>);
+
     render() {
         return (
             <List
                 shadow
-                itemTpl="{first_name} {last_name}"
+                itemTpl={this.tpl}
                 store={this.store}
                 config={{
                     onItemDisclosure: (record, btn, index) => {
