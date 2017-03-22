@@ -3,9 +3,6 @@ import { Calendar_Day, Panel } from '@extjs/reactor/modern';
 import './data';
 
 export default class CalendarValidationExample extends Component {
-    constructor() {
-        super();
-    }
 
     store = Ext.create('Ext.calendar.store.Calendars', {
         autoLoad: true,

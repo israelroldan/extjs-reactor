@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { List } from '@extjs/reactor/modern';
 
-require('./data');
+require('../stocks');
 
 Ext.require([
     'Ext.plugin.PullRefresh'

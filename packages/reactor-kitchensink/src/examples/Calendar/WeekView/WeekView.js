@@ -3,9 +3,6 @@ import { Calendar_Week, Panel } from '@extjs/reactor/modern';
 import './data';
 
 export default class CalendarWeekViewExample extends Component {
-    constructor() {
-        super();
-    }
 
     state = {
         visibleDays:7

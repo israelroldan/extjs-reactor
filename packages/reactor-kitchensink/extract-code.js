@@ -1,52 +1,54 @@
 const fs = require('fs');
 const path = require('path');
 const examples = path.join(__dirname, 'src', 'examples');
+
 let result;
 
-function extractAll() {
-    result = {};
-    const dirs = fs.readdirSync(examples);
+function extractAll(dir) {
+    const files = fs.readdirSync(dir);
+    const parts = dir.split(path.sep);
+    const example = parts[parts.length - 1];
 
-    for (let dir of dirs) {
-        if (!fs.lstatSync(path.join(examples, dir)).isDirectory()) continue;
-        const files = fs.readdirSync(path.join(examples, dir));
-
-        for (let file of files) {
-            if (file === `${dir}.js`) {
-                try {
-                    extractFrom(dir, file);
-                } catch (e) {
-                    console.log(`Error extracting code from ${file}`, e);
-                }
+    for (let file of files) {
+        const fullPath = path.join(dir, file);
+        
+        if (fs.lstatSync(fullPath).isDirectory()) {
+            extractAll(fullPath); 
+        } else if (file === `${example}.js`) {
+            try {
+                extractFrom(example, file, fullPath);
+            } catch (e) {
+                console.log(`Error extracting code from ${file}`, e);
             }
         }
     }
-    
+}
+
+function extractFrom(example, file, fullPath) {
+    if (!fs.existsSync(fullPath)) return;
+
+    const content = fs.readFileSync(path.join(fullPath), 'utf8');
+    const importRegex = /import[^'"]+['"]([^'"]+)['"];/gi;
+    let match;
+
+    (result[example] = result[example] || {})[file] = content;
+
+    while (match = importRegex.exec(content)) {
+        file = `${match[1]}.js`;
+        
+        if (file.startsWith('.')) {
+            extractFrom(example, path.basename(file), path.join(path.dirname(fullPath), file));
+        }
+    }
+}
+
+function run() {
+    result = {};
+    extractAll(examples);  
     fs.writeFileSync(path.join(__dirname, 'src', 'code.js'), `export default ${JSON.stringify(result, null, '\t')}`, 'utf8');
     console.log('wrote code.js');
 }
 
-function extractFrom(dir, file) {
-    console.log('extractFrom', dir, file);
+fs.watch(examples, { recursive: true }, run);
 
-    const content = fs.readFileSync(path.join(examples, dir, file), 'utf8');
-    const importRegex = /import[^'"]+['"]([^'"]+)['"];/gi;
-    let match;
-
-    (result[dir] = result[dir] || {})[file] = content;
-
-    while (match = importRegex.exec(content)) {
-        if (match[1].startsWith('./')) {
-            let file = match[1].replace(/\.\//, '');
-
-            if (!file.match(/\..*$/)) {
-                file = file + '.js'
-            }
-
-            extractFrom(dir, file);
-        }
-    }
-}
-
-fs.watch(examples, { recursive: true }, extractAll);
-extractAll();
+run();

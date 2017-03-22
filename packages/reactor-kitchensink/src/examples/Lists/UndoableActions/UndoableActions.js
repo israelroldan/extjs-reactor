@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { List, Panel } from '@extjs/reactor/modern';
-import data from '../BasicList/data';
+import data from '../people';
 import { Template } from '@extjs/reactor';
 
 Ext.require([
@@ -35,19 +35,14 @@ export default class SimpleActionsExample extends Component {
                 }}
                 plugins={{ 
                     type: 'listswiper',
+                    dismissDelay: 2000,
                     actions: {
-                        call: {
+                        delete: {
                             direction: 'left',
+                            undoable: true,
                             widget: {
-                                iconCls: 'x-fa fa-phone',
-                                text: 'Call'
-                            }
-                        },
-                        message: {
-                            direction: 'right',
-                            widget: {
-                                iconCls: 'x-fa fa-envelope',
-                                text: 'Message'
+                                iconCls: 'x-fa fa-trash',
+                                text: 'Delete'
                             }
                         }
                     }
@@ -55,7 +50,7 @@ export default class SimpleActionsExample extends Component {
                 onItemAction={this.onItemAction}
             >
                 <Panel ui="instructions" docked="top">
-                    <div style={{textAlign: 'center', color: '#888'}}>Swipe left to call, right to message.</div>
+                    <div style={{textAlign: 'center', color: '#888'}}>Swipe left to delete.</div>
                 </Panel>
             </List>
         )

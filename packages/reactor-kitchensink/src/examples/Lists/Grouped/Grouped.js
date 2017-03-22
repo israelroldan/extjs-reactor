@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
 import { List } from '@extjs/reactor/modern';
-import data from '../BasicList/data';
+import data from '../people';
 import { Template } from '@extjs/reactor';
 
 Ext.require([
-    'Ext.MessageBox'
+    'Ext.Toast'
 ]);
 
-export default class DisclosureListExample extends Component {
+export default class GroupedListExample extends Component {
 
     store = Ext.create('Ext.data.Store', { 
         data,
-        sorters: ['last_name', 'first_name']
+        sorters: ['last_name', 'first_name'],
+        grouper: {
+            groupFn: record => record.get('last_name')[0]
+        }
     });
 
     tpl = new Template(data => <div>{data.first_name} {data.last_name}</div>);
@@ -21,11 +24,12 @@ export default class DisclosureListExample extends Component {
             <List
                 shadow
                 itemTpl={this.tpl}
+                indexBar
+                grouped
+                pinHeaders
                 store={this.store}
-                config={{
-                    onItemDisclosure: (record, btn, index) => {
-                        Ext.Msg.alert('Tap', 'Disclose more info for ' + record.get('first_name'), Ext.emptyFn);
-                    }
+                onSelect={(list, record) => {
+                    Ext.toast(`You selected ${record.get('first_name')} ${record.get('last_name')}.`)
                 }}
                 platformConfig={{
                     '!phone': {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { List, SegmentedButton, Button, Panel, Container } from '@extjs/reactor/modern';
 
-require('../PullRefreshList/data');
+require('../stocks');
 
 Ext.require([
     'Ext.plugin.ListPaging'

@@ -6,35 +6,41 @@ import Toolbar from './Toolbar/Toolbar';
 import Tree from './Tree/Tree';
 import TreeList from './TreeList/TreeList';
 
-import BasicList from './BasicList/BasicList';
-import GroupedList from './GroupedList/GroupedList';
-import PullRefreshList from './PullRefreshList/PullRefreshList';
-import DisclosureList from './DisclosureList/DisclosureList';
-import PagingList from './PagingList/PagingList';
-import SimpleActions from './SimpleActions/SimpleActions';
-import MultipleActions from './MultipleActions/MultipleActions';
-import UndoableActions from './UndoableActions/UndoableActions';
+import BasicList from './Lists/BasicList/BasicList';
+import GroupedList from './Lists/Grouped/Grouped';
+import PullRefreshList from './Lists/PullRefresh/PullRefresh';
+import DisclosureList from './Lists/Disclosure/Disclosure';
+import PagingList from './Lists/Paging/Paging';
+import SimpleActions from './Lists/SimpleActions/SimpleActions';
+import MultipleActions from './Lists/MultipleActions/MultipleActions';
+import UndoableActions from './Lists/UndoableActions/UndoableActions';
 
 import NestedList from './NestedList/NestedList';
 import Animations from './Animations/Animations';
 import Button from './Button/Button';
 import SegmentedButton from './SegmentedButton/SegmentedButton';
 import Carousel from './Carousel/Carousel';
-import TextField from './TextField/TextField';
-import FieldSet from './FieldSet/FieldSet';
-import EmailField from './EmailField/EmailField';
-import URLField from './URLField/URLField';
-import PasswordField from './PasswordField/PasswordField';
-import SpinnerField from './SpinnerField/SpinnerField';
-import CheckBoxField from './CheckBoxField/CheckBoxField';
-import DatePickerField from './DatePickerField/DatePickerField';
-import SelectField from './SelectField/SelectField';
-import SliderField from './SliderField/SliderField';
-import ToggleField from './ToggleField/ToggleField';
-import TextAreaField from './TextAreaField/TextAreaField';
-import RadioField from './RadioField/RadioField';
-import Gauge from './Gauge/Gauge';
-import FormPanel from './FormPanel/FormPanel';
+
+import ComboBoxField from './FormFields/ComboBoxField/ComboBoxField';
+import TextField from './FormFields/TextField/TextField';
+import FieldSet from './FormFields/FieldSet/FieldSet';
+import EmailField from './FormFields/EmailField/EmailField';
+import URLField from './FormFields/URLField/URLField';
+import PasswordField from './FormFields/PasswordField/PasswordField';
+import SpinnerField from './FormFields/SpinnerField/SpinnerField';
+import CheckBoxField from './FormFields/CheckBoxField/CheckBoxField';
+import DatePickerField from './FormFields/DatePickerField/DatePickerField';
+import SelectField from './FormFields/SelectField/SelectField';
+import SliderField from './FormFields/SliderField/SliderField';
+import ToggleField from './FormFields/ToggleField/ToggleField';
+import TextAreaField from './FormFields/TextAreaField/TextAreaField';
+import RadioField from './FormFields/RadioField/RadioField';
+import Gauge from './FormFields/Gauge/Gauge';
+import FormPanel from './FormFields/FormPanel/FormPanel';
+import SearchField from './FormFields/SearchField/SearchField';
+import FileField from './FormFields/FileField/FileField';
+import NumberField from './FormFields/NumberField/NumberField';
+
 import FullStackedArea from './FullStackedArea/FullStackedArea';
 import FullStackedBar from './FullStackedBar/FullStackedBar';
 import PivotGrid from './PivotGrid/PivotGrid';
@@ -48,12 +54,12 @@ import Picker from './Picker/Picker';
 import TouchEvents from './TouchEvents/TouchEvents';
 import Msg from './Msg/Msg';
 import Toast from './Toast/Toast';
-import Calendar from './Calendar/Calendar';
-import MonthView from './Calendar/MonthView';
-import WeekView from './Calendar/WeekView';
-import DaysView from './Calendar/DaysView';
-import TimezoneSupport from './Calendar/TimezoneSupport';
-import CalendarValidation from './Calendar/CalendarValidation';
+import Calendar from './Calendar/CalendarPanel/CalendarPanel';
+import MonthView from './Calendar/MonthView/MonthView';
+import WeekView from './Calendar/WeekView/WeekView';
+import DaysView from './Calendar/DaysView/DaysView';
+import TimezoneSupport from './Calendar/TimezoneSupport/TimezoneSupport';
+import DragResizeValidation from './Calendar/DragResizeValidation/DragResizeValidation';
 import TitleBar from './TitleBar/TitleBar';
 import BasicScatter from './BasicScatter/BasicScatter';
 import BasicRadar from './BasicRadar/BasicRadar';
@@ -76,7 +82,6 @@ import OHLC from './OHLC/OHLC';
 import Navigator from './Navigator/Navigator';
 import Draw from './Draw/Draw';
 import Ripple from './Ripple/Ripple';
-import ComboBoxField from './ComboBoxField/ComboBoxField';
 import SalesPerEmployee from './SalesPerEmployee/SalesPerEmployee';
 import StackedArea from './StackedArea/StackedArea';
 import StackedBar from './StackedBar/StackedBar';
@@ -105,8 +110,6 @@ import Bubble from './Bubble/Bubble';
 import Filled from './Filled/Filled';
 import Marked from './Marked/Marked';
 import Multiaxis from './Multiaxis/Multiaxis';
-import SearchField from './SearchField/SearchField';
-import FileField from './FileField/FileField';
 import CardLayout from './card/card';
 import FitLayout from './fit/fit';
 import HboxLayout from './hbox/hbox';
@@ -115,8 +118,6 @@ import FormLayout from './form/form';
 import InProgress from '../InProgress';
 import NegativeValuesArea from './NegativeValuesArea/NegativeValuesArea';
 import Resizable from './resizable/resizable';
-import NumberField from './NumberField/NumberField';
-
 
 const root = {
     id: 'root',
@@ -131,8 +132,8 @@ const root = {
             { text: 'Month View', component: MonthView },
             { text: 'Week View', component: WeekView },
             { text: 'Days View', component: DaysView },
-            { text: 'Timezone support', component: TimezoneSupport },
-            { text: 'Drag Resize Validation', component: CalendarValidation }
+            { text: 'Timezone Support', component: TimezoneSupport },
+            { text: 'Drag Resize Validation', component: DragResizeValidation }
         ]},
         { text: 'Carousel', component: Carousel },
         { text: 'Charts', children: [

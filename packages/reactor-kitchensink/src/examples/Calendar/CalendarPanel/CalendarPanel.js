@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Calendar } from '@extjs/reactor/modern';
 import { Template } from '@extjs/reactor';
-import './data';
+import '../data';
 
 export default class CalendarExample extends Component {
 

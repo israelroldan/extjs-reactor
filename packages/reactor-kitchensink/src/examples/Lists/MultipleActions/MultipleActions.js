@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { List, Panel } from '@extjs/reactor/modern';
-import data from '../BasicList/data';
+import data from '../people';
 import { Template } from '@extjs/reactor';
 
 Ext.require([
