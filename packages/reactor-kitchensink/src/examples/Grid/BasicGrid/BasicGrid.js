@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Grid, Container } from '@extjs/reactor/modern';
 import model from './BasicGridModel';
-import './BasicGridData';
-
+import '../CompanyData';
 
 export default class BasicGridExample extends Component {
     constructor(){
