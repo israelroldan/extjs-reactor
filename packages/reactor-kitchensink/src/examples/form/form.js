@@ -3,7 +3,7 @@ import { Container, Panel, FormPanel, TextField } from '@extjs/reactor/modern';
 
 export default function FormLayoutExample() {
     return (
-        <Container layout="vbox">
+        <Container layout="vbox" padding={10}>
             <Panel shadow ui="instructions" margin="0 0 30 0">
                 Form layout renders a single column of form fields, all with the same label width. 
                 The default behavior is to size all labels to the width of the label with the longest 

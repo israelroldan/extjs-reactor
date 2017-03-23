@@ -6,7 +6,7 @@ export default class VBoxLayoutExample extends Component {
 
     render() {
         return (
-            <Container layout="vbox">
+            <Container layout="vbox" padding={10}>
                 <Panel shadow ui="instructions" margin="0 0 20 0">
                     An hbox layout positions items horizontally with optional 'pack', and 'align' configs.
                 </Panel>

@@ -5,7 +5,16 @@ import TabPanel from './TabPanel/TabPanel';
 import Toolbar from './Toolbar/Toolbar';
 import Tree from './Tree/Tree';
 import TreeList from './TreeList/TreeList';
-import List from './List/List';
+
+import BasicList from './BasicList/BasicList';
+import GroupedList from './GroupedList/GroupedList';
+import PullRefreshList from './PullRefreshList/PullRefreshList';
+import DisclosureList from './DisclosureList/DisclosureList';
+import PagingList from './PagingList/PagingList';
+import SimpleActions from './SimpleActions/SimpleActions';
+import MultipleActions from './MultipleActions/MultipleActions';
+import UndoableActions from './UndoableActions/UndoableActions';
+
 import NestedList from './NestedList/NestedList';
 import Animations from './Animations/Animations';
 import Button from './Button/Button';
@@ -112,8 +121,6 @@ import NumberField from './NumberField/NumberField';
 const root = {
     id: 'root',
     children: [
-        { text: 'ActionSheet', component: ActionSheet },
-        { text: 'Accordion', component: InProgress },
         { text: 'Animations', component: Animations },
         { text: 'Buttons', children: [
             { text: 'Button', component: Button, center: true },
@@ -207,7 +214,7 @@ const root = {
             ]}
         ] },
         { text: 'Draw', component: Draw },
-        { text: 'EdgeMenu', component: EdgeMenu },
+        { text: 'EdgeMenu', component: EdgeMenu, center: true },
         { text: 'Form Fields', children: [
             { text: 'CheckBoxField', component: CheckBoxField, center: true },
             { text: 'ComboBoxField', component: ComboBoxField, center: true },
@@ -243,8 +250,17 @@ const root = {
             { text: 'vbox', component: VboxLayout }
         ]},
         { text: 'Lists', children: [
-            { text: 'List', component: List },
-            { text: 'NestedList', component: NestedList }
+            { text: 'Basic List', component: BasicList, center: !Ext.os.is.Phone },
+            { text: 'Grouped', component: GroupedList, center: !Ext.os.is.Phone },
+            { text: 'Disclosure', component: DisclosureList, center: !Ext.os.is.Phone },
+            { text: 'Pull Refresh', component: PullRefreshList, center: !Ext.os.is.Phone },
+            { text: 'Paging', component: PagingList, center: !Ext.os.is.Phone },
+            { text: 'Swiper', children: [
+                { text: 'Simple Actions', component: SimpleActions, center: !Ext.os.is.Phone },
+                { text: 'Multiple Actions', component: MultipleActions, center: !Ext.os.is.Phone },
+                { text: 'Undoable Actions', component: UndoableActions, center: !Ext.os.is.Phone },
+            ]},
+            { text: 'NestedList', component: NestedList, center: !Ext.os.is.Phone }
         ]},
         { text: 'Media', children: [
             { text: 'Video', component: Video },

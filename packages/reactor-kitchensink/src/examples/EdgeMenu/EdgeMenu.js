@@ -1,76 +1,81 @@
 import React, { Component } from 'react';
-import { ViewPort, Panel, Button, EdgeMenu } from '@extjs/reactor/modern';
+import { FormPanel, Panel, Button, EdgeMenu, Container, SegmentedButton, Label, TitleBar } from '@extjs/reactor/modern';
 
 export default class MenuExample extends Component {
 
-    constructor() {
-        super();
-    }
-
     state = {
-            left: false,
-            right: false,
-            top: false,
-            bottom: false
-        };
+        side: 'left',
+        modal: true,
+        reveal: false,
+        displayed: false
+    };
 
-    menus = [];
-    
-    componentDidUpdate() {
-        if (this.state.left) {
-            Ext.Viewport.showMenu('left');
-        } 
-        else if(this.state.right){
-            Ext.Viewport.showMenu('right');
-        }
-        else if(this.state.top){
-            Ext.Viewport.showMenu('top');
-        }
-        else if(this.state.bottom){
-            Ext.Viewport.showMenu('bottom');
-        }
-        else {
-            Ext.Viewport.hideMenu('left');
-            Ext.Viewport.hideMenu('right');
-            Ext.Viewport.hideMenu('top');
-            Ext.Viewport.hideMenu('bottom');
-        }
-    }
+    toggleMenu = () => {
+        this.setState({
+            displayed: !this.state.displayed
+        })
+    } 
 
     render() {
-        const { left, right, top, bottom } = this.state;
+        const { displayed, side, modal, reveal } = this.state;
+
+        const formFieldDefaults = {
+            margin: '0 0 10 0'
+        };  
+
+        const menuItemDefaults = {
+            width: side === 'left' || side === 'right' ? 250 : undefined
+        };
         
         return (
-            <Panel>
-                <EdgeMenu side="left" displayed={left} onHide={() => this.setState({ left: false })}>
-                    <Button text="Settings" iconCls="x-fa fa-gear" handler={() => this.setState({left: false})}/>
-                    <Button text="New Item" iconCls="x-fa fa-pencil" handler={() => this.setState({left: false})}/>
-                    <Button text="Star" iconCls="x-fa fa-star" handler={() => this.setState({left: false})}/>
+            <Container padding={10}>
+                <EdgeMenu 
+                    side={side} 
+                    modal={modal} 
+                    reveal={reveal} 
+                    displayed={displayed} onHide={() => this.setState({ displayed: false })}
+                >
+                    <Button text="Settings" iconCls="x-fa fa-gear" handler={this.toggleMenu} {...menuItemDefaults}/>
+                    <Button text="New Item" iconCls="x-fa fa-pencil" handler={this.toggleMenu} {...menuItemDefaults}/>
+                    <Button text="Star" iconCls="x-fa fa-star" handler={this.toggleMenu} {...menuItemDefaults}/>
                 </EdgeMenu>
-                <EdgeMenu side="right" displayed={right} onHide={() => this.setState({ right: false })}>
-                    <Button text="Settings" iconCls="x-fa fa-gear" handler={() => this.setState({right: false})}/>
-                    <Button text="New Item" iconCls="x-fa fa-pencil" handler={() => this.setState({right: false})}/>
-                    <Button text="Star" iconCls="x-fa fa-star" handler={() => this.setState({right: false})}/>
-                </EdgeMenu>
-                <EdgeMenu side="top" cover displayed={top} onHide={() => this.setState({ top: false })}>
-                    <Button text="Settings" iconCls="x-fa fa-gear" handler={() => this.setState({top: false})}/>
-                    <Button text="New Item" iconCls="x-fa fa-pencil" handler={() => this.setState({top: false})}/>
-                    <Button text="Star" iconCls="x-fa fa-star" handler={() => this.setState({top: false})}/>
-                </EdgeMenu>
-                <EdgeMenu side="bottom" slide displayed={bottom} onHide={() => this.setState({ bottom: false })}>
-                    <Button text="Settings" iconCls="x-fa fa-gear" handler={() => this.setState({bottom: false})}/>
-                    <Button text="New Item" iconCls="x-fa fa-pencil" handler={() => this.setState({bottom: false})}/>
-                    <Button text="Star" iconCls="x-fa fa-star" handler={() => this.setState({bottom: false})}/>
-                </EdgeMenu>
-                <div><b>Ext.Menu</b> is a component which allows you to easily display slidingmenus from any side of the screen.</div>
-                <br/>
-                <br/>
-                <div>You can show the menus by either tapping the buttons below,or by swiping from the edge of the screen.</div>
-                <Button handler={() => this.setState({ left: true })} text="Toggle left menu (reveal)"/>
-                <Button handler={() => this.setState({ right: true })} text="Toggle right menu (reveal)"/>
-                <Button handler={() => this.setState({ top: true })} text="Toggle top menu (cover)"/>
-                <Button handler={() => this.setState({ bottom: true })} text="Toggle bottom menu (slide)"/>
-            </Panel>
+                
+                <Panel shadow ui="instructions">
+                    <div><b>EdgeMenu</b> is a component which allows you to easily display sliding menus from any side of the screen.</div>
+                    <div>You can show the menu by clicking the "Show Menu" button below or by swiping from the edge of the screen.</div>
+                </Panel>
+
+                <Panel layout={{type: 'vbox', align: 'left'}} shadow margin="20 0 0 0" padding="15" shadow>
+                    <Button 
+                        ui="action" 
+                        enableToggle={true} 
+                        pressed={displayed} 
+                        text={displayed ? 'Hide Menu' : 'Show Menu'} 
+                        handler={this.toggleMenu}
+                        {...formFieldDefaults}
+                    />
+
+                    <Label>side</Label>
+                    <SegmentedButton {...formFieldDefaults}>
+                        <Button text="left" handler={() => this.setState({ side: 'left' })} pressed={this.state.side === 'left'}/>
+                        <Button text="right" handler={() => this.setState({ side: 'right' })} pressed={this.state.side === 'right'}/>
+                        <Button text="top" handler={() => this.setState({ side: 'top' })} pressed={this.state.side === 'top'}/>
+                        <Button text="bottom" handler={() => this.setState({ side: 'bottom' })} pressed={this.state.side === 'bottom'}/>
+                    </SegmentedButton>
+
+                    <Label>reveal</Label>
+                    <SegmentedButton {...formFieldDefaults}>
+                        <Button text="true" pressed={this.state.reveal} handler={() => this.setState({ reveal: true })}/>
+                        <Button text="false" pressed={!this.state.reveal} handler={() => this.setState({ reveal: false })}/>
+                    </SegmentedButton>
+
+                    <Label>modal</Label>
+                    <SegmentedButton disabled={reveal}>
+                        <Button text="true" pressed={this.state.modal} handler={() => this.setState({ modal: true })}/>
+                        <Button text="false" pressed={!this.state.modal} handler={() => this.setState({ modal: false })}/>
+                    </SegmentedButton>
+                </Panel>
+            </Container>
         )
     }
 }
