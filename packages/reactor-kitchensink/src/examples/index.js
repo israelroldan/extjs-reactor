@@ -2,6 +2,7 @@ import Grid from './Grid/Grid';
 import BasicGrid from './Grid/BasicGrid/BasicGrid';
 import GroupedGrid from './Grid/GroupedGrid/GroupedGrid';
 import CellEditingGrid from './Grid/CellEditing/Grid';
+import EditableGrid from './Grid/EditableGrid/Grid';
 import ReduxGrid from './ReduxGrid/ReduxGrid';
 import Panel from './Panel/Panel';
 import TabPanel from './TabPanel/TabPanel';
@@ -236,7 +237,8 @@ const root = {
             { text: 'Core Features', children: [
                 { text: 'BasicGrid', component: BasicGrid},
                 { text: 'GroupedGrid', component: GroupedGrid},
-                { text: 'CellEditing', component: CellEditingGrid}
+                { text: 'CellEditing', component: CellEditingGrid},
+                { text: 'EditableGrid', component: EditableGrid}
             ]},
             { text: 'Grid', component: Grid },
             { text: 'PivotGrid', component: PivotGrid },
