@@ -11,12 +11,13 @@ export default class PanelExample extends Component {
 
     render() {
         return (
-            <Container>
+            <Container padding={10}>
                 <Panel 
                     shadow
                     title="Panel" 
                     height={300}
                     width={500}
+                    bodyPadding={10}
                     tools={[
                         { type: 'minimize', handler: toolHandler },
                         { type: 'refresh', handler: toolHandler },
@@ -25,12 +26,12 @@ export default class PanelExample extends Component {
                         { type: 'close', handler: toolHandler }
                     ]}
                 >
-                    <p>Panel Body</p>
+                    Panel Body
                 </Panel>
-                <Button ui="action" handler={() => this.refs.modal.show()} margin="20 0 0 0" text="Show Modal"/>
+                <Button ui="action" handler={() => this.modal.show()} margin="20 0 0 0" text="Show Modal"/>
                 <Panel 
-                    ref="modal"
                     title="Floated Panel"
+                    ref={p => this.modal = p}
                     modal
                     floated
                     centered

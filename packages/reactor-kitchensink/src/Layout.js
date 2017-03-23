@@ -37,7 +37,7 @@ class Layout extends Component {
     }
 
     onNavChange = (node) => {
-        if (node.isLeaf()) {
+        if (node && node.isLeaf()) {
             const { router, location } = this.props;
             const path = `/${node.getId()}`;
             if (location.pathname !== path) router.push(path)
@@ -86,8 +86,8 @@ class Layout extends Component {
             // desktop + tablet layout
             mainView = (
                 <Container layout="fit" flex={4}>
-                    <TitleBar docked="top">
-                        <div className="ext ext-sencha" style={{marginRight: '7px', fontSize: '20px'}}/>
+                    <TitleBar docked="top" shadow style={{zIndex: 2}}>
+                        <div className="ext ext-sencha" style={{marginRight: '7px', fontSize: '20px', width: '20px'}}/>
                         <a href="#" className="app-title">ExtReact Kitchen Sink</a>
                         { files && <Button align="right" iconCls="x-fa fa-code" handler={actions.toggleCode} ripple={{bound: false}} /> }
                     </TitleBar>
@@ -128,6 +128,7 @@ class Layout extends Component {
                         header={false}
                         collapsible={{ direction: 'right' }}
                         shadow 
+                        style={{zIndex: 3}}
                         hideAnimation={{type: 'slideOut', direction: 'right'}}
                         showAnimation={{type: 'slideIn', direction: 'left' }}
                     >

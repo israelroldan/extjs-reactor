@@ -8,16 +8,14 @@ const sourcePath = path.join(__dirname, './src');
 module.exports = function (env) {
     const nodeEnv = env && env.prod ? 'production' : 'development';
     const isProd = nodeEnv === 'production';
-    const isLocalSdk = process.env['EXTJS_LOCAL_SDK'] === 'true';
 
     const plugins = [
         new ExtJSReactorWebpackPlugin({
-            sdk: 'ext/ext',
+            sdk: 'ext',
             theme: './theme-rest-example',
             asynchronous: true,
             packages: [],
             overrides: ['./overrides'],
-            packageDirs: isLocalSdk ? ['ext/packages'] : [],
             production: isProd
         }),
         new webpack.EnvironmentPlugin({

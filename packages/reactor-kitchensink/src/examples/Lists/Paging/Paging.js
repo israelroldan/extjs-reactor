@@ -3,9 +3,7 @@ import { List, SegmentedButton, Button, Panel, Container } from '@extjs/reactor/
 
 require('../stocks');
 
-Ext.require([
-    'Ext.plugin.ListPaging'
-]);
+Ext.require('Ext.plugin.ListPaging');
 
 export default class PagingListExample extends Component {
 

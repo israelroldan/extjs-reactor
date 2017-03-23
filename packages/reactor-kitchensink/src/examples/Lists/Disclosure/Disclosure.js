@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import { List } from '@extjs/reactor/modern';
-import data from '../people';
 import { Template } from '@extjs/reactor';
 
-Ext.require([
-    'Ext.MessageBox'
-]);
+Ext.require('Ext.MessageBox');
 
 export default class DisclosureListExample extends Component {
 
     store = Ext.create('Ext.data.Store', { 
-        data,
+        autoLoad: true,
+        proxy: {
+            type: 'rest',
+            url: '/resources/data/people.json'
+        },
         sorters: ['last_name', 'first_name']
     });
 

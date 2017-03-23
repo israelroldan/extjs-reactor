@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
 import { List } from '@extjs/reactor/modern';
-import data from '../people';
 import { Template } from '@extjs/reactor';
 
-Ext.require([
-    'Ext.Toast'
-]);
+Ext.require('Ext.Toast');
 
 export default class GroupedListExample extends Component {
-
+    
     store = Ext.create('Ext.data.Store', { 
-        data,
-        sorters: ['last_name', 'first_name'],
+        autoLoad: true,
+        proxy: {
+            type: 'rest',
+            url: '/resources/data/people.json'
+        },
         grouper: {
             groupFn: record => record.get('last_name')[0]
-        }
+        },
+        sorters: ['last_name', 'first_name']
     });
 
     tpl = new Template(data => <div>{data.first_name} {data.last_name}</div>);
@@ -27,7 +28,7 @@ export default class GroupedListExample extends Component {
         return (
             <List
                 shadow
-                itemTpl="{first_name} {last_name}"
+                itemTpl={this.tpl}
                 indexBar
                 grouped
                 pinHeaders

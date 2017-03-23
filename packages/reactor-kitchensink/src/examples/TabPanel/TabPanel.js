@@ -3,7 +3,7 @@ import { TabPanel, Component, Container } from '@extjs/reactor/modern';
 
 export default function TabPanelExample() {
     return (
-        <Container layout={{type: 'vbox', align: 'stretch'}}>
+        <Container layout={{type: 'vbox', align: 'stretch'}} padding={10}>
             <TabPanel 
                 flex={1}
                 shadow 

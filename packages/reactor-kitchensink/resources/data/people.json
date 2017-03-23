@@ -1,4 +1,4 @@
-export default [{"id":1,"first_name":"Catherine","last_name":"Alvarez"},
+[{"id":1,"first_name":"Catherine","last_name":"Alvarez"},
 {"id":2,"first_name":"Linda","last_name":"Washington"},
 {"id":3,"first_name":"Eric","last_name":"Griffin"},
 {"id":4,"first_name":"Pamela","last_name":"Sanders"},
@@ -197,4 +197,4 @@ export default [{"id":1,"first_name":"Catherine","last_name":"Alvarez"},
 {"id":197,"first_name":"Lillian","last_name":"Adams"},
 {"id":198,"first_name":"Nicholas","last_name":"Knight"},
 {"id":199,"first_name":"Judy","last_name":"Payne"},
-{"id":200,"first_name":"Patrick","last_name":"Torres"}];
+{"id":200,"first_name":"Patrick","last_name":"Torres"}]
