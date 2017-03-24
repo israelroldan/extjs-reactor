@@ -39,6 +39,7 @@ export default class BasicMarkers extends Component {
                 />
                 <Cartesian
                     insetPadding="20 20 0 10"
+                    theme={theme}
                     interactions={[{
                         type: 'panzoom',
                     }, 'itemhighlight']}
