@@ -213,6 +213,12 @@ module.exports = class ReactExtJSWebpackPlugin {
 
             const manifest = path.join(output, 'manifest.js');
 
+            if (fs.existsSync(path.join(sdk, 'ext'))) {
+                // local checkout of the SDK repo
+                packageDirs.push(path.join('ext', 'packages'));
+                sdk = path.join(sdk, 'ext');
+            }
+
             if (!watching) {
                 fs.writeFileSync(path.join(output, 'build.xml'), buildXML({ compress: this.production }), 'utf8');
                 fs.writeFileSync(path.join(output, 'app.json'), createAppJson({ theme, packages, toolkit, overrides, packageDirs }), 'utf8');

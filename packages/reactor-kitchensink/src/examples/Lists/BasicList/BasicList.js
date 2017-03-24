@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import { List } from '@extjs/reactor/modern';
 import { Template } from '@extjs/reactor';
-import data from '../people';
-import ReactDOM from 'react-dom';
 
 Ext.require('Ext.Toast');
 
 export default class BasicListExample extends Component {
 
     store = Ext.create('Ext.data.Store', { 
-        data,
+        autoLoad: true,
+        proxy: {
+            type: 'rest',
+            url: '/resources/data/people.json'
+        },
         sorters: ['last_name', 'first_name']
-    });
+    })
 
     tpl = new Template(data => <div>{data.first_name} {data.last_name}</div>);
 

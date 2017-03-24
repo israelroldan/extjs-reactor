@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { List, Panel } from '@extjs/reactor/modern';
-import data from '../people';
 import { Template } from '@extjs/reactor';
 
 Ext.require([
@@ -11,10 +10,14 @@ Ext.require([
 export default class SimpleActionsExample extends Component {
 
     store = Ext.create('Ext.data.Store', { 
-        data,
+        autoLoad: true,
+        proxy: {
+            type: 'rest',
+            url: '/resources/data/people.json'
+        },
         sorters: ['last_name', 'first_name']
-    });
-
+    })
+    
     onItemAction = (list, index, record, action) => {
         Ext.toast(`${Ext.String.capitalize(action)} ${record.get('first_name')} ${record.get('last_name')}`);
     }

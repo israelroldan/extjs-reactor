@@ -183,7 +183,7 @@ const root = {
             { text: 'Button', component: Button, center: true },
             { text: 'SegmentedButton', component: SegmentedButton, center: true },
         ]},
-        { text: 'Calendar', children:[
+        { text: 'Calendar', premium: true, children:[
             { text: 'Calendar Panel', component: Calendar },
             { text: 'Month View', component: MonthView },
             { text: 'Week View', component: WeekView },
@@ -253,7 +253,7 @@ const root = {
                 { text: 'Bubble', component: Bubble }
             ] }
         ] },
-        { text: 'D3', children: [
+        { text: 'D3', premium: true, children: [
             { text: 'Heatmap', children: [
                 { text: 'Purchases By Day', component: PurchasesByDay },
                 { text: 'Sales Per Employee', component: SalesPerEmployee },

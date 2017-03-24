@@ -28,7 +28,7 @@ export default class AudioExample extends Component {
         const { playing } = this.state;
 
         return (
-            <Container layout={{ type: 'vbox', align: 'stretch', pack: 'center' }}>
+            <Container layout={{ type: 'vbox', align: 'stretch', pack: 'center' }} padding={10}>
                 <Container 
                     shadow 
                     layout={Ext.os.is.Android ? { type: 'vbox', align: 'center', pack: 'center' } : 'fit'}

@@ -9,11 +9,10 @@ const sourcePath = path.join(__dirname, './src');
 module.exports = function (env) {
     const nodeEnv = env && env.prod ? 'production' : 'development';
     const isProd = nodeEnv === 'production';
-    const isLocalSdk = process.env['EXTJS_LOCAL_SDK'] === 'true';
 
     const plugins = [
         new ExtJSReactorWebpackPlugin({
-            sdk: isLocalSdk ? 'ext/ext' : 'ext', // you need to copy the Ext JS SDK to the root of this package, or you can specify a full path to some other location
+            sdk: 'ext', // you need to copy the Ext JS SDK to the root of this package, or you can specify a full path to some other location
             theme: './theme-kitchensink',
             asynchronous: true,
             packages: [
@@ -28,7 +27,6 @@ module.exports = function (env) {
                 'charts'
             ],
             overrides: ['./overrides'],
-            packageDirs: isLocalSdk ? ['ext/packages'] : [],
             production: isProd
         }),
         new webpack.EnvironmentPlugin({
