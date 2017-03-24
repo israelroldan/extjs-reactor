@@ -81,6 +81,7 @@ export default class ExtJSComponent extends Component {
      * @param context
      */
     receiveComponent(nextComponent, transaction, context) {
+        if (this.cmp.destroyed) return;
         const props = nextComponent.props;
         this._applyProps(this._currentElement.props, props);
         this.updateChildren(props.children, transaction, context);
@@ -301,7 +302,7 @@ const ContainerMixin = Object.assign({}, ReactMultiChild.Mixin, {
             } else {
                 // reordering docked components is known to cause issues in modern
                 // place items in a container instead
-                if (childComponent.config.docked || childComponent.config.floated) return; 
+                if (childComponent.config && (childComponent.config.docked || childComponent.config.floated)) return; 
                 this.cmp.insert(toIndex, childComponent);
             }
         }

@@ -13,19 +13,13 @@ module.exports = function (env) {
     const plugins = [
         new ExtJSReactorWebpackPlugin({
             sdk: 'ext', // you need to copy the Ext JS SDK to the root of this package, or you can specify a full path to some other location
-            theme: './theme-kitchensink',
+            theme: './theme-conference-app',
             asynchronous: true,
             packages: [
-                'font-ext', 
-                'ux', 
                 'd3',
-                'pivot-d3',
-                'font-awesome', 
-                'exporter', 
-                'pivot', 
-                'calendar', 
-                'charts'
+                'calendar'
             ],
+            sass: ['theme-conference-app/app.scss'],
             production: isProd
         }),
         new webpack.EnvironmentPlugin({
@@ -34,9 +28,6 @@ module.exports = function (env) {
         new CopyWebpackPlugin([{
             from: path.join(__dirname, 'resources'), 
             to: 'resources'
-        }, {
-            from: path.join(__dirname, 'data'),
-            to: 'data'
         }])
     ];
 
@@ -116,7 +107,7 @@ module.exports = function (env) {
         devServer: {
             contentBase: './build',
             historyApiFallback: true,
-            port: 8084,
+            port: 8085,
             compress: isProd,
             inline: !isProd,
             hot: !isProd,
