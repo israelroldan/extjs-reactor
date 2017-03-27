@@ -42,7 +42,7 @@ export const buildXML = function({ compress }) {
                     ]]>
                   </x-compile>
             </target>
-            <target name="build" depends="init-cmd">
+            <target name="rebuild">
                <x-compile refid="theCompiler"
                           dir="\${basedir}"
                           inheritAll="true">
@@ -60,7 +60,7 @@ export const buildXML = function({ compress }) {
                   -all
                   and
                   # include all js files needed for manifest.js
-                      include
+                  include
                       -r
                       -f=manifest.js
                   and
@@ -89,6 +89,8 @@ export const buildXML = function({ compress }) {
                       -out=resources
                   ]]>
                </x-compile>
+            </target>
+            <target name="build" depends="init-cmd,rebuild">
                <x-sencha-command dir="\${basedir}">
                    <![CDATA[
                    fashion
@@ -102,8 +104,16 @@ export const buildXML = function({ compress }) {
                </x-sencha-command>
             </target>
             <target name="watch" depends="init-cmd,build">
+                <x-fashion-watch
+                        refName="fashion-watch"
+                        inputFile="ext.scss"
+                        outputFile="ext.css"
+                        split="4095"
+                        compress="${compress ? 'true' : 'false'}"
+                        configFile="app.json"
+                        fork="true"/>
                 <x-watch compilerRef="theCompiler"
-                         targets="build"/>
+                         targets="rebuild"/>
             </target>
         </project>
     `.trim();

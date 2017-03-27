@@ -1,9 +1,10 @@
 const webpack = require('webpack');
+const path = require('path');
 
 const config = {
     entry: './src/index.js',
     output: {
-        path: './dist',
+        path: path.join(__dirname, './dist'),
         filename: 'reactor-babel-plugin.min.js',
         library: 'ReactorBabelPlugin',
         libraryTarget: 'umd',
