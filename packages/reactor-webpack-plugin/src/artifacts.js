@@ -47,6 +47,7 @@ export const buildXML = function({ compress }) {
                           dir="\${basedir}"
                           inheritAll="true">
                   <![CDATA[
+                  --debug
                   exclude
                   -all
                   and

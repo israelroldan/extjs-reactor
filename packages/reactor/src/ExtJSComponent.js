@@ -83,8 +83,8 @@ export default class ExtJSComponent extends Component {
     receiveComponent(nextComponent, transaction, context) {
         if (this.cmp.destroyed) return;
         const props = nextComponent.props;
-        this._applyProps(this._currentElement.props, props);
         this.updateChildren(props.children, transaction, context);
+        this._applyProps(this._currentElement.props, props);
         this._currentElement = nextComponent;
     }
 

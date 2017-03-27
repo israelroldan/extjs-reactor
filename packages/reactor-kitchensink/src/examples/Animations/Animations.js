@@ -3,9 +3,8 @@ import { Container, Panel, Button } from '@extjs/reactor/modern';
 
 export default class Animations extends Component {
 
-    constructor() {
-        super();
-        this.state = { activeCard: 0 };
+    state = { 
+        activeCard: 0 
     }
 
     switchCards(animation) {
@@ -39,9 +38,11 @@ export default class Animations extends Component {
                 <Panel title="Card 1" layout="vbox">
                     {this.createCardContents()}
                 </Panel>
-                <Panel title="Card 2" layout="vbox">
-                    {this.createCardContents()}
-                </Panel>
+                { this.state.activeCard === 1 && (
+                    <Panel title="Card 2" layout="vbox">
+                        {this.createCardContents()}
+                    </Panel>
+                )}
             </Container>
         )
     }

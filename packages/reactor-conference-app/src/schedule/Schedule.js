@@ -22,6 +22,14 @@ class Schedule extends Component {
     hideSearch = () => this.props.dispatch(toggleSearch(false))
     filter = day => this.props.dispatch(filterByDay(day))
 
+    componentDidMount() {
+        this.ct.getParent().getScrollable().on('scroll', this.onParentScroll)
+    }
+
+    onParentScroll = () => {
+
+    }
+
     render() {
         const { showSearch, store, favorites } = this.props;
 
@@ -41,7 +49,7 @@ class Schedule extends Component {
         };
 
         return (
-            <Container layout="vbox">
+            <Container layout="vbox" ref={ct => this.ct = ct}>
                 { !Ext.platformTags.desktop && (
                     <AppBar title="Schedule"/>
                 )}
@@ -54,7 +62,8 @@ class Schedule extends Component {
                     <SearchField style={{position: 'absolute', right: '10px', top: '8px', zIndex: 101}} width="200" height="32" ui="app-search-field" />
                 )}
                 <TabPanel 
-                    flex="1" 
+                    ref={tp }
+                    height="600"
                     platformConfig={{
                         desktop: {
                             cls: 'app-desktop-tabs'

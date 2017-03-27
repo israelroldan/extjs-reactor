@@ -170,6 +170,8 @@ import Resizable from './Layouts/resizable/resizable';
 
 import InProgress from '../InProgress';
 
+import NavigationView from './NavigationView/NavigationView';
+
 const root = {
     id: 'root',
     children: [
@@ -319,6 +321,7 @@ const root = {
             { text: 'Audio', component: Audio }
         ] },
         { text: 'Msg', component: Msg, center: true },
+        { text: 'NavigationView', component: NavigationView },
         { text: 'Panel', component: Panel, center: true },
         { text: 'Picker', component: Picker },
         { text: 'ProgressBar', component: ProgressBar, center: true },

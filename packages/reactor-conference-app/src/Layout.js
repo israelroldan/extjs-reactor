@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Button } from '@extjs/reactor/modern';
+import { Container, Button, TitleBar } from '@extjs/reactor/modern';
 import Menu from './Menu';
 import { connect } from 'react-redux';
 import { toggleMenu } from './actions';
@@ -25,7 +25,8 @@ class Layout extends Component {
         const { title, dispatch, children, filterFavorites } = this.props
 
         return (
-            <Container layout="fit">
+            <Container id="scrollpane" scrollable>
+                <TitleBar title="ExtReact Conference" docked="top"/>
                 <Menu onSelect={this.onNavChange}/>
                 { children }
             </Container>

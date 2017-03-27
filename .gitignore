@@ -6,3 +6,4 @@ dist
 .sencha
 npm-debug.log*
 lerna-debug.log
+packages/reactor-scratch-pad
