@@ -8,9 +8,12 @@ let settings = {};
 /**
  * Launches an ExtReact application, creating a viewport and rendering the specified root component into it.
  * @param {React.Component} rootComponent You application's root component
+ * @param {Object} [appConfig] Additional config parameters for Ext.application
  */
-export function launch(rootComponent) {
+export function launch(rootComponent, appConfig = { }) {
     Ext.application({
+        name: '$ExtReactApp',
+        ...appConfig,
         launch: () => ReactDOM.render(rootComponent, Ext.Viewport.getRenderTarget().dom)
     })
 }

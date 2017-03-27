@@ -62,7 +62,7 @@ class Schedule extends Component {
                     <SearchField style={{position: 'absolute', right: '10px', top: '8px', zIndex: 101}} width="200" height="32" ui="app-search-field" />
                 )}
                 <TabPanel 
-                    ref={tp }
+                    ref={tp => this.tabPanel = tp}
                     height="600"
                     platformConfig={{
                         desktop: {
