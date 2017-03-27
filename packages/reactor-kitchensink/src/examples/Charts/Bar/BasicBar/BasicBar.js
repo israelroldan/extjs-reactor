@@ -25,9 +25,7 @@ export default class BasicBarChartExample extends Component {
         theme: 'default'
     };
 
-    changeTheme = (select, choice) => {
-        this.setState({ theme: choice.get('value') })
-    }
+    changeTheme = theme => this.setState({ theme })
 
     onAxisLabelRender = (axis, label, layoutContext) => {
         return Ext.util.Format.number(layoutContext.renderer(label) / 1000, '0,000');

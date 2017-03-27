@@ -9,9 +9,10 @@
 
 @include button-ui(
     $ui: 'app-filter-favorites-pressed',
-    $padding: 2px,
+    $padding: 0,
     $icon-font-size: 22px,
     $icon-size: 22px,
-    $icon-color: white
+    $icon-color: white,
+    $focused-icon-color: white
 );
  

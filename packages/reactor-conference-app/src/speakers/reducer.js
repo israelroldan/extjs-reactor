@@ -46,15 +46,17 @@ export default function speakersReducer(state = initialState, action) {
             return { ...state, favorites }
         }
         case TOGGLE_FILTER_FAVORITES: {
-            const filterFavorites = !state.filterFavorites;
+            let { filter } = action;
 
-            if (filterFavorites) {
+            if (filter === undefined) filter = !state.filtered
+
+            if (filter) {
                 state.store.filter('favorite', true);
             } else {
                 state.store.clearFilter()
             }
 
-            return { ...state, filterFavorites };
+            return { ...state, filtered: filter };
         }
         default:
             return { ...state };

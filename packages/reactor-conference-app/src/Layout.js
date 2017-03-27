@@ -26,25 +26,6 @@ class Layout extends Component {
 
         return (
             <Container layout="fit">
-                <AppBar title={title}>
-                    { title === 'Speakers' && (
-                        <Button 
-                            ui={filterFavorites ? 'app-filter-favorites-pressed' : 'app-filter-favorites'}
-                            iconCls="x-fa fa-star app-favorite" 
-                            align="right"
-                            handler={this.onFilterFavorites}
-                            margin="0 9 0 0"
-                            platformConfig={{
-                                desktop: {
-                                    margin: "0 23 0 0"
-                                }
-                            }}
-                        />
-                    )}
-                    { title === 'Schedule' && (
-                        <Button align="right" iconCls="x-fa fa-search" handler={this.onSearchClick}/>
-                    )}
-                </AppBar>
                 <Menu onSelect={this.onNavChange}/>
                 { children }
             </Container>
@@ -58,7 +39,7 @@ class Layout extends Component {
 const mapStateToProps = (state) => {
     return {
         ...state.root,
-        filterFavorites: state.speaker && state.speaker.filterFavorites
+        filterFavorites: state.speakers.filterFavorites
     }
 }
 

@@ -19,9 +19,7 @@ export default class Stacked extends Component {
         numRecords: 7
     }
 
-    changeTheme = (select, choice) => {
-        this.setState({ theme: choice.get('value') });
-    }
+    changeTheme = theme => this.setState({ theme })
 
     refreshData = () => {
         this.store.loadData(createData(this.state.numRecords));

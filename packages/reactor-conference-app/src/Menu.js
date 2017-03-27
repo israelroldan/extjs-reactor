@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { EdgeMenu, TreeList, Panel } from '@extjs/reactor/modern';
+import { EdgeMenu, TreeList, Panel, TitleBar, Button } from '@extjs/reactor/modern';
 import { connect } from 'react-redux';
 import { toggleMenu } from './actions';
 
@@ -13,13 +13,17 @@ class Menu extends Component {
         this.props.dispatch(toggleMenu(false))
     };
 
+    onToggleMenuClick = () => {
+        this.props.dispatch(toggleMenu());
+    };
+
     onSelectionChange = (tree, record) => {
         this.props.onSelect(record.getId());
         this.props.dispatch(toggleMenu(false));
-    }
+    };
 
     render() {
-        const { store, displayed, dispatch, selection } = this.props;
+        const { store, displayed, dispatch, selection, title } = this.props;
 
         const menu = (
             <TreeList
@@ -34,7 +38,7 @@ class Menu extends Component {
 
         if (Ext.platformTags.desktop) {
             return (
-                <Panel docked="left" margin="20 0 0 0">
+                <Panel docked="left" ui="app-background">
                     {menu}
                 </Panel>
             )
@@ -54,7 +58,8 @@ const mapStateToProps = ({ root }) => {
     return {
         store: root.navStore,
         selection: root.selectedNavNode,
-        displayed: root.showMenu
+        displayed: root.showMenu,
+        title: root.title
     }
 }
 

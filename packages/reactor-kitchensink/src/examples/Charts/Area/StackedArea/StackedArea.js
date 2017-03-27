@@ -28,9 +28,7 @@ export default class StackedAreaChartExample extends Component{
         theme: 'default'
     };
 
-    changeTheme = (select, choice) => {
-        this.setState({ theme: choice.get('value')})
-    }
+    changeTheme = theme => this.setState({ theme })
 
     onAxisLabelRender = (axis, label) => {
         return label.toFixed(label < 10 ? 1 : 0) + '%';

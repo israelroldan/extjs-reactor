@@ -28,9 +28,7 @@ export default class BasicAreaChartExample extends Component {
         this.store.loadData(createData(25));
     }
 
-    changeTheme = (select, choice) => {
-        this.setState({ theme: choice.get('value') })
-    }
+    changeTheme = theme => this.setState({ theme })
 
     render() {
         const { theme } = this.state;

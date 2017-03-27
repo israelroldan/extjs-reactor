@@ -6,7 +6,7 @@ export default class ToolTipExample extends Component {
         const containerDefaults = {
             margin: '0 0 50 0',
             layout: {
-                type: 'hbox', 
+                type: Ext.platformTags.phone ? 'vbox' : 'hbox', 
                 align: 'start', 
                 pack: 'center' 
             }
@@ -17,7 +17,7 @@ export default class ToolTipExample extends Component {
         };
 
         return (
-            <Panel layout="vbox" shadow>
+            <Panel layout="vbox" shadow bodyPadding="20">
                 <Container {...containerDefaults}>
                     <Button {...buttonDefaults} tooltip="A simple tooltip" text="Basic Tip"/>
                     
@@ -86,7 +86,7 @@ export default class ToolTipExample extends Component {
                     />
                 </Container>
 
-                <Container {...containerDefaults}>
+                <Container {...containerDefaults} margin="0">
                     <div style={{...styles.qTipItem, ...styles.color1}} data-qtip="This tip is inline">Inline Tip</div>
                     <div style={{...styles.qTipItem, ...styles.color2}} data-qtip="This tip has a fixed width" data-qwidth="400">Fixed width inline tip</div>
                     <div style={{...styles.qTipItem, ...styles.color3}} data-qtip="This tip has a title" data-qtitle="The title">Inline tip with title</div>

@@ -11,7 +11,7 @@ export default class VBoxLayoutExample extends Component {
                     <div>An <b>hbox</b> layout positions items horizontally with optional 'pack', and 'align' configs.</div>
                 </Panel>
                 <Container layout="hbox" flex={1}>
-                    <Container layout="vbox" flex={1}>
+                    <Container layout="vbox" flex={1} padding="10">
                         <div style={styles.heading}>align: 'stretch'</div>
                         <Panel shadow layout="hbox" flex={1}>
                             <Container {...itemDefaults} style={colors.card.red} flex={1}>Item 1</Container>
@@ -31,7 +31,7 @@ export default class VBoxLayoutExample extends Component {
                             <Container {...itemDefaults} style={colors.card.green} flex={1}>Item 3</Container>
                         </Panel>
                     </Container>
-                    <Container layout="vbox" flex={1} margin="0 0 0 20">
+                    <Container layout="vbox" flex={1} margin="0 0 0 20" padding="10">
                         <div style={styles.heading}>pack: 'start'</div>
                         <Panel shadow layout={{ type: 'hbox', pack: 'start' }} flex={1}>
                             <Container {...itemDefaults} style={colors.card.red}>Item 1</Container>

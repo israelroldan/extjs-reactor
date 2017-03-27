@@ -19,9 +19,7 @@ export default class Donut extends Component {
         theme: 'default'
     }
 
-    changeTheme = (select, choice) => {
-        this.setState({ theme: choice.get('value') });
-    }
+    changeTheme = theme => this.setState({ theme })
 
     onResize = (view, width, height) => {
         const legend = this.refs.chart.getLegend();

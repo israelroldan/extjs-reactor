@@ -33,9 +33,7 @@ export default class BasicScatterChartExample extends Component {
         this.refs.chart.getInteraction('panzoom').setZoomOnPan(zoomOnPan);
     }
 
-    changeTheme = (select, choice) => {
-        this.setState({ theme: choice.get('value') })
-    }
+    changeTheme = theme => this.setState({ theme })
 
     render() {
         const { theme } = this.state;

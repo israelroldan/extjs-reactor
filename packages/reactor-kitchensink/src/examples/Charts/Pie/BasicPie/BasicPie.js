@@ -22,9 +22,7 @@ export default class BasicPieChartExample extends Component {
         theme: 'default'
     };
 
-    changeTheme = (select, choice) => {
-        this.setState({ theme: choice.get('value') })
-    }
+    changeTheme = theme => this.setState({ theme })
 
     refresh = () => {
         this.store.loadData(createData(5));

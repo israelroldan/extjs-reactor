@@ -18,9 +18,7 @@ export default class WithRenderer extends Component {
         theme: 'default'
     }
 
-    changeTheme = (select, choice) => {
-        this.setState({ theme: choice.get('value') });
-    }
+    changeTheme = theme => this.setState({ theme })
 
     refreshData = () => {
         this.store.loadData(createData());

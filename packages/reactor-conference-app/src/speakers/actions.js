@@ -15,8 +15,9 @@ export function loadSpeakers() {
     }
 }
 
-export function toggleFilterFavorites() {
+export function toggleFilterFavorites(filter) {
     return {
-        type: TOGGLE_FILTER_FAVORITES
+        type: TOGGLE_FILTER_FAVORITES,
+        filter
     }
 }

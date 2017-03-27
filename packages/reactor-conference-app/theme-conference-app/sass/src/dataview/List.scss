@@ -1,0 +1,35 @@
+.app-list {
+    border-style: solid;
+    border-width: 0 1px;
+    border-color: $list-item-border-color;
+    box-shadow: 0 0 3px $list-item-border-color;
+}
+
+.app-list-item {
+    padding: 10px 0;
+    position: relative;
+
+    .fa-star {
+        color: #D0D0D0;
+        position: absolute;
+        right: 17px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .app-favorite-selected {
+        color: $base-color
+    }
+}
+
+.app-list-item-title {
+    font-size: 18px;
+    line-height: 1.5em;
+    white-space: nowrap;
+}
+
+.app-list-item-details {
+    font-size: 14px;
+    font-weight: 100;
+    white-space: nowrap;
+}

@@ -67,7 +67,7 @@ export default class TouchEventsExample extends Component {
                     </Panel>
                 </Container>
                 <Container ref="touchpad" flex={1} layout={{type: 'vbox', pack: 'center', align: 'stretch'}} style={{border: '8px dashed #d6d6d6', borderRadius: '30px'}}>
-                    <div style={{textAlign: 'center', fontSize: '48px', fontWeight: 'bold', color: '#ccc'}}>Touch Here!</div>
+                    <div style={{textAlign: 'center', fontSize: '48px', color: '#ccc'}}>Touch Here</div>
                 </Container>
             </Container> 
         );

@@ -22,7 +22,11 @@ export default function rootReducer(state = initialState, action) {
 
     switch(action.type) {
         case TOGGLE_MENU: 
-            return { ...state, showMenu: action.show };
+            if (action.show !== undefined) {
+                return { ...state, showMenu: action.show };
+            } else {
+                return { ...state, showMenu: !state.showMenu };
+            }
         case ROUTE_DID_CHANGE:
             const { location } = action;
             const route = location.pathname;

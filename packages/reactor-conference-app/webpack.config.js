@@ -19,6 +19,7 @@ module.exports = function (env) {
                 'd3',
                 'calendar'
             ],
+            overrides: ['overrides'],
             sass: ['theme-conference-app/app.scss'],
             production: isProd
         }),

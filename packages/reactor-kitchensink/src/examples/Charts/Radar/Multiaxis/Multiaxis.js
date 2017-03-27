@@ -38,9 +38,7 @@ export default class Multiaxis extends Component {
         this.store.loadData(generateData());
     }
 
-    changeTheme = (select, choice) => {
-        this.setState({ theme: choice.get('value') });
-    }
+    changeTheme = theme => this.setState({ theme })
 
     render() {
         const { theme } = this.state;

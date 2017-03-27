@@ -19,9 +19,7 @@ export default class BasicMarkers extends Component {
         numRecords: 10
     }
 
-    changeTheme = (select, choice) => {
-        this.setState({ theme: choice.get('value') });
-    }
+    changeTheme = theme => this.setState({ theme })
 
     refreshData = () => {
         this.store.loadData(generateData(this.state.numRecords));

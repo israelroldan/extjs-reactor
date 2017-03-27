@@ -1,3 +1,9 @@
+.app-container {
+    width: 100%;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+}
+
 .app-icon {
     margin-right: 7px; 
     font-size: 20px; 
@@ -13,6 +19,9 @@
     font-weight: 300;
     text-decoration: none;
     color: white;
+    line-height: 48px;
+    margin-right: 20px;
+    margin-left: 15px;
 }
 
 .app-menu-header {
@@ -40,22 +49,11 @@
     background-size: 64px 64px;
 }
 
-.app-speaker-name {
-    font-size: 18px;
-    line-height: 1.5em;
-    white-space: nowrap;
-}
-
 .app-speaker-text {
     position: relative;
     top: 10px;
 }
 
-.app-speaker-title {
-    font-size: 14px;
-    font-weight: 100;
-    white-space: nowrap;
-}
 
 .app-favorite, .app-favorite-selected {
     &::before {
@@ -63,18 +61,15 @@
     }
 }
 
-.app-speaker-item {
-    padding: 10px 0;
-    position: relative;
-
-    .fa-star {
-        color: #D0D0D0;
-        position: absolute;
-        right: 17px;
-        top: 40px;
+.app-desktop-tabs {
+    .x-tabbar {
+        background-color: $base-color;
+        align-items: left;
     }
-
-    .app-favorite-selected {
-        color: $base-color
+    .x-tab {
+        flex: none !important;
+        min-width: 80px !important;
+        padding-left: 10px;
+        padding-right: 10px;
     }
 }

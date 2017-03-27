@@ -38,9 +38,7 @@ export default class FullStackedAreaChartExample extends Component{
         return layoutContext.renderer(label) + '%';
     };
 
-    changeTheme = (select, choice) => {
-        this.setState({ theme: choice.get('value') })
-    }
+    changeTheme = theme => this.setState({ theme })
 
     onSeriesTooltipRender = (tooltip, record, item) => {
          var fieldIndex = Ext.Array.indexOf(item.series.getYField(), item.field),

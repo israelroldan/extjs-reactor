@@ -154,6 +154,32 @@ export default function MyComponent() {
 }
 ```
 
+### Special Props
+
+#### rel
+
+Some props can be replaced with a child element. To use a child element to replace a prop, set the child's "rel" prop to the name of the prop being replaced. For example, the "menu" prop on Button can be replaced with a child `<Menu>` element:
+
+```jsx
+<Button text="Theme">
+    <Menu rel="menu">
+        <MenuItem text="Triton"/>
+        <MenuItem text="iOS"/>
+        <MenuItem text="Material"/>
+    </Menu>
+</Button>
+```
+
+#### defaults
+
+Use the defaults prop to apply a set of props to all children.  For example, to use flex: 1 for all items in a container:
+
+```jsx
+<Container layout="vbox" defaults={{ flex: 1 }}>
+    <Container>Item</Container>
+</Container>
+```
+
 ### Refs
 
 Refs point to Ext JS component instances:

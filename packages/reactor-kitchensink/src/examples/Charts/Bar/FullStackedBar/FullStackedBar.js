@@ -29,9 +29,7 @@ export default class FullStackedBar extends Component {
         theme: 'default'
     };
 
-    changeTheme = (select, choice) => {
-        this.setState({ theme: choice.get('value') })
-    };
+    changeTheme = theme => this.setState({ theme })
 
     onAxisLabelRender = (axis, label, layoutContext) => {
         // Custom renderer overrides the native axis label renderer.

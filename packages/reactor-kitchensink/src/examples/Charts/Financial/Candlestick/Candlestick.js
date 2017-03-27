@@ -29,9 +29,7 @@ export default class CandlestickChartExample extends Component {
         this.store.loadData(createData(1000));
     }
 
-    changeTheme = (select, choice) => {
-        this.setState({ theme: choice.get('value') })
-    }
+    changeTheme = theme => this.setState({ theme })
 
     toggleZoomOnPan = (zoomOnPan) => {
         this.toggleCrosshair(false);

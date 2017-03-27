@@ -16,9 +16,7 @@ export default class DoubleDonut extends Component {
         theme: 'default'
     }
 
-    changeTheme = (select, choice) => {
-        this.setState({ theme: choice.get('value') });
-    }
+    changeTheme = theme => this.setState({ theme })
 
     render() {
         const { theme } = this.state;

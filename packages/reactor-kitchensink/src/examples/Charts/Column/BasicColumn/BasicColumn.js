@@ -44,9 +44,7 @@ export default class BasicColumnChartExample extends Component {
         this.store.loadData(createData());
     }
 
-    changeTheme = (select, choice) => {
-        this.setState({ theme: choice.get('value') })
-    }
+    changeTheme = theme => this.setState({ theme })
 
     toggleZoomOnPan = (zoomOnPan) => {
         this.refs.chart.getInteraction('panzoom').setZoomOnPan(zoomOnPan);

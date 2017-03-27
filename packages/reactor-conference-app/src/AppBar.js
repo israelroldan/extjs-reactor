@@ -10,7 +10,7 @@ function AppBar({ dispatch, title, children }) {
             titleAlign="left"
             shadow
             style={{zIndex: 100}}
-            title={!Ext.platformTags.desktop && title}
+            title={Ext.platformTags.desktop ? '' : title}
             platformConfig={{
                 '!desktop': {
                     titleAlign: 'center'

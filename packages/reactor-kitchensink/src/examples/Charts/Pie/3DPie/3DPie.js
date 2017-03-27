@@ -23,9 +23,7 @@ export default class ThreeDPie extends Component {
         this.store.loadData(generateData(this.state.numRecords));
     }
 
-    changeTheme = (select, choice) => {
-        this.setState({ theme: choice.get('value') });
-    }
+    changeTheme = theme => this.setState({ theme })
 
     render() {
         const { theme } = this.state;

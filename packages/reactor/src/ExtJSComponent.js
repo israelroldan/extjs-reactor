@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { Component, Children, cloneElement } from 'react';
 import ReactMultiChild from 'react-dom/lib/ReactMultiChild';
 import { precacheNode } from 'react-dom/lib/ReactDOMComponentTree';
 import Flags from 'react-dom/lib/ReactDOMComponentFlags';
@@ -131,6 +131,14 @@ export default class ExtJSComponent extends Component {
         return { node: this.el };
     }
 
+    _applyDefaults({ defaults, children }) {
+        if (defaults) {
+            return Children.map(children, child => cloneElement(child, { ...child.props, ...this.props.defaults }));
+        } else {
+            return children;
+        }
+    }
+
     /**
      * Creates an Ext JS component config from react element props
      * @private
@@ -140,7 +148,7 @@ export default class ExtJSComponent extends Component {
         const config = this._createConfig(props, true);
 
         const items = [], dockedItems = [];
-        const children = this.mountChildren(props.children, transaction, context);
+        const children = this.mountChildren(this._applyDefaults(props), transaction, context);
 
         if (children.length === 1 && children[0].node instanceof DocumentFragment) {
             config.html = this._toHTML(children[0].node);

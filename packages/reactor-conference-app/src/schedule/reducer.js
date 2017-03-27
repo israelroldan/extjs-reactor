@@ -1,18 +1,57 @@
-import { TOGGLE_SEARCH } from './actions';
+import { 
+    TOGGLE_SEARCH, 
+    TOGGLE_FAVORITE
+} from './actions';
+
+let favorites = localStorage.getItem('favoriteEvents');
+favorites = favorites ? JSON.parse(favorites) : []
 
 const initialState = {
-    showSearch: false
+    favorites,
+    showSearch: false,
+    store: Ext.create('Ext.data.Store', {
+        fields: ['name', 'title', 'image', 'favorite'],
+        autoLoad: true,
+        proxy: {
+            type: 'rest',
+            url: '/resources/schedule.json'
+        },
+        grouper: {
+            property: 'time'
+        },
+        listeners: {
+            load: store => store.each(record => record.set('favorite', favorites.indexOf(record.getId()) !== -1))
+        }
+    })
 }
 
 export default function scheduleReducer(state = initialState, action) {
 
     switch(action.type) {
-        case TOGGLE_SEARCH:
+        case TOGGLE_SEARCH: {
             if (action.hasOwnProperty('show')) {
                 return { ...state, showSearch: !state.showSearch }
             } else {
                 return { ...state, showSearch: !state.showSearch }
             }
+        }
+        case TOGGLE_FAVORITE: {
+            const { event } = action;
+            const record = state.store.findRecord('id', event);
+            let favorites;
+
+            if (state.favorites.indexOf(event) === -1) {
+                record.set('favorite', true);
+                favorites = [...state.favorites, event]
+            } else {
+                record.set('favorite', false);
+                favorites = state.favorites.filter(e => e !== event);
+            }
+
+            localStorage.setItem('favoriteEvents', JSON.stringify(favorites));
+
+            return { ...state, favorites }
+        }        
         default:
             return { ...state };
     }

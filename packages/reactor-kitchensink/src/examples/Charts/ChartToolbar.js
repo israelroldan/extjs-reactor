@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { SelectField, Label, Spacer, Button, Toolbar, SegmentedButton } from '@extjs/reactor/modern';
+import { Label, Spacer, Button, Toolbar, SegmentedButton } from '@extjs/reactor/modern';
 
 Ext.require([
     'Ext.chart.theme.Blue',
@@ -33,22 +33,20 @@ export default function ChartToolbar({
 }) {
     return (
         <Toolbar docked="top">
-            { theme && <Label>Theme:</Label> }
             { theme && (
-                    <SelectField
-                    {...toolbarItemDefaults}
-                    onChange={onThemeChange}
-                    value={theme}
-                    options={[
-                        { text: 'default', value: 'default' },
-                        { text: 'green', value: 'green' },
-                        { text: 'midnight', value: 'midnight' },
-                        { text: 'muted', value: 'muted' },
-                        { text: 'red', value: 'red' },
-                        { text: 'sky', value: 'sky' },
-                        { text: 'yellow', value: 'yellow' },
+                <Button 
+                    iconCls="ext ext-theme" 
+                    text="Theme"
+                    menu={[
+                        { text: 'Default', value: 'default', handler: () => onThemeChange('default') },
+                        { text: 'Green', value: 'green', handler: () => onThemeChange('green') },
+                        { text: 'Midnight', value: 'midnight', handler: () => onThemeChange('midnight') },
+                        { text: 'Muted', value: 'muted', handler: () => onThemeChange('muted') },
+                        { text: 'Red', value: 'red', handler: () => onThemeChange('red') },
+                        { text: 'Sky', value: 'sky', handler: () => onThemeChange('sky') },
+                        { text: 'Yellow', value: 'yellow', handler: () => onThemeChange('yellow') },
                     ]}
-                />                    
+                />
             )}
             <Spacer/>
             { downloadChartRef && (
