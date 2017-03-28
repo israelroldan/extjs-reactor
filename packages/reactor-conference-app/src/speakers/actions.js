@@ -21,3 +21,9 @@ export function toggleFilterFavorites(filter) {
         filter
     }
 }
+
+export function search(params) {
+    return (dispatch, getState) => {
+        fetch('/url').then(data => dispatch({ type: LOAD_DATA, data }))
+    }
+}

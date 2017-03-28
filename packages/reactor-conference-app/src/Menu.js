@@ -36,20 +36,12 @@ class Menu extends Component {
             />            
         );
 
-        if (Ext.platformTags.desktop) {
-            return (
-                <Panel docked="left" ui="app-background">
-                    {menu}
-                </Panel>
-            )
-        } else {
-            return (
-                <EdgeMenu side="left" scrollable displayed={displayed} onHide={this.onHide}>
-                    <div className="app-menu-header">ExtReact Conference</div>
-                    {menu}
-                </EdgeMenu>
-            )
-        }
+        return (
+            <EdgeMenu side="left" scrollable displayed={displayed} onHide={this.onHide}>
+                <div className="app-menu-header">ExtReact Conference</div>
+                {menu}
+            </EdgeMenu>
+        )
     }
 
 }

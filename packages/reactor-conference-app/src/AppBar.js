@@ -20,7 +20,7 @@ function AppBar({ dispatch, title, children }) {
             { Ext.platformTags.desktop ? (
                 <div>
                     <div className="ext ext-sencha app-icon"/>
-                    <a href="#" className="app-title">ExtReact Conference</a>
+                    <a href="#" className="app-title">{title}</a>
                 </div>
             ) : (
                 <Button align="left" iconCls="x-fa fa-bars" handler={() => dispatch(toggleMenu(true))}/>

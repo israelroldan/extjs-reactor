@@ -38,11 +38,9 @@ export default class Animations extends Component {
                 <Panel title="Card 1" layout="vbox">
                     {this.createCardContents()}
                 </Panel>
-                { this.state.activeCard === 1 && (
-                    <Panel title="Card 2" layout="vbox">
-                        {this.createCardContents()}
-                    </Panel>
-                )}
+                <Panel title="Card 2" layout="vbox">
+                    {this.createCardContents()}
+                </Panel>
             </Container>
         )
     }
