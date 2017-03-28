@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Grid, ActionSheet, Toolbar, Container, Button } from '@extjs/reactor/modern';
 import model from './model';
-import './data';
+
+require('./data');
 
 Ext.require([
     'Ext.grid.plugin.*',
@@ -78,7 +79,6 @@ export default class GridExample extends Component {
                         }, {
                             text: 'Name',
                             dataIndex: 'fullName',
-                            styleHtmlContent: true,
                             minWidth: 150
                         }, {
                             xtype: 'checkcolumn',

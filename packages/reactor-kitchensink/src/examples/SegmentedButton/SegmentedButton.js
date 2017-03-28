@@ -1,26 +1,42 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import { SegmentedButton, Button, Panel, Toolbar } from '@extjs/reactor/modern';
 
-export default function SegementedButtonExample() {
-    return (
-        <Panel layout="vbox" shadow>
-            <Toolbar shadow={false}>
-                <div style={{marginRight: '10px'}}>Default UI:</div>
-                <SegmentedButton>
-                    <Button pressed text="Low"/>
-                    <Button text="Medium"/>
-                    <Button text="High"/>
-                </SegmentedButton>
-            </Toolbar>
-            <Toolbar shadow={false}>
-                <div style={{marginRight: '10px'}}>Toolbar UI:</div>
-                <SegmentedButton>
-                    <Button ui="default-toolbar" pressed text="Low"/>
-                    <Button ui="default-toolbar" text="Medium"/>
-                    <Button ui="default-toolbar" text="High"/>
-                </SegmentedButton>
-            </Toolbar>
-        </Panel>
-    )
+export default class SegementedButtonExample extends Component {
+
+    state = {
+        button1: 'low',
+        button2: 'low'
+    };
+
+    render() {
+        return (
+            <Panel shadow>
+                <Toolbar shadow={false}>
+                    <div style={{marginRight: '10px'}}>Default UI:</div>
+                    <SegmentedButton 
+                        value={this.state.button1} 
+                        onChange={(button, value) => this.setState({ button1: value })}
+                    >
+                        <Button value="low" text="Low"/>
+                        <Button value="medium" text="Medium"/>
+                        <Button value="high" text="High"/>
+                    </SegmentedButton>
+                </Toolbar>
+                
+                <Toolbar shadow={false}>
+                    <div style={{marginRight: '10px'}}>Toolbar UI:</div>
+                    <SegmentedButton 
+                        defaultUI="toolbar-default" 
+                        value={this.state.button2} 
+                        onChange={(button, value) => this.setState({ button2: value })}
+                    >
+                        <Button value="low" text="Low"/>
+                        <Button value="medium" text="Medium"/>
+                        <Button value="high" text="High"/>
+                    </SegmentedButton>
+                </Toolbar>
+            </Panel>
+        )
+    }
 }

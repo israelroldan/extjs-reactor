@@ -4,9 +4,6 @@ import model from './BasicGridModel';
 import '../CompanyData';
 
 export default class BasicGridExample extends Component {
-    constructor(){
-        super();
-    }
 
     store = Ext.create('Ext.data.Store',{
         autoLoad: true,
@@ -41,49 +38,46 @@ export default class BasicGridExample extends Component {
     renderPercent = (value) => {
         return this.renderSign(value, '0.00%');
     }
-    render(){
 
-        return(
-                <Grid 
-                    title='Basic Grid'
-                    height={400}
-                    width={600}
-                    store={this.store}
-                    shadow 
-                    grouped
-                    columns={[{
-                        text: 'Company',
-                        flex: 1,
-                        dataIndex: 'name'
-                    }, {
-                        text: 'Price',
-                        width: 75,
-                        dataIndex: 'price',
-                        formatter: 'usMoney'
-                    }, {
-                        text: 'Change',
-                        width: 90,
-                        renderer: this.renderChange,
-                        dataIndex: 'change',
-                        cell: {
-                            encodeHtml: false
-                        }
-                    }, {
-                        text: '% Change',
-                        width: 100,
-                        dataIndex: 'pctChange',
-                        renderer: this.renderPercent,
-                        cell: {
-                            encodeHtml: false
-                        }
-                    }, {
-                        text: 'Last Updated',
-                        width: 125,
-                        dataIndex: 'lastChange',
-                        formatter: 'date("m/d/Y")'
-                    }]}
-
-                />
+    render() {
+        return (
+            <Grid 
+                title="Stock Prices"
+                store={this.store}
+                shadow 
+                grouped
+                columns={[{
+                    text: 'Company',
+                    flex: 1,
+                    dataIndex: 'name'
+                }, {
+                    text: 'Price',
+                    width: 75,
+                    dataIndex: 'price',
+                    formatter: 'usMoney'
+                }, {
+                    text: 'Change',
+                    width: 90,
+                    renderer: this.renderChange,
+                    dataIndex: 'change',
+                    cell: {
+                        encodeHtml: false
+                    }
+                }, {
+                    text: '% Change',
+                    width: 100,
+                    dataIndex: 'pctChange',
+                    renderer: this.renderPercent,
+                    cell: {
+                        encodeHtml: false
+                    }
+                }, {
+                    text: 'Last Updated',
+                    width: 125,
+                    dataIndex: 'lastChange',
+                    formatter: 'date("m/d/Y")'
+                }]}
+            />
         )
     }
 }

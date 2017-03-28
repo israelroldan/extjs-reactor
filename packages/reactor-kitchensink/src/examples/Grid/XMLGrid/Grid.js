@@ -28,9 +28,7 @@ export default class XmlGridExample extends Component {
     render(){
         return(
             <Grid
-                title="XML Grid"
-                height={400}
-                width={600}
+                title="Products"
                 store={this.store}
                 columns={[{
                     text: 'Author',

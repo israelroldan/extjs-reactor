@@ -5,6 +5,7 @@ Ext.require([
     'Ext.grid.plugin.CellEditing',
     'Ext.grid.plugin.ColumnResizing',
 ]);
+
 export default class CellEditingGridExample extends Component{
    
     store = Ext.create('Ext.data.Store', {
@@ -18,9 +19,9 @@ export default class CellEditingGridExample extends Component{
             // dates can be automatically converted by specifying dateFormat
             {name: 'availDate', mapping: 'availability', type: 'date', dateFormat: 'm/d/Y'},
             {name: 'indoor', type: 'bool'}
-            ],
+        ],
         autoLoad: true,
-        proxy:{
+        proxy: {
             type: 'ajax',
             url: '/resources/data/Grids/plants.xml',
             reader:{
@@ -35,13 +36,11 @@ export default class CellEditingGridExample extends Component{
         }]
     })
 
-    render(){
-        return(
+    render() {
+        return (
             <Grid
-            onInitialize={this.f}
-                title="Cell Editing Plants"
-                height={400}
-                width={600}
+                title="Plants"
+                shadow 
                 store={this.store}
                 plugins={[
                     'gridcellediting',

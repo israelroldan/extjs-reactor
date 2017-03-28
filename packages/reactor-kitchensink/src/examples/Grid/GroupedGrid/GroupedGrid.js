@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Toolbar } from '@extjs/reactor/modern';
+import { Grid, Toolbar, Label, SegmentedButton, Button } from '@extjs/reactor/modern';
 import './data';
 
 export default class GroupedGridExample extends Component{
@@ -16,26 +16,23 @@ export default class GroupedGridExample extends Component{
         },
         sorters: ['cuisine', 'name'],
         groupField: 'cuisine'
-
     })
 
     state = {
         grouped: true
     }
 
-    onToggleGrouping = () => {
-        const result = this.state.grouped ? false : true
-        this.setState({grouped:result})
-    }
+    onToggleGrouping = (on) => this.setState({ grouped: on })
 
-    render(){
-        return(
-            <Grid 
+    render() {
+        const { grouped } = this.state;
+
+        return (
+            <Grid
                 title="Restaurants"
+                shadow 
                 store={this.store}
-                height={400}
-                width={600}
-                grouped={this.state.grouped}
+                grouped={grouped}
                 columns={[
                     {
                         text: 'Name',
@@ -51,12 +48,13 @@ export default class GroupedGridExample extends Component{
                     }
                 ]}
             >
-                <Toolbar 
-                    docked="bottom"
-                    items={['->', {
-                        text: 'Toggle grouping On/Off',
-                        handler: this.onToggleGrouping
-                    }]} />
+                <Toolbar docked="bottom">
+                    <Label margin="0 10 0 0">Grouping:</Label>
+                    <SegmentedButton label="Grouping">
+                        <Button ui="toolbar-default" pressed text="ON" handler={this.onToggleGrouping.bind(this, true)}/>
+                        <Button ui="toolbar-default" text="OFF" handler={this.onToggleGrouping.bind(this, false)}/>
+                    </SegmentedButton>
+                </Toolbar>
             </Grid>
         )
     }
