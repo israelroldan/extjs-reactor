@@ -310,7 +310,7 @@ const ContainerMixin = Object.assign({}, ReactMultiChild.Mixin, {
             } else {
                 // reordering docked components is known to cause issues in modern
                 // place items in a container instead
-                if (childComponent.config && (childComponent.config.docked || childComponent.config.floated)) return; 
+                if (childComponent.config && (childComponent.config.docked || childComponent.config.floated)) return;
                 this.cmp.insert(toIndex, childComponent);
             }
         }
