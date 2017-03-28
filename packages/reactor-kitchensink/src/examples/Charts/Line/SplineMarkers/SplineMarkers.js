@@ -24,6 +24,7 @@ export default class SplineMarkers extends Component {
                 <ChartToolbar onThemeChange={this.changeTheme} theme={theme}/>
                 <Cartesian
                     store={this.store}
+                    theme={theme}
                     insetPadding="10 20 10 10"
                     legend={{
                         type: 'sprite',
