@@ -157,14 +157,14 @@ module.exports = class ReactExtJSWebpackPlugin {
             this._buildExtBundle('ext', modules, outputPath, build)
                 .then(() => {
                     const cssVarPath = path.join(this.output, 'css-vars.js');
-                    console.log("\n Checking for path " + cssVarPath + "\n");
+                
                     if (fs.existsSync(path.join(outputPath, 'css-vars.js'))) {
-                        console.log("\n Found path " + cssVarPath + "\n");
                         const cssVarChunk = compilation.addChunk(`${this.output}-css-vars`);
                         cssVarChunk.hasRuntime = cssVarChunk.isInitial = () => true;
                         cssVarChunk.files.push(cssVarPath);
                         cssVarChunk.id = -1;
                     }
+                
                     !this.asynchronous && callback();
                 })
                 .catch(e => {
