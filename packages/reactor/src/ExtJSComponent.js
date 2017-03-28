@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import { Component, Children, cloneElement } from 'react';
 import ReactMultiChild from 'react-dom/lib/ReactMultiChild';
 import { precacheNode } from 'react-dom/lib/ReactDOMComponentTree';
 import Flags from 'react-dom/lib/ReactDOMComponentFlags';
@@ -81,9 +81,10 @@ export default class ExtJSComponent extends Component {
      * @param context
      */
     receiveComponent(nextComponent, transaction, context) {
+        if (this.cmp.destroyed) return;
         const props = nextComponent.props;
-        this._applyProps(this._currentElement.props, props);
         this.updateChildren(props.children, transaction, context);
+        this._applyProps(this._currentElement.props, props);
         this._currentElement = nextComponent;
     }
 
@@ -117,7 +118,7 @@ export default class ExtJSComponent extends Component {
                 width: '100%'
             });
         }
-
+        
         config.renderTo = renderToDOMNode;
 
         this.cmp = this.createExtJSComponent(config);
@@ -132,6 +133,14 @@ export default class ExtJSComponent extends Component {
         return { node: this.el };
     }
 
+    _applyDefaults({ defaults, children }) {
+        if (defaults) {
+            return Children.map(children, child => cloneElement(child, { ...child.props, ...this.props.defaults }));
+        } else {
+            return children;
+        }
+    }
+
     /**
      * Creates an Ext JS component config from react element props
      * @private
@@ -141,7 +150,7 @@ export default class ExtJSComponent extends Component {
         const config = this._createConfig(props, true);
 
         const items = [], dockedItems = [];
-        const children = this.mountChildren(props.children, transaction, context);
+        const children = this.mountChildren(this._applyDefaults(props), transaction, context);
 
         if (children.length === 1 && children[0].node instanceof DocumentFragment) {
             config.html = this._toHTML(children[0].node);
@@ -150,7 +159,11 @@ export default class ExtJSComponent extends Component {
                 const item = children[i];
 
                 if (item instanceof Ext.Base) {
-                    (item.dock ? dockedItems : items).push(item);
+                    if (item.initialConfig.rel) {
+                        config[item.initialConfig.rel] = item;
+                    } else {
+                        (item.dock ? dockedItems : items).push(item);
+                    }
                 } else if (item.node) {
                     items.push(wrapDOMElement(item.node));
                 } else {
@@ -299,7 +312,7 @@ const ContainerMixin = Object.assign({}, ReactMultiChild.Mixin, {
             } else {
                 // reordering docked components is known to cause issues in modern
                 // place items in a container instead
-                if (childComponent.config.docked) return; 
+                if (childComponent.config && (childComponent.config.docked || childComponent.config.floated)) return; 
                 this.cmp.insert(toIndex, childComponent);
             }
         }
@@ -372,7 +385,7 @@ function wrapDOMElement(el) {
 function toComponent(node) {
     if (node instanceof Ext.Base) {
         return node;
-    } else {
+    } else if (node) {
         return node._extCmp;
     }
 }
