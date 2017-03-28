@@ -298,7 +298,9 @@ const ContainerMixin = Object.assign({}, ReactMultiChild.Mixin, {
      * @protected
      */
     moveChild(child, afterNode, toIndex, lastIndex) {
-        if (this.cmp.layout instanceof (Ext.layout.Fit || Ext.layout.FitLayout)) {
+        const fitLayout = Ext.layout && (Ext.layout.Fit || Ext.layout.FitLayout);
+
+        if (fitLayout && this.cmp.layout instanceof fitLayout) {
             // moving the main child of a container with layout fit causes it to disappear.  Instead we do nothing, which
             // should be ok because fit containers are not ordered
             return;
