@@ -150,12 +150,23 @@ module.exports = class ReactExtJSWebpackPlugin {
             jsChunk.hasRuntime = jsChunk.isInitial = () => true;
             jsChunk.files.push(path.join(this.output, 'ext.js'));
             jsChunk.files.push(path.join(this.output, 'ext.css'));
-            jsChunk.id = -1; // this forces html-webpack-plugin to include ext.js first
+            jsChunk.id = -2; // this forces html-webpack-plugin to include ext.js first
 
             if (this.asynchronous) callback();
 
             this._buildExtBundle('ext', modules, outputPath, build)
-                .then(() => !this.asynchronous && callback())
+                .then(() => {
+                    const cssVarPath = path.join(this.output, 'css-vars.js');
+                    console.log("\n Checking for path " + cssVarPath + "\n");
+                    if (fs.existsSync(path.join(outputPath, 'css-vars.js'))) {
+                        console.log("\n Found path " + cssVarPath + "\n");
+                        const cssVarChunk = compilation.addChunk(`${this.output}-css-vars`);
+                        cssVarChunk.hasRuntime = cssVarChunk.isInitial = () => true;
+                        cssVarChunk.files.push(cssVarPath);
+                        cssVarChunk.id = -1;
+                    }
+                    !this.asynchronous && callback();
+                })
                 .catch(e => {
                     console.error(e);
                     compilation.errors.push(new Error('[@extjs/reactor-webpack-plugin]: ' + e.toString()));
