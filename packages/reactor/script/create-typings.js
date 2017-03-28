@@ -305,15 +305,20 @@ for (let toolkit of ['classic', 'modern']) {
         output.push(`declare class ${name} extends React.Component<${propsInterface}, any> { }`);
         output.push(`export interface ${propsInterface} {`);
 
-        if (configs) for (let config of configs.items) {
+        const uniqueConfigs = {};
 
+        if (configs) for (let config of configs.items) {
             let { name, type, required, access, text } = config;
             
             if (access === 'private' || access === 'protected' || // only show public configs
                 name.indexOf('.') !== -1 || // some configs erroneously have '.' in the name - this must be a bug in doxi
                 ['items', 'dockedItems', 'xtype'].indexOf(name) !== -1) continue; // these are not needed when using reactor
 
-            output.push(`${formatComment(text, 1)}\n\t${name}${required ? '' : '?'}: ${typeFor(type)}`)
+            uniqueConfigs[name] = `${formatComment(text, 1)}\n\t${name}${required ? '' : '?'}: ${typeFor(type)}`;
+        }
+
+        for (let name in uniqueConfigs) {
+            output.push(uniqueConfigs[name])
         }
 
         const events = cls.items && cls.items.find(i => i['$type'] === 'events');
