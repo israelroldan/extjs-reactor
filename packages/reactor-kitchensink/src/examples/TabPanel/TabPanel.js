@@ -50,6 +50,6 @@ export default function TabPanelExample() {
 
 const tabProps = {
     cls: "card",
-    layout: { type: 'vbox', align: 'stretch', pack: 'center' }
+    layout: "center"
 };
 

@@ -6,7 +6,12 @@ import EditableGrid from './Grid/EditableGrid/Grid';
 import XMLGrid from './Grid/XMLGrid/Grid';
 import ReduxGrid from './ReduxGrid/ReduxGrid';
 import Panel from './Panel/Panel';
+
+// Tabs
+
 import TabPanel from './TabPanel/TabPanel';
+import Closable from './Tabs/Closable/Closable';
+
 import Toolbar from './Toolbar/Toolbar';
 import Animations from './Animations/Animations';
 import Button from './Button/Button';
@@ -338,7 +343,10 @@ const root = {
         { text: 'Picker', component: Picker },
         { text: 'ProgressBar', component: ProgressBar, center: true },
         { text: 'Ripple', component: Ripple, center: true },
-        { text: 'TabPanel', component: TabPanel },
+        { text: 'Tabs', children: [
+            { text: 'TabPanel', component: TabPanel },
+            { text: 'Closable', component: Closable }
+        ]},
         { text: 'TitleBar', component: TitleBar },
         { text: 'Toast', component: Toast, center: true },
         { text: 'Toolbar', component: Toolbar },
