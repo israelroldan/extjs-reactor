@@ -5,7 +5,7 @@ Ext.require('Ext.button.Button');
 
 export default class Person extends Component {
     
-    save() {
+    save = () => {
         const { name, email } = this.refs;
 
         this.props.onSave({ 
@@ -31,7 +31,7 @@ export default class Person extends Component {
                 onClose={onClose}
                 buttons={[{
                     text: 'Save',
-                    handler: this.save.bind(this)
+                    handler: this.save
                 }]}
             >
                 <TextField ref="name" fieldLabel="Name" value={person.name} anchor="100%"/>

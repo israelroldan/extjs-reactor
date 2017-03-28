@@ -28,7 +28,9 @@ const Template = Ext.define(null, {
     apply(values) {
         const target = this.getCachedTarget();
         this.doRender(values, target);
-        return target.innerHTML;
+        const result = target.innerHTML;
+        target.innerHTML = '';
+        return result;
     },
 
     // overrides Ext.Template
@@ -68,3 +70,20 @@ const Template = Ext.define(null, {
 });
 
 export default Template;
+
+// Hook Ext.XTemplate.get so that we can just pass a function that returns JSX in place of a XTemplate.
+
+const getTpl = Ext.XTemplate.getTpl;
+const originalGet = Ext.XTemplate.get;
+
+Ext.XTemplate.get = function(fn) {
+    if (typeof(fn) === 'function') {
+        return new Template(fn);
+    } else {
+        return originalGet.apply(Ext.XTemplate, arguments);
+    }
+}
+
+Ext.XTemplate.getTpl = function() {
+    return getTpl.apply(Ext.XTemplate, arguments);
+}

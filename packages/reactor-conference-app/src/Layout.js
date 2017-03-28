@@ -25,8 +25,7 @@ class Layout extends Component {
         const { title, dispatch, children, filterFavorites } = this.props
 
         return (
-            <Container id="scrollpane" scrollable>
-                <TitleBar title="ExtReact Conference" docked="top"/>
+            <Container layout="fit">
                 <Menu onSelect={this.onNavChange}/>
                 { children }
             </Container>

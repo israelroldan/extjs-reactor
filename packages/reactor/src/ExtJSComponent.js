@@ -296,7 +296,9 @@ const ContainerMixin = Object.assign({}, ReactMultiChild.Mixin, {
      * @protected
      */
     moveChild(child, afterNode, toIndex, lastIndex) {
-        if (this.cmp.layout instanceof (Ext.layout.Fit || Ext.layout.FitLayout)) {
+        const fitLayout = Ext.layout && (Ext.layout.Fit || Ext.layout.FitLayout);
+
+        if (fitLayout && this.cmp.layout instanceof fitLayout) {
             // moving the main child of a container with layout fit causes it to disappear.  Instead we do nothing, which
             // should be ok because fit containers are not ordered
             return;
@@ -310,7 +312,7 @@ const ContainerMixin = Object.assign({}, ReactMultiChild.Mixin, {
             } else {
                 // reordering docked components is known to cause issues in modern
                 // place items in a container instead
-                if (childComponent.config && (childComponent.config.docked || childComponent.config.floated)) return; 
+                if (childComponent.config && (childComponent.config.docked || childComponent.config.floated)) return;
                 this.cmp.insert(toIndex, childComponent);
             }
         }

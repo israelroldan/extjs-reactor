@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Container, List, Button, TabPanel, Panel } from '@extjs/reactor/modern';
-import { Template } from '@extjs/reactor';
 import AppBar from '../AppBar';
 
 import { 
@@ -21,7 +20,7 @@ class Speakers extends Component {
             </div>
             <div onClick={this.onFavoriteClick.bind(this, data)} className={`x-fa fa-star app-favorite${data.favorite ? '-selected' : ''}`}/>
         </div>
-    ));
+    ))
 
     componentDidMount() {
         this.props.dispatch(loadSpeakers())
@@ -94,7 +93,7 @@ class Speakers extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return { ...state.speakers };
+    return state.speakers;
 }
 
 export default connect(mapStateToProps)(Speakers);

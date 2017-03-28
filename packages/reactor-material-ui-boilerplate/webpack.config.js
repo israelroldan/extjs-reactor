@@ -14,7 +14,6 @@ module.exports = function (env) {
         new ExtJSReactorWebpackPlugin({
             sdk: 'ext', // you need to copy the Ext JS SDK to the root of this package, or you can specify a full path to some other location
             theme: './ext-theme',
-            // packageDirs: ['ext/packages'],
             production: isProd
         }),
         new webpack.EnvironmentPlugin({
@@ -47,7 +46,7 @@ module.exports = function (env) {
     }));
 
     return {
-        
+
         devtool: isProd ? 'source-map' : 'eval',
         context: sourcePath,
 
@@ -72,7 +71,7 @@ module.exports = function (env) {
                 {
                     test: /\.css$/,
                     use: [
-                        'style-loader', 
+                        'style-loader',
                         'css-loader'
                     ]
                 }

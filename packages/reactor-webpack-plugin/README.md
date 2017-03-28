@@ -7,7 +7,7 @@ The plugin crawls your React source code looking for JSX tags that match Ext JS 
 files into your index.html.
 
 ## Dependencies
-You must have Ext JS 6.2+ and Sencha Cmd 6.2+ to use this plugin.
+You must have Ext JS 6.2+ and Sencha Cmd 6.5+ to use this plugin.
 
 ## Options
 The ExtJSReactorWebpackPlugin constructor takes an object with the following properties:

@@ -23,10 +23,26 @@ class Schedule extends Component {
     filter = day => this.props.dispatch(filterByDay(day))
 
     componentDidMount() {
-        this.ct.getParent().getScrollable().on('scroll', this.onParentScroll)
+        this.ct.getScrollable().on('scroll', this.onParentScroll)
     }
 
     onParentScroll = () => {
+        const tabPanel = this.tabPanel;
+        const tabBarEl = tabPanel.getTabBar().el;
+        const top = tabBarEl.getY();
+        const scrollTop = this.ct.getScrollable().getElement().getY();
+
+        if (tabBarEl.stuck) {
+            if (tabBarEl.parent().getY() > scrollTop) {
+                tabBarEl.stuck = false;
+                tabBarEl.setStyle({ position: '', top: '', width: '', zIndex: '' })
+            }
+        } else {
+            if (top < scrollTop) {
+                tabBarEl.stuck = true;
+                tabBarEl.setStyle({ position: 'fixed', top: `${scrollTop}px`, width: `${this.tabPanel.el.getWidth()}px`, zIndex: 100 })
+            }
+        }
 
     }
 
@@ -49,15 +65,11 @@ class Schedule extends Component {
         };
 
         return (
-            <Container layout="vbox" ref={ct => this.ct = ct}>
-                { !Ext.platformTags.desktop && (
-                    <AppBar title="Schedule"/>
-                )}
-                { !Ext.platformTags.desktop && (
-                    <Container cls="app-banner">
-                        ExtReact Conference
-                    </Container>
-                )}
+            <Container layout="vbox" ref={ct => this.ct = ct} scrollable>
+                <AppBar title="Schedule"/>
+                <Container cls="app-banner">
+                    ExtReact Conference
+                </Container>
                 { Ext.platformTags.desktop && (
                     <SearchField style={{position: 'absolute', right: '10px', top: '8px', zIndex: 101}} width="200" height="32" ui="app-search-field" />
                 )}
