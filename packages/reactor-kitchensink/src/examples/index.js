@@ -350,7 +350,7 @@ const root = {
             { text: 'Basic Tabs', component: BasicTabs },
             { text: 'Bottom Tabs', component: BottomTabs },
             { text: 'Closable', component: Closable },
-            { text: 'ScrollingTabs', component: ScrollingTabs, center: true }
+            { text: 'ScrollingTabs', component: ScrollingTabs, center: !Ext.os.is.Phone }
         ]},
         { text: 'TitleBar', component: TitleBar },
         { text: 'Toast', component: Toast, center: true },
