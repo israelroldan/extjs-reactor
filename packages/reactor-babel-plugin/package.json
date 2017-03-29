@@ -2,7 +2,7 @@
   "name": "@extjs/reactor-babel-plugin",
   "version": "0.2.9",
   "description": "Converts ES6 imports to reactify calls.",
-  "main": "dist/reactor-babel-plugin.min.js",
+  "main": "dist/reactor-babel-plugin.js",
   "module": "index.js",
   "scripts": {
     "build": "webpack",
