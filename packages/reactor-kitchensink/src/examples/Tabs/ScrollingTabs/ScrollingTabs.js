@@ -11,7 +11,7 @@ export default class ScrollingTabsExample extends Component {
                 platformConfigs={{
                     "!phone": {
                         height: 600,
-                        width: 400
+                        width: 400 
                     }
                 }}
                 defaults={{

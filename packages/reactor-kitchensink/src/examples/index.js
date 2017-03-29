@@ -5,6 +5,8 @@ import CellEditingGrid from './Grid/CellEditing/Grid';
 import EditableGrid from './Grid/EditableGrid/Grid';
 import XMLGrid from './Grid/XMLGrid/Grid';
 import ReduxGrid from './ReduxGrid/ReduxGrid';
+import PivotGrid from './PivotGrid/PivotGrid';
+
 import Panel from './Panel/Panel';
 
 // Tabs
@@ -60,12 +62,10 @@ import FileField from './FormFields/FileField/FileField';
 import NumberField from './FormFields/NumberField/NumberField';
 import DecoratorField from './FormFields/DecoratorField/DecoratorField';
 
-import PivotGrid from './PivotGrid/PivotGrid';
 import Video from './Video/Video';
 import Audio from './Audio/Audio';
 import ProgressBar from './ProgressBar/ProgressBar';
 import EdgeMenu from './EdgeMenu/EdgeMenu';
-import ActionSheet from './ActionSheet/ActionSheet';
 import ToolTip from './ToolTip/ToolTip';
 import Picker from './Picker/Picker';
 import TouchEvents from './TouchEvents/TouchEvents';
@@ -170,7 +170,7 @@ import TreeMapTooltip from './TreeMapTooltip/TreeMapTooltip';
 import ConfigurablePivotTreeMap from './ConfigurablePivotTreeMap/ConfigurablePivotTreeMap';
 import Pack from './Pack/Pack';
 import Sunburst from './Sunburst/Sunburst';
-import ZoomableSunburst from './ZoomableSunburst/ZoomableSunburst';
+import ZoomableSunburst from './ZoomableSunburst/ZoomableSunburst'; 
 
 // Layouts
 
@@ -182,7 +182,7 @@ import FormLayout from './Layouts/form/form';
 import Resizable from './Layouts/resizable/resizable';
 import CenterLayout from './Layouts/center/center';
 
-import InProgress from '../InProgress';
+import InProgress from '../InProgress';  
 
 const root = {
     id: 'root',
@@ -231,8 +231,8 @@ const root = {
                 { text: 'OHLC', component: OHLC }
             ] },
             { text: 'Gauge', children: [
-                { text: 'Basic Gauge', component: BasicGauge }
-            ] },
+                { text: 'Basic Gauge', component: BasicGauge }  
+            ] }, 
             { text: 'Line', children: [
                 { text: 'Basic Line', component: BasicLine },
                 { text: 'Basic Markers', component: BasicMarkers },
@@ -248,7 +248,7 @@ const root = {
                 { text: 'Spie', component: Spie },
                 { text: 'Donut', component: Donut },
                 { text: 'Double Donut', component: DoubleDonut },
-                { text: '3D Pie', component: ThreeDPie }
+                { text: '3D Pie', component: ThreeDPie } 
             ] },
             { text: 'Radar', children: [
                 { text: 'Basic Radar', component: BasicRadar },
@@ -279,6 +279,10 @@ const root = {
                 { text: 'Zoomable Sunburst', component: ZoomableSunburst }
             ]}
         ] },
+        { text: 'Dialogs', children: [
+            { text: 'Msg', component: Msg, center: true },
+            { text: 'Window', component: InProgress, center: true }
+        ]},
         { text: 'Draw', component: Draw },
         { text: 'EdgeMenu', component: EdgeMenu, center: true },
         { text: 'Form Fields', children: [
@@ -341,7 +345,6 @@ const root = {
             { text: 'Video', component: Video },
             { text: 'Audio', component: Audio }
         ] },
-        { text: 'Msg', component: Msg, center: true },
         { text: 'Panel', component: Panel, center: true },
         { text: 'Picker', component: Picker },
         { text: 'ProgressBar', component: ProgressBar, center: true },
@@ -373,6 +376,6 @@ function transform(node) {
     }
 }
 
-transform(root);
+transform(root); 
 
 export default root;

@@ -30,6 +30,14 @@ module.exports = function (env) {
         new webpack.EnvironmentPlugin({
             NODE_ENV: nodeEnv
         }),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: "vendor", 
+            filename: "vendor.bundle.js",
+            minChunks: function (module) {
+                // this assumes your vendor imports exist in the node_modules directory
+                return module.context && module.context.indexOf("node_modules") !== -1;
+            }            
+        }),
         new CopyWebpackPlugin([{
             from: path.join(__dirname, 'resources'), 
             to: 'resources'
@@ -65,16 +73,17 @@ module.exports = function (env) {
 
     return {
         
-        devtool: isProd ? 'source-map' : 'cheap-module-source-map',
+        devtool: isProd ? 'source-map' : 'cheap-eval-source-map',
         context: sourcePath,
 
-        entry: [
-            './index.js'
-        ],
+        entry: {
+            vendor: ['react', 'react-dom', 'react-router', 'redux', 'd3', 'highlightjs'],
+            app: './index.js'
+        },
 
         output: {
             path: path.join(__dirname, 'build'),
-            filename: 'bundle.js'
+            filename: '[name].js'
         },
 
         module: {

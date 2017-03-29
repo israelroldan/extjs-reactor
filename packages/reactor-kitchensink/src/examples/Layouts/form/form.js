@@ -12,16 +12,16 @@ export default function FormLayoutExample() {
                 </div>
             </Panel>
             <div style={styles.heading}>labelTextAlign="left" (default)</div>
-            <FormPanel layout="form" shadow margin="0 0 30 0">
+            <FormPanel layout="form" shadow margin="0 0 30 0" defaults={{labelAlign: 'left'}}>
                 <TextField label="First Name" labelTextAlign="left"/>
                 <TextField label="Last Name" labelTextAlign="left"/>
                 <TextField label="Bank Account Number" labelTextAlign="left"/>
             </FormPanel>       
             <div style={styles.heading}>labelTextAlign="right"</div>
-            <FormPanel layout="form" shadow>
+            <FormPanel layout="form" shadow defaults={{labelAlign: 'left'}}>
                 <TextField label="First Name" labelTextAlign="right"/>
                 <TextField label="Last Name" labelTextAlign="right"/>
-                <TextField label="Bank Account Number" labelTextAlign="right"/>
+                <TextField label="Title" labelTextAlign="right"/>
             </FormPanel>       
         </Container> 
     )

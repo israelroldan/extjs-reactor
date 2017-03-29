@@ -1,6 +1,7 @@
 import { ROUTE_DID_CHANGE, TOGGLE_CODE } from './actions';
-import code from './code';
 import examples from './examples';
+
+const code = window._code;
 
 // Here we initialize the Ext JS TreeStore for the navigation tree as part of our
 // redux store.
