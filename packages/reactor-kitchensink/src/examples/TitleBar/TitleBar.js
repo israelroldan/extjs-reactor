@@ -12,8 +12,8 @@ export default class TitleBarExample extends Component {
                     <Button align="left" iconCls="x-fa fa-bars" ripple={{bound: false}}/>
                     <Button align="right" iconCls="x-fa fa-inbox" text="Inbox"/>
                     <Button align="right" iconCls="x-fa fa-user" text="Profile"/>
-                    <Button align="right" iconCls="x-fa fa-ellipsis-v" cls="btn-hide-arrow">
-                        <Menu rel="menu">
+                    <Button align="right" iconCls="x-fa fa-ellipsis-v" arrow={false}>
+                        <Menu>
                             <MenuItem text="Settings" iconCls="x-fa fa-cog"/>
                             <MenuItem text="Help" iconCls="x-fa fa-question-circle"/>
                         </Menu>

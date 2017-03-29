@@ -27,7 +27,7 @@ export default function rootReducer(state = initialState, action) {
             } else {
                 return { ...state, showMenu: !state.showMenu };
             }
-        case ROUTE_DID_CHANGE:
+        case ROUTE_DID_CHANGE: 
             const { location } = action;
             const route = location.pathname;
             const node = navStore.getNodeById(route);

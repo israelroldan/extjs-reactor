@@ -42,9 +42,9 @@ export default class TouchEventsExample extends Component {
         return (
             <Container layout={{type: 'hbox', align: 'stretch'}}>
                 <Container flex={1} layout={{type: 'vbox', align: 'stretch'}} margin="0 20 0 0">
-                    <Panel shadow margin="0 0 20 0">
+                    <Panel shadow margin="0 0 20 0" bodyPadding="10">
                         <div>
-                            <p>Ext JS comes with a multitude of touch events available on components. Included touch events that can be used are:</p>
+                            <div>Ext JS comes with a multitude of touch events available on components. Included touch events that can be used are:</div>
                             <ul>
                                 <li>touchstart</li>
                                 <li>touchmove</li>
@@ -62,12 +62,12 @@ export default class TouchEventsExample extends Component {
                             </ul>
                         </div>
                     </Panel>
-                    <Panel title="Event Log" flex={1} scrollable>
+                    <Panel title="Event Log" flex={1} scrollable bodyPadding="10">
                         { events.map((e, i) => <div key={i}>{e}</div>) }
                     </Panel>
                 </Container>
                 <Container ref="touchpad" flex={1} layout={{type: 'vbox', pack: 'center', align: 'stretch'}} style={{border: '8px dashed #d6d6d6', borderRadius: '30px'}}>
-                    <div style={{textAlign: 'center', fontSize: '48px', color: '#ccc'}}>Touch Here</div>
+                    <div style={{textAlign: 'center', fontSize: '48px'  , color: '#ccc'}}>Touch Here</div>
                 </Container>
             </Container> 
         );

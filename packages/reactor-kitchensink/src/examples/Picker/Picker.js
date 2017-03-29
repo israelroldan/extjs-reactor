@@ -11,6 +11,7 @@ export default class PickerExample extends Component {
                 <Button ui="action" handler={this.showPicker} text="Show Picker"/>
                 <Picker 
                     ref={picker => this.picker = picker}
+                    value={100}
                     slots={[
                         {
                             name: 'limit_speed',

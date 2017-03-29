@@ -35,7 +35,7 @@ export default function ChartToolbar({
         <Toolbar docked="top">
             { theme && (
                 <Button 
-                    iconCls="ext ext-theme" 
+                    iconCls="x-fa fa-picture-o" 
                     text="Theme"
                     menu={[
                         { text: 'Default', value: 'default', handler: () => onThemeChange('default') },
@@ -48,7 +48,6 @@ export default function ChartToolbar({
                     ]}
                 />
             )}
-            <Spacer/>
             { downloadChartRef && (
                 <Button 
                     iconCls="x-fa fa-eye" 
@@ -63,8 +62,9 @@ export default function ChartToolbar({
                 />
             )}
             { onRefreshClick && (
-                <Button {...toolbarItemDefaults} iconCls="x-fa fa-refresh" handler={onRefreshClick} text="Refresh"/>
+                <Button {...toolbarItemDefaults} iconCls="x-fa fa-refresh" handler={onRefreshClick} text="Reload"/>
             )}
+            <Spacer/>
             { onStackGroup && (
                 <SegmentedButton onToggle={onStackGroup}>
                     <Button ui="default-toolbar" text="Stack" pressed/>

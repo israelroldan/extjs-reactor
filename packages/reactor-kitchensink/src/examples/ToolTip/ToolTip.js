@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Panel, Button, Container } from '@extjs/reactor/modern';
+import { Panel, Button, Container, ToolTip } from '@extjs/reactor/modern';
 
 export default class ToolTipExample extends Component {
     render() {
@@ -47,31 +47,27 @@ export default class ToolTipExample extends Component {
                     <Button 
                         {...buttonDefaults} 
                         text="Anchor Right, Rich Content"
-                        tooltip={{
-                            styleHtmlContent: true,
-                            html: '<ul style="margin-bottom: 15px;">' +
-                                    '<li>5 bedrooms</li>' + 
-                                    '<li>Close to transport</li>' +
-                                    '<li>Large backyard</li>' +
-                                '</ul>' +
-                                '<img style="width: 400px; height: 300px;" src="resources/images/house.jpg" />',
-                            align: 'tl-tr',
-                            anchorToTarget: true,
-                            anchor: true,
-                            autoHide: false,
-                            closable: true
-                        }}
-                    />
+                    >
+                        <ToolTip rel="tooltip" align="tl-tr" anchorToTarget anchor>
+                            <ul style={{marginBottom: '15px'}}>
+                                <li>5 bedrooms</li>
+                                <li>Close to transport</li>
+                                <li>Large backyard</li>
+                            </ul>
+                            <img style={{width: '400px', height: '300px'}} src="resources/images/house.jpg" />
+                        </ToolTip>
+                    </Button>
 
                     <Button 
                         {...buttonDefaults} 
                         text="Anchor Below"
-                        tooltip={{
+                        tooltip={Ext.create({
+                            xtype: 'tooltip',
                             html: 'The anchor is centered',
                             anchorToTarget: true,
                             align: 'tc-bc',
                             anchor: true
-                        }}
+                        })}
                     />
 
                     <Button 

@@ -14,10 +14,10 @@ import Notifications from './notifications/Notifications';
 import Attendees from './attendees/Attendees';
 import About from './about/About';
 
-// // load new component when the route changes
+// load new component when the route changes
 hashHistory.listen(location => store.dispatch(routeDidChange(location)));
 
-// // load the component for the initial route
+// load the component for the initial route
 store.dispatch(routeDidChange(hashHistory.getCurrentLocation()));
 
 export default function App() {

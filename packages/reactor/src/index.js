@@ -45,6 +45,10 @@ export function reactify(...targets) {
                 return name;
             }
 
+            get extJSClass() {
+                return target;
+            }
+
             get reactorSettings() {
                 return settings;
             }

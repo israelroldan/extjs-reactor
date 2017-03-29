@@ -58,7 +58,7 @@ export default function ButtonExample() {
 }
 
 const menu = (
-    <Menu rel="menu">
+    <Menu>
         <MenuItem text="Item 1"/>
         <MenuItem text="Item 2"/>
         <MenuItem text="Item 3"/>

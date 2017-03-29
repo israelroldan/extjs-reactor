@@ -9,8 +9,10 @@ import Panel from './Panel/Panel';
 
 // Tabs
 
-import TabPanel from './TabPanel/TabPanel';
+import BasicTabs from './Tabs/BasicTabs/BasicTabs';
+import BottomTabs from './Tabs/BottomTabs/BottomTabs';
 import Closable from './Tabs/Closable/Closable';
+import ScrollingTabs from './Tabs/ScrollingTabs/ScrollingTabs';
 
 import Toolbar from './Toolbar/Toolbar';
 import Animations from './Animations/Animations';
@@ -56,6 +58,7 @@ import FormPanel from './FormFields/FormPanel/FormPanel';
 import SearchField from './FormFields/SearchField/SearchField';
 import FileField from './FormFields/FileField/FileField';
 import NumberField from './FormFields/NumberField/NumberField';
+import DecoratorField from './FormFields/DecoratorField/DecoratorField';
 
 import PivotGrid from './PivotGrid/PivotGrid';
 import Video from './Video/Video';
@@ -177,10 +180,9 @@ import HboxLayout from './Layouts/hbox/hbox';
 import VboxLayout from './Layouts/vbox/vbox';
 import FormLayout from './Layouts/form/form';
 import Resizable from './Layouts/resizable/resizable';
+import CenterLayout from './Layouts/center/center';
 
 import InProgress from '../InProgress';
-
-import NavigationView from './NavigationView/NavigationView';
 
 const root = {
     id: 'root',
@@ -283,6 +285,7 @@ const root = {
             { text: 'CheckBoxField', component: CheckBoxField, center: true },
             { text: 'ComboBoxField', component: ComboBoxField, center: true },
             { text: 'DatePickerField', component: DatePickerField, center: true },
+            { text: 'DecoratorField', component: DecoratorField, center: true },
             { text: 'EmailField', component: EmailField , center: true},
             { text: 'FieldSet', component: FieldSet, center: true },
             { text: 'FileField', component: FileField, center: true },
@@ -314,6 +317,7 @@ const root = {
         ] },
         { text: 'Layouts', children: [
             { text: 'card', component: CardLayout },
+            { text: 'center', component: CenterLayout },
             { text: 'fit', component: FitLayout },
             { text: 'form', component: FormLayout },
             { text: 'hbox', component: HboxLayout },
@@ -338,14 +342,15 @@ const root = {
             { text: 'Audio', component: Audio }
         ] },
         { text: 'Msg', component: Msg, center: true },
-        { text: 'NavigationView', component: NavigationView },
         { text: 'Panel', component: Panel, center: true },
         { text: 'Picker', component: Picker },
         { text: 'ProgressBar', component: ProgressBar, center: true },
         { text: 'Ripple', component: Ripple, center: true },
         { text: 'Tabs', children: [
-            { text: 'TabPanel', component: TabPanel },
-            { text: 'Closable', component: Closable }
+            { text: 'Basic Tabs', component: BasicTabs },
+            { text: 'Bottom Tabs', component: BottomTabs },
+            { text: 'Closable', component: Closable },
+            { text: 'ScrollingTabs', component: ScrollingTabs, center: true }
         ]},
         { text: 'TitleBar', component: TitleBar },
         { text: 'Toast', component: Toast, center: true },

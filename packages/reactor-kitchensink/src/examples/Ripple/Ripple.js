@@ -7,7 +7,9 @@ export default class RippleExample extends React.Component {
         return (
             <Container layout="vbox">
                 <div 
-                    onClick={event => Ext.fly(event.target).ripple({ event })} 
+                    onClick={event => {
+                        Ext.fly(event.target).ripple(event, {})
+                    }} 
                     style={styles.rippleTarget}
                 >I ripple when clicked.</div>
 

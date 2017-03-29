@@ -57,21 +57,16 @@ export default class ExtJSComponent extends Component {
             renderTo: renderToDOMNode
         };
 
-        try {
-            let result;
+        let result;
 
-            if (renderToDOMNode) {
-                result = this._renderRootComponent(renderToDOMNode, config);
-            } else {
-                result = this.cmp = this.createExtJSComponent(config);
-            }
-
-            this._precacheNode();
-            return result;
-        } catch (e) {
-            console.error('Could not create Ext JS component with config', config);
-            throw e;
+        if (renderToDOMNode) {
+            result = this._renderRootComponent(renderToDOMNode, config);
+        } else {
+            result = this.cmp = this.createExtJSComponent(config);
         }
+
+        this._precacheNode();
+        return result;
     }
 
     /**
@@ -83,7 +78,7 @@ export default class ExtJSComponent extends Component {
     receiveComponent(nextComponent, transaction, context) {
         if (this.cmp.destroyed) return;
         const props = nextComponent.props;
-        this.updateChildren(props.children, transaction, context);
+        this.updateChildren(this._applyDefaults(props), transaction, context);
         this._applyProps(this._currentElement.props, props);
         this._currentElement = nextComponent;
     }
@@ -133,7 +128,7 @@ export default class ExtJSComponent extends Component {
 
     _applyDefaults({ defaults, children }) {
         if (defaults) {
-            return Children.map(children, child => cloneElement(child, { ...child.props, ...this.props.defaults }));
+            return Children.map(children, child => cloneElement(child, { ...child.props, ...defaults }));
         } else {
             return children;
         }
@@ -157,8 +152,10 @@ export default class ExtJSComponent extends Component {
                 const item = children[i];
 
                 if (item instanceof Ext.Base) {
-                    if (item.initialConfig.rel) {
-                        config[item.initialConfig.rel] = item;
+                    const prop = this._reactorPropForItem(item);
+
+                    if (prop) {
+                        config[prop] = item;
                     } else {
                         (item.dock ? dockedItems : items).push(item);
                     }
@@ -174,6 +171,18 @@ export default class ExtJSComponent extends Component {
         if (dockedItems.length) config.dockedItems = dockedItems;
 
         return config;
+    }
+
+    _reactorPropForItem(item) {
+        if (item.config.rel) return item.config.rel;
+
+        const { extJSClass } = this;
+
+        if (isAssignableFrom(extJSClass, Ext.Button) && Ext.menu && Ext.menu.Menu && item instanceof Ext.menu.Menu) {
+            return 'menu'
+        } else if (isAssignableFrom(extJSClass, Ext.Component) && Ext.tip && Ext.tip.ToolTip && item instanceof Ext.tip.ToolTip) {
+            return 'tooltip'
+        }
     }
 
     /**
@@ -209,7 +218,7 @@ export default class ExtJSComponent extends Component {
                 } else if (key.match(/^on[A-Z]/)) {
                     // convert all props starting with on to listeners
                     if (value && includeEvents) config.listeners[key.slice(2).toLowerCase()] = value;
-                } else if (key !== 'children') {
+                } else if (key !== 'children' && key !== 'defaults') {
                     config[key] = value;
                 }
             }
@@ -388,6 +397,17 @@ function toComponent(node) {
     } else if (node) {
         return node._extCmp;
     }
+}
+
+/**
+ * Returns true if subClass is parentClass or a sub class of parentClass
+ * @param {Ext.Class} subClass 
+ * @param {Ext.Class} parentClass 
+ * @return {Boolean}
+ */
+function isAssignableFrom(subClass, parentClass) {
+    if (!subClass || !parentClass) return false;
+    return subClass === parentClass || subClass.prototype instanceof parentClass;
 }
 
 Object.assign(ExtJSComponent.prototype, ContainerMixin);

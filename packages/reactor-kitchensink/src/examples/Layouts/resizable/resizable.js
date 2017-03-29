@@ -25,11 +25,15 @@ export default function ResizableExample() {
                 docked="right" 
                 title="Dock Right"
                 width={200}
+                collapsible="right"
+                layout="center"
                 resizable={{ 
                     split: true, 
                     edges: 'west' 
                 }} 
-            />
+            >
+                <code>collapsible</code>
+            </Panel>
             <Panel 
                 docked="top" 
                 title="Dock Top"
