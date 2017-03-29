@@ -5,7 +5,7 @@ const config = {
     entry: './src/index.js',
     output: {
         path: path.join(__dirname, './dist'),
-        filename: 'reactor-babel-plugin.min.js',
+        filename: 'reactor-babel-plugin.js',
         library: 'ReactorBabelPlugin',
         libraryTarget: 'umd',
         umdNamedDefine: true
@@ -16,14 +16,7 @@ const config = {
             loader: 'babel-loader',
             exclude: /node_modules/
         }]
-    },
-    plugins: [
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            }
-        })
-    ]
+    }
 }
 
 module.exports = config;
