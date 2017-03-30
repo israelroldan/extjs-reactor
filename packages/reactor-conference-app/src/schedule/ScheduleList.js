@@ -2,13 +2,15 @@ import React, { Component, PropTypes } from 'react';
 import { List } from '@extjs/reactor/modern';
 import { Template } from '@extjs/reactor';
 import highlight from '../util/highlight';
+import { toggleFavorite } from './actions';
+import { connect } from 'react-redux';
 
 const days = ['Tuesday', 'Wednesday', 'Thursday'];
 
-export default class ScheduleList extends Component {
+class ScheduleList extends Component {
     
     static propTypes = {
-        store: PropTypes.any.isRequired,
+        dataStore: PropTypes.any.isRequired,
         onFavoriteClick: PropTypes.func,
         showTime: PropTypes.bool,
         flex: PropTypes.number
@@ -33,11 +35,12 @@ export default class ScheduleList extends Component {
     })
 
     render() {
-        const { query, ...listProps } = this.props;
+        const { query, dataStore, ...listProps } = this.props;
 
         return (
             <List 
                 {...listProps}
+                store={dataStore}
                 disableSelection
                 itemTpl={this.itemTpl}
                 grouped
@@ -51,3 +54,15 @@ export default class ScheduleList extends Component {
     }
 
 }
+
+const mapStateToProps = (state) => {
+    return {};
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onFavoriteClick: (data, e) => dispatch(toggleFavorite(data.id))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ScheduleList);

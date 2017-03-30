@@ -7,25 +7,21 @@ import ScheduleList from './schedule/ScheduleList';
 
 class Search extends Component {
     
-    store = Ext.create('Ext.data.Store', {
-        proxy: {
-            type: 'ajax',
-            url: 'resources/schedule.json'
-        },
-        // grouper: {
-        //     property: 'time'
-        // }
-    })
+    constructor(props) {
+        super();
+
+        this.store = Ext.create('Ext.data.ChainedStore', {
+            autoDestroy: true,
+            source: props.store
+        })
+    }
 
     componentDidUpdate(oldProps) {
-        let { query } = this.props;
+        let { query, store } = this.props;
 
         if (oldProps.query !== query) {
-            query = query.toLowerCase() ;
-            
-            
+            query = query.toLowerCase();
             this.store.clearFilter();
-            
             this.store.filterBy(record => {
                 const { name, speaker } = record.data;
 
@@ -38,7 +34,7 @@ class Search extends Component {
     }
 
     render() {
-        const { dispatch, query='' } = this.props;
+        const { dispatch, store, query='' } = this.props;
 
         return (
             <Container layout={{ type: 'vbox', align: 'stretch' }} onShow={this.onShow}>
@@ -48,7 +44,7 @@ class Search extends Component {
                 </Toolbar>
                 <ScheduleList
                     flex={1} 
-                    store={this.store} 
+                    dataStore={this.store} 
                     query={query} 
                     showTime
                 />
@@ -58,7 +54,6 @@ class Search extends Component {
 
     fieldRefHandler = field => this.field = field;
     onShow = () => setTimeout(() => {
-        if (!this.store.loaded) this.store.load();
         this.field.focus();
         this.field.select();
     }, 250);
@@ -68,7 +63,10 @@ class Search extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return state.root;
+    return {
+        ...state.root,
+        store: state.schedule.store
+    };
 }
 
 export default connect(mapStateToProps)(Search);

@@ -8,7 +8,6 @@ import ScheduleList from './ScheduleList';
 
 class Schedule extends Component {
 
-    onFavoriteClick = (data, e) => this.props.dispatch(toggleFavorite(data.id));
     onSearchClick = () => this.props.dispatch(toggleSearch())
     hideSearch = () => this.props.dispatch(toggleSearch(false))
     filter = day => this.props.dispatch(filterByDay(day))
@@ -53,6 +52,7 @@ class Schedule extends Component {
         const storeDefaults = { 
             type: 'chained', 
             source: store, 
+            autoDestroy: true,
             grouper: {
                 property: 'time'
             }
@@ -77,23 +77,19 @@ class Schedule extends Component {
                 >
                     <ScheduleList 
                         title="TUES" 
-                        onFavoriteClick={this.onFavoriteClick} 
-                        store={{ ...storeDefaults, filters: [{ property: 'day', value: 1 }]}}
+                        dataStore={{ ...storeDefaults, filters: [{ property: 'day', value: 1 }]}}
                     />
                     <ScheduleList 
                         title="WED" 
-                        onFavoriteClick={this.onFavoriteClick} 
-                        store={{ ...storeDefaults, filters: [{ property: 'day', value: 2 }]}}
+                        dataStore={{ ...storeDefaults, filters: [{ property: 'day', value: 2 }]}}
                     />
                     <ScheduleList 
                         title="THURS" 
-                        onFavoriteClick={this.onFavoriteClick} 
-                        store={{ ...storeDefaults, filters: [{ property: 'day', value: 3 }]}}
+                        dataStore={{ ...storeDefaults, filters: [{ property: 'day', value: 3 }]}}
                     />
                     <ScheduleList 
                         iconCls="md-icon-star" 
-                        onFavoriteClick={this.onFavoriteClick} 
-                        store={{ ...storeDefaults, filters: [{ property: 'favorite', value: true }]}}
+                        dataStore={{ ...storeDefaults, filters: [{ property: 'favorite', value: true }]}}
                     />
                 </TabPanel>  
             </Container>

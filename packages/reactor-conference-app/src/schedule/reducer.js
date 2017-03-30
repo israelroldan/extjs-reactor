@@ -10,10 +10,9 @@ const initialState = {
     favorites,
     showSearch: false,
     store: Ext.create('Ext.data.Store', {
-        fields: ['name', 'title', 'image', 'favorite'],
         autoLoad: true,
         proxy: {
-            type: 'rest',
+            type: 'ajax',
             url: '/resources/schedule.json'
         },
         listeners: {

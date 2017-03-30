@@ -10,9 +10,8 @@ favorites = favorites ? JSON.parse(favorites) : []
 const initialState = {
     favorites,
     store: Ext.create('Ext.data.Store', {
-        fields: ['name', 'title', 'image', 'favorite'],
         proxy: {
-            type: 'rest',
+            type: 'ajax',
             url: '/resources/speakers.json'
         },
         listeners: {
