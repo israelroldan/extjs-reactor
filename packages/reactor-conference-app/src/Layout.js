@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { toggleMenu } from './actions';
 import AppBar from './AppBar';
 import { toggleFilterFavorites as toggleFavoriteSpeakers } from './speakers/actions';
+import Search from './Search';
 
 class Layout extends Component {
     
@@ -22,16 +23,18 @@ class Layout extends Component {
     }
 
     render() {
-        const { title, dispatch, children, filterFavorites } = this.props
+        const { title, dispatch, children, filterFavorites, showSearch } = this.props
 
         return (
-            <Container layout="fit">
-                <Menu onSelect={this.onNavChange}/>
-                { children }
+            <Container layout={{ type: 'card', animation: { type: showSearch ? 'cover' : 'reveal', direction: 'up', duration: 250 } }} activeItem={showSearch ? 1 : 0}>
+                <Container layout="fit">
+                    <AppBar/>
+                    <Menu onSelect={this.onNavChange}/>
+                    { children }
+                </Container>
+                <Search/>
             </Container>
         )
-
-        return <div>{this.props.children}</div>
     }
 
 }

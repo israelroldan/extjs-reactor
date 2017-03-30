@@ -1,21 +1,22 @@
-import { TOGGLE_MENU, ROUTE_DID_CHANGE } from './actions';
+import { TOGGLE_MENU, ROUTE_DID_CHANGE, TOGGLE_SEARCH, SEARCH } from './actions';
 
 const navStore = Ext.create('Ext.data.TreeStore', {
     root: {
         children: [
-            { text: 'Schedule', id: '/', iconCls: 'x-fa fa-clock-o', leaf: true },
-            { text: 'Speakers', id: '/speakers', iconCls: 'x-fa fa-microphone', leaf: true },
-            { text: 'Calendar', id: '/calendar', iconCls: 'x-fa fa-calendar', leaf: true },
-            { text: 'Maps', id: '/maps', iconCls: 'x-fa fa-map', leaf: true },
-            { text: 'Notifications', id: '/notifications', iconCls: 'x-fa fa-bell', leaf: true },
-            { text: 'Attendees', id: '/attendees', iconCls: 'x-fa fa-group', leaf: true },
-            { text: 'About this App', id: '/about', iconCls: 'x-fa fa-info-circle', leaf: true }
+            { text: 'Schedule', id: '/', iconCls: 'x-font-icon md-icon-schedule', leaf: true },
+            { text: 'Speakers', id: '/speakers', iconCls: 'x-font-icon md-icon-mic', leaf: true },
+            { text: 'Calendar', id: '/calendar', iconCls: 'x-font-icon md-icon-event-available', leaf: true },
+            { text: 'Maps', id: '/maps', iconCls: 'x-font-icon md-icon-map', leaf: true },
+            { text: 'Notifications', id: '/notifications', iconCls: 'x-font-icon md-icon-notifications', leaf: true },
+            { text: 'Attendees', id: '/attendees', iconCls: 'x-font-icon md-icon-people', leaf: true },
+            { text: 'About this App', id: '/about', iconCls: 'x-font-icon md-icon-info-outline', leaf: true }
         ]
     }
 })
 
 const initialState = {
-    navStore
+    navStore,
+    showSearch: false
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -36,6 +37,16 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                 title: node.get('text'),
                 selectedNavNode: node
+            }
+        case TOGGLE_SEARCH:
+            return {
+                ...state,
+                showSearch: !state.showSearch
+            }
+        case SEARCH:
+            return {
+                ...state,
+                query: action.query
             }
         default: 
             return { ...state };

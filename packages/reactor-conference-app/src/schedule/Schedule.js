@@ -4,18 +4,9 @@ import AppBar from '../AppBar';
 import { toggleSearch, filterByDay, toggleFavorite, filterByFavorites } from './actions';
 import { connect } from 'react-redux';
 import { Template } from '@extjs/reactor';
+import ScheduleList from './ScheduleList';
 
 class Schedule extends Component {
-
-    itemTpl = new Template(data => {
-        return (
-            <div>
-                <div className="app-list-item-title">{data.name}</div>
-                <div className="app-list-item-details">{data.speaker ? `by ${data.speaker}`: ''}{data.category} - {data.location}</div>
-                <div onClick={this.onFavoriteClick.bind(this, data)} className={`x-fa fa-star app-favorite${data.favorite ? '-selected' : ''}`}/>
-            </div>
-        )
-    })
 
     onFavoriteClick = (data, e) => this.props.dispatch(toggleFavorite(data.id));
     onSearchClick = () => this.props.dispatch(toggleSearch())
@@ -36,64 +27,74 @@ class Schedule extends Component {
             if (tabBarEl.parent().getY() > scrollTop) {
                 tabBarEl.stuck = false;
                 tabBarEl.setStyle({ position: '', top: '', width: '', zIndex: '' })
+                tabPanel.bodyElement.setStyle({ paddingTop: '' });
             }
         } else {
             if (top < scrollTop) {
                 tabBarEl.stuck = true;
                 tabBarEl.setStyle({ position: 'fixed', top: `${scrollTop}px`, width: `${this.tabPanel.el.getWidth()}px`, zIndex: 100 })
+                tabPanel.bodyElement.setStyle({ paddingTop: `${tabBarEl.getHeight()}px` });
             }
         }
 
+        const padding = 60;
+        const paddingBottom = (top - scrollTop - this.banner.bodyElement.getHeight()) / 2;
+        const paddingTop = padding - paddingBottom;
+        const opacity = paddingBottom / (padding / 2.0);
+        const fontSize = 30 * (top - scrollTop) / (padding + 37);
+
+        this.banner.setStyle({ paddingBottom: `${paddingBottom}px`, paddingTop: `${paddingTop}px` });
+        this.banner.el.down('.app-banner-content').setStyle({ opacity })
     }
 
     render() {
         const { showSearch, store, favorites } = this.props;
 
-        const listDefaults = {
-            grouped: true,
-            pinHeaders: true,
-            rowLines: true,
-            itemCls: "app-list-item",
-            itemTpl: this.itemTpl,
-            maxWidth: 600,
-            cls: "app-list"
-        }
-
         const storeDefaults = { 
             type: 'chained', 
-            source: store 
+            source: store, 
+            grouper: {
+                property: 'time'
+            }
         };
 
         return (
             <Container layout="vbox" ref={ct => this.ct = ct} scrollable>
-                <AppBar title="Schedule"/>
-                <Container cls="app-banner">
-                    ExtReact Conference
+                <Container className="app-banner" ref={banner => this.banner = banner}>
+                    <span className="app-banner-content">ExtReact Conference</span>
                 </Container>
                 { Ext.platformTags.desktop && (
                     <SearchField style={{position: 'absolute', right: '10px', top: '8px', zIndex: 101}} width="200" height="32" ui="app-search-field" />
                 )}
                 <TabPanel 
                     ref={tp => this.tabPanel = tp}
-                    height="600"
+                    height="1000"
                     platformConfig={{
                         desktop: {
                             cls: 'app-desktop-tabs'
                         }
                     }}
                 >
-                    <Panel title="TUES" scrollable>
-                        <List {...listDefaults} store={{ ...storeDefaults, filters: [{ property: 'day', value: 1 }]}}/>
-                    </Panel>
-                    <Panel title="WED" scrollable>
-                        <List {...listDefaults} store={{ ...storeDefaults, filters: [{ property: 'day', value: 2 }]}}/>
-                    </Panel>
-                    <Panel title="THURS" scrollable>
-                        <List {...listDefaults} store={{ ...storeDefaults, filters: [{ property: 'day', value: 3 }]}}/>
-                    </Panel>
-                    <Panel iconCls="x-fa fa-star" scrollable>
-                        <List {...listDefaults} store={{ ...storeDefaults, filters: [{ property: 'favorite', value: true }]}}/>
-                    </Panel>
+                    <ScheduleList 
+                        title="TUES" 
+                        onFavoriteClick={this.onFavoriteClick} 
+                        store={{ ...storeDefaults, filters: [{ property: 'day', value: 1 }]}}
+                    />
+                    <ScheduleList 
+                        title="WED" 
+                        onFavoriteClick={this.onFavoriteClick} 
+                        store={{ ...storeDefaults, filters: [{ property: 'day', value: 2 }]}}
+                    />
+                    <ScheduleList 
+                        title="THURS" 
+                        onFavoriteClick={this.onFavoriteClick} 
+                        store={{ ...storeDefaults, filters: [{ property: 'day', value: 3 }]}}
+                    />
+                    <ScheduleList 
+                        iconCls="md-icon-star" 
+                        onFavoriteClick={this.onFavoriteClick} 
+                        store={{ ...storeDefaults, filters: [{ property: 'favorite', value: true }]}}
+                    />
                 </TabPanel>  
             </Container>
         )

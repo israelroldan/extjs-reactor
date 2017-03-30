@@ -28,6 +28,7 @@
     padding: 20px;
     font-weight: 600;
     border-bottom: 1px solid #DADADA;
+    color: $base-color;
 }
 
 .app-banner {
@@ -39,24 +40,9 @@
     font-weight: 100;
 }
 
-.app-speaker-headshot {
-    height: 64px;
-    width: 64px;
-    border-radius: 50%;
-    float: left;
-    margin-right: 15px;
-    background-size: 64px 64px;
-}
-
-.app-speaker-text {
-    position: relative;
-    top: 10px;
-}
-
-
 .app-favorite, .app-favorite-selected {
     &::before {
-        font-size: 22px !important;
+        font-size: 24px !important;
     }
 }
 

@@ -219,7 +219,7 @@ export default class ExtJSComponent extends Component {
                     // convert all props starting with on to listeners
                     if (value && includeEvents) config.listeners[key.slice(2).toLowerCase()] = value;
                 } else if (key !== 'children' && key !== 'defaults') {
-                    config[key] = value;
+                    config[key.replace(/className/, 'cls')] = value;
                 }
             }
         }

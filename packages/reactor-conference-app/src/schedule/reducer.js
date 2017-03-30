@@ -16,9 +16,6 @@ const initialState = {
             type: 'rest',
             url: '/resources/schedule.json'
         },
-        grouper: {
-            property: 'time'
-        },
         listeners: {
             load: store => store.each(record => record.set('favorite', favorites.indexOf(record.getId()) !== -1))
         }

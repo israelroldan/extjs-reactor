@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Button, TitleBar } from '@extjs/reactor/modern';
-import { toggleMenu } from './actions';
+import { toggleMenu, toggleSearch } from './actions';
 
 function AppBar({ dispatch, title, children }) {
     return (
@@ -17,13 +17,18 @@ function AppBar({ dispatch, title, children }) {
                 }
             }}
         >
-            { Ext.platformTags.desktop ? (
+            { Ext.platformTags.desktop && (
                 <div>
                     <div className="ext ext-sencha app-icon"/>
                     <a href="#" className="app-title">{title}</a>
                 </div>
-            ) : (
-                <Button align="left" iconCls="x-fa fa-bars" handler={() => dispatch(toggleMenu(true))}/>
+            ) }
+
+            { !Ext.platformTags.desktop && (
+                <Button align="left" iconCls="md-icon-menu" handler={() => dispatch(toggleMenu(true))} ripple={{ bound: false }}/>
+            )}
+            { !Ext.platformTags.desktop && (
+                <Button align="right" iconCls="md-icon-search" handler={() => dispatch(toggleSearch())} ripple={{ bound: false }}/>
             )}
             { children }
         </TitleBar>

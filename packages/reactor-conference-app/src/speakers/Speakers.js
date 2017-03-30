@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Container, List, Button, TabPanel, Panel } from '@extjs/reactor/modern';
 import AppBar from '../AppBar';
+import { Template } from '@extjs/reactor';
 
 import { 
     toggleFavorite, 
@@ -12,23 +13,21 @@ import {
 class Speakers extends Component {
 
     itemTpl = new Template(data => (
-        <div>
-            <div className="app-speaker-headshot" style={{backgroundImage: `url(${data.image})`}}></div>
-            <div className="app-speaker-text">
+        <div className="app-list-content">
+            <div className="app-list-headshot" style={{backgroundImage: `url(${data.image})`}}></div>
+            <div className="app-list-text">
                 <div className="app-list-item-title">{data.name}</div>
                 <div className="app-list-item-details">{data.title}</div>
             </div>
-            <div onClick={this.onFavoriteClick.bind(this, data)} className={`x-fa fa-star app-favorite${data.favorite ? '-selected' : ''}`}/>
+            <div 
+                onClick={this.onFavoriteClick.bind(this, data)} 
+                className={`x-no-itemtap x-font-icon md-icon-star app-list-tool app-favorite${data.favorite ? '-selected' : ''}`}
+            />
         </div>
     ))
 
     componentDidMount() {
         this.props.dispatch(loadSpeakers())
-    }
-
-    onItemTap = (list, index, target, record, e) => {
-        // prevent selection
-        return false;
     }
 
     onFavoriteClick = (data, e) => {
@@ -50,6 +49,7 @@ class Speakers extends Component {
             itemCls: "app-list-item",
             rowLines: true,
             maxWidth: "600",
+            disableSelection: true,
             cls: "app-list"
         };
 
@@ -71,7 +71,7 @@ class Speakers extends Component {
         } else {
             return (
                 <Container scrollable>
-                    <AppBar title="Speakers">
+                    {/*<AppBar title="Speakers">
                         <Button 
                             ui={filtered ? 'app-filter-favorites-pressed' : 'app-filter-favorites'}
                             iconCls="x-fa fa-star app-favorite" 
@@ -84,7 +84,7 @@ class Speakers extends Component {
                                 }
                             }}
                         />
-                    </AppBar>            
+                    </AppBar>            */}
                     <List {...listDefaults}/> 
                 </Container>
             )
