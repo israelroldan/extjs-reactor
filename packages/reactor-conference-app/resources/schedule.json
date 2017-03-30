@@ -1,16 +1,16 @@
 [
-    { "day": 1, "time": "8:00 AM - 9:00 AM", "name": "Breakfast (for Training Attendees Only)", "category": "Meals", "location": "Grand Ballroom E & F" },
-    { "day": 1, "time": "8:00 AM - 9:00 AM", "name": "Event Registration", "category": "Registration", "location": "Main Lobby" },
+    { "id": 1, "day": 1, "time": "8:00 AM - 9:00 AM", "name": "Breakfast (for Training Attendees Only)", "category": "Meals", "location": "Grand Ballroom E & F" },
+    { "id": 2, "day": 1, "time": "8:00 AM - 9:00 AM", "name": "Event Registration", "category": "Registration", "location": "Main Lobby" },
 
-    { "day": 1, "time": "9:00 AM - 12:00 AM", "name": "Sencha GXT on Tablets", "speaker": "David Chandler", "location": "Mission City Ballroom B4" },
-    { "day": 1, "time": "9:00 AM - 12:00 AM", "name": "Materializing Ext JS", "speaker": "Steffen Hiller", "location": "Mission City Ballroom B5" },
+    { "id": 3, "day": 1, "time": "9:00 AM - 12:00 AM", "name": "Sencha GXT on Tablets", "speaker": "David Chandler", "location": "Mission City Ballroom B4" },
+    { "id": 4, "day": 1, "time": "9:00 AM - 12:00 AM", "name": "Materializing Ext JS", "speaker": "Steffen Hiller", "location": "Mission City Ballroom B5" },
 
-    { "day": 1, "time": "12:00 AM - 1:00 PM", "name": "Sencha GXT on Tablets", "speaker": "David Chandler", "location": "Mission City Ballroom B4" },
-    { "day": 1, "time": "12:00 AM - 1:00 PM", "name": "Materializing Ext JS", "speaker": "Steffen Hiller", "location": "Mission City Ballroom B5" },
+    { "id": 5, "day": 1, "time": "12:00 AM - 1:00 PM", "name": "Sencha GXT on Tablets", "speaker": "David Chandler", "location": "Mission City Ballroom B4" },
+    { "id": 6, "day": 1, "time": "12:00 AM - 1:00 PM", "name": "Materializing Ext JS", "speaker": "Steffen Hiller", "location": "Mission City Ballroom B5" },
 
-    { "day": 2, "time": "8:00 AM - 9:00 AM", "name": "Breakfast (for Training Attendees Only)", "category": "Meals", "location": "Grand Ballroom E & F" },
-    { "day": 2, "time": "8:00 AM - 9:00 AM", "name": "Event Registration", "category": "Registration", "location": "Main Lobby" },
+    { "id": 7, "day": 2, "time": "8:00 AM - 9:00 AM", "name": "Breakfast (for Training Attendees Only)", "category": "Meals", "location": "Grand Ballroom E & F" },
+    { "id": 8, "day": 2, "time": "8:00 AM - 9:00 AM", "name": "Event Registration", "category": "Registration", "location": "Main Lobby" },
 
-    { "day": 2, "time": "9:00 AM - 12:00 AM", "name": "Sencha GXT on Tablets", "speaker": "David Chandler", "location": "Mission City Ballroom B4" },
-    { "day": 2, "time": "9:00 AM - 12:00 AM", "name": "Materializing Ext JS", "speaker": "Steffen Hiller", "location": "Mission City Ballroom B5" }
+    { "id": 9, "day": 2, "time": "9:00 AM - 12:00 AM", "name": "Sencha GXT on Tablets", "speaker": "David Chandler", "location": "Mission City Ballroom B4" },
+    { "id": 10, "day": 2, "time": "9:00 AM - 12:00 AM", "name": "Materializing Ext JS", "speaker": "Steffen Hiller", "location": "Mission City Ballroom B5" }
 ]

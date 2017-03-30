@@ -15,11 +15,11 @@
 }
 
 .app-favorite-selected {
-    color: $green
+    color: $accent-light-color;
 }
 
 .app-list-item {
-    padding: 10px 0;
+    padding: 15px 50px 15px 15px;
     position: relative;
 
     .app-list-tool {

@@ -1,6 +1,5 @@
 $base-color: #054059;
-$green: #87BD3E;
-$accent-light-color: $green;
+$accent-light-color: #87BD3E;
 
 $material-icon-size: 24px;
 
@@ -11,3 +10,8 @@ $button-icon-font-size: $material-icon-size;
 $button-icon-size: $material-icon-size;
 $tab-icon-size: $material-icon-size; 
 $background-color: #f0f0f0;
+$tab-color: rgba($base-foreground-color, 0.7);
+$tab-active-color: rgba($tab-color, 1);
+
+$tab-font-size: 14px;
+$tab-font-weight: 600;
