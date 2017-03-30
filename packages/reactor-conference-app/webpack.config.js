@@ -19,7 +19,6 @@ module.exports = function (env) {
                 'calendar'
             ],
             overrides: ['overrides'],
-            sass: ['theme-conference-app/app.scss'],
             production: isProd
         }),
         new webpack.EnvironmentPlugin({
