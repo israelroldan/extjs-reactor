@@ -14,6 +14,7 @@ import Panel from './Panel/Panel';
 import BasicTabs from './Tabs/BasicTabs/BasicTabs';
 import BottomTabs from './Tabs/BottomTabs/BottomTabs';
 import Closable from './Tabs/Closable/Closable';
+import CenteredTabs from './Tabs/CenteredTabs/CenteredTabs';
 import ScrollingTabs from './Tabs/ScrollingTabs/ScrollingTabs';
 
 import Toolbar from './Toolbar/Toolbar';
@@ -34,10 +35,10 @@ import GroupedList from './Lists/Grouped/Grouped';
 import PullRefreshList from './Lists/PullRefresh/PullRefresh';
 import DisclosureList from './Lists/Disclosure/Disclosure';
 import PagingList from './Lists/Paging/Paging';
-import SimpleActions from './Lists/SimpleActions/SimpleActions';
-import MultipleActions from './Lists/MultipleActions/MultipleActions';
-import UndoableActions from './Lists/UndoableActions/UndoableActions';
 import NestedList from './Lists/NestedList/NestedList';
+// import SimpleActions from './Lists/SimpleActions/SimpleActions';
+// import MultipleActions from './Lists/MultipleActions/MultipleActions';
+// import UndoableActions from './Lists/UndoableActions/UndoableActions';
 
 // Form Fields
 
@@ -334,11 +335,11 @@ const root = {
             { text: 'Disclosure', component: DisclosureList, center: !Ext.os.is.Phone },
             { text: 'Pull Refresh', component: PullRefreshList, center: !Ext.os.is.Phone },
             { text: 'Paging', component: PagingList, center: !Ext.os.is.Phone },
-            { text: 'Swiper', children: [
-                { text: 'Simple Actions', component: SimpleActions, center: !Ext.os.is.Phone },
-                { text: 'Multiple Actions', component: MultipleActions, center: !Ext.os.is.Phone },
-                { text: 'Undoable Actions', component: UndoableActions, center: !Ext.os.is.Phone },
-            ]},
+            // { text: 'Swiper', children: [
+            //     { text: 'Simple Actions', component: SimpleActions, center: !Ext.os.is.Phone },
+            //     { text: 'Multiple Actions', component: MultipleActions, center: !Ext.os.is.Phone },
+            //     { text: 'Undoable Actions', component: UndoableActions, center: !Ext.os.is.Phone },
+            // ]},
             { text: 'NestedList', component: NestedList, center: !Ext.os.is.Phone }
         ]},
         { text: 'Media', children: [
@@ -352,6 +353,7 @@ const root = {
         { text: 'Tabs', children: [
             { text: 'Basic Tabs', component: BasicTabs },
             { text: 'Bottom Tabs', component: BottomTabs },
+            { text: 'Centered Tabs', component: CenteredTabs },
             { text: 'Closable', component: Closable },
             { text: 'ScrollingTabs', component: ScrollingTabs, center: !Ext.os.is.Phone }
         ]},
