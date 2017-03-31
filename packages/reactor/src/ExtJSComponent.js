@@ -291,7 +291,7 @@ export default class ExtJSComponent extends Component {
 
     /**
      * Returns the child item at the given index, only counting those items which were created by Reactor
-     * @param {Number} n 
+     * @param {Number} n
      */
     _toReactChildIndex(n) {
         const items = this.cmp.items.items;
@@ -421,8 +421,8 @@ function toComponent(node) {
 
 /**
  * Returns true if subClass is parentClass or a sub class of parentClass
- * @param {Ext.Class} subClass 
- * @param {Ext.Class} parentClass 
+ * @param {Ext.Class} subClass
+ * @param {Ext.Class} parentClass
  * @return {Boolean}
  */
 function isAssignableFrom(subClass, parentClass) {
