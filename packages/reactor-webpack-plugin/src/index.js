@@ -33,48 +33,50 @@ module.exports = class ReactExtJSWebpackPlugin {
      * @param {Boolean} asynchronous Set to true to run Sencha Cmd builds asynchronously. This makes the webpack build finish much faster, but the app may not load correctly in your browser until Sencha Cmd is finished building the Ext JS bundle
      * @param {Boolean} production Set to true for production builds.  This tell Sencha Cmd to compress the generated JS bundle.
      */
-    constructor({
-        builds={},
-        debug=false,
-        watch=false,
-        test=/\.jsx?$/,
-        /* begin single build only */
-        output='extjs',
-        sdk,
-        toolkit='modern',
-        theme='theme-triton',
-        packages=[],
-        overrides=[],
-        asynchronous=false,
-        production=false
-        /* end single build only */
-    }) {
+    constructor(options) {
+        options = { ...this.getDefaultOptions(), ...options };
+        const { builds } = options;
+
         if (Object.keys(builds).length === 0) {
-            builds.ext = { sdk, toolkit, theme, packages, overrides, output };
+            const { builds, ...buildOptions } = options;
+            builds.ext = buildOptions;
         }
 
         for (let name in builds)
             this._validateBuildConfig(name, builds[name]);
 
         Object.assign(this, {
-            output,
-            builds,
-            debug,
-            watch,
-            sdk,
-            toolkit,
-            theme,
-            packages,
-            overrides,
-            dependencies: {},
-            test,
-            asynchronous,
+            ...options,
             currentFile: null,
-            production
+            manifest: null,
+            dependencies: []
         });
-
-        this.manifest = null;
     }
+
+    /**
+     * Default config options 
+     * @protected
+     * @return {Object}
+     */
+    getDefaultOptions() {
+        return {
+            builds: {},
+            debug: false,
+            watch: false,
+            test: /\.jsx?$/,
+
+            /* begin single build only */
+            output: 'extjs',
+            toolkit: 'modern',
+            theme: 'theme-triton',
+            packages: [],
+            overrides: [],
+            asynchronous: false,
+            production: false,
+            manifestExtractor: extractFromJSX,
+            /* end single build only */
+        }
+    }    
 
     apply(compiler) {
 
@@ -106,13 +108,18 @@ module.exports = class ReactExtJSWebpackPlugin {
                 this.currentFile = module.resource;
 
                 if (module.resource && module.resource.match(this.test)) {
-                    try {
+
+                    const doParse = () => {
                         if (this.debug) console.log(module.resource);
                         const contents = fs.readFileSync(module.resource, 'utf8');
-                        const statements = extractFromJSX(contents);
+                        const statements = this.manifestExtractor(contents);
                         this.dependencies[this.currentFile] = statements;
-                    } catch (e) {
-                        console.error('error parsing ' + this.currentFile);
+                    };
+
+                    if (this.debug) {
+                        doParse();
+                    } else {
+                        try { doParse(); } catch (e) { console.error('error parsing ' + this.currentFile); }
                     }
                 }
             });
@@ -237,7 +244,6 @@ module.exports = class ReactExtJSWebpackPlugin {
             }
         });
     }
-
 };
 
 
