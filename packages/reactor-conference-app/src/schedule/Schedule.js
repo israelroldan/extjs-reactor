@@ -68,6 +68,7 @@ class Schedule extends Component {
                 )}
                 <TabPanel 
                     ref={tp => this.tabPanel = tp}
+                    height="1000"
                     platformConfig={{
                         desktop: {
                             cls: 'app-desktop-tabs'
@@ -88,6 +89,9 @@ class Schedule extends Component {
                     />
                     <ScheduleList 
                         iconCls="md-icon-star" 
+                        tab={{
+                            maxWidth: 60
+                        }}
                         dataStore={{ ...storeDefaults, filters: [{ property: 'favorite', value: true }]}}
                     />
                 </TabPanel>  
