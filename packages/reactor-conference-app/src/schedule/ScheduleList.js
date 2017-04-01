@@ -4,8 +4,8 @@ import { Template } from '@extjs/reactor';
 import highlight from '../util/highlight';
 import { toggleFavorite } from './actions';
 import { connect } from 'react-redux';
-
-const days = ['Tuesday', 'Wednesday', 'Thursday'];
+import days from '../util/days';
+import { push } from 'react-router';
 
 class ScheduleList extends Component {
     
@@ -35,19 +35,19 @@ class ScheduleList extends Component {
     })
 
     render() {
-        const { query, dataStore, ...listProps } = this.props;
+        const { query, dataStore, onSelect, ...listProps } = this.props;
 
         return (
             <List 
                 {...listProps}
                 store={dataStore}
-                disableSelection
                 itemTpl={this.itemTpl}
                 grouped
                 rowLines
                 itemCls="app-list-item"
                 maxWidth={600}
                 cls="app-list"
+                onSelect={onSelect}
                 emptyText="No events found."
             />
         )
@@ -61,7 +61,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onFavoriteClick: (data, e) => dispatch(toggleFavorite(data.id))
+        onFavoriteClick: (data, e) => dispatch(toggleFavorite(data.id)),
+        onSelect: (list, [record]) => self.location.hash = `/events/${record.id}`
     }
 }
 

@@ -35,7 +35,7 @@ export default function rootReducer(state = initialState, action) {
             
             return {
                 ...state,
-                title: node.get('text'),
+                title: node && node.get('text'),
                 selectedNavNode: node
             }
         case TOGGLE_SEARCH:

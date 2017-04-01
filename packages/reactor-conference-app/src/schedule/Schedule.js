@@ -59,7 +59,7 @@ class Schedule extends Component {
         };
 
         return (
-            <Container layout="vbox" ref={ct => this.ct = ct} scrollable>
+            <Container key="schedule" layout="vbox" ref={ct => this.ct = ct} scrollable>
                 <Container className="app-banner" ref={banner => this.banner = banner}>
                     <span className="app-banner-content">ExtReact Conference</span>
                 </Container>
