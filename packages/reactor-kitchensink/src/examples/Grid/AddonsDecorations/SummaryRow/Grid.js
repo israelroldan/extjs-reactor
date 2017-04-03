@@ -49,8 +49,6 @@ export default class RowBodyGridExample extends Component {
             <Grid
                 title="Summary Row Grid"
                 ref="grid"
-                height={400}
-                width={600}
                 store={this.store}
                 plugins="gridsummaryrow"
                 columns={

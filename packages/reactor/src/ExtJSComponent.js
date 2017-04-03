@@ -87,7 +87,16 @@ export default class ExtJSComponent extends Component {
      * Destroys the component
      */
     unmountComponent() {
-        this.cmp && this.cmp.destroy();
+        if (this.cmp) {
+            if (this.cmp.destroying) return;
+            const parentCmp = this.cmp.getParent();
+
+            if (Ext.navigation && Ext.navigation.View && parentCmp && parentCmp instanceof Ext.navigation.View) {
+                parentCmp.pop();
+            } else {
+                this.cmp.destroy();
+            }
+        }
     }
 
     /**
@@ -291,10 +300,14 @@ export default class ExtJSComponent extends Component {
 
     /**
      * Returns the child item at the given index, only counting those items which were created by Reactor
-     * @param {Number} n 
+     * @param {Number} n
      */
     _toReactChildIndex(n) {
-        const items = this.cmp.items.items;
+        let items = this.cmp.items;
+
+        if (!items) return n;
+        if (items.items) items = items.items;
+
         let found=0, i, item;
 
         for (i=0; i<items.length; i++) {
@@ -378,7 +391,9 @@ const ContainerMixin = Object.assign({}, ReactMultiChild.Mixin, {
      * @protected
      */
     removeChild(child, node) {
-        if (node instanceof HTMLElement && node._extCmp) node._extCmp.destroy();
+        if (node instanceof HTMLElement && node._extCmp && !node._extCmp.destroying) {
+            node._extCmp.destroy();
+        }
         // We don't need to do anything for Ext JS components because a component is automatically removed from it parent when destroyed
     }
 });
@@ -421,8 +436,8 @@ function toComponent(node) {
 
 /**
  * Returns true if subClass is parentClass or a sub class of parentClass
- * @param {Ext.Class} subClass 
- * @param {Ext.Class} parentClass 
+ * @param {Ext.Class} subClass
+ * @param {Ext.Class} parentClass
  * @return {Boolean}
  */
 function isAssignableFrom(subClass, parentClass) {

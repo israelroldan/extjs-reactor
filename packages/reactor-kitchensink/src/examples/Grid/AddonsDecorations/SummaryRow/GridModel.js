@@ -1,4 +1,4 @@
-export default Ext.define('RowBodyGridModel', {
+export default Ext.define(null, {
     extend: 'Ext.data.Model',
     fields: [
         {

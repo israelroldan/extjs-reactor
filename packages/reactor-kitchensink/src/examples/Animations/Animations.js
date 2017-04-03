@@ -8,8 +8,7 @@ export default class Animations extends Component {
     }
 
     switchCards(animation) {
-        this.refs.cards.getLayout().setAnimation(animation);
-        this.setState({ activeCard: this.state.activeCard === 0 ? 1 : 0 });
+        this.setState({ activeCard: this.state.activeCard === 0 ? 1 : 0, animation });
     }
 
     createCardContents() {
@@ -33,8 +32,14 @@ export default class Animations extends Component {
     }
 
     render() {
+        const { animation, activeCard } = this.state;
+
         return (
-            <Container ref="cards" layout="card" activeItem={this.state.activeCard} shadow>
+            <Container 
+                layout={{ type: 'card', animation }}
+                activeItem={this.state.activeCard} 
+                shadow
+            >
                 <Panel title="Card 1" layout="vbox">
                     {this.createCardContents()}
                 </Panel>

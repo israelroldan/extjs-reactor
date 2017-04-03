@@ -13,6 +13,9 @@ import Maps from './maps/Maps';
 import Notifications from './notifications/Notifications';
 import Attendees from './attendees/Attendees';
 import About from './about/About';
+import Event from './schedule/Event';
+
+import { loadEvent, unloadEvent } from './schedule/actions';
 
 // load new component when the route changes
 hashHistory.listen(location => store.dispatch(routeDidChange(location)));
@@ -26,6 +29,18 @@ export default function App() {
             <Router history={hashHistory}>
                 <Route path="/" component={Layout}>
                     <IndexRoute component={Schedule}/>
+                    <Route path="events" component={Schedule}>
+                        <Route 
+                            path=":id" 
+                            component={Event} 
+                            onEnter={({params}) => store.dispatch(loadEvent(params.id))}
+                            onLeave={() => {
+                                if (!location.hash.match(/events\/\d+/)) {
+                                    store.dispatch(unloadEvent());
+                                }
+                            }}
+                        />
+                    </Route>
                     <Route path="/speakers" component={Speakers}/>
                     <Route path="/calendar" component={Calendar}/>
                     <Route path="/maps" component={Maps}/>

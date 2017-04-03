@@ -1,6 +1,4 @@
-//Grids
-
-import Grid from './Grid/Grid';
+// Grids
 import BasicGrid from './Grid/BasicGrid/BasicGrid';
 import GroupedGrid from './Grid/GroupedGrid/GroupedGrid';
 import CellEditingGrid from './Grid/CellEditing/Grid';
@@ -15,6 +13,7 @@ import ToolGrid from './Grid/AddonsDecorations/GridTools/Grid';
 import ReduxGrid from './ReduxGrid/ReduxGrid';
 import PivotGrid from './PivotGrid/PivotGrid';
 import RowBodyGrid from './Grid/AddonsDecorations/RowBody/Grid';
+
 import Panel from './Panel/Panel';
 
 // Tabs
@@ -22,7 +21,6 @@ import Panel from './Panel/Panel';
 import BasicTabs from './Tabs/BasicTabs/BasicTabs';
 import BottomTabs from './Tabs/BottomTabs/BottomTabs';
 import Closable from './Tabs/Closable/Closable';
-import CenteredTabs from './Tabs/CenteredTabs/CenteredTabs';
 import ScrollingTabs from './Tabs/ScrollingTabs/ScrollingTabs';
 
 import Toolbar from './Toolbar/Toolbar';
@@ -69,7 +67,7 @@ import FormPanel from './FormFields/FormPanel/FormPanel';
 import SearchField from './FormFields/SearchField/SearchField';
 import FileField from './FormFields/FileField/FileField';
 import NumberField from './FormFields/NumberField/NumberField';
-import DecoratorField from './FormFields/DecoratorField/DecoratorField';
+import ContainerField from './FormFields/ContainerField/ContainerField';
 
 import Video from './Video/Video';
 import Audio from './Audio/Audio';
@@ -298,7 +296,7 @@ const root = {
             { text: 'CheckBoxField', component: CheckBoxField, center: true },
             { text: 'ComboBoxField', component: ComboBoxField, center: true },
             { text: 'DatePickerField', component: DatePickerField, center: true },
-            { text: 'DecoratorField', component: DecoratorField, center: true },
+            { text: 'ContainerField', component: ContainerField, center: true },
             { text: 'EmailField', component: EmailField , center: true},
             { text: 'FieldSet', component: FieldSet, center: true },
             { text: 'FileField', component: FileField, center: true },
@@ -324,18 +322,17 @@ const root = {
                 { text: 'EditableGrid', component: EditableGrid},
                 { text: 'XMLGrid', component: XMLGrid}
             ]},
+            { text: 'Add-ons', children: [
+                { text: 'Grid Tools', component: ToolGrid},
+                { text: 'Row Expander', component: RowExpanderGrid},
+                { text: 'Row Body', component: RowBodyGrid},
+                { text: 'Summary Row', component: SummaryRowGrid},
+                { text: 'ViewOptions', component: ViewOptionsGrid}
+            ]},
             { text: 'AdvancedFeatures', children:[
                 { text: 'Big Data', component: BigDataGrid},
                 { text: 'Reconfigure Grid', component: ReconfigureGrid }
-            ]}
-            { text: 'Addons and Decorations', children: [
-                { text: 'Summary Row', component: SummaryRowGrid},
-                { text: 'ViewOptions', component: ViewOptionsGrid},
-                { text: 'Row Expander', component: RowExpanderGrid},
-                { text: 'Row Body', component: RowBodyGrid},
-                { text: 'Grid Tools', component: ToolGrid}
             ]},
-            { text: 'Grid', component: Grid },
             { text: 'PivotGrid', component: PivotGrid },
             { text: 'Redux Grid', component: ReduxGrid }
         ] },
@@ -372,7 +369,6 @@ const root = {
         { text: 'Tabs', children: [
             { text: 'Basic Tabs', component: BasicTabs },
             { text: 'Bottom Tabs', component: BottomTabs },
-            { text: 'Centered Tabs', component: CenteredTabs },
             { text: 'Closable', component: Closable },
             { text: 'ScrollingTabs', component: ScrollingTabs, center: !Ext.os.is.Phone }
         ]},

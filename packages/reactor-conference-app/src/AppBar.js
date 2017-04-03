@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Button, TitleBar } from '@extjs/reactor/modern';
 import { toggleMenu, toggleSearch } from './actions';
 
-function AppBar({ dispatch, title, children }) {
+function AppBar({ dispatch, title, children, backButtonURL }) {
     return (
         <TitleBar 
             docked="top"
@@ -24,7 +24,10 @@ function AppBar({ dispatch, title, children }) {
                 </div>
             ) }
 
-            { !Ext.platformTags.desktop && (
+            { backButtonURL && (
+                <Button align="left" handler={() => self.location.hash = backButtonURL} iconCls="md-icon-arrow-back"/>
+            )}
+            { !backButtonURL && !Ext.platformTags.desktop && (
                 <Button align="left" iconCls="md-icon-menu" handler={() => dispatch(toggleMenu(true))} ripple={{ bound: false }}/>
             )}
             { !Ext.platformTags.desktop && (
@@ -35,8 +38,6 @@ function AppBar({ dispatch, title, children }) {
     )
 }
 
-const mapStateToProps = ({ root }) => {
-    return { title: root.title }
-};
+const mapStateToProps = ({ root }) => root;
 
 export default connect(mapStateToProps)(AppBar);

@@ -4,8 +4,8 @@ import { Template } from '@extjs/reactor';
 import highlight from '../util/highlight';
 import { toggleFavorite } from './actions';
 import { connect } from 'react-redux';
-
-const days = ['Tuesday', 'Wednesday', 'Thursday'];
+import days from '../util/days';
+import { push } from 'react-router';
 
 class ScheduleList extends Component {
     
@@ -13,7 +13,8 @@ class ScheduleList extends Component {
         dataStore: PropTypes.any.isRequired,
         onFavoriteClick: PropTypes.func,
         showTime: PropTypes.bool,
-        flex: PropTypes.number
+        flex: PropTypes.number,
+        onSelect: PropTypes.func
     }
 
     itemTpl = new Template(data => {
@@ -27,27 +28,38 @@ class ScheduleList extends Component {
                     { this.props.showTime && (<div className="app-list-item-details">{days[data.day]} {data.time}</div>) }
                 </div>
                 <div 
-                    onClick={this.props.onFavoriteClick && this.props.onFavoriteClick.bind(this, data)} 
+                    onClick={this.onFavoriteClick.bind(this, data)} 
                     className={`x-font-icon md-icon-star app-list-tool app-favorite${data.favorite ? '-selected' : ''}`}
                 />
             </div>
         )
     })
 
+    onItemTap = (list, index, target, record) => {
+        const { onSelect } = this.props;
+        if (onSelect) onSelect(record);
+        self.location.hash = `/events/${record.id}`;
+    }
+
+    onFavoriteClick = (data, e) => {
+        this.props.dispatch(toggleFavorite(data.id));
+    }
+
     render() {
-        const { query, dataStore, ...listProps } = this.props;
+        const { query, dataStore, onSelect, ...listProps } = this.props;
 
         return (
             <List 
                 {...listProps}
                 store={dataStore}
-                disableSelection
                 itemTpl={this.itemTpl}
                 grouped
                 rowLines
                 itemCls="app-list-item"
                 maxWidth={600}
+                disableSelection
                 cls="app-list"
+                onItemTap={this.onItemTap}
                 emptyText="No events found."
             />
         )
@@ -59,10 +71,4 @@ const mapStateToProps = (state) => {
     return {};
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onFavoriteClick: (data, e) => dispatch(toggleFavorite(data.id))
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ScheduleList);
+export default connect(mapStateToProps)(ScheduleList);

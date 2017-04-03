@@ -5,9 +5,7 @@ import AppBar from '../AppBar';
 import { Template } from '@extjs/reactor';
 
 import { 
-    toggleFavorite, 
-    loadSpeakers, 
-    toggleFilterFavorites 
+    loadSpeakers
 } from './actions';
 
 class Speakers extends Component {
@@ -19,10 +17,6 @@ class Speakers extends Component {
                 <div className="app-list-item-title">{data.name}</div>
                 <div className="app-list-item-details">{data.title}</div>
             </div>
-            <div 
-                onClick={this.onFavoriteClick.bind(this, data)} 
-                className={`x-no-itemtap x-font-icon md-icon-star app-list-tool app-favorite${data.favorite ? '-selected' : ''}`}
-            />
         </div>
     ))
 
@@ -30,65 +24,24 @@ class Speakers extends Component {
         this.props.dispatch(loadSpeakers())
     }
 
-    onFavoriteClick = (data, e) => {
-        this.props.dispatch(toggleFavorite(data.name));
-        // Ext.fly(e.target).ripple({ bound: false })
-    }
-
-    filterFavorites = (filter) => {
-        this.props.dispatch(toggleFilterFavorites(filter));
-    }
-
     render() {
-        const { store, filterFavorites, filtered } = this.props;
+        const { store, filterFavorites, filtered, showSpeaker, children } = this.props;
 
-        const listDefaults = {
-            store,
-            itemTpl: this.itemTpl,
-            onItemTap: this.onItemTap,
-            itemCls: "app-list-item",
-            rowLines: true,
-            maxWidth: "600",
-            disableSelection: true,
-            cls: "app-list"
-        };
-
-        if (Ext.platformTags.desktop) {
-            return (
-                <TabPanel cls="app-desktop-tabs">
-                    <Panel title="ALL SPEAKERS" scrollable ui="app-background" onActivate={this.filterFavorites.bind(this, false)}>
-                        <List {...listDefaults}/>                        
-                    </Panel>
-                    <Panel title="FAVORITES" scrollable ui="app-background" onActivate={this.filterFavorites.bind(this, true)}>
-                        <List 
-                            {...listDefaults} 
-                            emptyText="You have not added any speakers to your favorites list."
-                            store={{ type: 'chained', source: store, filters: [{ property: 'favorite', value: true }]}}
-                        />
-                    </Panel>
-                </TabPanel>
-            )
-        } else {
-            return (
-                <Container scrollable>
-                    {/*<AppBar title="Speakers">
-                        <Button 
-                            ui={filtered ? 'app-filter-favorites-pressed' : 'app-filter-favorites'}
-                            iconCls="x-fa fa-star app-favorite" 
-                            align="right"
-                            handler={this.filterFavorites.bind(this, undefined)}
-                            margin="0 9 0 0"
-                            platformConfig={{
-                                desktop: {
-                                    margin: "0 23 0 0"
-                                }
-                            }}
-                        />
-                    </AppBar>            */}
-                    <List {...listDefaults}/> 
-                </Container>
-            )
-        }
+        return (
+            <Container layout={{ type: 'card', animation: 'slide' }} activeItem={showSpeaker && children ? 1 : 0}>
+                <List 
+                    store={store}
+                    itemTpl={this.itemTpl}
+                    onItemTap={this.onItemTap}
+                    itemCls="app-list-item"
+                    rowLines
+                    maxWidth="600"
+                    disableSelection
+                    cls="app-list"
+                /> 
+                { children }
+            </Container>
+        );
     }
 }
 

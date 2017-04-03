@@ -48,8 +48,6 @@ export default class ViewOptionsGridExample extends Component {
         return(
             <Grid
                 title="Grid with View Options"
-                height={400}
-                width={600}
                 store={this.store}
                 plugins="gridviewoptions"
                 columns={

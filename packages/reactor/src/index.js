@@ -5,6 +5,9 @@ export { default as Template } from './Template';
 
 let settings = {};
 
+// map of Ext JS class name to reactified class
+const classCache = {};
+
 /**
  * Launches an ExtReact application, creating a viewport and rendering the specified root component into it.
  * @param {React.Component} rootComponent You application's root component
@@ -38,9 +41,10 @@ export function reactify(...targets) {
             if (!target) throw new Error(`No xtype "${name}" found.  Perhaps you need to require it with Ext.require("${name}")?`);
         }
 
-        const name = target.getName && target.getName();
+        const name = target.$className;
+        let cached = classCache[name];
 
-        result.push(class extends ExtJSComponent {
+        if (!cached) cached = classCache[name] = class extends ExtJSComponent {
             static get name() {
                 return name;
             }
@@ -58,7 +62,9 @@ export function reactify(...targets) {
                 result.$createdByReactor = true;
                 return result;
             }
-        })
+        };
+
+        result.push(cached);
     }
 
     if (targets.length === 1) {
