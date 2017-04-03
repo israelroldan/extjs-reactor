@@ -91,7 +91,7 @@ export default class ExtJSComponent extends Component {
             if (this.cmp.destroying) return;
             const parentCmp = this.cmp.getParent();
 
-            if (parentCmp && parentCmp instanceof Ext.navigation.View) {
+            if (Ext.navigation && Ext.navigation.View && parentCmp && parentCmp instanceof Ext.navigation.View) {
                 parentCmp.pop();
             } else {
                 this.cmp.destroy();
@@ -303,7 +303,11 @@ export default class ExtJSComponent extends Component {
      * @param {Number} n
      */
     _toReactChildIndex(n) {
-        const items = this.cmp.items.items;
+        let items = this.cmp.items;
+
+        if (!items) return n;
+        if (items.items) items = items.items;
+
         let found=0, i, item;
 
         for (i=0; i<items.length; i++) {

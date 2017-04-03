@@ -14,7 +14,6 @@ import Panel from './Panel/Panel';
 import BasicTabs from './Tabs/BasicTabs/BasicTabs';
 import BottomTabs from './Tabs/BottomTabs/BottomTabs';
 import Closable from './Tabs/Closable/Closable';
-import CenteredTabs from './Tabs/CenteredTabs/CenteredTabs';
 import ScrollingTabs from './Tabs/ScrollingTabs/ScrollingTabs';
 
 import Toolbar from './Toolbar/Toolbar';
@@ -61,7 +60,7 @@ import FormPanel from './FormFields/FormPanel/FormPanel';
 import SearchField from './FormFields/SearchField/SearchField';
 import FileField from './FormFields/FileField/FileField';
 import NumberField from './FormFields/NumberField/NumberField';
-import DecoratorField from './FormFields/DecoratorField/DecoratorField';
+import ContainerField from './FormFields/ContainerField/ContainerField';
 
 import Video from './Video/Video';
 import Audio from './Audio/Audio';
@@ -290,7 +289,7 @@ const root = {
             { text: 'CheckBoxField', component: CheckBoxField, center: true },
             { text: 'ComboBoxField', component: ComboBoxField, center: true },
             { text: 'DatePickerField', component: DatePickerField, center: true },
-            { text: 'DecoratorField', component: DecoratorField, center: true },
+            { text: 'ContainerField', component: ContainerField, center: true },
             { text: 'EmailField', component: EmailField , center: true},
             { text: 'FieldSet', component: FieldSet, center: true },
             { text: 'FileField', component: FileField, center: true },
@@ -353,7 +352,6 @@ const root = {
         { text: 'Tabs', children: [
             { text: 'Basic Tabs', component: BasicTabs },
             { text: 'Bottom Tabs', component: BottomTabs },
-            { text: 'Centered Tabs', component: CenteredTabs },
             { text: 'Closable', component: Closable },
             { text: 'ScrollingTabs', component: ScrollingTabs, center: !Ext.os.is.Phone }
         ]},
