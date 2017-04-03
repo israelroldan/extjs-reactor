@@ -6,7 +6,7 @@ import model from './GridModel';
 
 Ext.require(['Ext.grid.plugin.ViewOptions']);
 
-export default class ViewOptionsGridExample extends Component{
+export default class ViewOptionsGridExample extends Component {
 
     store = Ext.create('Ext.data.Store', {
         autoLoad: true,
