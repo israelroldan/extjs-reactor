@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Grid } from '@extjs/reactor/modern';
 import { Template } from '@extjs/reactor';
 
-export default class GridToolsExample extends Component{
+export default class GridToolsExample extends Component {
     
     store = Ext.create('Ext.data.Store', {
         autoLoad: true,
@@ -222,15 +222,15 @@ export default class GridToolsExample extends Component{
     //-----------------------------------------------
     //Cell actions:
     onGear = (grid, info) => {
-        Ext.Msg.alert('Settings', 'Change settings for ' + Ext.htmlEncode(info.record.data.name));
+        Ext.Msg.alert('Settings', `Change settings for ${info.record.data.name}`);
     }
 
     onPin = (grid, info) => {
-        Ext.Msg.alert('Pin', 'Pinned item "' + Ext.htmlEncode(info.record.data.name) + '"');
+        Ext.Msg.alert('Pin', `Pinned item ${info.record.data.name}`);
     }
 
     onSearch = (grid, info) => {
-        Ext.Msg.alert('Search', 'Search for item "' + Ext.htmlEncode(info.record.data.name) + '"');
+        Ext.Msg.alert('Search', `Search for item ${info.record.data.name}`);
     }
 
     //-----------------------------------------------
@@ -249,9 +249,7 @@ export default class GridToolsExample extends Component{
 
     doGroup = (info, action) => {
         var tpl = Ext.XTemplate.getTpl(this.refs.gridtool, 'helperTpl');
-        Ext.Msg.alert(action, tpl.apply({
-            group: info.group
-        }));
+        Ext.Msg.alert(action, tpl.apply({group: info.group}));
     }
 
     render(){
