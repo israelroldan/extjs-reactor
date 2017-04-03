@@ -9,7 +9,7 @@ import XMLGrid from './Grid/XMLGrid/Grid';
 import ToolGrid from './Grid/AddonsDecorations/GridTools/Grid';
 import ReduxGrid from './ReduxGrid/ReduxGrid';
 import PivotGrid from './PivotGrid/PivotGrid';
-
+import RowBodyGrid from './Grid/AddonsDecorations/RowBody/Grid';
 import Panel from './Panel/Panel';
 
 // Tabs
@@ -320,7 +320,8 @@ const root = {
                 { text: 'XMLGrid', component: XMLGrid}
             ]},
             { text: 'Addons and Decorations', children:[
-                 { text: 'Grid Tools', component: ToolGrid}
+                { text: 'Row Body', component: RowBodyGrid},
+                { text: 'Grid Tools', component: ToolGrid}
             ]},
             { text: 'Grid', component: Grid },
             { text: 'PivotGrid', component: PivotGrid },
