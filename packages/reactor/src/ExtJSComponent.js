@@ -87,7 +87,16 @@ export default class ExtJSComponent extends Component {
      * Destroys the component
      */
     unmountComponent() {
-        this.cmp && this.cmp.destroy();
+        if (this.cmp) {
+            if (this.cmp.destroying) return;
+            const parentCmp = this.cmp.getParent();
+
+            if (parentCmp && parentCmp instanceof Ext.navigation.View) {
+                parentCmp.pop();
+            } else {
+                this.cmp.destroy();
+            }
+        }
     }
 
     /**
@@ -378,7 +387,9 @@ const ContainerMixin = Object.assign({}, ReactMultiChild.Mixin, {
      * @protected
      */
     removeChild(child, node) {
-        if (node instanceof HTMLElement && node._extCmp) node._extCmp.destroy();
+        if (node instanceof HTMLElement && node._extCmp && !node._extCmp.destroying) {
+            node._extCmp.destroy();
+        }
         // We don't need to do anything for Ext JS components because a component is automatically removed from it parent when destroyed
     }
 });
