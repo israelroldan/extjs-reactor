@@ -4,7 +4,7 @@ import { Template } from '@extjs/reactor';
 import '../../CompanyData';
 import model from './GridModel';
 
-export default class RowBodyGridExample extends Component{
+export default class RowBodyGridExample extends Component {
 
     store = Ext.create('Ext.data.Store', {
         autoLoad: true,
