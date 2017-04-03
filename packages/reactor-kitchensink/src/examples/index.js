@@ -1,6 +1,4 @@
-//Grids
-
-import Grid from './Grid/Grid';
+// Grids
 import BasicGrid from './Grid/BasicGrid/BasicGrid';
 import GroupedGrid from './Grid/GroupedGrid/GroupedGrid';
 import CellEditingGrid from './Grid/CellEditing/Grid';
@@ -15,6 +13,7 @@ import ToolGrid from './Grid/AddonsDecorations/GridTools/Grid';
 import ReduxGrid from './ReduxGrid/ReduxGrid';
 import PivotGrid from './PivotGrid/PivotGrid';
 import RowBodyGrid from './Grid/AddonsDecorations/RowBody/Grid';
+
 import Panel from './Panel/Panel';
 
 // Tabs
@@ -326,15 +325,14 @@ const root = {
             { text: 'AdvancedFeatures', children:[
                 { text: 'Big Data', component: BigDataGrid},
                 { text: 'Reconfigure Grid', component: ReconfigureGrid }
-            ]}
+            ]},
             { text: 'Addons and Decorations', children: [
-                { text: 'Summary Row', component: SummaryRowGrid},
-                { text: 'ViewOptions', component: ViewOptionsGrid},
+                { text: 'Grid Tools', component: ToolGrid},
                 { text: 'Row Expander', component: RowExpanderGrid},
                 { text: 'Row Body', component: RowBodyGrid},
-                { text: 'Grid Tools', component: ToolGrid}
+                { text: 'Summary Row', component: SummaryRowGrid},
+                { text: 'ViewOptions', component: ViewOptionsGrid}
             ]},
-            { text: 'Grid', component: Grid },
             { text: 'PivotGrid', component: PivotGrid },
             { text: 'Redux Grid', component: ReduxGrid }
         ] },
