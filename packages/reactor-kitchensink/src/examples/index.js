@@ -6,7 +6,7 @@ import EditableGrid from './Grid/EditableGrid/Grid';
 import XMLGrid from './Grid/XMLGrid/Grid';
 import ReduxGrid from './ReduxGrid/ReduxGrid';
 import PivotGrid from './PivotGrid/PivotGrid';
-
+import RowBodyGrid from './Grid/AddonsDecorations/RowBody/Grid';
 import Panel from './Panel/Panel';
 
 // Tabs
@@ -315,6 +315,9 @@ const root = {
                 { text: 'CellEditing', component: CellEditingGrid},
                 { text: 'EditableGrid', component: EditableGrid},
                 { text: 'XMLGrid', component: XMLGrid}
+            ]},
+            { text: 'Addons and Decorations', children:[
+                { text: 'Row Body', component: RowBodyGrid},
             ]},
             { text: 'Grid', component: Grid },
             { text: 'PivotGrid', component: PivotGrid },
