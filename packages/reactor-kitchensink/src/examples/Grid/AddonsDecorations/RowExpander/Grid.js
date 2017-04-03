@@ -48,18 +48,18 @@ export default class RowExpanderGridExample extends Component {
          return text;
     };
 
-    tpl = new Template( data => <div>
-                                    <div>Industry: {data.industry}</div>
-                                    <div>Last Updated: {formatDate(data.lastChange)}</div>
-                                    <div style={{marginTop:'1em'}}>{data.desc}</div>
-                                </div>);
+    tpl = new Template( data => (
+        <div>
+            <div>Industry: {data.industry}</div>
+            <div>Last Updated: {formatDate(data.lastChange)}</div>
+            <div style={{marginTop:'1em'}}>{data.desc}</div>
+        </div>
+    ));
     
     render(){
         return(
             <Grid 
                 title="Row Expander Grid"
-                height={400}
-                width={600}
                 store={this.store}
                 plugins="rowexpander"
                 columns={

@@ -213,9 +213,7 @@ export default class GridToolsExample extends Component {
 
     helperTpl = new Template(data => (
         <ul>
-            { data.group.items.map((item, i) => (
-                <li key={i}>{item.data.name}</li>
-                )) }
+            { data.group.items.map((item, i) => <li key={i}>{item.data.name}</li>) }
         </ul>
     ))
 
@@ -248,19 +246,15 @@ export default class GridToolsExample extends Component {
     }
 
     doGroup = (info, action) => {
-        var tpl = Ext.XTemplate.getTpl(this.refs.gridtool, 'helperTpl');
-        Ext.Msg.alert(action, tpl.apply({group: info.group}));
+        Ext.Msg.alert(action, this.helperTpl.apply({ group: info.group }));
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <Grid title="Grid Tools"
                 store={this.store}
-                ref="gridtool"
-                columnLines={true}
-                grouped= {true}
-                height={400}
-                width={600}
+                columnLines
+                grouped
                 columns={[{
                     text: 'Name',
                     dataIndex: 'name',
