@@ -4,6 +4,7 @@ import GroupedGrid from './Grid/GroupedGrid/GroupedGrid';
 import CellEditingGrid from './Grid/CellEditing/Grid';
 import EditableGrid from './Grid/EditableGrid/Grid';
 import XMLGrid from './Grid/XMLGrid/Grid';
+import SummaryRowGrid from './Grid/AddonsDecorations/SummaryRow/Grid';
 import ReduxGrid from './ReduxGrid/ReduxGrid';
 import PivotGrid from './PivotGrid/PivotGrid';
 
@@ -315,6 +316,9 @@ const root = {
                 { text: 'CellEditing', component: CellEditingGrid},
                 { text: 'EditableGrid', component: EditableGrid},
                 { text: 'XMLGrid', component: XMLGrid}
+            ]},
+             { text: 'Addons and Decorations', children:[
+                { text: 'Summary Row', component: SummaryRowGrid},
             ]},
             { text: 'Grid', component: Grid },
             { text: 'PivotGrid', component: PivotGrid },
