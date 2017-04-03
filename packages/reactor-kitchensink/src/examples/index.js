@@ -6,6 +6,7 @@ import GroupedGrid from './Grid/GroupedGrid/GroupedGrid';
 import CellEditingGrid from './Grid/CellEditing/Grid';
 import EditableGrid from './Grid/EditableGrid/Grid';
 import XMLGrid from './Grid/XMLGrid/Grid';
+import ViewOptionsGrid from './Grid/AddonsDecorations/ViewOptions/Grid';
 import RowExpanderGrid from './Grid/AddonsDecorations/RowExpander/Grid';
 import ToolGrid from './Grid/AddonsDecorations/GridTools/Grid';
 import ReduxGrid from './ReduxGrid/ReduxGrid';
@@ -320,7 +321,8 @@ const root = {
                 { text: 'EditableGrid', component: EditableGrid},
                 { text: 'XMLGrid', component: XMLGrid}
             ]},
-            { text: 'Addons and Decorations', children:[
+             { text: 'Addons and Decorations', children:[
+                { text: 'ViewOptions', component: ViewOptionsGrid}
                 { text: 'Row Expander', component: RowExpanderGrid},
                 { text: 'Row Body', component: RowBodyGrid},
                 { text: 'Grid Tools', component: ToolGrid}
