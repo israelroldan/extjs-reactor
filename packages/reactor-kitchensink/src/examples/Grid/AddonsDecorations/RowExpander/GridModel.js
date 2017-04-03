@@ -28,26 +28,7 @@ export default Ext.define('RowExpanderGridModel', {
             isEqual: function() {
                 return false;
             }
-        },
-        {
-            name: 'change',
-            type: 'float',
-            calculate: function(data) {
-                var trend = data.trend,
-                    len = trend.length;
-                return len > 1 ? trend[len - 1] - trend[len - 2] : 0;
-            }
-        },
-        {
-            name: 'pctChange',
-            type: 'float',
-            calculate: function(data) {
-                var trend = data.trend,
-                    len = trend.length;
-                return len > 1 ? (data.change / trend[len - 2]) * 100 : 0;
-            }
-        },
-        {
+        }, {
             name: 'lastChange',
             type: 'date',
             calculate: function(data) {
@@ -56,14 +37,6 @@ export default Ext.define('RowExpanderGridModel', {
             }
         },
         {name: 'industry'},
-        {name: 'desc'},
-        {
-            name: 'rating',
-            type: 'int',
-            calculate: function(data) {
-                var pct = data.pctChange;
-                return (pct < 0) ? 2 : ((pct < 1) ? 1 : 0);
-            }
-        }
+        {name: 'desc'}
     ],
 })

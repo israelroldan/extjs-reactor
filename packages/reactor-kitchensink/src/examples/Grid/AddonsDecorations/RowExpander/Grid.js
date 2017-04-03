@@ -32,27 +32,27 @@ export default class RowExpanderGridExample extends Component{
 
     renderSign = (value, format) => {
         var text = Ext.util.Format.number(value, format),
-            tpl = this.signTpl,
-            data;
-        if (Math.abs(value) > 0.1) {
-            if (!tpl) {
-                this.signTpl = tpl = this.getView().lookupTpl('signTpl');
-            }
-            text = tpl.apply({
-                text: text,
-                value: value
-            });
-        }
-        return text;
+             tpl;
+ 
+         if (Math.abs(value) > 0.1) {
+             if (value > 0) {
+                 tpl = new Template(data => <span style={{color:'green'}}> {data.text} </span>);
+             } else if (value < 0) {
+                 tpl = new Template(data => <span style={{color:'red'}}> {data.text} </span>);
+             }
+             text = tpl.apply({
+                 text: text,
+                 value: value
+             });
+         }
+         return text;
     };
-    //TODO
-     tpl = new Template( data => <div>
+
+    tpl = new Template( data => <div>
                                     <div>Industry: {data.industry}</div>
                                     <div>Last Updated: {formatDate(data.lastChange)}</div>
                                     <div style={{marginTop:'1em'}}>{data.desc}</div>
                                 </div>);
-
-    signTpl = new Template( data => <span style={{color:'red'}}>{data.text}</span>)
     
     render(){
         return(
@@ -76,14 +76,14 @@ export default class RowExpanderGridExample extends Component{
                         text: 'Change',
                         width: 90,
                         renderer: this.renderChange,
-                        dataIndex: 'change',                        
+                        dataIndex: 'priceChange',                        
                         cell: {
                             encodeHtml: false
                         }
                     }, {
                         text: '% Change',
                         width: 100,
-                        dataIndex: 'pctChange',
+                        dataIndex: 'priceChangePct',
                         renderer: this.renderPercent,
                         cell: {
                             encodeHtml: false
