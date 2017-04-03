@@ -6,7 +6,7 @@ import model from './GridModel';
 
 Ext.require(['Ext.grid.plugin.SummaryRow']);
 
-export default class RowBodyGridExample extends Component{
+export default class RowBodyGridExample extends Component {
 
     store = Ext.create('Ext.data.Store', {
         autoLoad: true,
