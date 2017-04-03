@@ -32,9 +32,9 @@ export default class ViewOptionsGridExample extends Component{
  
          if (Math.abs(value) > 0.1) {
              if (value > 0) {
-                 tpl = new Template(data => <span style={{color:'red'}}> {data.text} </span>);
-             } else if (value < 0) {
                  tpl = new Template(data => <span style={{color:'green'}}> {data.text} </span>);
+             } else if (value < 0) {
+                 tpl = new Template(data => <span style={{color:'red'}}> {data.text} </span>);
              }
              text = tpl.apply({
                  text: text,
