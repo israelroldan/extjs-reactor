@@ -14,7 +14,7 @@ export default Ext.define('ReconfigureGridModel', {
     }, {
         name: 'name',
         convert: function(v, rec) {
-            return rec.editing ? v : rec.get('forename') + ' ' + rec.get('surname');
+            return rec.editing ? v : `${rec.get('forename')} ${rec.get('surname')}`;
         }
     }, {
         name: 'email'
@@ -69,7 +69,7 @@ export default Ext.define('ReconfigureGridModel', {
 
         // "name" is a calculated field, so update it on edit of "forename" or "surname".
         if (data.forename || data.surname) {
-            data.name = (data.forename || this.get('forename')) + ' ' + (data.surname || this.get('surname'));
+            data.name = `${(data.forename || this.get('forename'))} ${(data.surname || this.get('surname'))}`;
         }
         // Likewise, update two name fields if whole name gets updated
         else if (data.name) {

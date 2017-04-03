@@ -38,7 +38,7 @@ export default class ReconfigureGridExample extends Component {
         });
     }
 
-    createOfficeStore = ()=>{
+    createOfficeStore = () => {
          var data = [],
             usedNames = {},
             usedCities = {},
@@ -58,7 +58,7 @@ export default class ReconfigureGridExample extends Component {
         });
     }
 
-    generateName = () =>{
+    generateName = () => {
          var lasts = this.lastNames,
             firsts = this.firstNames,
             lastLen = lasts.length,
@@ -133,6 +133,9 @@ export default class ReconfigureGridExample extends Component {
                             text: 'Department',
                             dataIndex: 'department',
                             flex: 1
+                        },{
+                            text:'Name',
+                            dataIndex: 'name'
                         }]
                     },
                      Offices: {
