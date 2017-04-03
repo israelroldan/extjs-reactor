@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { TabPanel, Panel, Toolbar, Button } from '@extjs/reactor/modern'; 
 
+Ext.require('Ext.Toast');
+
 export default class Closable extends Component {
 
     state = {
@@ -18,6 +20,10 @@ export default class Closable extends Component {
                 this.createTab(index+1)
             ]
         });
+    } 
+
+    onCloseTab = (tab) => {
+        Ext.toast(`${tab.getTitle()} closed.`)
     }
 
     render() {
@@ -41,6 +47,7 @@ export default class Closable extends Component {
                 cls="card"
                 layout="center"
                 closable
+                onDestroy={this.onCloseTab}
             >
                 <div style={{ whiteSpace: 'nowrap' }}>Tab {i} Content</div>
             </Panel>
