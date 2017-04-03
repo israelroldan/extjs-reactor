@@ -68,7 +68,7 @@ export default class BigDataGridExample extends Component {
                     ]}
                     itemConfig={{
                         viewModel: {
-                            type: 'grid-bigdata-row'
+                            type: 'grid-bigdatagrid-row'
                         },
                         body: {
                             tpl: this.ratingTpl
@@ -279,7 +279,7 @@ export default class BigDataGridExample extends Component {
     onVerify = (btn) => {
         const cell = btn.getParent(), record = cell.getRecord();
         record.set('verified', true);
-        Ext.Msg.alert('Verify', 'Verify ' + record.get('forename') + ' ' + record.get('surname'));
+        Ext.Msg.alert('Verify', `Verify ${record.get('forename')} ${record.get('surname')}`);
     }
 
     salarySummaryRenderer = (value) => {
@@ -292,9 +292,9 @@ export default class BigDataGridExample extends Component {
     }
 }
 
-Ext.define('KitchenSink.view.grid.BigDataRowModel', {
+Ext.define('KitchenSink.view.grid.BigDataGridRowModel', {
     extend: 'Ext.app.ViewModel',
-    alias: 'viewmodel.grid-bigdata-row',
+    alias: 'viewmodel.grid-bigdatagrid-row',
     formulas: {
         ratingGroup: function (get) {
             const age = get('record.averageRating');
@@ -312,6 +312,6 @@ Ext.define('KitchenSink.view.grid.BigDataRowModel', {
     }
 });
 
-function formatDate(date){
+function formatDate(date) {
      return Ext.util.Format.date(date, "d/m/Y")
 };
