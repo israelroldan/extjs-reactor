@@ -1,9 +1,12 @@
+//Grids
+
 import Grid from './Grid/Grid';
 import BasicGrid from './Grid/BasicGrid/BasicGrid';
 import GroupedGrid from './Grid/GroupedGrid/GroupedGrid';
 import CellEditingGrid from './Grid/CellEditing/Grid';
 import EditableGrid from './Grid/EditableGrid/Grid';
 import XMLGrid from './Grid/XMLGrid/Grid';
+import ToolGrid from './Grid/AddonsDecorations/GridTools/Grid';
 import ReduxGrid from './ReduxGrid/ReduxGrid';
 import PivotGrid from './PivotGrid/PivotGrid';
 import RowBodyGrid from './Grid/AddonsDecorations/RowBody/Grid';
@@ -318,6 +321,7 @@ const root = {
             ]},
             { text: 'Addons and Decorations', children:[
                 { text: 'Row Body', component: RowBodyGrid},
+                { text: 'Grid Tools', component: ToolGrid}
             ]},
             { text: 'Grid', component: Grid },
             { text: 'PivotGrid', component: PivotGrid },

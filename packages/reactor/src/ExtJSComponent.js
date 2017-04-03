@@ -288,6 +288,25 @@ export default class ExtJSComponent extends Component {
             }, this, { single: true });
         }
     }
+
+    /**
+     * Returns the child item at the given index, only counting those items which were created by Reactor
+     * @param {Number} n 
+     */
+    _toReactChildIndex(n) {
+        const items = this.cmp.items.items;
+        let found=0, i, item;
+
+        for (i=0; i<items.length; i++) {
+            item = items[i];
+
+            if (item.$createdByReactor && found++ === n) {
+                return i;
+            }
+        }
+
+        return i;
+    }
 }
 
 /**
@@ -321,8 +340,8 @@ const ContainerMixin = Object.assign({}, ReactMultiChild.Mixin, {
             } else {
                 // reordering docked components is known to cause issues in modern
                 // place items in a container instead
-                if (childComponent.config && (childComponent.config.docked || childComponent.config.floated)) return;
-                this.cmp.insert(toIndex, childComponent);
+                if (childComponent.config && (childComponent.config.docked || childComponent.config.floated || childComponent.config.positioned)) return;
+                this.cmp.insert(this._toReactChildIndex(toIndex), childComponent);
             }
         }
     },
@@ -362,8 +381,8 @@ const ContainerMixin = Object.assign({}, ReactMultiChild.Mixin, {
         if (node instanceof HTMLElement && node._extCmp) node._extCmp.destroy();
         // We don't need to do anything for Ext JS components because a component is automatically removed from it parent when destroyed
     }
-
 });
+
 
 /**
  * Wraps a dom element in an Ext Component so it can be added as a child item to an Ext Container.  We attach
@@ -382,6 +401,7 @@ function wrapDOMElement(el) {
     }
 
     const cmp = new Ext.Component({ contentEl });
+    cmp.$createdByReactor = true;
     contentEl._extCmp = el._extCmp = cmp;
     return cmp;
 }
