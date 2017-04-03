@@ -6,6 +6,7 @@ import GroupedGrid from './Grid/GroupedGrid/GroupedGrid';
 import CellEditingGrid from './Grid/CellEditing/Grid';
 import EditableGrid from './Grid/EditableGrid/Grid';
 import XMLGrid from './Grid/XMLGrid/Grid';
+import BigDataGrid from './Grid/AdvancedFeatures/BigData/Grid';
 import ReconfigureGrid from './Grid/AdvancedFeatures/ReconfigureGrid/Grid';
 import SummaryRowGrid from './Grid/AddonsDecorations/SummaryRow/Grid';
 import ViewOptionsGrid from './Grid/AddonsDecorations/ViewOptions/Grid';
@@ -323,7 +324,8 @@ const root = {
                 { text: 'EditableGrid', component: EditableGrid},
                 { text: 'XMLGrid', component: XMLGrid}
             ]},
-            { text: 'AdvancedFeatures', children: [
+            { text: 'AdvancedFeatures', children:[
+                { text: 'Big Data', component: BigDataGrid},
                 { text: 'Reconfigure Grid', component: ReconfigureGrid }
             ]}
             { text: 'Addons and Decorations', children: [
