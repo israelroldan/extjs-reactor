@@ -5,6 +5,7 @@ export default class SliderFieldExample extends Component {
 
     state = {
         singleValue: 20,
+        liveUpdateValue: 60,
         multipleValue: [10, 70]
     };
 
@@ -16,8 +17,12 @@ export default class SliderFieldExample extends Component {
         this.setState({ multipleValue: value });
     }
 
+    onLiveUpdateChange = (field, value) => {
+        this.setState({ liveUpdateValue: value });
+    }
+
     render() {
-        const { singleValue, multipleValue } = this.state;
+        const { singleValue, multipleValue, liveUpdateValue } = this.state;
 
         return (
             <FormPanel shadow width="300">
@@ -27,6 +32,13 @@ export default class SliderFieldExample extends Component {
                     value={singleValue}
                 />
                 <div style={{marginBottom: '20px'}}>Value: {singleValue}</div>
+                <SliderField 
+                    onChange={this.onLiveUpdateChange}
+                    label="Live Update"
+                    value={liveUpdateValue}
+                    liveUpdate
+                />
+                <div style={{marginBottom: '20px'}}>Value: {liveUpdateValue}</div>
                 <SliderField 
                     onChange={this.onMultipleChange}
                     label="Multiple Thumbs"

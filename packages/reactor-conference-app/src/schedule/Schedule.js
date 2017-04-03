@@ -68,7 +68,6 @@ class Schedule extends Component {
                 )}
                 <TabPanel 
                     ref={tp => this.tabPanel = tp}
-                    height="1000"
                     platformConfig={{
                         desktop: {
                             cls: 'app-desktop-tabs'
