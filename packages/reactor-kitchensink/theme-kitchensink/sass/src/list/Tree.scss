@@ -38,8 +38,8 @@ $component-tree-text-color: #212121;
     $item-text-over-transition: none,
     $item-expander-over-transition: none,
 
-    $item-expander-glyph: 'keyboard_arrow_up',
-    $item-expander-expanded-glyph: 'keyboard_arrow_down',
+    $item-expander-glyph: 'keyboard_arrow_down',
+    $item-expander-expanded-glyph: 'keyboard_arrow_up',
 
     $row-selected-background-color: darken($component-tree-background, 15%)
 );

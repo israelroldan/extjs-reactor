@@ -11,12 +11,6 @@ import astring from 'astring';
 import { transform } from 'babel-core';
 
 let watching = false;
-let finishCallback = null;
-
-function finish() {
-    if (finishCallback) finishCallback();
-    finishCallback = null;
-}
 
 /**
  * Produces a minimal build of the Ext JS framework by crawling your React source code and extracting the xtypes used
@@ -139,8 +133,7 @@ module.exports = class ReactExtJSWebpackPlugin {
         });
 
         // once all modules are processed, create the optimized Ext JS build.
-        compiler.plugin('after-compile', (compilation, cb) => {
-            cb();
+        compiler.plugin('emit', (compilation, callback) => {
             const modules = compilation.chunks.reduce((a, b) => a.concat(b.modules), []);
             const build = this.builds[Object.keys(this.builds)[0]];
 
@@ -159,7 +152,7 @@ module.exports = class ReactExtJSWebpackPlugin {
             jsChunk.files.push(path.join(this.output, 'ext.css'));
             jsChunk.id = -2; // this forces html-webpack-plugin to include ext.js first
 
-            if (this.asynchronous) finish();
+            if (this.asynchronous) callback();
 
             this._buildExtBundle('ext', modules, outputPath, build)
                 .then(() => {
@@ -172,16 +165,12 @@ module.exports = class ReactExtJSWebpackPlugin {
                         cssVarChunk.id = -1;
                     }
                 
-                    !this.asynchronous && finish();
+                    !this.asynchronous && callback();
                 })
                 .catch(e => {
                     console.error(e);
                     compilation.errors.push(new Error('[@extjs/reactor-webpack-plugin]: ' + e.toString()));
                 });
-        });
-
-        compiler.plugin('emit', (compilation, cb) => {
-            finishCallback = cb;
         });
     }
 
