@@ -5,7 +5,7 @@ import '../../CompanyData';
 import model from './GridModel';
 
 Ext.require(['Ext.grid.plugin.RowExpander'])
-export default class RowExpanderGridExample extends Component{
+export default class RowExpanderGridExample extends Component {
 
     store = Ext.create('Ext.data.Store', {
         autoLoad: true,
