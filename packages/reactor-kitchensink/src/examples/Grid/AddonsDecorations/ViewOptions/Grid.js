@@ -8,7 +8,7 @@ Ext.require(['Ext.grid.plugin.ViewOptions']);
 
 export default class ViewOptionsGridExample extends Component{
 
-    store = Ext.create('Ext.data.Store',{
+    store = Ext.create('Ext.data.Store', {
         autoLoad: true,
         model,
         pageSize: 0,
