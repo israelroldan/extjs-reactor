@@ -8,7 +8,7 @@ Ext.require(['Ext.grid.plugin.SummaryRow']);
 
 export default class RowBodyGridExample extends Component{
 
-    store = Ext.create('Ext.data.Store',{
+    store = Ext.create('Ext.data.Store', {
         autoLoad: true,
         model,
         pageSize: 0,
@@ -28,11 +28,13 @@ export default class RowBodyGridExample extends Component{
 
     renderSign = (value, format) => {
         var text = Ext.util.Format.number(value, format),
-            tpl = this.signTpl,
-            data;
+            tpl;
+
         if (Math.abs(value) > 0.1) {
-            if (!tpl) {
-                this.signTpl = tpl = this.getView().lookupTpl('signTpl');
+            if (value > 0) {
+                tpl = new Template(data => <span style={{color:'red'}}> {data.text} </span>);
+            } else if (value < 0) {
+                tpl = new Template(data => <span style={{color:'green'}}> {data.text} </span>);
             }
             text = tpl.apply({
                 text: text,
@@ -42,13 +44,11 @@ export default class RowBodyGridExample extends Component{
         return text;
     };
 
-    //TODO
-    signTpl = new Template( data => <span style={{color:'red'}}>{data.text}</span>)
-    
     render(){
         return(
             <Grid
                 title="Summary Row Grid"
+                ref="grid"
                 height={400}
                 width={600}
                 store={this.store}
@@ -69,7 +69,7 @@ export default class RowBodyGridExample extends Component{
                         text: 'Change',
                         width: 90,
                         renderer: this.renderChange,
-                        dataIndex: 'change',  
+                        dataIndex: 'priceChange',  
                         summaryType: 'max',                      
                         cell: {
                             encodeHtml: false
@@ -77,7 +77,7 @@ export default class RowBodyGridExample extends Component{
                     }, {
                         text: '% Change',
                         width: 100,
-                        dataIndex: 'pctChange',
+                        dataIndex: 'priceChangePct',
                         summaryFormatter: 'round(2)',
                         summaryType: 'average',
                         renderer: this.renderPercent,
@@ -93,12 +93,6 @@ export default class RowBodyGridExample extends Component{
                         summaryType: 'max'
                     }]
                 }
-                itemConfig={{
-                    body:{
-                        tpl: this.tpl
-                    }
-                }}
-                signTpl={this.signTpl}
             />
         )
     }
