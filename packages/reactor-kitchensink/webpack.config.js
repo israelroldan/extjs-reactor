@@ -68,11 +68,12 @@ module.exports = function (env) {
 
     plugins.push(new HtmlWebpackPlugin({
         template: 'index.html',
+        cache: true,
         hash: true
     }));
 
     return {
-        
+        cache: true,
         devtool: isProd ? 'source-map' : 'cheap-eval-source-map',
         context: sourcePath,
 
