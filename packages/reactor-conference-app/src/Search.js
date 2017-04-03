@@ -40,12 +40,13 @@ class Search extends Component {
             <Container layout={{ type: 'vbox', align: 'stretch' }} onShow={this.onShow}>
                 <Toolbar>
                     <SearchField ref={this.fieldRefHandler} flex={1} placeholder="Search" onChange={this.onSearch}/>
-                    <Button text="CLOSE" handler={this.onCancel} margin="0 0 0 10"/>
+                    <Button text="CLOSE" handler={this.close} margin="0 0 0 10"/>
                 </Toolbar>
                 <ScheduleList
                     flex={1} 
                     dataStore={this.store} 
                     query={query} 
+                    onSelect={this.close}
                     showTime
                 />
             </Container>
@@ -59,7 +60,7 @@ class Search extends Component {
     }, 250);
     onHide = () => this.field.blur()
     onSearch = () => this.props.dispatch(search(this.field.getValue()))
-    onCancel = () => this.props.dispatch(toggleSearch())
+    close = () => this.props.dispatch(toggleSearch())
 }
 
 const mapStateToProps = (state) => {

@@ -58,3 +58,22 @@
         padding-right: 10px;
     }
 }
+
+.app-event-name {
+    color: $base-color;
+    font-size: 24px;
+}
+.app-event-speaker {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 1em;
+}
+.app-event-time, .app-event-location {
+    font-size: 14px;
+    color: #666
+}
+
+.app-banner-tabs {
+    transform: translateZ(0) !important; 
+    position: absolute !important;
+}  

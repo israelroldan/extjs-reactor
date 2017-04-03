@@ -2,6 +2,7 @@ export const TOGGLE_MENU = 'ROOT::TOGGLE_MENU';
 export const ROUTE_DID_CHANGE = 'ROOT::ROUTE_DID_CHANGE';
 export const TOGGLE_SEARCH = 'ROOT::TOGGLE_SEARCH';
 export const SEARCH = 'ROOT::SEARCH';
+export const SET_TITLE = 'ROOT::SET_TITLE';
 
 /**
  * Show/hide the menu
@@ -38,5 +39,18 @@ export function search(query) {
     return {
         type: SEARCH,
         query
+    }
+}
+
+/**
+ * Updates the contents of the titlebar
+ * @param {*} title 
+ * @param {*} showBackButton 
+ */
+export function setTitle(title, backButtonURL) {
+    return {
+        type: SET_TITLE,
+        title,
+        backButtonURL
     }
 }

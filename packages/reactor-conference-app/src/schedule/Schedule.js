@@ -5,8 +5,14 @@ import { toggleSearch, filterByDay, toggleFavorite, filterByFavorites } from './
 import { connect } from 'react-redux';
 import { Template } from '@extjs/reactor';
 import ScheduleList from './ScheduleList';
+import { setTitle } from '../actions';
 
 class Schedule extends Component {
+
+    constructor({ children }) {
+        super();
+        this.state = { children };
+    }
 
     onSearchClick = () => this.props.dispatch(toggleSearch())
     hideSearch = () => this.props.dispatch(toggleSearch(false))
@@ -31,7 +37,7 @@ class Schedule extends Component {
         } else {
             if (top < scrollTop) {
                 tabBarEl.stuck = true;
-                tabBarEl.setStyle({ position: 'fixed', top: `${scrollTop}px`, width: `${this.tabPanel.el.getWidth()}px`, zIndex: 100 })
+                tabBarEl.setStyle({ position: 'fixed', top: '0', width: `${this.tabPanel.el.getWidth()}px`, zIndex: 100 })
                 tabPanel.bodyElement.setStyle({ paddingTop: `${tabBarEl.getHeight()}px` });
             }
         }
@@ -46,8 +52,15 @@ class Schedule extends Component {
         this.banner.el.down('.app-banner-content').setStyle({ opacity })
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.children) {
+            this.setState({ children: nextProps.children });
+        }
+    }
+
     render() {
-        const { showSearch, store, favorites } = this.props;
+        const { showSearch, store, favorites, showEvent } = this.props;
+        const { children } = this.state;
 
         const storeDefaults = { 
             type: 'chained', 
@@ -59,42 +72,45 @@ class Schedule extends Component {
         };
 
         return (
-            <Container key="schedule" layout="vbox" ref={ct => this.ct = ct} scrollable>
-                <Container className="app-banner" ref={banner => this.banner = banner}>
-                    <span className="app-banner-content">ExtReact Conference</span>
-                </Container>
-                { Ext.platformTags.desktop && (
-                    <SearchField style={{position: 'absolute', right: '10px', top: '8px', zIndex: 101}} width="200" height="32" ui="app-search-field" />
-                )}
-                <TabPanel 
-                    ref={tp => this.tabPanel = tp}
-                    height="1000"
-                    platformConfig={{
-                        desktop: {
-                            cls: 'app-desktop-tabs'
-                        }
-                    }}
-                >
-                    <ScheduleList 
-                        title="TUES" 
-                        dataStore={{ ...storeDefaults, filters: [{ property: 'day', value: 1 }]}}
-                    />
-                    <ScheduleList 
-                        title="WED" 
-                        dataStore={{ ...storeDefaults, filters: [{ property: 'day', value: 2 }]}}
-                    />
-                    <ScheduleList 
-                        title="THURS" 
-                        dataStore={{ ...storeDefaults, filters: [{ property: 'day', value: 3 }]}}
-                    />
-                    <ScheduleList 
-                        iconCls="md-icon-star" 
-                        tab={{
-                            maxWidth: 60
+            <Container layout={{ type: 'card', animation: 'slide' }} activeItem={showEvent && children ? 1 : 0}>
+                <Container key="schedule" layout="vbox" ref={ct => this.ct = ct} scrollable className="app-banner-tabs">
+                    <Container className="app-banner" ref={banner => this.banner = banner}>
+                        <span className="app-banner-content">ExtReact Conference</span>
+                    </Container>
+                    { Ext.platformTags.desktop && (
+                        <SearchField style={{position: 'absolute', right: '10px', top: '8px', zIndex: 101}} width="200" height="32" ui="app-search-field" />
+                    )}
+                    <TabPanel 
+                        ref={tp => this.tabPanel = tp}
+                        height="1000"
+                        platformConfig={{
+                            desktop: {
+                                cls: 'app-desktop-tabs'
+                            }
                         }}
-                        dataStore={{ ...storeDefaults, filters: [{ property: 'favorite', value: true }]}}
-                    />
-                </TabPanel>  
+                    >
+                        <ScheduleList 
+                            title="TUES" 
+                            dataStore={{ ...storeDefaults, filters: [{ property: 'day', value: 1 }]}}
+                        />
+                        <ScheduleList 
+                            title="WED" 
+                            dataStore={{ ...storeDefaults, filters: [{ property: 'day', value: 2 }]}}
+                        />
+                        <ScheduleList 
+                            title="THURS" 
+                            dataStore={{ ...storeDefaults, filters: [{ property: 'day', value: 3 }]}}
+                        />
+                        <ScheduleList 
+                            iconCls="md-icon-star" 
+                            tab={{
+                                maxWidth: 60
+                            }}
+                            dataStore={{ ...storeDefaults, filters: [{ property: 'favorite', value: true }]}}
+                        />
+                    </TabPanel>  
+                </Container>
+                {children}
             </Container>
         )
     }

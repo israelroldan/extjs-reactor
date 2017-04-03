@@ -3,7 +3,6 @@ import thunk from 'redux-thunk';
 import root from './reducer';
 import schedule from './schedule/reducer';
 import speakers from './speakers/reducer';
-import event from './event/reducer';
 
 const initialState = { };
 
@@ -14,7 +13,7 @@ const middleware = [
 if (window.devToolsExtension) middleware.push(window.devToolsExtension())
 
 const store = createStore(
-    combineReducers({ root, schedule, speakers, event }), 
+    combineReducers({ root, schedule, speakers }), 
     initialState, 
     compose(...middleware)
 );

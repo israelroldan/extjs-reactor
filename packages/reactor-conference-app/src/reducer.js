@@ -1,4 +1,10 @@
-import { TOGGLE_MENU, ROUTE_DID_CHANGE, TOGGLE_SEARCH, SEARCH } from './actions';
+import { 
+    TOGGLE_MENU, 
+    ROUTE_DID_CHANGE, 
+    TOGGLE_SEARCH, 
+    SEARCH, 
+    SET_TITLE 
+} from './actions';
 
 const navStore = Ext.create('Ext.data.TreeStore', {
     root: {
@@ -36,7 +42,8 @@ export default function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 title: node && node.get('text'),
-                selectedNavNode: node
+                selectedNavNode: node,
+                backButtonURL: undefined
             }
         case TOGGLE_SEARCH:
             return {
@@ -47,6 +54,12 @@ export default function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 query: action.query
+            }
+        case SET_TITLE: 
+            return {
+                ...state, 
+                title: action.title,
+                backButtonURL: action.backButtonURL 
             }
         default: 
             return { ...state };
