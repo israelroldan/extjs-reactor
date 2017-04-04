@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Calendar_Month, Panel } from '@extjs/reactor/modern';
 import '../data';
 
-export default class CalendarMonthViewExample extends Component{
+export default class CalendarMonthViewExample extends Component {
 
-    store = Ext.create('Ext.calendar.store.Calendars',{
+    store = Ext.create('Ext.calendar.store.Calendars', {
         autoLoad: true,
         proxy:{
             type: 'ajax',
