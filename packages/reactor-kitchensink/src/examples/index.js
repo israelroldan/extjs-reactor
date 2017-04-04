@@ -322,16 +322,16 @@ const root = {
                 { text: 'EditableGrid', component: EditableGrid},
                 { text: 'XMLGrid', component: XMLGrid}
             ]},
-            { text: 'AdvancedFeatures', children:[
-                { text: 'Big Data', component: BigDataGrid},
-                { text: 'Reconfigure Grid', component: ReconfigureGrid }
-            ]},
-            { text: 'Addons and Decorations', children: [
+            { text: 'Add-ons', children: [
                 { text: 'Grid Tools', component: ToolGrid},
                 { text: 'Row Expander', component: RowExpanderGrid},
                 { text: 'Row Body', component: RowBodyGrid},
                 { text: 'Summary Row', component: SummaryRowGrid},
                 { text: 'ViewOptions', component: ViewOptionsGrid}
+            ]},
+            { text: 'AdvancedFeatures', children:[
+                { text: 'Big Data', component: BigDataGrid},
+                { text: 'Reconfigure Grid', component: ReconfigureGrid }
             ]},
             { text: 'PivotGrid', component: PivotGrid },
             { text: 'Redux Grid', component: ReduxGrid }

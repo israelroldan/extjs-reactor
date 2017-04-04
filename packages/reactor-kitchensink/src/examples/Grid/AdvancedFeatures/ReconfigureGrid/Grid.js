@@ -9,13 +9,60 @@ export default class ReconfigureGridExample extends Component {
     cities= ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Philadelphia', 'Phoenix', 'San Antonio', 'San Diego', 'Dallas', 'San Jose'];
     departments= ['Development', 'QA', 'Marketing', 'Accounting', 'Sales'];
 
-    onChange = (segmented, value) => {
-        var grid = this.refs.grid,
-            etc = this.refs.container.etc[value],
-            store = this[etc.store]();
-        grid.setColumns(etc.columns).setStore(store);
+    configs = {
+        Employees: {
+            store: 'createEmployeeStore',
+            columns: [{
+                text: 'First Name',
+                dataIndex: 'forename',
+                flex: 1
+            }, {
+                text: 'Last Name',
+                dataIndex: 'surname',
+                flex: 1
+            }, {
+                text: 'Employee No.',
+                dataIndex: 'employeeNo',
+                flex: 1
+            }, {
+                text: 'Department',
+                dataIndex: 'department',
+                flex: 1
+            },{
+                text:'Name',
+                dataIndex: 'name',
+                flex: 1
+            }]
+        },
+        Offices: {
+            store: 'createOfficeStore',
+            columns: [{
+                text: 'City',
+                dataIndex: 'city',
+                flex: 1
+            }, {
+                text: 'Total Employees',
+                dataIndex: 'totalEmployees',
+                flex: 1
+            }, {
+                text: 'Manager',
+                dataIndex: 'manager',
+                flex: 1
+            }]
+        }
     }
-    
+
+    state = { store: undefined, columns: undefined }
+
+    onChange = (segmented, value) => {
+        const config = this.configs[value];
+
+        this.setState({ 
+            columns: config.columns, 
+            store: this[config.store]() 
+        });
+    }
+
     createEmployeeStore = () => {
         var data = [],
             usedNames = {},
@@ -109,82 +156,31 @@ export default class ReconfigureGridExample extends Component {
         return departments[Ext.Number.randomInt(0, len - 1)];
     }
 
-    render(){
-        return(
-            <Container
-                height={400}
-                width={600}
-                layout='fit'
-                ref='container'
-                etc={{
-                    Employees: {
-                        store: 'createEmployeeStore',
-                        columns: [{
-                            text: 'First Name',
-                            dataIndex: 'forename'
-                        }, {
-                            text: 'Last Name',
-                            dataIndex: 'surname'
-                        }, {
-                            text: 'Employee No.',
-                            dataIndex: 'employeeNo',
-                            width: 100
-                        }, {
-                            text: 'Department',
-                            dataIndex: 'department',
-                            flex: 1
-                        },{
-                            text:'Name',
-                            dataIndex: 'name'
-                        }]
-                    },
-                     Offices: {
-                        store: 'createOfficeStore',
-                        columns: [{
-                            text: 'City',
-                            dataIndex: 'city',
-                            flex: 1
-                        }, {
-                            text: 'Total Employees',
-                            dataIndex: 'totalEmployees',
-                            width: 140
-                        }, {
-                            text: 'Manager',
-                            dataIndex: 'manager',
-                            width: 120
-                        }]
-                    }
-                }}>
-                <Toolbar 
-                    docked='top'
-                    ui='transparent'
-                    padding='5 8'
-                    layout={{
-                        type: 'hbox',
-                        align: 'stretch'
-                    }}
-                    defaults={{
-                        shadow: true,
-                        ui: 'blue'
-                    }}>
-                    <SegmentedButton
-                        width={250}
-                        defaults={{
-                            flex: 1,
-                            ui: 'blue'
-                        }}
-                        onChange={this.onChange}
-                        >
+    render() {
+        const { columns, store } = this.state;
+        let gridConfig = {};
+
+        if (columns) {
+            gridConfig = {
+                columns, 
+                store
+            }
+        }
+
+        return (
+            <Grid
+                {...gridConfig}
+                shadow
+                deferEmptyText={false}
+                emptyText="Click a button to show a dataset."
+            >
+                <Toolbar docked="top" ui="transparent" layout="hbox">
+                    <SegmentedButton width="250" defaults={{ flex: 1 }} onChange={this.onChange}>
                         <Button text="Show Offices" value="Offices"/>
                         <Button text="Show Employees" value="Employees"/>
                     </SegmentedButton>
-                </Toolbar>
-                <Grid
-                    shadow={true}
-                    ref='grid'
-                    deferEmptyText= {false}
-                    emptyText= 'Click a button to show a dataset'/>
-            </Container>
+                </Toolbar>                
+            </Grid>
         )
     }
 }
