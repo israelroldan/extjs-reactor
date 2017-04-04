@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { Cartesian, Panel } from '@extjs/reactor/modern';
 import ChartToolbar from '../../ChartToolbar';
 
-export default class FullStackedAreaChartExample extends Component{
+export default class FullStackedAreaChartExample extends Component {
     constructor(){
         super();
     }
 
-    store = Ext.create('Ext.data.Store',{
+    store = Ext.create('Ext.data.Store', {
         fields: ['month', 'data1', 'data2', 'data3', 'data4', 'other'],
         data:[ 
             { month: 'Jan', data1: 20, data2: 37, data3: 35, data4: 4, other: 4 },
@@ -43,8 +43,7 @@ export default class FullStackedAreaChartExample extends Component{
     onSeriesTooltipRender = (tooltip, record, item) => {
          var fieldIndex = Ext.Array.indexOf(item.series.getYField(), item.field),
             browser = item.series.getTitle()[fieldIndex];
-        tooltip.setHtml(browser + ' on ' + record.get('month') + ': ' +
-            record.get(item.field) + '%');
+            tooltip.setHtml(`${browser} on ${record.get('month')}: ${record.get(item.field)}%`)
     }
 
     render(){
