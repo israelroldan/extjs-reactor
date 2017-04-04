@@ -1,20 +1,37 @@
 import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
-import { Container } from '@extjs/reactor/modern';
+import { List } from '@extjs/reactor/modern';
+import { Template } from '@extjs/reactor';
 import AppBar from '../AppBar';
 
-class Notifications extends Component {
+export default class Notifications extends Component {
+
+    store = Ext.create('Ext.data.Store', {
+        autoLoad: true,
+        proxy: {
+            type: 'ajax',
+            url: '/resources/notifications.json'
+        },
+        grouper: {
+            property: 'day'
+        }
+    })
+
+    itemTpl = new Template(data => {
+        return (
+            <div style={{padding: '5px 0'}}>
+                <div style={{padding: '0 0 10px 0'}}>{data.text}</div>
+                <span style={{'font-weight': 'bold'}}>{data.time}</span>
+            </div>
+        )
+    })
+
     render() {
         return (
-            <Container>
-                Notifications
-            </Container>
+            <List
+                itemTpl={this.itemTpl}
+                store={this.store}
+                grouped
+            />
         );
     }
 }
-
-const mapStateToProps = (state) => {
-    return { ...state.notifications };
-}
-
-export default connect(mapStateToProps)(Notifications);
