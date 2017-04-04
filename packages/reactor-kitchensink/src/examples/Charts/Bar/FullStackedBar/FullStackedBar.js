@@ -44,8 +44,7 @@ export default class FullStackedBar extends Component {
         var fieldIndex = Ext.Array.indexOf(item.series.getYField(), item.field),
             browser = item.series.getTitle()[fieldIndex];
 
-        tooltip.setHtml(browser + ' on ' + record.get('month') + ': ' +
-            record.get(item.field) + '%');
+        tooltip.setHtml(`${browser} on ${record.get('month')}: ${record.get(item.field)}%`)
     };
 
     render() {

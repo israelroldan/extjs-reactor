@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Cartesian, Panel } from '@extjs/reactor/modern';
 import ChartToolbar from '../../ChartToolbar';
  
-export default class StackedAreaChartExample extends Component{
+export default class StackedAreaChartExample extends Component {
     constructor(){
         super();
     }
@@ -37,8 +37,7 @@ export default class StackedAreaChartExample extends Component{
     onSeriesTooltipRender = (tooltip, record, item) => {
         var fieldIndex = Ext.Array.indexOf(item.series.getYField(), item.field),
             browser = item.series.getTitle()[fieldIndex];
-        tooltip.setHtml(browser + ' on ' + record.get('month') + ': ' +
-            record.get(item.field) + '%');
+        tooltip.setHtml(`${browser} on ${record.get('month')}: ${record.get(item.field)}%`)
     }
 
     render() {

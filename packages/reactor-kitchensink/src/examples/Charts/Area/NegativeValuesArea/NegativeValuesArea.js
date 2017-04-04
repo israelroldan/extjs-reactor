@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Cartesian, Panel, Button } from '@extjs/reactor/modern';
 import ChartToolbar from '../../ChartToolbar';
 
-export default class NegativeValuesAreaChartExample extends Component{
+export default class NegativeValuesAreaChartExample extends Component {
     constructor(){
         super();    
     };
@@ -11,7 +11,7 @@ export default class NegativeValuesAreaChartExample extends Component{
         theme: 'default'
     };
 
-    store = Ext.create('Ext.data.Store',{
+    store = Ext.create('Ext.data.Store', {
         fields:['quarter', 'consumer', 'gaming', 'phone', 'corporate'],
         data:[
             { quarter: 'Q1 2012', consumer: 7,  gaming: 3,  phone: 5,  corporate: -7},
@@ -46,7 +46,7 @@ export default class NegativeValuesAreaChartExample extends Component{
                 break;
         }
         tooltip.setTitle(name);
-        tooltip.setHtml(record.get('quarter') + ': ' + record.get(item.field));
+        tooltip.setHtml(`${record.get('quarter')}: ${record.get(item.field)}`);
     }
 
     changeTheme = (select, choice) => {
