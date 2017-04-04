@@ -23,16 +23,14 @@ class Layout extends Component {
     }
 
     render() {
-        const { title, dispatch, children, filterFavorites, showSearch } = this.props
+        const { title, dispatch, children, filterFavorites } = this.props
 
         return (
-            <Container layout={{ type: 'card', animation: { type: showSearch ? 'cover' : 'reveal', direction: 'up', duration: 250 } }} activeItem={showSearch ? 1 : 0}>
-                <Container layout="fit">
-                    <AppBar/>
-                    <Menu onSelect={this.onNavChange}/>
-                    { children }
-                </Container>
+            <Container layout="fit">
+                <AppBar/>
+                <Menu onSelect={this.onNavChange}/>
                 <Search/>
+                { children }
             </Container>
         )
     }

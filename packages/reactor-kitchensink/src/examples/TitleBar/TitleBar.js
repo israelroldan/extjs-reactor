@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { TitleBar, Container, Button, Menu, MenuItem } from '@extjs/reactor/modern';
 
-require('./TitleBar.css');
-
 export default class TitleBarExample extends Component {
 
     render() {

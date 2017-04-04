@@ -13,12 +13,14 @@ const classCache = {};
  * @param {React.Component} rootComponent You application's root component
  * @param {Object} [appConfig] Additional config parameters for Ext.application
  */
-export function launch(rootComponent, appConfig = { }) {
+export function launch(rootComponent, appConfig = { }, reactorSettings = { debug: false }) {
+    settings = reactorSettings;
+
     Ext.application({
         name: '$ExtReactApp',
         ...appConfig,
         launch: () => ReactDOM.render(rootComponent, Ext.Viewport.getRenderTarget().dom)
-    })
+    });
 }
 
 /**
@@ -58,6 +60,7 @@ export function reactify(...targets) {
             }
 
             createExtJSComponent(config) {
+                if (settings.debug) console.log('create', target.$className);
                 const result = new target(config)
                 result.$createdByReactor = true;
                 return result;

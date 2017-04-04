@@ -49,6 +49,4 @@ function run() {
     console.log('wrote code.js');
 }
 
-fs.watch(examples, { recursive: true }, run);
-
 run();
