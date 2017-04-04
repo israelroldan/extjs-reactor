@@ -9,7 +9,7 @@ const TIME_REGEX = /(\d{1,2}:\d{2} (?:AM|PM)) - (\d{1,2}:\d{2} (?:AM|PM))/,
     startDateFor = (day, time) => parseDate(day, time.match(TIME_REGEX)[1]),
     endDateFor = (day, time) => parseDate(day, time.match(TIME_REGEX)[2]);
 
-Ext.define('ConferenceApp.calendar.model.EventModel', {
+export default Ext.define(null, {
     extend: 'Ext.calendar.model.Event',
 
     getTitle: function() {

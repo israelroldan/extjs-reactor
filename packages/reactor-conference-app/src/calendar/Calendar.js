@@ -3,7 +3,7 @@ import { Calendar_Days } from '@extjs/reactor/modern';
 import AppBar from '../AppBar';
 
 Ext.require('Ext.calendar.model.*');
-import './EventModel';
+import model from './EventModel';
 
 export default class Calendar extends Component {
 
@@ -17,7 +17,7 @@ export default class Calendar extends Component {
 
     store = Ext.create('Ext.calendar.store.Calendars', {
         eventStoreDefaults: {
-            model: 'ConferenceApp.calendar.model.EventModel',
+            model,
             proxy: {
                 type: 'ajax',
                 url: '/resources/schedule.json'
