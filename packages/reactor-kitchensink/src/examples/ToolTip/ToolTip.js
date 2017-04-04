@@ -17,38 +17,21 @@ export default class ToolTipExample extends Component {
         };
 
         return (
-            <Panel layout="vbox" shadow bodyPadding="20">
-                <Container {...containerDefaults}>
-                    <Button {...buttonDefaults} tooltip="A simple tooltip" text="Basic Tip"/>
-                    
-                    <Button 
-                        {...buttonDefaults} 
-                        text="autoHide: false"
-                        tooltip={{ 
-                            autoHide: false, 
-                            title: 'Tip Title',
-                            html: 'A simple tooltip',
-                            closable: true 
-                        }}
-                    />
-                    
-                    <Button 
-                        {...buttonDefaults} 
-                        text="Mouse Track"
-                        tooltip={{
-                            title: 'Mouse Track',
-                            html: 'This tip will follow the mouse while it is over the element',
-                            trackMouse: true
-                        }}
-                    />
+            <Panel layout="vbox" shadow bodyPadding="20" defaults={containerDefaults}>
+                <Container defaults={buttonDefaults}>
+                    <Button text="Basic Tip">
+                        <ToolTip>A simple tooltip</ToolTip>
+                    </Button>
+                    <Button text="autoHide: false">
+                        <ToolTip autoHide={false} title="Tip Title" closable>A simple tooltip</ToolTip>
+                    </Button>
+                    <Button text="Mouse Track">
+                        <ToolTip title="Mouse Track" trackMouse>This tip will follow the mouse while it is over the element</ToolTip>
+                    </Button>
                 </Container>
-
-                <Container {...containerDefaults}>
-                    <Button 
-                        {...buttonDefaults} 
-                        text="Anchor Right, Rich Content"
-                    >
-                        <ToolTip rel="tooltip" align="tl-tr" anchorToTarget anchor>
+                <Container defaults={buttonDefaults}>
+                    <Button text="Anchor Right, Rich Content">
+                        <ToolTip align="tl-tr" anchorToTarget anchor>
                             <ul style={{marginBottom: '15px'}}>
                                 <li>5 bedrooms</li>
                                 <li>Close to transport</li>
@@ -57,32 +40,14 @@ export default class ToolTipExample extends Component {
                             <img style={{width: '400px', height: '300px'}} src="resources/images/house.jpg" />
                         </ToolTip>
                     </Button>
-
-                    <Button 
-                        {...buttonDefaults} 
-                        text="Anchor Below"
-                        tooltip={Ext.create({
-                            xtype: 'tooltip',
-                            html: 'The anchor is centered',
-                            anchorToTarget: true,
-                            align: 'tc-bc',
-                            anchor: true
-                        })}
-                    />
-
-                    <Button 
-                        {...buttonDefaults} 
-                        text="Anchor with Tracking"
-                        tooltip={{
-                            html: 'Following the mouse with an anchor',
-                            trackMouse: true,
-                            align: 'l-r',
-                            anchor: true
-                        }}
-                    />
+                    <Button text="Anchor Below">
+                        <ToolTip align="tc-bc" anchor anchorToTarget>The anchor is centered</ToolTip>
+                    </Button>
+                    <Button text="Anchor with Tracking">
+                        <ToolTip align="tc-bc" trackMouse anchor align="l-r">Following the mouse with an anchor</ToolTip>
+                    </Button>
                 </Container>
-
-                <Container {...containerDefaults} margin="0">
+                <Container margin="0">
                     <div style={{...styles.qTipItem, ...styles.color1}} data-qtip="This tip is inline">Inline Tip</div>
                     <div style={{...styles.qTipItem, ...styles.color2}} data-qtip="This tip has a fixed width" data-qwidth="400">Fixed width inline tip</div>
                     <div style={{...styles.qTipItem, ...styles.color3}} data-qtip="This tip has a title" data-qtitle="The title">Inline tip with title</div>

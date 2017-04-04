@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Toolbar, Container, SearchField, List, Button } from '@extjs/reactor/modern';
+import { Toolbar, EdgeMenu, SearchField, List, Button } from '@extjs/reactor/modern';
 import { connect } from 'react-redux';
 import { toggleSearch, search } from './actions';
 import { Template } from '@extjs/reactor';
@@ -34,10 +34,16 @@ class Search extends Component {
     }
 
     render() {
-        const { dispatch, store, query='' } = this.props;
+        const { dispatch, store, query='', showSearch } = this.props;
 
         return (
-            <Container layout={{ type: 'vbox', align: 'stretch' }} onShow={this.onShow}>
+            <EdgeMenu 
+                height={Ext.Viewport.getHeight()} 
+                layout="vbox" 
+                onShow={this.onShow} 
+                displayed={showSearch}
+                side="bottom"
+            >
                 <Toolbar>
                     <SearchField ref={this.fieldRefHandler} flex={1} placeholder="Search" onChange={this.onSearch}/>
                     <Button text="CLOSE" handler={this.close} margin="0 0 0 10"/>
@@ -49,7 +55,7 @@ class Search extends Component {
                     onSelect={this.close}
                     showTime
                 />
-            </Container>
+            </EdgeMenu>
         )
     }
 

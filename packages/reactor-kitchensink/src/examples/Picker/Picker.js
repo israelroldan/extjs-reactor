@@ -3,15 +3,20 @@ import { Container, Picker, Button } from '@extjs/reactor/modern';
 
 export default class PickerExample extends Component {
 
-    showPicker = () => this.picker.show();
+    state = { displayed: false };
+    showPicker = () => this.setState({ displayed: true });
+    onHidden = () => this.setState({ displayed: false });
 
     render() {
+        const { displayed } = this.state;
+
         return (
             <Container>
                 <Button ui="action" handler={this.showPicker} text="Show Picker"/>
                 <Picker 
-                    ref={picker => this.picker = picker}
-                    value={100}
+                    displayed={displayed}
+                    value={[100]}
+                    onHide={this.onHidden}
                     slots={[
                         {
                             name: 'limit_speed',

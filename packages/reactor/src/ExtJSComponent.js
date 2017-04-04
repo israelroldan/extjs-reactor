@@ -91,6 +91,8 @@ export default class ExtJSComponent extends Component {
             if (this.cmp.destroying) return;
             const parentCmp = this.cmp.getParent();
 
+            if (this.reactorSettings.debug) console.log('destroy', this.cmp.$className);
+
             if (Ext.navigation && Ext.navigation.View && parentCmp && parentCmp instanceof Ext.navigation.View) {
                 parentCmp.pop();
             } else {
@@ -137,7 +139,7 @@ export default class ExtJSComponent extends Component {
 
     _applyDefaults({ defaults, children }) {
         if (defaults) {
-            return Children.map(children, child => cloneElement(child, { ...child.props, ...defaults }));
+            return Children.map(children, child => cloneElement(child, { ...defaults, ...child.props }));
         } else {
             return children;
         }
@@ -333,10 +335,12 @@ const ContainerMixin = Object.assign({}, ReactMultiChild.Mixin, {
      * @param {ExtJSComponent} child Component to move.
      * @param {Component} afterNode The component to move after
      * @param {number} toIndex Destination index of the element.
-     * @param {number} lastIndex The element's previous index.
+     * @param {number} lastIndex Last index visited of the siblings of `child`.
      * @protected
      */
     moveChild(child, afterNode, toIndex, lastIndex) {
+        if (toIndex === child._mountIndex) return; // only move child if the actual mount index has changed
+        
         const fitLayout = Ext.layout && (Ext.layout.Fit || Ext.layout.FitLayout);
 
         if (fitLayout && this.cmp.layout instanceof fitLayout) {
@@ -354,7 +358,15 @@ const ContainerMixin = Object.assign({}, ReactMultiChild.Mixin, {
                 // reordering docked components is known to cause issues in modern
                 // place items in a container instead
                 if (childComponent.config && (childComponent.config.docked || childComponent.config.floated || childComponent.config.positioned)) return;
-                this.cmp.insert(this._toReactChildIndex(toIndex), childComponent);
+                
+                // removing the child first ensures that we get the new index correct
+                this.cmp.remove(childComponent, false);
+                
+                const newIndex = this._toReactChildIndex(toIndex);
+                
+                if (this.reactorSettings.debug) console.log('moveChild', this.cmp.$className, childComponent.$className, newIndex);
+
+                this.cmp.insert(newIndex, childComponent);
             }
         }
     },
@@ -367,6 +379,8 @@ const ContainerMixin = Object.assign({}, ReactMultiChild.Mixin, {
      * @protected
      */
     createChild(child, afterNode, childNode) {
+        if (this.reactorSettings.debug) console.log('createChild', this.cmp.$className, childNode.$className);
+        
         if (!(childNode instanceof Ext.Base)) {
             // we're appending a dom node
             childNode = wrapDOMElement(childNode.node);
@@ -392,6 +406,7 @@ const ContainerMixin = Object.assign({}, ReactMultiChild.Mixin, {
      */
     removeChild(child, node) {
         if (node instanceof HTMLElement && node._extCmp && !node._extCmp.destroying) {
+            if (this.reactorSettings.debug) console.log('removeChild', node._extCmp.$className);
             node._extCmp.destroy();
         }
         // We don't need to do anything for Ext JS components because a component is automatically removed from it parent when destroyed

@@ -3,7 +3,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtJSReactorWebpackPlugin = require('@extjs/reactor-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-
+const WebpackShellPlugin = require('webpack-shell-plugin');
 const sourcePath = path.join(__dirname, './src');
 
 module.exports = function (env) {
@@ -44,7 +44,11 @@ module.exports = function (env) {
         }, {
             from: path.join(__dirname, 'data'),
             to: 'data'
-        }])
+        }]),
+        new WebpackShellPlugin({
+            dev: false,
+            onBuildEnd: ['node extract-code.js']
+        })
     ];
 
     if (isProd) {

@@ -363,7 +363,7 @@ const root = {
             { text: 'Audio', component: Audio }
         ] },
         { text: 'Panel', component: Panel, center: true },
-        { text: 'Picker', component: Picker },
+        { text: 'Picker', component: Picker, center: true },
         { text: 'ProgressBar', component: ProgressBar, center: true },
         { text: 'Ripple', component: Ripple, center: true },
         { text: 'Tabs', children: [
