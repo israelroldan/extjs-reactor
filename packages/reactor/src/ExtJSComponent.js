@@ -88,7 +88,8 @@ export default class ExtJSComponent extends Component {
      */
     unmountComponent() {
         if (this.cmp) {
-            if (this.cmp.destroying) return;
+            if (this.cmp.destroying || this.cmp.$reactorConfig) return;
+
             const parentCmp = this.cmp.getParent();
 
             if (this.reactorSettings.debug) console.log('destroy', this.cmp.$className);
@@ -166,7 +167,16 @@ export default class ExtJSComponent extends Component {
                     const prop = this._reactorPropForItem(item);
 
                     if (prop) {
-                        config[prop] = item;
+                        item.$reactorConfig = true;
+                        const value = config;
+
+                        if (prop.array) {
+                            let array = config[prop.name];
+                            if (!array) array = config[prop.name] = [];
+                            array.push(item);
+                        } else {
+                            config[prop.name] = item;
+                        }
                     } else {
                         (item.dock ? dockedItems : items).push(item);
                     }
@@ -185,14 +195,23 @@ export default class ExtJSComponent extends Component {
     }
 
     _reactorPropForItem(item) {
-        if (item.config.rel) return item.config.rel;
+        if (item.config.rel) {
+            if (typeof item.config.ref === 'string') {
+                return { name: item.config.ref }
+            } else {
+                return item.config.rel;
+            }
+        }
 
         const { extJSClass } = this;
+        const Grid = Ext.grid && (Ext.grid.Grid || Ext.grid.Panel);
 
         if (isAssignableFrom(extJSClass, Ext.Button) && Ext.menu && Ext.menu.Menu && item instanceof Ext.menu.Menu) {
-            return 'menu'
+            return { name: 'menu', array: false };
         } else if (isAssignableFrom(extJSClass, Ext.Component) && Ext.tip && Ext.tip.ToolTip && item instanceof Ext.tip.ToolTip) {
-            return 'tooltip'
+            return { name: 'tooltip', array: false };
+        } else if (Grid && isAssignableFrom(extJSClass, Grid) && Ext.grid.column && Ext.grid.column.Column && item instanceof Ext.grid.column.Column) {
+            return { name: 'columns', array: true };
         }
     }
 
@@ -264,14 +283,25 @@ export default class ExtJSComponent extends Component {
             if (key === 'children' || typeof newValue === 'function') continue;
 
             if (!isEqual(oldValue, newValue)) {
-                const setter = `set${this._capitalize(key)}`;
+                const setter = this._setterFor(key);
 
-                if (this.cmp[setter]) {
+                if (setter) {
                     const value = this._cloneProps(newValue);
-                    this.cmp[setter](value);
+                    if (this.reactorSettings.debug) console.log(setter.name, newValue);
+                    setter.call(this.cmp, value);
                 }
             }
         }
+    }
+
+    _setterFor(prop) {
+        const name = `set${this._capitalize(prop)}`;
+        return this.cmp[name];
+    }
+
+    _getterFor(prop) {
+        const name = `get${this._capitalize(prop)}`;
+        return this.cmp[name];
     }
 
     /**
@@ -304,7 +334,7 @@ export default class ExtJSComponent extends Component {
      * Returns the child item at the given index, only counting those items which were created by Reactor
      * @param {Number} n
      */
-    _toReactChildIndex(n) {
+    _toReactChildIndex(n, prop) {
         let items = this.cmp.items;
 
         if (!items) return n;
@@ -321,6 +351,57 @@ export default class ExtJSComponent extends Component {
         }
 
         return i;
+    }
+
+    /**
+     * Translates and index in props.children to an index within a config value that is an array.  Use
+     * this to determine the position of an item in props.children within the array config to which it is mapped.
+     * @param {*} prop 
+     * @param {*} indexInChildren 
+     */
+    _toArrayConfigIndex(prop, indexInChildren) {
+        let i=0, found=0;
+
+        Children.forEach(this.props.children, child => {
+            const propForChild = this._reactorPropForItem(child);
+
+            if (propForChild && propForChild.name === prop.name) {
+                if (i === indexInChildren) return found;
+                found++
+            } 
+        });
+
+        return -1;
+    }
+
+    _mergeConfig(prop, value, index, isDelete) {
+        const setter = this._setterFor(prop.name);
+        if (!setter) return;
+
+        value.$reactorConfig = true;
+
+        if (prop.array) {
+            const getter = this._getterFor(prop.name);
+            if (!getter) return;
+
+            const currentValue = (getter.call(this.cmp) || []);
+            
+            if (isDelete) {
+                // delete
+                value = currentValue.filter(item => item !== value);
+            } else if (index !== undefined) {
+                // move
+                value = currentValue.filter(item => item !== value);
+                value = value.splice(this._toArrayConfigIndex(index, prop), 0, item);
+            } else {
+                // append
+                value = currentValue.concat(value);                
+            }
+        }
+
+        if (this.reactorSettings.debug) console.log('_mergeConfig', setter.name, value);
+
+        setter.call(this.cmp, value);
     }
 }
 
@@ -351,7 +432,11 @@ const ContainerMixin = Object.assign({}, ReactMultiChild.Mixin, {
 
         let childComponent = toComponent(child.cmp || child.getHostNode());
 
-        if (childComponent) {
+        const prop = this._reactorPropForItem(childComponent);
+
+        if (prop) {
+            this._mergeConfig(prop, childComponent, toIndex);
+        } else if (childComponent) {
             if (childComponent.dock) {
                 this.cmp.insertDocked(toIndex, childComponent);
             } else {
@@ -381,20 +466,26 @@ const ContainerMixin = Object.assign({}, ReactMultiChild.Mixin, {
     createChild(child, afterNode, childNode) {
         if (this.reactorSettings.debug) console.log('createChild', this.cmp.$className, childNode.$className);
         
-        if (!(childNode instanceof Ext.Base)) {
-            // we're appending a dom node
-            childNode = wrapDOMElement(childNode.node);
-        }
+        const prop = this._reactorPropForItem(childNode);
 
-        if (afterNode instanceof HTMLElement) {
-            afterNode = afterNode._extCmp;
-        }
-
-        if (afterNode) {
-            const index = this.cmp[childNode.dock ? 'dockedItems' : 'items'].indexOf(afterNode);
-            this.cmp[childNode.dock ? 'insertDocked' : 'insert'](index + 1, childNode);
+        if (prop) {
+            this._mergeConfig(prop, childNode);
         } else {
-            this.cmp[childNode.dock ? 'addDocked' : 'add'](childNode);
+            if (!(childNode instanceof Ext.Base)) {
+                // we're appending a dom node
+                childNode = wrapDOMElement(childNode.node);
+            }
+
+            if (afterNode instanceof HTMLElement) {
+                afterNode = afterNode._extCmp;
+            }
+
+            if (afterNode) {
+                const index = this.cmp[childNode.dock ? 'dockedItems' : 'items'].indexOf(afterNode);
+                this.cmp[childNode.dock ? 'insertDocked' : 'insert'](index + 1, childNode);
+            } else {
+                this.cmp[childNode.dock ? 'addDocked' : 'add'](childNode);
+            }
         }
     },
 
@@ -405,14 +496,19 @@ const ContainerMixin = Object.assign({}, ReactMultiChild.Mixin, {
      * @protected
      */
     removeChild(child, node) {
-        if (node instanceof HTMLElement && node._extCmp && !node._extCmp.destroying) {
-            if (this.reactorSettings.debug) console.log('removeChild', node._extCmp.$className);
-            node._extCmp.destroy();
+        const prop = child instanceof ExtJSComponent && this._reactorPropForItem(child.cmp);
+
+        if (prop) {
+            this._mergeConfig(prop, child.cmp, null, true);
+        } else {
+            if (node instanceof HTMLElement && node._extCmp && !node._extCmp.destroying) {
+                if (this.reactorSettings.debug) console.log('removeChild', node._extCmp.$className);
+                node._extCmp.destroy();
+            }
+            // We don't need to do anything for Ext JS components because a component is automatically removed from it parent when destroyed
         }
-        // We don't need to do anything for Ext JS components because a component is automatically removed from it parent when destroyed
     }
 });
-
 
 /**
  * Wraps a dom element in an Ext Component so it can be added as a child item to an Ext Container.  We attach
