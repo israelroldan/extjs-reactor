@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Grid, Container } from '@extjs/reactor/modern';
+import { Grid, Column } from '@extjs/reactor/modern';
 import model from './BasicGridModel';
 import '../CompanyData';
 
 export default class BasicGridExample extends Component {
 
-    store = Ext.create('Ext.data.Store',{
+    store = Ext.create('Ext.data.Store', {
         autoLoad: true,
         model,
         pageSize: 0,
@@ -41,43 +41,13 @@ export default class BasicGridExample extends Component {
 
     render() {
         return (
-            <Grid 
-                title="Stock Prices"
-                store={this.store}
-                shadow 
-                grouped
-                columns={[{
-                    text: 'Company',
-                    flex: 1,
-                    dataIndex: 'name'
-                }, {
-                    text: 'Price',
-                    width: 75,
-                    dataIndex: 'price',
-                    formatter: 'usMoney'
-                }, {
-                    text: 'Change',
-                    width: 90,
-                    renderer: this.renderChange,
-                    dataIndex: 'change',
-                    cell: {
-                        encodeHtml: false
-                    }
-                }, {
-                    text: '% Change',
-                    width: 100,
-                    dataIndex: 'pctChange',
-                    renderer: this.renderPercent,
-                    cell: {
-                        encodeHtml: false
-                    }
-                }, {
-                    text: 'Last Updated',
-                    width: 125,
-                    dataIndex: 'lastChange',
-                    formatter: 'date("m/d/Y")'
-                }]}
-            />
+            <Grid title="Stock Prices" store={this.store} shadow grouped>
+                <Column text="Company" dataIndex="name" width="150"/>
+                <Column text="Price" width="75" dataIndex="price" formatter='usMoney'/>
+                <Column text="Change" width="90" renderer={this.renderChange} dataIndex="change" cell={{ encodeHtml: false }}/>
+                <Column text="% Change" dataIndex="pctChange" renderer={this.renderPercent} cell={{ encodeHtml: false }}/>
+                <Column text="Last Updated" width="125" dataIndex="lastChange" formatter='date("m/d/Y")'/>
+            </Grid>
         )
     }
 }

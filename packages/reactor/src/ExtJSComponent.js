@@ -8,6 +8,14 @@ import defaults from 'lodash.defaults';
 import cloneDeepWith from 'lodash.clonedeepwith';
 import isEqual from 'lodash.isequal';
 
+const CLASS_CACHE = {
+    Grid: Ext.ClassManager.getByAlias('widget.grid'),
+    Column: Ext.ClassManager.getByAlias('widget.gridcolumn'),
+    Button: Ext.ClassManager.getByAlias('widget.button'),
+    Menu: Ext.ClassManager.getByAlias('widget.menu'),
+    ToolTip: Ext.ClassManager.getByAlias('widget.tooltip')
+}
+
 export default class ExtJSComponent extends Component {
 
     constructor(element) {
@@ -194,6 +202,11 @@ export default class ExtJSComponent extends Component {
         return config;
     }
 
+    /**
+     * Determines whether a child element corresponds to a config or a container item based on the presence of a rel config or 
+     * matching other known relationships
+     * @param {Ext.Base} item 
+     */
     _reactorPropForItem(item) {
         if (item.config.rel) {
             if (typeof item.config.ref === 'string') {
@@ -206,11 +219,11 @@ export default class ExtJSComponent extends Component {
         const { extJSClass } = this;
         const Grid = Ext.grid && (Ext.grid.Grid || Ext.grid.Panel);
 
-        if (isAssignableFrom(extJSClass, Ext.Button) && Ext.menu && Ext.menu.Menu && item instanceof Ext.menu.Menu) {
+        if (isAssignableFrom(extJSClass, CLASS_CACHE.Button) && CLASS_CACHE.Menu && item instanceof CLASS_CACHE.Menu) {
             return { name: 'menu', array: false };
-        } else if (isAssignableFrom(extJSClass, Ext.Component) && Ext.tip && Ext.tip.ToolTip && item instanceof Ext.tip.ToolTip) {
+        } else if (isAssignableFrom(extJSClass, Ext.Component) && CLASS_CACHE.ToolTip && item instanceof CLASS_CACHE.ToolTip) {
             return { name: 'tooltip', array: false };
-        } else if (Grid && isAssignableFrom(extJSClass, Grid) && Ext.grid.column && Ext.grid.column.Column && item instanceof Ext.grid.column.Column) {
+        } else if (Grid && isAssignableFrom(extJSClass, CLASS_CACHE.Grid) && CLASS_CACHE.Column && item instanceof CLASS_CACHE.Column) {
             return { name: 'columns', array: true };
         }
     }
@@ -288,20 +301,28 @@ export default class ExtJSComponent extends Component {
                 if (setter) {
                     const value = this._cloneProps(newValue);
                     if (this.reactorSettings.debug) console.log(setter.name, newValue);
-                    setter.call(this.cmp, value);
+                    this.cmp[setter](value);
                 }
             }
         }
     }
 
+    /**
+     * Returns the name of the setter method for a given prop.
+     * @param {String} prop 
+     */
     _setterFor(prop) {
         const name = `set${this._capitalize(prop)}`;
-        return this.cmp[name];
+        return this.cmp[name] && name;
     }
 
+    /**
+     * Returns the name of a getter for a given prop.
+     * @param {String} prop 
+     */
     _getterFor(prop) {
         const name = `get${this._capitalize(prop)}`;
-        return this.cmp[name];
+        return this.cmp[name] && name;
     }
 
     /**
@@ -374,17 +395,24 @@ export default class ExtJSComponent extends Component {
         return -1;
     }
 
-    _mergeConfig(prop, value, index, isDelete) {
+    /**
+     * Updates a config based on a child element
+     * @param {Object} prop The prop descriptor (name and array)
+     * @param {Ext.Base} value The value to set
+     * @param {Number} [index] The index of the child element in props.children
+     * @param {Boolean} [isArrayDelete=false] True if removing the item from an array
+     */
+    _mergeConfig(prop, value, index, isArrayDelete) {
         const setter = this._setterFor(prop.name);
         if (!setter) return;
 
-        value.$reactorConfig = true;
+        if (value) value.$reactorConfig = true;
 
         if (prop.array) {
             const getter = this._getterFor(prop.name);
             if (!getter) return;
 
-            const currentValue = (getter.call(this.cmp) || []);
+            const currentValue = this.cmp[getter]() || [];
             
             if (isDelete) {
                 // delete
@@ -399,9 +427,9 @@ export default class ExtJSComponent extends Component {
             }
         }
 
-        if (this.reactorSettings.debug) console.log('_mergeConfig', setter.name, value);
+        if (this.reactorSettings.debug) console.log(setter, value);
 
-        setter.call(this.cmp, value);
+        this.cmp[setter](value);
     }
 }
 
@@ -499,7 +527,7 @@ const ContainerMixin = Object.assign({}, ReactMultiChild.Mixin, {
         const prop = child instanceof ExtJSComponent && this._reactorPropForItem(child.cmp);
 
         if (prop) {
-            this._mergeConfig(prop, child.cmp, null, true);
+            this._mergeConfig(prop, null, null, true);
         } else {
             if (node instanceof HTMLElement && node._extCmp && !node._extCmp.destroying) {
                 if (this.reactorSettings.debug) console.log('removeChild', node._extCmp.$className);
