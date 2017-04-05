@@ -1,8 +1,9 @@
 const fs = require('fs');
 const path = require('path');
 const examples = path.join(__dirname, 'src', 'examples');
+const mkdirp = require('mkdirp').sync;
 
-let result;
+let result = {};
 
 function extractAll(dir) {
     const files = fs.readdirSync(dir);
@@ -43,9 +44,10 @@ function extractFrom(example, file, fullPath) {
 }
 
 function run() {
-    result = {};
-    extractAll(examples);  
-    fs.writeFileSync(path.join(__dirname, 'build', 'resources', 'code.js'), `window._code = ${JSON.stringify(result, null, '\t')}`, 'utf8');
+    const outputDir = path.join(__dirname, 'build', 'resources');
+    extractAll(examples); 
+    mkdirp(outputDir);
+    fs.writeFileSync(path.join(outputDir, 'code.js'), `window._code = ${JSON.stringify(result, null, '\t')}`, 'utf8');
     console.log('wrote code.js');
 }
 

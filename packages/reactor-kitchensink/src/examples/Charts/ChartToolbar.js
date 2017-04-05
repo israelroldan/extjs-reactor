@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Label, Spacer, Button, Toolbar, SegmentedButton } from '@extjs/reactor/modern';
+import { Label, Spacer, Button, Toolbar, SegmentedButton, Menu, MenuItem } from '@extjs/reactor/modern';
 
 Ext.require([
     'Ext.chart.theme.Blue',
@@ -34,19 +34,17 @@ export default function ChartToolbar({
     return (
         <Toolbar docked="top">
             { theme && (
-                <Button 
-                    iconCls="x-fa fa-picture-o" 
-                    text="Theme"
-                    menu={[
-                        { text: 'Default', value: 'default', handler: () => onThemeChange('default') },
-                        { text: 'Green', value: 'green', handler: () => onThemeChange('green') },
-                        { text: 'Midnight', value: 'midnight', handler: () => onThemeChange('midnight') },
-                        { text: 'Muted', value: 'muted', handler: () => onThemeChange('muted') },
-                        { text: 'Red', value: 'red', handler: () => onThemeChange('red') },
-                        { text: 'Sky', value: 'sky', handler: () => onThemeChange('sky') },
-                        { text: 'Yellow', value: 'yellow', handler: () => onThemeChange('yellow') },
-                    ]}
-                />
+                <Button iconCls="x-fa fa-picture-o" text="Theme">
+                    <Menu>
+                        <MenuItem text="Default" handler={() => onThemeChange('default')}/>
+                        <MenuItem text="Green" handler={() => onThemeChange('green')}/>
+                        <MenuItem text="Midnight" handler={() => onThemeChange('midnight')}/>
+                        <MenuItem text="Muted" handler={() => onThemeChange('muted')}/>
+                        <MenuItem text="Red" handler={() => onThemeChange('red')}/>
+                        <MenuItem text="Sky" handler={() => onThemeChange('sky')}/>
+                        <MenuItem text="Yellow" handler={() => onThemeChange('yellow')}/>
+                    </Menu>
+                </Button>
             )}
             { downloadChartRef && (
                 <Button 
@@ -71,7 +69,7 @@ export default function ChartToolbar({
                     <Button ui="default-toolbar" text="Group"/>
                 </SegmentedButton>
             )}
-            { onToggleZoomOnPan && (
+            { onToggleZoomOnPan && !Ext.supports.Touch && (
                 <SegmentedButton {...toolbarItemDefaults}>
                     <Button ui="default-toolbar" handler={() => onToggleZoomOnPan(false)} pressed text="Pan"/>
                     <Button ui="default-toolbar" handler={() => onToggleZoomOnPan(true)} text="Zoom"/>

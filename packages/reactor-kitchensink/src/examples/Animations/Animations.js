@@ -40,10 +40,10 @@ export default class Animations extends Component {
                 activeItem={this.state.activeCard} 
                 shadow
             >
-                <Panel title="Card 1" layout="vbox">
+                <Panel title="Card 1" layout={{ type: 'vbox', align: 'center', pack: 'center' }}>
                     {this.createCardContents()}
                 </Panel>
-                <Panel title="Card 2" layout="vbox">
+                <Panel title="Card 2" layout={{ type: 'vbox', align: 'center', pack: 'center' }}>
                     {this.createCardContents()}
                 </Panel>
             </Container>
