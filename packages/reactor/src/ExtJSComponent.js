@@ -217,7 +217,6 @@ export default class ExtJSComponent extends Component {
         }
 
         const { extJSClass } = this;
-        const Grid = Ext.grid && (Ext.grid.Grid || Ext.grid.Panel);
 
         if (isAssignableFrom(extJSClass, CLASS_CACHE.Button) && CLASS_CACHE.Menu && item instanceof CLASS_CACHE.Menu) {
             return { name: 'menu', array: false };
@@ -355,7 +354,7 @@ export default class ExtJSComponent extends Component {
      * Returns the child item at the given index, only counting those items which were created by Reactor
      * @param {Number} n
      */
-    _toReactChildIndex(n, prop) {
+    _toReactChildIndex(n) {
         let items = this.cmp.items;
 
         if (!items) return n;
@@ -388,7 +387,7 @@ export default class ExtJSComponent extends Component {
 
             if (propForChild && propForChild.name === prop.name) {
                 if (i === indexInChildren) return found;
-                found++
+                found++;
             } 
         });
 
