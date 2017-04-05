@@ -222,7 +222,7 @@ export default class ExtJSComponent extends Component {
             return { name: 'menu', array: false };
         } else if (isAssignableFrom(extJSClass, Ext.Component) && CLASS_CACHE.ToolTip && item instanceof CLASS_CACHE.ToolTip) {
             return { name: 'tooltip', array: false };
-        } else if (Grid && isAssignableFrom(extJSClass, CLASS_CACHE.Grid) && CLASS_CACHE.Column && item instanceof CLASS_CACHE.Column) {
+        } else if (isAssignableFrom(extJSClass, CLASS_CACHE.Grid) && CLASS_CACHE.Column && item instanceof CLASS_CACHE.Column) {
             return { name: 'columns', array: true };
         }
     }
