@@ -25,7 +25,7 @@ function AppBar({ dispatch, title, children, backButtonURL }) {
             ) }
 
             { backButtonURL && (
-                <Button align="left" handler={() => self.location.hash = backButtonURL} iconCls="md-icon-arrow-back"/>
+                <Button align="left" handler={() => history.back()} iconCls="md-icon-arrow-back"/>
             )}
             { !backButtonURL && !Ext.platformTags.desktop && (
                 <Button align="left" iconCls="md-icon-menu" handler={() => dispatch(toggleMenu(true))} ripple={{ bound: false }}/>

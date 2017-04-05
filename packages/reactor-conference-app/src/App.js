@@ -13,9 +13,9 @@ import Maps from './maps/Maps';
 import Notifications from './notifications/Notifications';
 import Attendees from './attendees/Attendees';
 import About from './about/About';
-import Event from './schedule/Event';
+import Event from './event/Event';
 
-import { loadEvent, unloadEvent } from './schedule/actions';
+import { loadEvent, unloadEvent } from './event/actions';
 
 // load new component when the route changes
 hashHistory.listen(location => store.dispatch(routeDidChange(location)));
@@ -24,25 +24,31 @@ hashHistory.listen(location => store.dispatch(routeDidChange(location)));
 store.dispatch(routeDidChange(hashHistory.getCurrentLocation()));
 
 export default function App() {
+    const eventRoute = (
+        <Route 
+            path=":id" 
+            component={Event} 
+            onEnter={({params}) => store.dispatch(loadEvent(params.id))}
+            onLeave={() => {
+                if (!location.hash.match(/\/\d+$/)) {
+                    store.dispatch(unloadEvent());
+                }
+            }}
+        />
+    )
+
     return (
         <Provider store={store}>
             <Router history={hashHistory}>
                 <Route path="/" component={Layout}>
                     <IndexRoute component={Schedule}/>
                     <Route path="events" component={Schedule}>
-                        <Route 
-                            path=":id" 
-                            component={Event} 
-                            onEnter={({params}) => store.dispatch(loadEvent(params.id))}
-                            onLeave={() => {
-                                if (!location.hash.match(/events\/\d+/)) {
-                                    store.dispatch(unloadEvent());
-                                }
-                            }}
-                        />
+                        { eventRoute }
                     </Route>
                     <Route path="/speakers" component={Speakers}/>
-                    <Route path="/calendar" component={Calendar}/>
+                    <Route path="/calendar" component={Calendar}>
+                        { eventRoute }
+                    </Route>
                     <Route path="/maps" component={Maps}/>
                     <Route path="/notifications" component={Notifications}/>
                     <Route path="/attendees" component={Attendees}/>
