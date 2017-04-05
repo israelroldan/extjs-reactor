@@ -8,13 +8,23 @@ import ScheduleList from './ScheduleList';
 import { setTitle } from '../actions';
 
 class Schedule extends Component {
+    
+    constructor({ children }) {
+        super();
+        this.state = { children };
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.children) this.setState({ children: nextProps.children });
+    }
 
     onSearchClick = () => this.props.dispatch(toggleSearch())
     hideSearch = () => this.props.dispatch(toggleSearch(false))
     filter = day => this.props.dispatch(filterByDay(day))
 
     render() {
-        const { showSearch, store, favorites, showEvent, children } = this.props;
+        const { showSearch, store, favorites, showEvent } = this.props;
+        const { children } = this.state;
 
         const storeDefaults = { 
             type: 'chained', 

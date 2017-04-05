@@ -1,3 +1,5 @@
+Ext.require('Ext.calendar.model.*');
+
 //
 // **THIS IS A HACK** until we have real data to deal with for conference events.
 //

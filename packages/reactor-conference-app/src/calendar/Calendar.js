@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
 import { Calendar_Days, Container } from '@extjs/reactor/modern';
 import { connect } from 'react-redux';
-import AppBar from '../AppBar';
-
-Ext.require('Ext.calendar.model.*');
 import model from './EventModel';
 
 class Calendar extends Component {
 
     constructor({ children }) {
         super();
+        this.state = { children };
 
         // Lookup favorites and filter event store by them.
         const favs = localStorage.getItem('favoriteEvents');
         this.favorites = favs ? JSON.parse(favs) : [];
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.children) this.setState({ children: nextProps.children });
     }
 
     store = Ext.create('Ext.calendar.store.Calendars', {
@@ -35,8 +37,10 @@ class Calendar extends Component {
         const eventId = ctx.event && ctx.event.getId();
         if(eventId) location.hash = `/calendar/${eventId}`;
     }
+
     render() {
-        const { showEvent, children } = this.props;
+        const { showEvent } = this.props;
+        const { children } = this.state;
 
         return (
             <Container layout={{ type: 'card', animation: 'slide' }} activeItem={showEvent && children ? 1 : 0}>
@@ -47,7 +51,6 @@ class Calendar extends Component {
                     value={new Date(2017, 3, 4)}
                     store={this.store}
                     dayHeader={{
-                        xtype: 'calendar-daysheader',
                         format: 'D',
                         compactOptions: {
                             format: 'D'
@@ -66,7 +69,7 @@ class Calendar extends Component {
 }
 
 const mapStateToProps = ({ event }) => {
-    return event;
+    return { showEvent: event.showEvent };
 }
 
 export default connect(mapStateToProps)(Calendar);
