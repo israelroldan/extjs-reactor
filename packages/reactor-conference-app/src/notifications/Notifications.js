@@ -16,20 +16,19 @@ export default class Notifications extends Component {
         }
     })
 
-    itemTpl = new Template(data => {
-        return (
-            <div style={{padding: '5px 0'}}>
-                <div style={{padding: '0 0 10px 0'}}>{data.text}</div>
-                <span style={{'font-weight': 'bold'}}>{data.time}</span>
-            </div>
-        )
-    })
+    itemTpl = new Template(data => (
+        <div className="app-notification-item">
+            <div className="app-notification-text">{data.text}</div>
+            <span className="app-notification-time">{data.time}</span>
+        </div>
+    ))
 
     render() {
         return (
             <List
                 itemTpl={this.itemTpl}
                 store={this.store}
+                disableSelection
                 grouped
             />
         );

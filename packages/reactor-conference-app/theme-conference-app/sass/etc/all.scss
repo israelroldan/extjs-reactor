@@ -77,3 +77,15 @@
     transform: translateZ(0) !important; 
     position: absolute !important;
 }  
+
+.app-notification-item {
+    padding: 5px 0;
+}
+
+.app-notification-text {
+    padding: 0 0 10px 0;
+}
+
+.app-notification-time {
+    font-weight: bold;
+}
