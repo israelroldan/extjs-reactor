@@ -43,6 +43,7 @@ class Search extends Component {
                 onShow={this.onShow} 
                 displayed={showSearch}
                 side="bottom"
+                modal={false}
             >
                 <Toolbar>
                     <SearchField ref={this.fieldRefHandler} flex={1} placeholder="Search" onChange={this.onSearch}/>

@@ -1,8 +1,6 @@
 import { 
     TOGGLE_SEARCH, 
-    TOGGLE_FAVORITE,
-    LOAD_EVENT,
-    UNLOAD_EVENT
+    TOGGLE_FAVORITE
 } from './actions';
 
 let favorites = localStorage.getItem('favoriteEvents');
@@ -49,12 +47,6 @@ export default function scheduleReducer(state = initialState, action) {
             localStorage.setItem('favoriteEvents', JSON.stringify(favorites));
 
             return { ...state, favorites }
-        }        
-        case LOAD_EVENT: {
-            return { ...state, event: action.event, showEvent: true }
-        }
-        case UNLOAD_EVENT: {
-            return { ...state, showEvent: false }
         }
         default:
             return { ...state };

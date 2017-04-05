@@ -9,58 +9,12 @@ import { setTitle } from '../actions';
 
 class Schedule extends Component {
 
-    constructor({ children }) {
-        super();
-        this.state = { children };
-    }
-
     onSearchClick = () => this.props.dispatch(toggleSearch())
     hideSearch = () => this.props.dispatch(toggleSearch(false))
     filter = day => this.props.dispatch(filterByDay(day))
 
-    componentDidMount() {
-        this.ct.getScrollable().on('scroll', this.onParentScroll)
-    }
-
-    onParentScroll = () => {
-        const tabPanel = this.tabPanel;
-        const tabBarEl = tabPanel.getTabBar().el;
-        const top = tabBarEl.getY();
-        const scrollTop = this.ct.getScrollable().getElement().getY();
-
-        if (tabBarEl.stuck) {
-            if (tabBarEl.parent().getY() > scrollTop) {
-                tabBarEl.stuck = false;
-                tabBarEl.setStyle({ position: '', top: '', width: '', zIndex: '' })
-                tabPanel.bodyElement.setStyle({ paddingTop: '' });
-            }
-        } else {
-            if (top < scrollTop) {
-                tabBarEl.stuck = true;
-                tabBarEl.setStyle({ position: 'fixed', top: '0', width: `${this.tabPanel.el.getWidth()}px`, zIndex: 100 })
-                tabPanel.bodyElement.setStyle({ paddingTop: `${tabBarEl.getHeight()}px` });
-            }
-        }
-
-        const padding = 60;
-        const paddingBottom = (top - scrollTop - this.banner.bodyElement.getHeight()) / 2;
-        const paddingTop = padding - paddingBottom;
-        const opacity = paddingBottom / (padding / 2.0);
-        const fontSize = 30 * (top - scrollTop) / (padding + 37);
-
-        this.banner.setStyle({ paddingBottom: `${paddingBottom}px`, paddingTop: `${paddingTop}px` });
-        this.banner.el.down('.app-banner-content').setStyle({ opacity })
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.children) {
-            this.setState({ children: nextProps.children });
-        }
-    }
-
     render() {
-        const { showSearch, store, favorites, showEvent } = this.props;
-        const { children } = this.state;
+        const { showSearch, store, favorites, showEvent, children } = this.props;
 
         const storeDefaults = { 
             type: 'chained', 
@@ -115,10 +69,43 @@ class Schedule extends Component {
         )
     }
 
+    componentDidMount() {
+        this.ct.getScrollable().on('scroll', this.onParentScroll)
+    }
+
+    onParentScroll = () => {
+        const tabPanel = this.tabPanel;
+        const tabBarEl = tabPanel.getTabBar().el;
+        const top = tabBarEl.getY();
+        const scrollTop = this.ct.getScrollable().getElement().getY();
+
+        if (tabBarEl.stuck) {
+            if (tabBarEl.parent().getY() > scrollTop) {
+                tabBarEl.stuck = false;
+                tabBarEl.setStyle({ position: '', top: '', width: '', zIndex: '' })
+                tabPanel.bodyElement.setStyle({ paddingTop: '' });
+            }
+        } else {
+            if (top < scrollTop) {
+                tabBarEl.stuck = true;
+                tabBarEl.setStyle({ position: 'fixed', top: '0', width: `${this.tabPanel.el.getWidth()}px`, zIndex: 100 })
+                tabPanel.bodyElement.setStyle({ paddingTop: `${tabBarEl.getHeight()}px` });
+            }
+        }
+
+        const padding = 60;
+        const paddingBottom = (top - scrollTop - this.banner.bodyElement.getHeight()) / 2;
+        const paddingTop = padding - paddingBottom;
+        const opacity = paddingBottom / (padding / 2.0);
+        const fontSize = 30 * (top - scrollTop) / (padding + 37);
+
+        this.banner.setStyle({ paddingBottom: `${paddingBottom}px`, paddingTop: `${paddingTop}px` });
+        this.banner.el.down('.app-banner-content').setStyle({ opacity })
+    }
 }
 
-const mapStateToProps = ({ schedule }) => {
-    return schedule;
+const mapStateToProps = ({ schedule, event }) => {
+    return {...schedule, ...event};
 }
 
 export default connect(mapStateToProps)(Schedule);
