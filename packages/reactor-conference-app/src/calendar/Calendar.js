@@ -11,8 +11,6 @@ class Calendar extends Component {
     constructor({ children }) {
         super();
 
-        this.state = { children };
-
         // Lookup favorites and filter event store by them.
         const favs = localStorage.getItem('favoriteEvents');
         this.favorites = favs ? JSON.parse(favs) : [];
@@ -37,14 +35,8 @@ class Calendar extends Component {
         const eventId = ctx.event && ctx.event.getId();
         if(eventId) location.hash = `/calendar/${eventId}`;
     }
-    
-    componentWillReceiveProps({children}) {
-        if(children) this.setState({ children });
-    }
-
     render() {
-        const { showEvent } = this.props;
-        const { children } = this.state;
+        const { showEvent, children } = this.props;
 
         return (
             <Container layout={{ type: 'card', animation: 'slide' }} activeItem={showEvent && children ? 1 : 0}>

@@ -29,7 +29,7 @@ class Event extends Component {
 }
 
 const mapStateToProps = ({event}) => {
-    return { data: event.data };
+    return event;
 }
 
 export default connect(mapStateToProps)(Event);
