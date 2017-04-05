@@ -3,16 +3,14 @@ import { Container } from '@extjs/reactor/modern';
 
 export default class RippleExample extends React.Component {
 
+    clickHandler = (event) => {
+        Ext.fly(event.target).ripple(event, {})
+    }
+
     render() {
         return (
             <Container layout="vbox">
-                <div 
-                    onClick={event => {
-                        Ext.fly(event.target).ripple(event, {})
-                    }} 
-                    style={styles.rippleTarget}
-                >I ripple when clicked.</div>
-
+                <div onClick={this.clickHandler} style={styles.rippleTarget}>I ripple when clicked.</div>
                 <Container 
                     style={styles.rippleTarget}
                     ripple={{ }}
