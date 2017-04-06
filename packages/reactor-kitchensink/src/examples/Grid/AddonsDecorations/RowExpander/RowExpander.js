@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-import {Grid} from '@extjs/reactor/modern';
+import { Grid, Column } from '@extjs/reactor/modern';
 import { Template } from '@extjs/reactor';
 import '../../CompanyData';
 import model from './GridModel';
 
 Ext.require(['Ext.grid.plugin.RowExpander'])
+
 export default class RowExpanderGridExample extends Component {
 
     store = Ext.create('Ext.data.Store', {
@@ -61,41 +62,13 @@ export default class RowExpanderGridExample extends Component {
             <Grid 
                 title="Row Expander Grid"
                 store={this.store}
-                plugins="rowexpander"
-                columns={
-                    [{
-                        text: 'Company',
-                        flex: 1,
-                        dataIndex: 'name'
-                    }, {
-                        text: 'Price',
-                        width: 75,
-                        dataIndex: 'price',
-                        formatter: 'usMoney'
-                    }, {
-                        text: 'Change',
-                        width: 90,
-                        renderer: this.renderChange,
-                        dataIndex: 'priceChange',                        
-                        cell: {
-                            encodeHtml: false
-                        }
-                    }, {
-                        text: '% Change',
-                        width: 100,
-                        dataIndex: 'priceChangePct',
-                        renderer: this.renderPercent,
-                        cell: {
-                            encodeHtml: false
-                        }
-                    }, {
-                        text: 'Last Updated',
-                        width: 125,
-                        dataIndex: 'lastChange',
-                        formatter: 'date("m/d/Y")'
-                    }]
-                }
-            />
+                plugins="rowexpander">
+                <Column text="Company" dataIndex="name" flex="1"/>
+                <Column text="Price" dataIndex="price" width="75" formatter="usMoney"/>
+                <Column text="Change" dataIndex="priceChange" width="90" renderer={this.renderChange} cell={{encodeHtml: false}}/>
+                <Column text="% Change" dataIndex="priceChangePct" width="100" renderer={this.renderPercent} cell={{encodeHtml: false}} />
+                <Column text="Last Updated" dataIndex="lastChange" width="125" formatter="date('m/d/Y')" />
+            </Grid>
         )
     }
 }
