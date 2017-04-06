@@ -198,6 +198,7 @@ import Proxies from './DragAndDrop/Proxies/Proxies';
 import Handles from './DragAndDrop/Handles/Handles';
 import Groups from './DragAndDrop/Groups/Groups';
 import Data from './DragAndDrop/Data/Data';
+import Files from './DragAndDrop/Files/Files';
 
 const root = {
     id: 'root',
@@ -304,7 +305,8 @@ const root = {
             { text: 'Proxies', component: Proxies },
             { text: 'Handles', component: Handles },
             { text: 'Groups', component: Groups },
-            { text: 'Data', component: Data }
+            { text: 'Data', component: Data },
+            { text: 'Files', component: Files }
         ]},
         { text: 'Draw', component: Draw },
         { text: 'EdgeMenu', component: EdgeMenu, center: true },
