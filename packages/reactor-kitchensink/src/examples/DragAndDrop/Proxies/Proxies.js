@@ -63,6 +63,6 @@ export default class Proxies extends Component {
     }
 
     componentWillUnmount() {
-        this.sources.forEach(src => Ext.destroy(src));
+        this.sources.forEach(Ext.destroy.bind(Ext));
     }
 }

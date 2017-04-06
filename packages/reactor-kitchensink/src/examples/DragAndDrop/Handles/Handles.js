@@ -52,6 +52,6 @@ export default class Handles extends Component {
     }
 
     componentWillUnmount() {
-        this.sources.forEach(src => Ext.destroy(src));
+        this.sources.forEach(Ext.destroy.bind(Ext));
     }
 }
