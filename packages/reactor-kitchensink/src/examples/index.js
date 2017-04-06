@@ -12,7 +12,7 @@ import RowExpanderGrid from './Grid/AddonsDecorations/RowExpander/Grid';
 import ToolGrid from './Grid/AddonsDecorations/GridTools/GridTools';
 import ReduxGrid from './ReduxGrid/ReduxGrid';
 import PivotGrid from './PivotGrid/PivotGrid';
-import RowBodyGrid from './Grid/AddonsDecorations/RowBody/Grid';
+import RowBodyGrid from './Grid/AddonsDecorations/RowBody/RowBody';
 
 import Panel from './Panel/Panel';
 
