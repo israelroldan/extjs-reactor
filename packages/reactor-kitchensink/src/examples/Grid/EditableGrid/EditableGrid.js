@@ -7,7 +7,7 @@ Ext.require(['Ext.grid.plugin.Editable']);
 
 export default class EditableGridExample extends Component {
     
-    store = Ext.create('Ext.data.Store',{
+    store = Ext.create('Ext.data.Store', {
         autoLoad: true,
         model,
         pageSize: 0,
