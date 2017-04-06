@@ -197,6 +197,7 @@ import Constrains from './DragAndDrop/Constraints/Constraints';
 import Proxies from './DragAndDrop/Proxies/Proxies';
 import Handles from './DragAndDrop/Handles/Handles';
 import Groups from './DragAndDrop/Groups/Groups';
+import Data from './DragAndDrop/Data/Data';
 
 const root = {
     id: 'root',
@@ -302,7 +303,8 @@ const root = {
             { text: 'Constraints', component: Constrains },
             { text: 'Proxies', component: Proxies },
             { text: 'Handles', component: Handles },
-            { text: 'Groups', component: Groups }
+            { text: 'Groups', component: Groups },
+            { text: 'Data', component: Data }
         ]},
         { text: 'Draw', component: Draw },
         { text: 'EdgeMenu', component: EdgeMenu, center: true },
