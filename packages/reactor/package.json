@@ -39,7 +39,7 @@
     "lodash.capitalize": "^4.2.1",
     "lodash.clonedeepwith": "^4.5.0",
     "lodash.defaults": "^4.2.0",
-    "lodash.isequal": "^4.4.0",
+    "lodash.isequalwith": "^4.4.0",
     "lodash.union": "^4.6.0"
   },
   "devDependencies": {
