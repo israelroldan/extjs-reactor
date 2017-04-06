@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Grid, Toolbar, Label, SegmentedButton, Button } from '@extjs/reactor/modern';
+import { Grid, Toolbar, Label, SegmentedButton, Button, Column } from '@extjs/reactor/modern';
+import { Template } from '@extjs/reactor';
 import './data';
 
-export default class GroupedGridExample extends Component{
+export default class GroupedGridExample extends Component {
 
-    store = Ext.create('Ext.data.Store',{
+    store = Ext.create('Ext.data.Store', {
         fields:[
             'name',
             'cuisine'
@@ -32,22 +33,9 @@ export default class GroupedGridExample extends Component{
                 title="Restaurants"
                 shadow 
                 store={this.store}
-                grouped={grouped}
-                columns={[
-                    {
-                        text: 'Name',
-                        dataIndex: 'name',
-                        flex: 1,
-
-                        // Adjust the header text when grouped by this column:
-                        groupHeaderTpl: '{columnName}: {value:htmlEncode}'
-                    }, {
-                        text: 'Cuisine',
-                        dataIndex: 'cuisine',
-                        flex: 1
-                    }
-                ]}
-            >
+                grouped={grouped}>
+                <Column text="Name" dataIndex="name" flex="1"/>
+                <Column text="Cuisine" dataIndex="cuisine" flex="1"/>
                 <Toolbar docked="bottom">
                     <Label margin="0 10 0 0">Grouping:</Label>
                     <SegmentedButton label="Grouping">
