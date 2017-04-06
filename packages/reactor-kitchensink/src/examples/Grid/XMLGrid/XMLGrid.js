@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Container } from '@extjs/reactor/modern';
+import { Grid, Container, Column } from '@extjs/reactor/modern';
 
 
 export default class XmlGridExample extends Component {
@@ -29,25 +29,12 @@ export default class XmlGridExample extends Component {
         return(
             <Grid
                 title="Products"
-                store={this.store}
-                columns={[{
-                    text: 'Author',
-                    dataIndex: 'Author',
-                    flex: 1
-                }, {
-                    text: 'Title',
-                    dataIndex: 'Title',
-                    flex: 1
-                }, {
-                    text: 'Manufacturer',
-                    dataIndex: 'Manufacturer',
-                    width: 125
-                }, {
-                    text: 'Product Group',
-                    dataIndex: 'ProductGroup',
-                    width: 125
-                }]}
-            />
+                store={this.store}>
+                <Column text="Author" dataIndex="Author" flex="1"/>
+                <Column text="Title" dataIndex='Title' flex="1"/>
+                <Column text="Manufacturer" dataIndex='Manufacturer' flex="1"/>
+                <Column text="Product Group" dataIndex='ProductGroup' width="125"/>
+            </Grid>
         )
     }
 }

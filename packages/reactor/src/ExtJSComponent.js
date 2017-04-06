@@ -6,14 +6,22 @@ import union from 'lodash.union';
 import capitalize from 'lodash.capitalize'
 import defaults from 'lodash.defaults';
 import cloneDeepWith from 'lodash.clonedeepwith';
-import isEqual from 'lodash.isequal';
+import isEqualWith from 'lodash.isequalwith';
+
+function isEqual(oldValue, newValue) {
+    return isEqualWith(oldValue, newValue, function customizer(objValue, otherValue) {
+        if (typeof objValue === 'function' && typeof otherValue === 'function') return true;
+    })
+}
 
 const CLASS_CACHE = {
     Grid: Ext.ClassManager.getByAlias('widget.grid'),
     Column: Ext.ClassManager.getByAlias('widget.gridcolumn'),
     Button: Ext.ClassManager.getByAlias('widget.button'),
     Menu: Ext.ClassManager.getByAlias('widget.menu'),
-    ToolTip: Ext.ClassManager.getByAlias('widget.tooltip')
+    ToolTip: Ext.ClassManager.getByAlias('widget.tooltip'),
+    CellBase: Ext.ClassManager.get('Ext.grid.cell.Base'),
+    WidgetCell: Ext.ClassManager.getByAlias('widget.widgetcell')
 }
 
 export default class ExtJSComponent extends Component {
@@ -148,7 +156,13 @@ export default class ExtJSComponent extends Component {
 
     _applyDefaults({ defaults, children }) {
         if (defaults) {
-            return Children.map(children, child => cloneElement(child, { ...defaults, ...child.props }));
+            return Children.map(children, child => {
+                if (isAssignableFrom(child.type, ExtJSComponent)) {
+                    return cloneElement(child, { ...defaults, ...child.props });
+                } else {
+                    return child;
+                }
+            })
         } else {
             return children;
         }
@@ -172,7 +186,7 @@ export default class ExtJSComponent extends Component {
                 const item = children[i];
 
                 if (item instanceof Ext.Base) {
-                    const prop = this._reactorPropForItem(item);
+                    const prop = this._propForChildElement(item);
 
                     if (prop) {
                         item.$reactorConfig = true;
@@ -183,7 +197,7 @@ export default class ExtJSComponent extends Component {
                             if (!array) array = config[prop.name] = [];
                             array.push(item);
                         } else {
-                            config[prop.name] = item;
+                            config[prop.name] = prop.value || item;
                         }
                     } else {
                         (item.dock ? dockedItems : items).push(item);
@@ -207,10 +221,10 @@ export default class ExtJSComponent extends Component {
      * matching other known relationships
      * @param {Ext.Base} item 
      */
-    _reactorPropForItem(item) {
+    _propForChildElement(item) {
         if (item.config.rel) {
-            if (typeof item.config.ref === 'string') {
-                return { name: item.config.ref }
+            if (typeof item.config.rel === 'string') {
+                return { name: item.config.rel }
             } else {
                 return item.config.rel;
             }
@@ -224,7 +238,15 @@ export default class ExtJSComponent extends Component {
             return { name: 'tooltip', array: false };
         } else if (isAssignableFrom(extJSClass, CLASS_CACHE.Grid) && CLASS_CACHE.Column && item instanceof CLASS_CACHE.Column) {
             return { name: 'columns', array: true };
+        } else if (isAssignableFrom(extJSClass, CLASS_CACHE.Column) && CLASS_CACHE.CellBase && item instanceof CLASS_CACHE.CellBase) {
+            return { name: 'cell', array: false, value: this._cloneConfig(item) }
+        } else if (isAssignableFrom(extJSClass, CLASS_CACHE.WidgetCell)) {
+            return { name: 'widget', array: false, value: this._cloneConfig(item) }
         }
+    }
+
+    _cloneConfig(item) {
+        return { ...item.initialConfig, xclass: item.$className };
     }
 
     /**
@@ -299,7 +321,7 @@ export default class ExtJSComponent extends Component {
 
                 if (setter) {
                     const value = this._cloneProps(newValue);
-                    if (this.reactorSettings.debug) console.log(setter.name, newValue);
+                    if (this.reactorSettings.debug) console.log(setter, newValue);
                     this.cmp[setter](value);
                 }
             }
@@ -383,7 +405,7 @@ export default class ExtJSComponent extends Component {
         let i=0, found=0;
 
         Children.forEach(this.props.children, child => {
-            const propForChild = this._reactorPropForItem(child);
+            const propForChild = this._propForChildElement(child);
 
             if (propForChild && propForChild.name === prop.name) {
                 if (i === indexInChildren) return found;
@@ -459,7 +481,7 @@ const ContainerMixin = Object.assign({}, ReactMultiChild.Mixin, {
 
         let childComponent = toComponent(child.cmp || child.getHostNode());
 
-        const prop = this._reactorPropForItem(childComponent);
+        const prop = this._propForChildElement(childComponent);
 
         if (prop) {
             this._mergeConfig(prop, childComponent, toIndex);
@@ -476,7 +498,7 @@ const ContainerMixin = Object.assign({}, ReactMultiChild.Mixin, {
                 
                 const newIndex = this._toReactChildIndex(toIndex);
                 
-                if (this.reactorSettings.debug) console.log('moveChild', this.cmp.$className, childComponent.$className, newIndex);
+                if (this.reactorSettings.debug) console.log(`moving ${childComponent.$className} to position ${newIndex} in ${this.cmp.$className}`);
 
                 this.cmp.insert(newIndex, childComponent);
             }
@@ -491,13 +513,13 @@ const ContainerMixin = Object.assign({}, ReactMultiChild.Mixin, {
      * @protected
      */
     createChild(child, afterNode, childNode) {
-        if (this.reactorSettings.debug) console.log('createChild', this.cmp.$className, childNode.$className);
-        
-        const prop = this._reactorPropForItem(childNode);
+        const prop = this._propForChildElement(childNode);
 
         if (prop) {
             this._mergeConfig(prop, childNode);
         } else {
+            if (this.reactorSettings.debug) console.log(`adding ${childNode.$className} to ${this.cmp.$className}`);
+
             if (!(childNode instanceof Ext.Base)) {
                 // we're appending a dom node
                 childNode = wrapDOMElement(childNode.node);
@@ -523,13 +545,13 @@ const ContainerMixin = Object.assign({}, ReactMultiChild.Mixin, {
      * @protected
      */
     removeChild(child, node) {
-        const prop = child instanceof ExtJSComponent && this._reactorPropForItem(child.cmp);
+        const prop = child instanceof ExtJSComponent && this._propForChildElement(child.cmp);
 
         if (prop) {
             this._mergeConfig(prop, null, null, true);
         } else {
             if (node instanceof HTMLElement && node._extCmp && !node._extCmp.destroying) {
-                if (this.reactorSettings.debug) console.log('removeChild', node._extCmp.$className);
+                if (this.reactorSettings.debug) console.log('removing', node._extCmp.$className);
                 node._extCmp.destroy();
             }
             // We don't need to do anything for Ext JS components because a component is automatically removed from it parent when destroyed
