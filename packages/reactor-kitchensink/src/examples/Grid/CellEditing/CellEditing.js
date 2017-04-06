@@ -6,7 +6,7 @@ Ext.require([
     'Ext.grid.plugin.ColumnResizing',
 ]);
 
-export default class CellEditingGridExample extends Component{
+export default class CellEditingGridExample extends Component {
    
     store = Ext.create('Ext.data.Store', {
         fields:[

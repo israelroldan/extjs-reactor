@@ -1,7 +1,7 @@
 // Grids
 import BasicGrid from './Grid/BasicGrid/BasicGrid';
 import GroupedGrid from './Grid/GroupedGrid/GroupedGrid';
-import CellEditingGrid from './Grid/CellEditing/Grid';
+import CellEditingGrid from './Grid/CellEditing/CellEditing';
 import EditableGrid from './Grid/EditableGrid/Grid';
 import XMLGrid from './Grid/XMLGrid/Grid';
 import BigDataGrid from './Grid/AdvancedFeatures/BigData/Grid';
