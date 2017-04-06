@@ -13,7 +13,13 @@ export default class Proxies extends Component {
     render() {
         const {noneText} = this.state;
         return (
-            <Panel ref="mainPanel" height="500" width="500" padding="5" shadow>
+            <Panel 
+                ref="mainPanel" 
+                height={Ext.platformTags.phone ? null : 500}
+                width={Ext.platformTags.phone ? null : 500}
+                padding={5} 
+                shadow
+            >
                 <div ref="none" className="proxy-none proxy-source">{noneText}</div>
                 <div ref="original" className="proxy-original proxy-source">Element as proxy with revert: true</div>
                 <div ref="placeholder" className="proxy-placeholder proxy-source">Placeholder</div>

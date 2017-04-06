@@ -8,7 +8,13 @@ export default class Handles extends Component {
 
     render() {
         return (
-            <Panel ref="mainPanel" height="400" width="400" padding="5" shadow>
+            <Panel 
+                ref="mainPanel" 
+                height={Ext.platformTags.phone ? null : 400} 
+                width={Ext.platformTags.phone ? null : 400}
+                padding={5}
+                shadow
+            >
                 <div ref="handleRepeat" className="handle-repeat handle-source">
                     <div className="handle">Foo</div>
                     <div className="handle">Bar</div>

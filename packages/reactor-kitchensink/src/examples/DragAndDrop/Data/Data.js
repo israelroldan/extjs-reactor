@@ -8,7 +8,13 @@ export default class Data extends Component {
 
     render() {
         return (
-            <Panel ref="mainPanel" height={350} width={250} padding={5} shadow>
+            <Panel 
+                ref="mainPanel" 
+                height={Ext.platformTags.phone ? null : 350} 
+                width={Ext.platformTags.phone ? null : 250}
+                padding={5}
+                shadow
+            >
                 <div ref="source" className="data-source">
                     <div data-days="2" className="handle">Overnight</div>
                     <div data-days="7" className="handle">Expedited</div>

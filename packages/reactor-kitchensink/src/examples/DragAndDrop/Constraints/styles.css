@@ -31,10 +31,19 @@
     top: 10px;
 }
 
+.x-phone .dand-constraints-vertical { 
+    left: 65vw;
+}
+
 .dand-constraints-horizontal {
     background-color: #1e88e5;
     left: 280px;
     top: 100px;
+}
+
+.x-phone .dand-constraints-horizontal {
+    left: 10px;
+    top: 65vh;
 }
 
 .dand-constraints-snap {
@@ -43,18 +52,7 @@
     top: 190px;
 }
 
-@media all and (max-width: 768px) {
-    .dand-constraints-vertical {
-        left: 65vw;
-    }
-
-    .dand-constraints-horizontal {
-        left: 10px;
-        top: 65vh;
-    }
-
-    .dand-constraints-snap {
-        left: 65vw;
-        top: 65vh;
-    }
+.x-phone .dand-constraints-snap {
+    left: 65vw;
+    top: 65vh;
 }

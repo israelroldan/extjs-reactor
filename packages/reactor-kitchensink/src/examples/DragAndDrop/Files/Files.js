@@ -15,9 +15,15 @@ export default class Files extends Component {
 
     render() {
         const {iconCls, labelText} = this.state;
-        console.log('Render', this.state);
+        
         return (
-            <Panel ref="mainPanel" height={400} width={400} padding={5} shadow>
+            <Panel 
+                ref="mainPanel"
+                height={Ext.platformTags.phone ? null : 400}
+                width={Ext.platformTags.phone ? null : 400}
+                padding={5}
+                shadow
+            >
                 <div ref="label" className="drag-file-label">{labelText}</div>
                 <div ref="icon" className={iconCls}></div>
             </Panel>
@@ -28,14 +34,12 @@ export default class Files extends Component {
         this.setState({
             iconCls: 'drag-file-icon active'
         });
-        console.log('drageneter', this.state);
     }
 
     onDragLeave() {
         this.setState({
             iconCls: 'drag-file-icon'
         });
-        console.log('dragleave', this.state);
     }
 
     onDrop(target, info) {
@@ -44,7 +48,6 @@ export default class Files extends Component {
             iconCls: 'drag-file-icon dropped fa-spin',
             labelText: files.length > 1 ? `Dropped ${files.length} files.` : `Dropped ${files[0].name}`
         });
-        console.log('drop', this.state);
 
         this.timer = setTimeout(() => {
             if(!this.refs.mainPanel.destroyed) {
@@ -52,7 +55,6 @@ export default class Files extends Component {
                     iconCls: 'drag-file-icon drag-file-fadeout',
                     labelText: DEFAULT_TEXT
                 });
-                console.log('timer', this.state);
             }
 
             this.timer = null;

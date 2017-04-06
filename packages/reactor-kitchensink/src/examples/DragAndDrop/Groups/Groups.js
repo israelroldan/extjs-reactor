@@ -8,7 +8,13 @@ export default class Groups extends Component {
     
     render() {
         return (
-            <Panel ref="mainPanel" height={300} width={400} padding={5} shadow>
+            <Panel 
+                ref="mainPanel"
+                height={Ext.platformTags.phone ? null : 300} 
+                width={Ext.platformTags.phone ? null : 400}
+                padding={5}
+                shadow
+            >
                 <div className="group1">
                     <div ref="src1" className="group-source-group1 group-source">group1</div>
                     <div ref="src2" className="group-source-group2 group-source">group2</div>
