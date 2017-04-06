@@ -6,14 +6,14 @@ import EditableGrid from './Grid/EditableGrid/EditableGrid';
 import XMLGrid from './Grid/XMLGrid/XMLGrid';
 import BigDataGrid from './Grid/AdvancedFeatures/BigData/Grid';
 import ReconfigureGrid from './Grid/AdvancedFeatures/ReconfigureGrid/Grid';
-import SummaryRowGrid from './Grid/AddonsDecorations/SummaryRow/Grid';
-import ViewOptionsGrid from './Grid/AddonsDecorations/ViewOptions/Grid';
-import RowExpanderGrid from './Grid/AddonsDecorations/RowExpander/Grid';
+import SummaryRowGrid from './Grid/AddonsDecorations/SummaryRow/SummaryRow';
+import ViewOptionsGrid from './Grid/AddonsDecorations/ViewOptions/ViewOptions';
+import RowExpanderGrid from './Grid/AddonsDecorations/RowExpander/RowExpander';
 import ToolGrid from './Grid/AddonsDecorations/GridTools/GridTools';
 import StockTickerGrid from './Grid/AdvancedFeatures/StockTicker/StockTicker'; 
 import ReduxGrid from './ReduxGrid/ReduxGrid';
 import PivotGrid from './PivotGrid/PivotGrid';
-import RowBodyGrid from './Grid/AddonsDecorations/RowBody/Grid';
+import RowBodyGrid from './Grid/AddonsDecorations/RowBody/RowBody';
 
 import Panel from './Panel/Panel';
 
