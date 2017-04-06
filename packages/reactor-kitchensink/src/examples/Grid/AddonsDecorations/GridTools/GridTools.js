@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid } from '@extjs/reactor/modern';
+import { Grid, Column } from '@extjs/reactor/modern';
 import { Template } from '@extjs/reactor';
 
 export default class GridToolsExample extends Component {
@@ -255,40 +255,6 @@ export default class GridToolsExample extends Component {
                 store={this.store}
                 columnLines
                 grouped
-                columns={[{
-                    text: 'Name',
-                    dataIndex: 'name',
-                    flex: 1,
-                    cell: {
-                        tools: {
-                            pin: {
-                                handler: this.onPin
-                            }
-                        }
-                    }
-                }, {
-                    text: 'Cuisine',
-                    dataIndex: 'cuisine',
-                    flex: 1,
-                    cell: {
-                        tools: {
-                            gear: {
-                                handler: this.onGear,
-                                zone: 'end'
-                            }
-                        }
-                    }
-                }, {
-                    text: 'Actions',
-                    width: 80,
-                    cell: {
-                        tools: {
-                            search:{
-                                handler: this.onSearch
-                            } 
-                        }
-                    }
-                }]}
                 itemConfig={{
                     header:{
                         tools:{
@@ -307,8 +273,11 @@ export default class GridToolsExample extends Component {
                         }
                     }
                 }}
-                helperTpl={this.helperTpl}
-            />
+                helperTpl={this.helperTpl}>
+                <Column text="Name" dataIndex="name" flex="1" cell={{tools:{pin:{handler:this.onPin}}}}/>
+                <Column text="Cuisine" dataIndex="cuisine" flex="1" cell={{tools:{pin:{handler:this.onGear}}}}/>
+                <Column text="Actions"  width="80" cell={{tools:{pin:{handler:this.onSearch}}}}/>
+            </Grid>
         )
     }
 }
