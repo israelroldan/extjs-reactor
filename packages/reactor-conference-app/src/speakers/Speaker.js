@@ -14,9 +14,9 @@ class Speaker extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    console.log(state);
-    return state.speaker;
+const mapStateToProps = ({speakers}) => {
+    console.log(speakers);
+    return speakers.speaker || {};
 }
 
 export default connect(mapStateToProps)(Speaker);

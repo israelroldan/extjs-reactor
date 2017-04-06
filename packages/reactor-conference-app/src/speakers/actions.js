@@ -20,10 +20,14 @@ export function loadSpeaker(id) {
             dispatch(setTitle(speaker.name, '/speakers'));
         };
 
-        if(store.loading) {
-            store.on('load', doLoadSpeaker, null, {single: true});
-        } else {
+        if(store.isLoaded()) {
             doLoadSpeaker();
+        } else {
+            store.on('load', doLoadSpeaker, null, {single: true});
+            // If store hasn't been loaded yet, load it.
+            if(!store.isLoading()) {
+                dispatch(loadSpeakers());
+            }
         }
     }
 }
