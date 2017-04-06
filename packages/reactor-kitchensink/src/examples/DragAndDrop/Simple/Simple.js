@@ -51,7 +51,6 @@ export default class Simple extends Component {
     }
 
     componentDidMount() {
-        window.myStupidCmp = this;
         this.source = new Ext.drag.Source({
             element: this.refs.dragItem,
             constrain: this.refs.dragContainer.el,
@@ -60,5 +59,9 @@ export default class Simple extends Component {
                 dragend: this.onDragEnd.bind(this)
             }
         });
+    }
+
+    componentWillUnmount() {
+        Ext.destroy(this.source);
     }
 }

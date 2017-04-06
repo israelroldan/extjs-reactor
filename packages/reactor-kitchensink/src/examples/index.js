@@ -193,6 +193,7 @@ import InProgress from '../InProgress';
 
 // Drag & Drop
 import SimpleDandD from './DragAndDrop/Simple/Simple';
+import Constrains from './DragAndDrop/Constraints/Constraints';
 
 const root = {
     id: 'root',
@@ -294,7 +295,8 @@ const root = {
             { text: 'Window', component: InProgress, center: true }
         ]},
         { text: 'Drag & Drop', children: [
-            { text: 'Simple', component: SimpleDandD }
+            { text: 'Simple', component: SimpleDandD },
+            { text: 'Constraints', component: Constrains }
         ]},
         { text: 'Draw', component: Draw },
         { text: 'EdgeMenu', component: EdgeMenu, center: true },
