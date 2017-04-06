@@ -9,4 +9,4 @@ window.d3 = d3;
 
 require('./index.css');
 
-launch(<App/>)
+launch(<App/>, {}, { debug: false })

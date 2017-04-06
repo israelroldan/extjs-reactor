@@ -60,7 +60,7 @@ export function reactify(...targets) {
             }
 
             createExtJSComponent(config) {
-                if (settings.debug) console.log('create', target.$className);
+                if (settings.debug) console.log('create', target.$className, config);
                 const result = new target(config)
                 result.$createdByReactor = true;
                 return result;

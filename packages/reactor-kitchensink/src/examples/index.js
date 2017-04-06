@@ -10,6 +10,7 @@ import SummaryRowGrid from './Grid/AddonsDecorations/SummaryRow/Grid';
 import ViewOptionsGrid from './Grid/AddonsDecorations/ViewOptions/Grid';
 import RowExpanderGrid from './Grid/AddonsDecorations/RowExpander/Grid';
 import ToolGrid from './Grid/AddonsDecorations/GridTools/GridTools';
+import StockTickerGrid from './Grid/AdvancedFeatures/StockTicker/StockTicker'; 
 import ReduxGrid from './ReduxGrid/ReduxGrid';
 import PivotGrid from './PivotGrid/PivotGrid';
 import RowBodyGrid from './Grid/AddonsDecorations/RowBody/Grid';
@@ -331,7 +332,8 @@ const root = {
             ]},
             { text: 'AdvancedFeatures', children:[
                 { text: 'Big Data', component: BigDataGrid},
-                { text: 'Reconfigure Grid', component: ReconfigureGrid }
+                { text: 'Reconfigure Grid', component: ReconfigureGrid },
+                { text: 'Stock Ticker', component: StockTickerGrid}
             ]},
             { text: 'PivotGrid', component: PivotGrid },
             { text: 'Redux Grid', component: ReduxGrid }
