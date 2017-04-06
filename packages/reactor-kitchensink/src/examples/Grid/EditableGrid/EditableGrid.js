@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Container } from '@extjs/reactor/modern';
+import { Grid, Column } from '@extjs/reactor/modern';
 import model from './GridModel';
 import '../CompanyData';
 
@@ -49,58 +49,13 @@ export default class EditableGridExample extends Component {
                 title='Stock Prices'
                 shadow 
                 store={this.store}
-                plugins={'grideditable'}
-                columns={[{
-                    text: 'Company',
-                    flex: 1,
-                    dataIndex: 'name',
-                    editable: true
-                }, {
-                    text: 'Price',
-                    width: 75,
-                    dataIndex: 'price',
-                    formatter: 'usMoney',
-                    editable: true,
-                    editor: {
-                        xtype: 'numberfield',
-                        required: true,
-                        validators: {
-                            type: 'number',
-                            message: 'Invalid price'
-                        }
-                    }
-                }, {
-                    text: 'Change',
-                    width: 90,
-                    renderer: this.renderChange,
-                    dataIndex: 'change',
-                    cell: {
-                        encodeHtml: false
-                    }
-                }, {
-                    text: '% Change',
-                    width: 100,
-                    dataIndex: 'pctChange',
-                    renderer: this.renderPercent,
-                    cell: {
-                        encodeHtml: false
-                    }
-                }, {
-                    text: 'Last Updated',
-                    width: 125,
-                    dataIndex: 'lastChange',
-                    formatter: 'date("m/d/Y")',
-                    editable: true,
-                    editor: {
-                        xtype: 'datepickerfield',
-                        required: true,
-                        validators: {
-                            type: 'date',
-                            message: 'Invalid date'
-                        }
-                    }
-                }]}
-            />
+                plugins={'grideditable'}>
+                <Column text="Company" flex="1" dataIndex="name" editable={true}/>
+                <Column text="Price" width="75" dataIndex="price" formatter="usMoney" editable={true} editor={{xtype:'numberfield', required:true, validators:{type:"number", message:"Invalid price"}}}/>
+                <Column text="Change" width="90" renderer={this.renderChange} dataIndex="change" cell={{encodeHtml:false}}/>
+                <Column text="% Change" width="100" renderer={this.renderPercent} dataIndex="pctChange" cell={{encodeHtml:false}}/>
+                <Column text="Last Updated" width="125" dataIndex="lastChange" formatter="date('m/d/Y')" editable={true} editor={{xtype:'datepickerfield', required:true, validators:{type:"date", message:"Invalid date"}}}/>
+            </Grid>
         )
     }
 }
