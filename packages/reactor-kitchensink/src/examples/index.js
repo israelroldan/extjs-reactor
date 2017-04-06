@@ -191,6 +191,9 @@ import CenterLayout from './Layouts/center/center';
 
 import InProgress from '../InProgress';  
 
+// Drag & Drop
+import SimpleDandD from './DragAndDrop/Simple/Simple';
+
 const root = {
     id: 'root',
     children: [
@@ -289,6 +292,9 @@ const root = {
         { text: 'Dialogs', children: [
             { text: 'Msg', component: Msg, center: true },
             { text: 'Window', component: InProgress, center: true }
+        ]},
+        { text: 'Drag & Drop', children: [
+            { text: 'Simple', component: SimpleDandD }
         ]},
         { text: 'Draw', component: Draw },
         { text: 'EdgeMenu', component: EdgeMenu, center: true },
