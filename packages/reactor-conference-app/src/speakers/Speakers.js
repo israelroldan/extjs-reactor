@@ -10,6 +10,15 @@ import {
 
 class Speakers extends Component {
 
+    constructor({ children }) {
+        super();
+        this.state = { children };
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.children) this.setState({ children: nextProps.children });
+    }
+
     itemTpl = new Template(data => (
         <div className="app-list-content">
             <div className="app-list-headshot" style={{backgroundImage: `url(${data.image})`}}></div>
@@ -20,12 +29,17 @@ class Speakers extends Component {
         </div>
     ))
 
+    onItemTap = (list, index, target, record) => {
+        self.location.hash = `/speakers/${record.id}`;
+    }
+
     componentDidMount() {
         this.props.dispatch(loadSpeakers())
     }
 
     render() {
-        const { store, filterFavorites, filtered, showSpeaker, children } = this.props;
+        const { store, filterFavorites, filtered, showSpeaker } = this.props;
+        const { children } = this.state;
 
         return (
             <Container layout={{ type: 'card', animation: 'slide' }} activeItem={showSpeaker && children ? 1 : 0}>

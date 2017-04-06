@@ -14,8 +14,8 @@ const middleware = [
 if (window.devToolsExtension) middleware.push(window.devToolsExtension())
 
 const store = createStore(
-    combineReducers({ root, schedule, speakers, event }), 
-    initialState, 
+    combineReducers({ root, schedule, speakers, event }),
+    initialState,
     compose(...middleware)
 );
 
