@@ -8,7 +8,7 @@ import BigDataGrid from './Grid/AdvancedFeatures/BigData/Grid';
 import ReconfigureGrid from './Grid/AdvancedFeatures/ReconfigureGrid/Grid';
 import SummaryRowGrid from './Grid/AddonsDecorations/SummaryRow/Grid';
 import ViewOptionsGrid from './Grid/AddonsDecorations/ViewOptions/Grid';
-import RowExpanderGrid from './Grid/AddonsDecorations/RowExpander/Grid';
+import RowExpanderGrid from './Grid/AddonsDecorations/RowExpander/RowExpander';
 import ToolGrid from './Grid/AddonsDecorations/GridTools/GridTools';
 import ReduxGrid from './ReduxGrid/ReduxGrid';
 import PivotGrid from './PivotGrid/PivotGrid';
