@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Toolbar, Button, Label, SliderField, TextField, CheckBoxField } from '@extjs/reactor/modern';
+import { Grid, Toolbar, Button, Label, SliderField, TextField, CheckBoxField, Column } from '@extjs/reactor/modern';
 import model from './StockTickerModel';
 import '../../CompanyData';
 import './Ticker.css';
@@ -82,11 +82,11 @@ export default class StockTickerGridExample extends Component {
     render(){
         return(
             <Grid 
-               title='Ticker Grid'
-               ref={grid => this.viewModel = grid.viewModel}
-               store={this.store}
-               onInitialize={this.init}
-               viewModel={{
+                title='Ticker Grid'
+                ref={grid => this.viewModel = grid.viewModel}
+                store={this.store}
+                onInitialize={this.init}
+                viewModel={{
                     data: {
                         flashBackground: false
                     },
@@ -104,75 +104,13 @@ export default class StockTickerGridExample extends Component {
                             }
                         }
                     }
-                }}
-               columns={[
-                   {
-                        xtype: 'textcolumn',
-                        text: 'Company',
-                        flex: 1,
-                        sortable: true,
-                        dataIndex: 'name'
-                    }, {
-                        xtype: 'textcolumn',
-                        text: 'Price',
-                        width: 95,
-                        align: 'right',
-                        cell: {
-                            bind: '{record.price:usMoney}'
-                        },
-                        sortable: false
-                    }, {
-                        text: 'Trend',
-                        width: 200,
-                        cell: {
-                            bind: '{record.trend}',
-                            xtype: 'widgetcell',
-                            forceWidth: true,
-                            widget: {
-                                xtype: 'sparklineline',
-                                tipTpl: 'Price: {y:number("0.00")}'
-                            }
-                        },
-                        sortable: false
-                    }, {
-                        xtype: 'textcolumn',
-                        text: 'Change',
-                        width: 90,
-                        align: 'right',
-                        cell: {
-                            bind: {
-                                value: '{record.change:number(".00")}',
-                                cls: '{cellCls}',
-                                bodyCls: '{record.change:sign("ticker-body-loss", "ticker-body-gain")}'
-                            }
-                        },
-                        sortable: false
-                    }, {
-                        xtype: 'textcolumn',
-                        text: '% Change',
-                        width: 100,
-                        align: 'right',
-                        cell: {
-                            bind: {
-                                value: '{record.pctChange:number(".00")}',
-                                cls: '{cellCls}',
-                                bodyCls: '{record.pctChange:sign("ticker-body-loss", "ticker-body-gain")}'
-                            }
-                        },
-                        sortable: false
-                    }, {
-                        xtype: 'textcolumn',
-                        text: 'Last Updated',
-                        hidden: true,
-                        width: 115,
-                        cell: {
-                            bind: '{record.lastChange:date("m/d/Y H:i:s")}'
-                        },
-                        sortable: false
-                    }]
-
-               }
-            >
+                }}>
+            <Column xtype="textcolumn" text="Company" dataIndex="name" flex="1" sortable={true}/>
+            <Column xtype="textcolumn" text="Price" width="95" align="right" cell={{bind:'{record.price:usMoney}'}} sortable={true}/>
+            <Column text="Trend" width="200" cell={{bind:'{record.trend}', xtype:"widgetcell", forceWidth:true, widget:{xtype:'sparkline', tipTpl:'Price: {y:number("0.00")}'}}}/>
+            <Column xtype="textcolumn" text="Change" width="90" align="right" cell={{bind:{value:'{record.change:number(".00")}', cls:'{cellCls}', bodyCls:'{record.change:sign("ticker-body-loss", "ticker-body-gain")}'}}} sortable={false}/>
+            <Column xtype="textcolumn" text="% Change" width="100" align="right" cell={{bind:{value:'{record.pctChange:number(".00")}', cls:'{cellCls}', bodyCls:'{record.change:sign("ticker-body-loss", "ticker-body-gain")}'}}} sortable={false}/>
+            <Column xtype="textcolumn" text="Last Updated" hidden={true} width="115" cell={{bind:'{record.LastChange:date("m/d/Y H:i:s")}'}} sortable={false}/>
             <Toolbar
                 docked="bottom"
                 defaults={{
