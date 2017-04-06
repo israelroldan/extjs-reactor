@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Grid } from '@extjs/reactor/modern';
-import { Template } from '@extjs/reactor';
+import { Template, Column } from '@extjs/reactor';
 
 export default class GridToolsExample extends Component {
     
