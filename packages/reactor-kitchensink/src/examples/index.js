@@ -194,6 +194,7 @@ import InProgress from '../InProgress';
 // Drag & Drop
 import SimpleDandD from './DragAndDrop/Simple/Simple';
 import Constrains from './DragAndDrop/Constraints/Constraints';
+import Proxies from './DragAndDrop/Proxies/Proxies';
 
 const root = {
     id: 'root',
@@ -296,7 +297,8 @@ const root = {
         ]},
         { text: 'Drag & Drop', children: [
             { text: 'Simple', component: SimpleDandD },
-            { text: 'Constraints', component: Constrains }
+            { text: 'Constraints', component: Constrains },
+            { text: 'Proxies', component: Proxies },
         ]},
         { text: 'Draw', component: Draw },
         { text: 'EdgeMenu', component: EdgeMenu, center: true },
