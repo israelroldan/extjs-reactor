@@ -23,8 +23,6 @@ export default class TreeDecorationsExample extends Component {
                     singleExpand
                 />
             </TabPanel>
-                
-            
         )
     }
 }
