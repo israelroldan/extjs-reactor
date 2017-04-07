@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import { Grid, Column } from '@extjs/reactor/modern';
 import { Template } from '@extjs/reactor';
-import '../../CompanyData';
 import model from './GridModel';
 
 export default class RowBodyGridExample extends Component {
@@ -12,7 +11,7 @@ export default class RowBodyGridExample extends Component {
         pageSize: 0,
         proxy: {
             type: 'ajax',
-            url: '/KitchenSink/Company'
+            url: '/data/CompanyData.json'
         } 
     });
 

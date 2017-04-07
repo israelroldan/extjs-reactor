@@ -25,11 +25,9 @@ export default class XmlGridExample extends Component {
         }
     })
 
-    render(){
-        return(
-            <Grid
-                title="Products"
-                store={this.store}>
+    render() {
+        return (
+            <Grid shadow title="Products" store={this.store}>
                 <Column text="Author" dataIndex="Author" flex="1"/>
                 <Column text="Title" dataIndex='Title' flex="1"/>
                 <Column text="Manufacturer" dataIndex='Manufacturer' flex="1"/>

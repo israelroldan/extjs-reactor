@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import { Grid, Column } from '@extjs/reactor/modern';
 import { Template } from '@extjs/reactor';
-import '../../CompanyData';
 import model from './GridModel';
 
 Ext.require(['Ext.grid.plugin.SummaryRow']);
@@ -14,7 +13,7 @@ export default class RowBodyGridExample extends Component {
         pageSize: 0,
         proxy: {
             type: 'ajax',
-            url: '/KitchenSink/Company'
+            url: '/data/CompanyData.json'
         } 
     });
 
@@ -50,7 +49,9 @@ export default class RowBodyGridExample extends Component {
                 title="Summary Row Grid"
                 ref="grid"
                 store={this.store}
-                plugins="gridsummaryrow">
+                plugins="gridsummaryrow"
+                shadow
+            >
                 <Column text="Company" dataIndex="name" flex="1"/>
                 <Column text="Price" dataIndex="price" width="75" formatter="usMoney" summaryFormatter="usMoney" summaryType="average"/>
                 <Column text="Change" dataIndex="priceChange" width="90" renderer={this.renderChange}  summaryType="max" cell={{encodeHtml:false}}/>

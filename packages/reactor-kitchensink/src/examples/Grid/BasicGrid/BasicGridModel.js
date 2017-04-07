@@ -113,7 +113,7 @@ export default Ext.define('BasicGridModel', {
         reader: {
             type: 'json'
         },
-        url: '/KitchenSink/Company'
+        url: '/data/CompanyData.json'
     },
 
     validators: {

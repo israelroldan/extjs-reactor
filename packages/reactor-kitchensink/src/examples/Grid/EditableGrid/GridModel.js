@@ -113,7 +113,7 @@ export default Ext.define('EditableGridModel', {
         reader: {
             type: 'json'
         },
-        url: '/KitchenSink/Company'
+        url: '/data/CompanyData.json'
     },
 
     validators: {

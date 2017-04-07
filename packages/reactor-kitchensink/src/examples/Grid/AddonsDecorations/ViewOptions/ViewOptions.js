@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import { Grid, Column } from '@extjs/reactor/modern';
 import { Template } from '@extjs/reactor';
-import '../../CompanyData';
 import model from './GridModel';
 
 Ext.require(['Ext.grid.plugin.ViewOptions']);
@@ -14,7 +13,7 @@ export default class ViewOptionsGridExample extends Component {
         pageSize: 0,
         proxy: {
             type: 'ajax',
-            url: '/KitchenSink/Company'
+            url: '/data/CompanyData.json'
         } 
     });
 
@@ -50,7 +49,9 @@ export default class ViewOptionsGridExample extends Component {
                 title="Grid with View Options"
                 store={this.store}
                 plugins="gridviewoptions"
-                signTpl={this.signTpl}>
+                signTpl={this.signTpl}
+                shadow
+            >
                 <Column text="Company" dataIndex="name" flex="1"/>
                 <Column text="Phone" dataIndex="phone" flex="1" hidden={true}/>
                 <Column text="Industry" dataIndex="industry" flex="1" hidden={true}/>

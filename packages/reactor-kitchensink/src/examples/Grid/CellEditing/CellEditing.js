@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Column } from '@extjs/reactor/modern';
+import { Grid, Column, DateColumn, CheckColumn } from '@extjs/reactor/modern';
 
 Ext.require([
     'Ext.grid.plugin.CellEditing',
@@ -45,12 +45,13 @@ export default class CellEditingGridExample extends Component {
                 plugins={[
                     'gridcellediting',
                     'columnresizing'
-                ]}>
-                <Column text="Common Name" flex="1" dataIndex="common" editable={true}/>
-                <Column text="Light" width="125" dataIndex="light" editable={true} editor={{xtype:'selectfield', options:['Shade', 'Mostly Shady', 'Sun or Shade', 'Mostly Sunny','Sunny']}}/>
-                <Column text="price" width="100" formatter="usMoney" dataIndex="price" editable={true}/>
-                <Column xtype="datecolumn" text="Available" format="M d, Y" width="125" dataIndex='availDate' editor={{allowBlur:false, field:{xtype:'datepickerfield'}}}/> 
-                <Column text="Indoor?" xtype="checkcolumn" headerCheckbox={true} dataIndex="indoor"/>
+                ]}
+            >
+                <Column text="Common Name" flex="1" dataIndex="common" editable/>
+                <Column text="Light" width="125" dataIndex="light" editable editor={{xtype:'selectfield', options:['Shade', 'Mostly Shady', 'Sun or Shade', 'Mostly Sunny','Sunny']}}/>
+                <Column text="Price" width="100" formatter="usMoney" dataIndex="price" editable/>
+                <DateColumn text="Available" format="M d, Y" width="125" dataIndex='availDate' editor={{allowBlur:false, field:{xtype:'datepickerfield'}}}/> 
+                <CheckColumn text="Indoor?" headerCheckbox dataIndex="indoor"/>
             </Grid>
         )
     }
