@@ -1,21 +1,24 @@
 {
-  "name": "@extjs/reactor-boilerplate",
+  "name": "@extjs/reactor-tests",
   "private": true,
   "version": "0.2.18",
-  "description": "A boilerplate project showing how to integrate React and Ext JS using the modern toolkit.",
+  "description": "Sencha Test suite for @extjs/reactor",
   "main": "index.js",
   "scripts": {
     "clean": "rimraf build",
-    "start": "webpack-dev-server --progress --colors",
-    "build": "npm run clean && NODE_ENV=production webpack --env.prod=true --progress --colors",
-    "prod": "NODE_ENV=production webpack-dev-server --env.prod=true --progress --colors"
+    "start": "webpack-dev-server --progress",
+    "build": "npm run clean && NODE_ENV=production webpack --env.prod=true"
   },
-  "author": "Sencha",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sencha/extjs-reactor.git"
   },
+  "author": "Sencha",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sencha/extjs-reactor/issues"
+  },
+  "homepage": "https://github.com/sencha/extjs-reactor#readme",
   "dependencies": {
     "@extjs/reactor": "^0.2.16",
     "react": "^15.4.0",
@@ -30,6 +33,7 @@
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-2": "^6.13.0",
     "html-webpack-plugin": "^2.24.1",
+    "sencha": "0.0.1",
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.4.1"
   }
