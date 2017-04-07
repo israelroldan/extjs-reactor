@@ -35,6 +35,8 @@ import Carousel from './Carousel/Carousel';
 import Tree from './Tree/Tree';
 import TreeList from './TreeList/TreeList';
 import EditableTree from './Trees/EditableTree/EditableTree';
+import TreeGrid from './Trees/TreeGrid/TreeGrid';
+import TreeDecorations from './Trees/TreeDecorations/TreeDecorations';
 
 // Lists 
 
@@ -193,6 +195,15 @@ import CenterLayout from './Layouts/center/center';
 
 import InProgress from '../InProgress';  
 
+// Drag & Drop
+import SimpleDandD from './DragAndDrop/Simple/Simple';
+import Constrains from './DragAndDrop/Constraints/Constraints';
+import Proxies from './DragAndDrop/Proxies/Proxies';
+import Handles from './DragAndDrop/Handles/Handles';
+import Groups from './DragAndDrop/Groups/Groups';
+import Data from './DragAndDrop/Data/Data';
+import Files from './DragAndDrop/Files/Files';
+
 const root = {
     id: 'root',
     children: [
@@ -292,6 +303,15 @@ const root = {
             { text: 'Msg', component: Msg, center: true },
             { text: 'Window', component: InProgress, center: true }
         ]},
+        { text: 'Drag & Drop', children: [
+            { text: 'Simple', component: SimpleDandD },
+            { text: 'Constraints', component: Constrains },
+            { text: 'Proxies', component: Proxies },
+            { text: 'Handles', component: Handles },
+            { text: 'Groups', component: Groups },
+            { text: 'Data', component: Data },
+            { text: 'Files', component: Files }
+        ]},
         { text: 'Draw', component: Draw },
         { text: 'EdgeMenu', component: EdgeMenu, center: true },
         { text: 'Form Fields', children: [
@@ -383,7 +403,9 @@ const root = {
         { text: 'Trees', children: [
             { text: 'Tree', component: Tree },
             { text: 'TreeList', component: TreeList },
-            { text: 'EditableTree', component: EditableTree}
+            { text: 'Editable Tree', component: EditableTree},
+            { text: 'Tree Grid', component: TreeGrid },
+            { text: 'Tree Decorations', component:TreeDecorations}
         ] }
     ]
 };
