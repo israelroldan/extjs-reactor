@@ -49,9 +49,7 @@ export default class NegativeValuesAreaChartExample extends Component {
         tooltip.setHtml(`${record.get('quarter')}: ${record.get(item.field)}`);
     }
 
-    changeTheme = (select, choice) => {
-        this.setState({ theme: choice.get('value')})
-    }
+    changeTheme = theme => this.setState({ theme })
 
     render(){
         const { theme } = this.state;
