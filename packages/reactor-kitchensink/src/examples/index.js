@@ -34,6 +34,7 @@ import Carousel from './Carousel/Carousel';
 
 import Tree from './Tree/Tree';
 import TreeList from './TreeList/TreeList';
+import TreeGrid from './Trees/TreeGrid/TreeGrid';
 
 // Lists 
 
@@ -381,7 +382,8 @@ const root = {
         { text: 'Touch Events', component: TouchEvents },
         { text: 'Trees', children: [
             { text: 'Tree', component: Tree },
-            { text: 'TreeList', component: TreeList }
+            { text: 'TreeList', component: TreeList },
+            { text: 'Tree Grid', component: TreeGrid }
         ] }
     ]
 };
