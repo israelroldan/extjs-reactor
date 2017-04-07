@@ -3,15 +3,10 @@ import { Tree, NumberColumn, TreeColumn } from '@extjs/reactor/modern';
 
 export default class TreeGridExample extends Component{
 
-    componentDidMount() {
-        this.viewModel = this.tree.viewModel;
-    }
-
     render(){
         return(
             <Tree
                 title="Tree Grid"
-                ref={tree => this.tree = tree}
                 height={400}
                 width={600}
                 bind='{navItems}'
