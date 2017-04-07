@@ -89,3 +89,28 @@
 .app-notification-time {
     font-weight: bold;
 }
+
+.app-speaker-image {
+    float: left;
+    
+    .x-phone & {
+        width: 40vw;
+    }
+}
+
+.app-speaker-text {
+    float: right;
+
+    .x-phone & {
+        width: 45vw;
+    }
+}
+
+.app-speaker-name {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.app-speaker-title {
+    padding-top: 5px;
+}

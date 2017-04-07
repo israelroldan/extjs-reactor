@@ -222,7 +222,7 @@ export default class ExtJSComponent extends Component {
      * @param {Ext.Base} item 
      */
     _propForChildElement(item) {
-        if (item.config.rel) {
+        if (item.config && item.config.rel) {
             if (typeof item.config.rel === 'string') {
                 return { name: item.config.rel }
             } else {

@@ -1,7 +1,7 @@
 import { 
-    TOGGLE_FAVORITE, 
-    LOAD_SPEAKERS, 
-    TOGGLE_FILTER_FAVORITES 
+    LOAD_SPEAKERS,
+    LOAD_SPEAKER,
+    UNLOAD_SPEAKER
 } from './actions';
 
 let favorites = localStorage.getItem('favoriteSpeakers');
@@ -26,6 +26,12 @@ export default function speakersReducer(state = initialState, action) {
         case LOAD_SPEAKERS: {
             state.store.load()
             return { ...state };
+        }
+        case LOAD_SPEAKER: {
+            return { ...state, speaker: action.speaker, showSpeaker: true }
+        }
+        case UNLOAD_SPEAKER: {
+            return { ...state, showSpeaker: false }
         }
         default:
             return { ...state };
