@@ -63,4 +63,14 @@
     "name": "Alex Tokarev",
     "title": "Software Engineer - Sencha",
     "image": "/resources/headshots/Art-Landro.jpg"
+}, {
+    "id": 14,
+    "name": "David Chandler",
+    "title": "Software Enginner - Sencha",
+    "image": "/resources/headshots/Art-Landro.jpg"
+}, {
+    "id": 15,
+    "name": "Steffen Hiller",
+    "title": "Software Engineer - Sencha",
+    "image": "/resources/headshots/Art-Landro.jpg"
 }]
