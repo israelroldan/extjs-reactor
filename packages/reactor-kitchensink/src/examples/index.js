@@ -192,6 +192,15 @@ import CenterLayout from './Layouts/center/center';
 
 import InProgress from '../InProgress';  
 
+// Drag & Drop
+import SimpleDandD from './DragAndDrop/Simple/Simple';
+import Constrains from './DragAndDrop/Constraints/Constraints';
+import Proxies from './DragAndDrop/Proxies/Proxies';
+import Handles from './DragAndDrop/Handles/Handles';
+import Groups from './DragAndDrop/Groups/Groups';
+import Data from './DragAndDrop/Data/Data';
+import Files from './DragAndDrop/Files/Files';
+
 const root = {
     id: 'root',
     children: [
@@ -290,6 +299,15 @@ const root = {
         { text: 'Dialogs', children: [
             { text: 'Msg', component: Msg, center: true },
             { text: 'Window', component: InProgress, center: true }
+        ]},
+        { text: 'Drag & Drop', children: [
+            { text: 'Simple', component: SimpleDandD },
+            { text: 'Constraints', component: Constrains },
+            { text: 'Proxies', component: Proxies },
+            { text: 'Handles', component: Handles },
+            { text: 'Groups', component: Groups },
+            { text: 'Data', component: Data },
+            { text: 'Files', component: Files }
         ]},
         { text: 'Draw', component: Draw },
         { text: 'EdgeMenu', component: EdgeMenu, center: true },
