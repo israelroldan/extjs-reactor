@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Tree, TreeColumn, TextColumn } from '@extjs/reactor/modern';
 import store from './Store.js';
 
-export default class EditableTreeExample extends Component{
+export default class EditableTreeExample extends Component {
 
     render(){
         return (

@@ -1,4 +1,4 @@
-export default Ext.create('Ext.data.TreeStore',{
+export default Ext.create('Ext.data.TreeStore', {
      root: {
         text: 'Ext JS',
         expanded: true,
