@@ -23,9 +23,7 @@ export default class Bubble extends Component {
         this.store.loadData(generateData(this.state.numRecords));
     }
 
-    changeTheme = (select, choice) => {
-        this.setState({ theme: choice.get('value') });
-    }
+    changeTheme = theme => this.setState({ theme })
 
     interpolate = (lambda, minSrc, maxSrc, minDst, maxDst) => minDst + (maxDst - minDst) * Math.max(0, Math.min(1, (lambda - minSrc) / (maxSrc - minSrc)))
     
