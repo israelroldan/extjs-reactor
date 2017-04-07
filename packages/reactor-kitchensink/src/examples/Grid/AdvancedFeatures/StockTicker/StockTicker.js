@@ -125,7 +125,7 @@ export default class StockTickerGridExample extends Component {
                         value={tickDelay}
                         flex={1}
                     />
-                    <Label>{tickDelay}ms</Label>
+                    <Container><div>{tickDelay}ms</div></Container>
                     <CheckBoxField 
                         margin="0"
                         boxLabel="Flash background color on change"
