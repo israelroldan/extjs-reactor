@@ -34,6 +34,7 @@ import Carousel from './Carousel/Carousel';
 
 import Tree from './Tree/Tree';
 import TreeList from './TreeList/TreeList';
+import EditableTree from './Trees/EditableTree/EditableTree';
 import TreeGrid from './Trees/TreeGrid/TreeGrid';
 import TreeDecorations from './Trees/TreeDecorations/TreeDecorations';
 
@@ -402,6 +403,7 @@ const root = {
         { text: 'Trees', children: [
             { text: 'Tree', component: Tree },
             { text: 'TreeList', component: TreeList },
+            { text: 'Editable Tree', component: EditableTree},
             { text: 'Tree Grid', component: TreeGrid },
             { text: 'Tree Decorations', component:TreeDecorations}
         ] }
