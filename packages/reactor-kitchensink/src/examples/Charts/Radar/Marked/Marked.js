@@ -40,6 +40,7 @@ export default class Marked extends Component {
                     animation={{ duration: 200 }}
                     store={this.store}
                     interactions={['rotate']}
+                    theme={theme}
                     axes={[{
                         type: 'numeric',
                         position: 'radial',
