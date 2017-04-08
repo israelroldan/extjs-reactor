@@ -31,7 +31,13 @@ class Schedule extends Component {
             source: store, 
             autoDestroy: true,
             grouper: {
-                property: 'time'
+                property: 'start_time',
+                sorterFn: (record1, record2) => {
+                    const time1 = Ext.Date.parse(record1.get('start_time'), 'g:i A'),
+                        time2 = Ext.Date.parse(record2.get('start_time'), 'g:i A');
+
+                    return time1.getTime() - time2.getTime();
+                }
             }
         };
 
@@ -54,16 +60,16 @@ class Schedule extends Component {
                         }}
                     >
                         <ScheduleList 
-                            title="TUES" 
-                            dataStore={{ ...storeDefaults, filters: [{ property: 'day', value: 1 }]}}
+                            title="MON" 
+                            dataStore={{ ...storeDefaults, filters: [{ property: 'date', value: 'Monday, November 7' }]}}
+                        />
+                        <ScheduleList 
+                            title="TUE" 
+                            dataStore={{ ...storeDefaults, filters: [{ property: 'date', value: 'Tuesday, November 8' }]}}
                         />
                         <ScheduleList 
                             title="WED" 
-                            dataStore={{ ...storeDefaults, filters: [{ property: 'day', value: 2 }]}}
-                        />
-                        <ScheduleList 
-                            title="THURS" 
-                            dataStore={{ ...storeDefaults, filters: [{ property: 'day', value: 3 }]}}
+                            dataStore={{ ...storeDefaults, filters: [{ property: 'date', value: 'Wednesday, November 9' }]}}
                         />
                         <ScheduleList 
                             iconCls="md-icon-star" 
