@@ -19,15 +19,13 @@ class ScheduleList extends Component {
 
     itemTpl = new Template(data => {
         const mark = highlight.bind(null, this.props.query);
-        const speaker = data.speakers && data.speakers.length > 0 && data.speakers[0];
         const day = data.date && data.date.match(/(Monday|Tuesday|Wednesday)/)[1];
-        const category = (data.tracks && data.tracks.length > 0 && data.tracks.map(t => t.name).join(', ')) || `${data.type.charAt(0).toUpperCase()}${data.type.slice(1)}`;
 
         return (
             <div className="app-list-content">
                 <div className="app-list-text">
                     <div className="app-list-item-title" dangerouslySetInnerHTML={mark(data.title)}/>
-                    <div className="app-list-item-details">{speaker ? <span>by <span dangerouslySetInnerHTML={mark(speaker.name)}/></span> : ''}{category} - {data.location.name}</div>
+                    <div className="app-list-item-details">{data.speakerNames ? <span>by <span dangerouslySetInnerHTML={mark(data.speakerNames)}/></span> : ''}{data.categoryName} - {data.location.name}</div>
                     { this.props.showTime && (<div className="app-list-item-details">{day} {data.start_time}</div>) }
                 </div>
                 <div 

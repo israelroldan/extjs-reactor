@@ -27,17 +27,12 @@ class Schedule extends Component {
         const { children } = this.state;
 
         const storeDefaults = { 
-            type: 'chained', 
+            type: 'chained',
             source: store, 
             autoDestroy: true,
             grouper: {
                 property: 'start_time',
-                sorterFn: (record1, record2) => {
-                    const time1 = Ext.Date.parse(record1.get('start_time'), 'g:i A'),
-                        time2 = Ext.Date.parse(record2.get('start_time'), 'g:i A');
-
-                    return time1.getTime() - time2.getTime();
-                }
+                sorterFn: (record1, record2) => new Date(record1.get('startDate')).getTime() - new Date(record2.get('startDate')).getTime()
             }
         };
 
