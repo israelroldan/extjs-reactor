@@ -21,7 +21,7 @@ class Speakers extends Component {
 
     itemTpl = new Template(data => (
         <div className="app-list-content">
-            <div className="app-list-headshot" style={{backgroundImage: `url(${data.image})`}}></div>
+            <div className="app-list-headshot" style={{backgroundImage: `url(${data.avatar_url})`}}></div>
             <div className="app-list-text">
                 <div className="app-list-item-title">{data.name}</div>
                 <div className="app-list-item-details">{data.title}</div>
