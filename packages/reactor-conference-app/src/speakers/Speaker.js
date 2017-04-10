@@ -15,10 +15,11 @@ class Speaker extends Component {
                 { speaker && (
                     <div>
                         <div className="app-speaker-ct">
-                            <img className="app-speaker-image" src={speaker.image}/>
+                            <img className="app-speaker-image" src={speaker.avatar_url}/>
                             <div className="app-speaker-text">
                                 <div className="app-speaker-name">{speaker.name}</div>
                                 <div className="app-speaker-title">{speaker.title}</div>
+                                <div className="app-speaker-bio">{speaker.bio}</div>
                             </div>
                         </div>
                         <Panel title="Events" style={{paddingTop: '20px'}}>
