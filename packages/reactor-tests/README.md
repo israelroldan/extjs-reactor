@@ -6,7 +6,7 @@ This package contains a suite of tests for @extjs/reactor.
 
 * Fork/clone this repo
 * `git checkout kitchensink`
-* `npm run bootstrap`
+* `npm install`
 * `cd packages/reactor-tests`
 * `ln -s /path/to/ext ext`
 * `npm start`
