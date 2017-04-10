@@ -37,7 +37,7 @@ import TreeList from './TreeList/TreeList';
 import EditableTree from './Trees/EditableTree/EditableTree';
 import TreeGrid from './Trees/TreeGrid/TreeGrid';
 import TreeDecorations from './Trees/TreeDecorations/TreeDecorations';
-
+import HeterogeneousTree from './Trees/HeterogeneousTree/HeterogeneousTree';
 // Lists 
 
 import BasicList from './Lists/BasicList/BasicList';
@@ -405,7 +405,8 @@ const root = {
             { text: 'TreeList', component: TreeList },
             { text: 'Editable Tree', component: EditableTree},
             { text: 'Tree Grid', component: TreeGrid },
-            { text: 'Tree Decorations', component:TreeDecorations}
+            { text: 'Tree Decorations', component:TreeDecorations},
+            { text: 'Heterogeneous Tree', component: HeterogeneousTree}
         ] }
     ]
 };
