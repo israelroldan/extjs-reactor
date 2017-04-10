@@ -54,6 +54,7 @@ export default class Multiaxis extends Component {
                     insetPadding={25}
                     store={this.store}
                     interactions={['rotate']}
+                    theme={theme}
                     axes={[{
                         type: 'category',
                         position: 'angular',

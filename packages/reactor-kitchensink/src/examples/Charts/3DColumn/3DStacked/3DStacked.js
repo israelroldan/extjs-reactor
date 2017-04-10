@@ -19,9 +19,7 @@ export default class Stacked extends Component {
         theme: 'default'
     }
 
-    changeTheme = (select, choice) => {
-        this.setState({ theme: choice.get('value') });
-    }
+    changeTheme = theme => this.setState({ theme })
 
     onStackedToggle = segmentedButton => {
         this.refs.chart.getSeries()[0].setStacked(segmentedButton.getValue() === 0);
