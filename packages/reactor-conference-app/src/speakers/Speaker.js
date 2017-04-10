@@ -10,6 +10,7 @@ class Speaker extends Component {
         const { speakers, schedule } = this.props;
         const speaker = speakers.speaker;
         const scheduleStore = schedule.store;
+        const sessions = speaker && speaker.sessions;
         return (
             <Container masked={!speaker} padding={20} layout="vbox">
                 { speaker && (
@@ -19,20 +20,22 @@ class Speaker extends Component {
                             <div className="app-speaker-text">
                                 <div className="app-speaker-name">{speaker.name}</div>
                                 <div className="app-speaker-title">{speaker.title}</div>
+                                <div className="app-speaker-company">{speaker.company}</div>
                                 <div className="app-speaker-bio">{speaker.bio}</div>
                             </div>
                         </div>
-                        <Panel title="Events" style={{paddingTop: '20px'}}>
-                            <ScheduleList
-                                dataStore={{
-                                    type: 'chained',
-                                    source: scheduleStore,
-                                    autoDestroy: true,
-                                    grouper: { property: 'time' },
-                                    filters: [{ property: 'speaker', value: speaker.name }]
-                                }}
-                            />
-                        </Panel>
+                        { sessions && sessions.length > 0 && (
+                            <Panel title="Events" style={{paddingTop: '20px'}}>
+                                <ScheduleList
+                                    dataStore={{
+                                        type: 'chained',
+                                        source: scheduleStore,
+                                        autoDestroy: true,
+                                        filters: [item => sessions.indexOf(item.getId()) >= 0]
+                                    }}
+                                />
+                            </Panel>
+                        )}
                     </div>
                 )}
             </Container>
