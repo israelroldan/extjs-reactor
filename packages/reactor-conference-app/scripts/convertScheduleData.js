@@ -3,7 +3,9 @@ const fs = require('fs'),
     scheduleFile = path.join('..', 'resources', 'schedule.json'),
     scheduleData = JSON.parse(fs.readFileSync(scheduleFile, 'utf-8'));
 
-const result = scheduleData.map(event => Object.assign(event, {
+const result = scheduleData
+.filter(event => event.type !== 'date')
+.map(event => Object.assign(event, {
     startDate: new Date(`${event.date} 2016 ${event.start_time}`).toISOString(),
     endDate: new Date(`${event.date} 2016 ${event.end_time}`).toISOString(),
     categoryName: event.type && `${event.type.charAt(0).toUpperCase()}${event.type.slice(1)}`,

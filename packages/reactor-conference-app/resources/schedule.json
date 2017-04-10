@@ -1,27 +1,5 @@
 [
     {
-        "id": "57eda35181ad2",
-        "type": "date",
-        "title": "Training Day",
-        "description": "",
-        "date": "Monday, November 7",
-        "start_time": "7:00 AM",
-        "end_time": "9:00 PM",
-        "speakers": [],
-        "tracks": [],
-        "location": {
-            "id": 0,
-            "name": "Aria Resort & Casino in Las Vegas"
-        },
-        "hashtag": "SenchaCon",
-        "survey_link": "",
-        "order_index": 0,
-        "startDate": "2016-11-07T12:00:00.000Z",
-        "endDate": "2016-11-08T02:00:00.000Z",
-        "categoryName": "Date",
-        "speakerNames": false
-    },
-    {
         "id": "57eda8798a95e",
         "type": "break",
         "title": "Registration/Hospitality Desk Open",
@@ -256,28 +234,6 @@
         "startDate": "2016-11-07T23:00:00.000Z",
         "endDate": "2016-11-08T02:00:00.000Z",
         "categoryName": "Activity",
-        "speakerNames": false
-    },
-    {
-        "id": "57ee3b230b130",
-        "type": "date",
-        "title": "Conference",
-        "description": "",
-        "date": "Tuesday, November 8",
-        "start_time": "8:00 AM",
-        "end_time": "10:00 PM",
-        "speakers": [],
-        "tracks": [],
-        "location": {
-            "id": 0,
-            "name": "Aria Resort & Casino in Las Vegas"
-        },
-        "hashtag": "SenchaCon",
-        "survey_link": "",
-        "order_index": 11,
-        "startDate": "2016-11-08T13:00:00.000Z",
-        "endDate": "2016-11-09T03:00:00.000Z",
-        "categoryName": "Date",
         "speakerNames": false
     },
     {
@@ -1395,28 +1351,6 @@
         "startDate": "2016-11-08T23:30:00.000Z",
         "endDate": "2016-11-09T03:00:00.000Z",
         "categoryName": "Activity",
-        "speakerNames": false
-    },
-    {
-        "id": "57ee3b249dffe",
-        "type": "date",
-        "title": "Conference",
-        "description": "",
-        "date": "Wednesday, November 9",
-        "start_time": "7:00 AM",
-        "end_time": "5:00 PM",
-        "speakers": [],
-        "tracks": [],
-        "location": {
-            "id": 0,
-            "name": "Aria Resort & Casino in Las Vegas"
-        },
-        "hashtag": "SenchaCon",
-        "survey_link": "",
-        "order_index": 44,
-        "startDate": "2016-11-09T12:00:00.000Z",
-        "endDate": "2016-11-09T22:00:00.000Z",
-        "categoryName": "Date",
         "speakerNames": false
     },
     {
