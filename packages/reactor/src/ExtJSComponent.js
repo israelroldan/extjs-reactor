@@ -230,12 +230,14 @@ export default class ExtJSComponent extends Component {
             return { name: 'menu', array: false };
         } else if (isAssignableFrom(extJSClass, Ext.Component) && CLASS_CACHE.ToolTip && item instanceof CLASS_CACHE.ToolTip) {
             return { name: 'tooltip', array: false };
-        } else if (isAssignableFrom(extJSClass, CLASS_CACHE.Grid) && CLASS_CACHE.Column && item instanceof CLASS_CACHE.Column) {
+        } else if (CLASS_CACHE.Column && item instanceof CLASS_CACHE.Column) {
             return { name: 'columns', array: true };
         } else if (isAssignableFrom(extJSClass, CLASS_CACHE.Column) && CLASS_CACHE.CellBase && item instanceof CLASS_CACHE.CellBase) {
             return { name: 'cell', array: false, value: this._cloneConfig(item) }
         } else if (isAssignableFrom(extJSClass, CLASS_CACHE.WidgetCell)) {
             return { name: 'widget', array: false, value: this._cloneConfig(item) }
+        } else if (isAssignableFrom(extJSClass, CLASS_CACHE.GridHeaderGroup) && CLASS_CACHE.Column && item instanceof CLASS_CACHE.Column) {
+            return { name: 'columns', array: true };
         }
     }
 
