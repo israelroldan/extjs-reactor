@@ -8,5 +8,6 @@ This package contains a suite of tests for @extjs/reactor.
 * `git checkout kitchensink`
 * `npm run bootstrap`
 * `cd packages/reactor-tests`
+* `ln -s /path/to/ext ext`
 * `npm start`
 * Open Sencha Test Studio at packages/reactor-tests
