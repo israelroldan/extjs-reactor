@@ -338,20 +338,20 @@ const root = {
         ] },
         { text: 'Grids', children: [
             { text: 'Core Features', children: [
-                { text: 'BasicGrid', component: BasicGrid},
-                { text: 'GroupedGrid', component: GroupedGrid},
-                { text: 'CellEditing', component: CellEditingGrid},
-                { text: 'EditableGrid', component: EditableGrid},
-                { text: 'XMLGrid', component: XMLGrid}
+                { text: 'Basic Grid', component: BasicGrid},
+                { text: 'Grouped Grid', component: GroupedGrid},
+                { text: 'Cell Editing', component: CellEditingGrid},
+                { text: 'Editable Grid', component: EditableGrid},
+                { text: 'XML Grid', component: XMLGrid}
             ]},
             { text: 'Add-ons', children: [
                 { text: 'Grid Tools', component: ToolGrid},
                 { text: 'Row Expander', component: RowExpanderGrid},
                 { text: 'Row Body', component: RowBodyGrid},
                 { text: 'Summary Row', component: SummaryRowGrid},
-                { text: 'ViewOptions', component: ViewOptionsGrid}
+                { text: 'View Options', component: ViewOptionsGrid}
             ]},
-            { text: 'AdvancedFeatures', children:[
+            { text: 'Advanced Features', children:[
                 { text: 'Big Data', component: BigDataGrid},
                 { text: 'Reconfigure Grid', component: ReconfigureGrid },
                 { text: 'Stock Ticker', component: StockTickerGrid}

@@ -55,7 +55,7 @@ export default Ext.define(null, {
         reader: {
             type: 'json'
         },
-        url: '/KitchenSink/Company'
+        url: '/data/CompanyData.json'
     },
     validators: {
         name: 'presence'

@@ -92,7 +92,7 @@ export default Ext.define('StockTickerGridModel', {
         reader: {
             type: 'json'
         },
-        url: '/KitchenSink/Company'
+        url: '/data/CompanyData.json'
     },
 
     validators: {

@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import { Grid, Column } from '@extjs/reactor/modern';
 import { Template } from '@extjs/reactor';
-import '../../CompanyData';
 import model from './GridModel';
 
 Ext.require(['Ext.grid.plugin.RowExpander'])
@@ -14,7 +13,7 @@ export default class RowExpanderGridExample extends Component {
         model,
         proxy: {
             type: 'ajax',
-            url: '/KitchenSink/Company',
+            url: '/data/CompanyData.json',
             reader: {
                 type: 'json',
                 rootProperty: 'data',
@@ -62,7 +61,9 @@ export default class RowExpanderGridExample extends Component {
             <Grid 
                 title="Row Expander Grid"
                 store={this.store}
-                plugins="rowexpander">
+                plugins="rowexpander"
+                shadow
+            >
                 <Column text="Company" dataIndex="name" flex="1"/>
                 <Column text="Price" dataIndex="price" width="75" formatter="usMoney"/>
                 <Column text="Change" dataIndex="priceChange" width="90" renderer={this.renderChange} cell={{encodeHtml: false}}/>

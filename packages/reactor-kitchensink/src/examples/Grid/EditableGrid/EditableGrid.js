@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Grid, Column } from '@extjs/reactor/modern';
 import model from './GridModel';
-import '../CompanyData';
 
 Ext.require(['Ext.grid.plugin.Editable']);
 
@@ -13,7 +12,7 @@ export default class EditableGridExample extends Component {
         pageSize: 0,
         proxy: {
             type: 'ajax',
-            url: '/KitchenSink/Company'
+            url: '/data/CompanyData.json'
         } 
     });
 
@@ -49,7 +48,8 @@ export default class EditableGridExample extends Component {
                 title='Stock Prices'
                 shadow 
                 store={this.store}
-                plugins={'grideditable'}>
+                plugins={'grideditable'}
+            >
                 <Column text="Company" flex="1" dataIndex="name" editable={true}/>
                 <Column text="Price" width="75" dataIndex="price" formatter="usMoney" editable={true} editor={{xtype:'numberfield', required:true, validators:{type:"number", message:"Invalid price"}}}/>
                 <Column text="Change" width="90" renderer={this.renderChange} dataIndex="change" cell={{encodeHtml:false}}/>
