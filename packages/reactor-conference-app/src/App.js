@@ -62,7 +62,6 @@ export default function App() {
                     <Route path="/calendar" component={Calendar}>
                         { eventRoute }
                     </Route>
-                    <Route path="/maps" component={Maps}/>
                     <Route path="/notifications" component={Notifications}/>
                     <Route path="/attendees" component={Attendees}/>
                     <Route path="/about" component={About}/>
