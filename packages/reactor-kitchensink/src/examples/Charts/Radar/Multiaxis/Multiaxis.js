@@ -40,6 +40,10 @@ export default class Multiaxis extends Component {
 
     changeTheme = theme => this.setState({ theme })
 
+    onMultiAxisLabelRender = (axis, label, layoutContext) => {
+         return label === 'Jan' ? '' : label;
+    }
+
     render() {
         const { theme } = this.state;
 
@@ -68,7 +72,7 @@ export default class Multiaxis extends Component {
                         type: 'category',
                         position: 'angular',
                         linkedTo: 'main-angular-axis',
-                        renderer: 'onMultiAxisLabelRender',
+                        renderer: this.onMultiAxisLabelRender,
                         floating: {
                             value: 20,
                             alongAxis: 'radial-axis'
