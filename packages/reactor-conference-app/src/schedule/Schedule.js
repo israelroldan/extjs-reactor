@@ -27,11 +27,12 @@ class Schedule extends Component {
         const { children } = this.state;
 
         const storeDefaults = { 
-            type: 'chained', 
+            type: 'chained',
             source: store, 
             autoDestroy: true,
             grouper: {
-                property: 'time'
+                property: 'start_time',
+                sorterFn: (record1, record2) => new Date(record1.get('startDate')).getTime() - new Date(record2.get('startDate')).getTime()
             }
         };
 
@@ -54,16 +55,16 @@ class Schedule extends Component {
                         }}
                     >
                         <ScheduleList 
-                            title="TUES" 
-                            dataStore={{ ...storeDefaults, filters: [{ property: 'day', value: 1 }]}}
+                            title="MON" 
+                            dataStore={{ ...storeDefaults, filters: [{ property: 'date', value: 'Monday, November 7' }]}}
+                        />
+                        <ScheduleList 
+                            title="TUE" 
+                            dataStore={{ ...storeDefaults, filters: [{ property: 'date', value: 'Tuesday, November 8' }]}}
                         />
                         <ScheduleList 
                             title="WED" 
-                            dataStore={{ ...storeDefaults, filters: [{ property: 'day', value: 2 }]}}
-                        />
-                        <ScheduleList 
-                            title="THURS" 
-                            dataStore={{ ...storeDefaults, filters: [{ property: 'day', value: 3 }]}}
+                            dataStore={{ ...storeDefaults, filters: [{ property: 'date', value: 'Wednesday, November 9' }]}}
                         />
                         <ScheduleList 
                             iconCls="md-icon-star" 

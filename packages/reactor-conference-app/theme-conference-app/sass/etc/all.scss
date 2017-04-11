@@ -92,17 +92,10 @@
 
 .app-speaker-image {
     float: left;
+    margin: 0 10px 5px 0;
     
     .x-phone & {
         width: 40vw;
-    }
-}
-
-.app-speaker-text {
-    float: right;
-
-    .x-phone & {
-        width: 45vw;
     }
 }
 
@@ -112,5 +105,11 @@
 }
 
 .app-speaker-title {
+    font-style: italic;
     padding-top: 5px;
+}
+
+.app-speaker-company {
+    font-style: italic;
+    padding-bottom: 10px;
 }

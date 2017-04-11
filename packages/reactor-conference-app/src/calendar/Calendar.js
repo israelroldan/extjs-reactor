@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Calendar_Days, Container } from '@extjs/reactor/modern';
 import { connect } from 'react-redux';
-import model from './EventModel';
 
 class Calendar extends Component {
 
@@ -20,7 +19,6 @@ class Calendar extends Component {
 
     store = Ext.create('Ext.calendar.store.Calendars', {
         eventStoreDefaults: {
-            model,
             proxy: {
                 type: 'ajax',
                 url: '/resources/schedule.json'
@@ -48,7 +46,7 @@ class Calendar extends Component {
                     visibleDays={3}
                     startTime={8}
                     endTime={22}
-                    value={new Date(2017, 3, 4)}
+                    value={new Date(2016, 10, 7)}
                     store={this.store}
                     dayHeader={{
                         format: 'D',

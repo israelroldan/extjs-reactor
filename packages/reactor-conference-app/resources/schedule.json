@@ -1,16 +1,2834 @@
 [
-    { "id": 1, "day": 1, "time": "8:00 AM - 9:00 AM", "name": "Breakfast (for Training Attendees Only)", "category": "Meals", "location": "Grand Ballroom E & F" },
-    { "id": 2, "day": 1, "time": "8:00 AM - 9:00 AM", "name": "Event Registration", "category": "Registration", "location": "Main Lobby" },
-
-    { "id": 3, "day": 1, "time": "9:00 AM - 12:00 PM", "name": "Sencha GXT on Tablets", "speaker": "David Chandler", "location": "Mission City Ballroom B4" },
-    { "id": 4, "day": 1, "time": "9:00 AM - 12:00 PM", "name": "Materializing Ext JS", "speaker": "Steffen Hiller", "location": "Mission City Ballroom B5" },
-
-    { "id": 5, "day": 1, "time": "12:00 PM - 1:00 PM", "name": "Sencha GXT on Tablets", "speaker": "David Chandler", "location": "Mission City Ballroom B4" },
-    { "id": 6, "day": 1, "time": "12:00 PM - 1:00 PM", "name": "Materializing Ext JS", "speaker": "Steffen Hiller", "location": "Mission City Ballroom B5" },
-
-    { "id": 7, "day": 2, "time": "8:00 AM - 9:00 AM", "name": "Breakfast (for Training Attendees Only)", "category": "Meals", "location": "Grand Ballroom E & F" },
-    { "id": 8, "day": 2, "time": "8:00 AM - 9:00 AM", "name": "Event Registration", "category": "Registration", "location": "Main Lobby" },
-
-    { "id": 9, "day": 2, "time": "9:00 AM - 12:00 PM", "name": "Sencha GXT on Tablets", "speaker": "David Chandler", "location": "Mission City Ballroom B4" },
-    { "id": 10, "day": 2, "time": "9:00 AM - 12:00 PM", "name": "Materializing Ext JS", "speaker": "Steffen Hiller", "location": "Mission City Ballroom B5" }
+    {
+        "id": "57eda8798a95e",
+        "type": "break",
+        "title": "Registration/Hospitality Desk Open",
+        "description": "",
+        "date": "Monday, November 7",
+        "start_time": "7:00 AM",
+        "end_time": "9:00 PM",
+        "speakers": [],
+        "tracks": [],
+        "location": {
+            "id": 1,
+            "name": "Registration Desks between Ironwood & Juniper Ballrooms, Level 3"
+        },
+        "hashtag": "",
+        "survey_link": "",
+        "order_index": 1,
+        "startDate": "2016-11-07T12:00:00.000Z",
+        "endDate": "2016-11-08T02:00:00.000Z",
+        "categoryName": "Break",
+        "speakerNames": false
+    },
+    {
+        "id": "57f6ddc31ff4d",
+        "type": "break",
+        "title": "Training Breakfast",
+        "description": "",
+        "date": "Monday, November 7",
+        "start_time": "7:00 AM",
+        "end_time": "9:00 AM",
+        "speakers": [],
+        "tracks": [],
+        "location": {
+            "id": 2,
+            "name": "Ironwood Ballroom 2-3, Level 3"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "",
+        "order_index": 2,
+        "startDate": "2016-11-07T12:00:00.000Z",
+        "endDate": "2016-11-07T14:00:00.000Z",
+        "categoryName": "Break",
+        "speakerNames": false
+    },
+    {
+        "id": "57eda879a06bd",
+        "type": "training",
+        "title": "Sencha Ext JS Jumpstart Training",
+        "description": "<p>This half-day session will help you build great universal Ext JS apps. It provides an introduction to key concepts including MVVM architecture, data binding, the data package, as well as exposure to key components such as grids, charts, and more.</p>\r\n<br>\r\n<strong>Add-on Cost: $250; Morning Session</strong>",
+        "date": "Monday, November 7",
+        "start_time": "9:00 AM",
+        "end_time": "12:00 PM",
+        "speakers": [],
+        "tracks": [],
+        "location": {
+            "id": 3,
+            "name": "Starvine 10-11"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-Ext-JS-Jumpstart-Training",
+        "order_index": 3,
+        "startDate": "2016-11-07T14:00:00.000Z",
+        "endDate": "2016-11-07T17:00:00.000Z",
+        "categoryName": "Training",
+        "speakerNames": false
+    },
+    {
+        "id": "57eda879d2dd1",
+        "type": "training",
+        "title": "Ext JS App Camp",
+        "description": "<p>This is a full-day, hands-on session where you will learn to build a universal application with the latest release of Ext JS. You’ll build a brand new application from the ground up and learn about key concepts and innovations in Ext JS.</p>\r\n<p>This App Camp is structured in a lecture/lab format where you will follow the instructor on your laptop to build a Modern Toolkit Desktop and Mobile application using Ext JS 6.2. The following concepts will be covered:</p>\r\n<ol>\r\n\t<li>Ext JS 6 Class System</li>\r\n\t<li>Data Package + MVVM</li>\r\n\t<li>Layouts </li>\r\n\t<li>Commonly Used UI Components</li>\r\n\t<li>Power UI Components including Pivot Grid and Calendar</li>\r\n\t<li>Theming</li>\r\n</ol>\r\n<p>Additionally, we will package this application using Cordova and Electron for mobile and desktop devices. We will also discuss how to access native features for mobile devices using Cordova Plugins. You MUST bring your own laptop to participate in the event. Setup instructions will be sent in advance, so you can set up your laptop environment prior to the event.</p>\r\n<br>\r\n<strong>Add-on Cost: $450; Full-Day Session</strong>",
+        "date": "Monday, November 7",
+        "start_time": "9:00 AM",
+        "end_time": "5:00 PM",
+        "speakers": [],
+        "tracks": [],
+        "location": {
+            "id": 4,
+            "name": "Starvine 3-5"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-Ext-JS-App-Camp",
+        "order_index": 4,
+        "startDate": "2016-11-07T14:00:00.000Z",
+        "endDate": "2016-11-07T22:00:00.000Z",
+        "categoryName": "Training",
+        "speakerNames": false
+    },
+    {
+        "id": "57eda87a37747",
+        "type": "training",
+        "title": "Sencha GXT Jumpstart Bootcamp",
+        "description": "<p>Get started with the GXT framework in this full-day session. Learn how to use the rich set of UI components including layout containers, forms and validation, tabs, and data-bound components (grids, trees), and more.</p>\r\n<br>\r\n<strong>Add-on Cost: $450; Full-Day Session</strong>",
+        "date": "Monday, November 7",
+        "start_time": "9:00 AM",
+        "end_time": "5:00 PM",
+        "speakers": [],
+        "tracks": [],
+        "location": {
+            "id": 5,
+            "name": "Starvine 1"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-GXT-Jumpstart-Bootcamp",
+        "order_index": 5,
+        "startDate": "2016-11-07T14:00:00.000Z",
+        "endDate": "2016-11-07T22:00:00.000Z",
+        "categoryName": "Training",
+        "speakerNames": false
+    },
+    {
+        "id": "57eda87a639f1",
+        "type": "training",
+        "title": "Sencha Test Training",
+        "description": "<p>This full-day, hands-on session will teach you best practices for testing your Ext JS applications using Sencha Test. You’ll learn how to write unit tests in Jasmine and integrate testing into your development process.</p>\r\n<br>\r\n<strong>Add-on Cost: $450; Full-Day Session</strong>",
+        "date": "Monday, November 7",
+        "start_time": "9:00 AM",
+        "end_time": "5:00 PM",
+        "speakers": [],
+        "tracks": [],
+        "location": {
+            "id": 6,
+            "name": "Starvine 6-7"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-Test-Training",
+        "order_index": 6,
+        "startDate": "2016-11-07T14:00:00.000Z",
+        "endDate": "2016-11-07T22:00:00.000Z",
+        "categoryName": "Training",
+        "speakerNames": false
+    },
+    {
+        "id": "57f7d3648283f",
+        "type": "break",
+        "title": "Training Lunch",
+        "description": "",
+        "date": "Monday, November 7",
+        "start_time": "12:00 PM",
+        "end_time": "1:00 PM",
+        "speakers": [],
+        "tracks": [],
+        "location": {
+            "id": 7,
+            "name": "Ironwood Ballroom 2-3"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "",
+        "order_index": 7,
+        "startDate": "2016-11-07T17:00:00.000Z",
+        "endDate": "2016-11-07T18:00:00.000Z",
+        "categoryName": "Break",
+        "speakerNames": false
+    },
+    {
+        "id": "57eda87a0ba0c",
+        "type": "training",
+        "title": "Sencha Ext JS Advanced Concepts",
+        "description": "<p>This half-day session gives you hands-on experience with the newest capabilities in Ext JS. This session covers advanced techniques and best practices for building universal applications. Topics include innovations in the latest Ext JS release as well as a deep dive on tools that will increase your productivity.</p>\r\n<br>\r\n<strong>Add-on Cost: $250; Afternoon Session</strong>",
+        "date": "Monday, November 7",
+        "start_time": "1:00 PM",
+        "end_time": "5:00 PM",
+        "speakers": [],
+        "tracks": [],
+        "location": {
+            "id": 3,
+            "name": "Starvine 10-11"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-Ext-JS-Advanced-Concepts",
+        "order_index": 8,
+        "startDate": "2016-11-07T18:00:00.000Z",
+        "endDate": "2016-11-07T22:00:00.000Z",
+        "categoryName": "Training",
+        "speakerNames": false
+    },
+    {
+        "id": "57dc303243052",
+        "type": "session",
+        "title": "Tech Talk: Ext JS and Angular 2 – Use the Best of Both to Build Your Apps",
+        "description": "In this tech talk, we’ll build the same application twice – first with Ext JS 6.2 and then with Angular 2. We’ll compare and contrast the approaches of both frameworks, and you’ll be able to see the results on the spot. You’ll learn about the new bridge we’ve created that enables you to to use the Ext JS grid, treegrid, pivot grid, calendar, charts, and other components in your Angular 2 based apps. If you’re an Angular 2 user, you’ll see how you can use that framework to assemble the basic building blocks of an app and then add the powerful Ext JS components to complete your data-centric, cross-platform apps.",
+        "date": "Monday, November 7",
+        "start_time": "1:00 PM",
+        "end_time": "5:00 PM",
+        "speakers": [
+            {
+                "id": 193,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/09/Marc-Gusmano-Sencha.jpg",
+                "name": "Marc Gusmano",
+                "title": "Sales Engineer",
+                "company": "Sencha",
+                "bio": "Marc is a Sales Engineer with Sencha and has more than 30 years of experience in the software services industry. He has been extensively involved with custom HTML5 browser and mobile development projects, using his experience to build HTML5 Single Page Applications. Marc has worked for several large software services companies, including Andersen Consulting and Hitachi Consulting, and he was co-owner of a software services and training company for more than 10 years. Marc has a passion for building outstanding software, especially leading-edge, user-centric applications.",
+                "twitter_handle": ""
+            }
+        ],
+        "tracks": [
+            {
+                "id": 8,
+                "name": "Develop",
+                "description": "This track is suited for developers who would like to learn about the latest advances in the Sencha platform including Ext JS, GXT and Sencha tools. Sessions in this track will cover best practices around for visualizing complex data sets, developing apps for the modern web and advancement which will help teams improve development productivity and deliver robust universal applications.",
+                "order_index": 1
+            }
+        ],
+        "location": {
+            "id": 8,
+            "name": "Juniper 4"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-Tech-Talk-Ext-JS-and-Angular2",
+        "order_index": 9,
+        "startDate": "2016-11-07T18:00:00.000Z",
+        "endDate": "2016-11-07T22:00:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Marc Gusmano"
+    },
+    {
+        "id": "57ed855d9b0f9",
+        "type": "activity",
+        "title": "Welcome Reception",
+        "description": "Join us Monday night to kick off SenchaCon in style. This is the perfect opportunity for you to hang out in a relaxed, fun gathering as you gear up for the packed 2-day conference. Talk with fellow attendees and the Sencha Team, as well as meet our sponsors.",
+        "date": "Monday, November 7",
+        "start_time": "6:00 PM",
+        "end_time": "9:00 PM",
+        "speakers": [],
+        "tracks": [],
+        "location": {
+            "id": 9,
+            "name": "Community Pavilion, Ironwood Ballroom, Level 3"
+        },
+        "hashtag": "",
+        "survey_link": "",
+        "order_index": 10,
+        "startDate": "2016-11-07T23:00:00.000Z",
+        "endDate": "2016-11-08T02:00:00.000Z",
+        "categoryName": "Activity",
+        "speakerNames": false
+    },
+    {
+        "id": "57ee3b2331e29",
+        "type": "break",
+        "title": "Registration/Hospitality Desk Open",
+        "description": "",
+        "date": "Tuesday, November 8",
+        "start_time": "7:00 AM",
+        "end_time": "6:00 PM",
+        "speakers": [],
+        "tracks": [],
+        "location": {
+            "id": 10,
+            "name": "Registration Desks between Ironwood & Juniper Ballrooms"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "",
+        "order_index": 12,
+        "startDate": "2016-11-08T12:00:00.000Z",
+        "endDate": "2016-11-08T23:00:00.000Z",
+        "categoryName": "Break",
+        "speakerNames": false
+    },
+    {
+        "id": "57ee3b237afcb",
+        "type": "break",
+        "title": "Breakfast",
+        "description": "",
+        "date": "Tuesday, November 8",
+        "start_time": "7:00 AM",
+        "end_time": "9:00 AM",
+        "speakers": [],
+        "tracks": [],
+        "location": {
+            "id": 9,
+            "name": "Community Pavilion, Ironwood Ballroom, Level 3"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "",
+        "order_index": 13,
+        "startDate": "2016-11-08T12:00:00.000Z",
+        "endDate": "2016-11-08T14:00:00.000Z",
+        "categoryName": "Break",
+        "speakerNames": false
+    },
+    {
+        "id": "57ee3b2358285",
+        "type": "activity",
+        "title": "Community Pavilion",
+        "description": "Make the Community Pavilion your home base for SenchaCon 2016. Visit our sponsors, exchange ideas with fellow attendees, recharge yourself and your equipment, and put your skills to the test at corn hole, ping pong, and foosball.",
+        "date": "Tuesday, November 8",
+        "start_time": "7:00 AM",
+        "end_time": "9:00 AM",
+        "speakers": [],
+        "tracks": [],
+        "location": {
+            "id": 11,
+            "name": "Ironwood Ballroom, Level 3"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "",
+        "order_index": 14,
+        "startDate": "2016-11-08T12:00:00.000Z",
+        "endDate": "2016-11-08T14:00:00.000Z",
+        "categoryName": "Activity",
+        "speakerNames": false
+    },
+    {
+        "id": "57fb1aa3e0b32",
+        "type": "activity",
+        "title": "Sencha Zone",
+        "description": "Get direct access to the Sencha Team to discuss your questions and the talk about the latest product info. You can also pick up a preview copy of a brand new Ext JS book written by our partner and sponsor Fig Leaf Software.",
+        "date": "Tuesday, November 8",
+        "start_time": "8:00 AM",
+        "end_time": "9:00 AM",
+        "speakers": [],
+        "tracks": [],
+        "location": {
+            "id": 9,
+            "name": "Community Pavilion, Ironwood Ballroom, Level 3"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "",
+        "order_index": 15,
+        "startDate": "2016-11-08T13:00:00.000Z",
+        "endDate": "2016-11-08T14:00:00.000Z",
+        "categoryName": "Activity",
+        "speakerNames": false
+    },
+    {
+        "id": "57ee3b239aa2d",
+        "type": "session",
+        "title": "Keynote",
+        "description": "",
+        "date": "Tuesday, November 8",
+        "start_time": "9:00 AM",
+        "end_time": "11:30 AM",
+        "speakers": [
+            {
+                "id": 259,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/10/Art-Landro-Sencha.jpg",
+                "name": "Art Landro",
+                "title": "CEO",
+                "company": "Sencha",
+                "bio": "With more than 25 years of global business experience, Art brings to Sencha deep operational expertise across sales, marketing, product development, services, and support. Prior to Sencha, Art was the CEO of Cordys where he transformed the Netherlands-based software company into a BPM PaaS and Cloud Provisioning provider and successfully led its acquisition by OpenText. Before that he was President of MontaVista Software, breaking into non-traditional Linux markets such as automotive infotainment systems and aerospace controls. Art has led sales and services organizations in the Asia Pacific/Japan territory with Documentum, Cadence, and General DataComm, living in the region for over 12 years. Art holds a Bachelor of Science Degree in Business Administration from the University of Connecticut and also served 5 years of Active Duty in the US Air Force and 22 years in the Air Force Reserves, retiring as a Lieutenant Colonel.",
+                "twitter_handle": ""
+            },
+            {
+                "id": 258,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/10/Benoit-Gagnon-Ubisoft.jpg",
+                "name": "Benoit Gagnon",
+                "title": "Team Lead",
+                "company": "Ubisoft",
+                "bio": "Benoit has 10 years of experience in the creative software industry. Currently at Ubisoft Montreal, he previously worked at Dreamworks Animation in California, and Autodesk before that. Having surfed the early wave of dynamic templated applications using tech like Flash, PHP, Rails or Django, Benoit returned to shore for a few years to work on desktop apps and low-level programming on multiple platforms using Qt, C++, OpenGL and Python. Since joining Ubisoft 4 years ago, he is rediscovering a thriving web ecosystem, a revitalized JavaScript and the solidity of Ext JS in building hybrid pipelines for video game production. More recently, Benoit has been leading the efforts on Flare, an innovative web-based video collaboration platform that is quickly spreading across the organization.",
+                "twitter_handle": ""
+            },
+            {
+                "id": 47,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/03/Gautam-Agrawal-Sencha.jpg",
+                "name": "Gautam Agrawal",
+                "title": "Sr. Director, Product Management",
+                "company": "Sencha",
+                "bio": "Gautam leads product management at Sencha. He is responsible for guiding new product strategies and roadmap initiatives across the Sencha product portfolio. Additionally, Gautam works with strategic partners to establish and develop new market opportunities. Prior to joining Sencha, he held various product and engineering positions at organizations developing SaaS and Business Intelligence applications. Gautam holds a PhD and MS from State University of NY (SUNY) at Buffalo.",
+                "twitter_handle": "agrawal3"
+            },
+            {
+                "id": 48,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/03/Mark-Brocato-Sencha.jpg",
+                "name": "Mark Brocato",
+                "title": "Sr. Engineering Manager",
+                "company": "Sencha",
+                "bio": "Mark is the Senior Engineering Manager for Tools at Sencha. He's been developing with Ext JS since version 2. Before coming to Sencha, he was the Director of R&D at BioFortis, a Life Sciences startup, where he led the development of several Ext JS apps. He is also the creator of mockaroo.com, a web service for generating large datasets for software testing and demos.",
+                "twitter_handle": ""
+            }
+        ],
+        "tracks": [],
+        "location": {
+            "id": 12,
+            "name": "Juniper 1-3"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "",
+        "order_index": 16,
+        "startDate": "2016-11-08T14:00:00.000Z",
+        "endDate": "2016-11-08T16:30:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Art Landro, Benoit Gagnon, Gautam Agrawal, Mark Brocato"
+    },
+    {
+        "id": "57fed8d31c605",
+        "type": "activity",
+        "title": "Community Pavilion",
+        "description": "Make the Community Pavilion your home base for SenchaCon 2016. Visit our sponsors, exchange ideas with fellow attendees, recharge yourself and your equipment, and put your skills to the test at corn hole, ping pong, and foosball.",
+        "date": "Tuesday, November 8",
+        "start_time": "11:30 AM",
+        "end_time": "5:00 PM",
+        "speakers": [],
+        "tracks": [],
+        "location": {
+            "id": 11,
+            "name": "Ironwood Ballroom, Level 3"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "",
+        "order_index": 17,
+        "startDate": "2016-11-08T16:30:00.000Z",
+        "endDate": "2016-11-08T22:00:00.000Z",
+        "categoryName": "Activity",
+        "speakerNames": false
+    },
+    {
+        "id": "57fb1aa3c0c00",
+        "type": "activity",
+        "title": "Ask Sencha",
+        "description": "Get a private 30-minute technical consultation with a Sencha expert. You can use this time for a simple code review, guidance on application architecture and layout, or assistance with custom components. By appointment; space is limited.",
+        "date": "Tuesday, November 8",
+        "start_time": "11:30 AM",
+        "end_time": "5:00 PM",
+        "speakers": [],
+        "tracks": [],
+        "location": {
+            "id": 9,
+            "name": "Community Pavilion, Ironwood Ballroom, Level 3"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "",
+        "order_index": 18,
+        "startDate": "2016-11-08T16:30:00.000Z",
+        "endDate": "2016-11-08T22:00:00.000Z",
+        "categoryName": "Activity",
+        "speakerNames": false
+    },
+    {
+        "id": "57fed8d3a5ce9",
+        "type": "activity",
+        "title": "Sencha Zone",
+        "description": "Get direct access to the Sencha Team to discuss your questions and the talk about the latest product info. You can also pick up a preview copy of a brand new Ext JS book written by our partner and sponsor Fig Leaf Software.",
+        "date": "Tuesday, November 8",
+        "start_time": "11:30 AM",
+        "end_time": "5:00 PM",
+        "speakers": [],
+        "tracks": [],
+        "location": {
+            "id": 9,
+            "name": "Community Pavilion, Ironwood Ballroom, Level 3"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "",
+        "order_index": 19,
+        "startDate": "2016-11-08T16:30:00.000Z",
+        "endDate": "2016-11-08T22:00:00.000Z",
+        "categoryName": "Activity",
+        "speakerNames": false
+    },
+    {
+        "id": "57ee3b23c204f",
+        "type": "break",
+        "title": "Lunch",
+        "description": "",
+        "date": "Tuesday, November 8",
+        "start_time": "11:30 AM",
+        "end_time": "12:30 PM",
+        "speakers": [],
+        "tracks": [],
+        "location": {
+            "id": 9,
+            "name": "Community Pavilion, Ironwood Ballroom, Level 3"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "",
+        "order_index": 20,
+        "startDate": "2016-11-08T16:30:00.000Z",
+        "endDate": "2016-11-08T17:30:00.000Z",
+        "categoryName": "Break",
+        "speakerNames": false
+    },
+    {
+        "id": "58101aa20d75a",
+        "type": "activity",
+        "title": "Sencha Ladies Lunch",
+        "description": "This is a networking lunch for women who are attending SenchaCon. Join us for lunch on Tuesday to connect with other women in tech. It will be hosted by Lee Boonstra and Olga Petrova (Sales Engineers at Sencha) and Christine Bui, (Designer at Sencha). We'll have a lively discussion and some fun too!",
+        "date": "Tuesday, November 8",
+        "start_time": "11:30 AM",
+        "end_time": "12:30 PM",
+        "speakers": [],
+        "tracks": [],
+        "location": {
+            "id": 13,
+            "name": "Ironwood 3"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-Sencha-Ladies-Lunch",
+        "order_index": 21,
+        "startDate": "2016-11-08T16:30:00.000Z",
+        "endDate": "2016-11-08T17:30:00.000Z",
+        "categoryName": "Activity",
+        "speakerNames": false
+    },
+    {
+        "id": "57b77ab44ab51",
+        "type": "session",
+        "title": "Ext JS and ES2015/6/7 - Modernizing the Ext JS Class System",
+        "description": "JavaScript is advancing and ES2015 (formerly ES6) is the foundation of its future. Sencha is committed to delivering cutting-edge technology for your applications, and supporting the evolution of JavaScript is a central part of that commitment. The expansive feature set of ES2015 formally enables coding paradigms: modules to better organize your code, classes to cleanly declare reusable units of functionality, and so much more. In this session, you'll see how Ext JS is embracing these new language and toolset features, and how they will expand your development horizons.",
+        "date": "Tuesday, November 8",
+        "start_time": "12:30 PM",
+        "end_time": "1:20 PM",
+        "speakers": [
+            {
+                "id": 46,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/03/Don-Griffin-Sencha.jpg",
+                "name": "Don Griffin",
+                "title": "Director of Engineering",
+                "company": "Sencha",
+                "bio": "Don is the Engineering Director for Ext JS and Sencha Touch. He was an Ext JS user for 2 years before joining Sencha and has more than 20 years of software engineering experience on a broad range of platforms. His experience includes designing web application front-ends and back-ends, native GUI applications, network protocols, and device drivers. Don’s passion is to build world class products that people love to use.",
+                "twitter_handle": "dongryphon"
+            }
+        ],
+        "tracks": [
+            {
+                "id": 8,
+                "name": "Develop",
+                "description": "This track is suited for developers who would like to learn about the latest advances in the Sencha platform including Ext JS, GXT and Sencha tools. Sessions in this track will cover best practices around for visualizing complex data sets, developing apps for the modern web and advancement which will help teams improve development productivity and deliver robust universal applications.",
+                "order_index": 1
+            }
+        ],
+        "location": {
+            "id": 8,
+            "name": "Juniper 4"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-Ext-JS-ES2015-6-7-Modernizing-Ext-JS-Class-System",
+        "order_index": 22,
+        "startDate": "2016-11-08T17:30:00.000Z",
+        "endDate": "2016-11-08T18:20:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Don Griffin"
+    },
+    {
+        "id": "57b77bd849b6b",
+        "type": "session",
+        "title": "The Changing Landscape of JavaScript Unit Testing",
+        "description": "Testing JavaScript applications can be difficult. In addition to testing application functionality, testers need to worry about browser compatibility, how to define tests, the environment under which tests will be run, integration into automation platforms, and the workflow of developers and testers. This presentation will discuss how Sencha Test provides development teams with a testing platform that addresses these challenges while minimizing the effort required to deploy and use testing tools--meaning that your team can focus on delivering awesome user experiences rather than fighting with their testing infrastructure.",
+        "date": "Tuesday, November 8",
+        "start_time": "12:30 PM",
+        "end_time": "1:20 PM",
+        "speakers": [
+            {
+                "id": 192,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/09/Joel-Watson-Sencha.jpg",
+                "name": "Joel Watson",
+                "title": "Principal Software Engineer",
+                "company": "Sencha",
+                "bio": "Joel is a Principal Software Engineer at Sencha, helping to architect and develop Sencha Test. He has been working in website design and web application development for nearly 10 years, and has worked on large-scale Ext JS applications in the publishing and healthcare domains. When he’s not coding, Joel enjoys spending time with his wife and daughters, playing tennis, and studying philosophy.",
+                "twitter_handle": "existdissolve"
+            },
+            {
+                "id": 50,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/03/Subu-Baskaran-Sencha.jpg",
+                "name": "Subu Baskaran",
+                "title": "Sr. Product Manager",
+                "company": "Sencha",
+                "bio": "Subu is a Senior Product Manager at Sencha. He is responsible for guiding new strategies and roadmap initiatives for Sencha Test. Prior to joining Sencha, he held many positions in software development at various financial services organizations. Subu holds a Bachelor’s degree in Engineering from Sastra, India and an MBA from Cass Business School, London.",
+                "twitter_handle": ""
+            }
+        ],
+        "tracks": [
+            {
+                "id": 9,
+                "name": "Test",
+                "description": "This track is suited for developers and test automation engineers who to learn best practices for improving application quality and accelerating application delivery through unit testing, end-to-end testing and automation.",
+                "order_index": 2
+            }
+        ],
+        "location": {
+            "id": 3,
+            "name": "Starvine 10-11"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-Changing-Landscape-JavaScript-Unit-Testing",
+        "order_index": 23,
+        "startDate": "2016-11-08T17:30:00.000Z",
+        "endDate": "2016-11-08T18:20:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Joel Watson, Subu Baskaran"
+    },
+    {
+        "id": "57d7701932d5f",
+        "type": "session",
+        "title": "Creating a Flexible and Usable Industry-Specific Solution",
+        "description": "Come hear how we used agile development and Sencha tools to meet our design requirements, to create a system that is highly configurable, flexible, and exceeds the expectations of our customers. Learn how to use an adaptive/responsive design to be able to support two very different types of users, with a single application, and using the same set of libraries. Most importantly, learn how to create a system that even your most important and demanding users will find value and actually want to use. By assembling some of the best programmers and DBA developers in the world, we have been able to create a best-in-class, fully functional, scalable and highly configurable system, while maintaining an amazingly easy-to-use interface.\r\nWe had a long list of design requirements, including:\r\n• Ability to support the very different needs of the field sales force, and managers/home office. <br />\r\n• Providing a robust system that is simple for a salesperson to use, with minimal “clicks” to access all features, while providing a great deal of information and workflow capabilities. <br />\r\n• Providing a system that allows for multiple configurations, with a single source code, allowing different screen layouts and role-based business, display, and edit rules. <br />\r\n• Providing the necessary validation and system checks to ensure compliance with the complicated and consistently changing FDA, State, and local regulations. <br />\r\n• The ability to work online and offline, transparently to the user with automatic data replication and synchronization. <br />\r\n• Cross-platform compatibility for tablet and desktop systems, including iOS, MacOS, and Windows.",
+        "date": "Tuesday, November 8",
+        "start_time": "12:30 PM",
+        "end_time": "1:20 PM",
+        "speakers": [
+            {
+                "id": 190,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/09/Don-Schenker-Synergistix.jpg",
+                "name": "Don Schenker",
+                "title": "President and CEO",
+                "company": "Synergistix",
+                "bio": "Don is the President and CEO of Synergistix, a technology and services company that builds solutions exclusively for the life sciences industry to measure and improve sales force and marketing effectiveness. Don has more than 20 years of experience in the Information Technology field, including application development, project management, and network support. A strong communicator, motivator, and a popular speaker, Don holds both an M.B.A. and a Master of Science degree from Nova Southeastern University.",
+                "twitter_handle": ""
+            }
+        ],
+        "tracks": [
+            {
+                "id": 7,
+                "name": "Design",
+                "description": "This track is best suited for designers and developers looking for ways to create visually- compelling web applications. Sessions in this track will cover the best practices for working with themes, styling components, templates and highlight innovative application designs created by Sencha customers.",
+                "order_index": 0
+            }
+        ],
+        "location": {
+            "id": 4,
+            "name": "Starvine 3-5"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-Creating-Flexible-Usable-Industry-Specific-Solution",
+        "order_index": 24,
+        "startDate": "2016-11-08T17:30:00.000Z",
+        "endDate": "2016-11-08T18:20:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Don Schenker"
+    },
+    {
+        "id": "57db02eb633b0",
+        "type": "session",
+        "title": "GXT 5 - Bolder, Better, Faster, Stronger",
+        "description": "GXT 5 is a bold new release designed from the ground up to usher in the future of web development with GWT. It’s better because it offers responsive design, true mobile widgets, material design, and a radical new theming system. We’ve gone to the metal to make it faster by using CSS3, HTML5, lightweight DOM access, and eliminated legacy baggage by only supporting evergreen browsers. GXT 5 is stronger and more flexible than ever thanks to an abstracted & unified event mechanism, extensible gesture tracking, observable lists and properties, and a robust model-view-controller pattern that decouples component appearance and behavior from state.",
+        "date": "Tuesday, November 8",
+        "start_time": "12:30 PM",
+        "end_time": "1:20 PM",
+        "speakers": [
+            {
+                "id": 118,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/03/David-Becker-Sencha.jpg",
+                "name": "David Becker",
+                "title": "Software Engineer",
+                "company": "Sencha",
+                "bio": "David is a Software Engineer at Sencha on the GXT development team. He has 25 years of experience as a developer and has focused most of his career on web development with skills in HTML5, Java, GXT, and GWT. Prior to joining Sencha, David worked for companies in the healthcare and financial services industries building web-based enterprise apps, including several projects using GXT 2 and 3.",
+                "twitter_handle": ""
+            }
+        ],
+        "tracks": [
+            {
+                "id": 8,
+                "name": "Develop",
+                "description": "This track is suited for developers who would like to learn about the latest advances in the Sencha platform including Ext JS, GXT and Sencha tools. Sessions in this track will cover best practices around for visualizing complex data sets, developing apps for the modern web and advancement which will help teams improve development productivity and deliver robust universal applications.",
+                "order_index": 1
+            }
+        ],
+        "location": {
+            "id": 14,
+            "name": "Starvine 1-2"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-GXT-5-Bolder-Better-Faster-Stronger",
+        "order_index": 25,
+        "startDate": "2016-11-08T17:30:00.000Z",
+        "endDate": "2016-11-08T18:20:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "David Becker"
+    },
+    {
+        "id": "57b779ba882ce",
+        "type": "session",
+        "title": "The Once and Future Grid",
+        "description": "The Ext JS Grid has been a powerhouse for years, used by thousands of enterprises to deliver robust, data-rich applications to the web. The Ext JS Grid for the Modern Toolkit builds on these years of experience and leverages the full power of HTML5 and CSS3 to provide an extremely flexible and efficient grid for the modern era. In this session, we'll explore some of the key architectural advantages of the Modern Grid. Come and see how you can take advantage of these capabilities to tame mountains of data and give your users the world-class experience they demand.",
+        "date": "Tuesday, November 8",
+        "start_time": "1:30 PM",
+        "end_time": "2:20 PM",
+        "speakers": [
+            {
+                "id": 49,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/03/Nige-White-Sencha.jpg",
+                "name": "Nige White",
+                "title": "Sr. Software Architect",
+                "company": "Sencha",
+                "bio": "Nige has 20 years of experience in the IT industry. He has seen computer systems evolve from batch processing, back room behemoths that dictated user behavior into distributed, user-centered enablers of everyday tasks. Nigel has been working with rich Internet applications, and dynamic browser updating techniques since before the term \"Ajax\" was coined. Nigel currently works as a Senior Software Architect on the Ext JS development team.",
+                "twitter_handle": ""
+            }
+        ],
+        "tracks": [
+            {
+                "id": 8,
+                "name": "Develop",
+                "description": "This track is suited for developers who would like to learn about the latest advances in the Sencha platform including Ext JS, GXT and Sencha tools. Sessions in this track will cover best practices around for visualizing complex data sets, developing apps for the modern web and advancement which will help teams improve development productivity and deliver robust universal applications.",
+                "order_index": 1
+            }
+        ],
+        "location": {
+            "id": 8,
+            "name": "Juniper 4"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-Ext-JS-Grid-Bigger-Better-Faster",
+        "order_index": 26,
+        "startDate": "2016-11-08T18:30:00.000Z",
+        "endDate": "2016-11-08T19:20:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Nige White"
+    },
+    {
+        "id": "57b77c1067ce8",
+        "type": "session",
+        "title": "Theming Made Easy for Your Ext JS Apps",
+        "description": "Theme faster than ever before, and now with a click of a button. This presentation will discuss new tools and quick-theming technologies that enable development teams to easily create beautiful, consistently-branded user experiences.",
+        "date": "Tuesday, November 8",
+        "start_time": "1:30 PM",
+        "end_time": "2:20 PM",
+        "speakers": [
+            {
+                "id": 195,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/09/Andrew-Hemans-Sencha.jpg",
+                "name": "Andrew Hemans",
+                "title": "UX Designer",
+                "company": "Sencha",
+                "bio": "Andrew is a UX Designer at Sencha. He attended Pacific Union College where he studied graphic design.",
+                "twitter_handle": "andrewhemans"
+            }
+        ],
+        "tracks": [
+            {
+                "id": 7,
+                "name": "Design",
+                "description": "This track is best suited for designers and developers looking for ways to create visually- compelling web applications. Sessions in this track will cover the best practices for working with themes, styling components, templates and highlight innovative application designs created by Sencha customers.",
+                "order_index": 0
+            },
+            {
+                "id": 8,
+                "name": "Develop",
+                "description": "This track is suited for developers who would like to learn about the latest advances in the Sencha platform including Ext JS, GXT and Sencha tools. Sessions in this track will cover best practices around for visualizing complex data sets, developing apps for the modern web and advancement which will help teams improve development productivity and deliver robust universal applications.",
+                "order_index": 1
+            }
+        ],
+        "location": {
+            "id": 4,
+            "name": "Starvine 3-5"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-Theming-Made-Easy",
+        "order_index": 27,
+        "startDate": "2016-11-08T18:30:00.000Z",
+        "endDate": "2016-11-08T19:20:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Andrew Hemans"
+    },
+    {
+        "id": "57b78648cc3d2",
+        "type": "session",
+        "title": "How Sencha Test Helps Automate Functional Testing of Ext JS Modern Apps",
+        "description": "Have you ever wondered which tool or technique you should choose to automate functional testing of your JavaScript applications? Are you looking for a reliable way to track and gather reports from testing on all sorts of web browsers and mobile devices? We will share our experience, and explain and demonstrate how Sencha Test helped us to automate and track verification of modern Ext JS applications and their various components on multiple web browsers and devices. You will also learn tips and tricks that can speed up the development cycle of your JavaScript applications, including how you can leverage Sencha Test and its APIs.",
+        "date": "Tuesday, November 8",
+        "start_time": "1:30 PM",
+        "end_time": "2:20 PM",
+        "speakers": [
+            {
+                "id": 159,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/03/Rastislav-Kanocz-profiq.png",
+                "name": "Rastislav Kanócz",
+                "title": "CTO",
+                "company": "profiq",
+                "bio": "Rastislav is the Founder and CTO of profiq, a software engineering services provider. Prior to establishing profiq, he worked for several years at major international companies including Amdocs and Sun Microsystems, where he mastered software testing. For the last three years, he has been working with Sencha on its core products including Ext JS, Sencha Test, and Sencha tools.",
+                "twitter_handle": ""
+            },
+            {
+                "id": 183,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/09/Jakub-Janoska-profiq.png",
+                "name": "Jakub Janoška",
+                "title": "Software Engineer",
+                "company": "profiq",
+                "bio": "Jakub is a software engineer at profiq. For the last three years, he has been working on quality assurance for Sencha technologies. He had the privilege of being at the forefront of the Sencha Test project, using it to automate testing of Ext JS components. Jakub is also passionate about new technologies, especially for the web and mobile world.",
+                "twitter_handle": ""
+            }
+        ],
+        "tracks": [
+            {
+                "id": 9,
+                "name": "Test",
+                "description": "This track is suited for developers and test automation engineers who to learn best practices for improving application quality and accelerating application delivery through unit testing, end-to-end testing and automation.",
+                "order_index": 2
+            }
+        ],
+        "location": {
+            "id": 3,
+            "name": "Starvine 10-11"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-Sencha-Test-Helps-Automate-Functional-Testing",
+        "order_index": 28,
+        "startDate": "2016-11-08T18:30:00.000Z",
+        "endDate": "2016-11-08T19:20:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Rastislav Kanócz, Jakub Janoška"
+    },
+    {
+        "id": "57c49562bd1ba",
+        "type": "session",
+        "title": "Designing Responsive Layouts with GXT 5",
+        "description": "With GXT 5, we’re adding a responsive grid system to support responsive design across all mobile devices. This expands on the GXT 4 feature, where we added touch support and gesture recognition that was geared primarily towards tablets. In this session, we’ll show you how you can declare your responsive layouts in both Java and UiBinder. This should be very familiar if you’re already accustomed to responsive design. We’ll also show you how we’ve made GXT more performant across all devices by replacing the programmatic styling and sizing with fully responsive CSS. Last, we’ll show you how to hook into and extend our responsive framework to provide your own responsive queries and custom actions.",
+        "date": "Tuesday, November 8",
+        "start_time": "1:30 PM",
+        "end_time": "2:20 PM",
+        "speakers": [
+            {
+                "id": 256,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/10/Brandon-Donnelson-Sencha.jpeg",
+                "name": "Brandon Donnelson",
+                "title": "Support Engineer",
+                "company": "Sencha",
+                "bio": "Brandon is a member of the Sencha GXT team and enjoys interacting with the GWT community. His passion is helping developers get their jobs done. He has development experience in Java, Eclipse Plugin, IDEA Plugin, GWT, Cloud, Sencha GXT and more.",
+                "twitter_handle": ""
+            }
+        ],
+        "tracks": [
+            {
+                "id": 8,
+                "name": "Develop",
+                "description": "This track is suited for developers who would like to learn about the latest advances in the Sencha platform including Ext JS, GXT and Sencha tools. Sessions in this track will cover best practices around for visualizing complex data sets, developing apps for the modern web and advancement which will help teams improve development productivity and deliver robust universal applications.",
+                "order_index": 1
+            }
+        ],
+        "location": {
+            "id": 14,
+            "name": "Starvine 1-2"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-Designing-Responsive-Layouts-with-GXT-5",
+        "order_index": 29,
+        "startDate": "2016-11-08T18:30:00.000Z",
+        "endDate": "2016-11-08T19:20:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Brandon Donnelson"
+    },
+    {
+        "id": "57b7809d858cc",
+        "type": "session",
+        "title": "Refine Enterprise Applications by Focusing on User Experience",
+        "description": "When looking at large scale and data heavy enterprise applications, we often notice a lack of user experience (UX) design. People today are spoiled with user friendly and modern applications to aid them in their daily tasks for everything from shopping to social networking to ordering a cab; however, they don’t get the same user friendly experience in their work applications. An important challenge for enterprise application developers is that users now expect the same excellent user experience in their work applications as they have in their personal ones. The enterprise market has long been behind the consumer market, but the gap is closing. Ext JS is a superb framework for developing data heavy applications, and it provides a large set of user friendly and customizable components to manage and visualize enterprise data. Furthermore, Ext JS provides the tools you need to build custom and reusable components that will take your applications to the next level. In this session, we will look at how we at Orango have used Ext JS together with Enterprise Resource Planning (ERP) systems to develop user friendly and modern applications for all platforms. We will also look at real-world examples of custom Ext JS components that are built to provide a great user experience, but also with code maintenance and refactoring in mind. After this session, you will have the tools and knowledge to spoil your enterprise users with excellent user experience.",
+        "date": "Tuesday, November 8",
+        "start_time": "2:30 PM",
+        "end_time": "3:20 PM",
+        "speakers": [
+            {
+                "id": 127,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/07/Emil-Pennlov-OrangoDB.jpg",
+                "name": "Emil Pennlov",
+                "title": "Team Leader",
+                "company": "Orango AB",
+                "bio": "During his 13 years as an IT professional, Emil has developed a strong passion for designing and developing user friendly web and mobile applications. Emil is currently managing a team of front-end developers, specialized in Sencha frameworks, at Orango in Malmö Sweden. He is a certified Sencha trainer and has been developing applications, based on Sencha frameworks, for large ERP systems for the last seven years.",
+                "twitter_handle": "EmilPennlov"
+            }
+        ],
+        "tracks": [
+            {
+                "id": 8,
+                "name": "Develop",
+                "description": "This track is suited for developers who would like to learn about the latest advances in the Sencha platform including Ext JS, GXT and Sencha tools. Sessions in this track will cover best practices around for visualizing complex data sets, developing apps for the modern web and advancement which will help teams improve development productivity and deliver robust universal applications.",
+                "order_index": 1
+            }
+        ],
+        "location": {
+            "id": 4,
+            "name": "Starvine 3-5"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-Refine-Enterprise-Apps-Focus-on-User-Experience",
+        "order_index": 30,
+        "startDate": "2016-11-08T19:30:00.000Z",
+        "endDate": "2016-11-08T20:20:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Emil Pennlov"
+    },
+    {
+        "id": "57bf72af21619",
+        "type": "session",
+        "title": "GXT 5 - Going Gaga for Modern Theming",
+        "description": "Our all-new theming system lets you take full advantage of modern web standards, including CSS3 and Google Closure Stylesheets (GSS) to achieve a variety of sophisticated rendering techniques. Developers, graphic designers, and usability experts alike can modify a theme because there are no special tools required. Everything is centralized, and you can preview changes in an instant. A theme factory gives you a great degree of flexibility, including runtime theme selection and mix-and-match theming. A straightforward BEM naming convention lets you target specific elements and states with precision, without confusing selectors. Better yet, components now follow a model-view-controller pattern that decouples appearance and behavior from state, which means you can quickly customize a widget to meet business needs in ways that just weren’t possible before. Let us show you why theming with GXT has never been easier — or more powerful!",
+        "date": "Tuesday, November 8",
+        "start_time": "2:30 PM",
+        "end_time": "3:20 PM",
+        "speakers": [
+            {
+                "id": 118,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/03/David-Becker-Sencha.jpg",
+                "name": "David Becker",
+                "title": "Software Engineer",
+                "company": "Sencha",
+                "bio": "David is a Software Engineer at Sencha on the GXT development team. He has 25 years of experience as a developer and has focused most of his career on web development with skills in HTML5, Java, GXT, and GWT. Prior to joining Sencha, David worked for companies in the healthcare and financial services industries building web-based enterprise apps, including several projects using GXT 2 and 3.",
+                "twitter_handle": ""
+            }
+        ],
+        "tracks": [
+            {
+                "id": 8,
+                "name": "Develop",
+                "description": "This track is suited for developers who would like to learn about the latest advances in the Sencha platform including Ext JS, GXT and Sencha tools. Sessions in this track will cover best practices around for visualizing complex data sets, developing apps for the modern web and advancement which will help teams improve development productivity and deliver robust universal applications.",
+                "order_index": 1
+            }
+        ],
+        "location": {
+            "id": 14,
+            "name": "Starvine 1-2"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-GXT-5-Going-Gaga-for-Modern-Theming",
+        "order_index": 31,
+        "startDate": "2016-11-08T19:30:00.000Z",
+        "endDate": "2016-11-08T20:20:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "David Becker"
+    },
+    {
+        "id": "57ec0b3ceecce",
+        "type": "session",
+        "title": "The Modern Toolchain",
+        "description": "JavaScript not only powers the web but now servers, desktop applications, and all the tooling that brings them to life. In this session, we'll look at the future of tools for Ext JS. Building off the power of NPM, this future is open and extensible for JavaScript developers. Tools are the backbone of every application, so come to this session to stay ahead of the curve!",
+        "date": "Tuesday, November 8",
+        "start_time": "2:30 PM",
+        "end_time": "3:20 PM",
+        "speakers": [
+            {
+                "id": 224,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/09/Ross-Gerbasi-Sencha.jpg",
+                "name": "Ross Gerbasi",
+                "title": "Senior Engineer",
+                "company": "Sencha",
+                "bio": "Ross is a Senior Engineer at Sencha and is located in Chicago. He has been programming for more than 15 years and has worked with Sencha frameworks for more than 4 years. Ross specializes in new and emerging media including video and graphics production and has contributed to the open source community on emerging interactive solutions. His work on Sencha and Cordova integration allow him to fuse his many skills into a single focus to provide app developers with tools to help simplify building mobile apps.",
+                "twitter_handle": "rawss"
+            }
+        ],
+        "tracks": [
+            {
+                "id": 8,
+                "name": "Develop",
+                "description": "This track is suited for developers who would like to learn about the latest advances in the Sencha platform including Ext JS, GXT and Sencha tools. Sessions in this track will cover best practices around for visualizing complex data sets, developing apps for the modern web and advancement which will help teams improve development productivity and deliver robust universal applications.",
+                "order_index": 1
+            }
+        ],
+        "location": {
+            "id": 8,
+            "name": "Juniper 4"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-The-Modern-Toolchain",
+        "order_index": 32,
+        "startDate": "2016-11-08T19:30:00.000Z",
+        "endDate": "2016-11-08T20:20:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Ross Gerbasi"
+    },
+    {
+        "id": "580e95c2da3eb",
+        "type": "session",
+        "title": "Sencha Test Above and Beyond",
+        "description": "Success in test automation goes much further than being able to run tests in your local browsers. In this session, we’ll discuss how Sencha Test can help you to implement strategies for team collaboration, continuous integration, back-end interaction, legacy test code reuse, result review workflow, cloud-based browser farms, image comparison, and more.",
+        "date": "Tuesday, November 8",
+        "start_time": "2:30 PM",
+        "end_time": "3:20 PM",
+        "speakers": [
+            {
+                "id": 269,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/10/Marcelo-Bukowski-de-Farias-Sencha.jpg",
+                "name": "Marcelo Bukowski de Farias",
+                "title": "Software Engineer",
+                "company": "Sencha",
+                "bio": "Marcelo is a Software Engineer at Sencha on the Sencha Test Team. Over the last 15 years, he’s worked on a number of enterprise application projects in a variety of environments including J2EE and .NET. Being passionate about test automation, he also developed test automation frameworks for different front-end technologies including Ext JS, Java Swing, and Microsoft Silverlight.",
+                "twitter_handle": "MarceloBukowski"
+            }
+        ],
+        "tracks": [
+            {
+                "id": 9,
+                "name": "Test",
+                "description": "This track is suited for developers and test automation engineers who to learn best practices for improving application quality and accelerating application delivery through unit testing, end-to-end testing and automation.",
+                "order_index": 2
+            }
+        ],
+        "location": {
+            "id": 3,
+            "name": "Starvine 10-11"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-Sencha-Test-Above-and-Beyond",
+        "order_index": 33,
+        "startDate": "2016-11-08T19:30:00.000Z",
+        "endDate": "2016-11-08T20:20:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Marcelo Bukowski de Farias"
+    },
+    {
+        "id": "57f7d3681ad54",
+        "type": "break",
+        "title": "Break",
+        "description": "",
+        "date": "Tuesday, November 8",
+        "start_time": "3:20 PM",
+        "end_time": "3:40 PM",
+        "speakers": [],
+        "tracks": [],
+        "location": {
+            "id": 9,
+            "name": "Community Pavilion, Ironwood Ballroom, Level 3"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "",
+        "order_index": 34,
+        "startDate": "2016-11-08T20:20:00.000Z",
+        "endDate": "2016-11-08T20:40:00.000Z",
+        "categoryName": "Break",
+        "speakerNames": false
+    },
+    {
+        "id": "57b786490433b",
+        "type": "session",
+        "title": "Developing and Delivering Quality Code Frequently",
+        "description": "As web and mobile application software development increases in complexity, the frequency of testing is growing exponentially. In today’s competitive business environment, this trend is leading companies and their development teams to see who can deliver the most high-quality product, faster. To have quality code, all features and functionalities must work for all users regardless of browser, OS, or mobile device. The use of automated tests, continuous integration (CI) and open source tools such as Jenkins, git, Selenium, Appium, and test frameworks, over the use of proprietary tools have become keys to success for delivering quality code, ensuring a pipeline is clean, and to implement true CD. Expert Neil Manvar will offer best practices for leveraging modern technologies to develop, test and deliver maintainable, quality code. You will learn the advantages of testing software early and frequently, best practices to leverage modern technologies for test automation and CI, how to avoid shipping bad code, and how to create maintainable code while keeping it “non-legacy”. You will also learn the how and why of creating a robust developer feedback mechanism for sustained success.",
+        "date": "Tuesday, November 8",
+        "start_time": "3:40 PM",
+        "end_time": "4:30 PM",
+        "speakers": [
+            {
+                "id": 160,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/03/Neil-Manvar-SauceLabs.png",
+                "name": "Neil Manvar",
+                "title": "Solution Architect",
+                "company": "Sauce Labs",
+                "bio": "Neil is a solutions architect at Sauce Labs. Prior to joining Sauce Labs, he served as a software engineer at Yahoo!, where he contributed to Yahoo! Mail features and projects. He was one of Yahoo!’s first software engineers to develop Continuous Delivery build infrastructure and pipelines, and he developed an automated functional testing framework to run parallel tests on various browsers.",
+                "twitter_handle": ""
+            }
+        ],
+        "tracks": [
+            {
+                "id": 9,
+                "name": "Test",
+                "description": "This track is suited for developers and test automation engineers who to learn best practices for improving application quality and accelerating application delivery through unit testing, end-to-end testing and automation.",
+                "order_index": 2
+            }
+        ],
+        "location": {
+            "id": 3,
+            "name": "Starvine 10-11"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-Developing-and-Delivering-Quality-Code-Frequently",
+        "order_index": 35,
+        "startDate": "2016-11-08T20:40:00.000Z",
+        "endDate": "2016-11-08T21:30:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Neil Manvar"
+    },
+    {
+        "id": "57e969e7e6712",
+        "type": "session",
+        "title": "Theming the Modern Toolkit",
+        "description": "Ext JS 6.2 makes theming and styling your applications easier than ever before.  Learn how to use the new iOS and Material themes, and how to leverage the Modern Toolkit theming APIs to make your application look amazing on any device.",
+        "date": "Tuesday, November 8",
+        "start_time": "3:40 PM",
+        "end_time": "4:30 PM",
+        "speakers": [
+            {
+                "id": 217,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/09/Phil-Guerrant-Sencha.jpg",
+                "name": "Phil Guerrant",
+                "title": "Senior Software Engineer",
+                "company": "Sencha",
+                "bio": "Phil is a Senior Software Engineer at Sencha. He has spent more than a decade of his life developing rich user interfaces on both mobile and desktop platforms. These days, Phil continues to enjoy his passion for web user interface as a core member of the Ext JS development team.",
+                "twitter_handle": "pguerrant"
+            }
+        ],
+        "tracks": [
+            {
+                "id": 8,
+                "name": "Develop",
+                "description": "This track is suited for developers who would like to learn about the latest advances in the Sencha platform including Ext JS, GXT and Sencha tools. Sessions in this track will cover best practices around for visualizing complex data sets, developing apps for the modern web and advancement which will help teams improve development productivity and deliver robust universal applications.",
+                "order_index": 1
+            }
+        ],
+        "location": {
+            "id": 8,
+            "name": "Juniper 4"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-Theming-the-Modern-Toolkit",
+        "order_index": 36,
+        "startDate": "2016-11-08T20:40:00.000Z",
+        "endDate": "2016-11-08T21:30:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Phil Guerrant"
+    },
+    {
+        "id": "580ffe6283141",
+        "type": "session",
+        "title": "Design Methods for Better Product Development",
+        "description": "Stop developing in the dark. Use design-thinking methods to illuminate the path to better products. Whether you’re on a team that works closely with designers or you work alone, using a design-first approach can help you save time and resources in your development process. As more companies take a design-focused approach to product development, it’s helpful for people in all parts of an organization to become familiar with design. In this session, we’ll discuss basic design principles including design thinking, user experience, visual design, designer-developer communication, and design critique.",
+        "date": "Tuesday, November 8",
+        "start_time": "3:40 PM",
+        "end_time": "4:30 PM",
+        "speakers": [
+            {
+                "id": 195,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/09/Andrew-Hemans-Sencha.jpg",
+                "name": "Andrew Hemans",
+                "title": "UX Designer",
+                "company": "Sencha",
+                "bio": "Andrew is a UX Designer at Sencha. He attended Pacific Union College where he studied graphic design.",
+                "twitter_handle": "andrewhemans"
+            }
+        ],
+        "tracks": [
+            {
+                "id": 7,
+                "name": "Design",
+                "description": "This track is best suited for designers and developers looking for ways to create visually- compelling web applications. Sessions in this track will cover the best practices for working with themes, styling components, templates and highlight innovative application designs created by Sencha customers.",
+                "order_index": 0
+            }
+        ],
+        "location": {
+            "id": 15,
+            "name": "Stavine 1-2"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-Design-Methods-for-Better-Product-Development",
+        "order_index": 37,
+        "startDate": "2016-11-08T20:40:00.000Z",
+        "endDate": "2016-11-08T21:30:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Andrew Hemans"
+    },
+    {
+        "id": "57f29732a2fed",
+        "type": "session",
+        "title": "Oracle Forms Modernization: Automatically Converting Oracle Forms to Ext JS Apps",
+        "description": "Is your organization stuck on Oracle Forms technology? The time and cost of migration is only part of the risk associated with converting old logic, then you have to think about UI/UX and mobile platforms. In this session, you'll learn how 4Morphis automatically converts Oracle Forms into Ext JS based web and mobile applications, how the architecture can be maintained into the future, and how to approach projects so you can rapidly deliver value to your organization and users.",
+        "date": "Tuesday, November 8",
+        "start_time": "3:40 PM",
+        "end_time": "4:30 PM",
+        "speakers": [
+            {
+                "id": 249,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/10/Owen-Pagan-4Morphis.jpg",
+                "name": "Owen Pagan",
+                "title": "Founder",
+                "company": "4Morphis",
+                "bio": "Owen is one of the founders of 4Morphis. Based in Ireland, Owen started work as a programmer and web developer in 1998. After periods of working as a management consultant and in corporate finance, he is now involved at the management and board level in a number of high growth companies in the technology space including CoreHR, one of the UK’s and Ireland's fastest growing HCM and payroll software companies.",
+                "twitter_handle": "op2605"
+            }
+        ],
+        "tracks": [
+            {
+                "id": 7,
+                "name": "Design",
+                "description": "This track is best suited for designers and developers looking for ways to create visually- compelling web applications. Sessions in this track will cover the best practices for working with themes, styling components, templates and highlight innovative application designs created by Sencha customers.",
+                "order_index": 0
+            },
+            {
+                "id": 8,
+                "name": "Develop",
+                "description": "This track is suited for developers who would like to learn about the latest advances in the Sencha platform including Ext JS, GXT and Sencha tools. Sessions in this track will cover best practices around for visualizing complex data sets, developing apps for the modern web and advancement which will help teams improve development productivity and deliver robust universal applications.",
+                "order_index": 1
+            }
+        ],
+        "location": {
+            "id": 4,
+            "name": "Starvine 3-5"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-Oracle-Forms-Modernization",
+        "order_index": 38,
+        "startDate": "2016-11-08T20:40:00.000Z",
+        "endDate": "2016-11-08T21:30:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Owen Pagan"
+    },
+    {
+        "id": "57b77cf83cd99",
+        "type": "session",
+        "title": "Mobile First? Desktop First? Or Should You Think Universal App!",
+        "description": "Mobile First? Desktop First? Or Should You Think Universal App!\r\nHistorically, web developers approached app development from the desktop first, and mobile was a secondary goal. Even concepts like responsive design evolved from the desktop side. Developers began with a desktop app and worked their way down to make a responsive app available for smaller screens. But now with the extraordinary growth of mobile users across the globe, that approach is being reversed. Developers are building mobile first, and then making progressive enhancements so the app is available on desktop. Should you be taking either a mobile or desktop first approach, or thinking about Universal Apps to deliver the right user experiences. This approach maximizes the shareability of code across these experiences. In this presentation, we’ll explore case studies that show the benefits of each approach.",
+        "date": "Tuesday, November 8",
+        "start_time": "4:40 PM",
+        "end_time": "5:30 PM",
+        "speakers": [
+            {
+                "id": 47,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/03/Gautam-Agrawal-Sencha.jpg",
+                "name": "Gautam Agrawal",
+                "title": "Sr. Director, Product Management",
+                "company": "Sencha",
+                "bio": "Gautam leads product management at Sencha. He is responsible for guiding new product strategies and roadmap initiatives across the Sencha product portfolio. Additionally, Gautam works with strategic partners to establish and develop new market opportunities. Prior to joining Sencha, he held various product and engineering positions at organizations developing SaaS and Business Intelligence applications. Gautam holds a PhD and MS from State University of NY (SUNY) at Buffalo.",
+                "twitter_handle": "agrawal3"
+            }
+        ],
+        "tracks": [
+            {
+                "id": 7,
+                "name": "Design",
+                "description": "This track is best suited for designers and developers looking for ways to create visually- compelling web applications. Sessions in this track will cover the best practices for working with themes, styling components, templates and highlight innovative application designs created by Sencha customers.",
+                "order_index": 0
+            },
+            {
+                "id": 8,
+                "name": "Develop",
+                "description": "This track is suited for developers who would like to learn about the latest advances in the Sencha platform including Ext JS, GXT and Sencha tools. Sessions in this track will cover best practices around for visualizing complex data sets, developing apps for the modern web and advancement which will help teams improve development productivity and deliver robust universal applications.",
+                "order_index": 1
+            }
+        ],
+        "location": {
+            "id": 4,
+            "name": "Starvine 3-5"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-Mobile-First-Desktop-First-or-Universal-App",
+        "order_index": 39,
+        "startDate": "2016-11-08T21:40:00.000Z",
+        "endDate": "2016-11-08T22:30:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Gautam Agrawal"
+    },
+    {
+        "id": "57b7843a02b51",
+        "type": "session",
+        "title": "JavaScript is Great but Stop Writing It",
+        "description": "JavaScript is a wonderful and powerful language allowing expression and dynamic interaction both in and out of the browser. It is one of the most pervasive and accessible languages to date. However, there is a dark side to JavaScript. Developers don't always understand JavaScript/HTML/CSS, so they frequently end up solving problems by coding away in JavaScript when they could, and potentially should, be solved elsewhere. As an unfortunate side effect to this issue, unfamiliarity with the language causes developers to write a lot of code which can have mistakes and be difficult to read and understand. Even more unfortunate is that this problem is cyclical; lots of code begets more code that could have been solved elsewhere and so forth. This talk is not about never writing JavaScript. It is about writing JavaScript when you actually need to and in a minimal fashion. This talk focuses on JavaScript in the browser.",
+        "date": "Tuesday, November 8",
+        "start_time": "4:40 PM",
+        "end_time": "5:30 PM",
+        "speakers": [
+            {
+                "id": 134,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/07/Rory-Hardy-Cerner.jpg",
+                "name": "Rory Hardy",
+                "title": "Software Engineer",
+                "company": "Cerner",
+                "bio": "Rory is a software engineer, mentor, and instructor at Cerner. His primary focus has always been web development since his internship with the Oregon State University Foundation and his graduation from OSU in 2012. His favorite programming language is JavaScript. Outside of work, he continues to enjoy helping others to succeed and likes playing various video games (Final Fantasy or Zelda genres). He plays several instruments including the clarinet, saxophone, and ocarina.",
+                "twitter_handle": "gneatgeek"
+            }
+        ],
+        "tracks": [
+            {
+                "id": 8,
+                "name": "Develop",
+                "description": "This track is suited for developers who would like to learn about the latest advances in the Sencha platform including Ext JS, GXT and Sencha tools. Sessions in this track will cover best practices around for visualizing complex data sets, developing apps for the modern web and advancement which will help teams improve development productivity and deliver robust universal applications.",
+                "order_index": 1
+            }
+        ],
+        "location": {
+            "id": 14,
+            "name": "Starvine 1-2"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-JavaScript-is-Great-but-Stop-Writing-It",
+        "order_index": 40,
+        "startDate": "2016-11-08T21:40:00.000Z",
+        "endDate": "2016-11-08T22:30:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Rory Hardy"
+    },
+    {
+        "id": "57e967cb7a729",
+        "type": "session",
+        "title": "Advanced Techniques for Building Native Desktop Apps with Ext JS and Electron",
+        "description": "By combining the cores of Chrome and Node.js, Electron opens the escape hatch on the itty-bitty living space of the web browser and gives your Ext JS application many of the phenomenal cosmic powers of native applications. In this session, you'll learn some of the key techniques Sencha has used to build native desktop applications, based on Electron​​.​​ If native desktop apps are tempting you, and you want to leverage your HTML5/CSS3 expertise, you don't want to miss this session!",
+        "date": "Tuesday, November 8",
+        "start_time": "4:40 PM",
+        "end_time": "5:30 PM",
+        "speakers": [
+            {
+                "id": 272,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/11/Jason-Cline-Sencha.jpg",
+                "name": "Jason Cline",
+                "title": "Principal Architect",
+                "company": "Sencha",
+                "bio": "Jason provides engineering consulting as part of the Professional Services team. He helps Sencha customers to use best practices in designing, developing and testing their cross-platform apps, and gain competitive and financial advantages with the Sencha platform. He has spent most of his career on the bleeding edge of both mobile and web technologies for both client and server. Prior to Sencha, Jason spent 4 years working on the Dojo Toolkit helping to bring real-time communication to pre-HTML5 browsers using XMPP and Comet. Before taking a leap to work on first generation JavaScript frameworks, Jason spent six years as a lead engineer at Vodafone building a scalable back-end for the early days of the mobile web.",
+                "twitter_handle": "clinejm"
+            }
+        ],
+        "tracks": [
+            {
+                "id": 8,
+                "name": "Develop",
+                "description": "This track is suited for developers who would like to learn about the latest advances in the Sencha platform including Ext JS, GXT and Sencha tools. Sessions in this track will cover best practices around for visualizing complex data sets, developing apps for the modern web and advancement which will help teams improve development productivity and deliver robust universal applications.",
+                "order_index": 1
+            }
+        ],
+        "location": {
+            "id": 8,
+            "name": "Juniper 4"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-Advanced-Techniques-for-Building-Native-Desktop-Apps",
+        "order_index": 41,
+        "startDate": "2016-11-08T21:40:00.000Z",
+        "endDate": "2016-11-08T22:30:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Jason Cline"
+    },
+    {
+        "id": "57f3e44e8eebb",
+        "type": "session",
+        "title": "Writing Functional Tests with Sencha Test Futures API and WebDriver",
+        "description": "The Futures API helps target Ext JS components and elements directly and allows for easily writing tests, which wait for application elements to reach certain states. It eliminates the need for writing multiple lines of code to test a feature. With Sencha Test 2.0, the Futures API is evolving to support multi-page architectures such as single-sign-on scenarios and others, which require a test to span multiple sites or page loads. Integration with WebDriver in Sencha Test 2.0 adds new features as well as extends some old features to support this new architecture. Come walk through the changes, learn how to deal with typical multi-page test cases, as well as dive into the details of our integration with WebDriver.",
+        "date": "Tuesday, November 8",
+        "start_time": "4:40 PM",
+        "end_time": "5:30 PM",
+        "speakers": [
+            {
+                "id": 250,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/10/Craig-Comstock-Sencha.jpg",
+                "name": "Craig Comstock",
+                "title": "Development Engineer",
+                "company": "Sencha",
+                "bio": "Craig is a Development Engineer on the Sencha Test team. He has worked on Java enterprise apps with web front-ends for about 20 years. He has a passion for Test First design and development and has helped numerous projects ramp up on the various types of automated testing as well as developing many application-specific testing frameworks. In his spare time, he likes to hang with his wife and four kids, play soccer, and make music as the one-man-band, This Is My Condition.",
+                "twitter_handle": ""
+            }
+        ],
+        "tracks": [
+            {
+                "id": 9,
+                "name": "Test",
+                "description": "This track is suited for developers and test automation engineers who to learn best practices for improving application quality and accelerating application delivery through unit testing, end-to-end testing and automation.",
+                "order_index": 2
+            }
+        ],
+        "location": {
+            "id": 3,
+            "name": "Starvine 10-11"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-Writing-Functional-Tests-with-Sencha-Test-Futures-API-WebDriver",
+        "order_index": 42,
+        "startDate": "2016-11-08T21:40:00.000Z",
+        "endDate": "2016-11-08T22:30:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Craig Comstock"
+    },
+    {
+        "id": "57ee3b2478845",
+        "type": "activity",
+        "title": "SenchaCon 2016 Party",
+        "description": "We’ve got a fun-filled SenchaCon pool party planned for you. Join us for an evening of great food, drinks, and entertainment. You can challenge your fellow attendees with a game of darts, foosball, or a remote controlled speedboat race. You can also enjoy a freshly blended margarita, powered by the sweat of your own brow, with our margarita bike. It’s a fun-filled night you won’t want to miss.",
+        "date": "Tuesday, November 8",
+        "start_time": "6:30 PM",
+        "end_time": "10:00 PM",
+        "speakers": [],
+        "tracks": [],
+        "location": {
+            "id": 16,
+            "name": "Palms Pool at the Aria Resort & Casino"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "",
+        "order_index": 43,
+        "startDate": "2016-11-08T23:30:00.000Z",
+        "endDate": "2016-11-09T03:00:00.000Z",
+        "categoryName": "Activity",
+        "speakerNames": false
+    },
+    {
+        "id": "57ee9f637a9b6",
+        "type": "break",
+        "title": "Registration/Hospitality Desk Open",
+        "description": "",
+        "date": "Wednesday, November 9",
+        "start_time": "7:00 AM",
+        "end_time": "6:00 PM",
+        "speakers": [],
+        "tracks": [],
+        "location": {
+            "id": 10,
+            "name": "Registration Desks between Ironwood & Juniper Ballrooms"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "",
+        "order_index": 45,
+        "startDate": "2016-11-09T12:00:00.000Z",
+        "endDate": "2016-11-09T23:00:00.000Z",
+        "categoryName": "Break",
+        "speakerNames": false
+    },
+    {
+        "id": "57ee9f6402af5",
+        "type": "break",
+        "title": "Breakfast",
+        "description": "",
+        "date": "Wednesday, November 9",
+        "start_time": "7:00 AM",
+        "end_time": "9:00 AM",
+        "speakers": [],
+        "tracks": [],
+        "location": {
+            "id": 9,
+            "name": "Community Pavilion, Ironwood Ballroom, Level 3"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "",
+        "order_index": 46,
+        "startDate": "2016-11-09T12:00:00.000Z",
+        "endDate": "2016-11-09T14:00:00.000Z",
+        "categoryName": "Break",
+        "speakerNames": false
+    },
+    {
+        "id": "57ee9f63b7a1b",
+        "type": "activity",
+        "title": "Community Pavilion",
+        "description": "Make the Community Pavilion your home base for SenchaCon 2016. Visit our sponsors, exchange ideas with fellow attendees, recharge yourself and your equipment, and put your skills to the test at corn hole, ping pong, and foosball.",
+        "date": "Wednesday, November 9",
+        "start_time": "7:00 AM",
+        "end_time": "1:00 PM",
+        "speakers": [],
+        "tracks": [],
+        "location": {
+            "id": 11,
+            "name": "Ironwood Ballroom, Level 3"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "",
+        "order_index": 47,
+        "startDate": "2016-11-09T12:00:00.000Z",
+        "endDate": "2016-11-09T18:00:00.000Z",
+        "categoryName": "Activity",
+        "speakerNames": false
+    },
+    {
+        "id": "57fb177e6e994",
+        "type": "activity",
+        "title": "Ask Sencha",
+        "description": "Get a private 30-minute technical consultation with a Sencha expert. You can use this time for a simple code review, guidance on application architecture and layout, or assistance with custom components. By appointment; space is limited.",
+        "date": "Wednesday, November 9",
+        "start_time": "8:00 AM",
+        "end_time": "1:00 PM",
+        "speakers": [],
+        "tracks": [],
+        "location": {
+            "id": 9,
+            "name": "Community Pavilion, Ironwood Ballroom, Level 3"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "",
+        "order_index": 48,
+        "startDate": "2016-11-09T13:00:00.000Z",
+        "endDate": "2016-11-09T18:00:00.000Z",
+        "categoryName": "Activity",
+        "speakerNames": false
+    },
+    {
+        "id": "57fb177ec25ac",
+        "type": "activity",
+        "title": "Sencha Zone",
+        "description": "Get direct access to the Sencha Team to discuss your questions and the talk about the latest product info. You can also pick up a preview copy of a brand new Ext JS book written by our partner and sponsor Fig Leaf Software.",
+        "date": "Wednesday, November 9",
+        "start_time": "8:00 AM",
+        "end_time": "1:00 PM",
+        "speakers": [],
+        "tracks": [],
+        "location": {
+            "id": 9,
+            "name": "Community Pavilion, Ironwood Ballroom, Level 3"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "",
+        "order_index": 49,
+        "startDate": "2016-11-09T13:00:00.000Z",
+        "endDate": "2016-11-09T18:00:00.000Z",
+        "categoryName": "Activity",
+        "speakerNames": false
+    },
+    {
+        "id": "57b77f834cd1c",
+        "type": "session",
+        "title": "Web Development at the Speed of Thought: Succeeding in the App Economy",
+        "description": "The Agile development has brought down the software delivery timelines from what used to be 12 to 18 months to a mere 2 to 4 months cycle. According to Forrester, software development is reaching a zero day event as feedback driven development is taking over requirements driven development. Because of this change, organizations need tools to optimize on the frequency of software delivery. In this presentation, we’ll explore unique ways to improve speed of app development using Sencha’s tools for visual drag and drop based app building and theming.",
+        "date": "Wednesday, November 9",
+        "start_time": "9:00 AM",
+        "end_time": "9:50 AM",
+        "speakers": [
+            {
+                "id": 119,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/03/Sandeep-Adwankar-Sencha.jpg",
+                "name": "Sandeep Adwankar",
+                "title": "Product Manager",
+                "company": "Sencha",
+                "bio": "Sandeep is a Product Manager at Sencha and is passionate about innovations in mobile and web technologies. He has experience working for startups in Silicon Valley as well as large companies including Motorola and Time Warner Cable. He has an MBA from DePaul University in Chicago and a Masters in Technology from IIT Bombay.",
+                "twitter_handle": "adwankar"
+            }
+        ],
+        "tracks": [
+            {
+                "id": 8,
+                "name": "Develop",
+                "description": "This track is suited for developers who would like to learn about the latest advances in the Sencha platform including Ext JS, GXT and Sencha tools. Sessions in this track will cover best practices around for visualizing complex data sets, developing apps for the modern web and advancement which will help teams improve development productivity and deliver robust universal applications.",
+                "order_index": 1
+            }
+        ],
+        "location": {
+            "id": 8,
+            "name": "Juniper 4"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-Web-Dev-at-the-Speed-of-Thought",
+        "order_index": 50,
+        "startDate": "2016-11-09T14:00:00.000Z",
+        "endDate": "2016-11-09T14:50:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Sandeep Adwankar"
+    },
+    {
+        "id": "57b7843a58535",
+        "type": "session",
+        "title": "Expect the Unexpected: How to Deal with Errors in Sencha Applications",
+        "description": "Dealing with unexpected exceptions on the server side is something we've all done for ages. Now it's time to apply the same quality goals and monitoring to our JS codebase. This is especially important for Sencha applications where the front-end usually contains 100k+ lines of code. I'll demonstrate various powerful monitoring techniques and tricks that we are using ourselves at Bryntum.",
+        "date": "Wednesday, November 9",
+        "start_time": "9:00 AM",
+        "end_time": "9:50 AM",
+        "speakers": [
+            {
+                "id": 139,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/07/Mats-Bryntse-Bryntum.jpg",
+                "name": "Mats Bryntse",
+                "title": "Founder",
+                "company": "Bryntum",
+                "bio": "Mats has been using Sencha products for almost 10 years. Before this, Mats lived a normal life. Now his time is mainly spent creating advanced and reusable UI components for the Sencha ecosystem.",
+                "twitter_handle": "bryntum"
+            }
+        ],
+        "tracks": [
+            {
+                "id": 8,
+                "name": "Develop",
+                "description": "This track is suited for developers who would like to learn about the latest advances in the Sencha platform including Ext JS, GXT and Sencha tools. Sessions in this track will cover best practices around for visualizing complex data sets, developing apps for the modern web and advancement which will help teams improve development productivity and deliver robust universal applications.",
+                "order_index": 1
+            }
+        ],
+        "location": {
+            "id": 6,
+            "name": "Starvine 6-7"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-Expect-the-Unexpected-How-to-Deal-with-Errors-in-Sencha-Apps",
+        "order_index": 51,
+        "startDate": "2016-11-09T14:00:00.000Z",
+        "endDate": "2016-11-09T14:50:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Mats Bryntse"
+    },
+    {
+        "id": "57b7850891753",
+        "type": "session",
+        "title": "A Data-driven Ext JS Application for the Embedded World",
+        "description": "As part of the development of a smart-metering device for buildings involving over-the-air management tools, HAGER group (12,000 employees – 1.9 billion turnover) and JNESIS worked together to make the Ext JS framework fit in a small industrial embedded device. HAGER selected Ext JS, not only for its wide range of enterprise-grade components and better time-to-market, but also its sustainability and stability. HAGER creates products meant to last, and the new application is will be used for a decade.\r\n\r\nWe will present in detail a real-time and data-centric application designed to help people manage large facilities, buildings, and homes in a smart way. It notably features D3.js dashboards, user-friendly device mapping, and automatic alerts on suspicious power consumptions.",
+        "date": "Wednesday, November 9",
+        "start_time": "9:00 AM",
+        "end_time": "9:50 AM",
+        "speakers": [
+            {
+                "id": 140,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/07/Jean-Philippe-Ehret-Jnesis.jpg",
+                "name": "Jean-Philippe Ehret",
+                "title": "COO",
+                "company": "Jnesis",
+                "bio": "Jean-Philippe is the Chief Operations Officer at Jnesis, a company dedicated to the development of efficient business solutions integrating both Java and JavaScript. Jnesis' strong commitment to innovation in both technology and management have led to new solutions that dramatically reduce the development costs of B2B applications. This led Jean-Philippe to expand Jnesis' activity to nearby European countries and, naturally, towards a partnership with Sencha.",
+                "twitter_handle": ""
+            }
+        ],
+        "tracks": [
+            {
+                "id": 8,
+                "name": "Develop",
+                "description": "This track is suited for developers who would like to learn about the latest advances in the Sencha platform including Ext JS, GXT and Sencha tools. Sessions in this track will cover best practices around for visualizing complex data sets, developing apps for the modern web and advancement which will help teams improve development productivity and deliver robust universal applications.",
+                "order_index": 1
+            }
+        ],
+        "location": {
+            "id": 4,
+            "name": "Starvine 3-5"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-Data-Driven-Ext-JS-Apps-for-the-Embedded-World",
+        "order_index": 52,
+        "startDate": "2016-11-09T14:00:00.000Z",
+        "endDate": "2016-11-09T14:50:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Jean-Philippe Ehret"
+    },
+    {
+        "id": "57b78508e6f4b",
+        "type": "session",
+        "title": "Turbocharge Your Ext JS App Performance",
+        "description": "Web applications are becoming increasingly data intensive and complex. Yet, users demand a great user experience, including blazingly fast speeds, across many device types. In this talk, we will show you how you can dramatically improve the performance of your web applications by using Sencha Ext JS and Ext Speeder. You will learn how to: accelerate your back-end data requests up to 10x by leveraging sophisticated in-memory, object-oriented techniques, significantly improve application responsiveness without making any modifications to your client Ext JS application, and quickly get started with database acceleration in standard J2EE environments.",
+        "date": "Wednesday, November 9",
+        "start_time": "9:00 AM",
+        "end_time": "9:50 AM",
+        "speakers": [
+            {
+                "id": 157,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/03/Per-Minborg-Speedment.jpg",
+                "name": "Per Minborg",
+                "title": "CTO",
+                "company": "Speedment",
+                "bio": "Per is a Palo Alto based developer and architect. He is a regular speaker at various conferences including JavaOne, jdays, JUGs, and Meetups. Per has 15+ US patent applications and invention disclosures. He runs the blog “Minborg’s Java Pot” which has gained half a million readers. He is Java Zone Leader at DZone. He is founder and CTO at Speedment, focusing on in-memory databases, high-performance solutions, cloud technologies, and concurrent programming.",
+                "twitter_handle": "PMinborg"
+            },
+            {
+                "id": 161,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/03/Jon-Jarboe-Sencha.jpg",
+                "name": "Jon Jarboe",
+                "title": "Technical Marketing Manager",
+                "company": "Sencha",
+                "bio": "Jon is a Technical Marketing Manager at Sencha. His broad development experience, ranging from embedded systems to modern web and mobile applications, helps him to communicate the benefits and vision of Sencha technologies. Prior to joining Sencha, Jon held various technical roles at organizations that provide software development tools for embedded and enterprise applications.",
+                "twitter_handle": ""
+            }
+        ],
+        "tracks": [
+            {
+                "id": 8,
+                "name": "Develop",
+                "description": "This track is suited for developers who would like to learn about the latest advances in the Sencha platform including Ext JS, GXT and Sencha tools. Sessions in this track will cover best practices around for visualizing complex data sets, developing apps for the modern web and advancement which will help teams improve development productivity and deliver robust universal applications.",
+                "order_index": 1
+            }
+        ],
+        "location": {
+            "id": 14,
+            "name": "Starvine 1-2"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-Turbocharge-Your-Ext-JS-App-Performance",
+        "order_index": 53,
+        "startDate": "2016-11-09T14:00:00.000Z",
+        "endDate": "2016-11-09T14:50:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Per Minborg, Jon Jarboe"
+    },
+    {
+        "id": "5807f0f50cd0c",
+        "type": "session",
+        "title": "Ext JS Architecture Best Practices",
+        "description": "Starting your application on the right foot is important. You’re probably excited to start coding, but it’s important to think about the architecture you’ll need. In this session, we’ll cover architectural best practices including the difference between MVC and MVVM, how to start architecting your application, and using the Ext JS router to your advantage.",
+        "date": "Wednesday, November 9",
+        "start_time": "9:00 AM",
+        "end_time": "9:50 AM",
+        "speakers": [
+            {
+                "id": 218,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/09/Mitchell-Simoens-Sencha.jpg",
+                "name": "Mitchell Simoens",
+                "title": "Senior Software Engineer",
+                "company": "Sencha",
+                "bio": "Mitchell is a Senior Software Engineer at Sencha. He has been with the company for five years, and a part of the community for 10 years. He is a regular contributor to the community with his work on many projects including Ext JS and Sencha Test. Currently, Mitchell’s main focus is on improving the functionality of Sencha Fiddle and the Sencha Support Portal.",
+                "twitter_handle": "LikelyMitch"
+            }
+        ],
+        "tracks": [
+            {
+                "id": 8,
+                "name": "Develop",
+                "description": "This track is suited for developers who would like to learn about the latest advances in the Sencha platform including Ext JS, GXT and Sencha tools. Sessions in this track will cover best practices around for visualizing complex data sets, developing apps for the modern web and advancement which will help teams improve development productivity and deliver robust universal applications.",
+                "order_index": 1
+            }
+        ],
+        "location": {
+            "id": 3,
+            "name": "Starvine 10-11"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-Ext-JS-Architecture-Best-Practices",
+        "order_index": 54,
+        "startDate": "2016-11-09T14:00:00.000Z",
+        "endDate": "2016-11-09T14:50:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Mitchell Simoens"
+    },
+    {
+        "id": "57f6ddc729999",
+        "type": "break",
+        "title": "Break",
+        "description": "",
+        "date": "Wednesday, November 9",
+        "start_time": "9:50 AM",
+        "end_time": "10:10 AM",
+        "speakers": [],
+        "tracks": [],
+        "location": {
+            "id": 9,
+            "name": "Community Pavilion, Ironwood Ballroom, Level 3"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "",
+        "order_index": 55,
+        "startDate": "2016-11-09T14:50:00.000Z",
+        "endDate": "2016-11-09T15:10:00.000Z",
+        "categoryName": "Break",
+        "speakerNames": false
+    },
+    {
+        "id": "57b77bd861eba",
+        "type": "session",
+        "title": "Add Magic to Your Ext JS Apps with D3 Visualizations",
+        "description": "Ext JS provides easy-to-use charting components that satisfy common needs, but sometimes you want to deliver an exceptional, unique user experience. This presentation will discuss how Ext JS leverages the popular and extremely powerful D3 library to create sophisticated, data-driven visualizations. This functionality helps your users understand the story behind their data, so they can make informed decisions.",
+        "date": "Wednesday, November 9",
+        "start_time": "10:10 AM",
+        "end_time": "11:00 AM",
+        "speakers": [
+            {
+                "id": 51,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/03/Vitaly-Kravchenko-Sencha.jpg",
+                "name": "Vitaly Kravchenko",
+                "title": "Graphics Engineer",
+                "company": "Sencha",
+                "bio": "Vitaly is a Graphics Engineer at Sencha. Over the past two years, he has transitioned Touch Charts to a single cross-toolkit package, adding numerous features to the API, and improving interactivity and 3D charts support. For 10 years before joining Sencha, Vitaly was an independent developer. He built desktop audio software called Spider Player with a user base of 2 million people, as well as apps for BlackBerry, WebOS, and Android.",
+                "twitter_handle": ""
+            }
+        ],
+        "tracks": [
+            {
+                "id": 8,
+                "name": "Develop",
+                "description": "This track is suited for developers who would like to learn about the latest advances in the Sencha platform including Ext JS, GXT and Sencha tools. Sessions in this track will cover best practices around for visualizing complex data sets, developing apps for the modern web and advancement which will help teams improve development productivity and deliver robust universal applications.",
+                "order_index": 1
+            }
+        ],
+        "location": {
+            "id": 8,
+            "name": "Juniper 4"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-Add-Magic-to-Your-Ext-JS-Apps-with-D3-Visualizations",
+        "order_index": 56,
+        "startDate": "2016-11-09T15:10:00.000Z",
+        "endDate": "2016-11-09T16:00:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Vitaly Kravchenko"
+    },
+    {
+        "id": "57b7809da3955",
+        "type": "session",
+        "title": "Building Enterprise Ext JS Apps with Mavenized Sencha Cmd",
+        "description": "At CoreMedia, after starting with very simple community solutions, we invested in developing a deep Maven integration of Sencha Cmd. We will share the resulting Open Source Maven plugin with the Sencha community. Sencha Cmd is a powerful build tool for Ext JS applications. Our solution combines the best of both worlds: we use Sencha Cmd for its JavaScript and Sass build expertise; while Maven manages artifacts, dependencies, and integration with other tools like compilers and the Java back-end. The Maven plugin uses the standard Maven workspace layout with a strict separation of source and target as input, and transforms it into the standard Sencha workspace layout. Dependencies and all other configuration that are usually in package.json / app.json are specified in the standard Maven configuration file (pom.xml). Maven takes care of version (ranges), releases, and deployment. Two new Maven module types correspond to Sencha packages and apps. Applications can be built for development as well as for production. Application artifacts are Java JARs with static web resources that can be used directly in Java Web Apps without unpacking. In this session, we'll show you how CoreMedia's Maven plugin offers the deepest integration of Sencha Cmd into your Maven build process available today and takes modular Ext JS development to the next level.",
+        "date": "Wednesday, November 9",
+        "start_time": "10:10 AM",
+        "end_time": "11:00 AM",
+        "speakers": [
+            {
+                "id": 128,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/07/Frank-Wienberg-CoreMediaAG.jpg",
+                "name": "Frank Wienberg",
+                "title": "Software Architect",
+                "company": "CoreMedia",
+                "bio": "Frank Wienberg holds a Ph.D. in Computer Science and is a Software Architect at Digital Experience Platform software vendor CoreMedia (Germany). He has been working on web-based rich UIs since their early days and has predominantly influenced the architecture of CoreMedia's editorial UI, introducing Ext JS 3 back in 2009. Frank is dedicated to open-sourcing CoreMedia’s development tools through the Jangaroo project and has presented them at national conferences and international workshops.",
+                "twitter_handle": "YetAnotherFrank"
+            }
+        ],
+        "tracks": [
+            {
+                "id": 8,
+                "name": "Develop",
+                "description": "This track is suited for developers who would like to learn about the latest advances in the Sencha platform including Ext JS, GXT and Sencha tools. Sessions in this track will cover best practices around for visualizing complex data sets, developing apps for the modern web and advancement which will help teams improve development productivity and deliver robust universal applications.",
+                "order_index": 1
+            }
+        ],
+        "location": {
+            "id": 4,
+            "name": "Starvine 3-5"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-Building-Enterprise-Ext-JS-Apps-with-Mavenized-Sencha-Cmd",
+        "order_index": 57,
+        "startDate": "2016-11-09T15:10:00.000Z",
+        "endDate": "2016-11-09T16:00:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Frank Wienberg"
+    },
+    {
+        "id": "57b7834ba1bf9",
+        "type": "session",
+        "title": "Develop, Test, and Deploy Your Ext JS Applications with Docker",
+        "description": "Do you work on a team where you are forced to use a specific operating system, a specific program or even a specific toolchain to work on your project, just because it depends on a specific environment? A lot of work has gone into finding workarounds for incompatibilities, due to the use of different operating systems and software versions. But still, ask yourself, did you ever run into problems, because your staging system was not an exact clone of production or your continuous integration server runs an old version of Sencha Cmd. Basically, have you ever heard the phrase: \"Everything works fine on my machine?\" Docker is here to rescue you. Running your toolchain, Ext JS application, back-end server, and even your database - all in a standardized container format that can be transported and reused, throughout your process. In this session, you will learn how to automate a typical workflow, including developing, testing, and deploying, by using Docker containers and common continuous integration solutions.",
+        "date": "Wednesday, November 9",
+        "start_time": "10:10 AM",
+        "end_time": "11:00 AM",
+        "speakers": [
+            {
+                "id": 132,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/07/Jonas-Schwabe-EyeworkersInteractiveGmbH.jpg",
+                "name": "Jonas Schwabe",
+                "title": "Software Engineer",
+                "company": "eyeworkers Interactive GmbH",
+                "bio": "Jonas is studying for his degree in computer science, while he is also working at eyeworkers interactive GmbH. He wrote his first lines of JavaScript in 2008 and expanded his knowledge since then by working on multiple websites, NodeJS applictions, NodeJS native extensions, and enterprise Ext JS applications. He is very interested in modern ways to automate his workflow, in order to focus on the interesting parts of software development.",
+                "twitter_handle": ""
+            }
+        ],
+        "tracks": [
+            {
+                "id": 8,
+                "name": "Develop",
+                "description": "This track is suited for developers who would like to learn about the latest advances in the Sencha platform including Ext JS, GXT and Sencha tools. Sessions in this track will cover best practices around for visualizing complex data sets, developing apps for the modern web and advancement which will help teams improve development productivity and deliver robust universal applications.",
+                "order_index": 1
+            }
+        ],
+        "location": {
+            "id": 3,
+            "name": "Starvine 10-11"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-Develop-Test-Deploy-Your-Ext-JS-Apps-with-Docker",
+        "order_index": 58,
+        "startDate": "2016-11-09T15:10:00.000Z",
+        "endDate": "2016-11-09T16:00:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Jonas Schwabe"
+    },
+    {
+        "id": "57d9ba88de4c9",
+        "type": "session",
+        "title": "Cross-Platform Mobile App Development with Cordova and Visual Studio",
+        "description": "The promise of hybrid mobile app development using Cordova is quite alluring. As a web developer, you use your Ext JS skills to build cross-platform mobile applications for iOS/Android/Windows with a single code base. Visual Studio and the latest Ext JS framework provide powerful capabilities with which you can create sophisticated, mobile apps with UX components such as Pivot Grid, Calendar, and D3-based charts. Join Microsoft and Sencha to see how to build enterprise cross-platform mobile apps using Visual Studio, Ext JS, and Apache Cordova, and leverage device capabilities.",
+        "date": "Wednesday, November 9",
+        "start_time": "10:10 AM",
+        "end_time": "11:00 AM",
+        "speakers": [
+            {
+                "id": 194,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/09/Ryan-Salva-Microsoft.jpg",
+                "name": "Ryan Salva",
+                "title": "Principal Program Manager",
+                "company": "Microsoft",
+                "bio": "Ryan is a Principal Program Manager on the Visual Studio Client Tools team at Microsoft where he looks after HTML, CSS, and JavaScript development. Today, he focuses primarily on mobile app development using web technologies and Apache Cordova. He has a 14-year career in web standards development and advocacy.",
+                "twitter_handle": "ryanjsalva"
+            },
+            {
+                "id": 119,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/03/Sandeep-Adwankar-Sencha.jpg",
+                "name": "Sandeep Adwankar",
+                "title": "Product Manager",
+                "company": "Sencha",
+                "bio": "Sandeep is a Product Manager at Sencha and is passionate about innovations in mobile and web technologies. He has experience working for startups in Silicon Valley as well as large companies including Motorola and Time Warner Cable. He has an MBA from DePaul University in Chicago and a Masters in Technology from IIT Bombay.",
+                "twitter_handle": "adwankar"
+            }
+        ],
+        "tracks": [
+            {
+                "id": 8,
+                "name": "Develop",
+                "description": "This track is suited for developers who would like to learn about the latest advances in the Sencha platform including Ext JS, GXT and Sencha tools. Sessions in this track will cover best practices around for visualizing complex data sets, developing apps for the modern web and advancement which will help teams improve development productivity and deliver robust universal applications.",
+                "order_index": 1
+            }
+        ],
+        "location": {
+            "id": 6,
+            "name": "Starvine 6-7"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-Cross-Platform-Mobile-App-Development-with-Cordova-and-Visual-Studio",
+        "order_index": 59,
+        "startDate": "2016-11-09T15:10:00.000Z",
+        "endDate": "2016-11-09T16:00:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Ryan Salva, Sandeep Adwankar"
+    },
+    {
+        "id": "57ec58e69417a",
+        "type": "session",
+        "title": "Accessibility, Teamwork, and Ext JS: A Customer Success Story",
+        "description": "Demand for accessible applications is on the rise, and many enterprise software developers are faced with the need to meet accessibility requirements in their products. To address this daunting problem, University of Washington and Innotas collaborated with Sencha to make the Ext JS framework more accessible and share the benefits with all Sencha customers. In this session, we'll detail the steps we took, the pain we experienced, the roadblocks we overcame, and the spectacular results we achieved.",
+        "date": "Wednesday, November 9",
+        "start_time": "10:10 AM",
+        "end_time": "11:00 AM",
+        "speakers": [
+            {
+                "id": 227,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/09/Hadi-Rangin-UnivOfWashington.jpg",
+                "name": "Hadi Rangin",
+                "title": "IT Accessibility Specialist",
+                "company": "University of Washington",
+                "bio": "Hadi is an Information Technology Accessibility Specialist at the University of Washington in Seattle. In this position, he works on improving access to information technologies for all users, including those with disabilities. To do this, Hadi works with and advises software engineers, designers, administrators, and purchasers on accessible implementation techniques, quality assurance, and best practices. Additionally, Hadi teaches the Universal Design Principles for Online Learning as well as a Certificate of Professional Development course for the University of Illinois. Hadi's educational background is in Computer Science with a focus on Network Management and Human-Computer Interfaces. As someone who is blind, Hadi brings a wealth of personal and professional experiences to the many spheres he works in.",
+                "twitter_handle": ""
+            },
+            {
+                "id": 226,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/09/Brent-Balog-InnotasByPlanview.jpg",
+                "name": "Brent Balog",
+                "title": "Senior UI Engineer",
+                "company": "Innotas by Planview",
+                "bio": "Brent is a Senior UI Engineer at Innotas by Planview, a Gartner PPM \"Leader\" in the Magic Quadrant five years running. He has more than 20 years of application development experience, excelling in web and mobile applications made with Sencha frameworks. Recently he has focused on: accessibility, theming, and Ext JS 6.x upgrades. When he is not at his computer, he enjoys woodworking and trying to keep his two young sons out of trouble.",
+                "twitter_handle": ""
+            },
+            {
+                "id": 228,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/09/Sherrill-Packebush-InnotasByPlanview.jpg",
+                "name": "Sherrill Packebush",
+                "title": "UX Architect",
+                "company": "Innotas by Planview",
+                "bio": "Sherrill is the UX Architect at Innotas by Planview, a Gartner PPM “Leader” in the Magic Quadrant five years running. In her role, she designs, evaluates, and architects useful, effective, and enjoyable user interfaces for Innotas customer end users. Sherrill brings 20+ years of experience from small privately held companies to Fortune 50 companies. She holds a Ph.D. in Industrial Engineering with a major in Human Factors/Human-Computer Interaction from Texas A&M University. She has designed and evaluated user interfaces spanning old mainframe green screens, telephone Interactive Voice Response, web, Windows, Mac, and mobile/small screen devices. When not designing UIs, Sherrill spends her free time with her husband and 15 year old son, and doing a lot of cooking and traveling.",
+                "twitter_handle": ""
+            }
+        ],
+        "tracks": [
+            {
+                "id": 8,
+                "name": "Develop",
+                "description": "This track is suited for developers who would like to learn about the latest advances in the Sencha platform including Ext JS, GXT and Sencha tools. Sessions in this track will cover best practices around for visualizing complex data sets, developing apps for the modern web and advancement which will help teams improve development productivity and deliver robust universal applications.",
+                "order_index": 1
+            }
+        ],
+        "location": {
+            "id": 14,
+            "name": "Starvine 1-2"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-Accessibility-Teamwork-and-Ext-JS-A-Customer-Success-Story",
+        "order_index": 60,
+        "startDate": "2016-11-09T15:10:00.000Z",
+        "endDate": "2016-11-09T16:00:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Hadi Rangin, Brent Balog, Sherrill Packebush"
+    },
+    {
+        "id": "57b7809dc2edf",
+        "type": "session",
+        "title": "Handle Real World Data with Confidence",
+        "description": "In a dream world, any Web developer would also be in charge of designing the way data is loaded and saved to the servers. Some of us don´t live in a dream world just yet. Some of us even have to deal with legacy data structures that simply cannot be changed. Luckily Ext JS has a pretty impressive data package that helps us with this task. We simply need to learn how to master it. And this is where this session begins. To connect real model data to a view model, mess around with it, validate it, and then save it back to the server is crucial for any modern application. I will help you understand how some of the key features of the Sencha Ext JS classes work together to handle many of the real world challenges. We will take a closer look at the classes and configs that help us consume and handle the more advanced data structures. I will explain how they are connected and how you can tweak them to your needs. The focus will be on view models, data models, data sessions, proxies, stores, and associations, and how they all come together in a real world application.",
+        "date": "Wednesday, November 9",
+        "start_time": "11:10 AM",
+        "end_time": "12:00 PM",
+        "speakers": [
+            {
+                "id": 129,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/07/Fredric-Berling-EntenceAB.jpg",
+                "name": "Fredric Berling",
+                "title": "System Architect",
+                "company": "Entence AB",
+                "bio": "Fredric is a long-time Sencha developer/trainer and system architect. He has 20 years of IT experience, and the last 10 have been focused on Sencha based web applications. When he is not working out or eating meatballs (being Swedish), he helps teams get up to speed with their Sencha projects. Fredric also organizes a popular Swedish Sencha Meetup group.",
+                "twitter_handle": ""
+            }
+        ],
+        "tracks": [
+            {
+                "id": 8,
+                "name": "Develop",
+                "description": "This track is suited for developers who would like to learn about the latest advances in the Sencha platform including Ext JS, GXT and Sencha tools. Sessions in this track will cover best practices around for visualizing complex data sets, developing apps for the modern web and advancement which will help teams improve development productivity and deliver robust universal applications.",
+                "order_index": 1
+            }
+        ],
+        "location": {
+            "id": 4,
+            "name": "Starvine 3-5"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-Handle-Real-World-Data-with-Confidence",
+        "order_index": 61,
+        "startDate": "2016-11-09T16:10:00.000Z",
+        "endDate": "2016-11-09T17:00:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Fredric Berling"
+    },
+    {
+        "id": "57b78439cba52",
+        "type": "session",
+        "title": "Integrating Geospatial Maps and Big Data Using CartoDB - Ext JS Components",
+        "description": "Come explore with us CartoDB - Ext JS components (www.cartodb.com). These new components will allow you, as developers, to visualize and interact with geospatial data using up to a billion data points in real time. We will show you how easy it is to enable visualizations, filter dynamically, create time-lapse animations, and explore large location datasets at unprecedented scale. Come learn how to use these new open source components to build interactive geospatial visualizations that deliver solutions, value, and insights to your customers.",
+        "date": "Wednesday, November 9",
+        "start_time": "11:10 AM",
+        "end_time": "12:00 PM",
+        "speakers": [
+            {
+                "id": 133,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/07/Michael-Giddens-CrestoneDigital.jpg",
+                "name": "Michael Giddens",
+                "title": "CEO",
+                "company": "Crestone Digital",
+                "bio": "Over the course of 17 years as a solutions architect and long-term veteran of Ext JS, Michael has developed and worked with numerous companies creating unique applications impacting industry and the scientific community. He is currently director of Creston Digital, LLC which has a focus on geospatial web applications and big data projects.",
+                "twitter_handle": "silverbiology"
+            }
+        ],
+        "tracks": [
+            {
+                "id": 8,
+                "name": "Develop",
+                "description": "This track is suited for developers who would like to learn about the latest advances in the Sencha platform including Ext JS, GXT and Sencha tools. Sessions in this track will cover best practices around for visualizing complex data sets, developing apps for the modern web and advancement which will help teams improve development productivity and deliver robust universal applications.",
+                "order_index": 1
+            }
+        ],
+        "location": {
+            "id": 14,
+            "name": "Starvine 1-2"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-Integrating-Geospatial-Maps-and-Big-Data",
+        "order_index": 62,
+        "startDate": "2016-11-09T16:10:00.000Z",
+        "endDate": "2016-11-09T17:00:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Michael Giddens"
+    },
+    {
+        "id": "57b7864933d05",
+        "type": "session",
+        "title": "How to Give Your Sencha App Real-time Web Performance",
+        "description": "Does your Sencha app use server polling to retrieve data updates? Wouldn’t your users prefer to receive data updates in real-time? Come to this session to learn about the options for giving your Sencha app real-time web performance. We begin with a review of the HTTP and HTML5 technologies available to the Sencha developer (AJAX Long Polling, Server Sent Events, and Web Sockets). We will then look at a ready-made JavaScript framework, SignalR, which makes it simple to integrate real-time capabilities into your Sencha app. Finally, we cover some design lessons learned during the development of our product, AquaRemote, for maintaining a consistent user experience when real-time data updates are required over unreliable cellular data networks.",
+        "date": "Wednesday, November 9",
+        "start_time": "11:10 AM",
+        "end_time": "12:00 PM",
+        "speakers": [
+            {
+                "id": 164,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/03/James-Schreuder-SchreuderEngineering.png",
+                "name": "James Schreuder",
+                "title": "Principal Software Engineer",
+                "company": "Schreuder Engineering Pty Ltd",
+                "bio": "James is the Principal Software Engineer at Schreuder Engineering. The company is based in Sydney, Australia and provides software design, development, and consultancy services to a range of clients in the Telecommunications, Agriculture, and Mining industries. James has a passion for developing networking software at all levels of the software stack (Assembler, C/C++, Java, C#, JavaScript, Sencha) in order to deliver end-to-end software solutions for clients.",
+                "twitter_handle": ""
+            }
+        ],
+        "tracks": [
+            {
+                "id": 8,
+                "name": "Develop",
+                "description": "This track is suited for developers who would like to learn about the latest advances in the Sencha platform including Ext JS, GXT and Sencha tools. Sessions in this track will cover best practices around for visualizing complex data sets, developing apps for the modern web and advancement which will help teams improve development productivity and deliver robust universal applications.",
+                "order_index": 1
+            }
+        ],
+        "location": {
+            "id": 6,
+            "name": "Starvine 6-7"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-How-to-Give-Your-Sencha-App-Real-time-Web-Performance",
+        "order_index": 63,
+        "startDate": "2016-11-09T16:10:00.000Z",
+        "endDate": "2016-11-09T17:00:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "James Schreuder"
+    },
+    {
+        "id": "57d97722ec691",
+        "type": "session",
+        "title": "Ext JS + React: A Match Made in UX Heaven",
+        "description": "Have you ever wished you could use Sencha’s powerful Ext JS components in your React apps? Now you can. Learn about the new bridge we’ve created that enables you to use the Ext JS grid, treegrid, pivot grid, calendar, charts, and other components in your React based apps. We’ve integrated the frameworks, so you can manage data and respond to events using React while rendering UI controls using Ext JS with React's tag-based JSX syntax.\r\nCome to this session to learn how to build a data-intensive, cross-platform app with Ext JS 6.2 and React.",
+        "date": "Wednesday, November 9",
+        "start_time": "11:10 AM",
+        "end_time": "12:00 PM",
+        "speakers": [
+            {
+                "id": 48,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/03/Mark-Brocato-Sencha.jpg",
+                "name": "Mark Brocato",
+                "title": "Sr. Engineering Manager",
+                "company": "Sencha",
+                "bio": "Mark is the Senior Engineering Manager for Tools at Sencha. He's been developing with Ext JS since version 2. Before coming to Sencha, he was the Director of R&D at BioFortis, a Life Sciences startup, where he led the development of several Ext JS apps. He is also the creator of mockaroo.com, a web service for generating large datasets for software testing and demos.",
+                "twitter_handle": ""
+            }
+        ],
+        "tracks": [
+            {
+                "id": 8,
+                "name": "Develop",
+                "description": "This track is suited for developers who would like to learn about the latest advances in the Sencha platform including Ext JS, GXT and Sencha tools. Sessions in this track will cover best practices around for visualizing complex data sets, developing apps for the modern web and advancement which will help teams improve development productivity and deliver robust universal applications.",
+                "order_index": 1
+            }
+        ],
+        "location": {
+            "id": 8,
+            "name": "Juniper 4"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-Ext-JS-plus-React-a-Match-Made-in-UX-Heaven",
+        "order_index": 64,
+        "startDate": "2016-11-09T16:10:00.000Z",
+        "endDate": "2016-11-09T17:00:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Mark Brocato"
+    },
+    {
+        "id": "57dae3f35548f",
+        "type": "session",
+        "title": "Enterprise Applications, Role-Based Access Controls (RBAC), and Client Customizations",
+        "description": "This session will cover a real-world example of an enterprise application built using role-based access controls (RBAC) that also support client customizations. We'll show how we built the application in Ext JS 4, and how we leveraged that solution in Ext JS 6. We'll include a detailed working example of how we solved our problem, some of the challenges we faced, and our approach. We'll talk about the new features we used in Ext JS 6, examples of custom components, and how to use a designer on your project. We'll show code examples for RBAC and how the same strategy supported client customizations.",
+        "date": "Wednesday, November 9",
+        "start_time": "11:10 AM",
+        "end_time": "12:00 PM",
+        "speakers": [
+            {
+                "id": 199,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/09/Steven-Whatmore-PureFactsFinancialSolutions.jpg",
+                "name": "Steve Whatmore",
+                "title": "Architect",
+                "company": "PureFacts Financial Solutions Inc.",
+                "bio": "Steve has more than 35 years of experience delivering applications on a variety of platforms in a broad range of industries. Over the last 8 years with PureFacts Financial Solutions, he and his team have designed and implemented an enterprise application framework. Built on Sencha frameworks, this fully customizable and secured application uses built-in, role-based access controls.",
+                "twitter_handle": ""
+            }
+        ],
+        "tracks": [
+            {
+                "id": 8,
+                "name": "Develop",
+                "description": "This track is suited for developers who would like to learn about the latest advances in the Sencha platform including Ext JS, GXT and Sencha tools. Sessions in this track will cover best practices around for visualizing complex data sets, developing apps for the modern web and advancement which will help teams improve development productivity and deliver robust universal applications.",
+                "order_index": 1
+            }
+        ],
+        "location": {
+            "id": 3,
+            "name": "Starvine 10-11"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-Enterprise-Applications-and-RBAC-and-Client-Customizations",
+        "order_index": 65,
+        "startDate": "2016-11-09T16:10:00.000Z",
+        "endDate": "2016-11-09T17:00:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Steve Whatmore"
+    },
+    {
+        "id": "57ee9f66ec91a",
+        "type": "break",
+        "title": "Lunch",
+        "description": "",
+        "date": "Wednesday, November 9",
+        "start_time": "12:00 PM",
+        "end_time": "1:00 PM",
+        "speakers": [],
+        "tracks": [],
+        "location": {
+            "id": 9,
+            "name": "Community Pavilion, Ironwood Ballroom, Level 3"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "",
+        "order_index": 66,
+        "startDate": "2016-11-09T17:00:00.000Z",
+        "endDate": "2016-11-09T18:00:00.000Z",
+        "categoryName": "Break",
+        "speakerNames": false
+    },
+    {
+        "id": "57b7843a2d59a",
+        "type": "session",
+        "title": "Developing COSMOS using Sencha Ext JS 5",
+        "description": "This session will cover why Sencha Ext JS 5 was selected to replace the current Silverlight version and why Sencha Ext JS 5 is a great fit for COSMOS. Using Sencha Ext JS 5 as our framework has significantly reduced our development time and application performance is optimal. We will also discuss the challenges we encountered. We'll show you how we used the Ext JS Border Panel, Accordion, Tab panel, Grid and Panel UI components to display the COSMOS data structure in a very comprehensive manner. We also use the ESRI JavaScript API for the mapping component. One of the challenges we had to overcome was to generate multiple address panels dynamically. Creating 500 address panels on the fly would be slow. Our solution was to only create a limited number of address panels in memory and reuse them when necessary. COSMOS (City of Surrey Mapping Online System) is a large scale web mapping application that contains over 300 layers of information on Land Development, Utilities, Parks, Transportation, Crime and Land Use, as well as 15 tools ranging from simple identify, print, and export capabilities to complex property reports and search functionality. COSMOS is used extensively by City of Surrey staff and external users, totalling over 20,000 unique visits per month. It is also provided to two neighbouring municipalities via a SaaS model that can be leveraged in the future for expansion to other municipalities.",
+        "date": "Wednesday, November 9",
+        "start_time": "1:00 PM",
+        "end_time": "1:50 PM",
+        "speakers": [
+            {
+                "id": 135,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/07/Shenglin-Xu-CityofSurrey.jpg",
+                "name": "Shenglin Xu",
+                "title": "GIS Analyst/Developer",
+                "company": "City of Surrey",
+                "bio": "Shenglin has 20 years of programming experience with C# and ASP.NET. He developed a Silverlight version of COSMOS (City of Surrey Mapping Online System), and he has four years of Sencha Touch programming experience. He developed COSMOS Mobile and Surrey Request apps using Sencha Touch 2. He has one year of Ext JS 5 coding experience, using it for the new version of COSMOS. The Surrey Request app won an award from the Union of BC Municipalities (UBCM) in the Community Connection category.",
+                "twitter_handle": "shenglinxu"
+            }
+        ],
+        "tracks": [
+            {
+                "id": 8,
+                "name": "Develop",
+                "description": "This track is suited for developers who would like to learn about the latest advances in the Sencha platform including Ext JS, GXT and Sencha tools. Sessions in this track will cover best practices around for visualizing complex data sets, developing apps for the modern web and advancement which will help teams improve development productivity and deliver robust universal applications.",
+                "order_index": 1
+            }
+        ],
+        "location": {
+            "id": 14,
+            "name": "Starvine 1-2"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-Developing-COSMOS-Using-Sencha-Ext-JS-5",
+        "order_index": 67,
+        "startDate": "2016-11-09T18:00:00.000Z",
+        "endDate": "2016-11-09T18:50:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Shenglin Xu"
+    },
+    {
+        "id": "57b7834b7b59c",
+        "type": "session",
+        "title": "Building Ext JS using HATEOAS",
+        "description": "Newer REST-based APIs are starting to use HATEOAS, which stands for Hypermedia as the Engine of Application State. The central idea of HATEOAS is to allow the server to control the state transitions instead of hard coding all the links into the client. We've integrated a HATEOAS layer in the Ext JS framework based on the HAL standard (http://stateless.co/hal_specification.html) and into the Ext JS model and store system. We will be showing the techniques we used to accomplish this in a way that keeps the Ext JS model and store usage the same as the standard mechanism.",
+        "date": "Wednesday, November 9",
+        "start_time": "1:00 PM",
+        "end_time": "1:50 PM",
+        "speakers": [
+            {
+                "id": 131,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/07/Jeff-Stano-Unifocus.jpg",
+                "name": "Jeff Stano",
+                "title": "Chief Software Architect",
+                "company": "Unifocus",
+                "bio": "Jeff has been developing both front-end and back-end systems for more than 30 years. He has built systems using C++, Java, and JavaScript. He was the primary decision maker for choosing the Ext JS framework as the foundation for the conversion of the Unifocus Java Swing application to a pure web-based system. He built custom tooling using Gradle to integrate Sencha Cmd into the Unifocus build process.",
+                "twitter_handle": ""
+            }
+        ],
+        "tracks": [
+            {
+                "id": 8,
+                "name": "Develop",
+                "description": "This track is suited for developers who would like to learn about the latest advances in the Sencha platform including Ext JS, GXT and Sencha tools. Sessions in this track will cover best practices around for visualizing complex data sets, developing apps for the modern web and advancement which will help teams improve development productivity and deliver robust universal applications.",
+                "order_index": 1
+            }
+        ],
+        "location": {
+            "id": 3,
+            "name": "Starvine 10-11"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-Building-Ext-JS-using-HATEOAS",
+        "order_index": 68,
+        "startDate": "2016-11-09T18:00:00.000Z",
+        "endDate": "2016-11-09T18:50:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Jeff Stano"
+    },
+    {
+        "id": "57b78648a1663",
+        "type": "session",
+        "title": "Using Ext JS 6 for Cross-platform Development on Mobile",
+        "description": "Andrew will share the experience he and his team have gotten from using Ext JS 6 for cross-platform app development on mobile and desktop devices. Having released Ext JS 6 apps for industries including utilities, oil & gas, construction, and transport, Andrew has learned the common pitfalls and gotchas you need to know. Using examples from recent projects, he provides tips for those who aren't yet familiar or experienced with mobile development. By the end of the session, you will know how to think like a mobile developer, develop apps with mobile user experience in mind, make the move from Ext JS 5 or Sencha Touch to Ext JS 6, deploy native apps with Cordova, and manage data on devices with limited resources.",
+        "date": "Wednesday, November 9",
+        "start_time": "1:00 PM",
+        "end_time": "1:50 PM",
+        "speakers": [
+            {
+                "id": 158,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/03/Andrew-Duncan-SwarmOnline.png",
+                "name": "Andrew Duncan",
+                "title": "Founder",
+                "company": "SwarmOnline",
+                "bio": "Four years ago, Andrew started SwarmOnline from his living room. Today, the company has 25 staff members. Andrew has written two Ext JS textbooks used by developers around the world, he has spoken internationally at technology conferences, he has a blue chip client list, and he has just completed his first acquisition. In December, he turns 30.",
+                "twitter_handle": "andrewmduncan"
+            }
+        ],
+        "tracks": [
+            {
+                "id": 8,
+                "name": "Develop",
+                "description": "This track is suited for developers who would like to learn about the latest advances in the Sencha platform including Ext JS, GXT and Sencha tools. Sessions in this track will cover best practices around for visualizing complex data sets, developing apps for the modern web and advancement which will help teams improve development productivity and deliver robust universal applications.",
+                "order_index": 1
+            }
+        ],
+        "location": {
+            "id": 6,
+            "name": "Starvine 6-7"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-Using-Ext-JS-6-for-Cross-Platform-Dev-on-Mobile",
+        "order_index": 69,
+        "startDate": "2016-11-09T18:00:00.000Z",
+        "endDate": "2016-11-09T18:50:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Andrew Duncan"
+    },
+    {
+        "id": "57bf73a21855c",
+        "type": "session",
+        "title": "Improve Workflow-Driven Applications with Ext JS Draw Package",
+        "description": "It can be difficult for users to understand and modify workflow procedures in their applications. The job lifecycle of workflow-driven applications may change based on some specific procedures. We know that people can memorize images, shapes, and colors more easily than raw data. Using Ext JS Draw package, we created a dynamic, easy to use, workflow diagram modeler. We delivered a distinct solution that overcomes the challenges our users encountered. With our modeler, users can drag and drop, resize, label, and connect workflow steps with minimal effort. This ensures that users can visualize and design workflows in a more natural and innovative way.",
+        "date": "Wednesday, November 9",
+        "start_time": "1:00 PM",
+        "end_time": "1:50 PM",
+        "speakers": [
+            {
+                "id": 169,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/08/Jovan-Cvetkovic-EmisiaConsulting.png",
+                "name": "Jovan Cvetkovic",
+                "title": "Sr. UI Developer",
+                "company": "Emisia Consulting",
+                "bio": "Jovan is a Web UI Developer and a Team Leader on a product used by Translations.com, a company that provides some of the best translation tools in the industry. His main task is to deliver the best user experience using the latest web technologies. When he is not coding, Jovan is mentoring junior programmers to ensure that they stay on the road to becoming great developers.",
+                "twitter_handle": ""
+            }
+        ],
+        "tracks": [
+            {
+                "id": 8,
+                "name": "Develop",
+                "description": "This track is suited for developers who would like to learn about the latest advances in the Sencha platform including Ext JS, GXT and Sencha tools. Sessions in this track will cover best practices around for visualizing complex data sets, developing apps for the modern web and advancement which will help teams improve development productivity and deliver robust universal applications.",
+                "order_index": 1
+            }
+        ],
+        "location": {
+            "id": 4,
+            "name": "Starvine 3-5"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-Improve-Workflow-Driven-Applications-with-Ext-JS-Draw-Package",
+        "order_index": 70,
+        "startDate": "2016-11-09T18:00:00.000Z",
+        "endDate": "2016-11-09T18:50:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Jovan Cvetkovic"
+    },
+    {
+        "id": "57d86e7fdd0d2",
+        "type": "session",
+        "title": "Want to Use Ext JS Components with Angular 2? Here’s How to Increase the Power of Your Apps!",
+        "description": "Have you ever wished you could use Sencha’s powerful Ext JS components in your Angular 2 apps? Now you can. Learn about the new bridge we’ve created that enables you to use the Ext JS grid, treegrid, pivot grid, calendar, charts, and other components in your Angular 2 based apps. We’ve integrated the frameworks, so Ext JS components recognize the Angular 2 directives and appropriately respond to events. If you’re an Angular 2 user, there is no reason why you can’t use it to assemble the basic building blocks of an app and then add the powerful Ext JS components to complete your data-centric, cross-platform applications.  \r\nCome to this session to learn how to build a data-intensive, cross-platform app with Ext JS 6.2 and Angular 2.",
+        "date": "Wednesday, November 9",
+        "start_time": "1:00 PM",
+        "end_time": "1:50 PM",
+        "speakers": [
+            {
+                "id": 193,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/09/Marc-Gusmano-Sencha.jpg",
+                "name": "Marc Gusmano",
+                "title": "Sales Engineer",
+                "company": "Sencha",
+                "bio": "Marc is a Sales Engineer with Sencha and has more than 30 years of experience in the software services industry. He has been extensively involved with custom HTML5 browser and mobile development projects, using his experience to build HTML5 Single Page Applications. Marc has worked for several large software services companies, including Andersen Consulting and Hitachi Consulting, and he was co-owner of a software services and training company for more than 10 years. Marc has a passion for building outstanding software, especially leading-edge, user-centric applications.",
+                "twitter_handle": ""
+            }
+        ],
+        "tracks": [
+            {
+                "id": 8,
+                "name": "Develop",
+                "description": "This track is suited for developers who would like to learn about the latest advances in the Sencha platform including Ext JS, GXT and Sencha tools. Sessions in this track will cover best practices around for visualizing complex data sets, developing apps for the modern web and advancement which will help teams improve development productivity and deliver robust universal applications.",
+                "order_index": 1
+            }
+        ],
+        "location": {
+            "id": 8,
+            "name": "Juniper 4"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-Use-Ext-JS-Components-with-Angular-2",
+        "order_index": 71,
+        "startDate": "2016-11-09T18:00:00.000Z",
+        "endDate": "2016-11-09T18:50:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Marc Gusmano"
+    },
+    {
+        "id": "57e97e844e3ba",
+        "type": "session",
+        "title": "Building a Faceted Catalog of Video Game Assets Using Ext JS and Elasticsearch",
+        "description": "At Ubisoft Technology Group, we've created a platform for video game production to share game assets, in-game footage, and animations across the entire company. Ease of search and good UX were incredibly important for an audience of artists and creative types. This is where the Web and a powerful JavaScript framework came in; we chose Ext JS for its robustness and scalability. In this session, we'll showcase two different applications and dive into the technical aspects of designing the UI for a faceted search based on Elasticsearch.",
+        "date": "Wednesday, November 9",
+        "start_time": "2:00 PM",
+        "end_time": "2:50 PM",
+        "speakers": [
+            {
+                "id": 219,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/09/Karim-Besbes-Ubisoft.jpg",
+                "name": "Karim Besbes",
+                "title": "Generalist Programmer",
+                "company": "Ubisoft",
+                "bio": "Karim joined Ubisoft in 2014, and he is currently a generalist programmer. Before joining Ubisoft, Karim worked in the aeronautical industry at CAE Inc. for 2 years as an aircraft system engineer and tools developer. He started developing web apps at the age of 16 when he discovered phpbb, an open source forum software. Since then, he has worked as a freelancer. During his professional career, he dealt with many programming languages including C, C++, C#, WPF, and Python, but JavaScript became his passion. He has 4 years of Ext JS coding experience and is now leading the front-end development of Flare, an innovative web-based video collaboration platform built on top of Ext JS.",
+                "twitter_handle": ""
+            },
+            {
+                "id": 220,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/09/Sam-Imberman-Ubisoft.jpg",
+                "name": "Sam Imberman",
+                "title": "Lead UI Developer and Designer",
+                "company": "Ubisoft",
+                "bio": "Sam’s professional passion is making complicated tasks easy to understand. With a diverse background spanning development, user interface design, and marketing, he has spent the last decade at the forefront of the Web. At Ubisoft Montreal, he is the lead UI developer and designer for Portfolio, a new sharing platform that allows game teams to exchange and reuse art assets.",
+                "twitter_handle": ""
+            }
+        ],
+        "tracks": [
+            {
+                "id": 8,
+                "name": "Develop",
+                "description": "This track is suited for developers who would like to learn about the latest advances in the Sencha platform including Ext JS, GXT and Sencha tools. Sessions in this track will cover best practices around for visualizing complex data sets, developing apps for the modern web and advancement which will help teams improve development productivity and deliver robust universal applications.",
+                "order_index": 1
+            }
+        ],
+        "location": {
+            "id": 8,
+            "name": "Juniper 4"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-Building-a-Faceted-Catalog-of-Video-Game-Assets",
+        "order_index": 72,
+        "startDate": "2016-11-09T19:00:00.000Z",
+        "endDate": "2016-11-09T19:50:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Karim Besbes, Sam Imberman"
+    },
+    {
+        "id": "57e993a8931fe",
+        "type": "session",
+        "title": "Using Ext JS Components to Turn Big Data into Actionable Intelligence",
+        "description": "The growth of data has rapidly outpaced our ability to draw actionable intelligence from it. Driving business value with big data requires more than just big data technologies. Over the course of its evolution, a vast majority of developers have used Ext JS components in their homegrown reporting and analytics solutions. The core reasons that developers use Ext JS components are the data package for browser memory, our data grid, pivot grid, and charts. With the addition of D3 visualizations and a partner technology Ext Speeder that speeds up data access from back-end systems by up to 10x, we are now able to handle very large volumes of data in custom analytical applications. In this session, we’ll look at the core components of Ext JS that make it a perfect fit for customized big data applications, and showcase an app built using these components that handles millions of records in the browser.",
+        "date": "Wednesday, November 9",
+        "start_time": "2:00 PM",
+        "end_time": "2:50 PM",
+        "speakers": [
+            {
+                "id": 222,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/09/Olga-Petrova-Sencha.jpg",
+                "name": "Olga Petrova",
+                "title": "Sales Engineer",
+                "company": "Sencha",
+                "bio": "Olga is a Sales Engineer at Sencha and has been a software developer for more than 11 years. She has experience as a front-end developer and has been working with Ext JS since version 1.1. Prior to joining Sencha, she worked at AutoVision GmbH (a subsidiary of Volkwagen AG), Clueda AG, dotplot GmbH, and other software and services companies. Olga graduated from Tyumen State University.",
+                "twitter_handle": "tyoushe"
+            }
+        ],
+        "tracks": [
+            {
+                "id": 8,
+                "name": "Develop",
+                "description": "This track is suited for developers who would like to learn about the latest advances in the Sencha platform including Ext JS, GXT and Sencha tools. Sessions in this track will cover best practices around for visualizing complex data sets, developing apps for the modern web and advancement which will help teams improve development productivity and deliver robust universal applications.",
+                "order_index": 1
+            }
+        ],
+        "location": {
+            "id": 4,
+            "name": "Starvine 3-5"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-Using-Ext-JS-Components-to-Turn-Big-Data-into-Actionable-Intelligence",
+        "order_index": 73,
+        "startDate": "2016-11-09T19:00:00.000Z",
+        "endDate": "2016-11-09T19:50:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Olga Petrova"
+    },
+    {
+        "id": "57e9bd935d08c",
+        "type": "session",
+        "title": "A Look Ahead: Surveying Next-Gen Modern Browser APIs",
+        "description": "Using modern browsers, developers can now create web apps with capabilities that were only possible in native or hybrid apps. Web apps can now access hardware devices such as microphones, cameras, GPS, accelerometers, VR displays, and many others, without using any plugins. Using Web Bluetooth, web app developers can now communicate with nearly any type of hardware device. In this session, we’ll survey a sample of the W3C standards that give developers access to next-gen capabilities via web apps. Topics will include Service Worker, Push API, WebRTC, Web Bluetooth, Web Crypto, Web Speech, Web Notifications, and others.",
+        "date": "Wednesday, November 9",
+        "start_time": "2:00 PM",
+        "end_time": "2:50 PM",
+        "speakers": [
+            {
+                "id": 223,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/09/Shikhir-Singh-Sencha.jpg",
+                "name": "Shikhir Singh",
+                "title": "Sr. Developer Relations Manager",
+                "company": "Sencha",
+                "bio": "Shikhir is a Sr. Developer Relations Manager at Sencha. He specializes in enterprise mobility, cryptography and JavaScript technologies. Prior to joining Sencha, he worked at BlackBerry, Lockheed Martin, Sun Microsystems and a couple of startups.",
+                "twitter_handle": "shikhirsingh"
+            }
+        ],
+        "tracks": [
+            {
+                "id": 8,
+                "name": "Develop",
+                "description": "This track is suited for developers who would like to learn about the latest advances in the Sencha platform including Ext JS, GXT and Sencha tools. Sessions in this track will cover best practices around for visualizing complex data sets, developing apps for the modern web and advancement which will help teams improve development productivity and deliver robust universal applications.",
+                "order_index": 1
+            }
+        ],
+        "location": {
+            "id": 14,
+            "name": "Starvine 1-2"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-A-Look-Ahead-Surveying-Next-Gen-Modern-Browser-APIs",
+        "order_index": 74,
+        "startDate": "2016-11-09T19:00:00.000Z",
+        "endDate": "2016-11-09T19:50:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Shikhir Singh"
+    },
+    {
+        "id": "5804faf328678",
+        "type": "session",
+        "title": "LinkRest — Modern RESTful API Framework for Building Ext JS Applications",
+        "description": "LinkRest is an active project commissioned and open sourced by NHL under Apache 2.0 license. It was conceived specifically as the server-side counterpart to Ext JS, so it natively supports Ext JS rest proxy, including CRUD, grouping, sorting, filtering, and more. In this session, we'll review Ext JS protocol support. You'll also see extensions that allow the client to safely query the server for specific data and shape the response. We'll cover advanced features, including security, constraints, idempotent methods, and metadata service. We'll show demos and try to allow time for Q&A.",
+        "date": "Wednesday, November 9",
+        "start_time": "2:00 PM",
+        "end_time": "2:50 PM",
+        "speakers": [
+            {
+                "id": 264,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/10/Rouslan-Zenetl-NHL.jpg",
+                "name": "Rouslan Zenetl",
+                "title": "Director of Application Development",
+                "company": "National Hockey League",
+                "bio": "Rouslan is Director of Application Development at the NHL. He focuses on end-to-end heavy duty Ajax development with Java back-ends, and an array of Ajax technologies on the front end, primarily Sencha Ext JS. Rouslan is passionate about user experience-centered application design, development and implementation.",
+                "twitter_handle": "rzenetl"
+            }
+        ],
+        "tracks": [
+            {
+                "id": 8,
+                "name": "Develop",
+                "description": "This track is suited for developers who would like to learn about the latest advances in the Sencha platform including Ext JS, GXT and Sencha tools. Sessions in this track will cover best practices around for visualizing complex data sets, developing apps for the modern web and advancement which will help teams improve development productivity and deliver robust universal applications.",
+                "order_index": 1
+            }
+        ],
+        "location": {
+            "id": 6,
+            "name": "Starvine 6-7"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-LinkRest-Modern-RESTful-API-Framework-for-Buidling-EXT-JS-Applications",
+        "order_index": 75,
+        "startDate": "2016-11-09T19:00:00.000Z",
+        "endDate": "2016-11-09T19:50:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Rouslan Zenetl"
+    },
+    {
+        "id": "57f7d36fe564e",
+        "type": "break",
+        "title": "Break",
+        "description": "",
+        "date": "Wednesday, November 9",
+        "start_time": "2:50 PM",
+        "end_time": "3:10 PM",
+        "speakers": [],
+        "tracks": [],
+        "location": {
+            "id": 17,
+            "name": "Starvine Foyer"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "",
+        "order_index": 76,
+        "startDate": "2016-11-09T19:50:00.000Z",
+        "endDate": "2016-11-09T20:10:00.000Z",
+        "categoryName": "Break",
+        "speakerNames": false
+    },
+    {
+        "id": "57e9730f28bfa",
+        "type": "session",
+        "title": "Being Productive with the New Sencha Fiddle",
+        "description": "Would you like to share code or quickly test some code? Before Sencha Fiddle, there was no good way to quickly run Ext JS code. Since its launch, Sencha Fiddle has changed the way we save code in the cloud and share it. In this session, you'll learn what Fiddle is, its new features, and how you can use it to be more productive.",
+        "date": "Wednesday, November 9",
+        "start_time": "3:10 PM",
+        "end_time": "4:00 PM",
+        "speakers": [
+            {
+                "id": 218,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/09/Mitchell-Simoens-Sencha.jpg",
+                "name": "Mitchell Simoens",
+                "title": "Senior Software Engineer",
+                "company": "Sencha",
+                "bio": "Mitchell is a Senior Software Engineer at Sencha. He has been with the company for five years, and a part of the community for 10 years. He is a regular contributor to the community with his work on many projects including Ext JS and Sencha Test. Currently, Mitchell’s main focus is on improving the functionality of Sencha Fiddle and the Sencha Support Portal.",
+                "twitter_handle": "LikelyMitch"
+            }
+        ],
+        "tracks": [
+            {
+                "id": 8,
+                "name": "Develop",
+                "description": "This track is suited for developers who would like to learn about the latest advances in the Sencha platform including Ext JS, GXT and Sencha tools. Sessions in this track will cover best practices around for visualizing complex data sets, developing apps for the modern web and advancement which will help teams improve development productivity and deliver robust universal applications.",
+                "order_index": 1
+            }
+        ],
+        "location": {
+            "id": 4,
+            "name": "Starvine 3-5"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-Being-Productive-with-the-New-Sencha-Fiddle",
+        "order_index": 77,
+        "startDate": "2016-11-09T20:10:00.000Z",
+        "endDate": "2016-11-09T21:00:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Mitchell Simoens"
+    },
+    {
+        "id": "57eaf54a04b4d",
+        "type": "session",
+        "title": "Upgrading an Ext JS 4.x Application to Ext JS 6.x",
+        "description": "So, you've invested a lot of time, energy, and resources in creating, maintaining, and enhancing your enterprise application implemented in Ext JS 4.x. Now you want to bring it up to date to take advantage of all the latest features and advancements in Ext JS 6.x, but the task appears daunting. Since the release of Ext JS 4, so many things have changed not only with the Ext JS framework but with the various web browsers as well. Is it possible to upgrade an Ext JS 4.x application without doing a total rewrite of the functionality? That's just one of the questions we'll answer in this session where we'll demonstrate the optimal way to upgrade an Ext JS 4.x application to Ext JS 6.x. Detailed examples, recommended best practices, and a completely upgraded Ext JS application will be demonstrated showing the techniques used to perform the upgrade. You'll walk away from this session with a clear plan that you can use to upgrade your own apps.",
+        "date": "Wednesday, November 9",
+        "start_time": "3:10 PM",
+        "end_time": "4:00 PM",
+        "speakers": [
+            {
+                "id": 221,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/09/Mark-Lincoln-Sencha.jpg",
+                "name": "Mark Lincoln",
+                "title": "Senior Solutions Engineer",
+                "company": "Sencha",
+                "bio": "Mark is a Senior Solutions Engineer at Sencha, where he develops leading edge solutions. After graduating from the University of Florida, Mark spent several years developing enterprise class applications using database languages including CA-Clipper, CA-Visual Objects, and Delphi. Once he discovered web application development using ASP, ASP.NET, C#, and JavaScript, there was no turning back. He has been an avid user of Ext JS since its inception as an extension to the Yahoo UI framework (YUI-Ext). Mark lives in Arlington, VA where you can often find him out riding his bike, umpiring fast pitch softball, or coaching soccer.",
+                "twitter_handle": ""
+            }
+        ],
+        "tracks": [
+            {
+                "id": 8,
+                "name": "Develop",
+                "description": "This track is suited for developers who would like to learn about the latest advances in the Sencha platform including Ext JS, GXT and Sencha tools. Sessions in this track will cover best practices around for visualizing complex data sets, developing apps for the modern web and advancement which will help teams improve development productivity and deliver robust universal applications.",
+                "order_index": 1
+            }
+        ],
+        "location": {
+            "id": 3,
+            "name": "Starvine 10-11"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-Upgrading-Ext-JS-4x-Apps-to-6x",
+        "order_index": 78,
+        "startDate": "2016-11-09T20:10:00.000Z",
+        "endDate": "2016-11-09T21:00:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Mark Lincoln"
+    },
+    {
+        "id": "57f52245c6c93",
+        "type": "session",
+        "title": "Learn the Top 10 ECMAScript 2015 Features",
+        "description": "In this session, Lee will cover the top 10 new features of ECMAScript 2015, their benefits, and go through code examples of how to use them. She will also talk about ECMAScript 2015 compatibilities and incompatibilities with the most widely used browsers today, and how you should plan on developing your applications with ECMAScript 2015.",
+        "date": "Wednesday, November 9",
+        "start_time": "3:10 PM",
+        "end_time": "4:00 PM",
+        "speakers": [
+            {
+                "id": 252,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/10/Lee-Boonstra-Sencha.jpeg",
+                "name": "Lee Boonstra",
+                "title": "Sales Engineer",
+                "company": "Sencha",
+                "bio": "Lee is a sales engineer at Sencha in Europe. She’s located in Amsterdam and has experience in both front-end and back-end development. Lee spends her spare time developing web and mobile apps. She also wrote a book for O'Reilly: Hands-on Sencha Touch 2.",
+                "twitter_handle": "ladysign"
+            }
+        ],
+        "tracks": [
+            {
+                "id": 8,
+                "name": "Develop",
+                "description": "This track is suited for developers who would like to learn about the latest advances in the Sencha platform including Ext JS, GXT and Sencha tools. Sessions in this track will cover best practices around for visualizing complex data sets, developing apps for the modern web and advancement which will help teams improve development productivity and deliver robust universal applications.",
+                "order_index": 1
+            }
+        ],
+        "location": {
+            "id": 14,
+            "name": "Starvine 1-2"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-Learn-the-top-10-ECMAScript-2015-Features",
+        "order_index": 79,
+        "startDate": "2016-11-09T20:10:00.000Z",
+        "endDate": "2016-11-09T21:00:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Lee Boonstra"
+    },
+    {
+        "id": "57f29731e9b87",
+        "type": "session",
+        "title": "Ext JS App Modernization Showcase",
+        "description": "Many companies would like to do away with their legacy apps, but the process of applying a new UI technology can be daunting.  CNX has made a business out of modernizing legacy apps by using Ext JS, with an emphasis on the IBM i platform (formerly AS/400) and the CNX Valence Modernization Suite. In this session, Richard will walk through the process CNX uses and share some app modernization success stories.",
+        "date": "Wednesday, November 9",
+        "start_time": "3:10 PM",
+        "end_time": "4:00 PM",
+        "speakers": [
+            {
+                "id": 261,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/10/Richard-Milone-CNX.jpg",
+                "name": "Richard Milone",
+                "title": "CTO",
+                "company": "CNX",
+                "bio": "Richard is co-founder and CTO of Chicago-based CNX, a software development company highly focused on delivering solutions to its clients using Sencha technologies. Richard has managed many successful Ext JS development projects and is dedicated to promoting the use of Ext JS in enterprise applications.",
+                "twitter_handle": "richardmilone"
+            }
+        ],
+        "tracks": [
+            {
+                "id": 8,
+                "name": "Develop",
+                "description": "This track is suited for developers who would like to learn about the latest advances in the Sencha platform including Ext JS, GXT and Sencha tools. Sessions in this track will cover best practices around for visualizing complex data sets, developing apps for the modern web and advancement which will help teams improve development productivity and deliver robust universal applications.",
+                "order_index": 1
+            }
+        ],
+        "location": {
+            "id": 6,
+            "name": "Starvine 6-7"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-Ext-JS-App-Modernization-Showcase",
+        "order_index": 80,
+        "startDate": "2016-11-09T20:10:00.000Z",
+        "endDate": "2016-11-09T21:00:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Richard Milone"
+    },
+    {
+        "id": "57bf72af58196",
+        "type": "session",
+        "title": "An Ext JS Dashboard for Visualizing and Interacting with IoT Data",
+        "description": "Big data and Internet of Things (IoT) connectivity is increasingly forcing enterprises to find solutions to organize and visualize large amounts of incoming data. To allow rapid decision-making for everything from immediate actions in tactical situations to strategic analysis and reporting, developers need the ability to provide a flexible dashboard that allows users to visualize critical insights from all that data, on any screen and device. This session will demonstrate a dashboard app that provides big data analysis capabilities and interacts with IoT devices via Ext JS constructed components including Grids, Charts, and Widgets.",
+        "date": "Wednesday, November 9",
+        "start_time": "4:10 PM",
+        "end_time": "5:00 PM",
+        "speakers": [
+            {
+                "id": 168,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/08/Daniel-Gallo-Sencha.jpg",
+                "name": "Daniel Gallo",
+                "title": "Sales Engineer",
+                "company": "Sencha",
+                "bio": "Dan is a Sales Engineer at Sencha, where he provides pre-sales technical assistance on the Sencha product line. He has more than 9 years of experience developing innovative, web-based applications using a variety of technologies. Dan specializes in ASP.NET C# and JavaScript. Prior to joining Sencha in early 2012, Dan worked at BMT Defence Services as a Senior Systems Analyst.",
+                "twitter_handle": "DanielJGallo"
+            }
+        ],
+        "tracks": [
+            {
+                "id": 8,
+                "name": "Develop",
+                "description": "This track is suited for developers who would like to learn about the latest advances in the Sencha platform including Ext JS, GXT and Sencha tools. Sessions in this track will cover best practices around for visualizing complex data sets, developing apps for the modern web and advancement which will help teams improve development productivity and deliver robust universal applications.",
+                "order_index": 1
+            }
+        ],
+        "location": {
+            "id": 6,
+            "name": "Starvine 6-7"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-Ext-JS-Dashboard-for-Visualizing-Interacting-with-IoT-Data",
+        "order_index": 81,
+        "startDate": "2016-11-09T21:10:00.000Z",
+        "endDate": "2016-11-09T22:00:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Daniel Gallo"
+    },
+    {
+        "id": "57eb16d901948",
+        "type": "session",
+        "title": "How to Auto Generate a Back-end in Minutes",
+        "description": "Connecting your JavaScript application to a database is tedious. Back-end developers spend hours modeling the database, securing connections, writing SQL, optimizing queries, deploying to a server, and fixing bugs. In this session, you'll learn how Ext Speeder gives your front-end team a tool to automatically generate a full back-end. In minutes, a REST API between a Sencha Ext JS Grid application and a relational database is created. This will save you a huge amount of time and also minimizes the risk of human error. Application time-to-market has never been shorter.",
+        "date": "Wednesday, November 9",
+        "start_time": "4:10 PM",
+        "end_time": "5:00 PM",
+        "speakers": [
+            {
+                "id": 225,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/09/Emil-Forslund-Speedment.jpg",
+                "name": "Emil Forslund",
+                "title": "Software Developer",
+                "company": "Speedment",
+                "bio": "Emil is a software developer at Speedment, focusing on code generation and smart software design. He is also a Java developer heavily involved in the Open Source project Speedment. His Java blog “Age of Java” http://www.ageofjava.com/ has attracted thousands of followers. Emil is a recurring speaker at events including JavaOne, JUGs, Meetups, GOTO Events, and JForums.",
+                "twitter_handle": "emifors"
+            },
+            {
+                "id": 157,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/03/Per-Minborg-Speedment.jpg",
+                "name": "Per Minborg",
+                "title": "CTO",
+                "company": "Speedment",
+                "bio": "Per is a Palo Alto based developer and architect. He is a regular speaker at various conferences including JavaOne, jdays, JUGs, and Meetups. Per has 15+ US patent applications and invention disclosures. He runs the blog “Minborg’s Java Pot” which has gained half a million readers. He is Java Zone Leader at DZone. He is founder and CTO at Speedment, focusing on in-memory databases, high-performance solutions, cloud technologies, and concurrent programming.",
+                "twitter_handle": "PMinborg"
+            }
+        ],
+        "tracks": [
+            {
+                "id": 8,
+                "name": "Develop",
+                "description": "This track is suited for developers who would like to learn about the latest advances in the Sencha platform including Ext JS, GXT and Sencha tools. Sessions in this track will cover best practices around for visualizing complex data sets, developing apps for the modern web and advancement which will help teams improve development productivity and deliver robust universal applications.",
+                "order_index": 1
+            }
+        ],
+        "location": {
+            "id": 14,
+            "name": "Starvine 1-2"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-How-to-Auto-Generate-a-Back-end-in-Minutes",
+        "order_index": 82,
+        "startDate": "2016-11-09T21:10:00.000Z",
+        "endDate": "2016-11-09T22:00:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Emil Forslund, Per Minborg"
+    },
+    {
+        "id": "57eb16d83d244",
+        "type": "session",
+        "title": "Handling Undo-Redo in Enterprise Ext JS Applications",
+        "description": "Undo and redo is a very common but not trivial feature, requested in most types of modern web applications. An application may define complex data processing rules involving data from different stores, which is tricky to handle when undoing an operation. With the Robo tool, we'll show you how to accurately revert data to any previous state with a simple undo() call.",
+        "date": "Wednesday, November 9",
+        "start_time": "4:10 PM",
+        "end_time": "5:00 PM",
+        "speakers": [
+            {
+                "id": 260,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/10/Nickolay-Platonov-Bryntum.jpg",
+                "name": "Nickolay Platonov",
+                "title": "Senior Ext JS Programmer",
+                "company": "Bryntum",
+                "bio": "Nickolay is the co-creator of Siesta and a Senior Ext JS Programmer at Bryntum.",
+                "twitter_handle": "SamuraiJack8"
+            }
+        ],
+        "tracks": [
+            {
+                "id": 8,
+                "name": "Develop",
+                "description": "This track is suited for developers who would like to learn about the latest advances in the Sencha platform including Ext JS, GXT and Sencha tools. Sessions in this track will cover best practices around for visualizing complex data sets, developing apps for the modern web and advancement which will help teams improve development productivity and deliver robust universal applications.",
+                "order_index": 1
+            }
+        ],
+        "location": {
+            "id": 4,
+            "name": "Starvine 3-5"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-Handling-Undo-Redo-in-Enterprise-Ext-JS-Apps",
+        "order_index": 83,
+        "startDate": "2016-11-09T21:10:00.000Z",
+        "endDate": "2016-11-09T22:00:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Nickolay Platonov"
+    },
+    {
+        "id": "57eed956af5af",
+        "type": "session",
+        "title": "Testing in Isolation - Keeping the Pipeline and Codebase Clean",
+        "description": "Development teams across all industries are realizing that they must be able to deliver quality code frequently in order to keep up with competition, meet user expectations, and to provide an ever-improving experience. Automated testing is critical to ensure that shipping code is quality code. Often testing is not leveraged early and often enough in the pipeline. This results in time being wasted, debugging failures, as well as reverting and rolling back. Because developers are not given feedback regarding their code changes until it is in the repository/pipeline and test automation run against it, it’s difficult to isolate the issue to particular developer commits. The solution to is to test in isolation, giving developers a feedback mechanism that notifies them if their code change is ready for review and merge. Developers need to address any test failures before their code can be put in the main branch and shipped. Other acceptance criteria can be enforced as part of this mechanism. The result is a commonly accepted standard of quality that must be maintained, as well as a set of criteria that must be satisfied before code makes it to the next step in the pipeline. Expert Neil Manvar will be present how testing in isolation can improve quality, increase developer velocity, and allow for organizations to more comfortably embrace and leverage Continuous Delivery. This session will also include a demo of testing in isolation using open source technologies such as Jenkins, Docker, GitHub, and Selenium. You’ll learn the advantages of shifting testing left, the importance of early developer of feedback, and how to best leverage automated testing in a Continuous Deployment pipeline.",
+        "date": "Wednesday, November 9",
+        "start_time": "4:10 PM",
+        "end_time": "5:00 PM",
+        "speakers": [
+            {
+                "id": 160,
+                "avatar_url": "https://www.senchacon.com/wp-content/uploads/2016/03/Neil-Manvar-SauceLabs.png",
+                "name": "Neil Manvar",
+                "title": "Solution Architect",
+                "company": "Sauce Labs",
+                "bio": "Neil is a solutions architect at Sauce Labs. Prior to joining Sauce Labs, he served as a software engineer at Yahoo!, where he contributed to Yahoo! Mail features and projects. He was one of Yahoo!’s first software engineers to develop Continuous Delivery build infrastructure and pipelines, and he developed an automated functional testing framework to run parallel tests on various browsers.",
+                "twitter_handle": ""
+            }
+        ],
+        "tracks": [
+            {
+                "id": 9,
+                "name": "Test",
+                "description": "This track is suited for developers and test automation engineers who to learn best practices for improving application quality and accelerating application delivery through unit testing, end-to-end testing and automation.",
+                "order_index": 2
+            }
+        ],
+        "location": {
+            "id": 3,
+            "name": "Starvine 10-11"
+        },
+        "hashtag": "SenchaCon",
+        "survey_link": "https://www.surveymonkey.com/r/SC16-Testing-in-Isolation-Keeping-the-Pipe-and-Codebase-Clean",
+        "order_index": 84,
+        "startDate": "2016-11-09T21:10:00.000Z",
+        "endDate": "2016-11-09T22:00:00.000Z",
+        "categoryName": "Session",
+        "speakerNames": "Neil Manvar"
+    }
 ]

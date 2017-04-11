@@ -10,7 +10,7 @@ export function loadEvent(id) {
         const doLoadEvent = () => {
             const event = store.getById(id).data;
             dispatch({ type: LOAD_EVENT, event });
-            dispatch(setTitle(event.name, '/'));
+            dispatch(setTitle(event.title, '/'));
         };
 
         if (store.loading) {
