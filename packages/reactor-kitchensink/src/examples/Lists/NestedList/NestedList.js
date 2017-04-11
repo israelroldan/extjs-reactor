@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { NestedList } from '@extjs/reactor/modern';
-import root from './data';
 
 Ext.require('Ext.Toast');
 
@@ -25,7 +24,12 @@ export default class ListExample extends Component {
     }
     
     store = Ext.create('Ext.data.TreeStore', { 
-        root 
+        autoLoad: true,
+        root: {},
+        proxy: {
+            type: 'ajax',
+            url: 'resources/data/tree/cars.json'
+        }
     });
 
     onLeafItemTap = (nestedList, list, index, target, record) => {
