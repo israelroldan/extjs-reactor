@@ -31,7 +31,7 @@ export default class TreeMap extends Component {
         ],
         proxy: {
             type: 'ajax',
-            url: 'data/tree/stocks.json'
+            url: 'resources/data/tree/stocks.json'
         }
     })
 

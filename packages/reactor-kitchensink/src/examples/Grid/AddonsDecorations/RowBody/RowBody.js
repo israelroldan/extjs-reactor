@@ -11,7 +11,7 @@ export default class RowBodyGridExample extends Component {
         pageSize: 0,
         proxy: {
             type: 'ajax',
-            url: '/data/CompanyData.json'
+            url: 'resources/data/CompanyData.json'
         } 
     });
 

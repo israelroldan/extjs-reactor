@@ -41,9 +41,6 @@ module.exports = function (env) {
         new CopyWebpackPlugin([{
             from: path.join(__dirname, 'resources'), 
             to: 'resources'
-        }, {
-            from: path.join(__dirname, 'data'),
-            to: 'data'
         }]),
         new WebpackShellPlugin({
             dev: false,

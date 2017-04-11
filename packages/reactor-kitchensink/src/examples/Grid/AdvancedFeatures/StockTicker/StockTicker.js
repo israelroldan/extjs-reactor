@@ -16,7 +16,7 @@ export default class StockTickerGridExample extends Component {
         pageSize: null,
         proxy: {
             type: 'ajax',
-            url: '/data/CompanyData.json',
+            url: 'resources/data/CompanyData.json',
             reader: {
                 type: 'json',
                 rootProperty: 'data',

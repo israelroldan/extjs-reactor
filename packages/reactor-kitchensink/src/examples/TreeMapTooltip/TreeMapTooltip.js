@@ -32,7 +32,7 @@ export default class TreeMapTooltip extends Component {
         ],
         proxy: {
             type: 'ajax',
-            url: 'data/tree/stocks.json'
+            url: 'resources/data/tree/stocks.json'
         }
     })
 

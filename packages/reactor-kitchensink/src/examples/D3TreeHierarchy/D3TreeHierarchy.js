@@ -15,7 +15,7 @@ export default class D3TreeHierarchy extends Component {
         root: { text: 'States' },
         proxy: {
             type: 'ajax',
-            url: 'data/tree/salary.json',
+            url: 'resources/data/tree/salary.json',
             reader: {
                 type: 'json',
                 getResponseData: treeDataReader

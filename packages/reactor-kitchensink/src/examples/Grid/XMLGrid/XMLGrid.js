@@ -14,7 +14,7 @@ export default class XmlGridExample extends Component {
         ],
         proxy:{
             type: 'ajax',
-            url: '/resources/data/Grids/sheldon.xml',
+            url: 'resources/data/Grids/sheldon.xml',
             reader: {
                 type: 'xml',
                 // records will have an "Item" tag

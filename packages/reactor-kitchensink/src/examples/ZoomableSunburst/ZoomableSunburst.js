@@ -25,7 +25,7 @@ export default class ZoomableSunburst extends Component {
         ],
         proxy: {
             type: 'ajax',
-            url: 'data/tree/tree.json'
+            url: 'resources/data/tree/tree.json'
         },
         idProperty: 'path'
     })

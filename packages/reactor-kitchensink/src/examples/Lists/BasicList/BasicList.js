@@ -10,7 +10,7 @@ export default class BasicListExample extends Component {
         autoLoad: true,
         proxy: {
             type: 'rest',
-            url: '/resources/data/people.json'
+            url: 'resources/data/people.json'
         },
         sorters: ['last_name', 'first_name']
     })

@@ -10,7 +10,7 @@ export default class GroupedListExample extends Component {
         autoLoad: true,
         proxy: {
             type: 'rest',
-            url: '/resources/data/people.json'
+            url: 'resources/data/people.json'
         },
         grouper: {
             groupFn: record => record.get('last_name')[0]

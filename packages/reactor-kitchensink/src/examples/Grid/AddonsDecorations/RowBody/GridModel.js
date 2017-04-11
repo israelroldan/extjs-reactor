@@ -55,7 +55,7 @@ export default Ext.define(null, {
         reader: {
             type: 'json'
         },
-        url: '/data/CompanyData.json'
+        url: 'resources/data/CompanyData.json'
     },
     validators: {
         name: 'presence'
