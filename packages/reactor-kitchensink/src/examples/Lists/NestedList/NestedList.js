@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NestedList } from '@extjs/reactor/modern';
+import { NestedList } from '@extjs/ext-react';
 
 Ext.require('Ext.Toast');
 

@@ -5,7 +5,7 @@ describe('extractFromJSX', () => {
 
     it('should parse object spread', () => {
         const statements = extractFromJSX(`
-            import { Panel } from '@extjs/reactor/modern';
+            import { Panel } from '@extjs/ext-react';
             const props = { foo: 'bar' };
             const comp = <Panel {...props}/>
         `);
@@ -15,7 +15,7 @@ describe('extractFromJSX', () => {
 
     it('should handle class properties', () => {
         const statements = extractFromJSX(`
-            import { Panel } from '@extjs/reactor/modern';
+            import { Panel } from '@extjs/ext-react';
             import { Component, PropTypes } from 'react';
 
             class MyComponent extends Component {
@@ -34,7 +34,7 @@ describe('extractFromJSX', () => {
 
     it('should handle a prop without a value', () => {
         const statements = extractFromJSX(`
-            import { Panel } from '@extjs/reactor/modern';
+            import { Panel } from '@extjs/ext-react';
             import { Component, PropTypes } from 'react';
 
             class MyComponent extends Component {

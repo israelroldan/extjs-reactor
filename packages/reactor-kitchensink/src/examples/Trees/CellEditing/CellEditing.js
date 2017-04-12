@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Tree, TreeColumn } from '@extjs/reactor/modern';
+import { Tree, TreeColumn } from '@extjs/ext-react';
 import store from './Store';
 
 export default class CellEditingTreeExample extends Component {

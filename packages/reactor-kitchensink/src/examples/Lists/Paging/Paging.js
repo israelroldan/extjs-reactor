@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { List, SegmentedButton, Button, Panel, Container } from '@extjs/reactor/modern';
+import { List, SegmentedButton, Button, Panel, Container } from '@extjs/ext-react';
 
 require('../stocks');
 

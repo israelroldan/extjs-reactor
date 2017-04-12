@@ -1,5 +1,5 @@
 import React from 'react';
-import { NumberField, FormPanel } from '@extjs/reactor/modern';
+import { NumberField, FormPanel } from '@extjs/ext-react';
 
 export default function SpinnerFieldExample() {
     return (

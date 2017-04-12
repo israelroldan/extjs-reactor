@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Panel, TreeList, Toolbar, SegmentedButton, Button } from '@extjs/reactor/modern';
+import { Panel, TreeList, Toolbar, SegmentedButton, Button } from '@extjs/ext-react';
 import data from './data';
 
 export default class TreeListExample extends Component {

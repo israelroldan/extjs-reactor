@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FormPanel, ComboBoxField } from '@extjs/reactor/modern';
+import { FormPanel, ComboBoxField } from '@extjs/ext-react';
 import data from './data';
 
 export default class ComboBoxFieldExample extends Component {

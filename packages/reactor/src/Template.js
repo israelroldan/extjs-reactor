@@ -1,4 +1,5 @@
 import ReactDOM from 'react-dom';
+import ReactDOMServer from 'react-dom/server';
 
 /**
  * A implementation of Ext.Template that supports React elements (JSX).
@@ -26,11 +27,7 @@ const Template = Ext.define(null, {
 
     // overrides Ext.Template
     apply(values) {
-        const target = this.getCachedTarget();
-        this.doRender(values, target);
-        const result = target.innerHTML;
-        target.innerHTML = '';
-        return result;
+        return ReactDOMServer.renderToStaticMarkup(this.fn(values));
     },
 
     // overrides Ext.Template

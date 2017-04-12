@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Panel, Button, Container, ToolTip } from '@extjs/reactor/modern';
+import { Panel, Button, Container, ToolTip } from '@extjs/ext-react';
 
 export default class ToolTipExample extends Component {
     render() {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Panel, Container } from '@extjs/reactor/modern';
+import { Panel, Container } from '@extjs/ext-react';
 import colors from '../../colors';
 
 Ext.require('Ext.panel.Resizable');

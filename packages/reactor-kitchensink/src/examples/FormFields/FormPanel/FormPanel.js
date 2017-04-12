@@ -19,7 +19,7 @@ import {
     Container,
     Label,
     Toolbar
-} from '@extjs/reactor/modern';
+} from '@extjs/ext-react';
 
 Ext.require('Ext.field.InputMask'); // need to require this specifically for inputMask props to work
 

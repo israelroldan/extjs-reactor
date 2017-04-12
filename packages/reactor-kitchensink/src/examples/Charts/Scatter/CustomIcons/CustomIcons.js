@@ -3,6 +3,8 @@ import { Panel, Cartesian } from '@extjs/reactor/modern';
 import ChartToolbar from '../../ChartToolbar';
 import generateData from './generateData';
 
+Ext.require('Ext.chart.interactions.ItemEdit');
+
 export default class CustomIcons extends Component {
 
     constructor() {

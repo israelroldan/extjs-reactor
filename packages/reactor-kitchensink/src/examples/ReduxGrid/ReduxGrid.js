@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Toolbar, Container, Button } from '@extjs/reactor/modern';
+import { Grid, Toolbar, Container, Button } from '@extjs/ext-react';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import Employees from './Employees';

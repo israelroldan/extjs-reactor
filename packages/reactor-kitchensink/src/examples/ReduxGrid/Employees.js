@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { filterChange } from './actions';
-import { Grid, TitleBar, SearchField, Label } from '@extjs/reactor/modern';
+import { Grid, TitleBar, SearchField, Label } from '@extjs/ext-react';
 
 Ext.require(['Ext.grid.plugin.*']);
 

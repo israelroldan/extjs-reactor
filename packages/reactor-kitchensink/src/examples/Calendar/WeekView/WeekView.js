@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Calendar_Week, Panel } from '@extjs/reactor/modern';
+import { Calendar_Week, Calendar_List, Panel } from '@extjs/ext-react';
 import './data';
 
 export default class CalendarWeekViewExample extends Component {
@@ -52,16 +52,9 @@ export default class CalendarWeekViewExample extends Component {
                     width={150}
                     bodyPadding={5}
                     hidden={Ext.os.is.Phone}
-                    items={[{
-                        xtype: 'calendar-list',
-                        timezoneOffset: 0,
-                        gestureNavigation: false,
-                        value: new Date(),
-                        firstDayOfWeek: 0,
-                        visibleDays: 7,
-                        store: this.store
-                    }]}
-                />
+                >
+                    <Calendar_List store={this.store}/>
+                </Panel>
                 <Calendar_Week
                     store={this.store}
                     flex={1}

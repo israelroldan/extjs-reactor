@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Container, Column } from '@extjs/reactor/modern';
+import { Grid, Container, Column } from '@extjs/ext-react';
 
 
 export default class XmlGridExample extends Component {

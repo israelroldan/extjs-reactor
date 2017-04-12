@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Container } from '@extjs/reactor/modern';
+import { Container } from '@extjs/ext-react';
 import AppBar from '../AppBar';
 
 class Attendees extends Component {

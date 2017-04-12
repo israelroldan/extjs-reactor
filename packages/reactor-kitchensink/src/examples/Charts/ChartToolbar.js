@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Label, Spacer, Button, Toolbar, SegmentedButton, Menu, MenuItem } from '@extjs/reactor/modern';
+import { Label, Spacer, Button, Toolbar, SegmentedButton, Menu, MenuItem } from '@extjs/ext-react';
 
 Ext.require([
     'Ext.chart.theme.Blue',
@@ -34,7 +34,7 @@ export default function ChartToolbar({
     return (
         <Toolbar docked="top">
             { theme && (
-                <Button iconCls="x-fa fa-picture-o" text="Theme">
+                <Button iconCls="x-fa fa-picture-o" text="THEME">
                     <Menu>
                         <MenuItem text="Default" handler={() => onThemeChange('default')}/>
                         <MenuItem text="Green" handler={() => onThemeChange('green')}/>
@@ -49,31 +49,31 @@ export default function ChartToolbar({
             { downloadChartRef && (
                 <Button 
                     iconCls="x-fa fa-eye" 
-                    text="Preview" 
+                    text="PREVIEW" 
                     handler={downloadChart.bind(null, downloadChartRef)}
                     platformConfig={{
                         desktop: {
-                            text: 'Download',
+                            text: 'DOWNLOAD',
                             iconCls: 'x-fa fa-download'
                         }
                     }}
                 />
             )}
             { onRefreshClick && (
-                <Button {...toolbarItemDefaults} iconCls="x-fa fa-refresh" handler={onRefreshClick} text="Reload"/>
+                <Button {...toolbarItemDefaults} iconCls="x-fa fa-refresh" handler={onRefreshClick} text="REFRESH"/>
             )}
             <Spacer/>
             { onStackGroup && (
                 <SegmentedButton onToggle={onStackGroup}>
-                    <Button ui="default-toolbar" text="Stack" pressed/>
-                    <Button ui="default-toolbar" text="Group"/>
+                    <Button ui="default-toolbar" text="STACK" pressed/>
+                    <Button ui="default-toolbar" text="GROUP"/>
                 </SegmentedButton>
             )}
             { onToggleZoomOnPan && !Ext.supports.Touch && (
                 <SegmentedButton {...toolbarItemDefaults}>
-                    <Button ui="default-toolbar" handler={() => onToggleZoomOnPan(false)} pressed text="Pan"/>
-                    <Button ui="default-toolbar" handler={() => onToggleZoomOnPan(true)} text="Zoom"/>
-                    { onToggleCrosshair && <Button ui="default-toolbar" handler={() => onToggleCrosshair(true)} text="Crosshair"/> }
+                    <Button ui="default-toolbar" handler={() => onToggleZoomOnPan(false)} pressed text="PAN"/>
+                    <Button ui="default-toolbar" handler={() => onToggleZoomOnPan(true)} text="ZOOM"/>
+                    { onToggleCrosshair && <Button ui="default-toolbar" handler={() => onToggleCrosshair(true)} text="CROSSHAIR"/> }
                 </SegmentedButton>
             )}
         </Toolbar>

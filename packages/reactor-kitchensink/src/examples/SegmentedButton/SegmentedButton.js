@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { SegmentedButton, Button, Panel, Toolbar } from '@extjs/reactor/modern';
+import { SegmentedButton, Button, Panel, Toolbar } from '@extjs/ext-react';
 
 export default class SegementedButtonExample extends Component {
 

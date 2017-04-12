@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Panel, PivotHeatMap, Toolbar, Spacer, Button } from '@extjs/reactor/modern';
+import { Panel, PivotHeatMap, Toolbar, Spacer, Button } from '@extjs/ext-react';
 import createData from './createData';
 
 export default class PivotHeatMapExample extends Component {

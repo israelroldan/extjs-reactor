@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { TabPanel, Panel } from '@extjs/reactor/modern';
+import { TabPanel, Panel } from '@extjs/ext-react';
 import hljs, { highlightBlock } from 'highlightjs';
 
 // JSX syntax highlighting

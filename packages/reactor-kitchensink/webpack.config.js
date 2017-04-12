@@ -129,7 +129,7 @@ module.exports = function (env) {
             port: 8084,
             compress: isProd,
             inline: !isProd,
-            hot: !isProd,
+            hot: false && !isProd,
             stats: {
                 assets: true,
                 children: false,

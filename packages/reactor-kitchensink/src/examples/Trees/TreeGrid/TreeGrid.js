@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Tree, NumberColumn, TreeColumn } from '@extjs/reactor/modern';
+import { Tree, NumberColumn, TreeColumn } from '@extjs/ext-react';
 
 export default class TreeGridExample extends Component {
 

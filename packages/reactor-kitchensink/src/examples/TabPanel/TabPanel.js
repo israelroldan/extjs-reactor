@@ -1,5 +1,5 @@
 import React from 'react';
-import { TabPanel, Component, Container } from '@extjs/reactor/modern';
+import { TabPanel, Component, Container } from '@extjs/ext-react';
 
 export default function TabPanelExample() {
     return (

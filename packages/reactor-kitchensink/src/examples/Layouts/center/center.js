@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Panel } from '@extjs/reactor/modern';
+import { Container, Panel } from '@extjs/ext-react';
 import colors from '../../colors';
 
 export default class CenterLayoutExample extends Component {

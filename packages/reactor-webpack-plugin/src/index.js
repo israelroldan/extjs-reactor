@@ -114,7 +114,7 @@ module.exports = class ReactExtJSWebpackPlugin {
                     const doParse = () => {
                         if (this.debug) console.log(module.resource);
                         const contents = fs.readFileSync(module.resource, 'utf8');
-                        const statements = this.manifestExtractor(contents);
+                        const statements = this.manifestExtractor(contents, compilation, module);
                         this.dependencies[this.currentFile] = statements;
                     };
 

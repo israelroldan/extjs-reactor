@@ -14,7 +14,7 @@ Ext.XTemplate.get = function(fn) {
 }
 
 Ext.XTemplate.getTpl = function() {
-    return getTpl.apply(Ext.XTemplate, arguments);
+    return getTpl.apply(Ext.XTemplate, arguments); 
 }
 
 // automatically persist event before rippling

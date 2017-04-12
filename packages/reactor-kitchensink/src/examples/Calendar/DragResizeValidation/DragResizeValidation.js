@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Calendar_Day, Panel } from '@extjs/reactor/modern';
+import { Calendar_Day, Panel } from '@extjs/ext-react';
 import './data';
 
 export default class CalendarValidationExample extends Component {

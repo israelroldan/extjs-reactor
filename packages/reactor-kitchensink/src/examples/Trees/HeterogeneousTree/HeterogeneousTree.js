@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Tree, TreeColumn, ToolBar, TextField, Button } from '@extjs/reactor/modern';
+import { Tree, TreeColumn, ToolBar, TextField, Button } from '@extjs/ext-react';
 import './data';
 
 export default class HeterogeneousTreeExample extends Component {

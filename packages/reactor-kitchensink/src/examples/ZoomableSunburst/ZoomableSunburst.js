@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Panel, D3_Sunburst } from '@extjs/reactor/modern';
+import { Panel, D3_Sunburst } from '@extjs/ext-react';
 
 export default class ZoomableSunburst extends Component {
 

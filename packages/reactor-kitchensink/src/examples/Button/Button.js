@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Panel, Button, Menu, MenuItem } from '@extjs/reactor/modern';
+import { Container, Panel, Button, Menu, MenuItem } from '@extjs/ext-react';
 import './button.css';
 
 Ext.require('Ext.Toast');

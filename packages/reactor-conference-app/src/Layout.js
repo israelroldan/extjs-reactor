@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Button, TitleBar } from '@extjs/reactor/modern';
+import { Container, Button, TitleBar } from '@extjs/ext-react';
 import Menu from './Menu';
 import { connect } from 'react-redux';
 import { toggleMenu } from './actions';

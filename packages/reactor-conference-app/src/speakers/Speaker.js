@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Panel } from '@extjs/reactor/modern';
+import { Container, Panel } from '@extjs/ext-react';
 import ScheduleList from '../schedule/ScheduleList';
 import { connect } from 'react-redux';
 import { setTitle } from '../actions';

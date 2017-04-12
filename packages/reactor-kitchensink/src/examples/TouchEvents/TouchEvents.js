@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Panel } from '@extjs/reactor/modern';
+import { Container, Panel } from '@extjs/ext-react';
 
 export default class TouchEventsExample extends Component {
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Button, TabPanel, Panel, Toolbar, SearchField, EdgeMenu, List } from '@extjs/reactor/modern';
+import { Container, Button, TabPanel, Panel, Toolbar, SearchField, EdgeMenu, List } from '@extjs/ext-react';
 import AppBar from '../AppBar';
 import { toggleSearch, filterByDay, toggleFavorite, filterByFavorites } from './actions';
 import { connect } from 'react-redux';

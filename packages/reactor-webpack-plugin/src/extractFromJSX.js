@@ -3,15 +3,16 @@
 import { parse } from 'babylon';
 import traverse from 'ast-traverse';
 
-const COMPONENT_MODULE_PATTERN = /^@extjs\/reactor\/(modern|classic)$/;
+const OLD_MODULE_PATTERN = /^@extjs\/reactor\/modern$/;
+const MODULE_PATTERN = /^@extjs\/(ext-react.*|reactor\/classic)$/;
 
 /**
  * Extracts Ext.create equivalents from jsx tags so that cmd knows which classes to include in the bundle
  * @param {String} js The javascript code
- * @param {String} prefix The prefix that denotes an Ext JS xtype
+ * @param {Compilation} compilation The webpack compilation object
  * @returns {Array} An array of Ext.create statements
  */
-module.exports = function extractFromJSX(js) {
+module.exports = function extractFromJSX(js, compilation, module) {
     const statements = [];
     const types = {};
 
@@ -50,7 +51,12 @@ module.exports = function extractFromJSX(js) {
     traverse(ast, {
         pre: function(node) {
             if (node.type == 'ImportDeclaration') {
-                if (node.source.value.match(COMPONENT_MODULE_PATTERN)) {
+                if (node.source.value.match(OLD_MODULE_PATTERN) || node.source.value.match(MODULE_PATTERN)) {
+
+                    if (node.source.value.match(OLD_MODULE_PATTERN)) {
+                        compilation.warnings.push(`${module.resource}: ${node.source.value} is deprecated, use @extjs/ext-react instead.`);
+                    }
+
                     // look for: import { Grid } from '@extjs/reactor
                     for (let spec of node.specifiers) {
                         types[spec.local.name] = {xtype: `"${spec.imported.name.toLowerCase().replace(/_/g, '-')}"`};

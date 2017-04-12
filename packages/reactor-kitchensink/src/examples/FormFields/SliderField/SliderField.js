@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, FormPanel, SliderField } from '@extjs/reactor/modern';
+import { Container, FormPanel, SliderField } from '@extjs/ext-react';
 
 export default class SliderFieldExample extends Component {
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Panel, Spacer } from '@extjs/reactor/modern';
+import { Container, Panel, Spacer } from '@extjs/ext-react';
 import colors from '../../colors';
 
 export default class VBoxLayoutExample extends Component {

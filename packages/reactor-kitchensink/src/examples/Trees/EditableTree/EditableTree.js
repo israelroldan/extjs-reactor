@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Tree, TreeColumn, TextColumn } from '@extjs/reactor/modern';
+import { Tree, TreeColumn, TextColumn } from '@extjs/ext-react';
 import store from './Store.js';
 
 export default class EditableTreeExample extends Component {

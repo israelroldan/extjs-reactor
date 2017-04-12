@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Panel, ChartNavigator } from '@extjs/reactor/modern';
+import { Panel, ChartNavigator } from '@extjs/ext-react';
 import createData from './createData';
 import ChartToolbar from '../ChartToolbar';
 

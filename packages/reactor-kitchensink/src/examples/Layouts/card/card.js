@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Panel, Toolbar, RadioField, FieldSet, SegmentedButton, Button } from '@extjs/reactor/modern';
+import { Container, Panel, Toolbar, RadioField, FieldSet, SegmentedButton, Button } from '@extjs/ext-react';
 import colors from '../../colors';
 
 export default class CardLayoutExample extends Component {

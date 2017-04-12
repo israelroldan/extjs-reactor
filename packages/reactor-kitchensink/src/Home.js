@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Panel } from '@extjs/reactor/modern';
+import { Panel } from '@extjs/ext-react';
 
 export default function Home(props) {
     return (

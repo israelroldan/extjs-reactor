@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Column, WidgetCell, SparkLineLine } from '@extjs/reactor/modern';
+import { Grid, Column, WidgetCell, SparkLineLine } from '@extjs/ext-react';
 
 export default class RelGridColumn extends Component {
 
