@@ -4,7 +4,7 @@ import GroupedGrid from './Grid/GroupedGrid/GroupedGrid';
 import CellEditingGrid from './Grid/CellEditing/CellEditing';
 import EditableGrid from './Grid/EditableGrid/EditableGrid';
 import XMLGrid from './Grid/XMLGrid/XMLGrid';
-import BigDataGrid from './Grid/AdvancedFeatures/BigData/Grid';
+import BigDataGrid from './Grid/AdvancedFeatures/BigData/BigData';
 import ReconfigureGrid from './Grid/AdvancedFeatures/ReconfigureGrid/Grid';
 import SummaryRowGrid from './Grid/AddonsDecorations/SummaryRow/SummaryRow';
 import ViewOptionsGrid from './Grid/AddonsDecorations/ViewOptions/ViewOptions';
