@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, ActionSheet, Toolbar, Container, Button } from '@extjs/reactor/modern';
+import { Grid, ActionSheet, Toolbar, Container, Button, SparkLineLine, WidgetCell, Column, TextColumn, CheckColumn, NumberColumn, DateColumn } from '@extjs/reactor/modern';
 import { Template } from '@extjs/reactor';
 import model from './GridModel';
 import './data';
@@ -38,6 +38,20 @@ export default class BigDataGridExample extends Component {
        )
     });
 
+    nameSorter = (rec1, rec2) => {
+        // Sort prioritizing surname over forename as would be expected.
+        var rec1Name = rec1.get('surname') + rec1.get('forename'),
+            rec2Name = rec2.get('surname') + rec2.get('forename');
+
+        if (rec1Name > rec2Name) {
+            return 1;
+        }
+        if (rec1Name < rec2Name) {
+            return -1;
+        }
+        return 0;
+    }
+
     render() {
         const { showExportSheet } = this.state;
 
@@ -56,6 +70,7 @@ export default class BigDataGridExample extends Component {
                     store={this.store}
                     shadow
                     grouped
+                    rowNumbers
                     plugins={[
                         { type: 'grideditable' },
                         { type: 'gridviewoptions' },
@@ -74,152 +89,6 @@ export default class BigDataGridExample extends Component {
                             tpl: this.ratingTpl
                         }
                     }}
-                    columns={[
-                        { 
-                            xtype: 'rownumberer' 
-                        }, {
-                            text: 'Id',
-                            dataIndex: 'employeeNo',
-                            flex: 1,
-                            minWidth: 100,
-                            exportStyle: {
-                                format: 'General Number',
-                                alignment: {
-                                    horizontal: 'Right'
-                                }
-                            }
-                        }, {
-                            text: 'Name',
-                            dataIndex: 'fullName',
-                            minWidth: 150
-                        }, {
-                            xtype: 'checkcolumn',
-                            headerCheckbox: true,
-                            dataIndex: 'verified',
-                            text: 'Verified'
-                        }, {
-                            text: 'Ratings',
-                            columns: [{
-                                text: 'Avg',
-                                xtype: 'numbercolumn',
-                                dataIndex: 'averageRating',
-                                width: 75,
-                                cell: {
-                                    cls:'big-data-ratings-cell',
-                                    bind: {
-                                        bodyCls: '{ratingGroup:pick("under4","under5","under6","over6")}'
-                                    }
-                                }
-                            }, {
-                                text: 'All',
-                                dataIndex: 'rating',
-                                ignoreExport: true,
-                                cell: {
-                                    xtype: 'widgetcell',
-                                    forceWidth: true,
-                                    widget: {
-                                        xtype: 'sparklineline'
-                                    }
-                                }
-                            }]
-                        }, {
-                            text: 'Date of Birth',
-                            dataIndex: 'dob',
-                            editable: true,
-                            xtype: 'datecolumn',
-                            format: 'd-m-Y',
-                            // you can define an export style for a column
-                            // you can set alignment, format etc
-                            exportStyle: [{
-                                // no type key is defined here which means that me is the default style
-                                // that will be used by all exporters
-                                format: 'medium Date',
-                                alignment: {
-                                    horizontal: 'Right'
-                                }
-                            }, {
-                                // the type key means that me style will only be used by the csv exporter
-                                // and for all others the default one, defined above, will be used
-                                type: 'csv',
-                                format: 'Short Date'
-                            }]
-                        }, {
-                            text: '',
-                            width: 100,
-                            ignoreExport: true,
-                            cell: {
-                                xtype: 'widgetcell',
-                                widget: {
-                                    xtype: 'button',
-                                    ui: 'action',
-                                    text: 'Verify',
-                                    handler: this.onVerify
-                                }
-                            }
-                        }, {
-                            text: 'Join Date',
-                            dataIndex: 'joinDate',
-                            editable: true,
-                            xtype: 'datecolumn',
-                            format: 'd-m-Y',
-                            exportStyle: {
-                                format: 'medium Date',
-                                alignment: {
-                                    horizontal: 'Right'
-                                }
-                            }
-                        },
-                        {
-                            text: 'Notice Period',
-                            dataIndex: 'noticePeriod',
-                            editable: true
-                        },
-                        {
-                            text: 'Email',
-                            dataIndex: 'email',
-                            editable: true,
-                            editor: {
-                                xtype: 'emailfield'
-                            },
-                            width: 250
-                        },
-                        {
-                            text: 'Absences',
-                            columns: [{
-                                text: 'Illness',
-                                dataIndex: 'sickDays',
-                                align: 'center',
-                                summaryType: 'sum'
-                            }, {
-                                text: 'Holidays',
-                                dataIndex: 'holidayDays',
-                                align: 'center',
-                                summaryType: 'sum'
-                            }, {
-                                text: 'Holiday Allowance',
-                                dataIndex: 'holidayAllowance',
-                                align: 'center',
-                                summaryType: 'sum',
-                                summaryFormatter: 'number("0.00")',
-                                formatter: 'number("0.00")'
-                            }]
-                        },
-                        {
-                            text: 'Salary',
-                            dataIndex: 'salary',
-                            renderer: Ext.util.Format.usMoney,
-                            editable: true,
-                            width: 150,
-                            summaryType: 'sum',
-                            summaryRenderer: this.salarySummaryRenderer,
-                            exportStyle: {
-                                format: 'Currency',
-                                alignment: {
-                                    horizontal: 'Right'
-                                }
-                            }
-                        }
-                    ]}
                     onBeforeDocumentSave={(view) => {
                         view.mask({
                             xtype: 'loadmask',
@@ -228,6 +97,153 @@ export default class BigDataGridExample extends Component {
                     }}
                     onDocumentSave={(view) => view.unmask()}
                 >
+                    
+                    <TextColumn 
+                        text="Id" 
+                        dataIndex="employeeNo"
+                        flex="1"
+                        minWidth="100"
+                        exportStyle={{
+                            format: 'General Number',
+                                alignment: {
+                                    horizontal: 'Right'
+                                }
+                        }}
+                    />
+                    <TextColumn 
+                        text="Name"
+                        dataIndex="fullName"
+                        minWidth="150"
+                        sorter={{
+                            sorterFn:this.nameSorter
+                        }}
+                    />
+                    <CheckColumn 
+                        text="Verified"
+                        dataIndex="verified"
+                        headerCheckbox                        
+                    />
+                    <Column
+                        text="Ratings"
+                    >
+                        <NumberColumn 
+                            text="Avg"
+                            dataIndex="averageRating"
+                            width="75"
+                            cell={{
+                                cls:'big-data-ratings-cell',
+                                    bind: {
+                                        bodyCls: '{ratingGroup:pick("under4","under5","under6","over6")}'
+                                    }
+                            }}
+                        />
+                        <Column 
+                            text="All"
+                            dataIndex="rating"
+                            ignoreExport
+                        >
+                            <WidgetCell forceWidth>
+                                <SparkLineLine tipTpl='Price: {y:number("0.00")}'/>
+                            </WidgetCell> 
+                        </Column>
+                    </Column>
+                    <DateColumn 
+                        text="Date of Birth"
+                        dataIndex="dob"
+                        editable
+                        format='d-m-Y'
+                        exportStyle={[{
+                            // no type key is defined here which means that me is the default style
+                            // that will be used by all exporters
+                            format: 'medium Date',
+                            alignment: {
+                                horizontal: 'Right'
+                            }
+                        }, {
+                            // the type key means that me style will only be used by the csv exporter
+                            // and for all others the default one, defined above, will be used
+                            type: 'csv',
+                            format: 'Short Date'
+                        }]}
+                    />
+                    <Column 
+                        text=""
+                        width="100"
+                        ignoreExport
+                    >
+                        <WidgetCell>
+                            <Button 
+                                text="Verify"
+                                ui="action"
+                                handler={this.onVerify}
+                            />
+                        </WidgetCell>
+                    </Column>
+                    <DateColumn
+                        text="Join Date"
+                        dataIndex="joinDate"
+                        editable
+                        format="d-m-Y"
+                        exportStyle={{
+                            format: 'medium Date',
+                                alignment: {
+                                    horizontal: 'Right'
+                                }
+                        }}
+                    />
+                    <TextColumn
+                        text="Notice Period"
+                        dataIndex='noticePeriod'
+                        editable
+                    />
+                    <TextColumn
+                        text="Email"
+                        dataIndex="email"
+                        width="250"
+                        editable
+                        editor={{
+                            xtype:'emailfield'
+                        }}
+                    />
+                    <Column 
+                        text='Absences'
+                    >
+                        <TextColumn
+                            text="Illness"
+                            dataIndex="sickDays"
+                            align='center'
+                            summaryType='sum'
+                        />
+                        <TextColumn
+                            text="Holidays"
+                            dataIndex="holidayDays"
+                            align='center'
+                            summaryType='sum'
+                        />
+                        <TextColumn
+                            text="Holiday Allowance"
+                            dataIndex="holidayAllowance"
+                            align='center'
+                            summaryType='sum'
+                            summaryFormatter='number("0.00")'
+                            formatter='number("0.00")'
+                        />
+                    </Column>
+                    <TextColumn
+                        text='Salary'
+                        dataIndex='salary'
+                        renderer={Ext.util.Format.usMoney}
+                        width='150'
+                        editable
+                        summaryType='sum'
+                        summaryRenderer={this.salarySummaryRenderer}
+                        exportStyle={{
+                            format: 'Currency',
+                                alignment: {
+                                    horizontal: 'Right'
+                                }
+                        }}
+                    />
                     <Toolbar docked="top">
                         <Button text="Export to..." handler={() => this.setState({ showExportSheet: true })}/>
                     </Toolbar>
