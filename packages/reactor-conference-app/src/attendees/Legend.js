@@ -1,17 +1,12 @@
 export default Ext.define(null, {
     extend: 'Ext.d3.legend.Color',
 
-    updateItems: function (items) {
+    renderItems: function (items) {
         var me = this,
-            itemSelection = me.getRenderedItems(),
-            ticks, updateSelection;
+            ticks = [200,100,40,20,10,6,2];
 
-        ticks = [200,100,40,20,10,6,2];
-
-        updateSelection = itemSelection.data(ticks);
-
-        me.onAddItems(updateSelection.enter());
-        me.onUpdateItems(updateSelection);
-        me.onRemoveItems(updateSelection.exit());
+        me.onAddItems(me.getRenderedItems().data(ticks).enter());
+        me.onUpdateItems(me.getRenderedItems().data(ticks));
+        me.onRemoveItems(me.getRenderedItems().data(ticks).exit());
     }
 });

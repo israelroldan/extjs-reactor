@@ -140,8 +140,6 @@ export default reactify(Ext.define(null, {
             colorAxis = this.getColorAxis(),
             colorScale = colorAxis.getScale();
 
-        console.log(selection);
-
         selection
             .style("fill",function(d){
                 var value = me.getValueForState(d.properties.name);
@@ -203,12 +201,11 @@ export default reactify(Ext.define(null, {
                 .attr("class", "equator")
                 .attr("d", path);
 
-            countries = this.getRenderedCountries(g).data(data);
             legend = this.getLegend();
 
-            this.onAddCountries(countries.enter(), path);
-            this.onUpdateCountries(countries);
-            this.onRemoveCountries(countries.exit());
+            this.onAddCountries(this.getRenderedCountries(g).data(data).enter(), path);
+            this.onUpdateCountries(this.getRenderedCountries(g).data(data));
+            this.onRemoveCountries(this.getRenderedCountries(g).data(data).exit());
 
             g.append("path")
                 .datum(topojson.mesh(countriesData, countriesData.objects.countries, function(a, b) { return a !== b; }))
