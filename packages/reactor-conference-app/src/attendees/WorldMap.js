@@ -1,10 +1,10 @@
 import topoData from './WorldTopoData';
 import Legend from './Legend';
 import { reactify } from '@extjs/reactor';
+import * as topojson from 'topojson-client';
 
 export default reactify(Ext.define(null, {
     extend: 'Ext.d3.svg.Svg',
-    xtype: 'worldmapvisualization',
     mixins: ['Ext.d3.mixin.ToolTip'],
 
     width: 960,
@@ -36,12 +36,12 @@ export default reactify(Ext.define(null, {
     },
 
     constructor: function (config) {
-        this.callParent([config]);
+        this.superclass.constructor.call(this, config);
         this.mixins.d3tooltip.constructor.call(this, config);
     },
 
     applyStore: function (store, oldStore) {
-        store = this.callParent([store, oldStore]);
+        store = this.superclass.applyStore.call(this, store, oldStore);
         store.on({
             load: {
                 fn: this.updateDomain,
@@ -140,6 +140,8 @@ export default reactify(Ext.define(null, {
             colorAxis = this.getColorAxis(),
             colorScale = colorAxis.getScale();
 
+        console.log(selection);
+
         selection
             .style("fill",function(d){
                 var value = me.getValueForState(d.properties.name);
@@ -170,14 +172,14 @@ export default reactify(Ext.define(null, {
 
     renderScene: function () {
         var scene = this.getScene(),
-            projection = d3.geo.mercator()
+            projection = d3.geoMercator()
                 .scale((this.config.width + 1) / 2 / Math.PI)
                 .translate([this.config.width / 2, this.config.height / 2])
                 .precision(.1),
-            path = d3.geo.path()
+            path = d3.geoPath()
                 .projection(projection),
-            graticule = d3.geo.graticule(),
-            countriesData = SenchaMeetup.view.visualization.topoData,
+            graticule = d3.geoGraticule(),
+            countriesData = topoData,
             data = topojson.feature(countriesData, countriesData.objects.countries).features,
             countries,
             legend,

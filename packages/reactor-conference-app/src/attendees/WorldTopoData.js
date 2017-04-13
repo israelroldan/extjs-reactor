@@ -1,4 +1,4 @@
-export default data = {
+export default {
     "type": "Topology",
     "transform": {
         "scale": [0.002906483881124809, 0.0016008570112434413],

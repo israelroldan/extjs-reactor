@@ -9,7 +9,6 @@ import { routeDidChange } from './actions';
 import Schedule from './schedule/Schedule';
 import Speakers from './speakers/Speakers';
 import Calendar from './calendar/Calendar';
-import Maps from './maps/Maps';
 import Notifications from './notifications/Notifications';
 import Attendees from './attendees/Attendees';
 import About from './about/About';
