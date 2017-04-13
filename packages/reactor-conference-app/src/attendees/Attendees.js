@@ -5,6 +5,12 @@ import AppBar from '../AppBar';
 
 export default class Attendees extends Component {
 
+    onSceneSetup = (svg, scene) => {
+        if(svg.panZoom) {
+            svg.panZoom.scale(0.5, 0.5);
+        }
+    }
+
     render() {
         return (
             <Container>
@@ -29,15 +35,16 @@ export default class Attendees extends Component {
                         field: 'cnt'
                     }}
                     mapAxis={{
-                        field: 'Work_Country'
+                        field: 'Work_Country',
+                        hidden: !Ext.platformTags.phone
                     }}
-                    interactions={{
+                    interactions={Ext.platformTags.phone ? {
                         type: 'panzoom',
                         zoom: {
                             extent: [0.3, 3],
                             doubleTap: false
                         }
-                    }}
+                    } : null}
                     legend={{
                         docked: 'right',
                         items: {
@@ -50,6 +57,7 @@ export default class Attendees extends Component {
                             }
                         }
                     }}
+                    onScenesetup={this.onSceneSetup}
                 />
             </Container>
         )
