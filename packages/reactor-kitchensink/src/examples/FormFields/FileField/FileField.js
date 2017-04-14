@@ -13,16 +13,14 @@ export default class SearchFieldExample extends Component {
         const { file } = this.state;
 
         return (
-            <Container layout={{ type: 'vbox', align: 'left' }}>
-                <Panel shadow height="200" width="300">
-                    <FileField 
-                        label="Attachment"
-                        value={file}
-                        onChange={this.search}
-                    />
-                    { file && <div>You selected {file}</div> }
-                </Panel>
-            </Container>
+            <Panel shadow height="200" width="300" bodyPadding="20">
+                <FileField 
+                    label="Attachment"
+                    value={file}
+                    onChange={this.search}
+                />
+                { file && <div>You selected {file}</div> }
+            </Panel>
         )
     }
 

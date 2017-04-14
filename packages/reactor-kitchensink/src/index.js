@@ -9,4 +9,9 @@ window.d3 = d3;
 
 require('./index.css');
 
-launch(<App/>, {}, { debug: false })
+launch(() => {
+    let top = Ext.get('loadingSplashTop'), wrapper = Ext.get('loadingSplash');
+    top.on('transitionend', wrapper.destroy, wrapper, { single: true });
+    wrapper.addCls('app-loaded');        
+    return <App/>;
+})

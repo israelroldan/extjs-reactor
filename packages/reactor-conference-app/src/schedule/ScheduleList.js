@@ -30,7 +30,7 @@ class ScheduleList extends Component {
                 </div>
                 <div 
                     onClick={this.onFavoriteClick.bind(this, data)} 
-                    className={`x-font-icon md-icon-star app-list-tool app-favorite${data.favorite ? '-selected' : ''}`}
+                    className={`x-item-no-tap x-font-icon md-icon-star app-list-tool app-favorite${data.favorite ? '-selected' : ''}`}
                 />
             </div>
         )
@@ -44,6 +44,13 @@ class ScheduleList extends Component {
 
     onFavoriteClick = (data, e) => {
         this.props.dispatch(toggleFavorite(data.id));
+        Ext.fly(e.target).ripple(e, { bound: false, color: '#999' });
+    }
+
+    scrollToTop = () => {
+        if (this.list) {
+            this.list.getScrollable().scrollTo(0, 0);
+        }
     }
 
     render() {
@@ -51,6 +58,8 @@ class ScheduleList extends Component {
 
         return (
             <List 
+                onShow={this.scrollToTop}
+                ref={list => this.list = list}
                 {...listProps}
                 store={dataStore}
                 itemTpl={this.itemTpl}

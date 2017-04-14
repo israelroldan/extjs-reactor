@@ -11,8 +11,10 @@ const classCache = {};
 
 /**
  * Launches an ExtReact application, creating a viewport and rendering the specified root component into it.
- * @param {React.Component} rootComponent You application's root component
+ * @param {React.Component/Function} rootComponent You application's root component, or a function that returns the root component.
  * @param {Object} [appConfig] Additional config parameters for Ext.application
+ * @param {Object} [reactorSettings] Additional config parameters for reactor.
+ * @param {Object} reactorSettings.debug Set to true to show debug information in the console related to creating, updating, and destroying Ext JS components.
  */
 export function launch(rootComponent, appConfig = { }, reactorSettings = { debug: false }) {
     settings = reactorSettings;
@@ -20,7 +22,10 @@ export function launch(rootComponent, appConfig = { }, reactorSettings = { debug
     Ext.application({
         name: '$ExtReactApp',
         ...appConfig,
-        launch: () => ReactDOM.render(rootComponent, Ext.Viewport.getRenderTarget().dom)
+        launch: () => {
+            if (typeof rootComponent === 'function') rootComponent = rootComponent();
+            ReactDOM.render(rootComponent, Ext.Viewport.getRenderTarget().dom)
+        }
     });
 }
 

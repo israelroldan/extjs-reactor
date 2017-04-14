@@ -8,6 +8,7 @@
     "start": "webpack-dev-server --progress",
     "build": "npm run clean && NODE_ENV=production webpack --env.prod=true",
     "prod": "NODE_ENV=production webpack-dev-server --env.prod=true",
+    "build:sdk": "touch build/extjs/app.json",
     "extract-code": "node extract-code.js"
   },
   "repository": {
