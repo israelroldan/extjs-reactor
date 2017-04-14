@@ -52,7 +52,6 @@ class ScheduleList extends Component {
         return (
             <List 
                 {...listProps}
-                store={dataStore}
                 itemTpl={this.itemTpl}
                 grouped
                 rowLines
@@ -61,6 +60,7 @@ class ScheduleList extends Component {
                 disableSelection
                 cls="app-list"
                 onItemTap={this.onItemTap}
+                onShow={(list) => { list.setStore(dataStore); }}
                 emptyText="No events found."
             />
         )
