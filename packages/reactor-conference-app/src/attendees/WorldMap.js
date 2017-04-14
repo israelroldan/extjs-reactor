@@ -11,9 +11,9 @@ export default reactify(Ext.define(null, {
     height: 960,
 
     legendRect: {
-        x: 720,
-        y: 0,
-        width: 350,
+        x: 10,
+        y: 400,
+        width: 100,
         height: 150
     },
 
