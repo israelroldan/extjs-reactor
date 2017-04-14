@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Button, Menu, MenuItem } from '@extjs/reactor/modern';
+import { Container, Button, Menu, MenuItem } from '@extjs/ext-react';
 
 export default class RelUpdate extends Component  {
 
@@ -19,7 +19,7 @@ export default class RelUpdate extends Component  {
                 <Button text="Toggle Menu" handler={this.toggleMenu}/>
                 <Button text="Menu">
                     { showMenu && (
-                        <Menu id="menu">
+                        <Menu itemId="menu">
                             <MenuItem text="Option 1"/>
                             <MenuItem text="Option 2"/>
                             <MenuItem text="Option 3"/>

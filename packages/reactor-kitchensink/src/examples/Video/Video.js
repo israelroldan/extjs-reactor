@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Panel, Video } from '@extjs/reactor/modern';
+import { Panel, Video } from '@extjs/ext-react';
 
 export default function VideoExample() {
     return (

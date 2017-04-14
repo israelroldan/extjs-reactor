@@ -21,7 +21,8 @@
   },
   "dependencies": {
     "ast-traverse": "^0.1.1",
-    "astring": "^0.7.1",
+    "astring": "^1.0.2",
+    "babel-generator": "^6.24.1",
     "babylon": "^6.15.0",
     "cjson": "^0.5.0",
     "mkdirp": "^0.5.1",

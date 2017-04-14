@@ -1,5 +1,5 @@
 import React from 'react';
-import { SpinnerField, FormPanel } from '@extjs/reactor/modern';
+import { SpinnerField, FormPanel } from '@extjs/ext-react';
 
 export default function SpinnerFieldExample() {
     return (

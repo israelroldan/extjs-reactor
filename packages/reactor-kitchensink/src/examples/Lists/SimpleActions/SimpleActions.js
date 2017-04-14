@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { List, Panel } from '@extjs/reactor/modern';
+import { List, Panel } from '@extjs/ext-react';
 import { Template } from '@extjs/reactor';
 
 Ext.require([
@@ -13,7 +13,7 @@ export default class SimpleActionsExample extends Component {
         autoLoad: true,
         proxy: {
             type: 'rest',
-            url: '/resources/data/people.json'
+            url: 'resources/data/people.json'
         },
         sorters: ['last_name', 'first_name']
     })

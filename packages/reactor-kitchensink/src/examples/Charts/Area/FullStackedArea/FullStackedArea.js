@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Cartesian, Panel } from '@extjs/reactor/modern';
+import { Cartesian, Panel } from '@extjs/ext-react';
 import ChartToolbar from '../../ChartToolbar';
 
 export default class FullStackedAreaChartExample extends Component {

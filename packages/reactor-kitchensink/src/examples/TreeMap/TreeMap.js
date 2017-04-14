@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Panel, D3_TreeMap } from '@extjs/reactor/modern';
+import { Panel, D3_TreeMap } from '@extjs/ext-react';
 
 Ext.require(['Ext.d3.interaction.PanZoom']);
 
@@ -31,7 +31,7 @@ export default class TreeMap extends Component {
         ],
         proxy: {
             type: 'ajax',
-            url: 'data/tree/stocks.json'
+            url: 'resources/data/tree/stocks.json'
         }
     })
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { FieldSet, TextField, FormPanel } from '@extjs/reactor/modern';
+import { FieldSet, TextField, FormPanel } from '@extjs/ext-react';
 
 export default function FieldSetExample() {
     return (

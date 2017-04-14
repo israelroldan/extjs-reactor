@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Toolbar, EdgeMenu, SearchField, List, Button } from '@extjs/reactor/modern';
+import { Toolbar, EdgeMenu, SearchField, List, Button } from '@extjs/ext-react';
 import { connect } from 'react-redux';
 import { toggleSearch, search } from './actions';
 import { Template } from '@extjs/reactor';

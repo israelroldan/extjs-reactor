@@ -8,9 +8,20 @@ describe("RelMenu", function() {
         
         ST.LOGME=true
         ST.navigate('#/RelMenu');
-        ST.component('button[text="Menu"]').click();   
-        var menu = ST.component('button[text="Menu"] menu');
+        // ST.component('button[text="Menu"]').click();   
+
+        var menu = ST.component('#menu');
+
+        menu.and(function(menu) {
+            debugger
+            console.log(menu.isVisible());
+        })
+
         menu.visible();
-        debugger;
+
+        menu.and(function(menu) {
+            debugger
+            console.log(menu.isVisible());
+        })
     });
 });

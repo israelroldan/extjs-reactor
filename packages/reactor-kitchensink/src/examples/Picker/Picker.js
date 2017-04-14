@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Picker, Button } from '@extjs/reactor/modern';
+import { Container, Picker, Button } from '@extjs/ext-react';
 
 export default class PickerExample extends Component {
 

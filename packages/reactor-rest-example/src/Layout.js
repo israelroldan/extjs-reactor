@@ -1,5 +1,5 @@
 import React from 'react';
-import { TitleBar, Button, Container } from '@extjs/reactor/modern';
+import { TitleBar, Button, Container } from '@extjs/ext-react';
 import { connect } from 'react-redux';
 import { toggleOptions } from './actions';
 import EmployeesGrid from './EmployeesGrid';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormPanel, EmailField } from '@extjs/reactor/modern';
+import { FormPanel, EmailField } from '@extjs/ext-react';
 
 export default function EmailFieldExample() {
     return (

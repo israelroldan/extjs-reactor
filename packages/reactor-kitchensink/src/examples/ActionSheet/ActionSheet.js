@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Panel, ActionSheet, Button } from '@extjs/reactor/modern';
+import { Container, Panel, ActionSheet, Button } from '@extjs/ext-react';
 
 export default class ActionSheetExample extends Component {
 

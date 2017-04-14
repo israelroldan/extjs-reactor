@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Grid, Container, Toolbar, SegmentedButton, Button} from '@extjs/reactor/modern';
+import {Grid, Container, Toolbar, SegmentedButton, Button} from '@extjs/ext-react';
 import model from './GridModel';
 
 export default class ReconfigureGridExample extends Component {

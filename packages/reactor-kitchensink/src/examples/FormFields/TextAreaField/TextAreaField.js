@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormPanel, TextAreaField } from '@extjs/reactor/modern';
+import { FormPanel, TextAreaField } from '@extjs/ext-react';
 
 export default function TextAreaFieldExample() {
     return (

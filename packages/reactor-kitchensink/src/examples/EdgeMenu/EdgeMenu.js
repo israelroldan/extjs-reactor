@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FormPanel, Panel, Button, EdgeMenu, Container, SegmentedButton, Label, TitleBar } from '@extjs/reactor/modern';
+import { FormPanel, Panel, Button, EdgeMenu, Container, SegmentedButton, Label, TitleBar } from '@extjs/ext-react';
 
 export default class MenuExample extends Component {
 

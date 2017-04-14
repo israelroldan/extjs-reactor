@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
-import { TitleBar, Container, NestedList, Panel, Button } from '@extjs/reactor/modern';
+import { TitleBar, Container, NestedList, Panel, Button } from '@extjs/ext-react';
 import hljs, { highlightBlock } from 'highlightjs';
 import NavTree from './NavTree';
 import Files from './Files';
@@ -11,6 +11,11 @@ import * as actions from './actions';
 Ext.require('Ext.panel.Collapser');
 
 class Layout extends Component {
+
+    constructor() {
+        super();
+        // Ext.os.is.Phone = true;
+    }
 
     componentDidMount() {
         if (Ext.os.is.Phone) {
@@ -58,7 +63,7 @@ class Layout extends Component {
             children,
             showCode,
             actions,
-            center
+            layout
         } = this.props;
 
         let mainView;
@@ -75,7 +80,7 @@ class Layout extends Component {
                 >
                     { component && (
                         <Container rel="detailCard" layout="fit">
-                            <Container key={selectedNavNode.get('text')} layout={center ? 'center' : 'fit'} scrollable={center}>
+                            <Container key={selectedNavNode.get('text')} layout={layout === 'fit' ? 'fit' : 'auto' } scrollable={layout !== 'fit'}>
                                 { React.createElement(component) }
                             </Container>
                         </Container>
@@ -100,8 +105,8 @@ class Layout extends Component {
                         /> 
                         { component ? (
                             <Container 
-                                layout={center ? 'center' : 'fit'} 
-                                scrollable={center} 
+                                layout={layout} 
+                                scrollable={layout !== 'fit'} 
                                 flex={1} 
                                 padding="30"
                                 key={selectedNavNode.get('text')}
@@ -117,7 +122,7 @@ class Layout extends Component {
         }
 
         return (
-            <Container layout={{type: 'hbox', align: 'stretch'}} cls="main-background">
+            <Container layout="hbox" cls="main-background" fullscreen>
                 { mode !== 'docs' && mainView }
                 { !Ext.os.is.Phone && files && (
                     <Panel 

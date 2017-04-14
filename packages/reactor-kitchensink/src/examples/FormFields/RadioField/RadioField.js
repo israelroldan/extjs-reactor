@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormPanel, RadioField, FieldSet } from '@extjs/reactor/modern';
+import { FormPanel, RadioField, FieldSet } from '@extjs/ext-react';
 
 const radioProps = {
     name: 'radios'

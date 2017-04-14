@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormPanel, ToggleField } from '@extjs/reactor/modern';
+import { FormPanel, ToggleField } from '@extjs/ext-react';
 
 export default function ToggleFieldExample() {
     return (

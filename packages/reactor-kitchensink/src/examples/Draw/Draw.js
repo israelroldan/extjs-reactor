@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Panel, Draw, Toolbar, Button, Spacer, Label } from '@extjs/reactor/modern';
+import { Panel, Draw, Toolbar, Button, Spacer, Label } from '@extjs/ext-react';
 
 export default class DrawExample extends Component {
     

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Grid, Column } from '@extjs/reactor/modern';
+import { Grid, Column } from '@extjs/ext-react';
 import { Template } from '@extjs/reactor';
 import model from './GridModel';
 
@@ -13,7 +13,7 @@ export default class RowExpanderGridExample extends Component {
         model,
         proxy: {
             type: 'ajax',
-            url: '/data/CompanyData.json',
+            url: 'resources/data/CompanyData.json',
             reader: {
                 type: 'json',
                 rootProperty: 'data',

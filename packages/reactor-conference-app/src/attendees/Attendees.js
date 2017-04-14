@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import WorldMap from './WorldMap';
-import { Container } from '@extjs/reactor/modern';
+import { Container } from '@extjs/ext-react';
 import AppBar from '../AppBar';
 
 export default class Attendees extends Component {

@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Container, List, Button, TabPanel, Panel } from '@extjs/reactor/modern';
+import { Container, List, Button, TabPanel, Panel } from '@extjs/ext-react';
 import AppBar from '../AppBar';
 import { Template } from '@extjs/reactor';
 

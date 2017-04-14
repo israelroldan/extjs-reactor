@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Tree } from '@extjs/reactor/modern';
+import { Tree } from '@extjs/ext-react';
 import data from './data';
 
 Ext.require('Ext.app.ViewModel');

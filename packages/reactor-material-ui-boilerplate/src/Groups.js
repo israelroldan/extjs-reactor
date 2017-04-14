@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { groups } from './data';
 import TextField from 'material-ui/TextField';
-import { Grid } from '@extjs/reactor/modern';
+import { Grid } from '@extjs/ext-react';
 import styles from './styles';
 
 export default class Groups extends Component {

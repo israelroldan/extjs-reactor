@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Cartesian } from '@extjs/reactor/modern';
+import { Container, Cartesian } from '@extjs/ext-react';
 import addNewData from './addNewData';
 
 const interval = 1000;

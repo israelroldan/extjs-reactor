@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { List } from '@extjs/reactor/modern';
+import { List } from '@extjs/ext-react';
 import { Template } from '@extjs/reactor';
 
 Ext.require('Ext.Toast');
@@ -10,7 +10,7 @@ export default class GroupedListExample extends Component {
         autoLoad: true,
         proxy: {
             type: 'rest',
-            url: '/resources/data/people.json'
+            url: 'resources/data/people.json'
         },
         grouper: {
             groupFn: record => record.get('last_name')[0]

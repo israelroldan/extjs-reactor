@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Polar, Panel } from '@extjs/reactor/modern';
+import { Polar, Panel } from '@extjs/ext-react';
 import data from './data';
 import ChartToolbar from '../../ChartToolbar';
 

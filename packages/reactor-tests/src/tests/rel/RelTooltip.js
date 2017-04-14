@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Button, ToolTip } from '@extjs/reactor/modern';
+import { Container, Button, ToolTip } from '@extjs/ext-react';
 
 export default function RelTooltip() {
     return (

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Panel, FileField } from '@extjs/reactor/modern'
+import { Container, Panel, FileField } from '@extjs/ext-react'
 
 export default class SearchFieldExample extends Component {
     

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Container, Column } from '@extjs/reactor/modern';
+import { Grid, Container, Column } from '@extjs/ext-react';
 
 
 export default class XmlGridExample extends Component {
@@ -14,7 +14,7 @@ export default class XmlGridExample extends Component {
         ],
         proxy:{
             type: 'ajax',
-            url: '/resources/data/Grids/sheldon.xml',
+            url: 'resources/data/Grids/sheldon.xml',
             reader: {
                 type: 'xml',
                 // records will have an "Item" tag

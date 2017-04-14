@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Toolbar, Label, SegmentedButton, Button, Column } from '@extjs/reactor/modern';
+import { Grid, Toolbar, Label, SegmentedButton, Button, Column } from '@extjs/ext-react';
 import { Template } from '@extjs/reactor';
 import './data';
 

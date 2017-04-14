@@ -60,6 +60,11 @@ export const buildXML = function({ compress }) {
                   exclude
                   -all
                   and
+                  # include theme overrides
+                  include
+                    -r
+                    -tag=overrides
+                  and
                   # include all js files needed for manifest.js
                   include
                       -r

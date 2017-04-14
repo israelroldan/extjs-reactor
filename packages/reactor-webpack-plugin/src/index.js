@@ -7,8 +7,7 @@ import extractFromJSX from './extractFromJSX';
 import { sync as rimraf } from 'rimraf';
 import { buildXML, createAppJson, createWorkspaceJson } from './artifacts';
 import { execSync, spawn } from 'child_process';
-import astring from 'astring';
-import { transform } from 'babel-core';
+import { generate } from 'astring';
 
 let watching = false;
 
@@ -91,9 +90,7 @@ module.exports = class ReactExtJSWebpackPlugin {
         const addToManifest = function(call) {
             try {
                 const file = this.state.module.resource;
-                let deps = me.dependencies[file];
-                if (!deps) deps = me.dependencies[file] = [];
-                deps.push(astring(call));
+                me.dependencies[file] = [ ...(me.dependencies[file] || []), generate(call) ];
             } catch (e) {
                 console.error(`Error processing ${file}`);
             }
@@ -106,16 +103,15 @@ module.exports = class ReactExtJSWebpackPlugin {
 
         // extract xtypes from JSX tags
         compiler.plugin('compilation', (compilation, data) => {
-            compilation.plugin('build-module', (module) => {
+            compilation.plugin('succeed-module', (module) => {
                 this.currentFile = module.resource;
 
-                if (module.resource && module.resource.match(this.test)) {
-
+                if (module.resource && module.resource.match(this.test) && !module.resource.match(/node_modules/)) {
                     const doParse = () => {
-                        if (this.debug) console.log(module.resource);
-                        const contents = fs.readFileSync(module.resource, 'utf8');
-                        const statements = this.manifestExtractor(contents);
-                        this.dependencies[this.currentFile] = statements;
+                        this.dependencies[this.currentFile] = [ 
+                            ...(this.dependencies[this.currentFile] || []), 
+                            ...this.manifestExtractor(module._source._value, compilation, module)
+                        ];
                     };
 
                     if (this.debug) {
@@ -223,11 +219,7 @@ module.exports = class ReactExtJSWebpackPlugin {
                 if (deps) statements = statements.concat(deps);
             }
 
-            const js = transform(statements.join(';\n'), {
-                presets: ['es2015'],
-                plugins: ['transform-object-rest-spread']
-            }).code;
-
+            const js = statements.join(';\n');
             const manifest = path.join(output, 'manifest.js');
 
             if (fs.existsSync(path.join(sdk, 'ext'))) {

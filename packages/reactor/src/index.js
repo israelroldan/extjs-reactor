@@ -1,5 +1,6 @@
 import ReactDOM from 'react-dom';
 import ExtJSComponent from './ExtJSComponent';
+import './overrides';
 
 export { default as Template } from './Template';
 

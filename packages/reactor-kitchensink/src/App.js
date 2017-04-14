@@ -1,5 +1,5 @@
 import React from 'react'
-import Layout from './Layout';
+import Layout from './Layout';  
 import { Router, Route, Link, hashHistory } from 'react-router'
 import { Provider } from 'react-redux';
 import { createStore, combineReducers } from 'redux';

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TitleBar, Container, Button, Menu, MenuItem } from '@extjs/reactor/modern';
+import { TitleBar, Container, Button, Menu, MenuItem } from '@extjs/ext-react';
 
 export default class TitleBarExample extends Component {
 

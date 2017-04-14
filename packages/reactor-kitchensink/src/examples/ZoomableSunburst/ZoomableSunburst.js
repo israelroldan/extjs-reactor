@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Panel, D3_Sunburst } from '@extjs/reactor/modern';
+import { Panel, D3_Sunburst } from '@extjs/ext-react';
 
 export default class ZoomableSunburst extends Component {
 
@@ -25,7 +25,7 @@ export default class ZoomableSunburst extends Component {
         ],
         proxy: {
             type: 'ajax',
-            url: 'data/tree/tree.json'
+            url: 'resources/data/tree/tree.json'
         },
         idProperty: 'path'
     })

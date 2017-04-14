@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, ActionSheet, Toolbar, Container, Button } from '@extjs/reactor/modern';
+import { Grid, ActionSheet, Toolbar, Container, Button } from '@extjs/ext-react';
 import { Template } from '@extjs/reactor';
 import model from './GridModel';
 import './data';

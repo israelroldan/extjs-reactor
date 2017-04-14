@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Toolbar, Panel, Button, SegmentedButton, Spacer, SearchField } from '@extjs/reactor/modern';
+import { Toolbar, Panel, Button, SegmentedButton, Spacer, SearchField } from '@extjs/ext-react';
 
 export default class ToolbarExample extends Component {
 

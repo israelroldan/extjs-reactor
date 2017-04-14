@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Toolbar, Button, Label, SliderField, TextField, CheckBoxField, Column, TextColumn, WidgetCell, SparkLineLine, Container } from '@extjs/reactor/modern';
+import { Grid, Toolbar, Button, Label, SliderField, TextField, CheckBoxField, Column, TextColumn, WidgetCell, SparkLineLine, Container } from '@extjs/ext-react';
 import model from './StockTickerModel';
 import './Ticker.css';
 
@@ -16,7 +16,7 @@ export default class StockTickerGridExample extends Component {
         pageSize: null,
         proxy: {
             type: 'ajax',
-            url: '/data/CompanyData.json',
+            url: 'resources/data/CompanyData.json',
             reader: {
                 type: 'json',
                 rootProperty: 'data',

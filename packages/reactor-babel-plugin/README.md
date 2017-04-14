@@ -3,7 +3,7 @@
 This [Babel](https://babeljs.io/) plugin allows you to import Ext JS Components as React Components using the following syntax...
 
 ```jsx
-import { Grid, Panel } from '@extjs/reactor/modern';
+import { Grid, Panel } from '@extjs/ext-react';
 ```
 
 ... which this plugin converts to ...

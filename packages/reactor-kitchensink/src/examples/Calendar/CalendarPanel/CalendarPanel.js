@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Calendar } from '@extjs/reactor/modern';
+import { Calendar } from '@extjs/ext-react';
 import { Template } from '@extjs/reactor';
 import '../data';
 

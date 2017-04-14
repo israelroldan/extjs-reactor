@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button, TitleBar } from '@extjs/reactor/modern';
+import { Button, TitleBar } from '@extjs/ext-react';
 import { toggleMenu, toggleSearch } from './actions';
 
 function AppBar({ dispatch, title, children, backButtonURL }) {

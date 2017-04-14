@@ -1,5 +1,5 @@
 import React from 'react';
-import { Carousel, Container } from '@extjs/reactor/modern';
+import { Carousel, Container } from '@extjs/ext-react';
 
 export default function CarouselExample() {
     return (

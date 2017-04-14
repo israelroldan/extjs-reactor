@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Panel, Progress } from '@extjs/reactor/modern';
+import { Panel, Progress } from '@extjs/ext-react';
 
 export default class ProgressBarExample extends Component {
 

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { TabPanel, Tree} from '@extjs/reactor/modern';
+import { TabPanel, Tree} from '@extjs/ext-react';
 import store from './Store';
 
 export default class TreeDecorationsExample extends Component {

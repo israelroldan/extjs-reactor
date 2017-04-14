@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Panel, Tree, D3_Sunburst } from '@extjs/reactor/modern';
+import { Panel, Tree, D3_Sunburst } from '@extjs/ext-react';
 
 Ext.require(['Ext.util.Format']);
 
@@ -27,7 +27,7 @@ export default class Sunburst extends Component {
         ],
         proxy: {
             type: 'ajax',
-            url: 'data/tree/tree.json'
+            url: 'resources/data/tree/tree.json'
         },
         idProperty: 'path'
     })

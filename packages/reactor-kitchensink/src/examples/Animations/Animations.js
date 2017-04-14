@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Panel, Button } from '@extjs/reactor/modern';
+import { Container, Panel, Button } from '@extjs/ext-react';
 
 export default class Animations extends Component {
 

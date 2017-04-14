@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Calendar_Day, Panel } from '@extjs/reactor/modern';
+import { Calendar_Day, Calendar_List, Panel } from '@extjs/ext-react';
 import './data';
 
 export default class CalendarDayViewExample extends Component {
@@ -17,25 +17,18 @@ export default class CalendarDayViewExample extends Component {
             <Panel
                 shadow
                 title={Ext.Date.format(new Date(), 'F Y')}
-                layout={{
-                    type: 'hbox',
-                    align: 'stretch'
-                }}
-                header={{
-                    titleAlign: 'center'
-                }}
+                layout="hbox"
+                header={{ titleAlign: 'center' }}
             >
                 <Panel
-                    title={'Calendars'}
-                    ui={'light'}
+                    title="Calendars"
+                    ui="light"
                     width={150}
                     bodyPadding={5}
                     hidden={Ext.os.is.Phone}
-                    items={[{
-                        xtype: 'calendar-list',
-                        store: this.store
-                    }]}
-                />
+                >
+                    <Calendar_List store={this.store}/>
+                </Panel>
                 <Calendar_Day
                     store={this.store}
                     flex={1}
@@ -46,7 +39,7 @@ export default class CalendarDayViewExample extends Component {
                     endTime={20}
                     visibleDays={2}
                 />
-            </Panel >
+            </Panel>
         )
     }
 }

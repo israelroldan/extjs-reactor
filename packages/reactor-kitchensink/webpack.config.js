@@ -41,9 +41,6 @@ module.exports = function (env) {
         new CopyWebpackPlugin([{
             from: path.join(__dirname, 'resources'), 
             to: 'resources'
-        }, {
-            from: path.join(__dirname, 'data'),
-            to: 'data'
         }]),
         new WebpackShellPlugin({
             dev: false,
@@ -132,7 +129,7 @@ module.exports = function (env) {
             port: 8084,
             compress: isProd,
             inline: !isProd,
-            hot: !isProd,
+            hot: false && !isProd,
             stats: {
                 assets: true,
                 children: false,

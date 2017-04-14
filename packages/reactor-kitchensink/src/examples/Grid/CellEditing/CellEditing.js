@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Column, DateColumn, CheckColumn } from '@extjs/reactor/modern';
+import { Grid, Column, DateColumn, CheckColumn } from '@extjs/ext-react';
 
 Ext.require([
     'Ext.grid.plugin.CellEditing',
@@ -23,7 +23,7 @@ export default class CellEditingGridExample extends Component {
         autoLoad: true,
         proxy: {
             type: 'ajax',
-            url: '/resources/data/Grids/plants.xml',
+            url: 'resources/data/Grids/plants.xml',
             reader:{
                 type:'xml',
                 record: 'plant',                
