@@ -2,6 +2,7 @@
 
 import { parse } from 'babylon';
 import traverse from 'ast-traverse';
+import generate from 'babel-generator';
 
 const OLD_MODULE_PATTERN = /^@extjs\/reactor\/modern$/;
 const MODULE_PATTERN = /^@extjs\/(ext-react.*|reactor\/classic)$/;
@@ -41,8 +42,8 @@ module.exports = function extractFromJSX(js, compilation, module) {
      * @param {Node} reactifyArgNode The argument passed to reactify()
      */
     function addType(varName, reactifyArgNode) {
-        if (reactifyArgNode.type === 'Literal') {
-            types[varName] = { xtype: `"${reactifyArgNode.value}"` };
+        if (reactifyArgNode.type === 'StringLiteral') {
+            types[varName] = { xtype: reactifyArgNode.value };
         } else {
             types[varName] = { xclass: `"${js.slice(reactifyArgNode.start, reactifyArgNode.end)}"` };
         }
@@ -93,43 +94,24 @@ module.exports = function extractFromJSX(js, compilation, module) {
                 }
             }
 
-            // convert reactified components to Ext.create calls to put in the manifest
-            if (node.type === 'JSXOpeningElement') {
-                const tag = node.name.name;
-                const type = types[tag];
+            // Convert React.createElement(...) calls to the equivalent Ext.create(...) calls to put in the manifest.
+            if (node.type === 'CallExpression' && node.callee.object && node.callee.object.name === 'React' && node.callee.property.name === 'createElement') {
+                const [tag, props] = node.arguments;
+                const type = types[tag.name];
 
                 if (type) {
-                    const configs = { ...type };
+                    let config;
 
-                    for (let attribute of node.attributes) {
-                        if (!attribute.name) continue; // will get here when using object spread, for example: <Panel {...props}/>
-                        const name = attribute.name.name;
-                        const valueNode = attribute.value;
-
-                        if (!valueNode) {
-                            configs[name] = 'true';
-                        } else if (valueNode.type === 'JSXExpressionContainer') {
-                            try {
-                                const { expression } = valueNode;
-
-                                if (expression.type.indexOf('Function') === -1) {
-                                    configs[name] = js.slice(expression.start, expression.end);
-                                }
-                            } catch (e) {
-                                // will get here if the value contains jsx or something else that can't be converted back to js
-                            }
-                        } else if (valueNode.type.match(/Literal$/i)) {
-                            configs[name] = `"${valueNode.value.replace(/"/g, '\\"')}"`;
+                    if (Array.isArray(props.properties)) {
+                        config = generate(props).code;
+                        for (let key in type) {
+                            config = `{\n  ${key}: '${type[key]}',${config.slice(1)}`;
                         }
+                    } else {
+                        config = JSON.stringify(type);
                     }
 
-                    const values = [];
-
-                    for (let name in configs) {
-                        values.push(`${name}: ${configs[name]}`)
-                    }
-
-                    statements.push(`Ext.create({${values.join(', ')}})`);
+                    statements.push(`Ext.create(${config})`);
                 }
             }
         }
@@ -140,7 +122,7 @@ module.exports = function extractFromJSX(js, compilation, module) {
     for (let key in types) {
         const type = types[key];
         const config = Object.keys(type).map(key => `${key}: ${type[key]}`).join(', ');
-        statements.push(`Ext.create({${config}})`)
+        statements.push(`Ext.create(${JSON.stringify(config)})`)
     }
 
     return statements;

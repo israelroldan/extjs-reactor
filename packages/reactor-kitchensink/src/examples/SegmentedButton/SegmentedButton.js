@@ -4,18 +4,18 @@ import { SegmentedButton, Button, Panel, Toolbar } from '@extjs/ext-react';
 
 export default class SegementedButtonExample extends Component {
 
-    state = {
-        button1: 'low',
-        button2: 'low'
+    state = { 
+        button1: 'low', 
+        button2: 'low' 
     };
 
     render() {
         return (
-            <Panel shadow>
+            <Panel shadow={Ext.os.is.Phone}> 
                 <Toolbar shadow={false}>
                     <div style={{marginRight: '10px'}}>Default UI:</div>
                     <SegmentedButton 
-                        value={this.state.button1} 
+                        value={this.state.button1}  
                         onChange={(button, value) => this.setState({ button1: value })}
                     >
                         <Button value="low" text="Low"/>

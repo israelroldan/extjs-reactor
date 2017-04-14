@@ -8,98 +8,70 @@ export default function ButtonExample() {
             <Container>
                 <div {...groupLabelProps}>Flat</div>
                 <Container className="button-group" {...buttonGroupProps}>
-                    <Container layout="hbox">
                         <Button text="Normal"/>
                         <Button text="Decline" ui="decline"/>
-                    </Container>
-                    <Container layout="hbox">
                         <Button text="Confirm" ui="confirm"/>
                         <Button text="Disabled" disabled/>
-                    </Container>
                 </Container>
             </Container>
 
             <Container>
                 <div {...groupLabelProps}>Action</div>
                 <Container className="button-group" { ...buttonGroupProps }>
-                    <Container layout="hbox">
                         <Button text="Normal" ui="action"/>
                         <Button text="Decline" ui="action decline"/>
-                    </Container>
-                    <Container layout="hbox">
                         <Button text="Confirm" ui="action confirm"/>
                         <Button text="Disabled" disabled ui="action"/>
-                    </Container>
                 </Container>
             </Container>
 
             <Container>
                 <div {...groupLabelProps}>Round</div>
                 <Container className="button-group" { ...buttonGroupProps }>
-                    <Container layout="hbox">
                         <Button text="Normal" ui="round"/>
                         <Button text="Decline" ui="round decline"/>
-                    </Container>
-                    <Container layout="hbox">
                         <Button text="Confirm" ui="round confirm"/>
                         <Button text="Disabled" disabled ui="round"/>
-                    </Container>
                 </Container>
             </Container>
 
             <Container>
                 <div {...groupLabelProps}>Raised</div>
                 <Container className="button-group" { ...buttonGroupProps }>
-                    <Container layout="hbox">
                         <Button text="Normal" ui="raised"/>
                         <Button text="Decline" ui="raised decline"/>
-                    </Container>
-                    <Container layout="hbox">
                         <Button text="Confirm" ui="raised confirm"/>
                         <Button text="Disabled" disabled ui="raised"/>
-                    </Container>
                 </Container>
             </Container>
 
             <Container>
                 <div {...groupLabelProps}>Badge</div>
                 <Container className="button-group" { ...buttonGroupProps }>
-                    <Container layout="hbox">
                         <Button text="Normal" badgeText="2"/>
                         <Button text="Decline" ui="decline" badgeText="2"/>
-                    </Container>
-                    <Container layout="hbox">
                         <Button text="Confirm" ui="confirm" badgeText="2"/>
                         <Button text="Disabled" disabled badgeText="2"/>
-                    </Container>
                 </Container>
             </Container>
 
             <Container>
                 <div {...groupLabelProps}>Menu</div>
                 <Container className="button-group" { ...buttonGroupProps }>
-                    <Container layout="hbox">
                         <Button text="Normal">{menu}</Button>
                         <Button text="Decline" ui="decline">{menu}</Button>
-                    </Container>
-                    <Container layout="hbox">
                         <Button text="Confirm" ui="confirm">{menu}</Button>
                         <Button text="Disabled" disabled>{menu}</Button>
-                    </Container>
                 </Container>
             </Container>
 
             <Container>
                 <div {...groupLabelProps}>Icon</div>
                 <Container className="button-group" { ...buttonGroupProps }>
-                    <Container layout="hbox">
                         <Button iconCls="x-fa fa-home"/>
                         <Button ui="decline" iconCls="x-fa fa-home"/>
-                    </Container>
-                    <Container layout="hbox">
                         <Button text="Icon" ui="confirm" iconCls="x-fa fa-home"/>
                         <Button text="Icon" iconCls="x-fa fa-home" disabled>{menu}</Button>
-                    </Container>
                 </Container>
             </Container>
         </Panel>
@@ -139,11 +111,8 @@ const layoutProps = Ext.os.is.Phone ? {
 const buttonGroupProps = Ext.os.is.Phone ? {
     padding: '20 0 0 20',
     defaults: {
-        margin: '0 0 20 0',
-        defaults: {
-            flex: 1,
-            margin: '0 20 0 0'
-        }
+        margin: '0 20 20 0',
+        width: 'calc(50% - 20px)',
     }
 } : {
     flex: 1,
@@ -151,10 +120,7 @@ const buttonGroupProps = Ext.os.is.Phone ? {
     layout: { type: 'hbox', align: 'middle' },
     defaults: {
         flex: 1, 
-        defaults: {
-            flex: 1,
-            margin: '0 20 0 0'
-        }
+        margin: '0 20 0 0'
     }
 }
 
