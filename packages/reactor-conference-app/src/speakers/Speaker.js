@@ -52,13 +52,14 @@ class Speaker extends Component {
                             </div>
                         </div>
                         { sessions && sessions.length > 0 && (
-                            <Panel title="Events" style={{paddingTop: '20px'}}>
+                            <div>
+                                <div className="speakers-session-title">Sessions</div>
                                 <ScheduleList
                                     dataStore={this.store}
                                     showTime
                                     eagerLoad
                                 />
-                            </Panel>
+                            </div>
                         )}
                     </div>
                 )}
