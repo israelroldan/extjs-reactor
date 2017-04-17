@@ -14,7 +14,8 @@ class ScheduleList extends Component {
         onFavoriteClick: PropTypes.func,
         showTime: PropTypes.bool,
         flex: PropTypes.number,
-        onSelect: PropTypes.func
+        onSelect: PropTypes.func,
+        eagerLoad: PropTypes.bool
     }
 
     itemTpl = new Template(data => {
@@ -54,14 +55,16 @@ class ScheduleList extends Component {
     }
 
     render() {
-        const { query, dataStore, onSelect, ...listProps } = this.props;
+        const { eagerLoad, query, dataStore, onSelect, ...listProps } = this.props;
+
+        console.log('render.', dataStore);
 
         return (
             <List 
                 onShow={this.scrollToTop}
                 ref={list => this.list = list}
                 {...listProps}
-                store={dataStore}
+                store={eagerLoad && dataStore}
                 itemTpl={this.itemTpl}
                 grouped
                 rowLines
@@ -70,6 +73,7 @@ class ScheduleList extends Component {
                 disableSelection
                 cls="app-list"
                 onItemTap={this.onItemTap}
+                onShow={(list) => { if(!eagerLoad) list.setStore(dataStore); }}
                 emptyText="No events found."
             />
         )

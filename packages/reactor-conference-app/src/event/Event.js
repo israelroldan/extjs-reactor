@@ -9,8 +9,8 @@ class Event extends Component {
 
     render() {
         const { data } = this.props;
-        const day = data.date && data.date.match(/(Monday|Tuesday|Wednesday)/)[1];
-        const speaker = data.speakers && data.speakers.length > 0 && data.speakers.map(s => s.name).join(', ');
+        const day = data && data.date && data.date.match(/(Monday|Tuesday|Wednesday)/)[1];
+        const speaker = data && data.speakers && data.speakers.length > 0 && data.speakers.map(s => s.name).join(', ');
 
         return (
             <Container masked={!data} padding="20">
