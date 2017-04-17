@@ -11,13 +11,8 @@ export default function BasicTabsExample() {
                 cls: "card",
                 layout: "center"
             }}
-            tabBar={{
-                layout: {
-                    pack: 'left'
-                },
-            }}
         >
-            <Container title="Tab 1" tab={{ flex: 0 }}>
+            <Container title="Tab 1">
                 <div>By default, tabs are aligned to the top of a view.</div>
             </Container>
             <Container title="Tab 2">
