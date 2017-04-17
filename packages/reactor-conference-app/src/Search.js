@@ -35,7 +35,6 @@ class Search extends Component {
 
     render() {
         const { dispatch, store, query='', showSearch } = this.props;
-        console.log(this.store);
 
         return (
             <EdgeMenu 

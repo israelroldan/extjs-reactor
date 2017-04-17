@@ -50,8 +50,6 @@ class ScheduleList extends Component {
     render() {
         const { eagerLoad, query, dataStore, onSelect, ...listProps } = this.props;
 
-        console.log('render.', dataStore);
-
         return (
             <List 
                 {...listProps}
@@ -64,7 +62,10 @@ class ScheduleList extends Component {
                 disableSelection
                 cls="app-list"
                 onItemTap={this.onItemTap}
-                onShow={(list) => { if(!eagerLoad) list.setStore(dataStore); }}
+                onShow={{
+                    fn: (list) => { if(!eagerLoad) list.setStore(dataStore); },
+                    single: true
+                }}
                 emptyText="No events found."
             />
         )

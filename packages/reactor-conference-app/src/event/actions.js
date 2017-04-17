@@ -20,14 +20,8 @@ export function loadEvent(id) {
             store.on('load', doLoadEvent, null, {single: true});
             // If store hasn't been loaded yet, load it.
             if(!store.isLoading()) {
-                dispatch()
+                dispatch(loadSchedule);
             }
-        }
-
-        if (store.loading) {
-            store.on('load', doLoadEvent);
-        } else {
-            dispatch(loadSchedule);
         }
     }
 }

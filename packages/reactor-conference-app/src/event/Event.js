@@ -13,7 +13,7 @@ class Event extends Component {
         const speaker = data && data.speakers && data.speakers.length > 0 && data.speakers.map(s => s.name).join(', ');
 
         return (
-            <Container masked={!data} padding="20">
+            <Container masked={!data} padding="20" scrollable>
                 { data && (
                     <div>
                         <div className="app-event-name">{data.title}</div>
