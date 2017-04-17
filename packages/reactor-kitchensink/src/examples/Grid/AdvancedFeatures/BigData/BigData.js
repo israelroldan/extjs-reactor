@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, ActionSheet, Toolbar, Container, Button } from '@extjs/ext-react';
+import { Grid, ActionSheet, Toolbar, Container, Button, Column, SparkLineLine,  TextColumn, CheckColumn, WidgetCell, NumberColumn, RowNumberer } from '@extjs/reactor/modern';
 import { Template } from '@extjs/reactor';
 import model from './GridModel';
 import './data';
@@ -74,152 +74,8 @@ export default class BigDataGridExample extends Component {
                             tpl: this.ratingTpl
                         }
                     }}
-                    columns={[
-                        { 
-                            xtype: 'rownumberer' 
-                        }, {
-                            text: 'Id',
-                            dataIndex: 'employeeNo',
-                            flex: 1,
-                            minWidth: 100,
-                            exportStyle: {
-                                format: 'General Number',
-                                alignment: {
-                                    horizontal: 'Right'
-                                }
-                            }
-                        }, {
-                            text: 'Name',
-                            dataIndex: 'fullName',
-                            minWidth: 150
-                        }, {
-                            xtype: 'checkcolumn',
-                            headerCheckbox: true,
-                            dataIndex: 'verified',
-                            text: 'Verified'
-                        }, {
-                            text: 'Ratings',
-                            columns: [{
-                                text: 'Avg',
-                                xtype: 'numbercolumn',
-                                dataIndex: 'averageRating',
-                                width: 75,
-                                cell: {
-                                    cls:'big-data-ratings-cell',
-                                    bind: {
-                                        bodyCls: '{ratingGroup:pick("under4","under5","under6","over6")}'
-                                    }
-                                }
-                            }, {
-                                text: 'All',
-                                dataIndex: 'rating',
-                                ignoreExport: true,
-                                cell: {
-                                    xtype: 'widgetcell',
-                                    forceWidth: true,
-                                    widget: {
-                                        xtype: 'sparklineline'
-                                    }
-                                }
-                            }]
-                        }, {
-                            text: 'Date of Birth',
-                            dataIndex: 'dob',
-                            editable: true,
-                            xtype: 'datecolumn',
-                            format: 'd-m-Y',
-                            // you can define an export style for a column
-                            // you can set alignment, format etc
-                            exportStyle: [{
-                                // no type key is defined here which means that me is the default style
-                                // that will be used by all exporters
-                                format: 'medium Date',
-                                alignment: {
-                                    horizontal: 'Right'
-                                }
-                            }, {
-                                // the type key means that me style will only be used by the csv exporter
-                                // and for all others the default one, defined above, will be used
-                                type: 'csv',
-                                format: 'Short Date'
-                            }]
-                        }, {
-                            text: '',
-                            width: 100,
-                            ignoreExport: true,
-                            cell: {
-                                xtype: 'widgetcell',
-                                widget: {
-                                    xtype: 'button',
-                                    ui: 'action',
-                                    text: 'Verify',
-                                    handler: this.onVerify
-                                }
-                            }
-                        }, {
-                            text: 'Join Date',
-                            dataIndex: 'joinDate',
-                            editable: true,
-                            xtype: 'datecolumn',
-                            format: 'd-m-Y',
-                            exportStyle: {
-                                format: 'medium Date',
-                                alignment: {
-                                    horizontal: 'Right'
-                                }
-                            }
-                        },
-                        {
-                            text: 'Notice Period',
-                            dataIndex: 'noticePeriod',
-                            editable: true
-                        },
-                        {
-                            text: 'Email',
-                            dataIndex: 'email',
-                            editable: true,
-                            editor: {
-                                xtype: 'emailfield'
-                            },
-                            width: 250
-                        },
-                        {
-                            text: 'Absences',
-                            columns: [{
-                                text: 'Illness',
-                                dataIndex: 'sickDays',
-                                align: 'center',
-                                summaryType: 'sum'
-                            }, {
-                                text: 'Holidays',
-                                dataIndex: 'holidayDays',
-                                align: 'center',
-                                summaryType: 'sum'
-                            }, {
-                                text: 'Holiday Allowance',
-                                dataIndex: 'holidayAllowance',
-                                align: 'center',
-                                summaryType: 'sum',
-                                summaryFormatter: 'number("0.00")',
-                                formatter: 'number("0.00")'
-                            }]
-                        },
-                        {
-                            text: 'Salary',
-                            dataIndex: 'salary',
-                            renderer: Ext.util.Format.usMoney,
-                            editable: true,
-                            width: 150,
-                            summaryType: 'sum',
-                            summaryRenderer: this.salarySummaryRenderer,
-                            exportStyle: {
-                                format: 'Currency',
-                                alignment: {
-                                    horizontal: 'Right'
-                                }
-                            }
-                        }
-                    ]}
+                    viewModel={{test:true}}
+
                     onBeforeDocumentSave={(view) => {
                         view.mask({
                             xtype: 'loadmask',
@@ -228,6 +84,21 @@ export default class BigDataGridExample extends Component {
                     }}
                     onDocumentSave={(view) => view.unmask()}
                 >
+                    <RowNumberer />
+                    <TextColumn text='Id' dataIndex='employeeNo' flex='1' minWidth='100' exportStyle={{
+                        format:'General Number',
+                        alignment: { horizontal: 'Right'}
+                    }}/>
+                    <TextColumn text='Name' dataIndex='fullName' minWidth='150'/>
+                    <CheckColumn xtype='checkcolumn' headerCheckbox dataIndex='verified' text='Verified'/>
+                    <NumberColumn text='Avg' dataIndex='averageRating' width='75' 
+                        cell={{cls:'big-data-rating-cell', bind:{bodyCls: '{ratingGroup:pick("under4","under5","under6","over6")}'}}} />
+                            
+                    <Column text='All' ignoreExport>
+                        <WidgetCell bind='{record.rating}'>
+                            <SparkLineLine/>
+                        </WidgetCell>
+                    </Column>
                     <Toolbar docked="top">
                         <Button text="Export to..." handler={() => this.setState({ showExportSheet: true })}/>
                     </Toolbar>
