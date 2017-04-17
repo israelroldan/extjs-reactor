@@ -23,11 +23,11 @@ class Search extends Component {
             query = query.toLowerCase();
             this.store.clearFilter();
             this.store.filterBy(record => {
-                const { name, speaker } = record.data;
+                const { title, speakers } = record.data;
 
                 return query.trim().split(/\s+/).some(token => {
-                    return name.toLowerCase().indexOf(token) !== -1 || 
-                        (speaker && speaker.toLowerCase().indexOf(token) !== -1)
+                    return title.toLowerCase().indexOf(token) >= 0 || 
+                        (speakers && speakers.some(speaker => speaker.name.toLowerCase().indexOf(token) >= 0));
                 })
             });
         }
@@ -35,6 +35,7 @@ class Search extends Component {
 
     render() {
         const { dispatch, store, query='', showSearch } = this.props;
+        console.log(this.store);
 
         return (
             <EdgeMenu 
@@ -55,6 +56,7 @@ class Search extends Component {
                     query={query} 
                     onSelect={this.close}
                     showTime
+                    eagerLoad
                 />
             </EdgeMenu>
         )

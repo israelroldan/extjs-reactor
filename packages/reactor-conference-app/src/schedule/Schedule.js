@@ -32,7 +32,7 @@ class Schedule extends Component {
             autoDestroy: true,
             grouper: {
                 property: 'start_time',
-                sorterFn: (record1, record2) => new Date(record1.get('startDate')).getTime() - new Date(record2.get('startDate')).getTime()
+                sortProperty: 'startDate'
             }
         };
 

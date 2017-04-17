@@ -20,6 +20,7 @@ import Panel from './Panel/Panel';
 // Tabs
 
 import BasicTabs from './Tabs/BasicTabs/BasicTabs';
+import DesktopTabs from './Tabs/DesktopTabs/DesktopTabs';
 import BottomTabs from './Tabs/BottomTabs/BottomTabs';
 import Closable from './Tabs/Closable/Closable';
 import ScrollingTabs from './Tabs/ScrollingTabs/ScrollingTabs';
@@ -392,6 +393,7 @@ const root = {
         { text: 'Tabs', children: [
             { text: 'Basic Tabs', component: BasicTabs },
             { text: 'Bottom Tabs', component: BottomTabs },
+            { text: 'Desktop Tabs', component: DesktopTabs },
             { text: 'Closable', component: Closable },
             { text: 'ScrollingTabs', component: ScrollingTabs, layout: Ext.os.is.Phone ? 'fit': 'center' }
         ]},

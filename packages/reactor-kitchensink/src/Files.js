@@ -55,6 +55,9 @@ export default class Files extends Component {
                         title={file}
                         layout="fit"
                         ui="code-panel"
+                        tab={{
+                            ui: 'app-code-tab'
+                        }}
                         html={`<pre><code class="code ${codeClassFor(file)}">${files[file].replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code></pre>`}
                     />
                 ))}

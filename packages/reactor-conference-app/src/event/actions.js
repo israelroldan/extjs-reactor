@@ -2,6 +2,7 @@ export const LOAD_EVENT = 'EVENT::LOAD_EVENT';
 export const UNLOAD_EVENT = 'EVENT::UNLOAD_EVENT';
 
 import { setTitle } from '../actions';
+import loadSchedule from '../schedule/actions';
 
 export function loadEvent(id) {
     return (dispatch, getState) => {
@@ -13,10 +14,20 @@ export function loadEvent(id) {
             dispatch(setTitle(event.title, '/'));
         };
 
+        if(store.isLoaded()) {
+            doLoadEvent();
+        } else {
+            store.on('load', doLoadEvent, null, {single: true});
+            // If store hasn't been loaded yet, load it.
+            if(!store.isLoading()) {
+                dispatch()
+            }
+        }
+
         if (store.loading) {
             store.on('load', doLoadEvent);
         } else {
-            doLoadEvent()
+            dispatch(loadSchedule);
         }
     }
 }

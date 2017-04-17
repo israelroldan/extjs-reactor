@@ -56,7 +56,7 @@ export default class BigDataGridExample extends Component {
         const { showExportSheet } = this.state;
 
         return (
-            <Container layout="fit">
+            <Container layout="fit" shadow>
                 <ActionSheet displayed={showExportSheet}>
                     <Button handler={this.exportToXlsx} text="Excel xlsx (all Items)"/>
                     <Button handler={this.exportToXml} text="Excel xml (all Items)"/>
@@ -97,9 +97,9 @@ export default class BigDataGridExample extends Component {
                     }}
                     onDocumentSave={(view) => view.unmask()}
                 >
-                    
-                    <TextColumn 
-                        text="Id" 
+
+                    <TextColumn
+                        text="Id"
                         dataIndex="employeeNo"
                         flex="1"
                         minWidth="100"
@@ -110,7 +110,7 @@ export default class BigDataGridExample extends Component {
                                 }
                         }}
                     />
-                    <TextColumn 
+                    <TextColumn
                         text="Name"
                         dataIndex="fullName"
                         minWidth="150"
@@ -118,15 +118,15 @@ export default class BigDataGridExample extends Component {
                             sorterFn:this.nameSorter
                         }}
                     />
-                    <CheckColumn 
+                    <CheckColumn
                         text="Verified"
                         dataIndex="verified"
-                        headerCheckbox                        
+                        headerCheckbox
                     />
                     <Column
                         text="Ratings"
                     >
-                        <NumberColumn 
+                        <NumberColumn
                             text="Avg"
                             dataIndex="averageRating"
                             width="75"
@@ -137,17 +137,17 @@ export default class BigDataGridExample extends Component {
                                     }
                             }}
                         />
-                        <Column 
+                        <Column
                             text="All"
                             dataIndex="rating"
                             ignoreExport
                         >
                             <WidgetCell forceWidth>
                                 <SparkLineLine tipTpl='Price: {y:number("0.00")}'/>
-                            </WidgetCell> 
+                            </WidgetCell>
                         </Column>
                     </Column>
-                    <DateColumn 
+                    <DateColumn
                         text="Date of Birth"
                         dataIndex="dob"
                         editable
@@ -166,13 +166,13 @@ export default class BigDataGridExample extends Component {
                             format: 'Short Date'
                         }]}
                     />
-                    <Column 
+                    <Column
                         text=""
                         width="100"
                         ignoreExport
                     >
                         <WidgetCell>
-                            <Button 
+                            <Button
                                 text="Verify"
                                 ui="action"
                                 handler={this.onVerify}
@@ -205,7 +205,7 @@ export default class BigDataGridExample extends Component {
                             xtype:'emailfield'
                         }}
                     />
-                    <Column 
+                    <Column
                         text='Absences'
                     >
                         <TextColumn
