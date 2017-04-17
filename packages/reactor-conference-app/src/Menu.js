@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { EdgeMenu, TreeList, Panel, TitleBar, Button } from '@extjs/reactor/modern';
+import { EdgeMenu, TreeList, Panel, TitleBar, Button } from '@extjs/ext-react';
 import { connect } from 'react-redux';
 import { toggleMenu } from './actions';
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { List, Panel } from '@extjs/reactor/modern';
+import { List, Panel } from '@extjs/ext-react';
 import { Template } from '@extjs/reactor';
 
 Ext.require([

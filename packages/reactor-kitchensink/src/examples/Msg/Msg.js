@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Button } from '@extjs/reactor/modern';
+import { Container, Button } from '@extjs/ext-react';
 
 Ext.require('Ext.MessageBox');
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Panel, D3_Pack } from '@extjs/reactor/modern';
+import { Panel, D3_Pack } from '@extjs/ext-react';
 
 export default class Pack extends Component {
 

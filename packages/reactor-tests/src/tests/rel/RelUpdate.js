@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Button, Menu, MenuItem } from '@extjs/reactor/modern';
+import { Container, Button, Menu, MenuItem } from '@extjs/ext-react';
 
 export default class RelUpdate extends Component  {
 

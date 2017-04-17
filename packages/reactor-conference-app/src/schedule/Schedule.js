@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Button, TabPanel, Panel, Toolbar, SearchField, EdgeMenu, List } from '@extjs/reactor/modern';
+import { Container, Button, TabPanel, Panel, Toolbar, SearchField, EdgeMenu, List } from '@extjs/ext-react';
 import AppBar from '../AppBar';
 import { toggleSearch, filterByDay, toggleFavorite, filterByFavorites } from './actions';
 import { connect } from 'react-redux';
@@ -47,7 +47,7 @@ class Schedule extends Component {
                     )}
                     <TabPanel 
                         ref={tp => this.tabPanel = tp}
-                        height="1000"
+                        flex={1}
                         platformConfig={{
                             desktop: {
                                 cls: 'app-desktop-tabs'
@@ -78,40 +78,6 @@ class Schedule extends Component {
                 {children}
             </Container>
         )
-    }
-
-    componentDidMount() {
-        this.ct.getScrollable().on('scroll', this.onParentScroll)
-    }
-
-    onParentScroll = () => {
-        const tabPanel = this.tabPanel;
-        const tabBarEl = tabPanel.getTabBar().el;
-        const top = tabBarEl.getY();
-        const scrollTop = this.ct.getScrollable().getElement().getY();
-
-        if (tabBarEl.stuck) {
-            if (tabBarEl.parent().getY() > scrollTop) {
-                tabBarEl.stuck = false;
-                tabBarEl.setStyle({ position: '', top: '', width: '', zIndex: '' })
-                tabPanel.bodyElement.setStyle({ paddingTop: '' });
-            }
-        } else {
-            if (top < scrollTop) {
-                tabBarEl.stuck = true;
-                tabBarEl.setStyle({ position: 'fixed', top: '0', width: `${this.tabPanel.el.getWidth()}px`, zIndex: 100 })
-                tabPanel.bodyElement.setStyle({ paddingTop: `${tabBarEl.getHeight()}px` });
-            }
-        }
-
-        const padding = 60;
-        const paddingBottom = (top - scrollTop - this.banner.bodyElement.getHeight()) / 2;
-        const paddingTop = padding - paddingBottom;
-        const opacity = paddingBottom / (padding / 2.0);
-        const fontSize = 30 * (top - scrollTop) / (padding + 37);
-
-        this.banner.setStyle({ paddingBottom: `${paddingBottom}px`, paddingTop: `${paddingTop}px` });
-        this.banner.el.down('.app-banner-content').setStyle({ opacity })
     }
 }
 

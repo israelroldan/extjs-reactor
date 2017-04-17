@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Calendar_Days, Container } from '@extjs/reactor/modern';
+import { Calendar_Days, Container } from '@extjs/ext-react';
 import { connect } from 'react-redux';
 
 class Calendar extends Component {

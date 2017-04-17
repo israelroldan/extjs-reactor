@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Grid, Column } from '@extjs/reactor/modern';
+import { Grid, Column } from '@extjs/ext-react';
 import model from './BasicGridModel';
 
 export default class BasicGridExample extends Component {
 
     store = Ext.create('Ext.data.Store', {
-        autoLoad: true,
         model,
+        autoLoad: true,
         pageSize: 0,
         proxy: {
             type: 'ajax',
@@ -14,39 +14,29 @@ export default class BasicGridExample extends Component {
         } 
     });
 
-    renderSign = (value, format) => {
-        var text = Ext.util.Format.number(value, format),
-            tpl = this.signTpl,
-            data;
-        if (Math.abs(value) > 0.1) {
-            if (!tpl) {
-                this.signTpl = tpl = this.getView().lookupTpl('signTpl');
-            }
-            text = tpl.apply({
-                text: text,
-                value: value
-            });
-        }
-        return text;
-    }
-    
-    renderChange = (value) => {
-        return this.renderSign(value, '0.00');
-    }
+    signTpl = (field, format, data) => { 
+        const value = data[field];
+        const text = Ext.util.Format.number(value, format)
 
-    renderPercent = (value) => {
-        return this.renderSign(value, '0.00%');
+        if (Math.abs(value) <= 0.1) {
+            return <span>{text}</span>
+        } else if (value < 0) {
+            return <span style={{color: 'red'}}>{text}</span>
+        } else {
+            return <span style={{color: 'green'}}>{text}</span>
+        }
     }
 
     render() {
         return (
             <Grid title="Stock Prices" store={this.store} shadow grouped>
                 <Column text="Company" dataIndex="name" width="150"/>
-                <Column text="Price" width="75" dataIndex="price" formatter='usMoney'/>
-                <Column text="Change" width="90" renderer={this.renderChange} dataIndex="change" cell={{ encodeHtml: false }}/>
-                <Column text="% Change" dataIndex="pctChange" renderer={this.renderPercent} cell={{ encodeHtml: false }}/>
+                <Column text="Price" width="85" dataIndex="price" formatter='usMoney'/>
+                <Column text="Change" width="100" dataIndex="priceChange" tpl={this.signTpl.bind(this, 'priceChange', '0.00')} cell={{ encodeHtml: false }}/>
+                <Column text="% Change" dataIndex="priceChangePct" tpl={this.signTpl.bind(this, 'priceChangePct', '0.00%')} cell={{ encodeHtml: false }}/>
                 <Column text="Last Updated" width="125" dataIndex="lastChange" formatter='date("m/d/Y")'/>
             </Grid>
         )
     }
+
 }

@@ -75,6 +75,7 @@ export default class BigDataGridExample extends Component {
                         }
                     }}
                     viewModel={{test:true}}
+
                     onBeforeDocumentSave={(view) => {
                         view.mask({
                             xtype: 'loadmask',

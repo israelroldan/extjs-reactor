@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Column } from '@extjs/reactor/modern';
+import { Grid, Column } from '@extjs/ext-react';
 
 export default class TemplateList extends Component {
 

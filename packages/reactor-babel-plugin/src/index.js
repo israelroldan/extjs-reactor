@@ -1,4 +1,5 @@
-const COMPONENT_MODULE_PATTERN = /^@extjs\/reactor\/(modern|classic)$/;
+const OLD_MODULE_PATTERN = /^@extjs\/reactor\/modern$/;
+const MODULE_PATTERN = /^@extjs\/(ext-react.*|reactor\/classic)$/;
 
 module.exports = function(babel) {
     const t = babel.types;
@@ -8,7 +9,7 @@ module.exports = function(babel) {
             ImportDeclaration: function(path) {
                 const { node } = path;
 
-                if (node.source && node.source.type === 'StringLiteral' && node.source.value.match(COMPONENT_MODULE_PATTERN)) {
+                if (node.source && node.source.type === 'StringLiteral' && (node.source.value.match(MODULE_PATTERN) || node.source.value.match(OLD_MODULE_PATTERN))) {
                     const declarations = [];
                     let transform = false;
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Panel, SearchField, Toolbar, TreeList } from '@extjs/reactor/modern';
+import { Panel, SearchField, Toolbar, TreeList } from '@extjs/ext-react';
 
 export default class NavTree extends Component {
 

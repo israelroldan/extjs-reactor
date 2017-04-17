@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Grid, Toolbar, SearchField, Button, FormPanel } from '@extjs/reactor/modern';
+import { Grid, Toolbar, SearchField, Button, FormPanel } from '@extjs/ext-react';
 import { connect } from 'react-redux';
 import { updateCriteria } from './actions';
 

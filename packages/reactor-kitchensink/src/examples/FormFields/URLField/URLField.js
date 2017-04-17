@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormPanel, URLField } from '@extjs/reactor/modern';
+import { FormPanel, URLField } from '@extjs/ext-react';
 
 export default function UrlFieldExample() {
     return (

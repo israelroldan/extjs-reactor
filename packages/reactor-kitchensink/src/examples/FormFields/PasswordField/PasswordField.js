@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormPanel, PasswordField } from '@extjs/reactor/modern';
+import { FormPanel, PasswordField } from '@extjs/ext-react';
 
 export default function PasswordFieldExample() {
     return (

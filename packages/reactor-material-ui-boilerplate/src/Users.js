@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { users } from './data';
 import TextField from 'material-ui/TextField';
-import { Grid, SelectField } from '@extjs/reactor/modern';
+import { Grid, SelectField } from '@extjs/ext-react';
 import styles from './styles';
 
 export default class Users extends Component {

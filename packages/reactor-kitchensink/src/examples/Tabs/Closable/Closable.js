@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TabPanel, Panel, Toolbar, Button } from '@extjs/reactor/modern'; 
+import { TabPanel, Panel, Toolbar, Button } from '@extjs/ext-react'; 
 
 Ext.require('Ext.Toast');
 

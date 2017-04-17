@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Column } from '@extjs/reactor/modern';
+import { Grid, Column } from '@extjs/ext-react';
 import model from './GridModel';
 
 Ext.require(['Ext.grid.plugin.Editable']);

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container } from '@extjs/reactor/modern';
+import { Container } from '@extjs/ext-react';
 
 export default class RippleExample extends React.Component {
 

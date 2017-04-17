@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Panel, FieldSet, TextField, SelectField, SliderField, Container, Spacer } from '@extjs/reactor/modern';
+import { Panel, FieldSet, TextField, SelectField, SliderField, Container, Spacer } from '@extjs/ext-react';
 import { connect } from 'react-redux';
 import { updateCriteria } from './actions';
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Column, DateColumn, CheckColumn } from '@extjs/reactor/modern';
+import { Grid, Column, DateColumn, CheckColumn } from '@extjs/ext-react';
 
 Ext.require([
     'Ext.grid.plugin.CellEditing',

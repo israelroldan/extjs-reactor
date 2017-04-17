@@ -209,8 +209,8 @@ const root = {
     children: [
         { text: 'Animations', component: Animations },
         { text: 'Buttons', children: [
-            { text: 'Button', component: Button, center: true },
-            { text: 'SegmentedButton', component: SegmentedButton, center: true },
+            { text: 'Button', component: Button, layout: 'center' },
+            { text: 'SegmentedButton', component: SegmentedButton, layout: 'center' },
         ]},
         { text: 'Calendar', premium: true, children:[
             { text: 'Calendar Panel', component: Calendar },
@@ -300,8 +300,8 @@ const root = {
             ]}
         ] },
         { text: 'Dialogs', children: [
-            { text: 'Msg', component: Msg, center: true },
-            { text: 'Window', component: InProgress, center: true }
+            { text: 'Msg', component: Msg, layout: 'center' },
+            { text: 'Window', component: InProgress, layout: 'center' }
         ]},
         { text: 'Drag & Drop', children: [
             { text: 'Simple', component: SimpleDandD },
@@ -313,28 +313,28 @@ const root = {
             { text: 'Files', component: Files }
         ]},
         { text: 'Draw', component: Draw },
-        { text: 'EdgeMenu', component: EdgeMenu, center: true },
+        { text: 'EdgeMenu', component: EdgeMenu, layout: 'center' },
         { text: 'Form Fields', children: [
-            { text: 'CheckBoxField', component: CheckBoxField, center: true },
-            { text: 'ComboBoxField', component: ComboBoxField, center: true },
-            { text: 'DatePickerField', component: DatePickerField, center: true },
-            { text: 'ContainerField', component: ContainerField, center: true },
-            { text: 'EmailField', component: EmailField , center: true},
-            { text: 'FieldSet', component: FieldSet, center: true },
-            { text: 'FileField', component: FileField, center: true },
+            { text: 'CheckBoxField', component: CheckBoxField, layout: 'center' },
+            { text: 'ComboBoxField', component: ComboBoxField, layout: 'center' },
+            { text: 'DatePickerField', component: DatePickerField, layout: 'center' },
+            { text: 'ContainerField', component: ContainerField, layout: 'center' },
+            { text: 'EmailField', component: EmailField , layout: 'center'},
+            { text: 'FieldSet', component: FieldSet, layout: 'center' },
+            { text: 'FileField', component: FileField, layout: 'center' },
             { text: 'FormPanel', component: FormPanel },
-            { text: 'Gauge', component: Gauge, center: true },
-            { text: 'NumberField', component: NumberField, center: true },
-            { text: 'PasswordField', component: PasswordField, center: true },
-            { text: 'RadioField', component: RadioField, center: true },
-            { text: 'SearchField', component: SearchField, center: true },
-            { text: 'SelectField', component: SelectField, center: true },
-            { text: 'SliderField', component: SliderField, center: true },
-            { text: 'SpinnerField', component: SpinnerField, center: true },
-            { text: 'TextAreaField', component: TextAreaField, center: true },
-            { text: 'TextField', component: TextField, center: true },
-            { text: 'ToggleField', component: ToggleField, center: true },
-            { text: 'URLField', component: URLField, center: true }
+            { text: 'Gauge', component: Gauge, layout: 'center' },
+            { text: 'NumberField', component: NumberField, layout: 'center' },
+            { text: 'PasswordField', component: PasswordField, layout: 'center' },
+            { text: 'RadioField', component: RadioField, layout: 'center' },
+            { text: 'SearchField', component: SearchField, layout: 'center' },
+            { text: 'SelectField', component: SelectField, layout: 'center' },
+            { text: 'SliderField', component: SliderField, layout: 'center' },
+            { text: 'SpinnerField', component: SpinnerField, layout: 'center' },
+            { text: 'TextAreaField', component: TextAreaField, layout: 'center' },
+            { text: 'TextField', component: TextField, layout: 'center' },
+            { text: 'ToggleField', component: ToggleField, layout: 'center' },
+            { text: 'URLField', component: URLField, layout: 'center' }
         ] },
         { text: 'Grids', children: [
             { text: 'Core Features', children: [
@@ -364,41 +364,41 @@ const root = {
             { text: 'center', component: CenterLayout },
             { text: 'fit', component: FitLayout },
             { text: 'form', component: FormLayout },
-            { text: 'hbox', component: HboxLayout },
+            { text: 'hbox', component: HboxLayout, layout: 'auto' },
             { text: 'resizable', component: Resizable },
-            { text: 'vbox', component: VboxLayout }
+            { text: 'vbox', component: VboxLayout, layout: 'auto' }
         ]},
         { text: 'Lists', children: [
-            { text: 'Basic List', component: BasicList, center: !Ext.os.is.Phone },
-            { text: 'Grouped', component: GroupedList, center: !Ext.os.is.Phone },
-            { text: 'Disclosure', component: DisclosureList, center: !Ext.os.is.Phone },
-            { text: 'Pull Refresh', component: PullRefreshList, center: !Ext.os.is.Phone },
-            { text: 'Paging', component: PagingList, center: !Ext.os.is.Phone },
+            { text: 'Basic List', component: BasicList, layout: Ext.os.is.Phone ? 'fit': 'center' },
+            { text: 'Grouped', component: GroupedList, layout: Ext.os.is.Phone ? 'fit': 'center' },
+            { text: 'Disclosure', component: DisclosureList, layout: Ext.os.is.Phone ? 'fit': 'center' },
+            { text: 'Pull Refresh', component: PullRefreshList, layout: Ext.os.is.Phone ? 'fit': 'center' },
+            { text: 'Paging', component: PagingList, layout: Ext.os.is.Phone ? 'fit': 'center' },
             // { text: 'Swiper', children: [
-            //     { text: 'Simple Actions', component: SimpleActions, center: !Ext.os.is.Phone },
-            //     { text: 'Multiple Actions', component: MultipleActions, center: !Ext.os.is.Phone },
-            //     { text: 'Undoable Actions', component: UndoableActions, center: !Ext.os.is.Phone },
+            //     { text: 'Simple Actions', component: SimpleActions, layout: Ext.os.is.Phone ? 'fit': 'center' },
+            //     { text: 'Multiple Actions', component: MultipleActions, layout: Ext.os.is.Phone ? 'fit': 'center' },
+            //     { text: 'Undoable Actions', component: UndoableActions, layout: Ext.os.is.Phone ? 'fit': 'center' },
             // ]},
-            { text: 'NestedList', component: NestedList, center: !Ext.os.is.Phone }
+            { text: 'NestedList', component: NestedList, layout: Ext.os.is.Phone ? 'fit': 'center' }
         ]},
         { text: 'Media', children: [
             { text: 'Video', component: Video },
             { text: 'Audio', component: Audio }
         ] },
-        { text: 'Panel', component: Panel, center: true },
-        { text: 'Picker', component: Picker, center: true },
-        { text: 'ProgressBar', component: ProgressBar, center: true },
-        { text: 'Ripple', component: Ripple, center: true },
+        { text: 'Panel', component: Panel, layout: 'center' },
+        { text: 'Picker', component: Picker, layout: 'center' },
+        { text: 'ProgressBar', component: ProgressBar, layout: 'center' },
+        { text: 'Ripple', component: Ripple, layout: 'center' },
         { text: 'Tabs', children: [
             { text: 'Basic Tabs', component: BasicTabs },
             { text: 'Bottom Tabs', component: BottomTabs },
             { text: 'Closable', component: Closable },
-            { text: 'ScrollingTabs', component: ScrollingTabs, center: !Ext.os.is.Phone }
+            { text: 'ScrollingTabs', component: ScrollingTabs, layout: Ext.os.is.Phone ? 'fit': 'center' }
         ]},
         { text: 'TitleBar', component: TitleBar },
-        { text: 'Toast', component: Toast, center: true },
+        { text: 'Toast', component: Toast, layout: 'center' },
         { text: 'Toolbar', component: Toolbar },
-        { text: 'ToolTip', component: ToolTip, center: true  },
+        { text: 'ToolTip', component: ToolTip, layout: 'center'  },
         { text: 'Touch Events', component: TouchEvents },
         { text: 'Trees', children: [
             { text: 'Tree', component: Tree },

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TabPanel, Panel } from '@extjs/reactor/modern'; 
+import { TabPanel, Panel } from '@extjs/ext-react'; 
 
 export default class ScrollingTabsExample extends Component {
 

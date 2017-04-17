@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { List } from '@extjs/reactor/modern';
+import { List } from '@extjs/ext-react';
 
 export default class TemplateList extends Component {
 

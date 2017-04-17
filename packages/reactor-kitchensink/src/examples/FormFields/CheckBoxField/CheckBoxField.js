@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormPanel, CheckBoxField } from '@extjs/reactor/modern';
+import { FormPanel, CheckBoxField } from '@extjs/ext-react';
 
 export default function CheckBoxFieldExample() {
     return (

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Cartesian, Panel, Button } from '@extjs/reactor/modern';
+import { Cartesian, Panel, Button } from '@extjs/ext-react';
 import ChartToolbar from '../../ChartToolbar';
 
 export default class NegativeValuesAreaChartExample extends Component {

@@ -1,58 +1,79 @@
 import React, { Component } from 'react';
-import { Container, Panel, Button, Menu, MenuItem } from '@extjs/reactor/modern';
-import './button.css';
-
-Ext.require('Ext.Toast');
+import { Container, Panel, Button, Menu, MenuItem } from '@extjs/ext-react';
 
 export default function ButtonExample() {
+    
     return (
-        <Panel bodyPadding="0 20 0 0" shadow={!Ext.os.is.Phone}>
-            <table className="button-table">
-                <tbody>
-                    <tr>
-                        <td>Flat</td>
-                        <td><Button handler={handler} text="Normal"/></td>
-                        <td><Button handler={handler} ui="decline" handler={handler} text="Decline"/></td>
-                        <td><Button handler={handler} ui="confirm" handler={handler} text="Confirm"/></td>
-                        <td><Button handler={handler} disabled text="Disabled"/></td>
-                    </tr>
-                    <tr>
-                        <td>Action</td>
-                        <td><Button handler={handler} ui="action" text="Normal"/></td>
-                        <td><Button handler={handler} ui="action decline" text="Decline"/></td>
-                        <td><Button handler={handler} ui="action confirm" text="Confirm"/></td>
-                        <td><Button handler={handler} ui="action" disabled text="Disabled"/></td>
-                    </tr>
-                    <tr>
-                        <td>Round</td>
-                        <td><Button handler={handler} ui="round action" text="Normal"/></td>
-                        <td><Button handler={handler} ui="round action decline" text="Decline"/></td>
-                        <td><Button handler={handler} ui="round action confirm" text="Confirm"/></td>
-                        <td><Button handler={handler} ui="round action" disabled text="Disabled"/></td>
-                    </tr>
-                    <tr>
-                        <td>Raised</td>
-                        <td><Button handler={handler} ui="raised" text="Normal"/></td>
-                        <td><Button handler={handler} ui="raised decline" text="Decline"/></td>
-                        <td><Button handler={handler} ui="raised confirm" text="Confirm"/></td>
-                        <td><Button handler={handler} ui="raised" disabled text="Disabled"/></td>
-                    </tr>
-                    <tr>
-                        <td>Menu</td>
-                        <td><Button handler={handler} text="Normal">{menu}</Button></td>
-                        <td><Button handler={handler} text="Decline" ui="decline">{menu}</Button></td>
-                        <td><Button handler={handler} text="Confirm" ui="confirm">{menu}</Button></td>
-                        <td><Button handler={handler} text="Disabled" disabled>{menu}</Button></td>
-                    </tr>
-                    <tr>
-                        <td>Icon</td>
-                        <td><Button handler={handler} iconCls="x-fa fa-home"/></td>
-                        <td><Button handler={handler} iconCls="x-fa fa-home" ui="round action"/></td>
-                        <td><Button handler={handler} iconCls="x-fa fa-home" text="Home"/></td>
-                        <td><Button handler={handler} iconCls="x-fa fa-home" text="Home">{menu}</Button></td>
-                    </tr>
-                </tbody>
-            </table>
+        <Panel { ...layoutProps }>
+            <Container>
+                <div {...groupLabelProps}>Flat</div>
+                <Container className="button-group" {...buttonGroupProps}>
+                        <Button text="Normal"/>
+                        <Button text="Decline" ui="decline"/>
+                        <Button text="Confirm" ui="confirm"/>
+                        <Button text="Disabled" disabled/>
+                </Container>
+            </Container>
+
+            <Container>
+                <div {...groupLabelProps}>Action</div>
+                <Container className="button-group" { ...buttonGroupProps }>
+                        <Button text="Normal" ui="action"/>
+                        <Button text="Decline" ui="action decline"/>
+                        <Button text="Confirm" ui="action confirm"/>
+                        <Button text="Disabled" disabled ui="action"/>
+                </Container>
+            </Container>
+
+            <Container>
+                <div {...groupLabelProps}>Round</div>
+                <Container className="button-group" { ...buttonGroupProps }>
+                        <Button text="Normal" ui="round"/>
+                        <Button text="Decline" ui="round decline"/>
+                        <Button text="Confirm" ui="round confirm"/>
+                        <Button text="Disabled" disabled ui="round"/>
+                </Container>
+            </Container>
+
+            <Container>
+                <div {...groupLabelProps}>Raised</div>
+                <Container className="button-group" { ...buttonGroupProps }>
+                        <Button text="Normal" ui="raised"/>
+                        <Button text="Decline" ui="raised decline"/>
+                        <Button text="Confirm" ui="raised confirm"/>
+                        <Button text="Disabled" disabled ui="raised"/>
+                </Container>
+            </Container>
+
+            <Container>
+                <div {...groupLabelProps}>Badge</div>
+                <Container className="button-group" { ...buttonGroupProps }>
+                        <Button text="Normal" badgeText="2"/>
+                        <Button text="Decline" ui="decline" badgeText="2"/>
+                        <Button text="Confirm" ui="confirm" badgeText="2"/>
+                        <Button text="Disabled" disabled badgeText="2"/>
+                </Container>
+            </Container>
+
+            <Container>
+                <div {...groupLabelProps}>Menu</div>
+                <Container className="button-group" { ...buttonGroupProps }>
+                        <Button text="Normal">{menu}</Button>
+                        <Button text="Decline" ui="decline">{menu}</Button>
+                        <Button text="Confirm" ui="confirm">{menu}</Button>
+                        <Button text="Disabled" disabled>{menu}</Button>
+                </Container>
+            </Container>
+
+            <Container>
+                <div {...groupLabelProps}>Icon</div>
+                <Container className="button-group" { ...buttonGroupProps }>
+                        <Button iconCls="x-fa fa-home"/>
+                        <Button ui="decline" iconCls="x-fa fa-home"/>
+                        <Button text="Icon" ui="confirm" iconCls="x-fa fa-home"/>
+                        <Button text="Icon" iconCls="x-fa fa-home" disabled>{menu}</Button>
+                </Container>
+            </Container>
         </Panel>
     )
 }
@@ -65,6 +86,51 @@ const menu = (
     </Menu>
 );
 
-function handler() {
-    Ext.toast("You clicked the button");
+const layoutProps = Ext.os.is.Phone ? {
+    height: '100%',
+    width: '100%',
+    scrollable: 'y',
+    className: 'demo-buttons',
+    defaults: {
+        margin: '20'
+    }
+} : {
+    height: 550,
+    width: 500,
+    layout: { type: 'vbox', align: 'stretch' },
+    className: 'demo-buttons demo-buttons-desktop',
+    padding: 10,
+    shadow: true,
+    defaults: {
+        layout: 'hbox',
+        flex: 1,
+        margin: '10'
+    }        
 }
+
+const buttonGroupProps = Ext.os.is.Phone ? {
+    padding: '20 0 0 20',
+    defaults: {
+        margin: '0 20 20 0',
+        width: 'calc(50% - 20px)',
+    }
+} : {
+    flex: 1,
+    padding: '0 0 0 20',
+    layout: { type: 'hbox', align: 'middle' },
+    defaults: {
+        flex: 1, 
+        margin: '0 20 0 0'
+    }
+}
+
+const groupLabelProps = Ext.os.is.Phone ? {
+
+} : {
+    style: {
+        width: '50px',
+        textAlign: 'right',
+        margin: '20px 20px 0 0'
+    }
+};
+

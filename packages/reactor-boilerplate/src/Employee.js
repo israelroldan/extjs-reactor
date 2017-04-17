@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { reactify } from '@extjs/reactor';
-import { Panel } from '@extjs/reactor/modern';
+import { Panel } from '@extjs/ext-react';
 import './PTOChart';
 
 const Chart = reactify(Boilerplate.PTOChart); // create a React Component wrapper for a custom class

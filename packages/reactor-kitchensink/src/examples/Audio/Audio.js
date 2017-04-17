@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Panel, Audio, Button, Container } from '@extjs/reactor/modern';
+import { Panel, Audio, Button, Container } from '@extjs/ext-react';
 
 export default class AudioExample extends Component {
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Panel, D3_Tree } from '@extjs/reactor/modern';
+import { Panel, D3_Tree } from '@extjs/ext-react';
 import treeDataReader from './treeDataReader';
 
 Ext.require([

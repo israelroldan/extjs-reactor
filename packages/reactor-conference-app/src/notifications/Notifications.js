@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { List } from '@extjs/reactor/modern';
+import { List } from '@extjs/ext-react';
 import { Template } from '@extjs/reactor';
 import AppBar from '../AppBar';
 

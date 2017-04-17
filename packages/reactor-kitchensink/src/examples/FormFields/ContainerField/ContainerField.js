@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ContainerField, FormPanel, RadioField, Container, Panel, CheckBoxField } from '@extjs/reactor/modern';
+import { ContainerField, FormPanel, RadioField, Container, Panel, CheckBoxField } from '@extjs/ext-react';
 
 export default class ContainerFieldExample extends Component {
 

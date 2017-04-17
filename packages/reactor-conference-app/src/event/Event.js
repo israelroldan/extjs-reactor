@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container } from '@extjs/reactor/modern';
+import { Container } from '@extjs/ext-react';
 import { connect } from 'react-redux';
 import { setTitle } from '../actions';
 

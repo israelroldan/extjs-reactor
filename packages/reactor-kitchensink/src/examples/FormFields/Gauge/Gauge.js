@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import { SliderField, Gauge, FormPanel } from '@extjs/reactor/modern';
+import { SliderField, Gauge, FormPanel } from '@extjs/ext-react';
 
 export default class GaugeExample extends Component {
 
