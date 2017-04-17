@@ -7,7 +7,7 @@ export default class Attendees extends Component {
 
     onSceneSetup = (svg, scene) => {
         if(svg.panZoom) {
-            svg.panZoom.scale(0.5, 0.5);
+            svg.panZoom.scale(0.6, 0.8);
         }
     }
 
@@ -43,6 +43,9 @@ export default class Attendees extends Component {
                         zoom: {
                             extent: [0.3, 3],
                             doubleTap: false
+                        },
+                        pan: {
+                            constrain: false
                         }
                     } : null}
                     legend={{
