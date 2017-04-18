@@ -107,7 +107,7 @@ export default class StockTickerGridExample extends Component {
                 <TextColumn text="Company" dataIndex="name" flex="1" sortable={true}/>
                 <TextColumn text="Price" width="95" align="right" cell={{bind:'{record.price:usMoney}'}} sortable={true}/>
                 <Column text="Trend" width="200">
-                    <WidgetCell forceWidth bind="{trend}">
+                    <WidgetCell forceWidth bind="{record.trend}">
                         <SparkLineLine tipTpl='Price: {y:number("0.00")}'/>
                     </WidgetCell>
                 </Column>
