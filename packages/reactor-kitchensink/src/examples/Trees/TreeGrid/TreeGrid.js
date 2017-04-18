@@ -7,8 +7,6 @@ export default class TreeGridExample extends Component {
         return(
             <Tree
                 title="Tree Grid"
-                height={400}
-                width={600}
                 bind='{navItems}'
                 viewModel={
                     {
