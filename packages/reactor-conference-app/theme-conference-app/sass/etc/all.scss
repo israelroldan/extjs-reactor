@@ -5,8 +5,8 @@
 }
 
 .app-icon {
-    margin-right: 7px; 
-    font-size: 20px; 
+    margin-right: 7px;
+    font-size: 20px;
     line-height: 1em;
     display: inline;
     position: relative;
@@ -33,9 +33,12 @@
 
 .app-banner {
     background-color: $base-color;
+    background-image: url("../resources/hero.svg");
+    background-size: cover;
+    background-position: center;
     color: white;
     font-size: 30px;
-    padding: 30px 0;
+    padding: 40px 0;
     text-align: center;
     font-weight: 100;
 }
@@ -74,9 +77,9 @@
 }
 
 .app-banner-tabs {
-    transform: translateZ(0) !important; 
+    transform: translateZ(0) !important;
     position: absolute !important;
-}  
+}
 
 .app-notification-item {
     padding: 5px 0;
@@ -90,28 +93,44 @@
     font-weight: bold;
 }
 
+.app-speaker-ct {
+  padding: 20px;
+}
+
 .app-speaker-image {
     float: left;
+    border-radius: 80px;
     margin: 0 10px 5px 0;
-    
+
     .x-phone & {
-        width: 40vw;
+        width: 100px;
     }
 }
 
 .app-speaker-name {
-    font-weight: bold;
-    font-size: 14px;
+    font-weight: normal;
+    font-size: 24px;
+    padding-top: 10px;
 }
 
 .app-speaker-title {
-    font-style: italic;
+    font-size: 16px;
+    color: #8b8b8b;
     padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .app-speaker-company {
-    font-style: italic;
-    padding-bottom: 10px;
+    font-size: 16px;
+    font-weight: lighter;
+    color: #8b8b8b;
+    padding-bottom: 30px;
+}
+
+.app-speaker-bio {
+    font-weight: lighter;
+    line-height: 1.65;
+    font-size: 16px;
 }
 
 .land {

@@ -1,6 +1,5 @@
 $base-color: #7C4DFF;
 $accent-light-color: #D500F9;
-
 $app-grey: #F5F5F5;
 
 $material-icon-size: 24px;
@@ -18,10 +17,3 @@ $tab-active-color: rgba($tab-color, 1);
 
 $tab-font-size: 14px;
 $tab-font-weight: 600;
-
-.app-banner {
-  background-image: url("../resources/hero.svg");
-  background-size: cover;
-  background-position: center;
-  padding: 40px 0;
-}
