@@ -22,8 +22,10 @@ import Panel from './Panel/Panel';
 import BasicTabs from './Tabs/BasicTabs/BasicTabs';
 import DesktopTabs from './Tabs/DesktopTabs/DesktopTabs';
 import BottomTabs from './Tabs/BottomTabs/BottomTabs';
+import IconTabs from './Tabs/IconTabs/IconTabs';
 import Closable from './Tabs/Closable/Closable';
 import ScrollingTabs from './Tabs/ScrollingTabs/ScrollingTabs';
+import TabBar from './Tabs/TabBar/TabBar';
 
 import Toolbar from './Toolbar/Toolbar';
 import Animations from './Animations/Animations';
@@ -393,9 +395,11 @@ const root = {
         { text: 'Tabs', children: [
             { text: 'Basic Tabs', component: BasicTabs },
             { text: 'Bottom Tabs', component: BottomTabs },
+            { text: 'Icon Tabs', component: IconTabs },
             { text: 'Desktop Tabs', component: DesktopTabs },
             { text: 'Closable', component: Closable },
-            { text: 'ScrollingTabs', component: ScrollingTabs, layout: Ext.os.is.Phone ? 'fit': 'center' }
+            { text: 'ScrollingTabs', component: ScrollingTabs, layout: Ext.os.is.Phone ? 'fit': 'center' },
+            { text: 'TabBar', component: TabBar, layout: Ext.os.is.Phone ? 'fit': 'center' }        
         ]},
         { text: 'TitleBar', component: TitleBar },
         { text: 'Toast', component: Toast, layout: 'center' },
@@ -404,7 +408,7 @@ const root = {
         { text: 'Touch Events', component: TouchEvents },
         { text: 'Trees', children: [
             { text: 'Tree', component: Tree },
-            { text: 'TreeList', component: TreeList },
+            { text: 'TreeList', component: TreeList, layout: Ext.os.is.Phone ? 'fit': 'center' },
             { text: 'Editable Tree', component: EditableTree},
             { text: 'Tree Grid', component: TreeGrid },
             { text: 'Tree Decorations', component:TreeDecorations},

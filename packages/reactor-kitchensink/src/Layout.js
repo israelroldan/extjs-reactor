@@ -93,7 +93,7 @@ class Layout extends Component {
                 <Container layout="fit" flex={4}>
                     <TitleBar docked="top" shadow style={{zIndex: 2}}>
                         <div className="ext ext-sencha" style={{marginRight: '7px', fontSize: '20px', width: '20px'}}/>
-                        <a href="#" className="app-title">ExtReact Kitchen Sink</a>
+                        <a href="#" className="app-title">ExtReact Components</a>
                         { files && <Button align="right" iconCls="x-fa fa-code" handler={actions.toggleCode} ripple={{bound: false}} /> }
                     </TitleBar>
                     <Container layout={{type: 'hbox', align: 'stretch'}} flex={1}>

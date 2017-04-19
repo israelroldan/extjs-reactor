@@ -8,7 +8,7 @@ export default class ScrollingTabsExample extends Component {
             <TabPanel 
                 shadow 
                 tabBar={{scrollable: true}} 
-                platformConfigs={{
+                platformConfig={{
                     "!phone": {
                         height: 600,
                         width: 400 
@@ -18,7 +18,7 @@ export default class ScrollingTabsExample extends Component {
                     layout: "center",
                     cls: 'card',
                     tab: {
-                        minWidth: 110
+                        minWidth: 120
                     }
                 }}
             >

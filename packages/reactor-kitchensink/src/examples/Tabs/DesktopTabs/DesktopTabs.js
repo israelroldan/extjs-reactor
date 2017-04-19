@@ -6,7 +6,6 @@ export default function DesktopTabsExample() {
         <TabPanel 
             flex={1}
             shadow 
-            plain
             defaults={{
                 cls: "card",
                 layout: "center",

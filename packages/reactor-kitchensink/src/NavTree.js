@@ -30,7 +30,7 @@ export default class NavTree extends Component {
             <Panel scrollable="y" width={width} shadow style={{zIndex: 1}}>
                 <SearchField flex={1} docked="top" style={{backgroundColor: '#fafafa', padding: '5px' }} onChange={this.filterNav} />
                 <TreeList
-                    ui="component-tree"
+                    ui="nav"
                     store={store}
                     expanderFirst={false}
                     expanderOnly={false}

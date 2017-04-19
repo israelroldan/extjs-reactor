@@ -1,7 +1,6 @@
 export default {
     expanded: true,
     text: 'All',
-    iconCls: 'x-fa fa-sitemap',
     children: [{
         text: 'Home',
         iconCls: 'x-fa fa-home',
