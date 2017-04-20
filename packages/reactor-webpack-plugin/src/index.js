@@ -8,6 +8,7 @@ import { sync as rimraf } from 'rimraf';
 import { buildXML, createAppJson, createWorkspaceJson } from './artifacts';
 import { execSync, spawn } from 'child_process';
 import { generate } from 'astring';
+import { sync as resolve } from 'resolve';
 
 let watching = false;
 
@@ -183,8 +184,15 @@ module.exports = class ReactExtJSWebpackPlugin {
      * @private
      */
     _validateBuildConfig(name, build) {
-        const { sdk } = build;
-        if (!sdk) throw new Error(`Missing required option sdk in build ${name}.  This must be the path to your Ext JS SDK.`);
+        let { sdk } = build;
+        
+        if (!sdk) {
+            try {
+                build.sdk = path.dirname(resolve('@extjs/ext-react', { basedir: process.cwd() }))
+            } catch (e) {
+                throw new Error(`@extjs/ext-react not found.  You can install it with "npm install --save @extjs/ext-react" or, if you have a local copy of the SDK, specify the path to it using the "sdk" option in build "${name}."`);
+            }
+        }
     }
 
     /**

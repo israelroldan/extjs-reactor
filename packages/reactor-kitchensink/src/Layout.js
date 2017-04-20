@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 import { TitleBar, Container, NestedList, Panel, Button } from '@extjs/ext-react';
+import { Transition } from '@extjs/reactor';
 import hljs, { highlightBlock } from 'highlightjs';
 import NavTree from './NavTree';
 import Files from './Files';
@@ -11,11 +12,6 @@ import * as actions from './actions';
 Ext.require('Ext.panel.Collapser');
 
 class Layout extends Component {
-
-    constructor() {
-        super();
-        // Ext.os.is.Phone = true;
-    }
 
     componentDidMount() {
         if (Ext.os.is.Phone) {
@@ -103,16 +99,18 @@ class Layout extends Component {
                             selection={selectedNavNode}
                             onSelectionChange={(tree, node) => this.onNavChange(node)}
                         /> 
+
                         { component ? (
-                            <Container 
-                                layout={layout} 
-                                scrollable={layout !== 'fit'} 
-                                flex={1} 
-                                padding="30"
-                                key={selectedNavNode.get('text')}
-                            >
-                                { React.createElement(component) }
-                            </Container>
+                            <Transition flex={1} type="slide">
+                                <Container 
+                                    layout={layout} 
+                                    scrollable={layout !== 'fit'} 
+                                    padding="30"
+                                    key={selectedNavNode.get('text')}
+                                >
+                                    { React.createElement(component) }
+                                </Container>
+                            </Transition>
                          ) : (
                              <Home flex={1}/> 
                          ) }
