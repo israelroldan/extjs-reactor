@@ -8,8 +8,6 @@ export default class EditableTreeExample extends Component {
         return (
             <Tree
                 title="Editable Tree"
-                height={400}
-                width={600}
                 plugins={[{type:'grideditable'}]}
                 store={store}
             >
