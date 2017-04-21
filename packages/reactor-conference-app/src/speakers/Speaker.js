@@ -6,13 +6,40 @@ import { setTitle } from '../actions';
 
 class Speaker extends Component {
 
+    constructor({speakers, schedule}) {
+        super();
+
+        this.store = Ext.create('Ext.data.ChainedStore', {
+            autoDestroy: true,
+            source: schedule && schedule.store
+        });
+
+        this.filterStore(speakers && speakers.speaker && speakers.speaker.sessions);
+    }
+
+    componentWillReceiveProps({speakers}) {
+        this.filterStore(speakers && speakers.speaker && speakers.speaker.sessions);
+    }
+
+    filterStore = value => {
+        if(value) {
+            this.store.filter({
+                value,
+                property: 'id',
+                operator: 'in'
+            });
+            this.store.getSource().reload();
+        }
+    }
+
     render() {
-        const { speakers, schedule } = this.props;
+        const { speakers } = this.props;
         const speaker = speakers.speaker;
-        const scheduleStore = schedule.store;
-        const sessions = speaker && speaker.sessions;
+
+        const sessions = speakers && speakers.speaker && speakers.speaker.sessions;
+
         return (
-            <Container masked={!speaker} padding={20} layout="vbox">
+            <Container masked={!speaker} padding={20} layout="vbox" scrollable>
                 { speaker && (
                     <div>
                         <div className="app-speaker-ct">
@@ -25,16 +52,14 @@ class Speaker extends Component {
                             </div>
                         </div>
                         { sessions && sessions.length > 0 && (
-                            <Panel title="Events" style={{paddingTop: '20px'}}>
+                            <div>
+                                <div className="speakers-session-title">Sessions</div>
                                 <ScheduleList
-                                    dataStore={{
-                                        type: 'chained',
-                                        source: scheduleStore,
-                                        autoDestroy: true,
-                                        filters: [item => sessions.indexOf(item.getId()) >= 0]
-                                    }}
+                                    dataStore={this.store}
+                                    showTime
+                                    eagerLoad
                                 />
-                            </Panel>
+                            </div>
                         )}
                     </div>
                 )}

@@ -101,7 +101,7 @@
 
 .app-speaker-name {
     font-weight: bold;
-    font-size: 14px;
+    font-size: 18px;
 }
 
 .app-speaker-title {
@@ -114,6 +114,10 @@
     padding-bottom: 10px;
 }
 
+.app-speaker-bio {
+    font-size: 16px;
+}
+
 .land {
     fill: #222;
 }
@@ -121,4 +125,12 @@
     fill: none;
     stroke: #fff;
     stroke-width: 1px;
+}
+
+.speakers-session-title {
+    font-size: 18px;
+    font-weight: bold;
+    font-family: $font-family;
+    color: $base-color;
+    padding: 20px 0 10px 0;
 }
