@@ -22,6 +22,8 @@ export default class CalendarTimezoneSupportExample extends Component {
     }
 
     render(){
+        const { timezoneOffset } = this.state;
+
         return(
             <Panel
                 shadow
@@ -59,7 +61,7 @@ export default class CalendarTimezoneSupportExample extends Component {
                     startTime= {6}
                     endTime = {22}
                     visibleDays = {2}
-                    timezoneOffset = {this.state.timezoneOffset}
+                    timezoneOffset = {timezoneOffset}
                     gestureNavigation = {false}
                     showNowMarker = {false}
                     value = {new Date()}
