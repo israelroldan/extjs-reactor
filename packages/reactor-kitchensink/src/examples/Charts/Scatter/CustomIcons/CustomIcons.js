@@ -42,7 +42,7 @@ export default class CustomIcons extends Component {
                     legend={{ type: 'sprite' }}
                     store={this.store}
                     theme={theme}
-                    iteractions={[{
+                    interactions={[{
                         type: 'itemedit',
                         style: { strokeStyle: 'gray' }
                     }]}
