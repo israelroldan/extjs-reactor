@@ -14,7 +14,7 @@ export default class ReduxGridExample extends Component {
     render() {
         return (
             <Provider store={store}>
-                <Container layout="fit">
+                <Container layout="fit" padding="10">
                     <Employees/>
                 </Container>
             </Provider>

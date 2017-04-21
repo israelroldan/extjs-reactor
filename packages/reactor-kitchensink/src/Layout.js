@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 import { TitleBar, Container, NestedList, Panel, Button } from '@extjs/ext-react';
+import { Transition } from '@extjs/reactor';
 import hljs, { highlightBlock } from 'highlightjs';
 import NavTree from './NavTree';
 import Files from './Files';
@@ -11,11 +12,6 @@ import * as actions from './actions';
 Ext.require('Ext.panel.Collapser');
 
 class Layout extends Component {
-
-    constructor() {
-        super();
-        // Ext.os.is.Phone = true;
-    }
 
     componentDidMount() {
         if (Ext.os.is.Phone) {
@@ -93,8 +89,16 @@ class Layout extends Component {
                 <Container layout="fit" flex={4}>
                     <TitleBar docked="top" shadow style={{zIndex: 2}}>
                         <div className="ext ext-sencha" style={{marginRight: '7px', fontSize: '20px', width: '20px'}}/>
-                        <a href="#" className="app-title">ExtReact Kitchen Sink</a>
-                        { files && <Button align="right" iconCls="x-fa fa-code" handler={actions.toggleCode} ripple={{bound: false}} /> }
+                        <a href="#" className="app-title">ExtReact Components</a>
+                        { files && (
+                            <Button 
+                                align="right" 
+                                iconCls="x-fa fa-code" 
+                                ui="app-button-short" 
+                                handler={actions.toggleCode} 
+                                ripple={{bound: false}} 
+                            /> 
+                        )}
                     </TitleBar>
                     <Container layout={{type: 'hbox', align: 'stretch'}} flex={1}>
                         <NavTree 
@@ -103,16 +107,18 @@ class Layout extends Component {
                             selection={selectedNavNode}
                             onSelectionChange={(tree, node) => this.onNavChange(node)}
                         /> 
+
                         { component ? (
-                            <Container 
-                                layout={layout} 
-                                scrollable={layout !== 'fit'} 
-                                flex={1} 
-                                padding="30"
-                                key={selectedNavNode.get('text')}
-                            >
-                                { React.createElement(component) }
-                            </Container>
+                            <Transition flex={1} type="slide">
+                                <Container 
+                                    layout={layout} 
+                                    scrollable={layout !== 'fit'} 
+                                    padding="30"
+                                    key={selectedNavNode.get('text')}
+                                >
+                                    { React.createElement(component) }
+                                </Container>
+                            </Transition>
                          ) : (
                              <Home flex={1}/> 
                          ) }

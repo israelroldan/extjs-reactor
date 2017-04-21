@@ -44,9 +44,14 @@ export default class Files extends Component {
         return (
             <TabPanel 
                 ref="tabs"
-                tabBar={{hidden: mode === 'docs' && files.length === 1 }}
                 shadow
                 style={{zIndex: 1}}
+                tabBar={{
+                    hidden: mode === 'docs' && files.length === 1,
+                    layout: {
+                        pack: 'left'
+                    }
+                }}
             >
                 { Object.keys(files).map((file, i) => (
                     <Panel 
@@ -56,7 +61,9 @@ export default class Files extends Component {
                         layout="fit"
                         ui="code-panel"
                         tab={{
-                            ui: 'app-code-tab'
+                            ui: 'app-code-tab',
+                            flex: 0,
+                            minWidth: 120
                         }}
                         html={`<pre><code class="code ${codeClassFor(file)}">${files[file].replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code></pre>`}
                     />

@@ -30,7 +30,15 @@ export default class Closable extends Component {
         const { tabs, activeTab } = this.state;
 
         return (
-            <TabPanel activeItem={activeTab} shadow scroll>
+            <TabPanel 
+                activeItem={activeTab} 
+                tabBar={{
+                    layout: {
+                        pack: 'left'
+                    }
+                }}
+                shadow 
+            >
                 { this.state.tabs }
                 <Toolbar docked="top">
                     <Button iconCls="x-fa fa-plus" text="Add Tab" handler={this.addTab}/>
@@ -43,6 +51,7 @@ export default class Closable extends Component {
         return (
             <Panel 
                 title={`Tab ${i}`} 
+                tab={{ flex: 1, maxWidth: 150 }}
                 key={i} 
                 cls="card"
                 layout="center"
