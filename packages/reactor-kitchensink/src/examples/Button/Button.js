@@ -95,13 +95,14 @@ const layoutProps = Ext.os.is.Phone ? {
         margin: '20'
     }
 } : {
-    className: 'demo-buttons demo-buttons-desktop',
+    // className: 'demo-buttons demo-buttons-desktop',
     padding: 10,
     shadow: true,
     defaults: {
         layout: 'hbox',
         flex: 1,
-        margin: '10'
+        margin: '10',
+        width: '100%'
     }        
 }
 
@@ -113,9 +114,10 @@ const buttonGroupProps = Ext.os.is.Phone ? {
     }
 } : {
     padding: '17 0 17 20',
-    layout: { type: 'hbox', align: 'middle' },
+    layout: { type: 'hbox', align: 'middle', pack: 'space-around' },
+    flex: 1,
+    margin: '0 20 0 0',
     defaults: {
-        width: 100, 
         margin: '0 20 0 0'
     }
 }
@@ -126,7 +128,7 @@ const groupLabelProps = Ext.os.is.Phone ? {
     style: {
         width: '50px',
         textAlign: 'right',
-        margin: '20px 20px 0 0'
+        margin: '24px 20px 0 0'
     }
 };
 

@@ -113,8 +113,24 @@ export default class ExtJSComponent extends Component {
             if (Ext.navigation && Ext.navigation.View && parentCmp && parentCmp instanceof Ext.navigation.View) {
                 parentCmp.pop();
             } else {
-                this.cmp.destroy();
+                this.destroy(this.cmp);
             }
+        }
+    }
+
+    destroy(cmp) {
+        if (cmp.animateDestroy) {
+            const hideAnimation = cmp.getHideAnimation();
+
+            if (hideAnimation) {
+                setTimeout(() => cmp.destroy(), hideAnimation.getDuration());
+            }
+    
+            if (!(hideAnimation instanceof Ext.reactor.animation.Delay)) {
+                cmp.hide(cmp.hideAnimation);
+            }
+        } else {
+            cmp.destroy();
         }
     }
 
@@ -465,6 +481,8 @@ const ContainerMixin = Object.assign({}, ReactMultiChild.Mixin, {
      * @protected
      */
     moveChild(child, afterNode, toIndex, lastIndex) {
+        if (this.cmp._reactorIgnoreOrder) return; // maintaining order in certain components, like Transition's container, can cause problems with animations, _reactorIgnoreOrder gives us a way to opt out in such scenarios
+
         if (toIndex === child._mountIndex) return; // only move child if the actual mount index has changed
         
         const fitLayout = Ext.layout && (Ext.layout.Fit || Ext.layout.FitLayout);
@@ -516,6 +534,11 @@ const ContainerMixin = Object.assign({}, ReactMultiChild.Mixin, {
         } else {
             if (this.reactorSettings.debug) console.log(`adding ${childNode.$className} to ${this.cmp.$className}`);
 
+            if (childNode.animateCreate) {
+                childNode.setHidden(true);
+                childNode.on('added', () => childNode.show(childNode.showAnimation), null, { single: true })
+            }
+
             if (!(childNode instanceof Ext.Base)) {
                 // we're appending a dom node
                 childNode = wrapDOMElement(childNode.node);
@@ -548,7 +571,7 @@ const ContainerMixin = Object.assign({}, ReactMultiChild.Mixin, {
         } else {
             if (node instanceof HTMLElement && node._extCmp && !node._extCmp.destroying) {
                 if (this.reactorSettings.debug) console.log('removing', node._extCmp.$className);
-                node._extCmp.destroy();
+                this.destroy(node._extCmp);
             }
             // We don't need to do anything for Ext JS components because a component is automatically removed from it parent when destroyed
         }

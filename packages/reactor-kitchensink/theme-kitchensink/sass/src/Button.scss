@@ -9,3 +9,8 @@
     }
 }
 
+@include button-ui(
+    $ui: 'app-button-short',
+    $padding: 4px 10px,
+    $color: white
+);

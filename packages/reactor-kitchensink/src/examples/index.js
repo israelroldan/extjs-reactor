@@ -28,7 +28,6 @@ import ScrollingTabs from './Tabs/ScrollingTabs/ScrollingTabs';
 import TabBar from './Tabs/TabBar/TabBar';
 
 import Toolbar from './Toolbar/Toolbar';
-import Animations from './Animations/Animations';
 import Button from './Button/Button';
 import SegmentedButton from './SegmentedButton/SegmentedButton';
 import Carousel from './Carousel/Carousel';
@@ -79,12 +78,16 @@ import ContainerField from './FormFields/ContainerField/ContainerField';
 import Video from './Video/Video';
 import Audio from './Audio/Audio';
 import ProgressBar from './ProgressBar/ProgressBar';
-import EdgeMenu from './EdgeMenu/EdgeMenu';
+import Sheet from './Sheet/Sheet';
 import ToolTip from './ToolTip/ToolTip';
 import Picker from './Picker/Picker';
 import TouchEvents from './TouchEvents/TouchEvents';
+
+// Popups
+import Dialog from './Dialog/Dialog';
 import Msg from './Msg/Msg';
 import Toast from './Toast/Toast';
+
 import TitleBar from './TitleBar/TitleBar';
 
 // Calendar
@@ -207,13 +210,99 @@ import Groups from './DragAndDrop/Groups/Groups';
 import Data from './DragAndDrop/Data/Data';
 import Files from './DragAndDrop/Files/Files';
 
+import Transition from './Transition/Transition';
+
 const root = {
     id: 'root',
     children: [
-        { text: 'Animations', component: Animations },
-        { text: 'Buttons', children: [
-            { text: 'Button', component: Button, layout: 'center' },
-            { text: 'SegmentedButton', component: SegmentedButton, layout: 'center' },
+        { text: 'Components', children: [
+            { text: 'Buttons', children: [
+                { text: 'Button', component: Button, layout: 'center' },
+                { text: 'SegmentedButton', component: SegmentedButton, layout: 'center' },
+            ]},
+            { text: 'Carousel', component: Carousel },
+            { text: 'Popups', children: [
+                { text: 'Dialog', component: Dialog, layout: 'center' },
+                { text: 'Msg', component: Msg, layout: 'center' },
+                { text: 'Toast', component: Toast, layout: 'center' }
+            ]},
+            { text: 'Drag & Drop', children: [
+                { text: 'Simple', component: SimpleDandD },
+                { text: 'Constraints', component: Constrains },
+                { text: 'Proxies', component: Proxies },
+                { text: 'Handles', component: Handles },
+                { text: 'Groups', component: Groups },
+                { text: 'Data', component: Data },
+                { text: 'Files', component: Files }
+            ]},
+            { text: 'Draw', component: Draw },
+            { text: 'Sheet', component: Sheet, layout: 'center' },
+            { text: 'Form Fields', children: [
+                { text: 'CheckBoxField', component: CheckBoxField, layout: 'center' },
+                { text: 'ComboBoxField', component: ComboBoxField, layout: 'center' },
+                { text: 'DatePickerField', component: DatePickerField, layout: 'center' },
+                { text: 'ContainerField', component: ContainerField, layout: 'center' },
+                { text: 'EmailField', component: EmailField , layout: 'center'},
+                { text: 'FieldSet', component: FieldSet, layout: 'center' },
+                { text: 'FileField', component: FileField, layout: 'center' },
+                { text: 'FormPanel', component: FormPanel },
+                { text: 'Gauge', component: Gauge, layout: 'center' },
+                { text: 'NumberField', component: NumberField, layout: 'center' },
+                { text: 'PasswordField', component: PasswordField, layout: 'center' },
+                { text: 'RadioField', component: RadioField, layout: 'center' },
+                { text: 'SearchField', component: SearchField, layout: 'center' },
+                { text: 'SelectField', component: SelectField, layout: 'center' },
+                { text: 'SliderField', component: SliderField, layout: 'center' },
+                { text: 'SpinnerField', component: SpinnerField, layout: 'center' },
+                { text: 'TextAreaField', component: TextAreaField, layout: 'center' },
+                { text: 'TextField', component: TextField, layout: 'center' },
+                { text: 'ToggleField', component: ToggleField, layout: 'center' },
+                { text: 'URLField', component: URLField, layout: 'center' }
+            ] },
+            { text: 'Layouts', children: [
+                { text: 'card', component: CardLayout },
+                { text: 'center', component: CenterLayout },
+                { text: 'fit', component: FitLayout },
+                { text: 'form', component: FormLayout },
+                { text: 'hbox', component: HboxLayout, layout: 'auto' },
+                { text: 'resizable', component: Resizable },
+                { text: 'vbox', component: VboxLayout, layout: 'auto' }
+            ]},
+            { text: 'Lists', children: [
+                { text: 'Basic List', component: BasicList, layout: Ext.os.is.Phone ? 'fit': 'center' },
+                { text: 'Grouped', component: GroupedList, layout: Ext.os.is.Phone ? 'fit': 'center' },
+                { text: 'Disclosure', component: DisclosureList, layout: Ext.os.is.Phone ? 'fit': 'center' },
+                { text: 'Pull Refresh', component: PullRefreshList, layout: Ext.os.is.Phone ? 'fit': 'center' },
+                { text: 'Paging', component: PagingList, layout: Ext.os.is.Phone ? 'fit': 'center' },
+                // { text: 'Swiper', children: [
+                //     { text: 'Simple Actions', component: SimpleActions, layout: Ext.os.is.Phone ? 'fit': 'center' },
+                //     { text: 'Multiple Actions', component: MultipleActions, layout: Ext.os.is.Phone ? 'fit': 'center' },
+                //     { text: 'Undoable Actions', component: UndoableActions, layout: Ext.os.is.Phone ? 'fit': 'center' },
+                // ]},
+                { text: 'NestedList', component: NestedList, layout: Ext.os.is.Phone ? 'fit': 'center' }
+            ]},
+            { text: 'Media', children: [
+                { text: 'Video', component: Video },
+                { text: 'Audio', component: Audio }
+            ] },
+            { text: 'Panel', component: Panel, layout: 'center' },
+            { text: 'Picker', component: Picker, layout: 'center' },
+            { text: 'ProgressBar', component: ProgressBar, layout: 'center' },
+            { text: 'Ripple', component: Ripple, layout: 'center' },
+            { text: 'Tabs', children: [
+                { text: 'Basic Tabs', component: BasicTabs },
+                { text: 'Bottom Tabs', component: BottomTabs },
+                { text: 'Icon Tabs', component: IconTabs },
+                { text: 'Desktop Tabs', component: DesktopTabs },
+                { text: 'Closable', component: Closable },
+                { text: 'ScrollingTabs', component: ScrollingTabs, layout: Ext.os.is.Phone ? 'fit': 'center' },
+                { text: 'TabBar', component: TabBar, layout: Ext.os.is.Phone ? 'fit': 'center' }        
+            ]},
+            { text: 'TitleBar', component: TitleBar },
+            { text: 'Toolbar', component: Toolbar },
+            { text: 'ToolTip', component: ToolTip, layout: 'center'  },
+            { text: 'Touch Events', component: TouchEvents },
+            { text: 'Transition', component: Transition }
         ]},
         { text: 'Calendar', premium: true, children:[
             { text: 'Calendar Panel', component: Calendar },
@@ -223,7 +312,6 @@ const root = {
             { text: 'Timezone Support', component: TimezoneSupport },
             { text: 'Drag Resize Validation', component: DragResizeValidation }
         ]},
-        { text: 'Carousel', component: Carousel },
         { text: 'Charts', children: [
             { text: 'Area', children: [
                 { text: 'Basic Area', component: BasicArea },
@@ -302,43 +390,6 @@ const root = {
                 { text: 'Zoomable Sunburst', component: ZoomableSunburst }
             ]}
         ] },
-        { text: 'Dialogs', children: [
-            { text: 'Msg', component: Msg, layout: 'center' },
-            { text: 'Window', component: InProgress, layout: 'center' }
-        ]},
-        { text: 'Drag & Drop', children: [
-            { text: 'Simple', component: SimpleDandD },
-            { text: 'Constraints', component: Constrains },
-            { text: 'Proxies', component: Proxies },
-            { text: 'Handles', component: Handles },
-            { text: 'Groups', component: Groups },
-            { text: 'Data', component: Data },
-            { text: 'Files', component: Files }
-        ]},
-        { text: 'Draw', component: Draw },
-        { text: 'EdgeMenu', component: EdgeMenu, layout: 'center' },
-        { text: 'Form Fields', children: [
-            { text: 'CheckBoxField', component: CheckBoxField, layout: 'center' },
-            { text: 'ComboBoxField', component: ComboBoxField, layout: 'center' },
-            { text: 'DatePickerField', component: DatePickerField, layout: 'center' },
-            { text: 'ContainerField', component: ContainerField, layout: 'center' },
-            { text: 'EmailField', component: EmailField , layout: 'center'},
-            { text: 'FieldSet', component: FieldSet, layout: 'center' },
-            { text: 'FileField', component: FileField, layout: 'center' },
-            { text: 'FormPanel', component: FormPanel },
-            { text: 'Gauge', component: Gauge, layout: 'center' },
-            { text: 'NumberField', component: NumberField, layout: 'center' },
-            { text: 'PasswordField', component: PasswordField, layout: 'center' },
-            { text: 'RadioField', component: RadioField, layout: 'center' },
-            { text: 'SearchField', component: SearchField, layout: 'center' },
-            { text: 'SelectField', component: SelectField, layout: 'center' },
-            { text: 'SliderField', component: SliderField, layout: 'center' },
-            { text: 'SpinnerField', component: SpinnerField, layout: 'center' },
-            { text: 'TextAreaField', component: TextAreaField, layout: 'center' },
-            { text: 'TextField', component: TextField, layout: 'center' },
-            { text: 'ToggleField', component: ToggleField, layout: 'center' },
-            { text: 'URLField', component: URLField, layout: 'center' }
-        ] },
         { text: 'Grids', children: [
             { text: 'Core Features', children: [
                 { text: 'Basic Grid', component: BasicGrid},
@@ -362,50 +413,6 @@ const root = {
             { text: 'PivotGrid', component: PivotGrid },
             { text: 'Redux Grid', component: ReduxGrid }
         ] },
-        { text: 'Layouts', children: [
-            { text: 'card', component: CardLayout },
-            { text: 'center', component: CenterLayout },
-            { text: 'fit', component: FitLayout },
-            { text: 'form', component: FormLayout },
-            { text: 'hbox', component: HboxLayout, layout: 'auto' },
-            { text: 'resizable', component: Resizable },
-            { text: 'vbox', component: VboxLayout, layout: 'auto' }
-        ]},
-        { text: 'Lists', children: [
-            { text: 'Basic List', component: BasicList, layout: Ext.os.is.Phone ? 'fit': 'center' },
-            { text: 'Grouped', component: GroupedList, layout: Ext.os.is.Phone ? 'fit': 'center' },
-            { text: 'Disclosure', component: DisclosureList, layout: Ext.os.is.Phone ? 'fit': 'center' },
-            { text: 'Pull Refresh', component: PullRefreshList, layout: Ext.os.is.Phone ? 'fit': 'center' },
-            { text: 'Paging', component: PagingList, layout: Ext.os.is.Phone ? 'fit': 'center' },
-            // { text: 'Swiper', children: [
-            //     { text: 'Simple Actions', component: SimpleActions, layout: Ext.os.is.Phone ? 'fit': 'center' },
-            //     { text: 'Multiple Actions', component: MultipleActions, layout: Ext.os.is.Phone ? 'fit': 'center' },
-            //     { text: 'Undoable Actions', component: UndoableActions, layout: Ext.os.is.Phone ? 'fit': 'center' },
-            // ]},
-            { text: 'NestedList', component: NestedList, layout: Ext.os.is.Phone ? 'fit': 'center' }
-        ]},
-        { text: 'Media', children: [
-            { text: 'Video', component: Video },
-            { text: 'Audio', component: Audio }
-        ] },
-        { text: 'Panel', component: Panel, layout: 'center' },
-        { text: 'Picker', component: Picker, layout: 'center' },
-        { text: 'ProgressBar', component: ProgressBar, layout: 'center' },
-        { text: 'Ripple', component: Ripple, layout: 'center' },
-        { text: 'Tabs', children: [
-            { text: 'Basic Tabs', component: BasicTabs },
-            { text: 'Bottom Tabs', component: BottomTabs },
-            { text: 'Icon Tabs', component: IconTabs },
-            { text: 'Desktop Tabs', component: DesktopTabs },
-            { text: 'Closable', component: Closable },
-            { text: 'ScrollingTabs', component: ScrollingTabs, layout: Ext.os.is.Phone ? 'fit': 'center' },
-            { text: 'TabBar', component: TabBar, layout: Ext.os.is.Phone ? 'fit': 'center' }        
-        ]},
-        { text: 'TitleBar', component: TitleBar },
-        { text: 'Toast', component: Toast, layout: 'center' },
-        { text: 'Toolbar', component: Toolbar },
-        { text: 'ToolTip', component: ToolTip, layout: 'center'  },
-        { text: 'Touch Events', component: TouchEvents },
         { text: 'Trees', children: [
             { text: 'Tree', component: Tree },
             { text: 'TreeList', component: TreeList, layout: Ext.os.is.Phone ? 'fit': 'center' },
@@ -420,6 +427,7 @@ const root = {
 function transform(node) {
     if (!node.id) node.id = node.text.replace(/\s/g, '');
     node.leaf = !node.hasOwnProperty('children');
+    node.iconCls = null;
 
     if (node.children) {
         node.children.forEach(child => transform(child))

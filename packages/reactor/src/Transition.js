@@ -10,79 +10,95 @@ Ext.require([
 
 export default class Transition extends Component {
 
-    constructor({ children }) {
-        super();
-
-        this.state = {
-            incoming: this.track(children, false),
-            outgoing: null
-        };
-    }
-
     static defaultProps = {
         type: 'slide',
-        direction: 'left',
+        direction: 'forward',
         duration: 350,
         easing: 'easing'
-    }
+    };
 
     componentWillReceiveProps(nextProps) {
-        const incoming = this.track(nextProps.children);
+        if (nextProps.direction !== this.props.direction) {
+            this.cmp.setConfig(this.createAnimations(nextProps));
+        }
 
-        if (nextProps.children.key !== this.props.children.key) {
-            this.animateOnUpdate = true;
-            const incoming = this.track(nextProps.children);
-            const outgoing = this.state.incoming;
-            this.outgoingCmp = this.incomingCmp;
-            this.setState({ outgoing, incoming });
-        } else {
-            const incoming = this.track(nextProps.children, false);
-            this.setState({ incoming });
+        if (nextProps.children && this.props.children && nextProps.children.key !== this.props.children.key) {
+            const { type, direction } = nextProps;
+
+            if (type === 'cover') {
+                this.cmp.setZIndex(direction === 'forward' ? 0 : 2);
+            } else if (type === 'reveal') {
+                this.cmp.setZIndex(direction === 'forward' ? 2 : 0);
+            }
         }
     }
 
     track(incoming, hide=true) {    
         return React.cloneElement(incoming, { 
-            hidden: hide,
             height: '100%',
             width: '100%',
             top: 0,
             left: 0,
-            ref: cmp => this.incomingCmp = cmp
+            zIndex: 1,
+            animateCreate: true,
+            animateDestroy: true,
+            ...this.createAnimations(),
+            ref: cmp => {
+                if (cmp) this.cmp = cmp
+            }
         });
     }
 
-    componentDidUpdate() {
-        if (this.animateOnUpdate) {
-            this.animateOnUpdate = false;
-            const { direction, duration, easing } = this.props;
+    createAnimations(nextProps) {
+        let { duration, easing, direction, type } = nextProps || this.props;
 
-            if (this.outgoingCmp) this.outgoingCmp.hide({ 
-                type: this.props.type + 'Out', 
-                duration,
-                easing,
-                direction
-            });
+        direction = direction === 'forward' ? 'left' : 'right';
 
-            if (this.incomingCmp) this.incomingCmp.show({ 
-                type: this.props.type + 'In', 
-                duration,
-                easing,
-                direction
-            });
+        if (type === 'reveal') {
+            if (direction === 'left') {
+                return {
+                    showAnimation: null,
+                    hideAnimation: { type: 'slideOut', easing, direction, duration }
+                };
+            } else {
+                return {
+                    showAnimation: { type: 'slideIn', easing, direction, duration },
+                    hideAnimation: { type: 'reactor-delay', duration }
+                };
+            }
+        } else if (type === "cover") {
+            if (direction === 'left') {
+                return {
+                    showAnimation: { type: 'slideIn', easing, direction, duration },
+                    hideAnimation: { type: 'reactor-delay', duration }
+                };
+            } else {
+                return {
+                    showAnimation: null,
+                    hideAnimation: { type: 'slideOut', easing, direction, duration }
+                };
+            }
+        } else {
+            return {
+                showAnimation: { type: type + 'In', easing, direction, duration },
+                hideAnimation: { type: type + 'Out', easing, direction, duration }
+            }
         }
     }
 
     render() {
         const { children, ...props } = this.props;
-        const { incoming, outgoing } = this.state;
-
+        
         return (
-            <Container layout="float" {...props}>
-                { outgoing }
-                { incoming }
+            <Container {...props} layout="float">
+                { this.track(children) }
             </Container>
         )
     }
 
 }
+
+Ext.define('Ext.reactor.animation.Delay', {
+    alias: 'animation.reactor-delay',
+    extend: 'Ext.fx.animation.Abstract'
+});
