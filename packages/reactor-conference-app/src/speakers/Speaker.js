@@ -35,7 +35,6 @@ class Speaker extends Component {
     render() {
         const { speakers } = this.props;
         const speaker = speakers.speaker;
-
         const sessions = speakers && speakers.speaker && speakers.speaker.sessions;
 
         return (

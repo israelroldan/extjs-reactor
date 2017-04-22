@@ -7,4 +7,4 @@ window.d3 = d3;
 
 Ext.require('Ext.*');
 
-launch(<App/>) 
+launch(<App/>, {}, { debug: true }) 

@@ -3,7 +3,7 @@ import { Transition } from '@extjs/reactor';
 import { Spacer, Panel, Button, Menu, MenuItem, NumberField, Label, Container, SliderField } from '@extjs/ext-react';
 import colors from '../colors';
 
-export default class TransitionExample extends Transition {
+export default class TransitionExample extends Component {
 
     state = {
         index: 1,
@@ -26,11 +26,11 @@ export default class TransitionExample extends Transition {
     }
 
     goForward = () => {
-        this.setState({ direction: 'forward', index: this.state.index + 1 })
+        this.setState({ direction: 'left', index: this.state.index + 1 })
     }
 
     goBack = () => {
-        this.setState({ direction: 'back', index: this.state.index - 1 })
+        this.setState({ direction: 'right', index: this.state.index - 1 })
     }
 
     setDuration = (field) => {

@@ -21,7 +21,7 @@ class Event extends Component {
                         <div className="app-event-time">{day} {data.time}</div>
                         <div className="app-event-location">{data.location.name}</div>
                         <hr/>
-                        <div className="app-event-abstract">{data.description}</div>
+                        <div className="app-event-abstract" dangerouslySetInnerHTML={{ __html: data.description }}/>
                     </div>
                 )}
             </Container>

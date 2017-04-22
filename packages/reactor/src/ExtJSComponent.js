@@ -94,6 +94,7 @@ export default class ExtJSComponent extends Component {
     receiveComponent(nextComponent, transaction, context) {
         if (this.cmp.destroyed) return;
         const props = nextComponent.props;
+        this._rushProps(this._currentElement.props, props);
         this.updateChildren(this._applyDefaults(props), transaction, context);
         this._applyProps(this._currentElement.props, props);
         this._currentElement = nextComponent;
@@ -113,24 +114,8 @@ export default class ExtJSComponent extends Component {
             if (Ext.navigation && Ext.navigation.View && parentCmp && parentCmp instanceof Ext.navigation.View) {
                 parentCmp.pop();
             } else {
-                this.destroy(this.cmp);
+                this.cmp.destroy();
             }
-        }
-    }
-
-    destroy(cmp) {
-        if (cmp.animateDestroy) {
-            const hideAnimation = cmp.getHideAnimation();
-
-            if (hideAnimation) {
-                setTimeout(() => cmp.destroy(), hideAnimation.getDuration());
-            }
-    
-            if (!(hideAnimation instanceof Ext.reactor.animation.Delay)) {
-                cmp.hide(cmp.hideAnimation);
-            }
-        } else {
-            cmp.destroy();
         }
     }
 
@@ -315,6 +300,19 @@ export default class ExtJSComponent extends Component {
                 return value;
             }
         })
+    }
+
+    _rushProps(oldProps, newProps) {
+        const rushConfigs = this.extJSClass.__reactorUpdateConfigsBeforeChildren;
+        if (!rushConfigs) return;
+        const oldConfigs = {}, newConfigs = {}
+
+        for (let name in rushConfigs) {
+            oldConfigs[name] = oldProps[name];
+            newConfigs[name] = newProps[name]
+        }
+
+        this._applyProps(oldConfigs, newConfigs);
     }
 
     /**
@@ -571,7 +569,7 @@ const ContainerMixin = Object.assign({}, ReactMultiChild.Mixin, {
         } else {
             if (node instanceof HTMLElement && node._extCmp && !node._extCmp.destroying) {
                 if (this.reactorSettings.debug) console.log('removing', node._extCmp.$className);
-                this.destroy(node._extCmp);
+                node._extCmp.destroy();
             }
             // We don't need to do anything for Ext JS components because a component is automatically removed from it parent when destroyed
         }

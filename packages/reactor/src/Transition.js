@@ -1,61 +1,114 @@
-import React, { Component } from 'react';
 import { reactify } from './reactify';
-
-const Container = reactify('container');
 
 Ext.require([
     'Ext.fx.animation.*', 
     'Ext.layout.Float'
 ]);
 
-export default class Transition extends Component {
+Ext.define('Ext.reactor.Transition', {
+    xtype: 'transition',
+    extend: 'Ext.Container',
 
-    static defaultProps = {
+    config: {
         type: 'slide',
-        direction: 'forward',
         duration: 350,
-        easing: 'easing'
-    };
+        easing: 'ease',
+        direction: 'left'
+    },
 
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.direction !== this.props.direction) {
-            this.cmp.setConfig(this.createAnimations(nextProps));
+    eventedConfig: {
+        location: null
+    },
+
+    statics: {
+        __reactorUpdateConfigsBeforeChildren: {
+            location: true,
+            direction: true
+        }
+    },
+
+    initialize() {
+        this.on('locationchange', (cmp, newLocation, oldLocation) => {
+            if (!newLocation || !oldLocation) return;
+
+            const newPath = newLocation.pathname, oldPath = oldLocation.pathname;
+
+            if (newPath.length > oldPath.length && newPath.indexOf(oldPath) === 0) {
+                this.setDirection('left');
+            } else if (newPath.length < oldPath.length && oldPath.indexOf(newPath) === 0) {
+                this.setDirection('right');
+            }
+        })
+    },
+
+    add(items) {
+        if (!Array.isArray(items)) {
+            items = [items];
         }
 
-        if (nextProps.children && this.props.children && nextProps.children.key !== this.props.children.key) {
-            const { type, direction } = nextProps;
-
-            if (type === 'cover') {
-                this.cmp.setZIndex(direction === 'forward' ? 0 : 2);
-            } else if (type === 'reveal') {
-                this.cmp.setZIndex(direction === 'forward' ? 2 : 0);
-            }
-        }
-    }
-
-    track(incoming, hide=true) {    
-        return React.cloneElement(incoming, { 
-            height: '100%',
-            width: '100%',
-            top: 0,
-            left: 0,
-            zIndex: 1,
-            animateCreate: true,
-            animateDestroy: true,
-            ...this.createAnimations(),
-            ref: cmp => {
-                if (cmp) this.cmp = cmp
-            }
+        const animations = this.createAnimations();
+        items.forEach(item => this.addAnimationConfigs(item));
+        
+        Ext.reactor.Transition.superclass.add.call(this, items);
+        
+        items.forEach(item => {
+            item.show(animations.showAnimation)
+            const originalDestroy = item.destroy.bind(item);
+            item.destroy = this.destroyChild.bind(this, item, originalDestroy);
         });
-    }
+    },
 
-    createAnimations(nextProps) {
-        let { duration, easing, direction, type } = nextProps || this.props;
+    destroyChild(item, originalDestroy) {
+        console.log('destroyChild');
+        if (item.animatingDestroy) return;
 
-        direction = direction === 'forward' ? 'left' : 'right';
+        let { hideAnimation } = this.createAnimations(), 
+            type = this.getType(), 
+            direction = this.getDirection();
+
+        if (type === 'cover') {
+            item.setZIndex(direction === 'left' || direction === 'top' ? 0 : 2);
+        } else if (type === 'reveal') {
+            item.setZIndex(direction === 'left' || direction === 'top' ? 2 : 0);
+        } 
+
+        item.animatingDestroy = true;
+
+        const animateDestroy = () => {
+            if (hideAnimation.type === 'reactor-delay') {
+                setTimeout(originalDestroy, hideAnimation.duration);
+            } else {
+                item.hide(hideAnimation);
+                setTimeout(originalDestroy, hideAnimation.duration);
+            }
+        }
+
+        if (item.activeAnimation) {
+            item.activeAnimation.stop();
+        }
+
+        animateDestroy();
+    },
+
+    addAnimationConfigs(child, hidden=true) {
+        child.setConfig({
+            hidden, 
+            width: '100%',
+            height: '100%',
+            zIndex: 1,
+            top: 0,
+            left: 0
+        });
+    },
+
+    createAnimations() {
+        let type = this.getType(),
+            duration = this.getDuration(),
+            easing = this.getEasing(),
+            direction = this.getDirection();
 
         if (type === 'reveal') {
-            if (direction === 'left') {
+            if (direction === 'left' || direction === 'up') {
                 return {
                     showAnimation: null,
                     hideAnimation: { type: 'slideOut', easing, direction, duration }
@@ -67,7 +120,7 @@ export default class Transition extends Component {
                 };
             }
         } else if (type === "cover") {
-            if (direction === 'left') {
+            if (direction === 'left' || direction === 'up') {
                 return {
                     showAnimation: { type: 'slideIn', easing, direction, duration },
                     hideAnimation: { type: 'reactor-delay', duration }
@@ -84,21 +137,7 @@ export default class Transition extends Component {
                 hideAnimation: { type: type + 'Out', easing, direction, duration }
             }
         }
-    }
-
-    render() {
-        const { children, ...props } = this.props;
-        
-        return (
-            <Container {...props} layout="float">
-                { this.track(children) }
-            </Container>
-        )
-    }
-
-}
-
-Ext.define('Ext.reactor.animation.Delay', {
-    alias: 'animation.reactor-delay',
-    extend: 'Ext.fx.animation.Abstract'
+    }    
 });
+
+export default reactify('transition');
