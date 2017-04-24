@@ -1,20 +1,20 @@
 import React from 'react';
-import { Toolbar, Button } from '@extjs/ext-react';
+import { Toolbar, Button, Component } from '@extjs/ext-react';
 
-export default function Breadcrumbs({ node, router }) {
-    
+export default function Breadcrumbs(props) {
+    let { node, router } = props;
     const items = [];
 
     do {
-        items.unshift(<Button text={node.name} handler={router.push.bind(router, node.id)}/>);
+        items.unshift(<Button key={node.id} text={node.get('text')} handler={router.push.bind(router, node.id)}/>);
         
         if (node.parentNode) {
-            items.unshift(<div>&gt;</div>);
+            items.unshift(<div key={node.id + '>'} className="x-font-icon md-icon-keyboard-arrow-right" style={{fontSize: '20px', color: '#666'}}/>);
         }
     } while (node = node.parentNode)
 
     return (
-        <Toolbar docked="top">
+        <Toolbar {...props} padding="4 16">
             {items}
         </Toolbar>
     )

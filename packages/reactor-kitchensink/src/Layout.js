@@ -60,6 +60,7 @@ class Layout extends Component {
             files,
             children,
             showCode,
+            showTree,
             actions,
             layout,
             router
@@ -91,6 +92,12 @@ class Layout extends Component {
             mainView = (
                 <Container layout="fit" flex={4}>
                     <TitleBar docked="top" shadow style={{zIndex: 2}}>
+                        <Button 
+                            ui="app-button-short" 
+                            iconCls="x-fa fa-bars" 
+                            handler={actions.toggleTree}
+                            ripple={{bound: false}} 
+                        />
                         <div className="ext ext-sencha" style={{marginRight: '7px', fontSize: '20px', width: '20px'}}/>
                         <a href="#" className="app-title">ExtReact Components</a>
                         { files && (
@@ -103,14 +110,15 @@ class Layout extends Component {
                             /> 
                         )}
                     </TitleBar>
-                    <Container layout={{type: 'hbox', align: 'stretch'}} flex={1}>
+                    <Container layout="fit" flex={1}>
                         <NavTree 
-                            width={265} 
+                            docked="left"
                             store={navStore} 
                             selection={selectedNavNode}
                             onSelectionChange={(tree, node) => this.onNavChange(node)}
+                            collapsed={!showTree}
                         /> 
-                        <Breadcrumbs node={selectedNavNode} router={router}/>
+                        <Breadcrumbs docked="top" node={selectedNavNode} router={router}/>
                         <Transition flex={1} type="slide" location={location.hash}>
                             { component ? (
                                 <Container layout={layout} scrollable={layout !== 'fit'} padding="30" key={selectedNavNode.id}>

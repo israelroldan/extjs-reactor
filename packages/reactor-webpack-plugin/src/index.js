@@ -211,6 +211,17 @@ module.exports = class ReactExtJSWebpackPlugin {
      * @private
      */
     _buildExtBundle(name, modules, output, { toolkit='modern', theme, packages=[], packageDirs=[], sdk, overrides }) {
+
+        let sencha;
+        
+        try {
+            // use @extjs/sencha-cmd from node_modules
+            sencha = require('@extjs/sencha-cmd').bin;
+        } catch (e) {
+            // attempt to use globally installed Sencha Cmd
+            sencha = 'sencha';
+        }
+
         return new Promise((resolve, reject) => {
             this.onBuildComplete = resolve;
             this.onBuildFail = reject;
@@ -254,7 +265,7 @@ module.exports = class ReactExtJSWebpackPlugin {
 
             if (this.watch) {
                 if (!watching) {
-                    watching = spawn('sencha', ['ant', 'watch'], { cwd: output });
+                    watching = spawn(sencha, ['ant', 'watch'], { cwd: output });
                     watching.stdout.pipe(process.stdout);
                     watching.stdout.on('data', data => {
                         if (data.toString().match(/Waiting for changes\.\.\./)) {

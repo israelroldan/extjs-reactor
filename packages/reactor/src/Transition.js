@@ -8,15 +8,34 @@ Ext.require([
 Ext.define('Ext.reactor.Transition', {
     xtype: 'transition',
     extend: 'Ext.Container',
+    initial: true,
 
     config: {
+        /**
+         * The type of animation to use.
+         */
         type: 'slide',
+
+        /**
+         * The duration of animations
+         */
         duration: 350,
+
+        /**
+         * The easing function to use for animations
+         */
         easing: 'ease',
+
+        /**
+         * The direction of the forward animation
+         */
         direction: 'left'
     },
 
     eventedConfig: {
+        /**
+         * The uri to use when determining if the animation should be forward or backward.
+         */
         location: null
     },
 
@@ -49,8 +68,13 @@ Ext.define('Ext.reactor.Transition', {
         
         Ext.reactor.Transition.superclass.add.call(this, items);
         
+        if (this.initial) {
+            animations.showAnimation = null;
+            this.initial = false;
+        }
+
         items.forEach(item => {
-            item.show(animations.showAnimation)
+            requestAnimationFrame(() => item.show(animations.showAnimation));
             const originalDestroy = item.destroy.bind(item);
             item.destroy = this.destroyChild.bind(this, item, originalDestroy);
         });
@@ -84,7 +108,7 @@ Ext.define('Ext.reactor.Transition', {
             item.activeAnimation.stop();
         }
 
-        animateDestroy();
+        requestAnimationFrame(() => animateDestroy());
     },
 
     addAnimationConfigs(child, hidden=true) {
