@@ -31,11 +31,9 @@ Ext.define('Ext.reactor.Transition', {
         this.on('locationchange', (cmp, newLocation, oldLocation) => {
             if (!newLocation || !oldLocation) return;
 
-            const newPath = newLocation.pathname, oldPath = oldLocation.pathname;
-
-            if (newPath.length > oldPath.length && newPath.indexOf(oldPath) === 0) {
+            if (newLocation.length > oldLocation.length && newLocation.indexOf(oldLocation) === 0) {
                 this.setDirection('left');
-            } else if (newPath.length < oldPath.length && oldPath.indexOf(newPath) === 0) {
+            } else if (newLocation.length < oldLocation.length && oldLocation.indexOf(newLocation) === 0) {
                 this.setDirection('right');
             }
         })
@@ -59,7 +57,6 @@ Ext.define('Ext.reactor.Transition', {
     },
 
     destroyChild(item, originalDestroy) {
-        console.log('destroyChild');
         if (item.animatingDestroy) return;
 
         let { hideAnimation } = this.createAnimations(), 

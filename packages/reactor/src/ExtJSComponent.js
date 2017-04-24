@@ -532,11 +532,6 @@ const ContainerMixin = Object.assign({}, ReactMultiChild.Mixin, {
         } else {
             if (this.reactorSettings.debug) console.log(`adding ${childNode.$className} to ${this.cmp.$className}`);
 
-            if (childNode.animateCreate) {
-                childNode.setHidden(true);
-                childNode.on('added', () => childNode.show(childNode.showAnimation), null, { single: true })
-            }
-
             if (!(childNode instanceof Ext.Base)) {
                 // we're appending a dom node
                 childNode = wrapDOMElement(childNode.node);

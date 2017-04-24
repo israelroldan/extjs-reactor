@@ -10,6 +10,7 @@ const initialState = {
         rootVisible: true,
         root: examples
     }),
+    selectedNavNode: examples,
     mode: 'full',
     layout: 'fit',
     showCode: true
@@ -20,8 +21,7 @@ export default function(state = initialState, action) {
         case ROUTE_DID_CHANGE: {
             const { location } = action;
             const { navStore } = state;
-            const key = location.pathname.slice(1);
-            const node = navStore.getNodeById(key);
+            const node = navStore.getNodeById(location.pathname);
             
             return {
                 ...state,

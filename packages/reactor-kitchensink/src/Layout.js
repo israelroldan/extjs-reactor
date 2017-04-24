@@ -5,9 +5,11 @@ import { TitleBar, Container, NestedList, Panel, Button } from '@extjs/ext-react
 import { Transition } from '@extjs/reactor';
 import hljs, { highlightBlock } from 'highlightjs';
 import NavTree from './NavTree';
+import NavView from './NavView';
 import Files from './Files';
 import Home from './Home';
 import * as actions from './actions';
+import Breadcrumbs from './Breadcrumbs';
 
 Ext.require('Ext.panel.Collapser');
 
@@ -40,7 +42,7 @@ class Layout extends Component {
     onNavChange = (node) => {
         if (node && node.isLeaf()) {
             const { router, location } = this.props;
-            const path = `/${node.getId()}`;
+            const path = node.getId();
             if (location.pathname !== path) router.push(path)
         }
     }
@@ -59,7 +61,8 @@ class Layout extends Component {
             children,
             showCode,
             actions,
-            layout
+            layout,
+            router
         } = this.props;
 
         let mainView;
@@ -107,21 +110,16 @@ class Layout extends Component {
                             selection={selectedNavNode}
                             onSelectionChange={(tree, node) => this.onNavChange(node)}
                         /> 
-
-                        { component ? (
-                            <Transition flex={1} type="slide">
-                                <Container 
-                                    layout={layout} 
-                                    scrollable={layout !== 'fit'} 
-                                    padding="30"
-                                    key={selectedNavNode.get('text')}
-                                >
+                        <Breadcrumbs node={selectedNavNode} router={router}/>
+                        <Transition flex={1} type="slide" location={location.hash}>
+                            { component ? (
+                                <Container layout={layout} scrollable={layout !== 'fit'} padding="30" key={selectedNavNode.id}>
                                     { React.createElement(component) }
                                 </Container>
-                            </Transition>
-                         ) : (
-                             <Home flex={1}/> 
-                         ) }
+                            ) : selectedNavNode ? (
+                                <NavView key={selectedNavNode.id} node={selectedNavNode} router={router}/>
+                            ) : null }
+                        </Transition>
                     </Container>
                 </Container>             
             )

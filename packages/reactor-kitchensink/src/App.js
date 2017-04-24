@@ -22,8 +22,7 @@ export default function App() {
     return (
         <Provider store={store}>
             <Router history={hashHistory}>
-                <Route path="/" component={Layout}/>
-                <Route path="/:component" component={Layout}/>
+                <Route path="*" component={Layout}/>
             </Router>
         </Provider>
     )

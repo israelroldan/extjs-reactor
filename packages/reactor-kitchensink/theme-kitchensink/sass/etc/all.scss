@@ -84,3 +84,41 @@ $content-panel-grid-background: dynamic(darken($content-panel-grid-line, 5%));
     color: red;
   }
 }
+
+.app-thumbnail {
+  vertical-align: top;
+  width: 116px;
+  height: 156px;
+  margin-right: 20px;
+  cursor: pointer;
+  line-height: 18px;
+  display: inline-block;
+}
+
+.app-thumbnail-icon-wrap {
+  width: 96px;
+  height: 96px;
+  text-align: center;
+  font-size: 96px;
+  line-height: 96px;
+  font-family: Sencha-Examples;
+  margin: 12px auto 8px;
+  position: relative;
+  background-color: $base-color;
+}
+
+.app-thumbnail-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  font-size: 48px;
+  line-height: 96px;
+  color: $base-foreground-color;
+}
+
+.app-thumbnail-text {
+  text-align: center;
+}

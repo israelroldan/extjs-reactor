@@ -213,7 +213,8 @@ import Files from './DragAndDrop/Files/Files';
 import Transition from './Transition/Transition';
 
 const root = {
-    id: 'root',
+    id: '/',
+    text: 'All',
     children: [
         { text: 'Components', children: [
             { text: 'Buttons', children: [
@@ -424,13 +425,16 @@ const root = {
     ]
 };
 
-function transform(node) {
-    if (!node.id) node.id = node.text.replace(/\s/g, '');
+function transform(node, parentUrl) {
     node.leaf = !node.hasOwnProperty('children');
     node.iconCls = null;
 
+    if (node.text && !node.id) {
+        node.id = (parentUrl === '/' ? '' : parentUrl) + '/' + node.text.toLowerCase().replace(/\s/g, '_').replace(/[^\w]/g, '');
+    }
+
     if (node.children) {
-        node.children.forEach(child => transform(child))
+        node.children.forEach(child => transform(child, node.id))
     }
 }
 
