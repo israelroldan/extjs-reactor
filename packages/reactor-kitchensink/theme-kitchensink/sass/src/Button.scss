@@ -4,8 +4,13 @@
         text-align: right;
     }
 
-    .button-group {
-        background: rgb(240, 240, 240);
+}
+
+.button-group {
+    background: white;
+    
+    &.button-group-alt {
+        background: #607d8b;
     }
 }
 

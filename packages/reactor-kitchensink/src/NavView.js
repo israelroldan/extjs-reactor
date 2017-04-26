@@ -5,7 +5,7 @@ import { Container } from '@extjs/ext-react';
 export default function NavView({ node, router }) {
 
     function onClick(e, path) {
-        Ext.fly(e.target).ripple(e, {});
+        Ext.get(e.target).ripple(e, {});
         setTimeout(() => router.push(path), 50)
     }
 

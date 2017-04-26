@@ -56,7 +56,6 @@ class Layout extends Component {
             selectedNavNode, 
             component, 
             navStore, 
-            mode, 
             files,
             children,
             showCode,
@@ -93,12 +92,12 @@ class Layout extends Component {
                 <Container layout="fit" flex={4}>
                     <TitleBar docked="top" shadow style={{zIndex: 2}}>
                         <Button 
-                            ui="app-button-short" 
+                            align="left"
                             iconCls="x-fa fa-bars" 
                             handler={actions.toggleTree}
                         />
-                        <div className="ext ext-sencha" style={{marginRight: '7px', fontSize: '20px', width: '20px'}}/>
-                        <a href="#" className="app-title">ExtReact Components</a>
+                        <div className="ext ext-sencha" style={{margin: '0 5px 0 7px', fontSize: '20px', width: '20px'}}/>
+                        <a href="#" className="app-title">ExtReact Kitchen Sink</a>
                     </TitleBar>
                     <Container layout="fit" flex={1}>
                         <NavTree 
@@ -125,6 +124,7 @@ class Layout extends Component {
 
         return (
             <Container layout="hbox" cls="main-background" fullscreen>
+                { mainView }
                 { !Ext.os.is.Phone && files && (
                     <Button 
                         align="right" 
@@ -136,7 +136,6 @@ class Layout extends Component {
                         handler={actions.toggleCode} 
                     /> 
                 )}
-                { mode !== 'docs' && mainView }
                 { !Ext.os.is.Phone && files && (
                     <Panel 
                         resizable={{ edges: 'west', dynamic: true }} 
@@ -150,7 +149,7 @@ class Layout extends Component {
                         hideAnimation={{type: 'slideOut', direction: 'right', duration: 100, easing: 'ease' }}
                         showAnimation={{type: 'slideIn', direction: 'left', duration: 100, easing: 'ease' }}
                     >
-                        <Files files={files} mode={mode} /> 
+                        <Files files={files} /> 
                     </Panel>
                 )}
             </Container>

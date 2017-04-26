@@ -20,7 +20,6 @@ function codeClassFor(file)  {
 export default class Files extends Component {
 
     static propTypes = {
-        mode: PropTypes.string.isRequired,
         files: PropTypes.object
     }
 
@@ -39,7 +38,7 @@ export default class Files extends Component {
     }
 
     render() {
-        const { mode, files } = this.props;
+        const { files } = this.props;
 
         return (
             <TabPanel 
@@ -47,7 +46,6 @@ export default class Files extends Component {
                 shadow
                 style={{zIndex: 1}}
                 tabBar={{
-                    hidden: mode === 'docs' && files.length === 1,
                     layout: {
                         pack: 'left'
                     }

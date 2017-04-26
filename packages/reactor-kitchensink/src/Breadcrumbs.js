@@ -6,15 +6,32 @@ export default function Breadcrumbs(props) {
     const items = [];
 
     do {
-        items.unshift(<Button key={node.id} text={node.get('text')} handler={router.push.bind(router, node.id)}/>);
+        items.unshift(
+            <Button 
+                text={node.get('text')} 
+                key={node.get('text')}
+                handler={router.push.bind(router, node.id)}
+            />
+        );
         
         if (node.parentNode) {
-            items.unshift(<div key={node.id + '>'} className="x-font-icon md-icon-keyboard-arrow-right" style={{fontSize: '20px', color: '#666'}}/>);
+            items.unshift(
+                <div 
+                    className="x-font-icon md-icon-keyboard-arrow-right" 
+                    key={node.get('text') + '>'}
+                    style={{ 
+                        fontSize: '20px', 
+                        lineHeight: '32px', 
+                        verticalAlign: 'middle', 
+                        color: '#666'
+                    }}
+                />
+            );
         }
     } while (node = node.parentNode)
 
     return (
-        <Toolbar {...props} padding="4 16">
+        <Toolbar {...props}>
             {items}
         </Toolbar>
     )
