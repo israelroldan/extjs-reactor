@@ -96,19 +96,9 @@ class Layout extends Component {
                             ui="app-button-short" 
                             iconCls="x-fa fa-bars" 
                             handler={actions.toggleTree}
-                            ripple={{bound: false}} 
                         />
                         <div className="ext ext-sencha" style={{marginRight: '7px', fontSize: '20px', width: '20px'}}/>
                         <a href="#" className="app-title">ExtReact Components</a>
-                        { files && (
-                            <Button 
-                                align="right" 
-                                iconCls="x-fa fa-code" 
-                                ui="app-button-short" 
-                                handler={actions.toggleCode} 
-                                ripple={{bound: false}} 
-                            /> 
-                        )}
                     </TitleBar>
                     <Container layout="fit" flex={1}>
                         <NavTree 
@@ -119,7 +109,7 @@ class Layout extends Component {
                             collapsed={!showTree}
                         /> 
                         <Breadcrumbs docked="top" node={selectedNavNode} router={router}/>
-                        <Transition flex={1} type="slide" location={location.hash}>
+                        <Transition flex={1} type="slide" bindDirectionToLocation>
                             { component ? (
                                 <Container layout={layout} scrollable={layout !== 'fit'} padding="30" key={selectedNavNode.id}>
                                     { React.createElement(component) }
@@ -135,6 +125,17 @@ class Layout extends Component {
 
         return (
             <Container layout="hbox" cls="main-background" fullscreen>
+                { !Ext.os.is.Phone && files && (
+                    <Button 
+                        align="right" 
+                        iconCls={'x-font-icon ' + (showCode ? 'md-icon-close' : 'md-icon-code') }
+                        ui="app-show-code round raised alt" 
+                        top={21}
+                        right={21}
+                        zIndex={1000}
+                        handler={actions.toggleCode} 
+                    /> 
+                )}
                 { mode !== 'docs' && mainView }
                 { !Ext.os.is.Phone && files && (
                     <Panel 
@@ -146,8 +147,8 @@ class Layout extends Component {
                         collapsible={{ direction: 'right' }}
                         shadow 
                         style={{zIndex: 3}}
-                        hideAnimation={{type: 'slideOut', direction: 'right'}}
-                        showAnimation={{type: 'slideIn', direction: 'left' }}
+                        hideAnimation={{type: 'slideOut', direction: 'right', duration: 100, easing: 'ease' }}
+                        showAnimation={{type: 'slideIn', direction: 'left', duration: 100, easing: 'ease' }}
                     >
                         <Files files={files} mode={mode} /> 
                     </Panel>

@@ -60,7 +60,7 @@ export default class TransitionExample extends Component {
                     <Button iconCls="x-fa fa-chevron-right" handler={this.goForward} ui="action raised"/>
                     <Spacer/>
                     <Button text={Ext.String.capitalize(type)} ui="action raised">
-                        <Menu defaults={{indent: false}}>
+                        <Menu indented={false}>
                             <MenuItem text="Slide" handler={this.setType}/>
                             <MenuItem text="Cover" handler={this.setType}/>
                             <MenuItem text="Reveal" handler={this.setType}/>
@@ -69,7 +69,7 @@ export default class TransitionExample extends Component {
                         </Menu>
                     </Button>
                     <Button text={Ext.String.capitalize(easing)} ui="action raised">
-                        <Menu>
+                        <Menu indented={false}>
                             <MenuItem text="Linear" handler={this.setEasing}/>
                             <MenuItem text="Ease" handler={this.setEasing}/>
                             <MenuItem text="Ease-In" handler={this.setEasing}/>

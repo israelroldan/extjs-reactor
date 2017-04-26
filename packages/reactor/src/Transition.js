@@ -12,31 +12,35 @@ Ext.define('Ext.reactor.Transition', {
 
     config: {
         /**
+         * @cfg {String}
          * The type of animation to use.
          */
         type: 'slide',
 
         /**
+         * @cfg {Number}
          * The duration of animations
          */
         duration: 350,
 
         /**
+         * @cfg {String}
          * The easing function to use for animations
          */
         easing: 'ease',
 
         /**
-         * The direction of the forward animation
+         * @cfg {String}
+         * The direction of the forward animation.
          */
-        direction: 'left'
-    },
+        direction: 'left',
 
-    eventedConfig: {
         /**
-         * The uri to use when determining if the animation should be forward or backward.
+         * @cfg {Boolean}
+         * Set to true to automatically switch directions based on browser URL changes. This should generally
+         * be set to true when animating transitions based on client-side routing.
          */
-        location: null
+        bindDirectionToLocation: false
     },
 
     statics: {
@@ -47,17 +51,24 @@ Ext.define('Ext.reactor.Transition', {
     },
 
     initialize() {
-        this.on('locationchange', (cmp, newLocation, oldLocation) => {
-            if (!newLocation || !oldLocation) return;
-
-            if (newLocation.length > oldLocation.length && newLocation.indexOf(oldLocation) === 0) {
-                this.setDirection('left');
-            } else if (newLocation.length < oldLocation.length && oldLocation.indexOf(newLocation) === 0) {
-                this.setDirection('right');
-            }
-        })
+        this.newLocation = location.href;
     },
 
+    computeDirection() {
+        if (this.getBindDirectionToLocation()) {
+            const { newLocation = '', oldLocation = '' } = this;
+
+            if (newLocation.length > oldLocation.length && newLocation.indexOf(oldLocation) === 0) {
+                return 'left';
+            } else if (newLocation.length < oldLocation.length && oldLocation.indexOf(newLocation) === 0) {
+                return 'right';
+            }
+        }
+         
+        return this.getDirection();
+    },
+
+    // override add to show animation when children are added
     add(items) {
         if (!Array.isArray(items)) {
             items = [items];
@@ -69,23 +80,34 @@ Ext.define('Ext.reactor.Transition', {
         Ext.reactor.Transition.superclass.add.call(this, items);
         
         if (this.initial) {
+            // don't show animation on initial render
             animations.showAnimation = null;
             this.initial = false;
         }
 
         items.forEach(item => {
             requestAnimationFrame(() => item.show(animations.showAnimation));
+
+            // override destroy to first hide then destroy
             const originalDestroy = item.destroy.bind(item);
             item.destroy = this.destroyChild.bind(this, item, originalDestroy);
         });
     },
 
+    insert(index, item) {
+        // order doesn't matter since we're using a floating layout
+        this.add(item);
+    },
+
     destroyChild(item, originalDestroy) {
         if (item.animatingDestroy) return;
 
+        this.oldLocation = this.newLocation || location.href;
+        this.newLocation = location.href;
+
         let { hideAnimation } = this.createAnimations(), 
             type = this.getType(), 
-            direction = this.getDirection();
+            direction = this.computeDirection();
 
         if (type === 'cover') {
             item.setZIndex(direction === 'left' || direction === 'top' ? 0 : 2);
@@ -126,7 +148,7 @@ Ext.define('Ext.reactor.Transition', {
         let type = this.getType(),
             duration = this.getDuration(),
             easing = this.getEasing(),
-            direction = this.getDirection();
+            direction = this.computeDirection();
 
         if (type === 'reveal') {
             if (direction === 'left' || direction === 'up') {

@@ -35,7 +35,7 @@ export default function ChartToolbar({
         <Toolbar docked="top">
             { theme && (
                 <Button iconCls="x-fa fa-picture-o" text="THEME">
-                    <Menu>
+                    <Menu indented={false}>
                         <MenuItem text="Default" handler={() => onThemeChange('default')}/>
                         <MenuItem text="Green" handler={() => onThemeChange('green')}/>
                         <MenuItem text="Midnight" handler={() => onThemeChange('midnight')}/>

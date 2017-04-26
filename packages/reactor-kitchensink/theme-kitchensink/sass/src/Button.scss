@@ -14,3 +14,12 @@
     $padding: 4px 10px,
     $color: white
 );
+
+@include button-ui(
+    $ui: 'app-show-code',
+    $padding: 18px 18px,
+    $icon-font-size: 22px,
+    $color: white,
+    $background-color: #ec407a,
+    $focus-background-color: darken(#ec407a, 5%)
+);

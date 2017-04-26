@@ -17,6 +17,7 @@ export default class DialogExample extends Component {
                     displayed={showDialog}
                     title="Dialog"
                     closable
+                    maximizable
                     closeAction="hide"
                     maskTapHandler={this.onCancel}
                     bodyPadding="20"

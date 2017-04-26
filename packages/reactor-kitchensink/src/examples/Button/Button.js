@@ -79,7 +79,7 @@ export default function ButtonExample() {
 }
 
 const menu = (
-    <Menu>
+     <Menu indented={false}>
         <MenuItem text="Item 1"/>
         <MenuItem text="Item 2"/>
         <MenuItem text="Item 3"/>

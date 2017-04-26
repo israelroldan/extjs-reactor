@@ -1,6 +1,7 @@
 import { Component, Children, cloneElement } from 'react';
 import ReactMultiChild from 'react-dom/lib/ReactMultiChild';
 import { precacheNode } from 'react-dom/lib/ReactDOMComponentTree';
+import ReactComponentEnvironment from 'react-dom/lib/ReactComponentEnvironment';
 import Flags from 'react-dom/lib/ReactDOMComponentFlags';
 import union from 'lodash.union';
 import capitalize from 'lodash.capitalize'
@@ -81,6 +82,12 @@ export default class ExtJSComponent extends Component {
             result = this.cmp = this.createExtJSComponent(config);
         }
 
+        // this allows React internals to get the mounted instance for debug tools when using dangerouslyReplaceNodeWithMarkup
+        // this is probably not needed in fiber
+        if (!result.node) Object.defineProperty(result, 'node', {
+            get: () => this.el
+        });
+
         this._precacheNode();
         return result;
     }
@@ -109,6 +116,10 @@ export default class ExtJSComponent extends Component {
 
             const parentCmp = this.cmp.getParent();
 
+            // remember the parent and position in parent for dangerouslyReplaceNodeWithMarkup
+            // this not needed in fiber
+            const indexInParent = parentCmp.indexOf(this.cmp);
+
             if (this.reactorSettings.debug) console.log('destroy', this.cmp.$className);
 
             if (Ext.navigation && Ext.navigation.View && parentCmp && parentCmp instanceof Ext.navigation.View) {
@@ -116,6 +127,11 @@ export default class ExtJSComponent extends Component {
             } else {
                 this.cmp.destroy();
             }
+
+            // remember the parent and position in parent for dangerouslyReplaceNodeWithMarkup
+            // this not needed in fiber
+            this.el._extIndexInParent = indexInParent;
+            this.el._extParent = parentCmp;
         }
     }
 
@@ -212,9 +228,9 @@ export default class ExtJSComponent extends Component {
     }
 
     /**
-     * Determines whether a child element corresponds to a config or a container item based on the presence of a rel config or 
+     * Determines whether a child element corresponds to a config or a container item based on the presence of a rel config or
      * matching other known relationships
-     * @param {Ext.Base} item 
+     * @param {Ext.Base} item
      */
     _propForChildElement(item) {
         if (item.config && item.config.rel) {
@@ -340,7 +356,7 @@ export default class ExtJSComponent extends Component {
 
     /**
      * Returns the name of the setter method for a given prop.
-     * @param {String} prop 
+     * @param {String} prop
      */
     _setterFor(prop) {
         const name = `set${this._capitalize(prop)}`;
@@ -349,7 +365,7 @@ export default class ExtJSComponent extends Component {
 
     /**
      * Returns the name of a getter for a given prop.
-     * @param {String} prop 
+     * @param {String} prop
      */
     _getterFor(prop) {
         const name = `get${this._capitalize(prop)}`;
@@ -372,14 +388,18 @@ export default class ExtJSComponent extends Component {
         if (this.el) {
             // will get here when rendering root component
             precacheNode(this, this.el)
+        } else if (Ext.isClassic) {
+            // we get here when rendering child components due to lazy rendering
+            this.cmp.on('afterrender', this._doPrecacheNode, this, { single: true });
         } else {
-            // when get here when rendering child components due to lazy rendering
-            this.cmp.on(Ext.isClassic ? 'afterrender' : 'painted', () => {
-                this.el = this.cmp.el.dom;
-                this.el._extCmp = this.cmp;
-                precacheNode(this, this.el)
-            }, this, { single: true });
+            this._doPrecacheNode();
         }
+    }
+
+    _doPrecacheNode() {
+        this.el = this.cmp.el.dom;
+        this.el._extCmp = this.cmp;
+        precacheNode(this, this.el)
     }
 
     /**
@@ -408,8 +428,8 @@ export default class ExtJSComponent extends Component {
     /**
      * Translates and index in props.children to an index within a config value that is an array.  Use
      * this to determine the position of an item in props.children within the array config to which it is mapped.
-     * @param {*} prop 
-     * @param {*} indexInChildren 
+     * @param {*} prop
+     * @param {*} indexInChildren
      */
     _toArrayConfigIndex(prop, indexInChildren) {
         let i=0, found=0;
@@ -420,7 +440,7 @@ export default class ExtJSComponent extends Component {
             if (propForChild && propForChild.name === prop.name) {
                 if (i === indexInChildren) return found;
                 found++;
-            } 
+            }
         });
 
         return -1;
@@ -444,7 +464,7 @@ export default class ExtJSComponent extends Component {
             if (!getter) return;
 
             const currentValue = this.cmp[getter]() || [];
-            
+
             if (isDelete) {
                 // delete
                 value = currentValue.filter(item => item !== value);
@@ -454,7 +474,7 @@ export default class ExtJSComponent extends Component {
                 value = value.splice(this._toArrayConfigIndex(index, prop), 0, item);
             } else {
                 // append
-                value = currentValue.concat(value);                
+                value = currentValue.concat(value);
             }
         }
 
@@ -482,7 +502,7 @@ const ContainerMixin = Object.assign({}, ReactMultiChild.Mixin, {
         if (this.cmp._reactorIgnoreOrder) return; // maintaining order in certain components, like Transition's container, can cause problems with animations, _reactorIgnoreOrder gives us a way to opt out in such scenarios
 
         if (toIndex === child._mountIndex) return; // only move child if the actual mount index has changed
-        
+
         const fitLayout = Ext.layout && (Ext.layout.Fit || Ext.layout.FitLayout);
 
         if (fitLayout && this.cmp.layout instanceof fitLayout) {
@@ -504,12 +524,12 @@ const ContainerMixin = Object.assign({}, ReactMultiChild.Mixin, {
                 // reordering docked components is known to cause issues in modern
                 // place items in a container instead
                 if (childComponent.config && (childComponent.config.docked || childComponent.config.floated || childComponent.config.positioned)) return;
-                
+
                 // removing the child first ensures that we get the new index correct
                 this.cmp.remove(childComponent, false);
-                
+
                 const newIndex = this._toReactChildIndex(toIndex);
-                
+
                 if (this.reactorSettings.debug) console.log(`moving ${childComponent.$className} to position ${newIndex} in ${this.cmp.$className}`);
 
                 this.cmp.insert(newIndex, childComponent);
@@ -581,7 +601,7 @@ const ContainerMixin = Object.assign({}, ReactMultiChild.Mixin, {
 function wrapDOMElement(el) {
     let contentEl = el;
 
-    if (el instanceof DocumentFragment) {
+    if (el instanceof DocumentFragment || el instanceof Comment) {
         // will get here when appending text nodes
         contentEl = document.createElement('div');
         contentEl.appendChild(el)
@@ -590,6 +610,11 @@ function wrapDOMElement(el) {
     const cmp = new Ext.Component({ contentEl });
     cmp.$createdByReactor = true;
     contentEl._extCmp = el._extCmp = cmp;
+
+    // this is needed for devtools when using dangerouslyReplaceNodeWithMarkup
+    // this not needed in fiber
+    cmp.node = contentEl;
+
     return cmp;
 }
 
@@ -615,6 +640,24 @@ function toComponent(node) {
 function isAssignableFrom(subClass, parentClass) {
     if (!subClass || !parentClass) return false;
     return subClass === parentClass || subClass.prototype instanceof parentClass;
+}
+
+// Patch replaceNodeWithMarkup to fix bugs with swapping null and components
+// A prime example of this is using react-router 4, which renders a null when a route fails
+// to match.  React does not call createChild/removeChild in this case, but takes a completely separate
+// path through the renderer
+const oldReplaceNodeWithMarkup = ReactComponentEnvironment.replaceNodeWithMarkup;
+
+ReactComponentEnvironment.replaceNodeWithMarkup = function(oldChild, markup) {
+    if (oldChild._extCmp) {
+        const newChild = markup instanceof Ext.Base ? markup : wrapDOMElement(markup.node);
+        const parent = oldChild.hasOwnProperty('_extParent') ? oldChild._extParent : oldChild._extCmp.getParent();
+        const index = oldChild.hasOwnProperty('_extIndexInParent') ? oldChild._extIndexInParent : parent.indexOf(oldChild._extCmp);
+        parent.insert(index, newChild);
+        oldChild._extCmp.destroy();
+    } else {
+        oldReplaceNodeWithMarkup.apply(this, arguments);
+    }
 }
 
 Object.assign(ExtJSComponent.prototype, ContainerMixin);
