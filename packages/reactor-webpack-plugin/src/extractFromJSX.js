@@ -120,9 +120,7 @@ module.exports = function extractFromJSX(js, compilation, module) {
     // ensure that all imported classes are present in the build even if they aren't used,
     // otherwise the call to reactify will fail
     for (let key in types) {
-        const type = types[key];
-        const config = Object.keys(type).map(key => `${key}: ${type[key]}`).join(', ');
-        statements.push(`Ext.create(${JSON.stringify(config)})`)
+        statements.push(`Ext.create(${JSON.stringify(types[key])})`)
     }
 
     return statements;

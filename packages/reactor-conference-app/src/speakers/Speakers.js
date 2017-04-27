@@ -10,15 +10,6 @@ import {
 
 class Speakers extends Component {
 
-    constructor({ children }) {
-        super();
-        this.state = { children };
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if(nextProps.children) this.setState({ children: nextProps.children });
-    }
-
     itemTpl = new Template(data => (
         <div className="app-list-content">
             <div className="app-list-headshot" style={{backgroundImage: `url(${data.avatar_url})`}}></div>
@@ -39,22 +30,19 @@ class Speakers extends Component {
 
     render() {
         const { store, filterFavorites, filtered, showSpeaker } = this.props;
-        const { children } = this.state;
 
         return (
-            <Container layout={{ type: 'card', animation: 'slide' }} activeItem={showSpeaker && children ? 1 : 0}>
-                <List 
-                    store={store}
-                    itemTpl={this.itemTpl}
-                    onItemTap={this.onItemTap}
-                    itemCls="app-list-item"
-                    rowLines
-                    maxWidth="600"
-                    disableSelection
-                    cls="app-list"
-                /> 
-                { children }
-            </Container>
+            <List 
+                {...this.props}
+                store={store}
+                itemTpl={this.itemTpl}
+                onItemTap={this.onItemTap}
+                itemCls="app-list-item"
+                rowLines
+                maxWidth="600"
+                disableSelection
+                cls="app-list"
+            /> 
         );
     }
 }
@@ -63,4 +51,4 @@ const mapStateToProps = (state) => {
     return state.speakers;
 }
 
-export default connect(mapStateToProps)(Speakers);
+export default connect(mapStateToProps, null, null, { withRef: true })(Speakers);

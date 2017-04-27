@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { EdgeMenu, TreeList, Panel, TitleBar, Button } from '@extjs/ext-react';
+import { Sheet, TreeList, Panel, TitleBar, Button } from '@extjs/ext-react';
 import { connect } from 'react-redux';
 import { toggleMenu } from './actions';
 
@@ -37,10 +37,10 @@ class Menu extends Component {
         );
 
         return (
-            <EdgeMenu side="left" scrollable displayed={displayed} onHide={this.onHide}>
+            <Sheet side="left" scrollable displayed={displayed} onHide={this.onHide} padding="0">
                 <div className="app-menu-header">ExtReact Conference</div>
                 {menu}
-            </EdgeMenu>
+            </Sheet>
         )
     }
 

@@ -24,13 +24,19 @@ export default class NavTree extends Component {
     render() {
         const { onSelectionChange, width, store, selection } = this.props;
 
-        if (selection) selection.parentNode.expand();
-
         return (
-            <Panel scrollable="y" width={width} shadow style={{zIndex: 1}}>
+            <Panel 
+                {...this.props}
+                scrollable="y" 
+                shadow 
+                style={{zIndex: 100}} 
+                header={false}
+                collapsible={{ direction: 'left' }}
+            >
                 <SearchField flex={1} docked="top" style={{backgroundColor: '#fafafa', padding: '5px' }} onChange={this.filterNav} />
                 <TreeList
-                    ui="component-tree"
+                    width={265} 
+                    ui="nav"
                     store={store}
                     expanderFirst={false}
                     expanderOnly={false}

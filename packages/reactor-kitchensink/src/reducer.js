@@ -1,4 +1,4 @@
-import { ROUTE_DID_CHANGE, TOGGLE_CODE } from './actions';
+import { ROUTE_DID_CHANGE, TOGGLE_CODE, TOGGLE_TREE } from './actions';
 import examples from './examples';
 
 const code = window._code;
@@ -10,9 +10,11 @@ const initialState = {
         rootVisible: true,
         root: examples
     }),
+    selectedNavNode: examples,
     mode: 'full',
     layout: 'fit',
-    showCode: true
+    showCode: true,
+    showTree: false
 };
 
 export default function(state = initialState, action) {
@@ -20,19 +22,21 @@ export default function(state = initialState, action) {
         case ROUTE_DID_CHANGE: {
             const { location } = action;
             const { navStore } = state;
-            const key = location.pathname.slice(1);
-            const node = navStore.getNodeById(key);
+            const node = navStore.getNodeById(location.pathname);
             
             return {
                 ...state,
                 component: node && node.get('component'),
                 layout: (node && node.get('layout')) || 'fit',
                 selectedNavNode: node,
-                files: code[location.pathname.slice(1)]
+                files: code[node.get('text').replace(/\s/g, '')]
             }
         }
         case TOGGLE_CODE: {
             return { ...state, showCode: !state.showCode };
+        }
+        case TOGGLE_TREE: {
+            return { ...state, showTree: !state.showTree };
         }
         default: {
             return { ...state }

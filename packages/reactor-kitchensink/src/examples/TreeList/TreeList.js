@@ -10,7 +10,7 @@ export default class TreeListExample extends Component {
     });
 
     state = {
-        nav: false,
+        nav: true,
         micro: false,
         width: undefined
     };
@@ -31,14 +31,22 @@ export default class TreeListExample extends Component {
         const { micro, nav, width } = this.state;
 
         return (
-            <Panel shadow layout="fit">
+            <Panel 
+                shadow={!Ext.os.is.Phone} 
+                scrollable
+                platformConfig={{
+                    "!phone": {
+                        width: 300,
+                        height: 500
+                    }
+                }}
+            >
                 <Toolbar docked="top">
                     <SegmentedButton allowMultiple>
                         <Button ui="default-toolbar" text="Nav" pressed={nav} onPressedChange={this.toggleNav} disabled={micro}/>
                         <Button ui="default-toolbar" text="Micro" pressed={micro} onPressedChange={this.toggleMicro}/>
                     </SegmentedButton>
                 </Toolbar>
-
                 <TreeList      
                     ref="tree"  
                     width={width}

@@ -14,6 +14,7 @@ import Attendees from './attendees/Attendees';
 import About from './about/About';
 import Event from './event/Event';
 import Speaker from './speakers/Speaker';
+import SpeakersTransition from './speakers/SpeakersTransition';
 
 import { loadEvent, unloadEvent } from './event/actions';
 import { loadSpeaker, unloadSpeaker } from './speakers/actions';
@@ -46,7 +47,8 @@ export default function App() {
                     <Route path="events" component={Schedule}>
                         { eventRoute }
                     </Route>
-                    <Route path="/speakers" component={Speakers}>
+                    <Route path="/speakers" component={SpeakersTransition}>
+                        <IndexRoute component={Speakers}/>
                         <Route
                             path=":id"
                             component={Speaker}

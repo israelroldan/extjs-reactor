@@ -13,7 +13,7 @@ class Event extends Component {
         const speaker = data && data.speakers && data.speakers.length > 0 && data.speakers.map(s => s.name).join(', ');
 
         return (
-            <Container masked={!data} padding="20">
+            <Container masked={!data} padding="20" scrollable>
                 { data && (
                     <div>
                         <div className="app-event-name">{data.title}</div>
@@ -21,7 +21,7 @@ class Event extends Component {
                         <div className="app-event-time">{day} {data.time}</div>
                         <div className="app-event-location">{data.location.name}</div>
                         <hr/>
-                        <div className="app-event-abstract">{data.description}</div>
+                        <div className="app-event-abstract" dangerouslySetInnerHTML={{ __html: data.description }}/>
                     </div>
                 )}
             </Container>

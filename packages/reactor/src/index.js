@@ -1,13 +1,10 @@
 import ReactDOM from 'react-dom';
-import ExtJSComponent from './ExtJSComponent';
 import './overrides';
+import { configure } from './reactify';
 
+export { reactify } from './reactify';
 export { default as Template } from './Template';
-
-let settings = {};
-
-// map of Ext JS class name to reactified class
-const classCache = {};
+export { default as Transition } from './Transition';
 
 /**
  * Launches an ExtReact application, creating a viewport and rendering the specified root component into it.
@@ -17,7 +14,7 @@ const classCache = {};
  * @param {Object} reactorSettings.debug Set to true to show debug information in the console related to creating, updating, and destroying Ext JS components.
  */
 export function launch(rootComponent, appConfig = { }, reactorSettings = { debug: false }) {
-    settings = reactorSettings;
+    configure(reactorSettings);
 
     Ext.application({
         name: '$ExtReactApp',
@@ -30,60 +27,6 @@ export function launch(rootComponent, appConfig = { }, reactorSettings = { debug
 }
 
 /**
- * Creates a react component for a given Ext JS component.
- *
- *  Single class example: const Grid = reactify('grid');
- *
- *  Multiple class example: const [ Grid, Panel ] = reactify('Grid', 'Panel');
- *
- * @param {String[]/Ext.Class[]} ...targets xtypes or instances of Ext.Class.
- * @returns {React.Component/React.Component[]} If a single argument is passed a single React.Component class is returned. If multiple arguments are passed, an array of React.Component classes is returned.
- */
-export function reactify(...targets) {
-    const result = [];
-
-    for (let target of targets) {
-        if (typeof(target) === 'string') {
-            const name = target;
-            target = Ext.ClassManager.getByAlias(`widget.${target}`);
-            if (!target) throw new Error(`No xtype "${name}" found.  Perhaps you need to require it with Ext.require("${name}")?`);
-        }
-
-        const name = target.$className;
-        let cached = classCache[name];
-
-        if (!cached) cached = classCache[name] = class extends ExtJSComponent {
-            static get name() {
-                return name;
-            }
-
-            get extJSClass() {
-                return target;
-            }
-
-            get reactorSettings() {
-                return settings;
-            }
-
-            createExtJSComponent(config) {
-                if (settings.debug) console.log('create', target.$className, config);
-                const result = new target(config)
-                result.$createdByReactor = true;
-                return result;
-            }
-        };
-
-        result.push(cached);
-    }
-
-    if (targets.length === 1) {
-        return result[0];
-    } else {
-        return result;
-    }
-}
-
-/**
  * Configures React to resolve jsx tags.
  * @deprecated
  * @param {String} [viewport=true] Adds a stylesheet that mimics an Ext JS Viewport
@@ -93,7 +36,7 @@ export function reactify(...targets) {
 export function install({ viewport=false } = {}) {
     console.warn('[@extjs/reactor] Warning: install(options) is deprecated.  Use launch(<App/>, options) in place of Ext.onReady(() => ReactDOM.render(<App/>)).')
     
-    settings.viewport = viewport;
+    configure({ viewport });
 
     if (viewport) {
         const style = document.createElement('style');

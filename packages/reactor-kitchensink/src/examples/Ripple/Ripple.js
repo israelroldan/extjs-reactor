@@ -4,7 +4,7 @@ import { Container } from '@extjs/ext-react';
 export default class RippleExample extends React.Component {
 
     clickHandler = (event) => {
-        Ext.fly(event.target).ripple(event, {})
+        Ext.get(event.target).ripple(event, {})
     }
 
     render() {

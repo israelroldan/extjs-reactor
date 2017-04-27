@@ -8,6 +8,7 @@ import { sync as rimraf } from 'rimraf';
 import { buildXML, createAppJson, createWorkspaceJson } from './artifacts';
 import { execSync, spawn } from 'child_process';
 import { generate } from 'astring';
+import { sync as resolve } from 'resolve';
 
 let watching = false;
 
@@ -183,8 +184,15 @@ module.exports = class ReactExtJSWebpackPlugin {
      * @private
      */
     _validateBuildConfig(name, build) {
-        const { sdk } = build;
-        if (!sdk) throw new Error(`Missing required option sdk in build ${name}.  This must be the path to your Ext JS SDK.`);
+        let { sdk } = build;
+        
+        if (!sdk) {
+            try {
+                build.sdk = path.dirname(resolve('@extjs/ext-react', { basedir: process.cwd() }))
+            } catch (e) {
+                throw new Error(`@extjs/ext-react not found.  You can install it with "npm install --save @extjs/ext-react" or, if you have a local copy of the SDK, specify the path to it using the "sdk" option in build "${name}."`);
+            }
+        }
     }
 
     /**
@@ -203,6 +211,17 @@ module.exports = class ReactExtJSWebpackPlugin {
      * @private
      */
     _buildExtBundle(name, modules, output, { toolkit='modern', theme, packages=[], packageDirs=[], sdk, overrides }) {
+
+        let sencha;
+        
+        try {
+            // use @extjs/sencha-cmd from node_modules
+            sencha = require('@extjs/sencha-cmd').bin;
+        } catch (e) {
+            // attempt to use globally installed Sencha Cmd
+            sencha = 'sencha';
+        }
+
         return new Promise((resolve, reject) => {
             this.onBuildComplete = resolve;
             this.onBuildFail = reject;
@@ -246,7 +265,7 @@ module.exports = class ReactExtJSWebpackPlugin {
 
             if (this.watch) {
                 if (!watching) {
-                    watching = spawn('sencha', ['ant', 'watch'], { cwd: output });
+                    watching = spawn(sencha, ['ant', 'watch'], { cwd: output });
                     watching.stdout.pipe(process.stdout);
                     watching.stdout.on('data', data => {
                         if (data.toString().match(/Waiting for changes\.\.\./)) {

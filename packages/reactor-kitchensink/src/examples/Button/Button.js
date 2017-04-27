@@ -1,90 +1,102 @@
 import React, { Component } from 'react';
-import { Container, Panel, Button, Menu, MenuItem } from '@extjs/ext-react';
+import { Spacer, ToggleField, Container, Panel, Button, Menu, MenuItem, MenuRadioItem } from '@extjs/ext-react';
 
-export default function ButtonExample() {
+export default class ButtonExample extends Component {
     
-    return (
-        <Panel { ...layoutProps }>
-            <Container>
-                <div {...groupLabelProps}>Flat</div>
-                <Container className="button-group" {...buttonGroupProps}>
-                    <Button text="Normal"/>
-                    <Button text="Decline" ui="decline"/>
-                    <Button text="Confirm" ui="confirm"/>
-                    <Button text="Disabled" disabled/>
-                </Container>
-            </Container>
+    state = {
+        style: '',
+        type: 'text',
+        round: false
+    };
 
-            <Container>
-                <div {...groupLabelProps}>Action</div>
-                <Container className="button-group" { ...buttonGroupProps }>
-                    <Button text="Normal" ui="action"/>
-                    <Button text="Decline" ui="action decline"/>
-                    <Button text="Confirm" ui="action confirm"/>
-                    <Button text="Disabled" disabled ui="action"/>
-                </Container>
-            </Container>
+    onStyleChange = (item) => this.setState({ style: item.value })
+    onTypeChange = (item) => this.setState({ type: item.value })
+    toggleRound = () => this.setState({ round: !this.state.round });
 
-            <Container>
-                <div {...groupLabelProps}>Round</div>
-                <Container className="button-group" { ...buttonGroupProps }>
-                    <Button text="Normal" ui="round"/>
-                    <Button text="Decline" ui="round decline"/>
-                    <Button text="Confirm" ui="round confirm"/>
-                    <Button text="Disabled" disabled ui="round"/>
-                </Container>
-            </Container>
+    render() {
+        const { style, type, round } = this.state;
+        const iconCls = type.indexOf('icon') !== -1 ? 'x-fa fa-heart' : null;
+        const text = type.indexOf('text') !== -1;
 
-            <Container>
-                <div {...groupLabelProps}>Raised</div>
-                <Container className="button-group" { ...buttonGroupProps }>
-                    <Button text="Normal" ui="raised"/>
-                    <Button text="Decline" ui="raised decline"/>
-                    <Button text="Confirm" ui="raised confirm"/>
-                    <Button text="Disabled" disabled ui="raised"/>
-                </Container>
-            </Container>
+        let menu, ui;
 
-            <Container>
-                <div {...groupLabelProps}>Badge</div>
-                <Container className="button-group" { ...buttonGroupProps }>
-                    <Button text="Normal" badgeText="2"/>
-                    <Button text="Decline" ui="decline" badgeText="2"/>
-                    <Button text="Confirm" ui="confirm" badgeText="2"/>
-                    <Button text="Disabled" disabled badgeText="2"/>
-                </Container>
-            </Container>
+        if (style === 'menu') {
+            menu = (
+                <Menu indented={false}>
+                    <MenuItem text="Item 1"/>
+                    <MenuItem text="Item 2"/>
+                    <MenuItem text="Item 3"/>
+                </Menu>
+            );
+        } else {
+            ui = style.toLowerCase();
+        }
 
-            <Container>
-                <div {...groupLabelProps}>Menu</div>
-                <Container className="button-group" { ...buttonGroupProps }>
-                    <Button text="Normal">{menu}</Button>
-                    <Button text="Decline" ui="decline">{menu}</Button>
-                    <Button text="Confirm" ui="confirm">{menu}</Button>
-                    <Button text="Disabled" disabled>{menu}</Button>
-                </Container>
-            </Container>
+        if (round) {
+            ui += ' round';
+        }
 
-            <Container>
-                <div {...groupLabelProps}>Icon</div>
-                <Container className="button-group" { ...buttonGroupProps }>
-                    <Button iconCls="x-fa fa-home"/>
-                    <Button ui="decline" iconCls="x-fa fa-home"/>
-                    <Button text="Icon" ui="confirm" iconCls="x-fa fa-home"/>
-                    <Button text="Icon" iconCls="x-fa fa-home" disabled>{menu}</Button>
+        return (
+            <Container padding="10">
+                <Container layout="hbox" margin="0 0 10 0" defaults={{ margin: "0 10 0 0" }}>
+                    <Button ui="action raised" text="Style">
+                        <Menu defaults={{ handler: this.onStyleChange, group: 'buttonstyle' }}>
+                            <MenuItem text="None" value="" iconCls={style === '' && 'x-font-icon md-icon-check'}/>
+                            <MenuItem text="Action" value="action" iconCls={style === 'action' && 'x-font-icon md-icon-check'}/>
+                            <MenuItem text="Decline" value="decline" iconCls={style === 'decline' && 'x-font-icon md-icon-check'}/>
+                            <MenuItem text="Confirm" value="confirm" iconCls={style === 'confirm' && 'x-font-icon md-icon-check'}/>
+                            <MenuItem text="Menu" value="menu" iconCls={style === 'menu' && 'x-font-icon md-icon-check'}/>
+                        </Menu>
+                    </Button>
+                    <Button ui="action raised" text="Type">
+                        <Menu defaults={{ handler: this.onTypeChange, group: 'buttontype' }}>
+                            <MenuItem text="Text" value="text" iconCls={type === 'text' && 'x-font-icon md-icon-check'}/>
+                            <MenuItem text="Icon" value="icon" iconCls={type === 'icon' && 'x-font-icon md-icon-check'}/>
+                            <MenuItem text="Text & Icon" value="texticon" iconCls={type === 'texticon' && 'x-font-icon md-icon-check'}/>
+                        </Menu>
+                    </Button>
+                    <Button ui="action raised" iconCls={round ? 'x-fa fa-check' : null} enableToggle text="Round" handler={this.toggleRound}/>
                 </Container>
+
+                <Panel { ...layoutProps }>
+                    <Container>
+                        <div {...groupLabelProps}>Default</div>
+                        <Container className="button-group" {...buttonGroupProps}>
+                            <Button text={ text && "Normal" } ui={ui} iconCls={iconCls}>{menu}</Button>
+                            <Button text={ text && "Badge" } ui={ui} iconCls={iconCls} badgeText="2">{menu}</Button>
+                            <Button text={ text && "Disabled" } ui={ui} iconCls={iconCls} disabled>{menu}</Button>
+                        </Container>
+                    </Container>
+                    <Container>
+                        <div {...groupLabelProps}>Alt</div>
+                        <Container className="button-group button-group-alt" {...buttonGroupProps}>
+                            <Button text={ text && "Normal" } ui={ui + ' alt'} iconCls={iconCls}>{menu}</Button>
+                            <Button text={ text && "Badge" } ui={ui + ' alt'} iconCls={iconCls} badgeText="2">{menu}</Button>
+                            <Button text={ text && "Disabled" } ui={ui + ' alt'} iconCls={iconCls} disabled>{menu}</Button>
+                        </Container>
+                    </Container>
+                    <Container>
+                        <div {...groupLabelProps}>Raised</div>
+                        <Container className="button-group" {...buttonGroupProps}>
+                            <Button text={ text && "Normal" } ui={ui + ' raised'} iconCls={iconCls}>{menu}</Button>
+                            <Button text={ text && "Badge" } ui={ui + ' raised'} iconCls={iconCls} badgeText="2">{menu}</Button>
+                            <Button text={ text && "Disabled" } ui={ui + ' raised'} iconCls={iconCls} disabled>{menu}</Button>
+                        </Container>
+                    </Container>
+                    <Container>
+                        <div {...groupLabelProps}>Alt Raised</div>
+                        <Container className="button-group button-group-alt" {...buttonGroupProps}>
+                            <Button text={ text && "Normal" } ui={ui + ' alt raised'} iconCls={iconCls}>{menu}</Button>
+                            <Button text={ text && "Badge" } ui={ui + ' alt raised'} iconCls={iconCls} badgeText="2">{menu}</Button>
+                            <Button text={ text && "Disabled" } ui={ui + ' alt raised'} iconCls={iconCls} disabled>{menu}</Button>
+                        </Container>
+                    </Container>
+                </Panel>
             </Container>
-        </Panel>
-    )
+        )
+    }
 }
 
-const menu = (
-    <Menu>
-        <MenuItem text="Item 1"/>
-        <MenuItem text="Item 2"/>
-        <MenuItem text="Item 3"/>
-    </Menu>
-);
 
 const layoutProps = Ext.os.is.Phone ? {
     height: '100%',
@@ -95,13 +107,13 @@ const layoutProps = Ext.os.is.Phone ? {
         margin: '20'
     }
 } : {
-    className: 'demo-buttons demo-buttons-desktop',
     padding: 10,
     shadow: true,
     defaults: {
         layout: 'hbox',
         flex: 1,
-        margin: '10'
+        margin: '10',
+        width: '100%'
     }        
 }
 
@@ -113,9 +125,11 @@ const buttonGroupProps = Ext.os.is.Phone ? {
     }
 } : {
     padding: '17 0 17 20',
-    layout: { type: 'hbox', align: 'middle' },
+    layout: { type: 'hbox', align: 'middle', pack: 'space-around' },
+    flex: 1,
+    margin: '0 20 0 0',
+    width: 400,
     defaults: {
-        width: 100, 
         margin: '0 20 0 0'
     }
 }
@@ -124,9 +138,8 @@ const groupLabelProps = Ext.os.is.Phone ? {
 
 } : {
     style: {
-        width: '50px',
+        width: '70px',
         textAlign: 'right',
-        margin: '20px 20px 0 0'
+        margin: '24px 20px 0 0'
     }
 };
-

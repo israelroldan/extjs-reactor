@@ -11,7 +11,7 @@ export default class SegementedButtonExample extends Component {
 
     render() {
         return (
-            <Panel shadow={Ext.os.is.Phone}> 
+            <Panel shadow={!Ext.os.is.Phone}> 
                 <Toolbar shadow={false}>
                     <div style={{marginRight: '10px'}}>Default UI:</div>
                     <SegmentedButton 

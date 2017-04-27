@@ -26,7 +26,7 @@ class Layout extends Component {
         const { title, dispatch, children, filterFavorites } = this.props
 
         return (
-            <Container layout="fit">
+            <Container layout="fit" fullscreen>
                 <AppBar/>
                 <Menu onSelect={this.onNavChange}/>
                 <Search/>

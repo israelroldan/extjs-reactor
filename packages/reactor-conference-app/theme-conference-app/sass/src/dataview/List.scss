@@ -20,7 +20,7 @@
 }
 
 .app-list-item {
-    padding: 15px 50px 15px 15px;
+    // padding: 15px 50px 15px 15px;
     position: relative;
 
     .app-list-tool {
@@ -46,6 +46,7 @@
 .app-list-text {
     flex: 1;
     overflow: hidden;
+    padding-right: 30px;
 }
 
 .app-list-headshot {
@@ -59,10 +60,7 @@
 .app-list-item-title {
     font-size: 18px;
     line-height: 1.5em;
-    white-space: nowrap;
-    text-overflow: ellipsis;
     color: $base-color;
-    overflow: hidden;
 }
 
 .app-list-item-details {

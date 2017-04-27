@@ -2,20 +2,18 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 import { TitleBar, Container, NestedList, Panel, Button } from '@extjs/ext-react';
+import { Transition } from '@extjs/reactor';
 import hljs, { highlightBlock } from 'highlightjs';
 import NavTree from './NavTree';
+import NavView from './NavView';
 import Files from './Files';
 import Home from './Home';
 import * as actions from './actions';
+import Breadcrumbs from './Breadcrumbs';
 
 Ext.require('Ext.panel.Collapser');
 
 class Layout extends Component {
-
-    constructor() {
-        super();
-        // Ext.os.is.Phone = true;
-    }
 
     componentDidMount() {
         if (Ext.os.is.Phone) {
@@ -44,7 +42,7 @@ class Layout extends Component {
     onNavChange = (node) => {
         if (node && node.isLeaf()) {
             const { router, location } = this.props;
-            const path = `/${node.getId()}`;
+            const path = node.getId();
             if (location.pathname !== path) router.push(path)
         }
     }
@@ -58,12 +56,13 @@ class Layout extends Component {
             selectedNavNode, 
             component, 
             navStore, 
-            mode, 
             files,
             children,
             showCode,
+            showTree,
             actions,
-            layout
+            layout,
+            router
         } = this.props;
 
         let mainView;
@@ -92,30 +91,32 @@ class Layout extends Component {
             mainView = (
                 <Container layout="fit" flex={4}>
                     <TitleBar docked="top" shadow style={{zIndex: 2}}>
-                        <div className="ext ext-sencha" style={{marginRight: '7px', fontSize: '20px', width: '20px'}}/>
+                        <Button 
+                            align="left"
+                            iconCls="x-fa fa-bars" 
+                            handler={actions.toggleTree}
+                        />
+                        <div className="ext ext-sencha" style={{margin: '0 5px 0 7px', fontSize: '20px', width: '20px'}}/>
                         <a href="#" className="app-title">ExtReact Kitchen Sink</a>
-                        { files && <Button align="right" iconCls="x-fa fa-code" handler={actions.toggleCode} ripple={{bound: false}} /> }
                     </TitleBar>
-                    <Container layout={{type: 'hbox', align: 'stretch'}} flex={1}>
+                    <Container layout="fit" flex={1}>
                         <NavTree 
-                            width={265} 
+                            docked="left"
                             store={navStore} 
                             selection={selectedNavNode}
                             onSelectionChange={(tree, node) => this.onNavChange(node)}
+                            collapsed={!showTree}
                         /> 
-                        { component ? (
-                            <Container 
-                                layout={layout} 
-                                scrollable={layout !== 'fit'} 
-                                flex={1} 
-                                padding="30"
-                                key={selectedNavNode.get('text')}
-                            >
-                                { React.createElement(component) }
-                            </Container>
-                         ) : (
-                             <Home flex={1}/> 
-                         ) }
+                        <Breadcrumbs docked="top" node={selectedNavNode} router={router}/>
+                        <Transition flex={1} type="slide" bindDirectionToLocation>
+                            { component ? (
+                                <Container layout={layout} scrollable={layout !== 'fit'} padding="30" key={selectedNavNode.id}>
+                                    { React.createElement(component) }
+                                </Container>
+                            ) : selectedNavNode ? (
+                                <NavView key={selectedNavNode.id} node={selectedNavNode} router={router}/>
+                            ) : null }
+                        </Transition>
                     </Container>
                 </Container>             
             )
@@ -123,7 +124,18 @@ class Layout extends Component {
 
         return (
             <Container layout="hbox" cls="main-background" fullscreen>
-                { mode !== 'docs' && mainView }
+                { mainView }
+                { !Ext.os.is.Phone && files && (
+                    <Button 
+                        align="right" 
+                        iconCls={'x-font-icon ' + (showCode ? 'md-icon-close' : 'md-icon-code') }
+                        ui="app-show-code round raised alt" 
+                        top={21}
+                        right={21}
+                        zIndex={1000}
+                        handler={actions.toggleCode} 
+                    /> 
+                )}
                 { !Ext.os.is.Phone && files && (
                     <Panel 
                         resizable={{ edges: 'west', dynamic: true }} 
@@ -134,10 +146,10 @@ class Layout extends Component {
                         collapsible={{ direction: 'right' }}
                         shadow 
                         style={{zIndex: 3}}
-                        hideAnimation={{type: 'slideOut', direction: 'right'}}
-                        showAnimation={{type: 'slideIn', direction: 'left' }}
+                        hideAnimation={{type: 'slideOut', direction: 'right', duration: 100, easing: 'ease' }}
+                        showAnimation={{type: 'slideIn', direction: 'left', duration: 100, easing: 'ease' }}
                     >
-                        <Files files={files} mode={mode} /> 
+                        <Files files={files} /> 
                     </Panel>
                 )}
             </Container>
