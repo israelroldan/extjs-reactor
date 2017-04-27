@@ -2,3 +2,8 @@
     $ui: 'app-background',
     $body-background-color: #FAFAFA
 );
+
+@include panelheader-ui(
+    $ui: 'speaker-events-panel',
+    $panelheader-background-color: #FAFAFA
+);

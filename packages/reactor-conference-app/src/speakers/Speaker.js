@@ -38,7 +38,7 @@ class Speaker extends Component {
         const sessions = speakers && speakers.speaker && speakers.speaker.sessions;
 
         return (
-            <Container masked={!speaker} padding={20} layout="vbox" scrollable>
+            <Container masked={!speaker} layout="vbox" scrollable>
                 { speaker && (
                     <div>
                         <div className="app-speaker-ct">
@@ -51,14 +51,13 @@ class Speaker extends Component {
                             </div>
                         </div>
                         { sessions && sessions.length > 0 && (
-                            <div>
-                                <div className="speakers-session-title">Sessions</div>
+                            <Panel title="Events" style={{paddingTop: '20px'}} ui="speaker-events-panel">
                                 <ScheduleList
                                     dataStore={this.store}
                                     showTime
                                     eagerLoad
                                 />
-                            </div>
+                            </Panel>
                         )}
                     </div>
                 )}
