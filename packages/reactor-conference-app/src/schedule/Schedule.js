@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import { Container, Button, TabPanel, Panel, Toolbar, SearchField, List } from '@extjs/ext-react';
-import AppBar from '../AppBar';
-import { toggleSearch, filterByDay, toggleFavorite, filterByFavorites } from './actions';
 import { connect } from 'react-redux';
-import { Template } from '@extjs/reactor';
-import ScheduleList from './ScheduleList';
+
+import { toggleSearch, filterByDay, toggleFavorite, filterByFavorites } from './actions';
 import { setTitle } from '../actions';
+import { loadEvent } from '../event/actions';
+
+import { Container, Button, TabPanel, Panel, Toolbar, SearchField, List } from '@extjs/ext-react';
+import ScheduleList from './ScheduleList';
+import Event from '../event/Event';
 
 class Schedule extends Component {
     
@@ -14,17 +16,19 @@ class Schedule extends Component {
         this.state = { children };
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.children) this.setState({ children: nextProps.children });
+    componentDidMount = () => this.updateData();
+    componentDidUpdate = (prevProps) => this.updateData(prevProps);
+
+    updateData = (prevProps) => {
+        const id = this.props.match.params.id;
+        
+        if (!prevProps || prevProps.match.params.id !== id) {
+            this.props.dispatch(loadEvent(id, 'Schedule'))
+        }
     }
 
-    onSearchClick = () => this.props.dispatch(toggleSearch())
-    hideSearch = () => this.props.dispatch(toggleSearch(false))
-    filter = day => this.props.dispatch(filterByDay(day))
-
     render() {
-        const { showSearch, store, favorites, showEvent } = this.props;
-        const { children } = this.state;
+        const { store, event, match } = this.props;
 
         const storeDefaults = { 
             type: 'chained',
@@ -37,8 +41,8 @@ class Schedule extends Component {
         };
 
         return (
-            <Container layout={{ type: 'card', animation: 'slide' }} activeItem={showEvent && children ? 1 : 0}>
-                <Container key="schedule" layout="vbox" ref={ct => this.ct = ct} scrollable className="app-banner-tabs">
+            <Container layout={{ type: 'card', animation: 'slide' }} activeItem={match.params.id ? 1 : 0}>
+                <Container layout="vbox" className="app-banner-tabs">
                     <Container className="app-banner" ref={banner => this.banner = banner}>
                         <span className="app-banner-content">ExtReact Conference</span>
                     </Container>
@@ -75,14 +79,14 @@ class Schedule extends Component {
                         />
                     </TabPanel>  
                 </Container>
-                {children}
+                <Event event={event}/>
             </Container>
         )
     }
 }
 
 const mapStateToProps = ({ schedule, event }) => {
-    return {...schedule, ...event};
+    return {...schedule, event};
 }
 
 export default connect(mapStateToProps)(Schedule);

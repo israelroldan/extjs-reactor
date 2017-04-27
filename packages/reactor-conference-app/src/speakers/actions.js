@@ -1,6 +1,5 @@
 export const LOAD_SPEAKERS = 'SPEAKERS::LOAD';
 export const LOAD_SPEAKER = 'SPEAKERS::LOAD_SPEAKER';
-export const UNLOAD_SPEAKER = 'SPEAKERS::UNLOAD_SPEAKER';
 
 import { setTitle } from '../actions';
 
@@ -12,26 +11,29 @@ export function loadSpeakers() {
 
 export function loadSpeaker(id) {
     return (dispatch, getState) => {
-        const store = getState().speakers.store;
+        const { store, speaker } = getState().speakers;
 
-        const doLoadSpeaker = () => {
-            const speaker = store.getById(id).data;
-            dispatch({ type: LOAD_SPEAKER, speaker });
-            dispatch(setTitle(speaker.name, '/speakers'));
-        };
+        if (id) {
+            if (!speaker || speaker.id !== id) {
+                const doLoad = () => {
+                    const speaker = store.getById(id).data;
+                    dispatch({ type: LOAD_SPEAKER, speaker });
+                    dispatch(setTitle(speaker.name, '/speakers'));
+                };
 
-        if(store.isLoaded()) {
-            doLoadSpeaker();
-        } else {
-            store.on('load', doLoadSpeaker, null, {single: true});
-            // If store hasn't been loaded yet, load it.
-            if(!store.isLoading()) {
-                dispatch(loadSpeakers());
+                if (store.isLoaded()) {
+                    doLoad();
+                } else {
+                    store.on('load', doLoad, null, {single: true});
+                    
+                    // If store hasn't been loaded yet, load it.
+                    if (!store.isLoading()) {
+                        dispatch(loadSpeakers());
+                    }
+                }
             }
+        } else {
+            dispatch(setTitle('Speakers'))
         }
     }
-}
-
-export function unloadSpeaker() {
-    return { type: UNLOAD_SPEAKER };
 }

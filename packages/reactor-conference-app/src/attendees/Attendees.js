@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
-import WorldMap from './WorldMap';
-import { Container } from '@extjs/ext-react';
-import AppBar from '../AppBar';
+import { connect } from 'react-redux';
+import { setTitle } from '../actions';
 
-export default class Attendees extends Component {
+import WorldMap from './WorldMap';
+
+class Attendees extends Component {
+
+    componentDidMount() {
+        this.props.dispatch(setTitle('About'));
+    }
 
     onSceneSetup = (svg, scene) => {
         if(svg.panZoom) {
@@ -13,56 +18,60 @@ export default class Attendees extends Component {
 
     render() {
         return (
-            <Container>
-                <WorldMap
-                    store={{
-                        autoLoad: true,
-                        fields: [{ name: 'cnt', type: 'number'}, 'Work_Country'],
-                        proxy: {
-                            type: 'ajax',
-                            url: 'resources/countries.json',
-                            reader: {
-                                type: 'json',
-                                rootProperty: 'data'
-                            }
+            <WorldMap
+                store={{
+                    autoLoad: true,
+                    fields: [{ name: 'cnt', type: 'number'}, 'Work_Country'],
+                    proxy: {
+                        type: 'ajax',
+                        url: 'resources/countries.json',
+                        reader: {
+                            type: 'json',
+                            rootProperty: 'data'
                         }
-                    }}
-                    colorAxis={{
-                        scale: {
-                            type: 'log',
-                            range: ['#99ccff', '#0050a1']
-                        },
-                        field: 'cnt'
-                    }}
-                    mapAxis={{
-                        field: 'Work_Country',
-                        hidden: !Ext.platformTags.phone
-                    }}
-                    interactions={Ext.platformTags.phone ? {
-                        type: 'panzoom',
-                        zoom: {
-                            extent: [0.3, 3],
-                            doubleTap: false
-                        },
-                        pan: {
-                            constrain: false
+                    }
+                }}
+                colorAxis={{
+                    scale: {
+                        type: 'log',
+                        range: ['#99ccff', '#0050a1']
+                    },
+                    field: 'cnt'
+                }}
+                mapAxis={{
+                    field: 'Work_Country',
+                    hidden: !Ext.platformTags.phone
+                }}
+                interactions={Ext.platformTags.phone ? {
+                    type: 'panzoom',
+                    zoom: {
+                        extent: [0.3, 3],
+                        doubleTap: false
+                    },
+                    pan: {
+                        constrain: false
+                    }
+                } : null}
+                legend={{
+                    docked: 'right',
+                    items: {
+                        count: 5,
+                        slice: [1],
+                        reverse: true,
+                        size: {
+                            x: 40,
+                            y: 20
                         }
-                    } : null}
-                    legend={{
-                        docked: 'right',
-                        items: {
-                            count: 5,
-                            slice: [1],
-                            reverse: true,
-                            size: {
-                                x: 40,
-                                y: 20
-                            }
-                        }
-                    }}
-                    onScenesetup={this.onSceneSetup}
-                />
-            </Container>
+                    }
+                }}
+                onScenesetup={this.onSceneSetup}
+            />
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return { };
+}
+
+export default connect(mapStateToProps)(Attendees);

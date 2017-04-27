@@ -129,7 +129,7 @@ class Layout extends Component {
                     <Button 
                         align="right" 
                         iconCls={'x-font-icon ' + (showCode ? 'md-icon-close' : 'md-icon-code') }
-                        ui="app-show-code round raised alt" 
+                        ui="fab" 
                         top={21}
                         right={21}
                         zIndex={1000}

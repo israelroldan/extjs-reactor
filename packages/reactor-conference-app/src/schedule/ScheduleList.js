@@ -38,9 +38,9 @@ class ScheduleList extends Component {
     })
 
     onItemTap = (list, index, target, record) => {
-        const { onSelect } = this.props;
-        if (onSelect) onSelect(record);
-        self.location.hash = `/events/${record.id}`;
+        if (record) {
+            self.location.hash = `/events/${record.id}`;
+        }
     }
 
     onFavoriteClick = (data, e) => {
@@ -66,11 +66,11 @@ class ScheduleList extends Component {
                 itemTpl={this.itemTpl}
                 grouped
                 rowLines
-                itemCls="app-list-item"
+                itemCls="app-list-item x-item-no-select"
                 maxWidth={600}
-                disableSelection
                 cls="app-list"
                 onItemTap={this.onItemTap}
+                pinHeaders
                 onShow={{
                     fn: (list) => { if(!eagerLoad) list.setStore(dataStore); },
                     single: true

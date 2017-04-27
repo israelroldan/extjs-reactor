@@ -25,13 +25,13 @@ function AppBar({ dispatch, title, children, backButtonURL }) {
             ) }
 
             { backButtonURL && (
-                <Button align="left" handler={() => history.back()} iconCls="md-icon-arrow-back"/>
+                <Button align="left" handler={() => location.hash = backButtonURL} iconCls="md-icon-arrow-back"/>
             )}
             { !backButtonURL && !Ext.platformTags.desktop && (
-                <Button align="left" iconCls="md-icon-menu" handler={() => dispatch(toggleMenu(true))} ripple={{ bound: false }}/>
+                <Button align="left" iconCls="md-icon-menu" handler={() => dispatch(toggleMenu(true))}/>
             )}
             { !Ext.platformTags.desktop && (
-                <Button align="right" iconCls="md-icon-search" handler={() => dispatch(toggleSearch())} ripple={{ bound: false }}/>
+                <Button align="right" iconCls="md-icon-search" handler={() => dispatch(toggleSearch())}/>
             )}
             { children }
         </TitleBar>

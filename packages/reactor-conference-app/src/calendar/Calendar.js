@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import { Calendar_Days, Container } from '@extjs/ext-react';
 import { connect } from 'react-redux';
+
+import { Calendar_Days, Container } from '@extjs/ext-react';
+import Event from '../event/Event';
+import { loadEvent } from '../event/actions';
 
 class Calendar extends Component {
 
@@ -13,8 +16,15 @@ class Calendar extends Component {
         this.favorites = favs ? JSON.parse(favs) : [];
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.children) this.setState({ children: nextProps.children });
+    componentDidMount = () => this.updateData();
+    componentDidUpdate = (prevProps) => this.updateData(prevProps);
+
+    updateData = (prevProps) => {
+        const id = this.props.match.params.id;
+        
+        if (!prevProps || prevProps.match.params.id !== id) {
+            this.props.dispatch(loadEvent(id, 'Calendar'))
+        }
     }
 
     store = Ext.create('Ext.calendar.store.Calendars', {
@@ -37,14 +47,13 @@ class Calendar extends Component {
     }
 
     render() {
-        const { showEvent } = this.props;
-        const { children } = this.state;
+        const { event, match } = this.props;
 
         return (
-            <Container layout={{ type: 'card', animation: 'slide' }} activeItem={showEvent && children ? 1 : 0}>
+            <Container layout={{ type: 'card', animation: 'slide' }} activeItem={match.params.id ? 1 : 0}>
                 <Calendar_Days
                     visibleDays={3}
-                    startTime={8}
+                    startTime={7}
                     endTime={22}
                     value={new Date(2016, 10, 7)}
                     store={this.store}
@@ -60,7 +69,7 @@ class Calendar extends Component {
                     gestureNavigation={false}
                     onEventTap={this.eventTap}
                 />
-                {children}
+                <Event event={event}/>
             </Container>
         )
     }

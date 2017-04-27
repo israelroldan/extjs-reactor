@@ -1,6 +1,5 @@
 import { 
     TOGGLE_MENU, 
-    ROUTE_DID_CHANGE, 
     TOGGLE_SEARCH, 
     SEARCH, 
     SET_TITLE 
@@ -9,10 +8,9 @@ import {
 const navStore = Ext.create('Ext.data.TreeStore', {
     root: {
         children: [
-            { text: 'Schedule', id: '/', iconCls: 'x-font-icon md-icon-schedule', leaf: true },
+            { text: 'Schedule', id: '/events', iconCls: 'x-font-icon md-icon-schedule', leaf: true },
             { text: 'Speakers', id: '/speakers', iconCls: 'x-font-icon md-icon-mic', leaf: true },
             { text: 'Calendar', id: '/calendar', iconCls: 'x-font-icon md-icon-event-available', leaf: true },
-            { text: 'Notifications', id: '/notifications', iconCls: 'x-font-icon md-icon-notifications', leaf: true },
             { text: 'Attendees', id: '/attendees', iconCls: 'x-font-icon md-icon-people', leaf: true },
             { text: 'About this App', id: '/about', iconCls: 'x-font-icon md-icon-info-outline', leaf: true }
         ]
@@ -32,17 +30,6 @@ export default function rootReducer(state = initialState, action) {
                 return { ...state, showMenu: action.show };
             } else {
                 return { ...state, showMenu: !state.showMenu };
-            }
-        case ROUTE_DID_CHANGE: 
-            const { location } = action;
-            const route = location.pathname;
-            const node = navStore.getNodeById(route);
-            
-            return {
-                ...state,
-                title: node && node.get('text'),
-                selectedNavNode: node,
-                backButtonURL: undefined
             }
         case TOGGLE_SEARCH:
             return {

@@ -37,10 +37,10 @@ Ext.define('Ext.reactor.Transition', {
 
         /**
          * @cfg {Boolean}
-         * Set to true to automatically switch directions based on browser URL changes. This should generally
-         * be set to true when animating transitions based on client-side routing.
+         * Automatically switch directions based on browser URL changes. This should generally
+         * be set to true when animating transitions based on client-side routing. Defaults to true.
          */
-        bindDirectionToLocation: false
+        bindDirectionToLocation: true
     },
 
     statics: {

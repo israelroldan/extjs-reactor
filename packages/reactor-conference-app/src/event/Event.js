@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Container } from '@extjs/ext-react';
 import { connect } from 'react-redux';
 import { setTitle } from '../actions';
-
+import { loadEvent } from './actions';
 import days from '../util/days';
 
 class Event extends Component {

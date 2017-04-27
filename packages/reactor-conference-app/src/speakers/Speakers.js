@@ -3,10 +3,9 @@ import { connect } from 'react-redux';
 import { Container, List, Button, TabPanel, Panel } from '@extjs/ext-react';
 import AppBar from '../AppBar';
 import { Template } from '@extjs/reactor';
-
-import { 
-    loadSpeakers
-} from './actions';
+import { loadSpeakers, loadSpeaker } from './actions';
+import { setTitle } from '../actions';
+import Speaker from './Speaker';
 
 class Speakers extends Component {
 
@@ -15,34 +14,50 @@ class Speakers extends Component {
             <div className="app-list-headshot" style={{backgroundImage: `url(${data.avatar_url})`}}></div>
             <div className="app-list-text">
                 <div className="app-list-item-title">{data.name}</div>
-                <div className="app-list-item-details">{data.title}</div>
+                <div className="app-list-item-details">{data.title} - {data.company}</div>
             </div>
         </div>
     ))
+
+    componentDidMount = () => {
+        this.props.dispatch(loadSpeakers());
+        this.updateData();
+    }
+
+    componentDidUpdate = (prevProps) => {
+        this.updateData(prevProps)
+    }
+
+    updateData = (prevProps) => {
+        const id = this.props.match.params.id;
+        
+        if (!prevProps || prevProps.match.params.id !== id) {
+            this.props.dispatch(loadSpeaker(id))
+        }
+    }
 
     onItemTap = (list, index, target, record) => {
         self.location.hash = `/speakers/${record.id}`;
     }
 
-    componentDidMount() {
-        this.props.dispatch(loadSpeakers())
-    }
-
     render() {
-        const { store, filterFavorites, filtered, showSpeaker } = this.props;
+        const { store, speaker, match } = this.props;
 
         return (
-            <List 
-                {...this.props}
-                store={store}
-                itemTpl={this.itemTpl}
-                onItemTap={this.onItemTap}
-                itemCls="app-list-item"
-                rowLines
-                maxWidth="600"
-                disableSelection
-                cls="app-list"
-            /> 
+            <Container layout={{ type: 'card', animation: 'slide' }} activeItem={match.params.id ? 1 : 0}>
+                <List 
+                    {...this.props}
+                    store={store}
+                    itemTpl={this.itemTpl}
+                    onItemTap={this.onItemTap}
+                    itemCls="app-list-item x-item-no-select"
+                    rowLines
+                    maxWidth="600"
+                    disableSelection
+                    cls="app-list"
+                /> 
+                <Speaker speaker={speaker}/>
+            </Container>
         );
     }
 }

@@ -6,36 +6,29 @@ import { setTitle } from '../actions';
 
 class Speaker extends Component {
 
-    constructor({speakers, schedule}) {
+    constructor({ schedule }) {
         super();
 
         this.store = Ext.create('Ext.data.ChainedStore', {
             autoDestroy: true,
             source: schedule && schedule.store
         });
-
-        this.filterStore(speakers && speakers.speaker && speakers.speaker.sessions);
     }
 
-    componentWillReceiveProps({speakers}) {
-        this.filterStore(speakers && speakers.speaker && speakers.speaker.sessions);
-    }
+    componentDidUpdate() {
+        const { speaker } = this.props;
 
-    filterStore = value => {
-        if(value) {
+        if (speaker && speaker.sessions) {
             this.store.filter({
-                value,
+                value: speaker.sessions,
                 property: 'id',
                 operator: 'in'
             });
-            this.store.getSource().reload();
         }
     }
 
     render() {
-        const { speakers } = this.props;
-        const speaker = speakers.speaker;
-        const sessions = speakers && speakers.speaker && speakers.speaker.sessions;
+        const { speaker } = this.props;
 
         return (
             <Container masked={!speaker} layout="vbox" scrollable>
@@ -50,15 +43,13 @@ class Speaker extends Component {
                                 <div className="app-speaker-bio">{speaker.bio}</div>
                             </div>
                         </div>
-                        { sessions && sessions.length > 0 && (
-                            <Panel title="Events" style={{paddingTop: '20px'}} ui="speaker-events-panel">
-                                <ScheduleList
-                                    dataStore={this.store}
-                                    showTime
-                                    eagerLoad
-                                />
-                            </Panel>
-                        )}
+                        <Panel title="Events" style={{paddingTop: '20px'}} ui="speaker-events-panel">
+                            <ScheduleList
+                                dataStore={this.store}
+                                showTime
+                                eagerLoad
+                            />
+                        </Panel>
                     </div>
                 )}
             </Container>
@@ -66,8 +57,8 @@ class Speaker extends Component {
     }
 }
 
-const mapStateToProps = ({speakers, schedule}) => {
-    return {speakers, schedule};
+const mapStateToProps = ({ schedule }) => {
+    return { schedule };
 }
 
 export default connect(mapStateToProps)(Speaker);
