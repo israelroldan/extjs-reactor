@@ -23,7 +23,7 @@ class Calendar extends Component {
         const id = this.props.match.params.id;
         
         if (!prevProps || prevProps.match.params.id !== id) {
-            this.props.dispatch(loadEvent(id, 'Calendar'))
+            this.props.dispatch(loadEvent(id, 'Calendar', '/calendar'))
         }
     }
 

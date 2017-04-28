@@ -2,7 +2,7 @@ export const LOAD_EVENT = 'EVENT::LOAD_EVENT';
 
 import { setTitle } from '../actions';
 
-export function loadEvent(id, title) {
+export function loadEvent(id, title, backButtonURL = '/schedule') {
     return (dispatch, getState) => {
         const { store, event } = getState().schedule;
 
@@ -11,7 +11,7 @@ export function loadEvent(id, title) {
                 const doLoad = () => {
                     const event = store.getById(id).data;
                     dispatch({ type: LOAD_EVENT, event });
-                    dispatch(setTitle(event.title, '/events'));
+                    dispatch(setTitle(event.title, backButtonURL));
                 };
 
                 if (store.isLoaded()) {

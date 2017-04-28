@@ -8,6 +8,8 @@ import schedule from './schedule/reducer';
 import speakers from './speakers/reducer';
 import event from './event/reducer';
 
+import { routeChanged } from './actions'; 
+
 const initialState = { };
 
 export const history = createHistory();
@@ -24,3 +26,10 @@ export const store = createStore(
     initialState,
     compose(...middleware)
 );
+
+history.listen((location, action) => {
+    store.dispatch(routeChanged())
+})
+
+store.dispatch(routeChanged())
+

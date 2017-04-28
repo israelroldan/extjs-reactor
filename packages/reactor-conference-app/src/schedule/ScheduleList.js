@@ -39,7 +39,7 @@ class ScheduleList extends Component {
 
     onItemTap = (list, index, target, record) => {
         if (record) {
-            self.location.hash = `/events/${record.id}`;
+            self.location.hash = `/schedule/${record.id}`;
         }
     }
 
@@ -66,7 +66,7 @@ class ScheduleList extends Component {
                 itemTpl={this.itemTpl}
                 grouped
                 rowLines
-                itemCls="app-list-item"
+                itemCls="app-list-item x-item-no-select"
                 maxWidth={600}
                 cls="app-list"
                 onItemTap={this.onItemTap}

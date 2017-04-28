@@ -7,7 +7,7 @@ import WorldMap from './WorldMap';
 class Attendees extends Component {
 
     componentDidMount() {
-        this.props.dispatch(setTitle('About'));
+        this.props.dispatch(setTitle('Attendees'));
     }
 
     onSceneSetup = (svg, scene) => {

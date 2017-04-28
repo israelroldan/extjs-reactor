@@ -17,7 +17,6 @@ module.exports = function (env) {
                 'd3',
                 'calendar'
             ],
-            overrides: ['overrides'],
             production: isProd
         }),
         new webpack.EnvironmentPlugin({

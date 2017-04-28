@@ -2,6 +2,7 @@ export const TOGGLE_MENU = 'ROOT::TOGGLE_MENU';
 export const TOGGLE_SEARCH = 'ROOT::TOGGLE_SEARCH';
 export const SEARCH = 'ROOT::SEARCH';
 export const SET_TITLE = 'ROOT::SET_TITLE';
+export const ROUTE_CHANGED = 'ROOT::ROUTE_CHANGED';
 
 /**
  * Show/hide the menu
@@ -27,6 +28,12 @@ export function search(query) {
     return {
         type: SEARCH,
         query
+    }
+}
+
+export function routeChanged() {
+    return {
+        type: ROUTE_CHANGED,
     }
 }
 
