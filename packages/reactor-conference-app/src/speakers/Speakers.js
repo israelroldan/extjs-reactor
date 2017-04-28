@@ -53,7 +53,6 @@ class Speakers extends Component {
                     itemCls="app-list-item x-item-no-select"
                     rowLines
                     maxWidth="600"
-                    disableSelection
                     cls="app-list"
                 /> 
                 <Speaker speaker={speaker}/>

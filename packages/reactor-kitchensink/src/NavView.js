@@ -17,7 +17,7 @@ export default function NavView({ node, router }) {
                         <div className="app-thumbnail-icon-wrap">
                             <div className="app-thumbnail-icon icon-charts"></div>
                         </div>
-                        <div className="app-thumbnail-text">{child.name}</div>
+                        <div className="app-thumbnail-text">{child.data.text}</div>
                     </div>
                 )) }
             </div>

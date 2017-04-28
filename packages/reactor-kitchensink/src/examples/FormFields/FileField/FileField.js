@@ -13,7 +13,7 @@ export default class SearchFieldExample extends Component {
         const { file } = this.state;
 
         return (
-            <Panel shadow height="200" width="300" bodyPadding="20">
+            <Panel shadow height="200" width="400" bodyPadding="20" layout="vbox">
                 <FileField 
                     label="Attachment"
                     value={file}

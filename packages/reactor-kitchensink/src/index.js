@@ -14,4 +14,4 @@ launch(() => {
     top.on('transitionend', wrapper.destroy, wrapper, { single: true });
     wrapper.addCls('app-loaded');        
     return <App/>;
-}, {}, { debug: true })
+}, {}, { debug: false })

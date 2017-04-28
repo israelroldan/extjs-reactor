@@ -66,7 +66,7 @@ class ScheduleList extends Component {
                 itemTpl={this.itemTpl}
                 grouped
                 rowLines
-                itemCls="app-list-item x-item-no-select"
+                itemCls="app-list-item"
                 maxWidth={600}
                 cls="app-list"
                 onItemTap={this.onItemTap}

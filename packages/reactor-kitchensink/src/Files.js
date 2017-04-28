@@ -27,8 +27,10 @@ export default class Files extends Component {
         this.highlightCode();
     }
 
-    componentDidUpdate() {
-        this.highlightCode();
+    componentDidUpdate(prev) {
+        if (this.props.files !== prev.files) {
+            this.highlightCode();
+        }
     }    
 
     highlightCode() {
