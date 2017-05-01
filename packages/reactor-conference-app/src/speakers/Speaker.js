@@ -15,7 +15,10 @@ class Speaker extends Component {
         });
     }
 
-    componentDidUpdate() {
+    componentDidMount = () => this.filterSessions()
+    componentDidUpdate = () => this.filterSessions()
+
+    filterSessions() {
         const { speaker } = this.props;
 
         if (speaker && speaker.data.sessions) {
