@@ -184,11 +184,12 @@ module.exports = class ReactExtJSWebpackPlugin {
      * @private
      */
     _validateBuildConfig(name, build) {
-        let { sdk } = build;
+        let { sdk, toolkit } = build;
         
         if (!sdk) {
             try {
                 build.sdk = path.dirname(resolve('@extjs/ext-react', { basedir: process.cwd() }))
+                build.packageDirs = [...(build.packageDirs || []), path.dirname(build.sdk)]; 
             } catch (e) {
                 throw new Error(`@extjs/ext-react not found.  You can install it with "npm install --save @extjs/ext-react" or, if you have a local copy of the SDK, specify the path to it using the "sdk" option in build "${name}."`);
             }
@@ -250,7 +251,7 @@ module.exports = class ReactExtJSWebpackPlugin {
             if (!watching) {
                 fs.writeFileSync(path.join(output, 'build.xml'), buildXML({ compress: this.production }), 'utf8');
                 fs.writeFileSync(path.join(output, 'app.json'), createAppJson({ theme, packages, toolkit, overrides, packageDirs }), 'utf8');
-                fs.writeFileSync(path.join(output, 'workspace.json'), createWorkspaceJson(sdk, output), 'utf8');
+                fs.writeFileSync(path.join(output, 'workspace.json'), createWorkspaceJson(sdk, packageDirs, output), 'utf8');
             }
 
             let cmdRebuildNeeded = false;

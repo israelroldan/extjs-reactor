@@ -50,7 +50,19 @@ class Calendar extends Component {
         const { event, match } = this.props;
 
         return (
-            <Container layout={{ type: 'card', animation: 'slide' }} activeItem={match.params.id ? 1 : 0}>
+            <Container 
+                platformConfig={{
+                    "!phone": {
+                        layout: 'hbox'
+                    },
+                    "phone": {
+                        layout: { 
+                            type: 'card', 
+                            animation: 'slide' 
+                        }
+                    }
+                }}
+            >
                 <Calendar_Days
                     visibleDays={3}
                     startTime={7}
@@ -68,6 +80,7 @@ class Calendar extends Component {
                     resizeEvents={false}
                     gestureNavigation={false}
                     onEventTap={this.eventTap}
+                    flex={1}
                 />
                 <Event event={event}/>
             </Container>

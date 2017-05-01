@@ -16,9 +16,9 @@ export function loadSpeaker(id) {
         if (id) {
             if (!speaker || speaker.id !== id) {
                 const doLoad = () => {
-                    const speaker = store.getById(id).data;
+                    const speaker = store.getById(id);
                     dispatch({ type: LOAD_SPEAKER, speaker });
-                    dispatch(setTitle(speaker.name, '/speakers'));
+                    dispatch(setTitle(speaker.data.name, '/speakers'));
                 };
 
                 if (store.isLoaded()) {

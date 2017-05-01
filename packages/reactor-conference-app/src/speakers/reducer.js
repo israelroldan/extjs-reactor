@@ -22,7 +22,7 @@ export default function speakersReducer(state = initialState, action) {
             return state;
         }
         case LOAD_SPEAKER: {
-            return { ...state, speaker: action.speaker, showSpeaker: true }
+            return { ...state, record: action.speaker, showSpeaker: true }
         }
         default:
             return state;

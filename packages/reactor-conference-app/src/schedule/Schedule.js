@@ -43,6 +43,12 @@ class Schedule extends Component {
             }
         };
 
+        const banner = (
+            <Container docked="top" className="app-banner">
+                <span className="app-banner-content">ExtReact Conference</span>
+            </Container>
+        )
+
         return (
             <Container 
                 activeItem={match.params.id ? 1 : 0}
@@ -58,11 +64,12 @@ class Schedule extends Component {
                     }
                 }}
             >
-                <Container docked="top" className="app-banner">
-                    <span className="app-banner-content">ExtReact Conference</span>
-                </Container>
-                <Container 
-                    layout="vbox" 
+                { !Ext.os.is.Phone && banner }
+                <TabPanel 
+                    flex={1}
+                    tabBar={{
+                        shadow: true
+                    }}
                     platformConfig={{
                         "!phone": {
                             flex: 1,
@@ -70,36 +77,30 @@ class Schedule extends Component {
                         }
                     }}
                 >
-                    <TabPanel flex={1}
-                        tabBar={{
-                            shadow: true
-                        }}
-                    >
-                        <ScheduleList 
-                            title={Ext.os.is.Phone ? "MON" : 'MONDAY'}
-                            selection={event}
-                            dataStore={{ ...storeDefaults, filters: [{ property: 'date', value: 'Monday, November 7' }]}}
-                        />
-                        <ScheduleList 
-                            title={Ext.os.is.Phone ? "TUE" : 'TUESDAY'}
-                            selection={event}
-                            dataStore={{ ...storeDefaults, filters: [{ property: 'date', value: 'Tuesday, November 8' }]}}
-                        />
-                        <ScheduleList 
-                            title={Ext.os.is.Phone ? "WED" : 'WEDNESDAY'}
-                            selection={event}
-                            dataStore={{ ...storeDefaults, filters: [{ property: 'date', value: 'Wednesday, November 9' }]}}
-                        />
-                        <ScheduleList 
-                            iconCls="md-icon-star" 
-                            selection={event}
-                            tab={{
-                                maxWidth: Ext.os.is.Phone ? 60 : 90
-                            }}
-                            dataStore={{ ...storeDefaults, filters: [{ property: 'favorite', value: true }]}}
-                        />
-                    </TabPanel>  
-                </Container>
+                    { Ext.os.is.Phone && banner }
+                    <ScheduleList 
+                        title={Ext.os.is.Phone ? "MON" : 'MONDAY'}
+                        eagerLoad={!Ext.os.is.Phone}
+                        event={event}
+                        dataStore={{ ...storeDefaults, filters: [{ property: 'date', value: 'Monday, November 7' }]}}
+                    />
+                    <ScheduleList 
+                        title={Ext.os.is.Phone ? "TUE" : 'TUESDAY'}
+                        event={event}
+                        dataStore={{ ...storeDefaults, filters: [{ property: 'date', value: 'Tuesday, November 8' }]}}
+                    />
+                    <ScheduleList 
+                        title={Ext.os.is.Phone ? "WED" : 'WEDNESDAY'}
+                        event={event}
+                        dataStore={{ ...storeDefaults, filters: [{ property: 'date', value: 'Wednesday, November 9' }]}}
+                    />
+                    <ScheduleList 
+                        iconCls="md-icon-star" 
+                        event={event}
+                        tab={{ maxWidth: Ext.os.is.Phone ? 60 : 90 }}
+                        dataStore={{ ...storeDefaults, filters: [{ property: 'favorite', value: true }]}}
+                    />
+                </TabPanel>  
                 <Event 
                     event={event} 
                     flex={1} 
@@ -110,7 +111,7 @@ class Schedule extends Component {
 }
 
 const mapStateToProps = ({ schedule, event }) => {
-    return {...schedule, event};
+    return { ...schedule, event: (event || {}).record };
 }
 
 export default connect(mapStateToProps)(Schedule);

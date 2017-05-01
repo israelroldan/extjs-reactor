@@ -18,9 +18,9 @@ class Speaker extends Component {
     componentDidUpdate() {
         const { speaker } = this.props;
 
-        if (speaker && speaker.sessions) {
+        if (speaker && speaker.data.sessions) {
             this.store.filter({
-                value: speaker.sessions,
+                value: speaker.data.sessions,
                 property: 'id',
                 operator: 'in'
             });
@@ -28,28 +28,28 @@ class Speaker extends Component {
     }
 
     render() {
-        const { speaker } = this.props;
+        const { speaker, ...props } = this.props;
+        const data = speaker && speaker.data;
 
         return (
-            <Container masked={!speaker} layout="vbox" scrollable>
+            <Container {...props} layout="vbox" scrollable padding={20}>
                 { speaker && (
                     <div>
                         <div className="app-speaker-ct">
-                            <img className="app-speaker-image" src={speaker.avatar_url}/>
+                            <img className="app-speaker-image" src={data.avatar_url}/>
                             <div className="app-speaker-text">
-                                <div className="app-speaker-name">{speaker.name}</div>
-                                <div className="app-speaker-title">{speaker.title}</div>
-                                <div className="app-speaker-company">{speaker.company}</div>
-                                <div className="app-speaker-bio">{speaker.bio}</div>
+                                <div className="app-speaker-name">{data.name}</div>
+                                <div className="app-speaker-title">{data.title}</div>
+                                <div className="app-speaker-company">{data.company}</div>
+                                <div className="app-speaker-bio">{data.bio}</div>
                             </div>
                         </div>
-                        <Panel title="Events" style={{paddingTop: '20px'}} ui="speaker-events-panel">
-                            <ScheduleList
-                                dataStore={this.store}
-                                showTime
-                                eagerLoad
-                            />
-                        </Panel>
+                        <h2 style={{marginTop: '40px', color: '#999' }}>Events</h2>
+                        <ScheduleList
+                            dataStore={this.store}
+                            showTime
+                            eagerLoad
+                        />
                     </div>
                 )}
             </Container>

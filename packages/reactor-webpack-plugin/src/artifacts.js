@@ -164,13 +164,13 @@ export function createAppJson({ theme, packages, toolkit, overrides=[], packageD
  * Creates the workspace.json file
  * @param {String} sdk The path to the sdk
  */
-export function createWorkspaceJson(sdk, output) {
+export function createWorkspaceJson(sdk, packages, output) {
     return JSON.stringify({
         "frameworks": {
             "ext": path.resolve(sdk)
         },
         "packages": {
-            "dir": "${workspace.dir}/packages/local,${workspace.dir}/packages",
+            "dir": ['${workspace.dir}/packages/local', '${workspace.dir}/packages'].concat(packages).join(','),
             "extract": "${workspace.dir}/packages/remote"
         }
     }, null, 4);

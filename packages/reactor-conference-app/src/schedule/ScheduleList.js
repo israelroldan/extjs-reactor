@@ -56,7 +56,7 @@ class ScheduleList extends Component {
     }
 
     render() {
-        const { selection, eagerLoad, query, dataStore, onSelect, ...listProps } = this.props;
+        const { event, eagerLoad, query, dataStore, onSelect, ...listProps } = this.props;
 
         return (
             <List 
@@ -64,15 +64,15 @@ class ScheduleList extends Component {
                 ref={list => this.list = list}
                 {...listProps}
                 store={eagerLoad && dataStore}
+                selection={eagerLoad && event}
                 itemTpl={this.itemTpl}
                 grouped
                 rowLines
                 itemCls={`app-list-item ${Ext.os.is.Phone ? 'x-item-no-select' : ''}`}
-                maxWidth={600}
                 cls="app-list"
                 onItemTap={this.onItemTap}
                 pinHeaders
-                selection={selection}
+                infinite
                 onShow={{
                     fn: (list) => { if(!eagerLoad) list.setStore(dataStore); },
                     single: true

@@ -5,7 +5,7 @@ import {
 export default function eventReducer(state = {}, action) {
     switch (action.type) {
         case LOAD_EVENT: {
-            return { ...state, data: action.event, showEvent: true }
+            return { ...state, record: action.event };
         }
         default: 
             return { ...state };

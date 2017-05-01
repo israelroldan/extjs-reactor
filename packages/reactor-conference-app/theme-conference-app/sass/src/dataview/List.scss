@@ -20,11 +20,12 @@
 }
 
 .app-list-item {
+    cursor: pointer;
+    position: relative;
+
     .x-listitem-body {
         padding: 16px 20px;
     }
-
-    position: relative;
 
     .app-list-tool {
         position: absolute;
@@ -62,7 +63,7 @@
 
 .app-list-item-title {
     font-size: 18px;
-    line-height: 1em;
+    line-height: 1.3;
     color: $base-color;
     margin-bottom: 0.25em;
 }

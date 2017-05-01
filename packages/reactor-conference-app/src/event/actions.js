@@ -11,7 +11,7 @@ export function loadEvent(id, title, backButtonURL = '/schedule') {
                 const doLoad = () => {
                     const event = store.getById(id);
                     dispatch({ type: LOAD_EVENT, event });
-                    dispatch(setTitle(event.title, backButtonURL));
+                    dispatch(setTitle(event.data.title, backButtonURL));
                 };
 
                 if (store.isLoaded()) {

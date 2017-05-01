@@ -41,21 +41,35 @@ class Speakers extends Component {
     }
 
     render() {
-        const { store, speaker, match } = this.props;
+        const { store, record, match, ...props } = this.props;
 
         return (
-            <Container layout={{ type: 'card', animation: 'slide' }} activeItem={match.params.id ? 1 : 0}>
+            <Container 
+                activeItem={match.params.id ? 1 : 0}
+                platformConfig={{
+                    "!phone": {
+                        layout: 'hbox'
+                    },
+                    "phone": {
+                        layout: { 
+                            type: 'card', 
+                            animation: 'slide' 
+                        }
+                    }
+                }}
+            >
                 <List 
-                    {...this.props}
+                    {...props}
                     store={store}
                     itemTpl={this.itemTpl}
                     onItemTap={this.onItemTap}
-                    itemCls="app-list-item x-item-no-select"
+                    itemCls="app-list-item"
                     rowLines
                     maxWidth="600"
+                    flex={1}
                     cls="app-list"
                 /> 
-                <Speaker speaker={speaker}/>
+                <Speaker speaker={record} flex={1}/>
             </Container>
         );
     }
