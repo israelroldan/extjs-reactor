@@ -20,10 +20,13 @@ class Schedule extends Component {
     componentDidUpdate = (prevProps) => this.updateData(prevProps);
 
     updateData = (prevProps) => {
+        const { store, dispatch } = this.props;
         const id = this.props.match.params.id;
-        
-        if (!prevProps || prevProps.match.params.id !== id) {
-            this.props.dispatch(loadEvent(id, 'Schedule'))
+
+        if (!id && !Ext.os.is.Phone) {
+            store.on('load', () => location.hash = '/schedule/' + store.first().getId(), this, { single: true });
+        } else if (!prevProps || prevProps.match.params.id !== id) {
+            dispatch(loadEvent(id, 'Schedule'))
         }
     }
 
@@ -41,45 +44,66 @@ class Schedule extends Component {
         };
 
         return (
-            <Container layout={{ type: 'card', animation: 'slide' }} activeItem={match.params.id ? 1 : 0}>
-                <Container layout="vbox" className="app-banner-tabs">
-                    <Container className="app-banner" ref={banner => this.banner = banner}>
-                        <span className="app-banner-content">ExtReact Conference</span>
-                    </Container>
-                    { Ext.platformTags.desktop && (
-                        <SearchField style={{position: 'absolute', right: '10px', top: '8px', zIndex: 101}} width="200" height="32" ui="app-search-field" />
-                    )}
-                    <TabPanel 
-                        ref={tp => this.tabPanel = tp}
-                        flex={1}
-                        platformConfig={{
-                            desktop: {
-                                cls: 'app-desktop-tabs'
-                            }
+            <Container 
+                activeItem={match.params.id ? 1 : 0}
+                platformConfig={{
+                    "!phone": {
+                        layout: 'hbox'
+                    },
+                    "phone": {
+                        layout: { 
+                            type: 'card', 
+                            animation: 'slide' 
+                        }
+                    }
+                }}
+            >
+                <Container docked="top" className="app-banner">
+                    <span className="app-banner-content">ExtReact Conference</span>
+                </Container>
+                <Container 
+                    layout="vbox" 
+                    platformConfig={{
+                        "!phone": {
+                            flex: 1,
+                            maxWidth: 500
+                        }
+                    }}
+                >
+                    <TabPanel flex={1}
+                        tabBar={{
+                            shadow: true
                         }}
                     >
                         <ScheduleList 
-                            title="MON" 
+                            title={Ext.os.is.Phone ? "MON" : 'MONDAY'}
+                            selection={event}
                             dataStore={{ ...storeDefaults, filters: [{ property: 'date', value: 'Monday, November 7' }]}}
                         />
                         <ScheduleList 
-                            title="TUE" 
+                            title={Ext.os.is.Phone ? "TUE" : 'TUESDAY'}
+                            selection={event}
                             dataStore={{ ...storeDefaults, filters: [{ property: 'date', value: 'Tuesday, November 8' }]}}
                         />
                         <ScheduleList 
-                            title="WED" 
+                            title={Ext.os.is.Phone ? "WED" : 'WEDNESDAY'}
+                            selection={event}
                             dataStore={{ ...storeDefaults, filters: [{ property: 'date', value: 'Wednesday, November 9' }]}}
                         />
                         <ScheduleList 
                             iconCls="md-icon-star" 
+                            selection={event}
                             tab={{
-                                maxWidth: 60
+                                maxWidth: Ext.os.is.Phone ? 60 : 90
                             }}
                             dataStore={{ ...storeDefaults, filters: [{ property: 'favorite', value: true }]}}
                         />
                     </TabPanel>  
                 </Container>
-                <Event event={event}/>
+                <Event 
+                    event={event} 
+                    flex={1} 
+                />
             </Container>
         )
     }

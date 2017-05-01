@@ -46,7 +46,6 @@ export default class Files extends Component {
             <TabPanel 
                 ref="tabs"
                 shadow
-                style={{zIndex: 1}}
                 tabBar={{
                     layout: {
                         pack: 'left'

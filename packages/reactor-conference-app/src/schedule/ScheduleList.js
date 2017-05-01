@@ -26,7 +26,8 @@ class ScheduleList extends Component {
             <div className="app-list-content">
                 <div className="app-list-text">
                     <div className="app-list-item-title" dangerouslySetInnerHTML={mark(data.title)}/>
-                    <div className="app-list-item-details">{data.speakerNames ? <span>by <span dangerouslySetInnerHTML={mark(data.speakerNames)}/></span> : ''}{data.categoryName} - {data.location.name}</div>
+                    <div className="app-list-item-details">{data.speakerNames ? <span>by <span dangerouslySetInnerHTML={mark(data.speakerNames)}/></span> : ''}</div> 
+                    <div className="app-list-item-details">{data.categoryName} - {data.location.name}</div>
                     { this.props.showTime && (<div className="app-list-item-details">{day} {data.start_time}</div>) }
                 </div>
                 <div 
@@ -55,7 +56,7 @@ class ScheduleList extends Component {
     }
 
     render() {
-        const { eagerLoad, query, dataStore, onSelect, ...listProps } = this.props;
+        const { selection, eagerLoad, query, dataStore, onSelect, ...listProps } = this.props;
 
         return (
             <List 
@@ -66,11 +67,12 @@ class ScheduleList extends Component {
                 itemTpl={this.itemTpl}
                 grouped
                 rowLines
-                itemCls="app-list-item x-item-no-select"
+                itemCls={`app-list-item ${Ext.os.is.Phone ? 'x-item-no-select' : ''}`}
                 maxWidth={600}
                 cls="app-list"
                 onItemTap={this.onItemTap}
                 pinHeaders
+                selection={selection}
                 onShow={{
                     fn: (list) => { if(!eagerLoad) list.setStore(dataStore); },
                     single: true

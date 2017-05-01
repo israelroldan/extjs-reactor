@@ -14,7 +14,7 @@ export default class BasicListExample extends Component {
         sorters: ['last_name', 'first_name']
     })
 
-    tpl = new Template(data => <div>{data.first_name} {data.last_name}</div>);
+    tpl = data => <div>{data.first_name} {data.last_name}</div>
 
     onSelect = (list, record) => {
         Ext.toast(`You selected ${record.get('first_name')} ${record.get('last_name')}.`)

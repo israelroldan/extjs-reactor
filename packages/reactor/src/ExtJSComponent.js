@@ -254,8 +254,6 @@ export default class ExtJSComponent extends Component {
             return { name: 'cell', array: false, value: this._cloneConfig(item) }
         } else if (isAssignableFrom(extJSClass, CLASS_CACHE.WidgetCell)) {
             return { name: 'widget', array: false, value: this._cloneConfig(item) }
-        } else if (isAssignableFrom(extJSClass, CLASS_CACHE.GridHeaderGroup) && CLASS_CACHE.Column && item instanceof CLASS_CACHE.Column) {
-            return { name: 'columns', array: true };
         } else if (isAssignableFrom(extJSClass, CLASS_CACHE.Dialog) && CLASS_CACHE.Button && item instanceof CLASS_CACHE.Button) {
             return { name: 'buttons', array: true };
         }

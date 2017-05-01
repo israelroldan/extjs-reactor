@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container } from '@extjs/ext-react';
+import { Panel, TabBar } from '@extjs/ext-react';
 import { connect } from 'react-redux';
 import { setTitle } from '../actions';
 import { loadEvent } from './actions';
@@ -13,7 +13,10 @@ class Event extends Component {
         const speaker = data && data.speakers && data.speakers.length > 0 && data.speakers.map(s => s.name).join(', ');
 
         return (
-            <Container masked={!data} padding="20" scrollable>
+            <Panel padding="20" scrollable {...this.props}>
+                { !Ext.os.is.Phone && (
+                    <TabBar docked="top" height={ Ext.os.is.Desktop ? 48 : 64 } className="app-tabbar-filler"/>
+                )}
                 { data && (
                     <div>
                         <div className="app-event-name">{data.title}</div>
@@ -24,7 +27,7 @@ class Event extends Component {
                         <div className="app-event-abstract" dangerouslySetInnerHTML={{ __html: data.description }}/>
                     </div>
                 )}
-            </Container>
+            </Panel>
         )
     }
 

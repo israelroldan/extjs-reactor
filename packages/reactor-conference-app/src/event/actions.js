@@ -9,7 +9,7 @@ export function loadEvent(id, title, backButtonURL = '/schedule') {
         if (id) {
             if (!event || event.id !== id) {
                 const doLoad = () => {
-                    const event = store.getById(id).data;
+                    const event = store.getById(id);
                     dispatch({ type: LOAD_EVENT, event });
                     dispatch(setTitle(event.title, backButtonURL));
                 };

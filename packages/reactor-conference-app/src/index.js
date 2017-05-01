@@ -5,4 +5,6 @@ import { launch } from '@extjs/reactor';
 import * as d3 from 'd3';
 window.d3 = d3;
 
+Ext.require('Ext.*');
+
 launch(<App/>, {}, { debug: false }) 
