@@ -65,11 +65,11 @@ class Speakers extends Component {
                     onItemTap={this.onItemTap}
                     itemCls="app-list-item"
                     rowLines
-                    maxWidth="600"
                     flex={1}
                     cls="app-list"
+                    maxWidth={!Ext.os.is.Phone && record && 500}
                 /> 
-                <Speaker speaker={record} flex={1}/>
+                { (Ext.os.is.Phone || record) && <Speaker speaker={record} flex={1}/> }
             </Container>
         );
     }

@@ -20,18 +20,17 @@ class Schedule extends Component {
     componentDidUpdate = (prevProps) => this.updateData(prevProps);
 
     updateData = (prevProps) => {
-        const { store, dispatch } = this.props;
+        const { dispatch } = this.props;
         const id = this.props.match.params.id;
 
-        if (!id && !Ext.os.is.Phone) {
-            store.on('load', () => location.hash = '/schedule/' + store.first().getId(), this, { single: true });
-        } else if (!prevProps || prevProps.match.params.id !== id) {
+        if (!prevProps || prevProps.match.params.id !== id) {
             dispatch(loadEvent(id, 'Schedule'))
         }
     }
 
     render() {
         const { store, event, match } = this.props;
+        const showEvent = match.params.id && (Ext.os.is.Phone || event);
 
         const storeDefaults = { 
             type: 'chained',
@@ -51,7 +50,7 @@ class Schedule extends Component {
 
         return (
             <Container 
-                activeItem={match.params.id ? 1 : 0}
+                activeItem={showEvent ? 1 : 0}
                 platformConfig={{
                     "!phone": {
                         layout: 'hbox'
@@ -67,13 +66,11 @@ class Schedule extends Component {
                 { !Ext.os.is.Phone && banner }
                 <TabPanel 
                     flex={1}
-                    tabBar={{
-                        shadow: true
-                    }}
+                    tabBar={{ shadow: true}}
+                    maxWidth={showEvent && 500}
                     platformConfig={{
                         "!phone": {
-                            flex: 1,
-                            maxWidth: 500
+                            flex: 1
                         }
                     }}
                 >
@@ -83,28 +80,29 @@ class Schedule extends Component {
                         eagerLoad={!Ext.os.is.Phone}
                         event={event}
                         dataStore={{ ...storeDefaults, filters: [{ property: 'date', value: 'Monday, November 7' }]}}
+                        pinHeaders
                     />
                     <ScheduleList 
                         title={Ext.os.is.Phone ? "TUE" : 'TUESDAY'}
                         event={event}
                         dataStore={{ ...storeDefaults, filters: [{ property: 'date', value: 'Tuesday, November 8' }]}}
+                        pinHeaders
                     />
                     <ScheduleList 
                         title={Ext.os.is.Phone ? "WED" : 'WEDNESDAY'}
                         event={event}
                         dataStore={{ ...storeDefaults, filters: [{ property: 'date', value: 'Wednesday, November 9' }]}}
+                        pinHeaders
                     />
                     <ScheduleList 
                         iconCls="md-icon-star" 
                         event={event}
                         tab={{ maxWidth: Ext.os.is.Phone ? 60 : 90 }}
                         dataStore={{ ...storeDefaults, filters: [{ property: 'favorite', value: true }]}}
+                        pinHeaders
                     />
                 </TabPanel>  
-                <Event 
-                    event={event} 
-                    flex={1} 
-                />
+                { (Ext.os.is.Phone || showEvent) && <Event event={event} flex={1} header={!Ext.os.is.Phone}/> }
             </Container>
         )
     }

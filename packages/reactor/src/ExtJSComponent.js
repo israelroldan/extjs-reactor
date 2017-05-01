@@ -119,7 +119,7 @@ export default class ExtJSComponent extends Component {
 
             // remember the parent and position in parent for dangerouslyReplaceNodeWithMarkup
             // this not needed in fiber
-            const indexInParent = parentCmp.indexOf(this.cmp);
+            const indexInParent = parentCmp && parentCmp.indexOf(this.cmp);
 
             if (this.reactorSettings.debug) console.log('destroy', this.cmp.$className);
 

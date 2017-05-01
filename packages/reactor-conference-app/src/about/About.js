@@ -18,7 +18,7 @@ class About extends Component {
         };
         
         return (
-            <div style={{padding: '10px'}}>
+            <div style={{padding: Ext.os.is.Phone ? '0 10px': '0 20px'}}>
                 <h2 style={{fontWeight: 100}}>ExtReact Conference App</h2>
                 <p>
                     This app is built with <a href="https://github.com/sencha/extjs-reactor">Sencha ExtReact 1.0</a> and uses the following libraries:

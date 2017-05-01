@@ -42,6 +42,10 @@ class ScheduleList extends Component {
         if (record) {
             self.location.hash = `/schedule/${record.id}`;
         }
+
+        if (this.props.onSelect) {
+            this.props.onSelect(record);
+        }
     }
 
     onFavoriteClick = (data, e) => {
@@ -56,7 +60,7 @@ class ScheduleList extends Component {
     }
 
     render() {
-        const { event, eagerLoad, query, dataStore, onSelect, ...listProps } = this.props;
+        const { event, eagerLoad, query, dataStore, onSelect, pinHeaders, ...listProps } = this.props;
 
         return (
             <List 
@@ -71,8 +75,9 @@ class ScheduleList extends Component {
                 itemCls={`app-list-item ${Ext.os.is.Phone ? 'x-item-no-select' : ''}`}
                 cls="app-list"
                 onItemTap={this.onItemTap}
-                pinHeaders
-                infinite
+                pinHeaders={pinHeaders}
+                infinite={pinHeaders}
+                variableHeights={pinHeaders}
                 onShow={{
                     fn: (list) => { if(!eagerLoad) list.setStore(dataStore); },
                     single: true

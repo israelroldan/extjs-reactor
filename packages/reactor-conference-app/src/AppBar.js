@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button, TitleBar } from '@extjs/ext-react';
+import { Button, TitleBar, SearchField } from '@extjs/ext-react';
 import { toggleMenu, toggleSearch } from './actions';
 
 function AppBar({ dispatch, title, selectedNavNode, children, backButtonURL }) {
@@ -10,7 +10,7 @@ function AppBar({ dispatch, title, selectedNavNode, children, backButtonURL }) {
             titleAlign="left"
             shadow
             style={{zIndex: 100}}
-            title={Ext.os.is.Phone ? title : ''}
+            title={Ext.os.is.Phone ? title || '' : ''}
             platformConfig={{
                 '!desktop': {
                     titleAlign: 'center'
@@ -33,7 +33,9 @@ function AppBar({ dispatch, title, selectedNavNode, children, backButtonURL }) {
             { Ext.os.is.Phone && (
                 <Button align="right" iconCls="md-icon-search" handler={() => dispatch(toggleSearch())}/>
             )}
-            { children }
+            { !Ext.os.is.Phone && (
+                <SearchField ui="alt" placeholder="Search" align="right" width={250}/>
+            )}
         </TitleBar>
     )
 }

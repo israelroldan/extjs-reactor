@@ -1,10 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setTitle } from '../actions';
-
+import { Panel } from '@extjs/ext-react';
 import WorldMap from './WorldMap';
 
 class Attendees extends Component {
+
+    store = Ext.create('Ext.data.Store', {
+        autoLoad: true,
+        fields: [{ name: 'cnt', type: 'number'}, 'Work_Country'],
+        proxy: {
+            type: 'ajax',
+            url: 'resources/countries.json',
+            reader: {
+                type: 'json',
+                rootProperty: 'data'
+            }
+        },
+        listeners: {
+            load: () => this.setState({ loaded: true })
+        }
+    })
 
     componentDidMount() {
         this.props.dispatch(setTitle('Attendees'));
@@ -19,18 +35,7 @@ class Attendees extends Component {
     render() {
         return (
             <WorldMap
-                store={{
-                    autoLoad: true,
-                    fields: [{ name: 'cnt', type: 'number'}, 'Work_Country'],
-                    proxy: {
-                        type: 'ajax',
-                        url: 'resources/countries.json',
-                        reader: {
-                            type: 'json',
-                            rootProperty: 'data'
-                        }
-                    }
-                }}
+                store={this.store}
                 colorAxis={{
                     scale: {
                         type: 'log',

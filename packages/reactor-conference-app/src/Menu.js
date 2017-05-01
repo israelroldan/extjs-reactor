@@ -20,7 +20,7 @@ class Menu extends Component {
     };
 
     onSelectionChange = (tree, record) => {
-        if (record) {
+        if (record && !location.hash.startsWith('#' + record.getId())) {
             location.hash = record.getId();
         }
         this.props.dispatch(toggleMenu(false));

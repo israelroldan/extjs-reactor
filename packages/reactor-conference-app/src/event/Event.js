@@ -8,21 +8,24 @@ import days from '../util/days';
 class Event extends Component {
 
     render() {
-        const { record, ...props } = this.props;
+        const { record, header=true, ...props } = this.props;
         const data = record && record.data;
         const day = data && data.date && data.date.match(/(Monday|Tuesday|Wednesday)/)[1];
         const speaker = data && data.speakers && data.speakers.length > 0 && data.speakers.map(s => s.name).join(', ');
 
         return (
-            <Panel padding="20" scrollable {...props}>
-                { !Ext.os.is.Phone && (
-                    <TabBar docked="top" height={ Ext.os.is.Desktop ? 48 : 64 } className="app-tabbar-filler"/>
-                )}
+            <Panel 
+                {...props}
+                padding="20" 
+                scrollable 
+                header={header}
+                tools={header && { close: () => location.hash = '/schedule' }}
+            >
                 { data && (
                     <div>
                         <div className="app-event-name">{data.title}</div>
                         <div className="app-event-speaker">{ data.speakerNames ? `by ${data.speakerNames}` : data.category }</div>
-                        <div className="app-event-time">{day} {data.time}</div>
+                        <div className="app-event-time">{day} {data.start_time} - {data.end_time}</div>
                         <div className="app-event-location">{data.location.name}</div>
                         { data.description && <hr/> }
                         <div className="app-event-abstract" dangerouslySetInnerHTML={{ __html: data.description }}/>

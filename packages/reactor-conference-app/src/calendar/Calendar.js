@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { Calendar_Days, Container } from '@extjs/ext-react';
+import { Calendar_Days, Container, Panel } from '@extjs/ext-react';
 import Event from '../event/Event';
 import { loadEvent } from '../event/actions';
 
@@ -51,6 +51,7 @@ class Calendar extends Component {
 
         return (
             <Container 
+                activeItem={match.params.id && event ? 1 : 0}
                 platformConfig={{
                     "!phone": {
                         layout: 'hbox'
@@ -82,14 +83,14 @@ class Calendar extends Component {
                     onEventTap={this.eventTap}
                     flex={1}
                 />
-                <Event event={event}/>
+                {event && <Event event={event} flex={1} header={false}/>}
             </Container>
         )
     }
 }
 
 const mapStateToProps = ({ event }) => {
-    return { showEvent: event.showEvent };
+    return { event: (event || {}).record };
 }
 
 export default connect(mapStateToProps)(Calendar);

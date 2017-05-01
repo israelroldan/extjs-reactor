@@ -27,7 +27,6 @@ export default function rootReducer(state = initialState, action) {
     switch(action.type) {
         case ROUTE_CHANGED:
             const nodeId = '/' + location.hash.slice(1).split('/')[1];
-            console.log(nodeId);
             return { ...state, selectedNavNode: navStore.getNodeById(nodeId) };
 
         case TOGGLE_MENU: 
