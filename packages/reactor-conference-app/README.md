@@ -6,7 +6,7 @@ An example app built with ExtReact
 
 1. Fork/clone this repo
 2. `git checkout kitchensink`
-3. `npm login --registry=test.npm.sencha.com --scope=@extjs` (Use the email and password you use for sencha forums.  Replate '@' with '..' in the email.)
+3. `npm login --registry=test.npm.sencha.com --scope=@extjs` (Use the email and password you use for Sencha forums.  Replace '@' with '..' in the email.)
 4. `npm install`
 5. `cd packages/reactor-conference-app`
 6. `npm start`
