@@ -62,7 +62,7 @@ export default class ButtonExample extends Component {
                     <Container>
                         <div {...groupLabelProps}>Default</div>
                         <Container className="button-group" {...buttonGroupProps}>
-                            <Button text={ text && "Normal" } ui={ui} iconCls={iconCls}>{menu}</Button>
+                            <Button text={ text && "Normal" } ui={ui} iconCls={iconCls} arrowAlign="bottom">{menu}</Button>
                             <Button text={ text && "Badge" } ui={ui} iconCls={iconCls} badgeText="2">{menu}</Button>
                             <Button text={ text && "Disabled" } ui={ui} iconCls={iconCls} disabled>{menu}</Button>
                         </Container>

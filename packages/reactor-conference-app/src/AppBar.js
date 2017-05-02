@@ -1,9 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button, TitleBar, SearchField } from '@extjs/ext-react';
+import { Button, TitleBar } from '@extjs/ext-react';
 import { toggleMenu, toggleSearch } from './actions';
+import SearchField from './SearchField';
 
-function AppBar({ dispatch, title, selectedNavNode, children, backButtonURL }) {
+function AppBar({ 
+    dispatch, 
+    title, 
+    selectedNavNode, 
+    children, 
+    backButtonURL, 
+    events 
+}) {
     return (
         <TitleBar 
             docked="top"
@@ -34,12 +42,14 @@ function AppBar({ dispatch, title, selectedNavNode, children, backButtonURL }) {
                 <Button align="right" iconCls="md-icon-search" handler={() => dispatch(toggleSearch())}/>
             )}
             { !Ext.os.is.Phone && (
-                <SearchField ui="alt" placeholder="Search" align="right" width={250}/>
+                <SearchField align="right"/>
             )}
         </TitleBar>
     )
 }
 
-const mapStateToProps = ({ root }) => root;
+const mapStateToProps = ({ root, schedule }) => {
+    return { ...root, events: schedule.store };
+};
 
 export default connect(mapStateToProps)(AppBar);

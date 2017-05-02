@@ -11,13 +11,59 @@ import Event from '../event/Event';
 
 class Schedule extends Component {
     
-    constructor({ children }) {
+    constructor({ store }) {
         super();
-        this.state = { children };
+
+        this.storeDefaults = { 
+            type: 'chained',
+            source: store, 
+            autoDestroy: true,
+            grouper: {
+                property: 'start_time',
+                sortProperty: 'startDate'
+            }
+        };
+
+        this.stores = [
+            Ext.create('Ext.data.ChainedStore', { ...this.storeDefaults, filters: [{ property: 'date', value: 'Monday, November 7' }] }),
+            Ext.create('Ext.data.ChainedStore', { ...this.storeDefaults, filters: [{ property: 'date', value: 'Tuesday, November 8' }] }),
+            Ext.create('Ext.data.ChainedStore', { ...this.storeDefaults, filters: [{ property: 'date', value: 'Wednesday, November 9' }] })
+        ]
     }
 
-    componentDidMount = () => this.updateData();
-    componentDidUpdate = (prevProps) => this.updateData(prevProps);
+    state = {
+        activeItem: 0
+    }
+
+    stores = [
+        Ext.create('Ext.data.ChainedStore', )
+    ]
+
+    componentDidMount = () => {
+        this.updateData();
+    }
+
+    componentDidUpdate = (prevProps) => {
+        this.updateData(prevProps);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.event !== this.props.event) {
+            this.setState({
+                activeItem: this.activeItemForEvent(nextProps.event)
+            })
+        }
+    }
+
+    activeItemForEvent(event) {
+        for (let i=0; i<this.stores.length; i++) {
+            if (this.stores[i].contains(event)) {
+                return i;
+            }
+        }
+
+        return 0;
+    }
 
     updateData = (prevProps) => {
         const { dispatch } = this.props;
@@ -31,16 +77,6 @@ class Schedule extends Component {
     render() {
         const { store, event, match } = this.props;
         const showEvent = match.params.id && (Ext.os.is.Phone || event);
-
-        const storeDefaults = { 
-            type: 'chained',
-            source: store, 
-            autoDestroy: true,
-            grouper: {
-                property: 'start_time',
-                sortProperty: 'startDate'
-            }
-        };
 
         const banner = (
             <Container docked="top" className="app-banner">
@@ -68,6 +104,7 @@ class Schedule extends Component {
                     flex={1}
                     tabBar={{ shadow: true}}
                     maxWidth={showEvent && 500}
+                    activeItem={this.state.activeItem}
                     platformConfig={{
                         "!phone": {
                             flex: 1
@@ -77,28 +114,26 @@ class Schedule extends Component {
                     { Ext.os.is.Phone && banner }
                     <ScheduleList 
                         title={Ext.os.is.Phone ? "MON" : 'MONDAY'}
-                        eagerLoad={!Ext.os.is.Phone}
                         event={event}
-                        dataStore={{ ...storeDefaults, filters: [{ property: 'date', value: 'Monday, November 7' }]}}
+                        dataStore={this.stores[0]}
                         pinHeaders
                     />
                     <ScheduleList 
                         title={Ext.os.is.Phone ? "TUE" : 'TUESDAY'}
                         event={event}
-                        dataStore={{ ...storeDefaults, filters: [{ property: 'date', value: 'Tuesday, November 8' }]}}
+                        dataStore={this.stores[1]}
                         pinHeaders
                     />
                     <ScheduleList 
                         title={Ext.os.is.Phone ? "WED" : 'WEDNESDAY'}
                         event={event}
-                        dataStore={{ ...storeDefaults, filters: [{ property: 'date', value: 'Wednesday, November 9' }]}}
+                        dataStore={this.stores[2]}
                         pinHeaders
                     />
                     <ScheduleList 
                         iconCls="md-icon-star" 
-                        event={event}
                         tab={{ maxWidth: Ext.os.is.Phone ? 60 : 90 }}
-                        dataStore={{ ...storeDefaults, filters: [{ property: 'favorite', value: true }]}}
+                        dataStore={{ ...this.storeDefaults, filters: [{ property: 'favorite', value: true }]}}
                         pinHeaders
                     />
                 </TabPanel>  

@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Container, Sheet, TreeList, Panel, TitleBar, Button } from '@extjs/ext-react';
 import { connect } from 'react-redux';
 import { toggleMenu } from './actions';
