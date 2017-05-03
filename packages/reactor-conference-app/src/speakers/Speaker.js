@@ -48,12 +48,14 @@ class Speaker extends Component {
                             </div>
                         </div>
                         <h2 style={{marginTop: '40px', color: '#999' }}>Events</h2>
-                        <ScheduleList
-                            dataStore={this.store}
-                            scrollable={false}
-                            showTime
-                            eagerLoad
-                        />
+                        <Container shadow>
+                            <ScheduleList
+                                dataStore={this.store}
+                                scrollable={false}
+                                showTime
+                                eagerLoad
+                            />
+                        </Container>
                     </div>
                 )}
             </Container>
