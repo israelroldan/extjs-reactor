@@ -2,7 +2,7 @@ import React from 'react';
 import { Toolbar, Button, Component } from '@extjs/ext-react';
 
 export default function Breadcrumbs(props) {
-    let { node, router } = props;
+    let { node } = props;
     const items = [];
 
     do {
@@ -10,7 +10,7 @@ export default function Breadcrumbs(props) {
             <Button 
                 text={node.get('text')} 
                 key={node.get('text')}
-                handler={router.push.bind(router, node.id)}
+                handler={navigate.bind(null, node.id)}
             />
         );
         
@@ -35,4 +35,8 @@ export default function Breadcrumbs(props) {
             {items}
         </Toolbar>
     )
+}
+
+function navigate(hash) {
+    location.hash = hash;
 }

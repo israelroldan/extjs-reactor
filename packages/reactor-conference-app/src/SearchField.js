@@ -70,7 +70,6 @@ class SearchField extends Component {
                 store={this.store}
                 queryMode="local"
                 onBeforeQuery={this.search}
-                placeholder="Search"
                 clearable
                 hideTrigger
                 onChange={this.onChange}

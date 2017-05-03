@@ -7,7 +7,6 @@ import hljs, { highlightBlock } from 'highlightjs';
 import NavTree from './NavTree';
 import NavView from './NavView';
 import Files from './Files';
-import Home from './Home';
 import * as actions from './actions';
 import Breadcrumbs from './Breadcrumbs';
 
@@ -41,14 +40,12 @@ class Layout extends Component {
 
     onNavChange = (node) => {
         if (node && node.isLeaf()) {
-            const { router, location } = this.props;
-            const path = node.getId();
-            if (location.pathname !== path) router.push(path)
+            location.hash = node.getId();
         }
     }
 
     onTitleClick = () => {
-        this.props.router.push('/');
+        location.hash = '/';
     }
 
     render() {
@@ -61,8 +58,7 @@ class Layout extends Component {
             showCode,
             showTree,
             actions,
-            layout,
-            router
+            layout
         } = this.props;
 
         let mainView;
@@ -107,14 +103,14 @@ class Layout extends Component {
                             onSelectionChange={(tree, node) => this.onNavChange(node)}
                             collapsed={!showTree}
                         /> 
-                        <Breadcrumbs docked="top" node={selectedNavNode} router={router}/>
+                        <Breadcrumbs docked="top" node={selectedNavNode}/>
                         <Transition flex={1} type="slide" bindDirectionToLocation>
                             { component ? (
                                 <Container layout={layout} scrollable={layout !== 'fit'} padding="30" key={selectedNavNode.id}>
                                     { React.createElement(component) }
                                 </Container>
                             ) : selectedNavNode ? (
-                                <NavView key={selectedNavNode.id} node={selectedNavNode} router={router}/>
+                                <NavView key={selectedNavNode.id} node={selectedNavNode}/>
                             ) : null }
                         </Transition>
                     </Container>

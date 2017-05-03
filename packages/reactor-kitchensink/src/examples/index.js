@@ -199,8 +199,6 @@ import FormLayout from './Layouts/form/form';
 import Resizable from './Layouts/resizable/resizable';
 import CenterLayout from './Layouts/center/center';
 
-import InProgress from '../InProgress';  
-
 // Drag & Drop
 import SimpleDandD from './DragAndDrop/Simple/Simple';
 import Constrains from './DragAndDrop/Constraints/Constraints';
