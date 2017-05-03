@@ -148,6 +148,13 @@ export function createAppJson({ theme, packages, toolkit, overrides=[], packageD
         }
     };
 
+    // if .sencharc file exists, consume it and apply to app.json
+    if(fs.existsSync('./.sencharc')) {
+        const senchaRc = JSON.parse(fs.readFileSync('./.sencharc', 'utf-8'));
+        Object.assign(config, senchaRc);
+        theme = senchaRc.theme || theme;
+    }
+
     // if theme is local add it as an additional package dir
     if (fs.existsSync(theme)) {
         const packageInfo = cjson.load(path.join(theme, 'package.json'));
