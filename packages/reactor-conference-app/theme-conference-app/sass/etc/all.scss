@@ -9,24 +9,26 @@ hr {
     border-style: solid;
 }
 
+.sencha-logo {
+    background-image: url(../resources/sencha.png);
+    height: 22px;
+    width: 16px;
+    display: inline-block;
+    position: relative;
+    background-size: cover;
+    top: 4px;
+    margin-right: 10px;
+}
+
 .app-container {
     width: 100%;
     max-width: 1200px !important;
     margin: 0 auto !important;
 }
 
-.app-icon {
-    margin-right: 7px;
-    font-size: 20px;
-    line-height: 1em;
-    display: inline;
-    position: relative;
-    top: 2px;
-}
-
 .app-title {
     font-size: 20px;
-    line-height: 1em;
+    line-height: 1.3;
     font-weight: 300;
     text-decoration: none;
     color: white;

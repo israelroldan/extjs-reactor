@@ -27,7 +27,7 @@ function AppBar({
         >
             { !Ext.os.is.Phone && (
                 <div>
-                    <div className="ext ext-sencha app-icon"/>
+                    <div className="sencha-logo"/>
                     <a href="#" className="app-title">{selectedNavNode && false ? selectedNavNode.get('text') : 'ExtReact Conference'}</a>
                 </div>
             ) }
