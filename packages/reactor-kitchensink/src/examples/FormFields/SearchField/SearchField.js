@@ -43,9 +43,11 @@ export default class SearchFieldExample extends Component {
                         iconCls="x-fa fa-arrow-right"
                         ui="action round raised"
                         height={36}
+                        width={36}
                         platformConfig={{
                             phone: {
-                                height: 40
+                                height: 40,
+                                width: 40
                             }
                         }}
                     />

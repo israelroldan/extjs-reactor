@@ -26,7 +26,7 @@ export default Ext.define('BigDataGridModel', {
             name: 'surname'
         }, {
             name: 'fullName',
-            calculate: ({forename, surname}) => `${forename} ${surname}`
+            calculate: ({forename, surname}) => forename || surname ? `${forename} ${surname}` : ''
         }, {
             name: 'email'
         }, {

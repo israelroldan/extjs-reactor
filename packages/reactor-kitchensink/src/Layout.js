@@ -126,7 +126,7 @@ class Layout extends Component {
                         align="right" 
                         iconCls={'x-font-icon ' + (showCode ? 'md-icon-close' : 'md-icon-code') }
                         ui="fab" 
-                        top={21}
+                        top={Ext.os.is.Desktop ? 21 : 35}
                         right={21}
                         zIndex={1000}
                         handler={actions.toggleCode} 

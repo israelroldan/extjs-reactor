@@ -24,11 +24,11 @@ export default class NavTree extends Component {
                 {...this.props}
                 scrollable="y" 
                 shadow 
-                style={{zIndex: 100}} 
+                style={{zIndex: 100, backgroundColor: 'white'}} 
                 header={false}
                 collapsible={{ direction: 'left' }}
             >
-                <SearchField flex={1} docked="top" style={{backgroundColor: '#fafafa', padding: '5px' }} onChange={this.filterNav} />
+                <SearchField flex={1} docked="top" ui="faded" onChange={this.filterNav} margin="7" />
                 <TreeList
                     width={265} 
                     ui="nav"

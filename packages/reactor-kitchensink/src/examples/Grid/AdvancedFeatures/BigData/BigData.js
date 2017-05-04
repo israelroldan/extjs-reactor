@@ -8,7 +8,8 @@ import './style.css';
 Ext.require([
     'Ext.grid.plugin.*',
     'Ext.tip.ToolTip',
-    'Ext.data.summary.Sum'
+    'Ext.data.summary.Sum',
+    'Ext.exporter.*'
 ]);
 
 export default class BigDataGridExample extends Component {
@@ -28,16 +29,12 @@ export default class BigDataGridExample extends Component {
         }            
     });
 
-    ratingTpl = new Template ( (data) => {
-        return (
-           <div>
-               <img src={data.avatar} height="100px" style={{float:'left', margin:'0 10px 5px 0'}}/>
-                <p>
-                    {formatDate( data.dob)}
-                </p>
-            </div>
-       )
-    });
+    rowBodyTpl = data => (
+        <div>
+            <img src={data.avatar} height="100px" style={{float:'left', margin:'0 10px 5px 0'}}/>
+            <p>{formatDate( data.dob)}</p>
+        </div>
+    );
 
     nameSorter = (rec1, rec2) => {
         // Sort prioritizing surname over forename as would be expected.
@@ -63,52 +60,60 @@ export default class BigDataGridExample extends Component {
         return (
             <Container layout="fit" shadow>
                 <ActionSheet displayed={showExportSheet}>
-                    <Button handler={this.exportToXlsx} text="Excel xlsx (all Items)"/>
-                    <Button handler={this.exportToXml} text="Excel xml (all Items)"/>
-                    <Button handler={this.exportToCSV} text="CSV (all Items)"/>
-                    <Button handler={this.exportToTSV} text="TSV (all Items)"/>
-                    <Button handler={this.exportToHtml} text="HTML (all Items)"/>
+                    <Button handler={this.exportToXlsx} text="Excel xlsx"/>
+                    <Button handler={this.exportToXml} text="Excel xml"/>
+                    <Button handler={this.exportToCSV} text="CSV"/>
+                    <Button handler={this.exportToTSV} text="TSV"/>
+                    <Button handler={this.exportToHtml} text="HTML"/>
                     <Button handler={() => this.setState({ showExportSheet: false })} text="Cancel"/>
                 </ActionSheet>
                 <Grid
                     ref="grid"
+                    title="Big Data Grid"
                     store={this.store}
                     shadow
                     grouped
                     rowNumbers
-                    plugins={[
-                        { type: 'grideditable' },
-                        { type: 'gridviewoptions' },
-                        { type: 'pagingtoolbar' },
-                        { type: 'summaryrow' },
-                        { type: 'columnresizing' },
-                        { type: 'rowexpander' },
-                        { type: 'multiselection' },
-                        { type: 'gridexporter' }
-                    ]}
+                    plugins={{
+                        grideditable: true,
+                        gridviewoptions: true,
+                        summaryrow: true,
+                        rowexpander: true,
+                        gridexporter: true,
+                        rowoperations: true
+                    }}
                     itemConfig={{
                         viewModel: {
                             type: 'grid-bigdatagrid-row'
                         },
                         body: {
-                            tpl: this.ratingTpl
+                            tpl: this.rowBodyTpl
                         }
                     }}
-                    onBeforeDocumentSave={(view) => {
+                    onBeforeDocumentSave={view => {
                         view.mask({
                             xtype: 'loadmask',
                             message: 'Document is prepared for export. Please wait ...'
                         })
                     }}
-                    onDocumentSave={(view) => view.unmask()}
-                    title="Big Data Grid"
+                    onDocumentSave={view => view.unmask()}
                     titleBar={{
                         shadow: false,
                         items: [{
                             align: 'right',
                             xtype: 'button',
-                            text: 'Export to ...',
-                            handler: this.onExportClick
+                            text: `Export to${Ext.os.is.Phone ? '...' : ''}`,
+                            menu: Ext.os.is.Desktop && {
+                                indented: false,
+                                items: [
+                                    { text: 'Excel xlsx', handler: this.exportToXlsx },
+                                    { text: 'Excel xml', handler: this.exportToXml },
+                                    { text: 'CSV', handler: this.exportToCSV },
+                                    { text: 'TSV', handler: this.exportToTSV },
+                                    { text: 'HTML', handler: this.exportToHtml },
+                                ]
+                            },
+                            handler: !Ext.os.is.Desktop && this.onExportClick
                         }]
                     }}
                 >
@@ -120,9 +125,9 @@ export default class BigDataGridExample extends Component {
                         minWidth="100"
                         exportStyle={{
                             format: 'General Number',
-                                alignment: {
-                                    horizontal: 'Right'
-                                }
+                            alignment: {
+                                horizontal: 'Right'
+                            }
                         }}
                     />
                     <TextColumn
@@ -168,14 +173,14 @@ export default class BigDataGridExample extends Component {
                         editable
                         format='d-m-Y'
                         exportStyle={[{
-                            // no type key is defined here which means that me is the default style
+                            // no type key is defined here which means that this is the default style
                             // that will be used by all exporters
-                            format: 'medium Date',
+                            format: 'Medium Date',
                             alignment: {
                                 horizontal: 'Right'
                             }
                         }, {
-                            // the type key means that me style will only be used by the csv exporter
+                            // the type key means that this style will only be used by the csv exporter
                             // and for all others the default one, defined above, will be used
                             type: 'csv',
                             format: 'Short Date'
@@ -200,10 +205,10 @@ export default class BigDataGridExample extends Component {
                         editable
                         format="d-m-Y"
                         exportStyle={{
-                            format: 'medium Date',
-                                alignment: {
-                                    horizontal: 'Right'
-                                }
+                            format: 'Medium Date',
+                            alignment: {
+                                horizontal: 'Right'
+                            }
                         }}
                     />
                     <TextColumn
@@ -263,9 +268,9 @@ export default class BigDataGridExample extends Component {
                         summaryRenderer={this.salarySummaryRenderer}
                         exportStyle={{
                             format: 'Currency',
-                                alignment: {
-                                    horizontal: 'Right'
-                                }
+                            alignment: {
+                                horizontal: 'Right'
+                            }
                         }}
                     />
                 </Grid>
@@ -301,7 +306,7 @@ export default class BigDataGridExample extends Component {
          this.doExport({
             type:       'tsv',
             title:      'Grid Export Demo',
-            fileName:   'GridExport.csv'
+            fileName:   'GridExport.tsv'
         });
     }
 
@@ -314,7 +319,7 @@ export default class BigDataGridExample extends Component {
     }
 
     onVerify = (btn) => {
-        const cell = btn.getParent(), record = cell.getRecord();
+        const cell = btn.up(), record = cell.getRecord();
         record.set('verified', true);
         Ext.Msg.alert('Verify', `Verify ${record.get('forename')} ${record.get('surname')}`);
     }
