@@ -51,6 +51,8 @@ import PagingList from './Lists/Paging/Paging';
 import NestedList from './Lists/NestedList/NestedList';
 import BasicAccordionSwiper from './Lists/BasicAccordionSwiper/BasicAccordionSwiper';
 import BasicStepSwiper from './Lists/BasicStepSwiper/BasicStepSwiper';
+import UndoableAccordionSwiper from './Lists/UndoableAccordionSwiper/UndoableAccordionSwiper';
+import UndoableStepSwiper from './Lists/UndoableStepSwiper/UndoableStepSwiper';
 
 // Form Fields
 
@@ -239,8 +241,8 @@ const root = {
             { text: 'Form Fields', children: [
                 { text: 'CheckBoxField', component: CheckBoxField, layout: 'center' },
                 { text: 'ComboBoxField', component: ComboBoxField, layout: 'center' },
-                { text: 'DatePickerField', component: DatePickerField, layout: 'center' },
                 { text: 'ContainerField', component: ContainerField, layout: 'center' },
+                { text: 'DatePickerField', component: DatePickerField, layout: 'center' },
                 { text: 'EmailField', component: EmailField , layout: 'center'},
                 { text: 'FieldSet', component: FieldSet, layout: 'center' },
                 { text: 'FileField', component: FileField, layout: 'center' },
@@ -269,18 +271,17 @@ const root = {
             ]},
             { text: 'Lists', children: [
                 { text: 'Basic List', component: BasicList, layout: Ext.os.is.Phone ? 'fit': 'center' },
-                { text: 'Grouped', component: GroupedList, layout: Ext.os.is.Phone ? 'fit': 'center' },
                 { text: 'Disclosure', component: DisclosureList, layout: Ext.os.is.Phone ? 'fit': 'center' },
+                { text: 'Grouped', component: GroupedList, layout: Ext.os.is.Phone ? 'fit': 'center' },
+                { text: 'NestedList', component: NestedList, layout: Ext.os.is.Phone ? 'fit': 'center' },
                 { text: 'Pull Refresh', component: PullRefreshList, layout: Ext.os.is.Phone ? 'fit': 'center' },
                 { text: 'Paging', component: PagingList, layout: Ext.os.is.Phone ? 'fit': 'center' },
-                { text: 'Basic Accordion Swiper', component: BasicAccordionSwiper, layout: Ext.os.is.Phone ? 'fit': 'center'},
-                { text: 'Basic Step Swiper', component: BasicStepSwiper, layout: Ext.os.is.Phone ? 'fit': 'center'},
-                // { text: 'Swiper', children: [
-                //     { text: 'Simple Actions', component: SimpleActions, layout: Ext.os.is.Phone ? 'fit': 'center' },
-                //     { text: 'Multiple Actions', component: MultipleActions, layout: Ext.os.is.Phone ? 'fit': 'center' },
-                //     { text: 'Undoable Actions', component: UndoableActions, layout: Ext.os.is.Phone ? 'fit': 'center' },
-                // ]},
-                { text: 'NestedList', component: NestedList, layout: Ext.os.is.Phone ? 'fit': 'center' }
+                { text: 'Swiper', children: [
+                    { text: 'Basic Accordion Swiper', component: BasicAccordionSwiper, layout: Ext.os.is.Phone ? 'fit': 'center'},
+                    { text: 'Basic Step Swiper', component: BasicStepSwiper, layout: Ext.os.is.Phone ? 'fit': 'center'},
+                    { text: 'Undoable Accordion Swiper', component: UndoableAccordionSwiper, layout: Ext.os.is.Phone ? 'fit': 'center'},
+                    { text: 'Undoable Step Swiper', component: UndoableStepSwiper, layout: Ext.os.is.Phone ? 'fit': 'center'}
+                ]}
             ]},
             { text: 'Media', children: [
                 { text: 'Video', component: Video },

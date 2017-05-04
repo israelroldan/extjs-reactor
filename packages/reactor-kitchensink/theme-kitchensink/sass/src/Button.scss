@@ -31,6 +31,7 @@
 
 @include button-ui(
     $ui: 'app-breadcrumb',
+    $padding: 6px 8px,
     $text-transform: none,
     $text-transform-big: none
 );
