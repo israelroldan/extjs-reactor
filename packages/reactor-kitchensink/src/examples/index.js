@@ -40,6 +40,7 @@ import EditableTree from './Trees/EditableTree/EditableTree';
 import TreeGrid from './Trees/TreeGrid/TreeGrid';
 import TreeDecorations from './Trees/TreeDecorations/TreeDecorations';
 import HeterogeneousTree from './Trees/HeterogeneousTree/HeterogeneousTree';
+
 // Lists 
 
 import BasicList from './Lists/BasicList/BasicList';
@@ -48,9 +49,8 @@ import PullRefreshList from './Lists/PullRefresh/PullRefresh';
 import DisclosureList from './Lists/Disclosure/Disclosure';
 import PagingList from './Lists/Paging/Paging';
 import NestedList from './Lists/NestedList/NestedList';
-// import SimpleActions from './Lists/SimpleActions/SimpleActions';
-// import MultipleActions from './Lists/MultipleActions/MultipleActions';
-// import UndoableActions from './Lists/UndoableActions/UndoableActions';
+import BasicAccordionSwiper from './Lists/BasicAccordionSwiper/BasicAccordionSwiper';
+import BasicStepSwiper from './Lists/BasicStepSwiper/BasicStepSwiper';
 
 // Form Fields
 
@@ -273,6 +273,8 @@ const root = {
                 { text: 'Disclosure', component: DisclosureList, layout: Ext.os.is.Phone ? 'fit': 'center' },
                 { text: 'Pull Refresh', component: PullRefreshList, layout: Ext.os.is.Phone ? 'fit': 'center' },
                 { text: 'Paging', component: PagingList, layout: Ext.os.is.Phone ? 'fit': 'center' },
+                { text: 'Basic Accordion Swiper', component: BasicAccordionSwiper, layout: Ext.os.is.Phone ? 'fit': 'center'},
+                { text: 'Basic Step Swiper', component: BasicStepSwiper, layout: Ext.os.is.Phone ? 'fit': 'center'},
                 // { text: 'Swiper', children: [
                 //     { text: 'Simple Actions', component: SimpleActions, layout: Ext.os.is.Phone ? 'fit': 'center' },
                 //     { text: 'Multiple Actions', component: MultipleActions, layout: Ext.os.is.Phone ? 'fit': 'center' },

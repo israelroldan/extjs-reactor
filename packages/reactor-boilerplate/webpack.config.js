@@ -11,7 +11,7 @@ module.exports = function (env) {
 
     const plugins = [
         new ExtJSReactorWebpackPlugin({
-            theme: 'theme-material',
+            theme: './ext-react-packages/custom-ext-react-theme',
             overrides: ['overrides'],
             packages: ['charts'],
             production: isProd
