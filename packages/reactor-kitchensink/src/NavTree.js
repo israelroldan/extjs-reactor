@@ -3,11 +3,6 @@ import { Panel, SearchField, Toolbar, TreeList } from '@extjs/ext-react';
 
 export default class NavTree extends Component {
 
-    constructor(props) {
-        super();
-        addNameToNode(props.store.getRoot());
-    }
-
     filterNav = (field, value) => {
         const { store } = this.props;
         this.filterRegex = new RegExp(`(${Ext.String.escapeRegex(value)})`, 'i');
@@ -47,9 +42,4 @@ export default class NavTree extends Component {
         )
     }
 
-}
-
-function addNameToNode(node) {
-    node.name = node.data.text;
-    node.childNodes.forEach(addNameToNode);
 }

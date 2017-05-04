@@ -2,42 +2,54 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Button, TitleBar } from '@extjs/ext-react';
 import { toggleMenu, toggleSearch } from './actions';
+import SearchField from './SearchField';
 
-function AppBar({ dispatch, title, children, backButtonURL }) {
+function AppBar({ 
+    dispatch, 
+    title, 
+    selectedNavNode, 
+    children, 
+    backButtonURL, 
+    events 
+}) {
     return (
         <TitleBar 
             docked="top"
             titleAlign="left"
             shadow
             style={{zIndex: 100}}
-            title={Ext.platformTags.desktop ? '' : title}
+            title={Ext.os.is.Phone ? title || '' : ''}
             platformConfig={{
                 '!desktop': {
                     titleAlign: 'center'
                 }
             }}
         >
-            { Ext.platformTags.desktop && (
+            { !Ext.os.is.Phone && (
                 <div>
-                    <div className="ext ext-sencha app-icon"/>
-                    <a href="#" className="app-title">{title}</a>
+                    <div className="sencha-logo"/>
+                    <a href="#" className="app-title">{selectedNavNode && false ? selectedNavNode.get('text') : 'ExtReact Conference'}</a>
                 </div>
             ) }
 
-            { backButtonURL && (
-                <Button align="left" handler={() => history.back()} iconCls="md-icon-arrow-back"/>
+            { Ext.os.is.Phone && backButtonURL && (
+                <Button align="left" handler={() => location.hash = backButtonURL} iconCls="md-icon-arrow-back"/>
             )}
-            { !backButtonURL && !Ext.platformTags.desktop && (
-                <Button align="left" iconCls="md-icon-menu" handler={() => dispatch(toggleMenu(true))} ripple={{ bound: false }}/>
+            { Ext.os.is.Phone && !backButtonURL && (
+                <Button align="left" iconCls="md-icon-menu" handler={() => dispatch(toggleMenu(true))}/>
             )}
-            { !Ext.platformTags.desktop && (
-                <Button align="right" iconCls="md-icon-search" handler={() => dispatch(toggleSearch())} ripple={{ bound: false }}/>
+            { Ext.os.is.Phone && (
+                <Button align="right" iconCls="md-icon-search" handler={() => dispatch(toggleSearch())}/>
             )}
-            { children }
+            { !Ext.os.is.Phone && (
+                <SearchField align="right"/>
+            )}
         </TitleBar>
     )
 }
 
-const mapStateToProps = ({ root }) => root;
+const mapStateToProps = ({ root, schedule }) => {
+    return { ...root, events: schedule.store };
+};
 
 export default connect(mapStateToProps)(AppBar);

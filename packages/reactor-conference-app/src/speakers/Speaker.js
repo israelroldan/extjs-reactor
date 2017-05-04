@@ -6,59 +6,56 @@ import { setTitle } from '../actions';
 
 class Speaker extends Component {
 
-    constructor({speakers, schedule}) {
+    constructor({ schedule }) {
         super();
 
         this.store = Ext.create('Ext.data.ChainedStore', {
             autoDestroy: true,
             source: schedule && schedule.store
         });
-
-        this.filterStore(speakers && speakers.speaker && speakers.speaker.sessions);
     }
 
-    componentWillReceiveProps({speakers}) {
-        this.filterStore(speakers && speakers.speaker && speakers.speaker.sessions);
-    }
+    componentDidMount = () => this.filterSessions()
+    componentDidUpdate = () => this.filterSessions()
 
-    filterStore = value => {
-        if(value) {
+    filterSessions() {
+        const { speaker } = this.props;
+
+        if (speaker && speaker.data.sessions) {
             this.store.filter({
-                value,
+                value: speaker.data.sessions,
                 property: 'id',
                 operator: 'in'
             });
-            this.store.getSource().reload();
         }
     }
 
     render() {
-        const { speakers } = this.props;
-        const speaker = speakers.speaker;
-        const sessions = speakers && speakers.speaker && speakers.speaker.sessions;
+        const { speaker, ...props } = this.props;
+        const data = speaker && speaker.data;
 
         return (
-            <Container masked={!speaker} layout="vbox" scrollable>
+            <Container {...props} layout="vbox" scrollable padding={20}>
                 { speaker && (
                     <div>
                         <div className="app-speaker-ct">
-                            <img className="app-speaker-image" src={speaker.avatar_url}/>
+                            <img className="app-speaker-image" src={data.avatar_url}/>
                             <div className="app-speaker-text">
-                                <div className="app-speaker-name">{speaker.name}</div>
-                                <div className="app-speaker-title">{speaker.title}</div>
-                                <div className="app-speaker-company">{speaker.company}</div>
-                                <div className="app-speaker-bio">{speaker.bio}</div>
+                                <div className="app-speaker-name">{data.name}</div>
+                                <div className="app-speaker-title">{data.title}</div>
+                                <div className="app-speaker-company">{data.company}</div>
+                                <div className="app-speaker-bio">{data.bio}</div>
                             </div>
                         </div>
-                        { sessions && sessions.length > 0 && (
-                            <Panel title="Events" style={{paddingTop: '20px'}} ui="speaker-events-panel">
-                                <ScheduleList
-                                    dataStore={this.store}
-                                    showTime
-                                    eagerLoad
-                                />
-                            </Panel>
-                        )}
+                        <h2 style={{marginTop: '40px', color: '#999' }}>Events</h2>
+                        <Container shadow>
+                            <ScheduleList
+                                dataStore={this.store}
+                                scrollable={false}
+                                showTime
+                                eagerLoad
+                            />
+                        </Container>
                     </div>
                 )}
             </Container>
@@ -66,8 +63,8 @@ class Speaker extends Component {
     }
 }
 
-const mapStateToProps = ({speakers, schedule}) => {
-    return {speakers, schedule};
+const mapStateToProps = ({ schedule }) => {
+    return { schedule };
 }
 
 export default connect(mapStateToProps)(Speaker);

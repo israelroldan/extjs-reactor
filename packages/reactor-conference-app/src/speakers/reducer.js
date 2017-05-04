@@ -1,7 +1,6 @@
 import { 
     LOAD_SPEAKERS,
-    LOAD_SPEAKER,
-    UNLOAD_SPEAKER
+    LOAD_SPEAKER
 } from './actions';
 
 const initialState = {
@@ -17,17 +16,16 @@ export default function speakersReducer(state = initialState, action) {
     
     switch (action.type) {
         case LOAD_SPEAKERS: {
-            state.store.load()
-            return { ...state };
+            if (!state.store.isLoaded()) {
+                state.store.load()
+            }
+            return state;
         }
         case LOAD_SPEAKER: {
-            return { ...state, speaker: action.speaker, showSpeaker: true }
-        }
-        case UNLOAD_SPEAKER: {
-            return { ...state, showSpeaker: false }
+            return { ...state, record: action.speaker, showSpeaker: true }
         }
         default:
-            return { ...state };
+            return state;
     }
     
 }

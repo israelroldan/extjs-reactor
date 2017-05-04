@@ -10,7 +10,7 @@ export default class ComboBoxFieldExample extends Component {
                 <ComboBoxField
                     width={200}
                     label="State"
-                    options={data}
+                    store={data}
                     displayField="name"
                     valueField="code"
                     queryMode="local"

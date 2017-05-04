@@ -1,32 +1,20 @@
 import React, { Component } from 'react';
-import { Container, Button, TabPanel, Panel, Toolbar, SearchField, List } from '@extjs/ext-react';
-import AppBar from '../AppBar';
-import { toggleSearch, filterByDay, toggleFavorite, filterByFavorites } from './actions';
 import { connect } from 'react-redux';
-import { Template } from '@extjs/reactor';
-import ScheduleList from './ScheduleList';
+
+import { toggleSearch, filterByDay, toggleFavorite, filterByFavorites } from './actions';
 import { setTitle } from '../actions';
+import { loadEvent } from '../event/actions';
+
+import { Container, Button, TabPanel, Panel, Toolbar, SearchField, List } from '@extjs/ext-react';
+import ScheduleList from './ScheduleList';
+import Event from '../event/Event';
 
 class Schedule extends Component {
     
-    constructor({ children }) {
+    constructor({ store }) {
         super();
-        this.state = { children };
-    }
 
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.children) this.setState({ children: nextProps.children });
-    }
-
-    onSearchClick = () => this.props.dispatch(toggleSearch())
-    hideSearch = () => this.props.dispatch(toggleSearch(false))
-    filter = day => this.props.dispatch(filterByDay(day))
-
-    render() {
-        const { showSearch, store, favorites, showEvent } = this.props;
-        const { children } = this.state;
-
-        const storeDefaults = { 
+        this.storeDefaults = { 
             type: 'chained',
             source: store, 
             autoDestroy: true,
@@ -36,53 +24,127 @@ class Schedule extends Component {
             }
         };
 
+        this.stores = [
+            Ext.create('Ext.data.ChainedStore', { ...this.storeDefaults, filters: [{ property: 'date', value: 'Monday, November 7' }] }),
+            Ext.create('Ext.data.ChainedStore', { ...this.storeDefaults, filters: [{ property: 'date', value: 'Tuesday, November 8' }] }),
+            Ext.create('Ext.data.ChainedStore', { ...this.storeDefaults, filters: [{ property: 'date', value: 'Wednesday, November 9' }] })
+        ]
+    }
+
+    state = {
+        activeItem: 0
+    }
+
+    stores = [
+        Ext.create('Ext.data.ChainedStore', )
+    ]
+
+    componentDidMount = () => {
+        this.updateData();
+    }
+
+    componentDidUpdate = (prevProps) => {
+        this.updateData(prevProps);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.event !== this.props.event) {
+            this.setState({
+                activeItem: this.activeItemForEvent(nextProps.event)
+            })
+        }
+    }
+
+    activeItemForEvent(event) {
+        for (let i=0; i<this.stores.length; i++) {
+            if (this.stores[i].contains(event)) {
+                return i;
+            }
+        }
+
+        return 0;
+    }
+
+    updateData = (prevProps) => {
+        const { dispatch } = this.props;
+        const id = this.props.match.params.id;
+
+        if (!prevProps || prevProps.match.params.id !== id) {
+            dispatch(loadEvent(id, 'Schedule'))
+        }
+    }
+
+    render() {
+        const { store, event, match } = this.props;
+        const showEvent = match.params.id && (Ext.os.is.Phone || event);
+
+        const banner = (
+            <Container docked="top" className="app-banner">
+                <span className="app-banner-content">ExtReact Conference</span>
+            </Container>
+        )
+
         return (
-            <Container layout={{ type: 'card', animation: 'slide' }} activeItem={showEvent && children ? 1 : 0}>
-                <Container key="schedule" layout="vbox" ref={ct => this.ct = ct} scrollable className="app-banner-tabs">
-                    <Container className="app-banner" ref={banner => this.banner = banner}>
-                        <span className="app-banner-content">ExtReact Conference</span>
-                    </Container>
-                    { Ext.platformTags.desktop && (
-                        <SearchField style={{position: 'absolute', right: '10px', top: '8px', zIndex: 101}} width="200" height="32" ui="app-search-field" />
-                    )}
-                    <TabPanel 
-                        ref={tp => this.tabPanel = tp}
-                        flex={1}
-                        platformConfig={{
-                            desktop: {
-                                cls: 'app-desktop-tabs'
-                            }
-                        }}
-                    >
-                        <ScheduleList 
-                            title="MON" 
-                            dataStore={{ ...storeDefaults, filters: [{ property: 'date', value: 'Monday, November 7' }]}}
-                        />
-                        <ScheduleList 
-                            title="TUE" 
-                            dataStore={{ ...storeDefaults, filters: [{ property: 'date', value: 'Tuesday, November 8' }]}}
-                        />
-                        <ScheduleList 
-                            title="WED" 
-                            dataStore={{ ...storeDefaults, filters: [{ property: 'date', value: 'Wednesday, November 9' }]}}
-                        />
-                        <ScheduleList 
-                            iconCls="md-icon-star" 
-                            tab={{
-                                maxWidth: 60
-                            }}
-                            dataStore={{ ...storeDefaults, filters: [{ property: 'favorite', value: true }]}}
-                        />
-                    </TabPanel>  
-                </Container>
-                {children}
+            <Container 
+                activeItem={showEvent ? 1 : 0}
+                platformConfig={{
+                    "!phone": {
+                        layout: 'hbox'
+                    },
+                    "phone": {
+                        layout: { 
+                            type: 'card', 
+                            animation: 'slide' 
+                        }
+                    }
+                }}
+            >
+                { !Ext.os.is.Phone && banner }
+                <TabPanel 
+                    flex={1}
+                    tabBar={{ shadow: true}}
+                    maxWidth={showEvent && 500}
+                    activeItem={this.state.activeItem}
+                    platformConfig={{
+                        "!phone": {
+                            flex: 1
+                        }
+                    }}
+                >
+                    { Ext.os.is.Phone && banner }
+                    <ScheduleList 
+                        title={Ext.os.is.Phone ? "MON" : 'MONDAY'}
+                        event={event}
+                        dataStore={this.stores[0]}
+                        pinHeaders
+                    />
+                    <ScheduleList 
+                        title={Ext.os.is.Phone ? "TUE" : 'TUESDAY'}
+                        event={event}
+                        dataStore={this.stores[1]}
+                        pinHeaders
+                    />
+                    <ScheduleList 
+                        title={Ext.os.is.Phone ? "WED" : 'WEDNESDAY'}
+                        event={event}
+                        dataStore={this.stores[2]}
+                        pinHeaders
+                    />
+                    <ScheduleList 
+                        iconCls="md-icon-star" 
+                        tab={{ maxWidth: Ext.os.is.Phone ? 60 : 90 }}
+                        dataStore={{ ...this.storeDefaults, filters: [{ property: 'favorite', value: true }]}}
+                        pinHeaders
+                    />
+                </TabPanel>  
+                { (Ext.os.is.Phone || showEvent) && <Event event={event} flex={1} header={!Ext.os.is.Phone}/> }
             </Container>
         )
     }
 }
 
 const mapStateToProps = ({ schedule, event }) => {
-    return {...schedule, ...event};
+    return { ...schedule, event: (event || {}).record };
 }
 
 export default connect(mapStateToProps)(Schedule);

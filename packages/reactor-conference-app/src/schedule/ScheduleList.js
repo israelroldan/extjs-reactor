@@ -1,11 +1,11 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { List } from '@extjs/ext-react';
-import { Template } from '@extjs/reactor';
-import highlight from '../util/highlight';
 import { toggleFavorite } from './actions';
 import { connect } from 'react-redux';
 import days from '../util/days';
 import { push } from 'react-router';
+import { createTpl } from './EventTpl';
 
 class ScheduleList extends Component {
     
@@ -18,63 +18,72 @@ class ScheduleList extends Component {
         eagerLoad: PropTypes.bool
     }
 
-    itemTpl = new Template(data => {
-        const mark = highlight.bind(null, this.props.query);
-        const day = data.date && data.date.match(/(Monday|Tuesday|Wednesday)/)[1];
+    constructor({ showTime }) {
+        super();
 
-        return (
-            <div className="app-list-content">
-                <div className="app-list-text">
-                    <div className="app-list-item-title" dangerouslySetInnerHTML={mark(data.title)}/>
-                    <div className="app-list-item-details">{data.speakerNames ? <span>by <span dangerouslySetInnerHTML={mark(data.speakerNames)}/></span> : ''}{data.categoryName} - {data.location.name}</div>
-                    { this.props.showTime && (<div className="app-list-item-details">{day} {data.start_time}</div>) }
-                </div>
-                <div 
-                    onClick={this.onFavoriteClick.bind(this, data)} 
-                    className={`x-item-no-tap x-font-icon md-icon-star app-list-tool app-favorite${data.favorite ? '-selected' : ''}`}
-                />
-            </div>
-        )
-    })
+        this.itemTpl = createTpl({ 
+            getQuery: this.getQuery, 
+            showTime, 
+            onFavoriteClick: this.onFavoriteClick 
+        });
+    }
+
+    getQuery = () => {
+        return this.props.query;
+    }
 
     onItemTap = (list, index, target, record) => {
-        const { onSelect } = this.props;
-        if (onSelect) onSelect(record);
-        self.location.hash = `/events/${record.id}`;
+        if (record) {
+            self.location.hash = `/schedule/${record.id}`;
+        }
+
+        if (this.props.onSelect) {
+            this.props.onSelect(record);
+        }
     }
 
     onFavoriteClick = (data, e) => {
         this.props.dispatch(toggleFavorite(data.id));
-        Ext.fly(e.target).ripple(e, { bound: false, color: '#999' });
     }
 
-    scrollToTop = () => {
+    ensureEventVisible = () => {
         if (this.list) {
-            this.list.getScrollable().scrollTo(0, 0);
+            const { event, dataStore } = this.props;
+
+            if (this.list.getStore().contains(event)) {
+                this.list.ensureVisible(event, {
+                    animation: true,
+                    highlight: true,
+                    focus: true,
+                    select: true
+                });
+            } else {
+                this.list.getScrollable().scrollTo(0, 0);
+            }
         }
     }
 
+    listRef = list => this.list = list;
+
     render() {
-        const { eagerLoad, query, dataStore, onSelect, ...listProps } = this.props;
+        const { event, query, dataStore, onSelect, pinHeaders, ...listProps } = this.props;
 
         return (
             <List 
-                onShow={this.scrollToTop}
-                ref={list => this.list = list}
+                onShow={this.ensureEventVisible}
+                ref={this.listRef}
                 {...listProps}
-                store={eagerLoad && dataStore}
+                store={dataStore}
+                selection={event}
                 itemTpl={this.itemTpl}
                 grouped
                 rowLines
-                itemCls="app-list-item"
-                maxWidth={600}
-                disableSelection
+                itemCls={`app-list-item ${Ext.os.is.Phone ? 'x-item-no-select' : ''}`}
                 cls="app-list"
                 onItemTap={this.onItemTap}
-                onShow={{
-                    fn: (list) => { if(!eagerLoad) list.setStore(dataStore); },
-                    single: true
-                }}
+                pinHeaders={pinHeaders}
+                infinite={pinHeaders}
+                variableHeights={pinHeaders}
                 emptyText="No events found."
             />
         )

@@ -65,7 +65,7 @@ class Employees extends Component {
             >
                 <TitleBar title="Employees" docked="top" ui="titlebar-search">
                     <SearchField 
-                        ui="titlebar-search"
+                        ui="alt"
                         align="right"
                         placeholder="Search Name..."
                         onChange={(me, value) => dispatch(filterChange(value))}

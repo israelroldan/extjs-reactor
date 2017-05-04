@@ -70,7 +70,7 @@ module.exports = class ReactExtJSWebpackPlugin {
             output: 'extjs',
             toolkit: 'modern',
             theme: 'theme-triton',
-            packages: [],
+            packages: null,
             packageDirs: [],
             overrides: [],
             asynchronous: false,
@@ -159,14 +159,14 @@ module.exports = class ReactExtJSWebpackPlugin {
 
             this._buildExtBundle('ext', modules, outputPath, build)
                 .then(() => {
-                    const cssVarPath = path.join(this.output, 'css-vars.js');
+                    // const cssVarPath = path.join(this.output, 'css-vars.js');
 
-                    if (fs.existsSync(path.join(outputPath, 'css-vars.js'))) {
-                        const cssVarChunk = compilation.addChunk(`${this.output}-css-vars`);
-                        cssVarChunk.hasRuntime = cssVarChunk.isInitial = () => true;
-                        cssVarChunk.files.push(cssVarPath);
-                        cssVarChunk.id = -1;
-                    }
+                    // if (fs.existsSync(path.join(outputPath, 'css-vars.js'))) {
+                    //     const cssVarChunk = compilation.addChunk(`${this.output}-css-vars`);
+                    //     cssVarChunk.hasRuntime = cssVarChunk.isInitial = () => true;
+                    //     cssVarChunk.files.push(cssVarPath);
+                    //     cssVarChunk.id = -1;
+                    // }
 
                     !this.asynchronous && callback();
                 })
@@ -185,13 +185,56 @@ module.exports = class ReactExtJSWebpackPlugin {
      */
     _validateBuildConfig(name, build) {
         let { sdk } = build;
-        
+
         if (!sdk) {
             try {
                 build.sdk = path.dirname(resolve('@extjs/ext-react', { basedir: process.cwd() }))
+                build.packageDirs = [...(build.packageDirs || []), path.dirname(build.sdk)]; 
+                build.packages = build.packages || this._findPackages(build.sdk);
             } catch (e) {
                 throw new Error(`@extjs/ext-react not found.  You can install it with "npm install --save @extjs/ext-react" or, if you have a local copy of the SDK, specify the path to it using the "sdk" option in build "${name}."`);
             }
+        }
+    }
+
+    /**
+     * Return the names of all Ext JS packages in the same parent directory as ext-react (typically node_modules/@extjs)
+     * @private
+     * @param {String} sdk Path to ext-react
+     * @return {String[]}
+     */
+    _findPackages(sdk) {
+        const packages = [];
+        const modulesDir = path.join(sdk, '..');
+        const dirs = fs.readdirSync(modulesDir);
+
+        for (let dir of dirs) {
+            const packageJson = path.join(modulesDir, dir, 'package.json');
+            
+            if (fs.existsSync(packageJson)) {
+                const packageInfo = JSON.parse(fs.readFileSync(packageJson));
+
+                if (packageInfo.sencha) {
+                    packages.push(packageInfo.sencha.name);
+                }
+            }
+        }
+
+        return packages;
+    }
+
+    /**
+     * Returns the path to the sencha cmd executable
+     * @private
+     * @return {String}
+     */
+    _getSenchCmdPath() {
+        try {
+            // use @extjs/sencha-cmd from node_modules
+            return require('@extjs/sencha-cmd');
+        } catch (e) {
+            // attempt to use globally installed Sencha Cmd
+            return 'sencha';
         }
     }
 
@@ -211,16 +254,7 @@ module.exports = class ReactExtJSWebpackPlugin {
      * @private
      */
     _buildExtBundle(name, modules, output, { toolkit='modern', theme, packages=[], packageDirs=[], sdk, overrides }) {
-
-        let sencha;
-        
-        try {
-            // use @extjs/sencha-cmd from node_modules
-            sencha = require('@extjs/sencha-cmd').bin;
-        } catch (e) {
-            // attempt to use globally installed Sencha Cmd
-            sencha = 'sencha';
-        }
+        let sencha = this._getSenchCmdPath();
 
         return new Promise((resolve, reject) => {
             this.onBuildComplete = resolve;
@@ -250,7 +284,7 @@ module.exports = class ReactExtJSWebpackPlugin {
             if (!watching) {
                 fs.writeFileSync(path.join(output, 'build.xml'), buildXML({ compress: this.production }), 'utf8');
                 fs.writeFileSync(path.join(output, 'app.json'), createAppJson({ theme, packages, toolkit, overrides, packageDirs }), 'utf8');
-                fs.writeFileSync(path.join(output, 'workspace.json'), createWorkspaceJson(sdk, output), 'utf8');
+                fs.writeFileSync(path.join(output, 'workspace.json'), createWorkspaceJson(sdk, packageDirs, output), 'utf8');
             }
 
             let cmdRebuildNeeded = false;
@@ -277,7 +311,7 @@ module.exports = class ReactExtJSWebpackPlugin {
 
                 if (!cmdRebuildNeeded) resolve(output);
             } else {
-                execSync('sencha ant build', { cwd: output, stdio: 'inherit' });
+                execSync(`${sencha} ant build`, { cwd: output, stdio: 'inherit' });
                 resolve(output);
             }
         });

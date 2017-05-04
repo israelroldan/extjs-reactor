@@ -148,6 +148,13 @@ export function createAppJson({ theme, packages, toolkit, overrides=[], packageD
         }
     };
 
+    // if .sencharc file exists, consume it and apply to app.json
+    if(fs.existsSync('./.sencharc')) {
+        const senchaRc = JSON.parse(fs.readFileSync('./.sencharc', 'utf-8'));
+        Object.assign(config, senchaRc);
+        theme = senchaRc.theme || theme;
+    }
+
     // if theme is local add it as an additional package dir
     if (fs.existsSync(theme)) {
         const packageInfo = cjson.load(path.join(theme, 'package.json'));
@@ -164,13 +171,13 @@ export function createAppJson({ theme, packages, toolkit, overrides=[], packageD
  * Creates the workspace.json file
  * @param {String} sdk The path to the sdk
  */
-export function createWorkspaceJson(sdk, output) {
+export function createWorkspaceJson(sdk, packages, output) {
     return JSON.stringify({
         "frameworks": {
             "ext": path.resolve(sdk)
         },
         "packages": {
-            "dir": "${workspace.dir}/packages/local,${workspace.dir}/packages",
+            "dir": ['${workspace.dir}/packages/local', '${workspace.dir}/packages'].concat(packages).join(','),
             "extract": "${workspace.dir}/packages/remote"
         }
     }, null, 4);

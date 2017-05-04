@@ -1,28 +1,65 @@
 import React, { Component } from 'react';
-import { FormPanel, SearchField } from '@extjs/ext-react'
+import { Panel, Container, Button, SearchField, TitleBar } from '@extjs/ext-react'
 
 export default class SearchFieldExample extends Component {
     
-    state = { };
-
-    search = (field, value) => {
-        this.setState({ query: value });
-    }
-
     render() {
-        const { query } = this.state;
-
         return (
-            <FormPanel shadow>
-                <SearchField 
-                    value={query}
-                    width="300"
-                    placeholder="Search..."
-                    onChange={this.search}
-                />
-                { query && <div>You searched for "{query}"</div> }
-            </FormPanel>
+            <Container width="600" layout="vbox" padding={20}
+                platformConfig={{
+                    phone: {
+                        width: '100%'
+                    }
+                }}
+            >
+                <div style={styles.heading}>alt</div>
+                <TitleBar title="TitleBar" maxWidth="600" margin="0 0 30 0">
+                    <SearchField 
+                        align="right"
+                        ui="alt"
+                        width="200"
+                        placeholder="Search"
+                    />
+                </TitleBar>
+
+                <div style={styles.heading}>faded</div>
+                <Container layout="vbox" padding="20 20" style={{backgroundColor: 'white'}} margin="0 0 30 0" shadow>
+                    <SearchField 
+                        ui="faded"
+                        placeholder="Search"
+                    />
+                </Container>
+
+                <div style={styles.heading}>solo</div>
+                <Container layout="hbox" padding="20 20" style={{backgroundColor: '#F0F0F0'}} shadow>
+                    <SearchField 
+                        ui="solo"
+                        shadow
+                        placeholder="Search"
+                        margin="0 10 0 0"
+                        flex={1}
+                    />
+                    <Button 
+                        iconCls="x-fa fa-arrow-right"
+                        ui="action round raised"
+                        height={36}
+                        platformConfig={{
+                            phone: {
+                                height: 40
+                            }
+                        }}
+                    />
+                </Container>
+            </Container>
         )
     }
 
+}
+
+const styles = {
+    heading: {
+        fontSize: '13px',
+        fontFamily: 'Menlo, Courier',
+        margin: '0 0 8px 0'
+    }
 }

@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { TabPanel, Panel } from '@extjs/ext-react';
 import hljs, { highlightBlock } from 'highlightjs';
 
@@ -27,8 +28,10 @@ export default class Files extends Component {
         this.highlightCode();
     }
 
-    componentDidUpdate() {
-        this.highlightCode();
+    componentDidUpdate(prev) {
+        if (this.props.files !== prev.files) {
+            this.highlightCode();
+        }
     }    
 
     highlightCode() {
@@ -44,7 +47,6 @@ export default class Files extends Component {
             <TabPanel 
                 ref="tabs"
                 shadow
-                style={{zIndex: 1}}
                 tabBar={{
                     layout: {
                         pack: 'left'

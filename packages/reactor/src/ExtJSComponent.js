@@ -22,7 +22,8 @@ const CLASS_CACHE = {
     Menu: Ext.ClassManager.getByAlias('widget.menu'),
     ToolTip: Ext.ClassManager.getByAlias('widget.tooltip'),
     CellBase: Ext.ClassManager.get('Ext.grid.cell.Base'),
-    WidgetCell: Ext.ClassManager.getByAlias('widget.widgetcell')
+    WidgetCell: Ext.ClassManager.getByAlias('widget.widgetcell'),
+    Dialog: Ext.ClassManager.getByAlias('widget.dialog')
 }
 
 export default class ExtJSComponent extends Component {
@@ -118,7 +119,7 @@ export default class ExtJSComponent extends Component {
 
             // remember the parent and position in parent for dangerouslyReplaceNodeWithMarkup
             // this not needed in fiber
-            const indexInParent = parentCmp.indexOf(this.cmp);
+            const indexInParent = parentCmp && parentCmp.indexOf(this.cmp);
 
             if (this.reactorSettings.debug) console.log('destroy', this.cmp.$className);
 
@@ -253,8 +254,8 @@ export default class ExtJSComponent extends Component {
             return { name: 'cell', array: false, value: this._cloneConfig(item) }
         } else if (isAssignableFrom(extJSClass, CLASS_CACHE.WidgetCell)) {
             return { name: 'widget', array: false, value: this._cloneConfig(item) }
-        } else if (isAssignableFrom(extJSClass, CLASS_CACHE.GridHeaderGroup) && CLASS_CACHE.Column && item instanceof CLASS_CACHE.Column) {
-            return { name: 'columns', array: true };
+        } else if (isAssignableFrom(extJSClass, CLASS_CACHE.Dialog) && CLASS_CACHE.Button && item instanceof CLASS_CACHE.Button) {
+            return { name: 'buttons', array: true };
         }
     }
 

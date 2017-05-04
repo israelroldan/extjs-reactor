@@ -11,9 +11,3 @@ export function toggleSearch(show) {
 export function toggleFavorite(event) {
     return { type: TOGGLE_FAVORITE, event }
 }
-
-export function loadSchedule() {
-    return {
-        type: LOAD_SCHEDULE
-    }
-}

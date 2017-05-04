@@ -3,7 +3,12 @@ import Legend from './Legend';
 import { reactify } from '@extjs/reactor';
 import * as topojson from 'topojson-client';
 
-export default reactify(Ext.define(null, {
+Ext.require('Ext.d3.mixin.ToolTip');
+Ext.require('Ext.d3.interaction.PanZoom');
+
+Ext.require('Ext.d3.*');
+
+const WorldMap = Ext.define('ConferenceApp.WorldMap', {
     extend: 'Ext.d3.svg.Svg',
     mixins: ['Ext.d3.mixin.ToolTip'],
 
@@ -220,4 +225,6 @@ export default reactify(Ext.define(null, {
             scene.attr("height", this.config.height * 2.2 / 3);
         }
     }
-}))
+})
+
+export default reactify(WorldMap);

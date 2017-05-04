@@ -9,8 +9,9 @@ export default function SelectFieldExample() {
             <SelectField 
                 label="Select"  
                 width="200"
-                onChange={(field, newValue) => Ext.toast(`You selected ${newValue.get('value')}`)}
+                onChange={(field, newValue) => Ext.toast(`You selected the item with value ${newValue}`)}
                 options={[
+                    { text: '', value: null },
                     { text: 'Option 1', value: 1 },
                     { text: 'Option 2', value: 2 },
                     { text: 'Option 3', value: 3 }
