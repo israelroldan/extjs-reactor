@@ -10,6 +10,7 @@ export default function Breadcrumbs(props) {
             <Button 
                 text={node.get('text')} 
                 key={node.get('text')}
+                ui="app-breadcrumb"
                 handler={navigate.bind(null, node.id)}
             />
         );

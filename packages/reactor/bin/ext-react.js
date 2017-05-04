@@ -35,7 +35,7 @@ printUsage = () => {
 }
 
 // Validate sencha Cmd in path.
-const sencha = 'node_modules/.bin/sencha';
+const sencha = require('@extjs/sencha-cmd');
 
 /**
  * Generates a workspace in the current directory (by writing a workspace.json file).

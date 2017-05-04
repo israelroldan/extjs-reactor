@@ -2,7 +2,7 @@
 import BasicGrid from './Grid/BasicGrid/BasicGrid';
 import GroupedGrid from './Grid/GroupedGrid/GroupedGrid';
 import CellEditingGrid from './Grid/CellEditing/CellEditing';
-import EditableGrid from './Grid/EditableGrid/EditableGrid';
+import RowEditingGrid from './Grid/RowEditing/RowEditing';
 import XMLGrid from './Grid/XMLGrid/XMLGrid';
 import BigDataGrid from './Grid/AdvancedFeatures/BigData/BigData';
 import ReconfigureGrid from './Grid/AdvancedFeatures/ReconfigureGrid/ReconfigureGrid';
@@ -11,7 +11,7 @@ import ViewOptionsGrid from './Grid/AddonsDecorations/ViewOptions/ViewOptions';
 import RowExpanderGrid from './Grid/AddonsDecorations/RowExpander/RowExpander';
 import ToolGrid from './Grid/AddonsDecorations/GridTools/GridTools';
 import StockTickerGrid from './Grid/AdvancedFeatures/StockTicker/StockTicker'; 
-import ReduxGrid from './ReduxGrid/ReduxGrid';
+import ReduxGrid from './Grid/ReduxGrid/ReduxGrid';
 import PivotGrid from './PivotGrid/PivotGrid';
 import RowBodyGrid from './Grid/AddonsDecorations/RowBody/RowBody';
 
@@ -394,7 +394,7 @@ const root = {
                 { text: 'Basic Grid', component: BasicGrid},
                 { text: 'Grouped Grid', component: GroupedGrid},
                 { text: 'Cell Editing', component: CellEditingGrid},
-                { text: 'Editable Grid', component: EditableGrid},
+                { text: 'Row Editing', component: RowEditingGrid},
                 { text: 'XML Grid', component: XMLGrid}
             ]},
             { text: 'Add-ons', children: [

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Grid, Column } from '@extjs/ext-react';
+import { Grid, Column, Toolbar } from '@extjs/ext-react';
 import model from './GridModel';
 
 Ext.require(['Ext.grid.plugin.Editable']);
 
-export default class EditableGridExample extends Component {
+export default class RowEditing extends Component {
     
     store = Ext.create('Ext.data.Store', {
         autoLoad: true,
@@ -50,6 +50,9 @@ export default class EditableGridExample extends Component {
                 store={this.store}
                 plugins={'grideditable'}
             >
+                <Toolbar docked="top">
+                    <div style={{color: '#666', fontWeight: 100, fontSize: '13px' }}>Double-{Ext.os.is.Desktop ? 'click' : 'tap'} a row to edit</div>
+                </Toolbar>
                 <Column text="Company" flex="1" dataIndex="name" editable={true}/>
                 <Column text="Price" width="75" dataIndex="price" formatter="usMoney" editable={true} editor={{xtype:'numberfield', required:true, validators:{type:"number", message:"Invalid price"}}}/>
                 <Column text="Change" width="90" renderer={this.renderChange} dataIndex="change" cell={{encodeHtml:false}}/>

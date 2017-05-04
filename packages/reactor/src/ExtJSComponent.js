@@ -100,7 +100,7 @@ export default class ExtJSComponent extends Component {
      * @param context
      */
     receiveComponent(nextComponent, transaction, context) {
-        if (this.cmp.destroyed) return;
+        if (!this.cmp || this.cmp.destroyed) return;
         const props = nextComponent.props;
         this._rushProps(this._currentElement.props, props);
         this.updateChildren(this._applyDefaults(props), transaction, context);
