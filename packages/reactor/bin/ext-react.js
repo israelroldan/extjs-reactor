@@ -36,11 +36,11 @@ printUsage = () => {
 }
 
 /**
- * Ensures a 'packages' folder exists for the workspace and theme packages to be installed in.
+ * Ensures a 'ext-react-packages' folder exists for the workspace and theme packages to be installed in.
  */
 const ensurePackagesFolder = () => {
     return new Promise(resolve => {
-        const dir = path.join('.', 'packages')
+        const dir = path.join('.', 'ext-react-packages')
         fs.stat(dir, (err, stats) => {
             if(err || !stats.isDirectory()) {
                 fs.mkdir(dir, resolve.bind(null));
@@ -58,7 +58,7 @@ const generateWorkspace = () => {
     console.log('Generating Sencha workspace...');
     return ensurePackagesFolder().then(() => {
         return new Promise((resolve, reject) => {
-            fs.writeFile(path.join('.', 'packages', 'workspace.json'), JSON.stringify(workspaceJson, null, 4), err => {
+            fs.writeFile(path.join('.', 'ext-react-packages', 'workspace.json'), JSON.stringify(workspaceJson, null, 4), err => {
                 if(err) return reject(err);
                 return resolve();
             });
@@ -72,7 +72,7 @@ const generateWorkspace = () => {
  */
 const workspaceExists = () => {
     try {
-        return fs.accessSync(path.join('.', 'packages', 'workspace.json'));
+        return fs.accessSync(path.join('.', 'ext-react-packages', 'workspace.json'));
     } catch(e) {
         return false;
     }
@@ -86,13 +86,13 @@ const generateTheme = config => {
     console.log('Generating theme package...');
     return new Promise(resolve => {
         const proc = exec([
-            path.join('..', sencha),
+            sencha,
             'generate', 'package',
             '--type', 'THEME',
             '--extend', config.baseTheme || 'theme-material',
             '--framework', 'ext',
             '--name', config.name
-        ].join(' '), { cwd: path.join('.', 'packages') });
+        ].join(' '), { cwd: path.join('.', 'ext-react-packages') });
 
         proc.once('close', resolve.bind(null));
         proc.stdout.on('data', console.log.bind(console));
@@ -108,8 +108,8 @@ const generateTheme = config => {
 const applyTheme = config => {
     console.log('Applying theme to current app...');
     return new Promise((resolve, reject) => {
-        fs.writeFile('.sencharc', JSON.stringify({
-            theme: path.join('.', 'packages', config.name)
+        fs.writeFile('.ext-reactrc', JSON.stringify({
+            theme: path.join('.', 'ext-react-packages', config.name)
         }, null, 4), err => {
             if(err) return reject(err);
             else    return resolve();
