@@ -29,8 +29,8 @@ printUsage = () => {
         ext-react generate theme --baseTheme theme-material --name my-awesome-theme
 
     Options
-        * --baseTheme -b - The theme to base your custom theme off of.
         * --name -n - The name of the theme package.
+        * --baseTheme -b - (Optional) The theme to base your custom theme off of. Defaults to 'theme-material'.
 `
     );
 }
