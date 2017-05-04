@@ -3,14 +3,18 @@
 const parseArgs = require('minimist'),
     fs = require('fs'),
     path = require('path'),
+    sencha = require('@extjs/sencha-cmd'),
     { exec } = require('child_process');
 
 // A skeleton for a ext-react workspace.json file.
 const workspaceJson = {
     apps: [],
-    frameworks: { ext: '../node_modules/@extjs/ext-react-core' },
+    frameworks: { ext: '../node_modules/@extjs/ext-react' },
     build: { dir: '${workspace.dir}/build' },
-    packages: { dir: '${workspace.dir},${workspace.dir}/../node_modules/@extjs' }
+    packages: { dir: '${workspace.dir},${workspace.dir}/../node_modules/@extjs' },
+    properties: {
+        'build.web.root': '${workspace.dir}/../'
+    }
 };
 
 /**
@@ -30,9 +34,6 @@ printUsage = () => {
 `
     );
 }
-
-// Validate sencha Cmd in path.
-const sencha = 'node_modules/.bin/sencha';
 
 /**
  * Ensures a 'packages' folder exists for the workspace and theme packages to be installed in.
