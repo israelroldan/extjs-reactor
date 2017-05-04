@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, ActionSheet, Toolbar, Container, Button, SparkLineLine, WidgetCell, Column, TextColumn, CheckColumn, NumberColumn, DateColumn } from '@extjs/reactor/modern';
+import { Grid, ActionSheet, Container, Button, SparkLineLine, WidgetCell, Column, TextColumn, CheckColumn, NumberColumn, DateColumn, Rating } from '@extjs/reactor/modern';
 import { Template } from '@extjs/reactor';
 import model from './GridModel';
 import './data';
@@ -7,7 +7,8 @@ import './style.css';
 
 Ext.require([
     'Ext.grid.plugin.*',
-    'Ext.tip.ToolTip'
+    'Ext.tip.ToolTip',
+    'Ext.data.summary.Sum'
 ]);
 
 export default class BigDataGridExample extends Component {
@@ -50,6 +51,10 @@ export default class BigDataGridExample extends Component {
             return -1;
         }
         return 0;
+    }
+
+    onExportClick = () => {
+        this.setState({ showExportSheet: true })
     }
 
     render() {
@@ -96,6 +101,16 @@ export default class BigDataGridExample extends Component {
                         })
                     }}
                     onDocumentSave={(view) => view.unmask()}
+                    title="Big Data Grid"
+                    titleBar={{
+                        shadow: false,
+                        items: [{
+                            align: 'right',
+                            xtype: 'button',
+                            text: 'Export to ...',
+                            handler: this.onExportClick
+                        }]
+                    }}
                 >
 
                     <TextColumn
@@ -123,9 +138,9 @@ export default class BigDataGridExample extends Component {
                         dataIndex="verified"
                         headerCheckbox
                     />
-                    <Column
+                    {/*<Column
                         text="Ratings"
-                    >
+                    >*/}
                         <NumberColumn
                             text="Avg"
                             dataIndex="averageRating"
@@ -146,7 +161,7 @@ export default class BigDataGridExample extends Component {
                                 <SparkLineLine tipTpl='Price: {y:number("0.00")}'/>
                             </WidgetCell>
                         </Column>
-                    </Column>
+                    {/*</Column>*/}
                     <DateColumn
                         text="Date of Birth"
                         dataIndex="dob"
@@ -205,29 +220,38 @@ export default class BigDataGridExample extends Component {
                             xtype:'emailfield'
                         }}
                     />
-                    <Column
+                    {/*<Column
                         text='Absences'
-                    >
+                    >*/}
                         <TextColumn
                             text="Illness"
                             dataIndex="sickDays"
                             align='center'
-                            summaryType='sum'
+                            summary='sum'
                         />
                         <TextColumn
                             text="Holidays"
                             dataIndex="holidayDays"
                             align='center'
-                            summaryType='sum'
+                            summary='sum'
                         />
                         <TextColumn
                             text="Holiday Allowance"
                             dataIndex="holidayAllowance"
                             align='center'
-                            summaryType='sum'
+                            summary='sum'
                             summaryFormatter='number("0.00")'
                             formatter='number("0.00")'
                         />
+                    {/*</Column>*/}
+                    <Column 
+                        text="Rating<br/>This Year" 
+                        dataIndex="ratingThisYear"
+                        groupable={false}
+                    >
+                        <WidgetCell>
+                            <Rating tip='Set to {tracking:plural("Star")}'/>
+                        </WidgetCell>
                     </Column>
                     <TextColumn
                         text='Salary'
@@ -235,7 +259,7 @@ export default class BigDataGridExample extends Component {
                         renderer={Ext.util.Format.usMoney}
                         width='150'
                         editable
-                        summaryType='sum'
+                        summary='sum'
                         summaryRenderer={this.salarySummaryRenderer}
                         exportStyle={{
                             format: 'Currency',
@@ -244,9 +268,6 @@ export default class BigDataGridExample extends Component {
                                 }
                         }}
                     />
-                    <Toolbar docked="top">
-                        <Button text="Export to..." handler={() => this.setState({ showExportSheet: true })}/>
-                    </Toolbar>
                 </Grid>
             </Container>
         )

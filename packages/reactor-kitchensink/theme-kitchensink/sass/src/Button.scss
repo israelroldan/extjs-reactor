@@ -28,3 +28,9 @@
     $background-color: #ec407a,
     $focus-background-color: darken(#ec407a, 5%)
 );
+
+@include button-ui(
+    $ui: 'app-breadcrumb',
+    $text-transform: none,
+    $text-transform-big: none
+);

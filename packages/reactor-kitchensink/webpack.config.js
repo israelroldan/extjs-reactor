@@ -79,7 +79,7 @@ module.exports = function (env) {
         context: sourcePath,
 
         entry: {
-            vendor: ['react', 'react-dom', 'react-router', 'redux', 'd3', 'highlightjs'],
+            vendor: ['react', 'prop-types', 'react-redux', 'react-dom', 'react-router-dom', 'history', 'redux', 'd3', 'highlightjs'],
             app: './index.js'
         },
 

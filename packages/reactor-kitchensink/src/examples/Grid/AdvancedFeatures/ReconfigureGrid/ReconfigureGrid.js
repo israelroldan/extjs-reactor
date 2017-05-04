@@ -175,7 +175,7 @@ export default class ReconfigureGridExample extends Component {
                 emptyText="Click a button to show a dataset."
             >
                 <Toolbar docked="top" ui="transparent" layout="hbox">
-                    <SegmentedButton width="250" defaults={{ flex: 1 }} onChange={this.onChange}>
+                    <SegmentedButton width="300" defaults={{ flex: 1 }} onChange={this.onChange}>
                         <Button text="Show Offices" value="Offices"/>
                         <Button text="Show Employees" value="Employees"/>
                     </SegmentedButton>

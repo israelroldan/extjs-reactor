@@ -2,11 +2,11 @@ import React from 'react';
 
 import { Container } from '@extjs/ext-react';
 
-export default function NavView({ node, router }) {
+export default function NavView({ node }) {
 
     function onClick(e, path) {
         Ext.get(e.target).ripple(e, {});
-        setTimeout(() => router.push(path), 50)
+        setTimeout(() => location.hash = path, 50)
     }
 
     return (

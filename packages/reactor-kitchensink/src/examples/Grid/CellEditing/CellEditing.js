@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Column, DateColumn, CheckColumn } from '@extjs/ext-react';
+import { Toolbar, Grid, Column, DateColumn, CheckColumn } from '@extjs/ext-react';
 
 Ext.require([
     'Ext.grid.plugin.CellEditing',
@@ -47,6 +47,9 @@ export default class CellEditingGridExample extends Component {
                     'columnresizing'
                 ]}
             >
+                <Toolbar docked="top">
+                    <div style={{color: '#666', fontWeight: 100, fontSize: '13px' }}>Double-{Ext.os.is.Desktop ? 'click' : 'tap'} a cell to edit</div>
+                </Toolbar>
                 <Column text="Common Name" flex="1" dataIndex="common" editable/>
                 <Column text="Light" width="125" dataIndex="light" editable editor={{xtype:'selectfield', options:['Shade', 'Mostly Shady', 'Sun or Shade', 'Mostly Sunny','Sunny']}}/>
                 <Column text="Price" width="100" formatter="usMoney" dataIndex="price" editable/>

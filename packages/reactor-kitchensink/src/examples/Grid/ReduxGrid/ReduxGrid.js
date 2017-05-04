@@ -5,8 +5,6 @@ import { Provider } from 'react-redux';
 import Employees from './Employees';
 import { reducer } from './reducer';
 
-require('./data');
-
 const store = createStore(reducer);
 
 export default class ReduxGridExample extends Component {

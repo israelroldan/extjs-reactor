@@ -1,6 +1,7 @@
 import React from 'react'
 import Layout from './Layout';  
-import { Router, Route, Link, hashHistory } from 'react-router'
+import { HashRouter as Router, Route } from 'react-router-dom'
+import createHistory from 'history/createHashHistory'
 import { Provider } from 'react-redux';
 import { createStore, combineReducers } from 'redux';
 import reducer from './reducer';
@@ -12,16 +13,18 @@ const store = createStore(
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
+const history = createHistory();
+
 // load new component when the route changes
-hashHistory.listen(location => store.dispatch(routeDidChange(location)));
+history.listen(location => store.dispatch(routeDidChange(location)));
 
 // load the component for the initial route
-store.dispatch(routeDidChange(hashHistory.getCurrentLocation()));
+store.dispatch(routeDidChange(history.location));
 
 export default function App() {
     return (
         <Provider store={store}>
-            <Router history={hashHistory}>
+            <Router history={history}>
                 <Route path="*" component={Layout}/>
             </Router>
         </Provider>

@@ -14,7 +14,7 @@ class Employees extends Component {
         }],
         autoLoad: true,
         groupField: 'department',
-        pageSize: 0,
+        pageSize: 50,
         proxy: {
             type: 'ajax',
             url: '/KitchenSink/BigData'
@@ -43,7 +43,7 @@ class Employees extends Component {
                 shadow
                 grouped
                 plugins={[
-                    { type: 'pagingtoolbar' },
+                    { type: 'gridpagingtoolbar' },
                     { type: 'columnresizing' }
                 ]}
                 columns={[{ 
