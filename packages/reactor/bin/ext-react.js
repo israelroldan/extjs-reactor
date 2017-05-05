@@ -29,8 +29,8 @@ printUsage = () => {
         ext-react generate theme --baseTheme theme-material --name my-awesome-theme
 
     Options
-        * --baseTheme -b - The theme to base your custom theme off of.
         * --name -n - The name of the theme package.
+        * --baseTheme -b - (Optional) The theme to base your custom theme off of. Defaults to 'theme-material'.
 `
     );
 }
@@ -142,13 +142,12 @@ switch(args._.join(' ')) {
             return printUsage();
         }
 
-        const promiseChain = (workspaceExists() ? Promise.resolve([]) : generateWorkspace(args)).then(generateTheme.bind(null, args));
-
-        if(args.apply) {
-            promiseChain.then(applyTheme.bind(null, args));
-        }
-
-        return promiseChain;
+        return (workspaceExists() ? Promise.resolve([]) : generateWorkspace(args))
+            .then(generateTheme.bind(null, args))
+            .then((args.apply ? applyTheme.bind(null, args) : Promise.resolve([])))
+            .then(() => {
+                console.log(`Theme created at: ext-react-packages/${args.name}`);
+            })
     }
     case 'apply theme': {
         if(!args.name) {
