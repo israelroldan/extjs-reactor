@@ -115,11 +115,21 @@ export default class ExtJSComponent extends Component {
         if (this.cmp) {
             if (this.cmp.destroying || this.cmp.$reactorConfig) return;
 
-            const parentCmp = this.cmp.getParent();
+            const parentCmp = this.cmp.ownerCt /* classic */ || this.cmp.getParent(); /* modern */
 
             // remember the parent and position in parent for dangerouslyReplaceNodeWithMarkup
             // this not needed in fiber
-            const indexInParent = parentCmp && parentCmp.indexOf(this.cmp);
+            let indexInParent;
+
+            if (parentCmp) {
+                if (parentCmp.indexOf) {
+                    // modern
+                    indexInParent = parentCmp.indexOf(this.cmp);
+                } else if (parentCmp.items && parentCmp.items.indexOf) {
+                    // classic
+                    indexInParent = parentCmp.items.indexOf(this.cmp);
+                }
+            }
 
             if (this.reactorSettings.debug) console.log('destroy', this.cmp.$className);
 
@@ -389,11 +399,11 @@ export default class ExtJSComponent extends Component {
         if (this.el) {
             // will get here when rendering root component
             precacheNode(this, this.el)
+        } else if (this.cmp.el) {
+            this._doPrecacheNode();
         } else if (Ext.isClassic) {
             // we get here when rendering child components due to lazy rendering
             this.cmp.on('afterrender', this._doPrecacheNode, this, { single: true });
-        } else {
-            this._doPrecacheNode();
         }
     }
 

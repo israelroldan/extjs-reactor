@@ -22,9 +22,9 @@
   },
   "homepage": "https://github.com/sencha/extjs-reactor#readme",
   "dependencies": {
-    "@extjs/ext-react": "^6.5.0-647",
-    "@extjs/ext-react-calendar": "^6.5.0-647",
-    "@extjs/ext-react-d3": "^6.5.0-647",
+    "@extjs/ext-react": "^6.5.0-678",
+    "@extjs/ext-react-calendar": "^6.5.0-678",
+    "@extjs/ext-react-d3": "^6.5.0-678",
     "@extjs/reactor": "^0.2.9",
     "babel-runtime": "^6.23.0",
     "d3": "^4.5.0",
@@ -37,7 +37,8 @@
     "react-router-redux": "^5.0.0-alpha.6",
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0",
-    "topojson-client": "^3.0.0"
+    "topojson-client": "^3.0.0",
+    "webpack": "^2.5.0"
   },
   "devDependencies": {
     "@extjs/reactor-babel-plugin": "^0.2.9",

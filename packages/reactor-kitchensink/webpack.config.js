@@ -12,18 +12,18 @@ module.exports = function (env) {
 
     const plugins = [
         new ExtJSReactorWebpackPlugin({
-            sdk: 'ext', // you need to copy the Ext JS SDK to the root of this package, or you can specify a full path to some other location
-            packages: [
-                'font-ext', 
-                'ux', 
-                'd3',
-                'pivot-d3',
-                'font-awesome', 
-                'exporter', 
-                'pivot', 
-                'calendar', 
-                'charts'
-            ],
+            // sdk: 'ext', // you need to copy the Ext JS SDK to the root of this package, or you can specify a full path to some other location
+            // packages: [
+            //     'font-ext', 
+            //     'ux', 
+            //     'd3',
+            //     'pivot-d3',
+            //     'font-awesome', 
+            //     'exporter', 
+            //     'pivot', 
+            //     'calendar', 
+            //     'charts'
+            // ],
             theme: './theme-kitchensink',
             production: isProd
         }),

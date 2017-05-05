@@ -1,8 +1,7 @@
 import { reactify } from './reactify';
 
 Ext.require([
-    'Ext.fx.animation.*', 
-    'Ext.layout.Float'
+    'Ext.fx.animation.*'
 ]);
 
 Ext.define('Ext.reactor.Transition', {
