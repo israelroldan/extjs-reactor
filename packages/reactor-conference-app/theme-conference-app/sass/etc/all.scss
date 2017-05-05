@@ -46,14 +46,21 @@ hr {
 
 .app-banner {
     background-color: $base-color;
-    background-image: url("../resources/hero.svg");
+    background-image: url("../resources/hero-desktop.svg");
     background-size: cover;
     background-position: center;
     color: white;
-    font-size: 30px;
+    font-size: 40px;
     padding: 40px 0;
     text-align: center;
     font-weight: 100;
+}
+
+@media screen and (max-width: 480px) {
+  .app-banner {
+    background-image: url("../resources/hero.svg");
+    font-size: 30px;
+  }
 }
 
 .app-favorite, .app-favorite-selected {

@@ -10,13 +10,13 @@ import ScheduleList from './ScheduleList';
 import Event from '../event/Event';
 
 class Schedule extends Component {
-    
+
     constructor({ store }) {
         super();
 
-        this.storeDefaults = { 
+        this.storeDefaults = {
             type: 'chained',
-            source: store, 
+            source: store,
             autoDestroy: true,
             grouper: {
                 property: 'start_time',
@@ -85,22 +85,22 @@ class Schedule extends Component {
         )
 
         return (
-            <Container 
+            <Container
                 activeItem={showEvent ? 1 : 0}
                 platformConfig={{
                     "!phone": {
                         layout: 'hbox'
                     },
                     "phone": {
-                        layout: { 
-                            type: 'card', 
-                            animation: 'slide' 
+                        layout: {
+                            type: 'card',
+                            animation: 'slide'
                         }
                     }
                 }}
             >
                 { !Ext.os.is.Phone && banner }
-                <TabPanel 
+                <TabPanel
                     flex={1}
                     tabBar={{ shadow: true}}
                     maxWidth={showEvent && 500}
@@ -112,31 +112,31 @@ class Schedule extends Component {
                     }}
                 >
                     { Ext.os.is.Phone && banner }
-                    <ScheduleList 
+                    <ScheduleList
                         title={Ext.os.is.Phone ? "MON" : 'MONDAY'}
                         event={event}
                         dataStore={this.stores[0]}
                         pinHeaders
                     />
-                    <ScheduleList 
+                    <ScheduleList
                         title={Ext.os.is.Phone ? "TUE" : 'TUESDAY'}
                         event={event}
                         dataStore={this.stores[1]}
                         pinHeaders
                     />
-                    <ScheduleList 
+                    <ScheduleList
                         title={Ext.os.is.Phone ? "WED" : 'WEDNESDAY'}
                         event={event}
                         dataStore={this.stores[2]}
                         pinHeaders
                     />
-                    <ScheduleList 
-                        iconCls="md-icon-star" 
+                    <ScheduleList
+                        iconCls="md-icon-star"
                         tab={{ maxWidth: Ext.os.is.Phone ? 60 : 90 }}
                         dataStore={{ ...this.storeDefaults, filters: [{ property: 'favorite', value: true }]}}
                         pinHeaders
                     />
-                </TabPanel>  
+                </TabPanel>
                 { (Ext.os.is.Phone || showEvent) && <Event event={event} flex={1} header={!Ext.os.is.Phone}/> }
             </Container>
         )
