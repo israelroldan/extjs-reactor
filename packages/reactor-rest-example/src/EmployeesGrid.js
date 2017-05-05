@@ -1,5 +1,6 @@
-import React, { Component, PropTypes } from 'react';
-import { Grid, Toolbar, SearchField, Button, FormPanel } from '@extjs/ext-react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Grid, Toolbar, SearchField, FormPanel, Column } from '@extjs/ext-react';
 import { connect } from 'react-redux';
 import { updateCriteria } from './actions';
 
@@ -58,20 +59,24 @@ class EmployeesGrid extends Component {
         return (
             <Grid
                 store={this.store}
-                plugins={[
-                    { type: 'pagingtoolbar' }
-                ]}
-                columns={[
-                    { text: 'ID', dataIndex: 'id', width: 100 },
-                    { text: 'First Name', dataIndex: 'firstName', width: 200 },
-                    { text: 'Last Name', dataIndex: 'lastName', width: 200 },
-                    { text: 'Age', dataIndex: 'age', width: 100 },
-                    { text: 'Gender', dataIndex: 'gender', width: 100 }
-                ]}
+                plugins={{
+                    pagingtoolbar: true
+                }}
             >
                 <Toolbar docked="top">
-                    <SearchField ref="query" width="200" onChange={this.search} placeholder="Find by name..." />
+                    <SearchField 
+                        ref="query" 
+                        ui="faded"
+                        width="200" 
+                        onChange={this.search} 
+                        placeholder="Find by name..." 
+                    />
                 </Toolbar>
+                <Column text="ID" dataIndex="id" width={100}/>
+                <Column text="First Name" dataIndex="firstName" width={200}/>
+                <Column text="Last Name" dataIndex="lastName" width={200}/>
+                <Column text="Age" dataIndex="age" width={100}/>
+                <Column text="Gender" dataIndex="gender" width={100}/>
             </Grid>
         )
     }

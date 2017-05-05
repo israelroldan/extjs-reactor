@@ -22,14 +22,16 @@
   },
   "homepage": "https://github.com/sencha/extjs-reactor#readme",
   "dependencies": {
+    "@extjs/ext-react": "^6.5.0-678",
     "@extjs/reactor": "^0.2.9",
-    "d3": "4.5.0",
-    "highlightjs": "^9.8.0",
+    "prop-types": "^15.5.8",
     "react": "^15.4.0",
     "react-dom": "^15.4.0",
     "react-redux": "^5.0.3",
-    "react-router": "^3.0.0",
-    "redux": "^3.6.0"
+    "redux": "^3.6.0",
+    "webpack": "^2.5.0",
+    "webpack-dev-middleware": "^1.10.2",
+    "webpack-dev-server": "^2.4.5"
   },
   "devDependencies": {
     "@extjs/reactor-babel-plugin": "^0.2.9",

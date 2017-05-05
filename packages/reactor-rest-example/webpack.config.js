@@ -11,10 +11,7 @@ module.exports = function (env) {
 
     const plugins = [
         new ExtJSReactorWebpackPlugin({
-            sdk: 'ext',
             theme: './theme-rest-example',
-            packages: [],
-            overrides: ['./overrides'],
             production: isProd
         }),
         new webpack.EnvironmentPlugin({
