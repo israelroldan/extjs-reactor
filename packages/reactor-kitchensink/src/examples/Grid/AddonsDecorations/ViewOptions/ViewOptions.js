@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Grid, Column } from '@extjs/ext-react';
 import { Template } from '@extjs/reactor';
-import model from './GridModel';
+import model from '../../CompanyModel';
 
 Ext.require(['Ext.grid.plugin.ViewOptions']);
 
@@ -43,8 +43,8 @@ export default class ViewOptionsGridExample extends Component {
          return text;
     };
     
-    render(){
-        return(
+    render() {
+        return (
             <Grid
                 title="Grid with View Options"
                 store={this.store}

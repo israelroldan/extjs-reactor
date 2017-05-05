@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Grid, Column } from '@extjs/ext-react';
 import { Template } from '@extjs/reactor';
-import model from './GridModel';
+import model from '../../CompanyModel';
 
 export default class RowBodyGridExample extends Component {
 

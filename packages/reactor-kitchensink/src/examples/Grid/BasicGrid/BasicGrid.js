@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Grid, Column } from '@extjs/ext-react';
-import model from './BasicGridModel';
+import model from '../CompanyModel';
 
 export default class BasicGridExample extends Component {
 

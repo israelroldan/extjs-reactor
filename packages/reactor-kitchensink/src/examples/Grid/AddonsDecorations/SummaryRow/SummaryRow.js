@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Grid, Column } from '@extjs/ext-react';
 import { Template } from '@extjs/reactor';
-import model from './GridModel';
+import model from '../../CompanyModel';
 
 Ext.require([
     'Ext.grid.plugin.SummaryRow',
@@ -21,6 +21,10 @@ export default class RowBodyGridExample extends Component {
         } 
     });
 
+    state = {
+        reveal: true
+    }
+
     render() {
         return (
             <Grid
@@ -29,6 +33,8 @@ export default class RowBodyGridExample extends Component {
                 plugins={{
                     gridsummaryrow: true
                 }}
+                hidden={!this.state.reveal}
+                onTransitionEnd={() => this.setState({ reveal: true })}
                 shadow
             >
                 <Column 

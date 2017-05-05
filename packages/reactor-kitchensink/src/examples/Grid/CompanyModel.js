@@ -1,26 +1,19 @@
-Ext.define('KitchenSink.model.field.PhoneNumber', {
-    extend: 'Ext.data.field.String',
-
-    alias: 'data.field.phonenumber',
-
-    validators: [
-        { 
-            type: 'format', 
-            matcher: /^\d{3}-?\d{3}-?\d{4}$/,
-            message: 'Must be in the format xxx-xxx-xxxx'
-        }
-    ]
-});
-
 export default Ext.define('KitchenSink.model.Company', {
     extend: 'Ext.data.Model',
     requires: [
         'Ext.data.proxy.Rest'
     ],
     fields: [
-        {name: 'name'},
-        {name: 'phone', type: 'phonenumber' },
-        {name: 'price', type: 'float'},
+        { name: 'name' },
+        {
+            name: 'phone', 
+            validators: [{ 
+                type: 'format', 
+                matcher: /^\d{3}-?\d{3}-?\d{4}$/,
+                message: 'Must be in the format xxx-xxx-xxxx'
+            }]
+        },
+        { name: 'price', type: 'float'},
         { name: 'priceChange', type: 'float' },
         { name: 'priceChangePct', type: 'float' },
         { name: 'priceLastChange', type: 'date', dateReadFormat: 'n/j' },
@@ -31,7 +24,8 @@ export default Ext.define('KitchenSink.model.Company', {
             name: 'trend',
             calculate: function(data) {
                 // Avoid circular dependency by hiding the read of trend value
-                var trend = data['trend'] || (data['trend'] = []);
+                const record = data;
+                const trend = record['trend'] || (record['trend'] = []);
 
                 trend.push(data.price);
 

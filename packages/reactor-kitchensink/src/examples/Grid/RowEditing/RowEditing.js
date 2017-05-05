@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Grid, Column, Toolbar } from '@extjs/ext-react';
-import model from './GridModel';
+import model from '../CompanyModel';
 
 Ext.require(['Ext.grid.plugin.Editable']);
 
