@@ -75,7 +75,7 @@ class Layout extends Component {
                 >
                     { component && (
                         <Container rel="detailCard" layout="fit">
-                            <Container key={selectedNavNode.get('text')} layout={layout === 'fit' ? 'fit' : 'auto' } scrollable={layout !== 'fit'}>
+                            <Container key={selectedNavNode.get('text')} layout={layout} scrollable={layout !== 'fit'}>
                                 { React.createElement(component) }
                             </Container>
                         </Container>

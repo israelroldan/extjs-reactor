@@ -3,7 +3,11 @@ import { Grid, Column } from '@extjs/ext-react';
 import { Template } from '@extjs/reactor';
 import model from './GridModel';
 
-Ext.require(['Ext.grid.plugin.SummaryRow']);
+Ext.require([
+    'Ext.grid.plugin.SummaryRow',
+    'Ext.data.summary.Average',
+    'Ext.data.summary.Max',
+]);
 
 export default class RowBodyGridExample extends Component {
 
@@ -16,6 +20,57 @@ export default class RowBodyGridExample extends Component {
             url: 'resources/data/CompanyData.json'
         } 
     });
+
+    render() {
+        return (
+            <Grid
+                title="Summary Row Grid"
+                store={this.store}
+                plugins={{
+                    gridsummaryrow: true
+                }}
+                shadow
+            >
+                <Column 
+                    text="Company" 
+                    dataIndex="name" 
+                    flex="1" 
+                    summaryRenderer={this.summarizeCompanies}
+                />
+                <Column 
+                    text="Price" 
+                    width="75" 
+                    dataIndex="price" 
+                    formatter="usMoney" 
+                    summary="average"
+                />
+                <Column 
+                    text="Change" 
+                    width="90" 
+                    dataIndex="priceChange" 
+                    renderer={this.renderChange}  
+                    summary="max" 
+                    cell={{encodeHtml:false}}
+                />
+                <Column 
+                    text="% Change" 
+                    width="100"
+                    dataIndex="priceChangePct" 
+                    renderer={this.renderPercent} 
+                    summary="average" 
+                    summaryRenderer={this.renderPercent}
+                    cell={{encodeHtml:false}}
+                />
+                <Column 
+                    text="Last Updated" 
+                    width="125" 
+                    dataIndex="lastChange" 
+                    formatter="date('m/d/Y')" 
+                    summary="max"
+                />
+            </Grid>
+        )
+    }
 
     renderChange = (value) => {
         return this.renderSign(value, '0.00');
@@ -43,21 +98,7 @@ export default class RowBodyGridExample extends Component {
         return text;
     };
 
-    render(){
-        return(
-            <Grid
-                title="Summary Row Grid"
-                ref="grid"
-                store={this.store}
-                plugins="gridsummaryrow"
-                shadow
-            >
-                <Column text="Company" dataIndex="name" flex="1"/>
-                <Column text="Price" dataIndex="price" width="75" formatter="usMoney" summaryFormatter="usMoney" summaryType="average"/>
-                <Column text="Change" dataIndex="priceChange" width="90" renderer={this.renderChange}  summaryType="max" cell={{encodeHtml:false}}/>
-                <Column text="% Change" dataIndex="priceChangePct" width="100" renderer={this.renderPercent} summaryFormatter="round(2)" summaryType="average" cell={{encodeHtml:false}}/>
-                <Column text="Last Updated" dataIndex="lastChange" width="125" formatter="date('m/d/Y')" summaryFormatter="date('m/d/Y')" summaryType="max"/>
-            </Grid>
-        )
-    }
+    summarizeCompanies = (grid, context) => {
+        return context.records.length + ' Companies';
+    };
 }

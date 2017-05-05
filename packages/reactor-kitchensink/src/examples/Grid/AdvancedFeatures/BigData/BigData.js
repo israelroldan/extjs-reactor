@@ -20,7 +20,6 @@ export default class BigDataGridExample extends Component {
 
     store = Ext.create('Ext.data.Store', {
         model,
-        autoLoad: true,
         groupField: 'department',
         pageSize: 0,
         proxy: {
@@ -52,6 +51,10 @@ export default class BigDataGridExample extends Component {
 
     onExportClick = () => {
         this.setState({ showExportSheet: true })
+    }
+
+    componentDidMount() {
+        setTimeout(() => this.store.load(), 1000)
     }
 
     render() {
@@ -117,7 +120,6 @@ export default class BigDataGridExample extends Component {
                         }]
                     }}
                 >
-
                     <TextColumn
                         text="Id"
                         dataIndex="employeeNo"
@@ -143,9 +145,7 @@ export default class BigDataGridExample extends Component {
                         dataIndex="verified"
                         headerCheckbox
                     />
-                    {/*<Column
-                        text="Ratings"
-                    >*/}
+                    <Column text="Ratings">
                         <NumberColumn
                             text="Avg"
                             dataIndex="averageRating"
@@ -166,7 +166,7 @@ export default class BigDataGridExample extends Component {
                                 <SparkLineLine tipTpl='Price: {y:number("0.00")}'/>
                             </WidgetCell>
                         </Column>
-                    {/*</Column>*/}
+                    </Column>
                     <DateColumn
                         text="Date of Birth"
                         dataIndex="dob"
@@ -225,9 +225,7 @@ export default class BigDataGridExample extends Component {
                             xtype:'emailfield'
                         }}
                     />
-                    {/*<Column
-                        text='Absences'
-                    >*/}
+                    <Column text='Absences'>
                         <TextColumn
                             text="Illness"
                             dataIndex="sickDays"
@@ -248,7 +246,7 @@ export default class BigDataGridExample extends Component {
                             summaryFormatter='number("0.00")'
                             formatter='number("0.00")'
                         />
-                    {/*</Column>*/}
+                    </Column>
                     <Column 
                         text="Rating<br/>This Year" 
                         dataIndex="ratingThisYear"

@@ -222,11 +222,6 @@ const root = {
                 { text: 'SegmentedButton', component: SegmentedButton, layout: 'center' },
             ]},
             { text: 'Carousel', component: Carousel },
-            { text: 'Popups', children: [
-                { text: 'Dialog', component: Dialog, layout: 'center' },
-                { text: 'Msg', component: Msg, layout: 'center' },
-                { text: 'Toast', component: Toast, layout: 'center' }
-            ]},
             { text: 'Drag & Drop', children: [
                 { text: 'Simple', component: SimpleDandD },
                 { text: 'Constraints', component: Constrains },
@@ -289,6 +284,11 @@ const root = {
             ] },
             { text: 'Panel', component: Panel, layout: 'center' },
             { text: 'Picker', component: Picker, layout: 'center' },
+            { text: 'Popups', children: [
+                { text: 'Dialog', component: Dialog, layout: 'center' },
+                { text: 'Msg', component: Msg, layout: 'center' },
+                { text: 'Toast', component: Toast, layout: 'center' }
+            ]},
             { text: 'ProgressBar', component: ProgressBar, layout: 'center' },
             { text: 'Ripple', component: Ripple, layout: 'center' },
             { text: 'Tabs', children: [
