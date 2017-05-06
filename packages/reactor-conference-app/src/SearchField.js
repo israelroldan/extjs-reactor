@@ -65,6 +65,7 @@ class SearchField extends Component {
             <ComboBox 
                 { ...this.props }
                 ui="alt"
+                placeholder="Search"
                 ref={field => this.field = field}
                 itemTpl={this.itemTpl}
                 store={this.store}
