@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Panel } from '@extjs/ext-react';
+import { Container } from '@extjs/ext-react';
 import { Polar } from '@extjs/ext-react-charts';
 import data from './data';
 import ChartToolbar from '../../ChartToolbar';
@@ -26,12 +26,13 @@ export default class BasicScatterChartExample extends Component {
         const { theme } = this.state;
 
         return (
-            <Panel shadow layout="fit">
+            <Container padding={!Ext.os.is.Phone && 10} layout="fit">
                 <ChartToolbar
                     onThemeChange={this.changeTheme}
                     theme={theme}
                 />
                 <Polar
+                    shadow
                     insetPadding={25}
                     store={this.store}
                     theme={theme}
@@ -64,7 +65,7 @@ export default class BasicScatterChartExample extends Component {
                         }
                     }]}
                 />
-            </Panel>
+            </Container>
         )
     }
 }

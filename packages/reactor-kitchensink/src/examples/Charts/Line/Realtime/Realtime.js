@@ -34,66 +34,65 @@ export default class Realtime extends Component {
 
     render() {
         return (
-            <Container layout="fit">
-                <Cartesian
-                    ref="chart"
-                    store={this.store}
-                    onDestroy={this.stopTask}
-                    title="Time Axis"
-                    insetPadding="30 30 10 10"
-                    axes={[{
-                        type: 'numeric',
-                        minimum: 0,
-                        maximum: 20,
-                        grid: true,
-                        position: 'left',
-                        title: 'Number of Hits'
-                    }, {
+            <Cartesian
+                shadow
+                ref="chart"
+                store={this.store}
+                onDestroy={this.stopTask}
+                title="Time Axis"
+                insetPadding="30 30 10 10"
+                axes={[{
+                    type: 'numeric',
+                    minimum: 0,
+                    maximum: 20,
+                    grid: true,
+                    position: 'left',
+                    title: 'Number of Hits'
+                }, {
+                    type: 'time',
+                    dateFormat: 'G:i:s',
+                    segmenter: {
                         type: 'time',
-                        dateFormat: 'G:i:s',
-                        segmenter: {
-                            type: 'time',
-                            step: {
-                                unit: Ext.Date.SECOND,
-                                step: 1
-                            }
-                        },
-                        label: {
-                            fontSize: 10
-                        },
-                        grid: true,
-                        position: 'bottom',
-                        title: 'Seconds',
-                        fields: ['xValue'],
-                        majorTickSteps: 10
-                    }]}
-                    series={[{
-                        type: 'line',
-                        title: 'Metric 1',
-                        marker: {
-                            type: 'cross',
-                            size: 5
-                        },
-                        style: {
-                            miterLimit: 0
-                        },
-                        xField: 'xValue',
-                        yField: 'metric1'
-                    }, {
-                        type: 'line',
-                        title: 'Metric 2',
-                        marker: {
-                            type: 'arrow',
-                            size: 5
-                        },
-                        style: {
-                            miterLimit: 0
-                        },
-                        xField: 'xValue',
-                        yField: 'metric2'
-                    }]}
-                />
-            </Container>
+                        step: {
+                            unit: Ext.Date.SECOND,
+                            step: 1
+                        }
+                    },
+                    label: {
+                        fontSize: 10
+                    },
+                    grid: true,
+                    position: 'bottom',
+                    title: 'Seconds',
+                    fields: ['xValue'],
+                    majorTickSteps: 10
+                }]}
+                series={[{
+                    type: 'line',
+                    title: 'Metric 1',
+                    marker: {
+                        type: 'cross',
+                        size: 5
+                    },
+                    style: {
+                        miterLimit: 0
+                    },
+                    xField: 'xValue',
+                    yField: 'metric1'
+                }, {
+                    type: 'line',
+                    title: 'Metric 2',
+                    marker: {
+                        type: 'arrow',
+                        size: 5
+                    },
+                    style: {
+                        miterLimit: 0
+                    },
+                    xField: 'xValue',
+                    yField: 'metric2'
+                }]}
+            />
         )
     }
 }

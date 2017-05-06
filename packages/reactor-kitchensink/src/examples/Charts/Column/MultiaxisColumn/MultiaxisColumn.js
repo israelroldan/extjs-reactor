@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Panel } from '@extjs/ext-react';
+import { Container } from '@extjs/ext-react';
 import { Cartesian } from '@extjs/ext-react-charts';
 import ChartToolbar from '../../ChartToolbar';
 import createData from './createData';
@@ -36,9 +36,10 @@ export default class MultiaxisColumn extends Component {
 
     render() {
         return (
-            <Panel shadow layout="fit">
+            <Container padding={!Ext.os.is.Phone && 10} layout="fit">
                 <ChartToolbar onRefreshClick={this.refreshData}/>
                 <Cartesian
+                    shadow
                     store={this.store}
                     innerPadding={{ left: 20, right: 20}}
                     interactions="crosszoom"
@@ -144,7 +145,7 @@ export default class MultiaxisColumn extends Component {
                         ]
                     }]}
                 />
-            </Panel>
+            </Container>
         )
     }
 }

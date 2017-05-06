@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Panel } from '@extjs/ext-react';
+import { Container } from '@extjs/ext-react';
 import { Cartesian } from '@extjs/ext-react-charts';
 import ChartToolbar from '../../ChartToolbar';
 
@@ -40,13 +40,14 @@ export default class Stacked extends Component {
         const { theme } = this.state;
 
         return (
-            <Panel shadow layout="fit">
+            <Container padding={!Ext.os.is.Phone && 10} layout="fit">
                 <ChartToolbar
                     onThemeChange={this.changeTheme}
                     onStackGroup={this.onStackedToggle}
                     theme={theme}
                 />
                 <Cartesian
+                    shadow
                     ref="chart"
                     store={this.store}
                     theme={theme}
@@ -91,7 +92,7 @@ export default class Stacked extends Component {
                         y: 25
                     }]}
                 />
-            </Panel>
+            </Container>
         )
     }
 }

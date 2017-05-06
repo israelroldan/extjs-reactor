@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Panel, ChartNavigator } from '@extjs/ext-react';
+import { Container } from '@extjs/ext-react';
+import { ChartNavigator } from '@extjs/ext-react-charts';
 import createData from './createData';
 import ChartToolbar from '../ChartToolbar';
 
@@ -43,13 +44,14 @@ export default class NavigatorExample extends Component {
         const { theme } = this.state;
 
         return (
-            <Panel shadow layout="fit">
+            <Container padding={!Ext.os.is.Phone && 10} layout="fit">
                 <ChartToolbar
                     onThemeChange={this.changeTheme}
                     onToggleZoomOnPan={this.toggleZoomOnPan}
                     theme={theme}
                 />
                 <ChartNavigator
+                    shadow
                     ref="navigator"
                     navigator={{ axis: 'bottom' }}
                     chart={{
@@ -124,7 +126,7 @@ export default class NavigatorExample extends Component {
                         }],
                     }}
                 />
-            </Panel>
+            </Container>
         )
     }
 }

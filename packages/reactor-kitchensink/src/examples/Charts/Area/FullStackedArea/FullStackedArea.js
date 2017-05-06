@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Panel } from '@extjs/ext-react';
+import { Container } from '@extjs/ext-react';
 import { Cartesian } from '@extjs/ext-react-charts';
 import ChartToolbar from '../../ChartToolbar';
 
@@ -50,13 +50,14 @@ export default class FullStackedAreaChartExample extends Component {
     render(){
         const {theme}=this.state;
 
-        return(
-            <Panel shadow layout="fit">
+        return (
+            <Container padding={!Ext.os.is.Phone && 10} layout="fit">
                 <ChartToolbar
-                        onThemeChange={this.changeTheme}
-                        theme={theme}
+                    onThemeChange={this.changeTheme}
+                    theme={theme}
                 />
                 <Cartesian 
+                    shadow
                     store={this.store}
                     theme={theme}
                     insetPadding={'20 20 0 0'}
@@ -107,7 +108,7 @@ export default class FullStackedAreaChartExample extends Component {
                         }
                     }]}
                     />
-            </Panel>
+            </Container>
         )
     }
 }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Panel } from '@extjs/ext-react';
+import { Container } from '@extjs/ext-react';
 import { Cartesian } from '@extjs/ext-react-charts';
 import ChartToolbar from '../../ChartToolbar';
 
@@ -35,9 +35,10 @@ export default class NegativeValues extends Component {
 
     render() {
         return (
-            <Panel shadow layout="fit">
+            <Container padding={!Ext.os.is.Phone && 10} layout="fit">
                 <ChartToolbar downloadChartRef={this.refs.chart}/>
                 <Cartesian
+                    shadow
                     ref="chart"
                     theme="muted"
                     store={this.store}
@@ -79,7 +80,7 @@ export default class NegativeValues extends Component {
                         renderer: this.onSeriesRender
                     }]}
                 />
-            </Panel>
+            </Container>
         )
     }
 }

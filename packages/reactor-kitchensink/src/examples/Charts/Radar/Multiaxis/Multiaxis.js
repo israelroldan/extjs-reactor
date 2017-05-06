@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Panel, Polar } from '@extjs/ext-react';
+import { Container } from '@extjs/ext-react';
+import { Polar } from '@extjs/ext-react-charts';
 import ChartToolbar from '../../ChartToolbar';
 import generateData from './generateData';
 
@@ -48,13 +49,14 @@ export default class Multiaxis extends Component {
         const { theme } = this.state;
 
         return (
-            <Panel shadow layout="fit">
+            <Container padding={!Ext.os.is.Phone && 10} layout="fit">
                 <ChartToolbar
                     onThemeChange={this.changeTheme}
                     onRefreshClick={this.refreshData}
                     theme={theme}
                 />
                 <Polar
+                    shadow
                     insetPadding={25}
                     store={this.store}
                     interactions={['rotate']}
@@ -98,7 +100,7 @@ export default class Multiaxis extends Component {
                         }
                     }]}
                 />
-            </Panel>
+            </Container>
         )
     }
 }

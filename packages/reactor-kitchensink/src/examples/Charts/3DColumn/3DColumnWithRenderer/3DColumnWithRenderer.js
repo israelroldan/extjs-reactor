@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Panel } from '@extjs/ext-react';
+import { Container } from '@extjs/ext-react';
 import { Cartesian } from '@extjs/ext-react-charts';
 import ChartToolbar from '../../ChartToolbar';
 import { storeData, colors } from './data';
@@ -13,9 +13,10 @@ export default class ThreeDColumnWithRenderer extends Component {
 
     render() {
         return (
-            <Panel shadow layout="fit">
+            <Container padding={!Ext.os.is.Phone && 10} layout="fit">
                 <ChartToolbar downloadChartRef={this.refs.chart}/>
                 <Cartesian
+                    shadow
                     ref="chart"
                     store={this.store}
                     theme="muted"
@@ -72,7 +73,7 @@ export default class ThreeDColumnWithRenderer extends Component {
                         }
                     }]}
                 />
-            </Panel>
+            </Container>
         )
     }
 }

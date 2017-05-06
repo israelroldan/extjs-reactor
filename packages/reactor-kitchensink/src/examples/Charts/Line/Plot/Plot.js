@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Panel } from '@extjs/ext-react';
+import { Container } from '@extjs/ext-react';
 import { Cartesian } from '@extjs/ext-react-charts';
 import ChartToolbar from '../../ChartToolbar';
 import createData from './createData';
@@ -33,7 +33,7 @@ export default class Plot extends Component {
         const { theme } = this.state;
 
         return (
-            <Panel shadow layout="fit">
+            <Container padding={!Ext.os.is.Phone && 10} layout="fit">
                 <ChartToolbar
                     onThemeChange={this.changeTheme}
                     onRefreshClick={this.refreshData}
@@ -41,6 +41,7 @@ export default class Plot extends Component {
                     theme={theme}
                 />
                 <Cartesian
+                    shadow
                     store={this.store}
                     theme={theme}
                     ref="chart"
@@ -86,7 +87,7 @@ export default class Plot extends Component {
                         }
                     }]}
                 />
-            </Panel>
+            </Container>
         )
     }
 }

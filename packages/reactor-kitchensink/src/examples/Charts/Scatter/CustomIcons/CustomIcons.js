@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Panel } from '@extjs/ext-react';
+import { Container } from '@extjs/ext-react';
 import { Cartesian } from '@extjs/ext-react-charts';
 import ChartToolbar from '../../ChartToolbar';
 import generateData from './generateData';
@@ -32,14 +32,15 @@ export default class CustomIcons extends Component {
         const { theme } = this.state;
 
         return (
-            <Panel shadow layout="fit">
+            <Container padding={!Ext.os.is.Phone && 10} layout="fit">
                 <ChartToolbar
                     onThemeChange={this.changeTheme}
                     onRefreshClick={this.refreshData}
                     theme={theme}
                 />
                 <Cartesian
-                    insetPaddig="20 20 10 10"
+                    shadow
+                    insetPadding="20 20 10 10"
                     legend={{ type: 'sprite' }}
                     store={this.store}
                     theme={theme}
@@ -105,7 +106,7 @@ export default class CustomIcons extends Component {
                         }
                     }]}
                 />
-            </Panel>
+            </Container>
         )
     }
 }

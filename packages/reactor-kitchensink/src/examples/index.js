@@ -123,6 +123,10 @@ import BasicBar from './Charts/Bar/BasicBar/BasicBar';
 import FullStackedBar from './Charts/Bar/FullStackedBar/FullStackedBar';
 import StackedBar from './Charts/Bar/StackedBar/StackedBar';
 
+// Box Plot
+
+import BoxPlot from './Charts/BoxPlot/BoxPlot';
+
 // Column
 
 import BasicColumn from './Charts/Column/BasicColumn/BasicColumn';
@@ -138,6 +142,7 @@ import OHLC from './Charts/Financial/OHLC/OHLC';
 // Gauge
 
 import BasicGauge from './Charts/Gauge/BasicGauge/BasicGauge';
+import BasicGaugeChart from './Charts/Gauge/BasicGaugeChart/BasicGaugeChart';
 
 // Line
 
@@ -325,6 +330,7 @@ const root = {
                 { text: 'Stacked Bar', component: StackedBar },
                 { text: 'Full Stacked Bar', component: FullStackedBar}
             ] },
+            { text: 'BoxPlot', component: BoxPlot },
             { text: 'Column', children: [
                 { text: 'Basic Column', component: BasicColumn },
                 { text: 'Stacked', component: Stacked },
@@ -343,7 +349,7 @@ const root = {
                 { text: 'OHLC', component: OHLC }
             ] },
             { text: 'Gauge', children: [
-                { text: 'Basic Gauge', component: BasicGauge }  
+                { text: 'Basic Gauge', component: BasicGaugeChart }  
             ] }, 
             { text: 'Line', children: [
                 { text: 'Basic Line', component: BasicLine },

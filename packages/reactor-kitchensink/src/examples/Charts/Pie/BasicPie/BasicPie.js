@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Panel } from '@extjs/ext-react';
+import { Container } from '@extjs/ext-react';
 import { Polar } from '@extjs/ext-react-charts';
 import createData from './createData';
 import ChartToolbar from '../../ChartToolbar';
@@ -33,13 +33,14 @@ export default class BasicPieChartExample extends Component {
         const { theme } = this.state;
 
         return (
-            <Panel shadow layout="fit">
+            <Container padding={!Ext.os.is.Phone && 10} layout="fit">
                 <ChartToolbar
                     onThemeChange={this.changeTheme}
                     onRefreshClick={this.refresh}
                     theme={theme}
                 />
                 <Polar
+                    shadow
                     innerPadding={Ext.os.is.Desktop ? 40 : 10}
                     store={this.store}
                     theme={theme}
@@ -69,7 +70,7 @@ export default class BasicPieChartExample extends Component {
                         }
                     }]}
                 />
-            </Panel>
+            </Container>
         )
     }
 }
