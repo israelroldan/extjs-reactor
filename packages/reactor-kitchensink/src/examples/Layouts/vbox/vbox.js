@@ -15,7 +15,7 @@ export default class VBoxLayoutExample extends Component {
         };
 
         return (
-            <Container padding={10}>
+            <Container padding={30}>
                 <Panel shadow ui="instructions" margin="0 0 40 0">
                     <div>A <b>vbox</b> layout positions items vertically with optional 'pack', and 'align' configs.</div>
                 </Panel>
