@@ -1,16 +1,15 @@
-import React, {Component} from 'react';
-import { Grid, Column } from '@extjs/ext-react';
-import model from '../../CompanyModel';
+import React, { Component } from 'react';
+import { Grid, Column, Toolbar, NumberField, DatePickerField } from '@extjs/ext-react';
+import model from '../CompanyModel';
 import { Template } from '@extjs/reactor';
 
 Ext.require([
-    'Ext.grid.plugin.SummaryRow',
-    'Ext.data.summary.Average',
-    'Ext.data.summary.Max',
+    'Ext.grid.plugin.Editable',
+    'Ext.grid.plugin.CellEditing'
 ]);
 
-export default class RowBodyGridExample extends Component {
-
+export default class EditableGrid extends Component {
+    
     store = Ext.create('Ext.data.Store', {
         autoLoad: true,
         model,
@@ -23,42 +22,53 @@ export default class RowBodyGridExample extends Component {
 
     render() {
         return (
-            <Grid
-                title="Summary Row Grid"
+            <Grid 
+                title='Stock Prices'
+                shadow 
                 store={this.store}
-                shadow
-                plugins={{
-                    gridsummaryrow: true
+                platformConfig={{
+                    desktop: {
+                        plugins: {
+                            gridcellediting: true
+                        }
+                    },
+                    '!desktop': {
+                        plugins: {
+                            grideditable: true
+                        }
+                    }
                 }}
             >
+                <Toolbar docked="top">
+                    <div style={{color: '#666', fontSize: '13px' }}>Double-{Ext.os.is.Desktop ? 'click' : 'tap'} a {Ext.os.is.Desktop ? 'cell' : 'row'} to edit</div>
+                </Toolbar>
                 <Column 
                     text="Company" 
+                    width="150" 
                     dataIndex="name" 
-                    width="150"
-                    summaryRenderer={this.summarizeCompanies}
+                    editable
                 />
                 <Column 
                     text="Price" 
                     width="75" 
                     dataIndex="price" 
                     formatter="usMoney" 
-                    summary="average"
-                />
+                    editable 
+                >
+                    <NumberField rel="editor" require validators={{type:"number", message:"Invalid price"}}/>
+                </Column>
                 <Column 
                     text="Change" 
                     width="90" 
-                    dataIndex="priceChange" 
-                    renderer={this.renderChange}  
-                    summary="max" 
+                    renderer={this.renderChange} 
+                    dataIndex="change" 
                     cell={{encodeHtml:false}}
                 />
                 <Column 
                     text="% Change" 
-                    width="100"
-                    dataIndex="priceChangePct" 
+                    width="100" 
                     renderer={this.renderPercent} 
-                    summary="average" 
-                    summaryRenderer={this.renderPercent}
+                    dataIndex="pctChange" 
                     cell={{encodeHtml:false}}
                 />
                 <Column 
@@ -66,8 +76,10 @@ export default class RowBodyGridExample extends Component {
                     width="125" 
                     dataIndex="lastChange" 
                     formatter="date('m/d/Y')" 
-                    summary="max"
-                />
+                    editable 
+                >
+                    <DatePickerField required validators={{type:"date", message:"Invalid date"}}/>
+                </Column>
             </Grid>
         )
     }
@@ -82,5 +94,4 @@ export default class RowBodyGridExample extends Component {
     percentTpl = this.createSignTpl('0.00%');
     renderChange = (value) => this.changeTpl.apply(value);
     renderPercent = (value) => this.percentTpl.apply(value);
-    summarizeCompanies = (grid, context) => context.records.length + ' Companies';
 }

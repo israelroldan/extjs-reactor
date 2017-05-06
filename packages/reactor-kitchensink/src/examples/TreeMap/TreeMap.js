@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Panel, D3_TreeMap } from '@extjs/ext-react';
+import { Panel } from '@extjs/ext-react';
+import { D3_TreeMap } from '@extjs/ext-react-d3';
 
 Ext.require(['Ext.d3.interaction.PanZoom']);
 

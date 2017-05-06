@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Cartesian, Panel, Button } from '@extjs/ext-react';
+import { Panel, Button } from '@extjs/ext-react';
+import { Cartesian } from '@extjs/ext-react-charts';
 import ChartToolbar from '../../ChartToolbar';
 
 export default class NegativeValuesAreaChartExample extends Component {

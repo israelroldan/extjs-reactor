@@ -23,7 +23,8 @@ const CLASS_CACHE = {
     ToolTip: Ext.ClassManager.getByAlias('widget.tooltip'),
     CellBase: Ext.ClassManager.get('Ext.grid.cell.Base'),
     WidgetCell: Ext.ClassManager.getByAlias('widget.widgetcell'),
-    Dialog: Ext.ClassManager.getByAlias('widget.dialog')
+    Dialog: Ext.ClassManager.getByAlias('widget.dialog'),
+    Field: Ext.ClassManager.getByAlias('widget.field')
 }
 
 export default class ExtJSComponent extends Component {
@@ -266,6 +267,8 @@ export default class ExtJSComponent extends Component {
             return { name: 'widget', array: false, value: this._cloneConfig(item) }
         } else if (isAssignableFrom(extJSClass, CLASS_CACHE.Dialog) && CLASS_CACHE.Button && item instanceof CLASS_CACHE.Button) {
             return { name: 'buttons', array: true };
+        } else if (isAssignableFrom(extJSClass, CLASS_CACHE.Column) && CLASS_CACHE.Field && item instanceof CLASS_CACHE.Field) {
+            return { name: 'editor' };
         }
     }
 

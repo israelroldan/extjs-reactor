@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { List } from '@extjs/ext-react';
-import { Template } from '@extjs/reactor';
 
 Ext.require('Ext.Toast');
 

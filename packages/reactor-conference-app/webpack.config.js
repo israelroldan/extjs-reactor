@@ -11,11 +11,11 @@ module.exports = function (env) {
 
     const plugins = [
         new ExtJSReactorWebpackPlugin({
-            // sdk: 'ext',
-            // packages: [
-            //     'd3',
-            //     'calendar'
-            // ],
+            sdk: 'ext',
+            packages: [
+                'd3',
+                'calendar'
+            ],
             theme: './theme-conference-app',
             production: isProd
         }),

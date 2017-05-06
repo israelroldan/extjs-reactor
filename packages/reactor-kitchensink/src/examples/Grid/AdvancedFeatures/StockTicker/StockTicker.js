@@ -6,9 +6,8 @@ import './Ticker.css';
 export default class StockTickerGridExample extends Component {
 
     state = {
-        tickDelay: 200,
-        flashBackground: false
-    };
+        tickDelay: 200
+    }
 
     store = Ext.create('Ext.data.Store', {
         model,
@@ -64,25 +63,29 @@ export default class StockTickerGridExample extends Component {
         
     }
 
-    onTickDelayChange = (slider, value, oldValue) => {
-        this.setState({ tickDelay: value });
-    }
-
     destroy = () => {
         clearInterval(this.timer);
     }
 
     toggleFlashBackground = (checkbox) => {
-        this.setState({ flashBackground: !this.state.flashBackground })
+        const vm = this.viewModel;
+        vm.set('flashBackground', !vm.get('flashBackground'));
     }
 
+    onTickDelayChange = (slider, value, oldValue) => {
+        this.setState({ tickDelay: value });
+        this.viewModel.getScheduler().setTickDelay(value);
+    }
+
+    gridRef = grid => this.viewModel = grid.getViewModel();
+
     render() {
-        const { tickDelay, flashBackground } = this.state;
+        const { tickDelay } = this.state;
 
         return (
             <Grid 
                 title='Ticker Grid'
-                ref={grid => this.grid = grid}
+                ref={this.gridRef}
                 store={this.store}
                 onInitialize={this.init}
                 shadow
@@ -96,15 +99,12 @@ export default class StockTickerGridExample extends Component {
                     }
                 }}
                 viewModel={{
-                    data: {
-                        flashBackground
-                    },
                     scheduler: {
                         tickDelay
                     }
                 }}
             >
-                <TextColumn text="Company" dataIndex="name" flex="1" sortable={true}/>
+                <TextColumn text="Company" dataIndex="name" width="150" sortable={true}/>
                 <TextColumn text="Price" width="95" align="right" cell={{bind:'{record.price:usMoney}'}} sortable={true}/>
                 <Column text="Trend" width="200">
                     <WidgetCell forceWidth bind="{record.trend}">
@@ -118,6 +118,7 @@ export default class StockTickerGridExample extends Component {
                 <Toolbar docked="bottom" defaults={{ margin: '0 20 0 0' }}>
                     <Label>Tick Delay:</Label>
                     <SliderField
+                        padding="0 5"
                         minValue={200}
                         maxValue={2000}
                         increment={10}
@@ -129,7 +130,6 @@ export default class StockTickerGridExample extends Component {
                     <CheckBoxField 
                         margin="0"
                         boxLabel="Flash background color on change"
-                        checked={flashBackground}
                         onChange={this.toggleFlashBackground}
                     />
                 </Toolbar>

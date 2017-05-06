@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { PivotD3Container, Toolbar, Button, Spacer } from '@extjs/ext-react';
+import { Toolbar, Button, Spacer } from '@extjs/ext-react';
+import { PivotD3Container } from '@extjs/ext-react-pivot-d3';
 import createData from './createData';
 import './styles.css';
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Panel, Cartesian } from '@extjs/ext-react';
+import { Panel } from '@extjs/ext-react';
+import { Cartesian } from '@extjs/ext-react-charts';
 import ChartToolbar from '../../ChartToolbar';
 
 export default class Stacked extends Component {

@@ -16,7 +16,7 @@ export default class PanelExample extends Component {
                     shadow
                     title="Panel" 
                     height={300}
-                    width={500}
+                    width={Ext.os.is.Phone ? '100%' : 500}
                     bodyPadding={10}
                     collapsible={{ dynamic: true }}
                     tools={[

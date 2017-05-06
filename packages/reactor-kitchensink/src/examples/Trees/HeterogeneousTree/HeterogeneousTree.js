@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Tree, TreeColumn, ToolBar, TextField, Button } from '@extjs/ext-react';
+import { ToolBar, TextField, Button } from '@extjs/ext-react';
+import { Tree, TreeColumn } from '@extjs/ext-react-treegrid';
+
 import './data';
 
 export default class HeterogeneousTreeExample extends Component {

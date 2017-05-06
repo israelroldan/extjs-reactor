@@ -33,7 +33,10 @@ class Layout extends Component {
                 anim.disable();
                 nav.goToNode(node.parentNode);
                 anim.enable();
-                nav.goToLeaf(node);
+                
+                if (node.isLeaf()) {
+                    nav.goToLeaf(node);
+                }
             }
         }
     }
@@ -63,6 +66,8 @@ class Layout extends Component {
 
         let mainView;
 
+        const example = component && (layout === 'fit' ? React.createElement(component) : <div>{ React.createElement(component) }</div>);
+
         if (Ext.os.is.Phone) {
             // phone layout
             mainView = (
@@ -75,8 +80,8 @@ class Layout extends Component {
                 >
                     { component && (
                         <Container rel="detailCard" layout="fit">
-                            <Container key={selectedNavNode.get('text')} layout={layout} scrollable={layout !== 'fit'}>
-                                { React.createElement(component) }
+                            <Container key={selectedNavNode.get('text')} layout={layout} scrollable={layout==='fit'} className="app-phone-detail-card">
+                                { example }
                             </Container>
                         </Container>
                     ) }
@@ -104,10 +109,10 @@ class Layout extends Component {
                             collapsed={!showTree}
                         /> 
                         <Breadcrumbs docked="top" node={selectedNavNode}/>
-                        <Transition flex={1} type="slide" bindDirectionToLocation>
+                        <Transition flex={1} type="slide" bindDirectionToLocation padding="30">
                             { component ? (
-                                <Container layout={layout} scrollable={layout !== 'fit'} padding="30" key={selectedNavNode.id}>
-                                    { React.createElement(component) }
+                                <Container layout={layout} scrollable={layout !== 'fit'} key={selectedNavNode.id} autoSize={layout !== 'fit'}>
+                                    { layout === 'fit' ? <Container padding="30" layout="fit">{ example }</Container> : example }
                                 </Container>
                             ) : selectedNavNode ? (
                                 <NavView key={selectedNavNode.id} node={selectedNavNode}/>
@@ -126,7 +131,7 @@ class Layout extends Component {
                         align="right" 
                         iconCls={'x-font-icon ' + (showCode ? 'md-icon-close' : 'md-icon-code') }
                         ui="fab" 
-                        top={Ext.os.is.Desktop ? 21 : 35}
+                        top={Ext.os.is.Desktop ? 20 : 35}
                         right={21}
                         zIndex={1000}
                         handler={actions.toggleCode} 

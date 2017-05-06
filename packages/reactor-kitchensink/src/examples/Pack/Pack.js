@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Panel, D3_Pack } from '@extjs/ext-react';
+import { Panel } from '@extjs/ext-react';
+import { D3_Pack } from '@extjs/ext-react-d3';
 
 export default class Pack extends Component {
 

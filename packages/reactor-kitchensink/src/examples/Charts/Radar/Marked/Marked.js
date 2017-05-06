@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Panel, Polar } from '@extjs/ext-react';
+import { Panel } from '@extjs/ext-react';
+import { Polar } from '@extjs/ext-react-charts';
 import ChartToolbar from '../../ChartToolbar';
 
 export default class Marked extends Component {

@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
-import { Tree, TreeColumn, TextColumn } from '@extjs/ext-react';
+import { TextColumn } from '@extjs/ext-react';
+import { Tree, TreeColumn } from '@extjs/ext-react-treegrid';
 import store from './Store.js';
+
+Ext.require([
+    'Ext.grid.plugin.Editable',
+    'Ext.grid.plugin.CellEditing'
+]);
 
 export default class EditableTreeExample extends Component {
 
@@ -8,8 +14,19 @@ export default class EditableTreeExample extends Component {
         return (
             <Tree
                 title="Editable Tree"
-                plugins={[{type:'grideditable'}]}
                 store={store}
+                platformConfig={{
+                    desktop: {
+                        plugins: {
+                            gridcellediting: true
+                        }
+                    },
+                    '!desktop': {
+                        plugins: {
+                            grideditable: true
+                        }
+                    }
+                }}
             >
                 <TreeColumn 
                     text="Name"

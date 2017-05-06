@@ -10,7 +10,7 @@ export default function NavView({ node }) {
     }
 
     return (
-        <Container layout="center">
+        <Container layout="center" padding="20" scrollable>
             <div style={{textAlign: 'center'}}>
                 { node && node.childNodes.map((child, i) => (
                     <div key={i} className="app-thumbnail" onClick={e => onClick(e, child.id)}>
@@ -18,6 +18,7 @@ export default function NavView({ node }) {
                             <div className="app-thumbnail-icon icon-charts"></div>
                         </div>
                         <div className="app-thumbnail-text">{child.data.text}</div>
+                        {child.data.premium && <div className="x-fa fa-star app-premium-indicator"/>}
                     </div>
                 )) }
             </div>

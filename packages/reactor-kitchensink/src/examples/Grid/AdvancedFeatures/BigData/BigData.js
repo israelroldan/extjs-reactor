@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Grid, ActionSheet, Container, Button, SparkLineLine, WidgetCell, Column, TextColumn, CheckColumn, NumberColumn, DateColumn, Rating } from '@extjs/reactor/modern';
-import { Template } from '@extjs/reactor';
 import model from './GridModel';
 import './data';
 import './style.css';
@@ -19,6 +18,7 @@ export default class BigDataGridExample extends Component {
     };
 
     store = Ext.create('Ext.data.Store', {
+        autoLoad: true,
         model,
         groupField: 'department',
         pageSize: 0,
@@ -51,10 +51,6 @@ export default class BigDataGridExample extends Component {
 
     onExportClick = () => {
         this.setState({ showExportSheet: true })
-    }
-
-    componentDidMount() {
-        setTimeout(() => this.store.load(), 1000)
     }
 
     render() {

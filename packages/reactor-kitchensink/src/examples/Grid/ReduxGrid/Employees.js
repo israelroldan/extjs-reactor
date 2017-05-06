@@ -1,36 +1,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { filterChange } from './actions';
-import { Grid, TitleBar, SearchField, Label } from '@extjs/ext-react';
+import { Grid, Column, TitleBar, SearchField, Label } from '@extjs/ext-react';
+import data from './data';
 
-Ext.require(['Ext.grid.plugin.*']);
+Ext.require(['Ext.grid.plugin.PagingToolbar']);
 
 class Employees extends Component {
 
     store = Ext.create('Ext.data.Store', {
-        fields: ['employeeNo', 'forename', 'surname', 'email', {
-            name: 'fullName',
-            calculate: ({forename, surname}) => `${forename} ${surname}`
-        }],
         autoLoad: true,
-        groupField: 'department',
         pageSize: 50,
-        proxy: {
-            type: 'ajax',
-            url: '/KitchenSink/BigData'
-        }     
+        data: data,
+        autoDestroy: true
     });
 
     componentDidUpdate(prevProps, prevState) {
-        const { filter } = this.props;
+        let { filter } = this.props;
 
         if (filter !== prevProps.filter) {
-            this.store.filter({
-                property: 'fullName', 
-                value: filter,
-                disableOnEmpty: true,
-                anyMatch: true
-            })
+            filter = filter.toLowerCase();
+            this.store.clearFilter();
+            this.store.filterBy(record => {
+                return  record.get('first_name').toLowerCase().indexOf(filter) !== -1 ||
+                        record.get('last_name').toLowerCase().indexOf(filter) !== -1 ||
+                        record.get('title').toLowerCase().indexOf(filter) !== -1
+            });
         }
     }
 
@@ -41,36 +36,22 @@ class Employees extends Component {
             <Grid
                 store={this.store}
                 shadow
-                grouped
-                plugins={[
-                    { type: 'gridpagingtoolbar' },
-                    { type: 'columnresizing' }
-                ]}
-                columns={[{ 
-                    xtype: 'rownumberer' 
-                }, {
-                    text: 'Id',
-                    dataIndex: 'employeeNo',
-                    width: 150
-                }, {
-                    text: 'Name',
-                    dataIndex: 'fullName',
-                    styleHtmlContent: true,
-                    width: 150
-                }, {
-                    text: 'Email',
-                    dataIndex: 'email',
-                    flex: 1
-                }]}
+                plugins={{
+                    gridpagingtoolbar: true
+                }}
             >
                 <TitleBar title="Employees" docked="top" ui="titlebar-search">
                     <SearchField 
                         ui="alt"
                         align="right"
-                        placeholder="Search Name..."
+                        placeholder="Search..."
                         onChange={(me, value) => dispatch(filterChange(value))}
                     />
                 </TitleBar>
+                <Column text="ID" dataIndex="id" width="50"/>
+                <Column text="First Name" dataIndex="first_name" width="150"/>
+                <Column text="Last Name" dataIndex="last_name" width="150"/>
+                <Column text="Title" dataIndex="title" flex={1}/>
             </Grid>
         )
     }

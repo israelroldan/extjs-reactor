@@ -13,7 +13,7 @@ const initialState = {
     selectedNavNode: examples,
     mode: 'full',
     layout: 'fit',
-    showCode: Ext.os.is.Desktop,
+    showCode: false,
     showTree: false
 };
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Container, Cartesian } from '@extjs/ext-react';
+import { Container } from '@extjs/ext-react';
+import { Cartesian } from '@extjs/ext-react-charts';
 import addNewData from './addNewData';
 
 const interval = 1000;

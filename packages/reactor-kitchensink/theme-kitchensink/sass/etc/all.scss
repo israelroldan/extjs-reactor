@@ -93,6 +93,7 @@ $content-panel-grid-background: dynamic(darken($content-panel-grid-line, 5%));
   cursor: pointer;
   line-height: 18px;
   display: inline-block;
+  position: relative;
 }
 
 .app-thumbnail-icon-wrap {
@@ -122,4 +123,16 @@ $content-panel-grid-background: dynamic(darken($content-panel-grid-line, 5%));
 .app-thumbnail-text {
   text-align: center;
   font-size: 14px;
+}
+
+.app-phone-detail-card > .x-scroller {
+  overflow: auto !important;
+}
+
+.app-premium-indicator {
+  color: #ff9800;
+  position: absolute;
+  top: 2px;
+  right: 0;
+  font-size: 18px;
 }

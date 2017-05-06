@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import {D3_HeatMap, Panel, Toolbar, Button} from '@extjs/ext-react';
-import {refreshData, refreshSize} from './createData';
+import { Panel, Toolbar, Button } from '@extjs/ext-react';
+import { D3_HeatMap } from '@extjs/ext-react-d3';
+import { refreshData, refreshSize } from './createData';
 
 export default class SalesPerEmployee extends Component {
 

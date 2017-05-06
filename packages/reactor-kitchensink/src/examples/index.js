@@ -1,8 +1,7 @@
 // Grids
 import BasicGrid from './Grid/BasicGrid/BasicGrid';
 import GroupedGrid from './Grid/GroupedGrid/GroupedGrid';
-import CellEditingGrid from './Grid/CellEditing/CellEditing';
-import RowEditingGrid from './Grid/RowEditing/RowEditing';
+import EditableGrid from './Grid/EditableGrid/EditableGrid';
 import XMLGrid from './Grid/XMLGrid/XMLGrid';
 import BigDataGrid from './Grid/AdvancedFeatures/BigData/BigData';
 import ReconfigureGrid from './Grid/AdvancedFeatures/ReconfigureGrid/ReconfigureGrid';
@@ -14,7 +13,7 @@ import StockTickerGrid from './Grid/AdvancedFeatures/StockTicker/StockTicker';
 import ReduxGrid from './Grid/ReduxGrid/ReduxGrid';
 import PivotGrid from './PivotGrid/PivotGrid';
 import RowBodyGrid from './Grid/AddonsDecorations/RowBody/RowBody';
-
+ 
 import Panel from './Panel/Panel';
 
 // Tabs
@@ -306,7 +305,7 @@ const root = {
             { text: 'Touch Events', component: TouchEvents },
             { text: 'Transition', component: Transition }
         ]},
-        { text: 'Calendar', premium: true, children:[
+        { text: 'Calendar', children:[
             { text: 'Calendar Panel', component: Calendar },
             { text: 'Month View', component: MonthView },
             { text: 'Week View', component: WeekView },
@@ -314,7 +313,7 @@ const root = {
             { text: 'Timezone Support', component: TimezoneSupport },
             { text: 'Drag Resize Validation', component: DragResizeValidation }
         ]},
-        { text: 'Charts', children: [
+        { text: 'Charts', premium: true, children: [
             { text: 'Area', children: [
                 { text: 'Basic Area', component: BasicArea },
                 { text: 'Stacked Area', component: StackedArea},
@@ -396,8 +395,7 @@ const root = {
             { text: 'Core Features', children: [
                 { text: 'Basic Grid', component: BasicGrid},
                 { text: 'Grouped Grid', component: GroupedGrid},
-                { text: 'Cell Editing', component: CellEditingGrid},
-                { text: 'Row Editing', component: RowEditingGrid},
+                { text: 'Editable Grid', component: EditableGrid},
                 { text: 'XML Grid', component: XMLGrid}
             ]},
             { text: 'Add-ons', children: [
@@ -412,16 +410,16 @@ const root = {
                 { text: 'Reconfigure Grid', component: ReconfigureGrid },
                 { text: 'Stock Ticker', component: StockTickerGrid}
             ]},
-            { text: 'PivotGrid', component: PivotGrid },
+            { text: 'PivotGrid', premium: true, component: PivotGrid },
             { text: 'Redux Grid', component: ReduxGrid }
         ] },
         { text: 'Trees', children: [
-            { text: 'Tree', component: Tree },
             { text: 'TreeList', component: TreeList, layout: Ext.os.is.Phone ? 'fit': 'center' },
-            { text: 'Editable Tree', component: EditableTree},
-            { text: 'Tree Grid', component: TreeGrid },
-            { text: 'Tree Decorations', component:TreeDecorations},
-            { text: 'Heterogeneous Tree', component: HeterogeneousTree}
+            { text: 'Tree', premium: true, component: Tree },
+            { text: 'Editable Tree', premium: true, component: EditableTree},
+            { text: 'Tree Grid', premium: true, component: TreeGrid },
+            { text: 'Tree Decorations', premium: true, component:TreeDecorations},
+            { text: 'Heterogeneous Tree', premium: true, component: HeterogeneousTree}
         ] }
     ]
 };

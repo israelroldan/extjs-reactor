@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Panel, Tree, D3_Sunburst } from '@extjs/ext-react';
+import { Panel, Tree } from '@extjs/ext-react';
+import { D3_Sunburst } from '@extjs/ext-react-d3';
 
 Ext.require(['Ext.util.Format']);
 

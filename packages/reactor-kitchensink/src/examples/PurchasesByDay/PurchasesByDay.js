@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {Panel, D3_HeatMap} from '@extjs/ext-react';
+import { Panel } from '@extjs/ext-react';
+import { D3_HeatMap } from '@extjs/ext-react-d3';
 import storeData from './storeData';
 
 export default class PurchasesByDay extends Component {

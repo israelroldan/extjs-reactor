@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Cartesian, Panel } from '@extjs/ext-react';
+import { Panel } from '@extjs/ext-react';
+import { Cartesian } from '@extjs/ext-react-charts';
 import data from './data';
 import ChartToolbar from '../../ChartToolbar';
 

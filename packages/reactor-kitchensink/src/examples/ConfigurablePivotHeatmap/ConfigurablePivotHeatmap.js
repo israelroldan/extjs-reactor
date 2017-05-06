@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { PivotD3Container, Button, Toolbar, Spacer } from '@extjs/ext-react';
+import { Button, Toolbar, Spacer } from '@extjs/ext-react';
+import { PivotD3Container } from '@extjs/ext-react-pivot-d3';
 import salesData from './salesData';
 
 Ext.require('Ext.pivot.d3.HeatMap');

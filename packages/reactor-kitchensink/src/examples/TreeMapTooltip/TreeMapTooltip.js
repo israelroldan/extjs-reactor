@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Panel, D3_TreeMap } from '@extjs/ext-react';
+import { Panel } from '@extjs/ext-react';
+import { D3_TreeMap } from '@extjs/ext-react-d3';
 import onTooltip from './tooltip';
 import './styles.css';
 
