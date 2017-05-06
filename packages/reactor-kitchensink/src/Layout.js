@@ -66,7 +66,7 @@ class Layout extends Component {
 
         let mainView;
 
-        const example = component && (layout === 'fit' ? React.createElement(component) : <div>{ React.createElement(component) }</div>);
+        const example = component && React.createElement(component);
 
         if (Ext.os.is.Phone) {
             // phone layout
@@ -80,8 +80,8 @@ class Layout extends Component {
                 >
                     { component && (
                         <Container rel="detailCard" layout="fit">
-                            <Container key={selectedNavNode.get('text')} layout={layout} scrollable={layout==='fit'} className="app-phone-detail-card">
-                                { example }
+                            <Container key={selectedNavNode.get('text')} layout={layout} autoSize={layout !== 'fit'}>
+                                { layout === 'fit' ? example : <Container scrollable>{ example }</Container> }
                             </Container>
                         </Container>
                     ) }
@@ -111,8 +111,12 @@ class Layout extends Component {
                         <Breadcrumbs docked="top" node={selectedNavNode}/>
                         <Transition flex={1} type="slide" bindDirectionToLocation padding="30">
                             { component ? (
-                                <Container layout={layout} scrollable={layout !== 'fit'} key={selectedNavNode.id} autoSize={layout !== 'fit'}>
-                                    { layout === 'fit' ? <Container padding="30" layout="fit">{ example }</Container> : example }
+                                <Container layout={layout} scrollable key={selectedNavNode.id} autoSize={layout !== 'fit'}>
+                                    { layout === 'fit' ? (
+                                        <Container padding="30" layout="fit">{ example }</Container> 
+                                    ) : (
+                                        example 
+                                    )}
                                 </Container>
                             ) : selectedNavNode ? (
                                 <NavView key={selectedNavNode.id} node={selectedNavNode}/>

@@ -3,9 +3,9 @@ import { FormPanel, TextField, FieldSet } from '@extjs/ext-react';
 
 export default function TextFieldExample() {
     return (
-        <FormPanel shadow>
+        <FormPanel shadow padding="20">
             <FieldSet title="Separate Label and Placeholder" margin="0 0 20 0">
-                <TextField placeHolder="Enter Name..." label="Name" required/>
+                <TextField placeholder="Enter Name..." label="Name" required/>
             </FieldSet>
             <FieldSet title="Label as Placeholder" margin="0 0 20 0" >
                 <TextField labelAlign="placeholder" label="Name" required/>

@@ -47,7 +47,7 @@ export default class FormPanelExample extends Component {
                     <EmailField label="Email" placeholder="me@sencha.com"/>
                     <TextField label="Phone Number" inputMask="(999) 999-9999" inputType="tel"/>
                     <UrlField label="URL" placeholder="http://sencha.com"/>
-                    <SpinnerField label="Spinner" minValue={0} maxValue={0} stepValue={1} cycle margin="15 0 0 0"/>
+                    <SpinnerField label="Spinner" minValue={0} maxValue={1000} stepValue={1} cycle margin="15 0 0 0" labelAlign="top"/>
                     <DatePickerField label="Start Date"/>
                     <SelectField label="Rank"
                         options={[
