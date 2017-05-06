@@ -15,8 +15,6 @@ export default class Proxies extends Component {
         return (
             <Panel 
                 ref="mainPanel" 
-                height={Ext.platformTags.phone ? null : 500}
-                width={Ext.platformTags.phone ? null : 500}
                 padding={5} 
                 shadow
             >

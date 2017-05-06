@@ -10,8 +10,6 @@ export default class Data extends Component {
         return (
             <Panel 
                 ref="mainPanel" 
-                height={Ext.platformTags.phone ? null : 350} 
-                width={Ext.platformTags.phone ? null : 250}
                 padding={5}
                 shadow
             >
