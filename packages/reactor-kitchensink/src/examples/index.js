@@ -438,6 +438,8 @@ function transform(node, parentUrl) {
         node.id = (parentUrl === '/' ? '' : parentUrl) + '/' + node.text.toLowerCase().replace(/\s/g, '_').replace(/[^\w]/g, '');
     }
 
+    node.name = node.text;
+
     if (node.children) {
         node.children.forEach(child => transform(child, node.id))
     }

@@ -10,9 +10,9 @@ export default class NavTree extends Component {
     }
 
     containsMatches(node) {
-        const found = node.name.match(this.filterRegex) || node.childNodes.some(child => this.containsMatches(child));
+        const found = node.data.name.match(this.filterRegex) || node.childNodes.some(child => this.containsMatches(child));
         if (found) node.expand();
-        node.data.text = node.name.replace(this.filterRegex, '<span style="color:#2196F3;font-weight:bold">$1</span>')
+        node.data.text = node.data.name.replace(this.filterRegex, '<span style="color:#2196F3;font-weight:bold">$1</span>')
         return found;
     }
 

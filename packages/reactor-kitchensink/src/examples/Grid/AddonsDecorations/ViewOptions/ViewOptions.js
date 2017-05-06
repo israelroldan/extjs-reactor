@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Grid, Column } from '@extjs/ext-react';
+import { Grid, Column, Toolbar } from '@extjs/ext-react';
 import model from '../../CompanyModel';
 import { Template } from '@extjs/reactor';
 
@@ -26,6 +26,9 @@ export default class ViewOptionsGridExample extends Component {
                 signTpl={this.signTpl}
                 shadow
             >
+                <Toolbar docked="top">
+                    <div style={{fontSize: '14px', fontWeight: 'normal'}}>Long press on a column header to customize this grid.</div>
+                </Toolbar>
                 <Column text="Company" dataIndex="name" width="150"/>
                 <Column text="Phone" dataIndex="phone" width="100" hidden={true}/>
                 <Column text="Industry" dataIndex="industry" width="150" hidden={true}/>
