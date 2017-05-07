@@ -17,7 +17,7 @@ export default function NavView({ node }) {
                         <div className="app-thumbnail-icon-wrap">
                             <div className="app-thumbnail-icon icon-charts"></div>
                         </div>
-                        <div className="app-thumbnail-text">{child.data.text}</div>
+                        <div className="app-thumbnail-text">{child.data.name}</div>
                         {child.data.premium && <div className="x-fa fa-star app-premium-indicator"/>}
                     </div>
                 )) }

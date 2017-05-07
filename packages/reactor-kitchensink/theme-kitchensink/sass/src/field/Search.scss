@@ -4,20 +4,6 @@
     $padding: 8px
 );
 
-@include textfield-ui(
-    $ui: 'titlebar-search',
-    $placeholder-color: darken($base-foreground-color, 10%),
-    $input-color: $base-foreground-color,
-    $input-border-color: darken($base-foreground-color, 10%),
-    $input-background-color: darken($base-color, 10%),
-    $input-border-width: 0,
-    $input-font-size: 14px,
-    $focused-input-border-width: 0,
-    $focused-input-color: $base-foreground-color,
-    $focused-input-background-color: darken($base-color, 15%),
-    $input-padding: 8px 0
-);
-
 .x-searchfield-titlebar-search {
     .x-searchtrigger {
         width: 32px
@@ -41,3 +27,9 @@
         color: $base-foreground-color
     }
 }
+
+@include textfield-ui(
+    $ui: 'ks-search-right-trigger',
+    $input-padding: 10px 10px 10px 15px,
+    $input-padding-big: 7px 7px 7px 15px
+);

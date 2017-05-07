@@ -33,8 +33,8 @@ import Carousel from './Carousel/Carousel';
 
 // Trees
 
-import Tree from './Tree/Tree';
-import TreeList from './TreeList/TreeList';
+import Tree from './Trees/Tree/Tree';
+import TreeList from './Trees/TreeList/TreeList';
 import EditableTree from './Trees/EditableTree/EditableTree';
 import TreeGrid from './Trees/TreeGrid/TreeGrid';
 import TreeDecorations from './Trees/TreeDecorations/TreeDecorations';

@@ -22,17 +22,13 @@
 );
 
 @include button-ui(
-    $ui: 'app-show-code',
-    $padding: 18px 18px,
-    $icon-font-size: 22px,
-    $color: white,
-    $background-color: #ec407a,
-    $focus-background-color: darken(#ec407a, 5%)
-);
-
-@include button-ui(
     $ui: 'app-breadcrumb',
     $padding: 6px 8px,
     $text-transform: none,
     $text-transform-big: none
 );
+
+@include button-ui(
+    $ui: 'app-show-code',
+    $icon-font-size: 20px
+)

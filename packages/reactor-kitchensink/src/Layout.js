@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
-import { TitleBar, Container, NestedList, Panel, Button } from '@extjs/ext-react';
+import { TitleBar, Container, NestedList, Panel, Button, ToolTip } from '@extjs/ext-react';
 import { Transition } from '@extjs/reactor';
 import hljs, { highlightBlock } from 'highlightjs';
 import NavTree from './NavTree';
@@ -134,12 +134,12 @@ class Layout extends Component {
                     <Button 
                         align="right" 
                         iconCls={'x-font-icon ' + (showCode ? 'md-icon-close' : 'md-icon-code') }
-                        ui="fab" 
+                        ui="fab app-show-code" 
                         top={Ext.os.is.Desktop ? 20 : 35}
                         right={21}
                         zIndex={1000}
                         handler={actions.toggleCode} 
-                    /> 
+                    />
                 )}
                 { !Ext.os.is.Phone && files && (
                     <Panel 

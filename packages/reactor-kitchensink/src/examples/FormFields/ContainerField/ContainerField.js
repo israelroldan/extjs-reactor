@@ -10,17 +10,17 @@ export default class ContainerFieldExample extends Component {
                     <div><b>ContainerField</b> allows you to apply a single label to multiple fields. This is especially useful for groups of checkboxes, radio buttons, and other compound fields.</div>
                 </Panel>
                 <FormPanel layout="form" shadow padding="20" defaults={{labelAlign: 'left', labelTextAlign: 'right'}}>
-                    <ContainerField label="Name" layout="hbox" defaults={{flex: 1}}>
+                    <ContainerField label="Name" layout="hbox" defaults={{flex: 1, labelAlign: 'bottom'}}>
                         <TextField label="First"/>
                         <TextField label="Middle"/>
                         <TextField label="Last"/>
                     </ContainerField>
-                    <ContainerField label="Vehicle Class" layout="vbox">
+                    <ContainerField label="Vehicle Class" layout={{type: 'vbox', align: 'left'}} defaults={{ margin: '0' }}>
                         <RadioField boxLabel="Compact" name="priority"/>
                         <RadioField boxLabel="Mid-size" name="priority"/>
                         <RadioField boxLabel="SUV" name="priority"/>
                     </ContainerField>
-                    <ContainerField label="Options" layout="vbox">
+                    <ContainerField label="Options" layout={{type: 'vbox', align: 'left'}}>
                         <CheckBoxField boxLabel="A/C"/>
                         <CheckBoxField boxLabel="Leather"/>
                         <CheckBoxField boxLabel="Nav"/>

@@ -9,21 +9,22 @@ const sourcePath = path.join(__dirname, './src');
 module.exports = function (env) {
     const nodeEnv = env && env.prod ? 'production' : 'development';
     const isProd = nodeEnv === 'production';
+    const local = env && env.local;
 
     const plugins = [
         new ExtJSReactorWebpackPlugin({
-            // sdk: 'ext', // you need to copy the Ext JS SDK to the root of this package, or you can specify a full path to some other location
-            // packages: [
-            //     'font-ext', 
-            //     'ux', 
-            //     'd3',
-            //     'pivot-d3',
-            //     'font-awesome', 
-            //     'exporter', 
-            //     'pivot', 
-            //     'calendar', 
-            //     'charts'
-            // ],
+            sdk: local ? 'ext' : undefined, // you need to copy the Ext JS SDK to the root of this package, or you can specify a full path to some other location
+            packages: local ? [
+                'font-ext', 
+                'ux', 
+                'd3',
+                'pivot-d3',
+                'font-awesome', 
+                'exporter', 
+                'pivot', 
+                'calendar', 
+                'charts'
+            ] : undefined,
             theme: './theme-kitchensink',
             production: isProd
         }),

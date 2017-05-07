@@ -13,14 +13,14 @@ export default class TreeDecorationsExample extends Component {
     render(){
         return(
             <TabPanel>
-                <Container layout="fit" title="Tree with Row Lines">
+                <Container layout="fit" title="Row Lines">
                     <Tree 
                         {...this.defaults}
                         header={false}
                         rowLines
                     />
                 </Container>
-                <Container layout="fit" title="Only One Expanded Node">
+                <Container layout="fit" title="Single Expand">
                     <Tree 
                         {...this.defaults}
                         header={false}

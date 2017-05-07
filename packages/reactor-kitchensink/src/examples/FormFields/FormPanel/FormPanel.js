@@ -40,7 +40,7 @@ export default class FormPanelExample extends Component {
         const { disabled } = this.state;
         
         return (
-            <FormPanel ref="form" shadow height="100%" width="100%">
+            <FormPanel ref="form" shadow padding={20}>
                 <FieldSet disabled={disabled} ref="personal" title="Personal Info" defaults={{labelAlign: "placeholder"}}>
                     <TextField label="Name" required placeholder="This field is required"/>
                     <PasswordField label="Password" required revealable/>
@@ -62,29 +62,29 @@ export default class FormPanelExample extends Component {
                     <TextAreaField label="Bio" maxRows={5}/>
                 </FieldSet>
                 <FieldSet title="Roles" layout={{type: 'vbox', align: 'left'}} margin="15 0" defaults={{labelAlign: "placeholder"}}>
-                    <CheckBoxField boxLabel="Admin"/>
-                    <CheckBoxField boxLabel="Power User"/>
+                    <CheckBoxField disabled={disabled} boxLabel="Admin"/>
+                    <CheckBoxField disabled={disabled} boxLabel="Power User"/>
                 </FieldSet>
-                <FieldSet 
-                    disabled={disabled} 
+                <FieldSet                      
                     title="Favorite Color" 
                     layout={{ type: 'vbox', align: 'left' }} 
                     defaults={{
                         labelAlign: "placeholder",
                         name: 'color',
                         labelAlign: 'right',
-                        labelWidth: 'auto'
+                        labelWidth: 'auto',
+                        padding: 0
                     }}
                 >
-                    <RadioField boxLabel="Red" value="red"/>
-                    <RadioField boxLabel="Blue" value="blue"/>
-                    <RadioField boxLabel="Green" value="green"/>
-                    <RadioField boxLabel="Purple" value="purple"/>
+                    <RadioField disabled={disabled} boxLabel="Red" value="red"/>
+                    <RadioField disabled={disabled} boxLabel="Blue" value="blue"/>
+                    <RadioField disabled={disabled} boxLabel="Green" value="green"/>
+                    <RadioField disabled={disabled} boxLabel="Purple" value="purple"/>
                 </FieldSet>
-                <Toolbar docked="bottom">
+                <Container layout="hbox">
                     <Button ui="action" text={disabled ? 'Enable All' : 'Disable All'} margin="0 10 0 0" handler={this.toggleDisabled.bind(this)}/>
                     <Button ui="action" text="Reset" handler={() => this.refs.form.reset()}/>
-                </Toolbar>
+                </Container>
             </FormPanel>
         );
     }

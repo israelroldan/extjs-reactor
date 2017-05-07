@@ -5,6 +5,7 @@ export default function SpinnerFieldExample() {
     return (
         <FormPanel shadow>
             <NumberField 
+                decimals={2}
                 label="Number" 
                 width="150"
             />

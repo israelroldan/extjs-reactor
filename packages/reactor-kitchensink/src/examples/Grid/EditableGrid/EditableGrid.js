@@ -50,12 +50,12 @@ export default class EditableGrid extends Component {
                 />
                 <Column 
                     text="Price" 
-                    width="75" 
+                    width="120" 
                     dataIndex="price" 
                     formatter="usMoney" 
                     editable 
                 >
-                    <NumberField rel="editor" require validators={{type:"number", message:"Invalid price"}}/>
+                    <NumberField rel="editor" required validators={{type:"number", message:"Invalid price"}}/>
                 </Column>
                 <Column 
                     text="Change" 
