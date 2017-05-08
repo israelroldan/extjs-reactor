@@ -11,8 +11,7 @@
     color: #2d802d;
 }
 
-.big-data-ratings-cell .x-grid-cell-inner {
+.big-data-ratings-cell {
     font-weight: bold;
     font-size: 35;
-    font-weight: 35;
 }

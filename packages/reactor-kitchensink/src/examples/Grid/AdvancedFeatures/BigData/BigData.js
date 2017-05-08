@@ -67,7 +67,7 @@ export default class BigDataGridExample extends Component {
                     <Button handler={() => this.setState({ showExportSheet: false })} text="Cancel"/>
                 </ActionSheet>
                 <Grid
-                    ref="grid"
+                    ref={grid => this.grid = grid}
                     title="Big Data Grid"
                     store={this.store}
                     shadow
@@ -146,11 +146,12 @@ export default class BigDataGridExample extends Component {
                             text="Avg"
                             dataIndex="averageRating"
                             width="75"
+                            summary="average"
                             cell={{
                                 cls:'big-data-ratings-cell',
-                                    bind: {
-                                        bodyCls: '{ratingGroup:pick("under4","under5","under6","over6")}'
-                                    }
+                                bind: {
+                                    bodyCls: '{ratingGroup:pick("under4","under5","under6","over6")}'
+                                }
                             }}
                         />
                         <Column
@@ -186,6 +187,16 @@ export default class BigDataGridExample extends Component {
                         text=""
                         width="100"
                         ignoreExport
+                        align="center"
+                        summaryCell={{
+                            xtype: 'widgetcell',
+                            widget: {
+                                xtype: 'button',
+                                ui: 'action',
+                                text: 'All',
+                                handler: this.onVerifyAll
+                            }
+                        }}
                     >
                         <WidgetCell>
                             <Button
@@ -318,13 +329,45 @@ export default class BigDataGridExample extends Component {
         Ext.Msg.alert('Verify', `Verify ${record.get('forename')} ${record.get('surname')}`);
     }
 
+    onVerifyAll = (button) => {
+        let row = button.up('gridrow'),
+            group = row.getGroup(),
+            store = this.store,
+            count;
+
+        if (group) {
+            count = group.length;
+        } else {
+            count = store.getCount();
+        }
+        
+        Ext.Msg.confirm('Verify All',
+            'Are you sure you want to verify all ' + count + ' items?',
+            answer => {
+                if (answer === 'yes') {
+                    // Don't want to grid to update on each change:
+                    store.suspendEvent('update');
+
+                    (group || store).each(function (rec) {
+                        rec.set('verified', true);
+                    });
+
+                    store.resumeEvent('update');
+
+                    // Now update all the things
+                    this.grid.refresh();
+                }
+            }
+        );
+    }
+
     salarySummaryRenderer = (value) => {
         return Ext.util.Format.usMoney(value);
     }
 
     doExport(config) {
         this.setState({ showExportSheet: false });
-        this.refs.grid.saveDocumentAs(config);
+        this.grid.saveDocumentAs(config);
     }
 }
 

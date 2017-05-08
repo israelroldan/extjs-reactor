@@ -13,7 +13,8 @@ import StockTickerGrid from './Grid/AdvancedFeatures/StockTicker/StockTicker';
 import ReduxGrid from './Grid/ReduxGrid/ReduxGrid';
 import PivotGrid from './PivotGrid/PivotGrid';
 import RowBodyGrid from './Grid/AddonsDecorations/RowBody/RowBody';
- 
+import FlexibleSelection from './Grid/AdvancedFeatures/FlexibleSelection/FlexibleSelection';
+
 import Panel from './Panel/Panel';
 
 // Tabs
@@ -412,9 +413,10 @@ const root = {
                 { text: 'View Options', component: ViewOptionsGrid}
             ]},
             { text: 'Advanced Features', children:[
-                { text: 'Big Data', component: BigDataGrid},
+                { text: 'Big Data', component: BigDataGrid },
                 { text: 'Reconfigure Grid', component: ReconfigureGrid },
-                { text: 'Stock Ticker', component: StockTickerGrid}
+                { text: 'Stock Ticker', component: StockTickerGrid },
+                { text: 'Flexible Selection', component: FlexibleSelection }
             ]},
             { text: 'PivotGrid', premium: true, component: PivotGrid },
             { text: 'Redux Grid', component: ReduxGrid }
