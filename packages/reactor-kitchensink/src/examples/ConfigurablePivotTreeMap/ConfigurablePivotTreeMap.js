@@ -19,7 +19,7 @@ export default class ConfigurablePivotTreeMap extends Component {
 
     store = Ext.create('Ext.data.TreeStore', {
         fields: [
-            {name: 'id',        type: 'int'},
+            {name: 'id',        type: 'string'},
             {name: 'company',   type: 'string'},
             {name: 'country',   type: 'string'},
             {name: 'person',    type: 'string'},
@@ -48,8 +48,7 @@ export default class ConfigurablePivotTreeMap extends Component {
 
     showConfigurator = () => this.refs.mainCtn.showConfigurator()
 
-    onShowConfigPanel = view => {
-        const panel = view.down('pivotconfigpanel');
+    onShowConfigPanel = panel => {
         panel.getLeftAxisHeader().getTitle().setText('Tree labels');
         panel.setTopAxisContainerVisible(false);
     }
@@ -76,6 +75,7 @@ export default class ConfigurablePivotTreeMap extends Component {
     render() {
         return (
             <PivotD3Container
+                shadow
                 ref="mainCtn"
                 onShowConfigPanel={this.onShowConfigPanel}
                 onBeforeMoveConfigField={this.onBeforeAddConfigField}

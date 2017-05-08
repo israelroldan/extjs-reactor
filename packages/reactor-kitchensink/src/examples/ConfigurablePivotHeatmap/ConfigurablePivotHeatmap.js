@@ -18,7 +18,7 @@ export default class ConfigurablePivotHeatmap extends Component {
 
     store = Ext.create('Ext.data.Store', {
         fields: [
-            {name: 'id',        type: 'int'},
+            {name: 'id',        type: 'string'},
             {name: 'company',   type: 'string'},
             {name: 'country',   type: 'string'},
             {name: 'person',    type: 'string'},
