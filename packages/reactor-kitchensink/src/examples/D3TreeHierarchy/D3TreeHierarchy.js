@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Panel } from '@extjs/ext-react';
 import { D3_Tree } from '@extjs/ext-react-d3';
-import treeDataReader from './treeDataReader';
+import treeDataReader from './Salary';
 
 Ext.require([
     'Ext.d3.interaction.PanZoom',
@@ -18,8 +18,7 @@ export default class D3TreeHierarchy extends Component {
             type: 'ajax',
             url: 'resources/data/tree/salary.json',
             reader: {
-                type: 'json',
-                getResponseData: treeDataReader
+                type: 'salary'
             }
         }
     })
