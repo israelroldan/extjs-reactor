@@ -1,683 +1,461 @@
 [
-    {
-        "id": 158,
-        "avatar_url": "resources/avatars/Andrew-Duncan-SwarmOnline.png",
-        "name": "Andrew Duncan",
-        "title": "Founder",
-        "company": "SwarmOnline",
-        "bio": "Four years ago, Andrew started SwarmOnline from his living room. Today, the company has 25 staff members. Andrew has written two Ext JS textbooks used by developers around the world, he has spoken internationally at technology conferences, he has a blue chip client list, and he has just completed his first acquisition. In December, he turns 30.",
-        "twitter_handle": "andrewmduncan",
-        "sessions": [
-            "57b78648a1663"
-        ]
-    },
-    {
-        "id": 195,
-        "avatar_url": "resources/avatars/Andrew-Hemans-Sencha.jpg",
-        "name": "Andrew Hemans",
-        "title": "UX Designer",
-        "company": "Sencha",
-        "bio": "Andrew is a UX Designer at Sencha where he leads the product design team. He has a passion for promoting the developer-designer relationship, which he believes is integral for building better products. Andrew holds a Bachelor of Fine Arts in Design from Pacific Union College.",
-        "twitter_handle": "andrewhemans",
-        "sessions": [
-            "57b77c1067ce8",
-            "580ffe6283141"
-        ]
-    },
-    {
-        "id": 259,
-        "avatar_url": "resources/avatars/Art-Landro-Sencha.jpg",
-        "name": "Art Landro",
-        "title": "CEO",
-        "company": "Sencha",
-        "bio": "With more than 25 years of global business experience, Art brings to Sencha deep operational expertise across sales, marketing, product development, services, and support. Prior to Sencha, Art was the CEO of Cordys where he transformed the Netherlands-based software company into a BPM PaaS and Cloud Provisioning provider and successfully led its acquisition by OpenText. Before that he was President of MontaVista Software, breaking into non-traditional Linux markets such as automotive infotainment systems and aerospace controls. Art has led sales and services organizations in the Asia Pacific/Japan territory with Documentum, Cadence, and General DataComm, living in the region for over 12 years. Art holds a Bachelor of Science Degree in Business Administration from the University of Connecticut and also served 5 years of Active Duty in the US Air Force and 22 years in the Air Force Reserves, retiring as a Lieutenant Colonel.",
-        "twitter_handle": "",
-        "sessions": [
-            "57ee3b239aa2d"
-        ]
-    },
-    {
-        "id": 258,
-        "avatar_url": "resources/avatars/Benoit-Gagnon-Ubisoft.jpg",
-        "name": "Benoit Gagnon",
-        "title": "Team Lead",
-        "company": "Ubisoft",
-        "bio": "Benoit has 10 years of experience in the creative software industry. Currently at Ubisoft Montreal, he previously worked at Dreamworks Animation in California, and Autodesk before that. Having surfed the early wave of dynamic templated applications using tech like Flash, PHP, Rails or Django, Benoit returned to shore for a few years to work on desktop apps and low-level programming on multiple platforms using Qt, C++, OpenGL and Python. Since joining Ubisoft 4 years ago, he is rediscovering a thriving web ecosystem, a revitalized JavaScript and the solidity of Ext JS in building hybrid pipelines for video game production. More recently, Benoit has been leading the efforts on Flare, an innovative web-based video collaboration platform that is quickly spreading across the organization.",
-        "twitter_handle": "",
-        "sessions": [
-            "57ee3b239aa2d"
-        ]
-    },
-    {
-        "id": 256,
-        "avatar_url": "resources/avatars/Brandon-Donnelson-Sencha.jpeg",
-        "name": "Brandon Donnelson",
-        "title": "Support Engineer",
-        "company": "Sencha",
-        "bio": "Brandon is a member of the Sencha GXT team and enjoys interacting with the GWT community. His passion is helping developers get their jobs done. He has development experience in Java, Eclipse Plugin, IDEA Plugin, GWT, Cloud, Sencha GXT and more.",
-        "twitter_handle": "",
-        "sessions": [
-            "57c49562bd1ba"
-        ]
-    },
-    {
-        "id": 226,
-        "avatar_url": "resources/avatars/Brent-Balog-InnotasByPlanview.jpg",
-        "name": "Brent Balog",
-        "title": "Senior UI Engineer",
-        "company": "Innotas by Planview",
-        "bio": "Brent is a Senior UI Engineer at Innotas by Planview, a Gartner PPM \"Leader\" in the Magic Quadrant five years running. He has more than 20 years of application development experience, excelling in web and mobile applications made with Sencha frameworks. Recently he has focused on: accessibility, theming, and Ext JS 6.x upgrades. When he is not at his computer, he enjoys woodworking and trying to keep his two young sons out of trouble.",
-        "twitter_handle": "",
-        "sessions": [
-            "57ec58e69417a"
-        ]
-    },
-    {
-        "id": 250,
-        "avatar_url": "resources/avatars/Craig-Comstock-Sencha.jpg",
-        "name": "Craig Comstock",
-        "title": "Development Engineer",
-        "company": "Sencha",
-        "bio": "Craig is a Development Engineer on the Sencha Test team. He has worked on Java enterprise apps with web front-ends for about 20 years. He has a passion for Test First design and development and has helped numerous projects ramp up on the various types of automated testing as well as developing many application-specific testing frameworks. In his spare time, he likes to hang with his wife and four kids, play soccer, and make music as the one-man-band, This Is My Condition.",
-        "twitter_handle": "",
-        "sessions": [
-            "57f3e44e8eebb"
-        ]
-    },
-    {
-        "id": 168,
-        "avatar_url": "resources/avatars/Daniel-Gallo-Sencha.jpg",
-        "name": "Daniel Gallo",
-        "title": "Sales Engineer",
-        "company": "Sencha",
-        "bio": "Dan is a Sales Engineer at Sencha, where he provides pre-sales technical assistance on the Sencha product line. He has more than 9 years of experience developing innovative, web-based applications using a variety of technologies. Dan specializes in ASP.NET C# and JavaScript. Prior to joining Sencha in early 2012, Dan worked at BMT Defence Services as a Senior Systems Analyst.",
-        "twitter_handle": "DanielJGallo",
-        "sessions": [
-            "57bf72af58196"
-        ]
-    },
-    {
-        "id": 118,
-        "avatar_url": "resources/avatars/David-Becker-Sencha.jpg",
-        "name": "David Becker",
-        "title": "Software Engineer",
-        "company": "Sencha",
-        "bio": "David is a Software Engineer at Sencha on the GXT development team. He has 25 years of experience as a developer and has focused most of his career on web development with skills in HTML5, Java, GXT, and GWT. Prior to joining Sencha, David worked for companies in the healthcare and financial services industries building web-based enterprise apps, including several projects using GXT 2 and 3.",
-        "twitter_handle": "",
-        "sessions": [
-            "57db02eb633b0",
-            "57bf72af21619"
-        ]
-    },
-    {
-        "id": 46,
-        "avatar_url": "resources/avatars/Don-Griffin-Sencha.jpg",
-        "name": "Don Griffin",
-        "title": "Director of Engineering",
-        "company": "Sencha",
-        "bio": "Don is the Engineering Director for Ext JS and Sencha Touch. He was an Ext JS user for 2 years before joining Sencha and has more than 20 years of software engineering experience on a broad range of platforms. His experience includes designing web application front-ends and back-ends, native GUI applications, network protocols, and device drivers. Don’s passion is to build world class products that people love to use.",
-        "twitter_handle": "dongryphon",
-        "sessions": [
-            "57b77ab44ab51"
-        ]
-    },
-    {
-        "id": 190,
-        "avatar_url": "resources/avatars/Don-Schenker-Synergistix.jpg",
-        "name": "Don Schenker",
-        "title": "President and CEO",
-        "company": "Synergistix",
-        "bio": "Don is the President and CEO of Synergistix, a technology and services company that builds solutions exclusively for the life sciences industry to measure and improve sales force and marketing effectiveness. Don has more than 20 years of experience in the Information Technology field, including application development, project management, and network support. A strong communicator, motivator, and a popular speaker, Don holds both an M.B.A. and a Master of Science degree from Nova Southeastern University.",
-        "twitter_handle": "",
-        "sessions": [
-            "57d7701932d5f"
-        ]
-    },
-    {
-        "id": 225,
-        "avatar_url": "resources/avatars/Emil-Forslund-Speedment.jpg",
-        "name": "Emil Forslund",
-        "title": "Software Developer",
-        "company": "Speedment",
-        "bio": "Emil is a software developer at Speedment, focusing on code generation and smart software design. He is also a Java developer heavily involved in the Open Source project Speedment. His Java blog “Age of Java” http://www.ageofjava.com/ has attracted thousands of followers. Emil is a recurring speaker at events including JavaOne, JUGs, Meetups, GOTO Events, and JForums.",
-        "twitter_handle": "emifors",
-        "sessions": [
-            "57eb16d901948"
-        ]
-    },
-    {
-        "id": 127,
-        "avatar_url": "resources/avatars/Emil-Pennlov-OrangoDB.jpg",
-        "name": "Emil Pennlov",
-        "title": "Team Leader",
-        "company": "Orango AB",
-        "bio": "During his 13 years as an IT professional, Emil has developed a strong passion for designing and developing user friendly web and mobile applications. Emil is currently managing a team of front-end developers, specialized in Sencha frameworks, at Orango in Malmö Sweden. He is a certified Sencha trainer and has been developing applications, based on Sencha frameworks, for large ERP systems for the last seven years.",
-        "twitter_handle": "EmilPennlov",
-        "sessions": [
-            "57b7809d858cc"
-        ]
-    },
-    {
-        "id": 128,
-        "avatar_url": "resources/avatars/Frank-Wienberg-CoreMediaAG.jpg",
-        "name": "Frank Wienberg",
-        "title": "Software Architect",
-        "company": "CoreMedia",
-        "bio": "Frank Wienberg holds a Ph.D. in Computer Science and is a Software Architect at Digital Experience Platform software vendor CoreMedia (Germany). He has been working on web-based rich UIs since their early days and has predominantly influenced the architecture of CoreMedia's editorial UI, introducing Ext JS 3 back in 2009. Frank is dedicated to open-sourcing CoreMedia’s development tools through the Jangaroo project and has presented them at national conferences and international workshops.",
-        "twitter_handle": "YetAnotherFrank",
-        "sessions": [
-            "57b7809da3955"
-        ]
-    },
-    {
-        "id": 129,
-        "avatar_url": "resources/avatars/Fredric-Berling-EntenceAB.jpg",
-        "name": "Fredric Berling",
-        "title": "System Architect",
-        "company": "Entence AB",
-        "bio": "Fredric is a long-time Sencha developer/trainer and system architect. He has 20 years of IT experience, and the last 10 have been focused on Sencha based web applications. When he is not working out or eating meatballs (being Swedish), he helps teams get up to speed with their Sencha projects. Fredric also organizes a popular Swedish Sencha Meetup group.",
-        "twitter_handle": "",
-        "sessions": [
-            "57b7809dc2edf"
-        ]
-    },
-    {
-        "id": 47,
-        "avatar_url": "resources/avatars/Gautam-Agrawal-Sencha.jpg",
-        "name": "Gautam Agrawal",
-        "title": "Sr. Director, Product Management",
-        "company": "Sencha",
-        "bio": "Gautam leads product management at Sencha. He is responsible for guiding new product strategies and roadmap initiatives across the Sencha product portfolio. Additionally, Gautam works with strategic partners to establish and develop new market opportunities. Prior to joining Sencha, he held various product and engineering positions at organizations developing SaaS and Business Intelligence applications. Gautam holds a PhD and MS from State University of NY (SUNY) at Buffalo.",
-        "twitter_handle": "agrawal3",
-        "sessions": [
-            "57ee3b239aa2d",
-            "57b77cf83cd99"
-        ]
-    },
-    {
-        "id": 227,
-        "avatar_url": "resources/avatars/Hadi-Rangin-UnivOfWashington.jpg",
-        "name": "Hadi Rangin",
-        "title": "IT Accessibility Specialist",
-        "company": "University of Washington",
-        "bio": "Hadi is an Information Technology Accessibility Specialist at the University of Washington in Seattle. In this position, he works on improving access to information technologies for all users, including those with disabilities. To do this, Hadi works with and advises software engineers, designers, administrators, and purchasers on accessible implementation techniques, quality assurance, and best practices. Additionally, Hadi teaches the Universal Design Principles for Online Learning as well as a Certificate of Professional Development course for the University of Illinois. Hadi's educational background is in Computer Science with a focus on Network Management and Human-Computer Interfaces. As someone who is blind, Hadi brings a wealth of personal and professional experiences to the many spheres he works in.",
-        "twitter_handle": "",
-        "sessions": [
-            "57ec58e69417a"
-        ]
-    },
-    {
-        "id": 183,
-        "avatar_url": "resources/avatars/Jakub-Janoska-profiq.png",
-        "name": "Jakub Janoška",
-        "title": "Software Engineer",
-        "company": "profiq",
-        "bio": "Jakub is a software engineer at profiq. For the last three years, he has been working on quality assurance for Sencha technologies. He had the privilege of being at the forefront of the Sencha Test project, using it to automate testing of Ext JS components. Jakub is also passionate about new technologies, especially for the web and mobile world.",
-        "twitter_handle": "",
-        "sessions": [
-            "57b78648cc3d2"
-        ]
-    },
-    {
-        "id": 164,
-        "avatar_url": "resources/avatars/James-Schreuder-SchreuderEngineering.png",
-        "name": "James Schreuder",
-        "title": "Principal Software Engineer",
-        "company": "Schreuder Engineering Pty Ltd",
-        "bio": "James is the Principal Software Engineer at Schreuder Engineering. The company is based in Sydney, Australia and provides software design, development, and consultancy services to a range of clients in the Telecommunications, Agriculture, and Mining industries. James has a passion for developing networking software at all levels of the software stack (Assembler, C/C++, Java, C#, JavaScript, Sencha) in order to deliver end-to-end software solutions for clients.",
-        "twitter_handle": "",
-        "sessions": [
-            "57b7864933d05"
-        ]
-    },
-    {
-        "id": 272,
-        "avatar_url": "resources/avatars/Jason-Cline-Sencha.jpg",
-        "name": "Jason Cline",
-        "title": "Principal Architect",
-        "company": "Sencha",
-        "bio": "Jason provides engineering consulting as part of the Professional Services team. He helps Sencha customers to use best practices in designing, developing and testing their cross-platform apps, and gain competitive and financial advantages with the Sencha platform. He has spent most of his career on the bleeding edge of both mobile and web technologies for both client and server. Prior to Sencha, Jason spent 4 years working on the Dojo Toolkit helping to bring real-time communication to pre-HTML5 browsers using XMPP and Comet. Before taking a leap to work on first generation JavaScript frameworks, Jason spent six years as a lead engineer at Vodafone building a scalable back-end for the early days of the mobile web.",
-        "twitter_handle": "clinejm",
-        "sessions": [
-            "57e967cb7a729"
-        ]
-    },
-    {
-        "id": 140,
-        "avatar_url": "resources/avatars/Jean-Philippe-Ehret-Jnesis.jpg",
-        "name": "Jean-Philippe Ehret",
-        "title": "COO",
-        "company": "Jnesis",
-        "bio": "Jean-Philippe is the Chief Operations Officer at Jnesis, a company dedicated to the development of efficient business solutions integrating both Java and JavaScript. Jnesis' strong commitment to innovation in both technology and management have led to new solutions that dramatically reduce the development costs of B2B applications. This led Jean-Philippe to expand Jnesis' activity to nearby European countries and, naturally, towards a partnership with Sencha.",
-        "twitter_handle": "",
-        "sessions": [
-            "57b7850891753"
-        ]
-    },
-    {
-        "id": 131,
-        "avatar_url": "resources/avatars/Jeff-Stano-Unifocus.jpg",
-        "name": "Jeff Stano",
-        "title": "Chief Software Architect",
-        "company": "Unifocus",
-        "bio": "Jeff has been developing both front-end and back-end systems for more than 30 years. He has built systems using C++, Java, and JavaScript. He was the primary decision maker for choosing the Ext JS framework as the foundation for the conversion of the Unifocus Java Swing application to a pure web-based system. He built custom tooling using Gradle to integrate Sencha Cmd into the Unifocus build process.",
-        "twitter_handle": "",
-        "sessions": [
-            "57b7834b7b59c"
-        ]
-    },
-    {
-        "id": 192,
-        "avatar_url": "resources/avatars/Joel-Watson-Sencha.jpg",
-        "name": "Joel Watson",
-        "title": "Principal Software Engineer",
-        "company": "Sencha",
-        "bio": "Joel is a Principal Software Engineer at Sencha, helping to architect and develop Sencha Test. He has been working in website design and web application development for nearly 10 years, and has worked on large-scale Ext JS applications in the publishing and healthcare domains. When he’s not coding, Joel enjoys spending time with his wife and daughters, playing tennis, and studying philosophy.",
-        "twitter_handle": "existdissolve",
-        "sessions": [
-            "57b77bd849b6b"
-        ]
-    },
-    {
-        "id": 161,
-        "avatar_url": "resources/avatars/Jon-Jarboe-Sencha.jpg",
-        "name": "Jon Jarboe",
-        "title": "Technical Marketing Manager",
-        "company": "Sencha",
-        "bio": "Jon is a Technical Marketing Manager at Sencha. His broad development experience, ranging from embedded systems to modern web and mobile applications, helps him to communicate the benefits and vision of Sencha technologies. Prior to joining Sencha, Jon held various technical roles at organizations that provide software development tools for embedded and enterprise applications.",
-        "twitter_handle": "",
-        "sessions": [
-            "57b78508e6f4b"
-        ]
-    },
-    {
-        "id": 132,
-        "avatar_url": "resources/avatars/Jonas-Schwabe-EyeworkersInteractiveGmbH.jpg",
-        "name": "Jonas Schwabe",
-        "title": "Software Engineer",
-        "company": "eyeworkers Interactive GmbH",
-        "bio": "Jonas is studying for his degree in computer science, while he is also working at eyeworkers interactive GmbH. He wrote his first lines of JavaScript in 2008 and expanded his knowledge since then by working on multiple websites, NodeJS applictions, NodeJS native extensions, and enterprise Ext JS applications. He is very interested in modern ways to automate his workflow, in order to focus on the interesting parts of software development.",
-        "twitter_handle": "",
-        "sessions": [
-            "57b7834ba1bf9"
-        ]
-    },
-    {
-        "id": 169,
-        "avatar_url": "resources/avatars/Jovan-Cvetkovic-EmisiaConsulting.png",
-        "name": "Jovan Cvetkovic",
-        "title": "Sr. UI Developer",
-        "company": "Emisia Consulting",
-        "bio": "Jovan is a Web UI Developer and a Team Leader on a product used by Translations.com, a company that provides some of the best translation tools in the industry. His main task is to deliver the best user experience using the latest web technologies. When he is not coding, Jovan is mentoring junior programmers to ensure that they stay on the road to becoming great developers.",
-        "twitter_handle": "",
-        "sessions": [
-            "57bf73a21855c"
-        ]
-    },
-    {
-        "id": 219,
-        "avatar_url": "resources/avatars/Karim-Besbes-Ubisoft.jpg",
-        "name": "Karim Besbes",
-        "title": "Generalist Programmer",
-        "company": "Ubisoft",
-        "bio": "Karim joined Ubisoft in 2014, and he is currently a generalist programmer. Before joining Ubisoft, Karim worked in the aeronautical industry at CAE Inc. for 2 years as an aircraft system engineer and tools developer. He started developing web apps at the age of 16 when he discovered phpbb, an open source forum software. Since then, he has worked as a freelancer. During his professional career, he dealt with many programming languages including C, C++, C#, WPF, and Python, but JavaScript became his passion. He has 4 years of Ext JS coding experience and is now leading the front-end development of Flare, an innovative web-based video collaboration platform built on top of Ext JS.",
-        "twitter_handle": "",
-        "sessions": [
-            "57e97e844e3ba"
-        ]
-    },
-    {
-        "id": 252,
-        "avatar_url": "resources/avatars/Lee-Boonstra-Sencha.jpeg",
-        "name": "Lee Boonstra",
-        "title": "Sales Engineer",
-        "company": "Sencha",
-        "bio": "Lee is a sales engineer at Sencha in Europe. She’s located in Amsterdam and has experience in both front-end and back-end development. Lee spends her spare time developing web and mobile apps. She also wrote a book for O'Reilly: Hands-on Sencha Touch 2.",
-        "twitter_handle": "ladysign",
-        "sessions": [
-            "57f52245c6c93"
-        ]
-    },
-    {
-        "id": 193,
-        "avatar_url": "resources/avatars/Marc-Gusmano-Sencha.jpg",
-        "name": "Marc Gusmano",
-        "title": "Sales Engineer",
-        "company": "Sencha",
-        "bio": "Marc is a Sales Engineer with Sencha and has more than 30 years of experience in the software services industry. He has been extensively involved with custom HTML5 browser and mobile development projects, using his experience to build HTML5 Single Page Applications. Marc has worked for several large software services companies, including Andersen Consulting and Hitachi Consulting, and he was co-owner of a software services and training company for more than 10 years. Marc has a passion for building outstanding software, especially leading-edge, user-centric applications.",
-        "twitter_handle": "",
-        "sessions": [
-            "57dc303243052",
-            "57d86e7fdd0d2"
-        ]
-    },
-    {
-        "id": 269,
-        "avatar_url": "resources/avatars/Marcelo-Bukowski-de-Farias-Sencha.jpg",
-        "name": "Marcelo Bukowski de Farias",
-        "title": "Software Engineer",
-        "company": "Sencha",
-        "bio": "Marcelo is a Software Engineer at Sencha on the Sencha Test Team. Over the last 15 years, he’s worked on a number of enterprise application projects in a variety of environments including J2EE and .NET. Being passionate about test automation, he also developed test automation frameworks for different front-end technologies including Ext JS, Java Swing, and Microsoft Silverlight.",
-        "twitter_handle": "MarceloBukowski",
-        "sessions": [
-            "580e95c2da3eb"
-        ]
-    },
-    {
-        "id": 48,
-        "avatar_url": "resources/avatars/Mark-Brocato-Sencha.jpg",
-        "name": "Mark Brocato",
-        "title": "Sr. Engineering Manager",
-        "company": "Sencha",
-        "bio": "Mark is the Senior Engineering Manager for Tools at Sencha. He's been developing with Ext JS since version 2. Before coming to Sencha, he was the Director of R&D at BioFortis, a Life Sciences startup, where he led the development of several Ext JS apps. He is also the creator of mockaroo.com, a web service for generating large datasets for software testing and demos.",
-        "twitter_handle": "",
-        "sessions": [
-            "57ee3b239aa2d",
-            "57d97722ec691"
-        ]
-    },
-    {
-        "id": 221,
-        "avatar_url": "resources/avatars/Mark-Lincoln-Sencha.jpg",
-        "name": "Mark Lincoln",
-        "title": "Senior Solutions Engineer",
-        "company": "Sencha",
-        "bio": "Mark is a Senior Solutions Engineer at Sencha, where he develops leading edge solutions. After graduating from the University of Florida, Mark spent several years developing enterprise class applications using database languages including CA-Clipper, CA-Visual Objects, and Delphi. Once he discovered web application development using ASP, ASP.NET, C#, and JavaScript, there was no turning back. He has been an avid user of Ext JS since its inception as an extension to the Yahoo UI framework (YUI-Ext). Mark lives in Arlington, VA where you can often find him out riding his bike, umpiring fast pitch softball, or coaching soccer.",
-        "twitter_handle": "",
-        "sessions": [
-            "57eaf54a04b4d"
-        ]
-    },
-    {
-        "id": 139,
-        "avatar_url": "resources/avatars/Mats-Bryntse-Bryntum.jpg",
-        "name": "Mats Bryntse",
-        "title": "Founder",
-        "company": "Bryntum",
-        "bio": "Mats has been using Sencha products for almost 10 years. Before this, Mats lived a normal life. Now his time is mainly spent creating advanced and reusable UI components for the Sencha ecosystem.",
-        "twitter_handle": "bryntum",
-        "sessions": [
-            "57b7843a58535"
-        ]
-    },
-    {
-        "id": 133,
-        "avatar_url": "resources/avatars/Michael-Giddens-CrestoneDigital.jpg",
-        "name": "Michael Giddens",
-        "title": "CEO",
-        "company": "Crestone Digital",
-        "bio": "Over the course of 17 years as a solutions architect and long-term veteran of Ext JS, Michael has developed and worked with numerous companies creating unique applications impacting industry and the scientific community. He is currently director of Creston Digital, LLC which has a focus on geospatial web applications and big data projects.",
-        "twitter_handle": "silverbiology",
-        "sessions": [
-            "57b78439cba52"
-        ]
-    },
-    {
-        "id": 218,
-        "avatar_url": "resources/avatars/Mitchell-Simoens-Sencha.jpg",
-        "name": "Mitchell Simoens",
-        "title": "Senior Software Engineer",
-        "company": "Sencha",
-        "bio": "Mitchell is a Senior Software Engineer at Sencha. He has been with the company for five years, and a part of the community for 10 years. He is a regular contributor to the community with his work on many projects including Ext JS and Sencha Test. Currently, Mitchell’s main focus is on improving the functionality of Sencha Fiddle and the Sencha Support Portal.",
-        "twitter_handle": "LikelyMitch",
-        "sessions": [
-            "5807f0f50cd0c",
-            "57e9730f28bfa"
-        ]
-    },
-    {
-        "id": 160,
-        "avatar_url": "resources/avatars/Neil-Manvar-SauceLabs.png",
-        "name": "Neil Manvar",
-        "title": "Solution Architect",
-        "company": "Sauce Labs",
-        "bio": "Neil is a solutions architect at Sauce Labs. Prior to joining Sauce Labs, he served as a software engineer at Yahoo!, where he contributed to Yahoo! Mail features and projects. He was one of Yahoo!’s first software engineers to develop Continuous Delivery build infrastructure and pipelines, and he developed an automated functional testing framework to run parallel tests on various browsers.",
-        "twitter_handle": "",
-        "sessions": [
-            "57b786490433b",
-            "57eed956af5af"
-        ]
-    },
-    {
-        "id": 260,
-        "avatar_url": "resources/avatars/Nickolay-Platonov-Bryntum.jpg",
-        "name": "Nickolay Platonov",
-        "title": "Senior Ext JS Programmer",
-        "company": "Bryntum",
-        "bio": "Nickolay is the co-creator of Siesta and a Senior Ext JS Programmer at Bryntum.",
-        "twitter_handle": "SamuraiJack8",
-        "sessions": [
-            "57eb16d83d244"
-        ]
-    },
-    {
-        "id": 49,
-        "avatar_url": "resources/avatars/Nige-White-Sencha.jpg",
-        "name": "Nige White",
-        "title": "Sr. Software Architect",
-        "company": "Sencha",
-        "bio": "Nige has 20 years of experience in the IT industry. He has seen computer systems evolve from batch processing, back room behemoths that dictated user behavior into distributed, user-centered enablers of everyday tasks. Nigel has been working with rich Internet applications, and dynamic browser updating techniques since before the term \"Ajax\" was coined. Nigel currently works as a Senior Software Architect on the Ext JS development team.",
-        "twitter_handle": "",
-        "sessions": [
-            "57b779ba882ce"
-        ]
-    },
-    {
-        "id": 222,
-        "avatar_url": "resources/avatars/Olga-Petrova-Sencha.jpg",
-        "name": "Olga Petrova",
-        "title": "Sales Engineer",
-        "company": "Sencha",
-        "bio": "Olga is a Sales Engineer at Sencha and has been a software developer for more than 11 years. She has experience as a front-end developer and has been working with Ext JS since version 1.1. Prior to joining Sencha, she worked at AutoVision GmbH (a subsidiary of Volkwagen AG), Clueda AG, dotplot GmbH, and other software and services companies. Olga graduated from Tyumen State University.",
-        "twitter_handle": "tyoushe",
-        "sessions": [
-            "57e993a8931fe"
-        ]
-    },
-    {
-        "id": 249,
-        "avatar_url": "resources/avatars/Owen-Pagan-4Morphis.jpg",
-        "name": "Owen Pagan",
-        "title": "Founder",
-        "company": "4Morphis",
-        "bio": "Owen is one of the founders of 4Morphis. Based in Ireland, Owen started work as a programmer and web developer in 1998. After periods of working as a management consultant and in corporate finance, he is now involved at the management and board level in a number of high growth companies in the technology space including CoreHR, one of the UK’s and Ireland's fastest growing HCM and payroll software companies.",
-        "twitter_handle": "op2605",
-        "sessions": [
-            "57f29732a2fed"
-        ]
-    },
-    {
-        "id": 157,
-        "avatar_url": "resources/avatars/Per-Minborg-Speedment.jpg",
-        "name": "Per Minborg",
-        "title": "CTO",
-        "company": "Speedment",
-        "bio": "Per is a Palo Alto based developer and architect. He is a regular speaker at various conferences including JavaOne, jdays, JUGs, and Meetups. Per has 15+ US patent applications and invention disclosures. He runs the blog “Minborg’s Java Pot” which has gained half a million readers. He is Java Zone Leader at DZone. He is founder and CTO at Speedment, focusing on in-memory databases, high-performance solutions, cloud technologies, and concurrent programming.",
-        "twitter_handle": "PMinborg",
-        "sessions": [
-            "57b78508e6f4b",
-            "57eb16d901948"
-        ]
-    },
-    {
-        "id": 217,
-        "avatar_url": "resources/avatars/Phil-Guerrant-Sencha.jpg",
-        "name": "Phil Guerrant",
-        "title": "Senior Software Engineer",
-        "company": "Sencha",
-        "bio": "Phil is a Senior Software Engineer at Sencha. He has spent more than a decade of his life developing rich user interfaces on both mobile and desktop platforms. These days, Phil continues to enjoy his passion for web user interface as a core member of the Ext JS development team.",
-        "twitter_handle": "pguerrant",
-        "sessions": [
-            "57e969e7e6712"
-        ]
-    },
-    {
-        "id": 159,
-        "avatar_url": "resources/avatars/Rastislav-Kanocz-profiq.png",
-        "name": "Rastislav Kanócz",
-        "title": "CTO",
-        "company": "profiq",
-        "bio": "Rastislav is the Founder and CTO of profiq, a software engineering services provider. Prior to establishing profiq, he worked for several years at major international companies including Amdocs and Sun Microsystems, where he mastered software testing. For the last three years, he has been working with Sencha on its core products including Ext JS, Sencha Test, and Sencha tools.",
-        "twitter_handle": "",
-        "sessions": [
-            "57b78648cc3d2"
-        ]
-    },
-    {
-        "id": 261,
-        "avatar_url": "resources/avatars/Richard-Milone-CNX.jpg",
-        "name": "Richard Milone",
-        "title": "CTO",
-        "company": "CNX",
-        "bio": "Richard is co-founder and CTO of Chicago-based CNX, a software development company highly focused on delivering solutions to its clients using Sencha technologies. Richard has managed many successful Ext JS development projects and is dedicated to promoting the use of Ext JS in enterprise applications.",
-        "twitter_handle": "richardmilone",
-        "sessions": [
-            "57f29731e9b87"
-        ]
-    },
-    {
-        "id": 134,
-        "avatar_url": "resources/avatars/Rory-Hardy-Cerner.jpg",
-        "name": "Rory Hardy",
-        "title": "Software Engineer",
-        "company": "Cerner",
-        "bio": "Rory is a software engineer, mentor, and instructor at Cerner. His primary focus has always been web development since his internship with the Oregon State University Foundation and his graduation from OSU in 2012. His favorite programming language is JavaScript. Outside of work, he continues to enjoy helping others to succeed and likes playing various video games (Final Fantasy or Zelda genres). He plays several instruments including the clarinet, saxophone, and ocarina.",
-        "twitter_handle": "gneatgeek",
-        "sessions": [
-            "57b7843a02b51"
-        ]
-    },
-    {
-        "id": 224,
-        "avatar_url": "resources/avatars/Ross-Gerbasi-Sencha.jpg",
-        "name": "Ross Gerbasi",
-        "title": "Senior Engineer",
-        "company": "Sencha",
-        "bio": "Ross is a Senior Engineer at Sencha and is located in Chicago. He has been programming for more than 15 years and has worked with Sencha frameworks for more than 4 years. Ross specializes in new and emerging media including video and graphics production and has contributed to the open source community on emerging interactive solutions. His work on Sencha and Cordova integration allow him to fuse his many skills into a single focus to provide app developers with tools to help simplify building mobile apps.",
-        "twitter_handle": "rawss",
-        "sessions": [
-            "57ec0b3ceecce"
-        ]
-    },
-    {
-        "id": 264,
-        "avatar_url": "resources/avatars/Rouslan-Zenetl-NHL.jpg",
-        "name": "Rouslan Zenetl",
-        "title": "Director of Application Development",
-        "company": "National Hockey League",
-        "bio": "Rouslan is Director of Application Development at the NHL. He focuses on end-to-end heavy duty Ajax development with Java back-ends, and an array of Ajax technologies on the front end, primarily Sencha Ext JS. Rouslan is passionate about user experience-centered application design, development and implementation.",
-        "twitter_handle": "rzenetl",
-        "sessions": [
-            "5804faf328678"
-        ]
-    },
-    {
-        "id": 194,
-        "avatar_url": "resources/avatars/Ryan-Salva-Microsoft.jpg",
-        "name": "Ryan Salva",
-        "title": "Principal Program Manager",
-        "company": "Microsoft",
-        "bio": "Ryan is a Principal Program Manager on the Visual Studio Client Tools team at Microsoft where he looks after HTML, CSS, and JavaScript development. Today, he focuses primarily on mobile app development using web technologies and Apache Cordova. He has a 14-year career in web standards development and advocacy.",
-        "twitter_handle": "ryanjsalva",
-        "sessions": [
-            "57d9ba88de4c9"
-        ]
-    },
-    {
-        "id": 220,
-        "avatar_url": "resources/avatars/Sam-Imberman-Ubisoft.jpg",
-        "name": "Sam Imberman",
-        "title": "Lead UI Developer and Designer",
-        "company": "Ubisoft",
-        "bio": "Sam’s professional passion is making complicated tasks easy to understand. With a diverse background spanning development, user interface design, and marketing, he has spent the last decade at the forefront of the Web. At Ubisoft Montreal, he is the lead UI developer and designer for Portfolio, a new sharing platform that allows game teams to exchange and reuse art assets.",
-        "twitter_handle": "",
-        "sessions": [
-            "57e97e844e3ba"
-        ]
-    },
-    {
-        "id": 119,
-        "avatar_url": "resources/avatars/Sandeep-Adwankar-Sencha.jpg",
-        "name": "Sandeep Adwankar",
-        "title": "Product Manager",
-        "company": "Sencha",
-        "bio": "Sandeep is a Product Manager at Sencha and is passionate about innovations in mobile and web technologies. He has experience working for startups in Silicon Valley as well as large companies including Motorola and Time Warner Cable. He has an MBA from DePaul University in Chicago and a Masters in Technology from IIT Bombay.",
-        "twitter_handle": "adwankar",
-        "sessions": [
-            "57b77f834cd1c",
-            "57d9ba88de4c9"
-        ]
-    },
-    {
-        "id": 135,
-        "avatar_url": "resources/avatars/Shenglin-Xu-CityofSurrey.jpg",
-        "name": "Shenglin Xu",
-        "title": "GIS Analyst/Developer",
-        "company": "City of Surrey",
-        "bio": "Shenglin has 20 years of programming experience with C# and ASP.NET. He developed a Silverlight version of COSMOS (City of Surrey Mapping Online System), and he has four years of Sencha Touch programming experience. He developed COSMOS Mobile and Surrey Request apps using Sencha Touch 2. He has one year of Ext JS 5 coding experience, using it for the new version of COSMOS. The Surrey Request app won an award from the Union of BC Municipalities (UBCM) in the Community Connection category.",
-        "twitter_handle": "shenglinxu",
-        "sessions": [
-            "57b7843a2d59a"
-        ]
-    },
-    {
-        "id": 228,
-        "avatar_url": "resources/avatars/Sherrill-Packebush-InnotasByPlanview.jpg",
-        "name": "Sherrill Packebush",
-        "title": "UX Architect",
-        "company": "Innotas by Planview",
-        "bio": "Sherrill is the UX Architect at Innotas by Planview, a Gartner PPM “Leader” in the Magic Quadrant five years running. In her role, she designs, evaluates, and architects useful, effective, and enjoyable user interfaces for Innotas customer end users. Sherrill brings 20+ years of experience from small privately held companies to Fortune 50 companies. She holds a Ph.D. in Industrial Engineering with a major in Human Factors/Human-Computer Interaction from Texas A&M University. She has designed and evaluated user interfaces spanning old mainframe green screens, telephone Interactive Voice Response, web, Windows, Mac, and mobile/small screen devices. When not designing UIs, Sherrill spends her free time with her husband and 15 year old son, and doing a lot of cooking and traveling.",
-        "twitter_handle": "",
-        "sessions": [
-            "57ec58e69417a"
-        ]
-    },
-    {
-        "id": 223,
-        "avatar_url": "resources/avatars/Shikhir-Singh-Sencha.jpg",
-        "name": "Shikhir Singh",
-        "title": "Sr. Developer Relations Manager",
-        "company": "Sencha",
-        "bio": "Shikhir is a Sr. Developer Relations Manager at Sencha. He specializes in enterprise mobility, cryptography and JavaScript technologies. Prior to joining Sencha, he worked at BlackBerry, Lockheed Martin, Sun Microsystems and a couple of startups.",
-        "twitter_handle": "shikhirsingh",
-        "sessions": [
-            "57e9bd935d08c"
-        ]
-    },
-    {
-        "id": 199,
-        "avatar_url": "resources/avatars/Steven-Whatmore-PureFactsFinancialSolutions.jpg",
-        "name": "Steve Whatmore",
-        "title": "Architect",
-        "company": "PureFacts Financial Solutions Inc.",
-        "bio": "Steve has more than 35 years of experience delivering applications on a variety of platforms in a broad range of industries. Over the last 8 years with PureFacts Financial Solutions, he and his team have designed and implemented an enterprise application framework. Built on Sencha frameworks, this fully customizable and secured application uses built-in, role-based access controls.",
-        "twitter_handle": "",
-        "sessions": [
-            "57dae3f35548f"
-        ]
-    },
-    {
-        "id": 50,
-        "avatar_url": "resources/avatars/Subu-Baskaran-Sencha.jpg",
-        "name": "Subu Baskaran",
-        "title": "Sr. Product Manager",
-        "company": "Sencha",
-        "bio": "Subu is a Senior Product Manager at Sencha. He is responsible for guiding new strategies and roadmap initiatives for Sencha Test. Prior to joining Sencha, he held many positions in software development at various financial services organizations. Subu holds a Bachelor’s degree in Engineering from Sastra, India and an MBA from Cass Business School, London.",
-        "twitter_handle": "",
-        "sessions": [
-            "57b77bd849b6b"
-        ]
-    },
-    {
-        "id": 51,
-        "avatar_url": "resources/avatars/Vitaly-Kravchenko-Sencha.jpg",
-        "name": "Vitaly Kravchenko",
-        "title": "Graphics Engineer",
-        "company": "Sencha",
-        "bio": "Vitaly is a Graphics Engineer at Sencha. Over the past two years, he has transitioned Touch Charts to a single cross-toolkit package, adding numerous features to the API, and improving interactivity and 3D charts support. For 10 years before joining Sencha, Vitaly was an independent developer. He built desktop audio software called Spider Player with a user base of 2 million people, as well as apps for BlackBerry, WebOS, and Android.",
-        "twitter_handle": "",
-        "sessions": [
-            "57b77bd861eba"
-        ]
-    }
+  {
+    "id": 158,
+    "avatar_url": "resources/avatars/01.jpg",
+    "name": "Alice Simmons",
+    "title": "Developer",
+    "company": "Cyber Purchasing",
+    "bio": "Alice has more than 8 years of programming experience, and she has written two JavaScript programming textbooks. She speaks at technology conferences and runs a JavaScript meetup group.",
+    "sessions": ["57b78648a1663"]
+  },
+  {
+    "id": 195,
+    "avatar_url": "resources/avatars/02.jpg",
+    "name": "Stephanie Gomez",
+    "title": "UX Designer",
+    "company": "Saucy",
+    "bio": "Stephanie is a UX Designer at Saucy, where she leads the product design team. She holds a Bachelor of Fine Arts in Design from College of Oregon.",
+    "sessions": ["57b77c1067ce8"]
+  },
+  {
+    "id": 259,
+    "avatar_url": "resources/avatars/03.jpg",
+    "name": "Benjamin Banks",
+    "title": "CEO",
+    "company": "Saucy",
+    "bio": "Benjamin has operational expertise in sales, marketing, and product development. Benjamins has a Bachelor of Science Degree in Business Administration from the Georgia University.",
+    "sessions": ["57ee3b239aa2d"]
+  },
+  {
+    "id": 258,
+    "avatar_url": "resources/avatars/04.jpg",
+    "name": "Laura Russell",
+    "title": "Team Lead",
+    "company": "Lelandsoft",
+    "bio": "Laura has 8 years of experience in the creative software industry. She has experience in building desktop apps and low-level programming on multiple platforms using C++ and Python.",
+    "sessions": ["57ee3b239aa2d"]
+  },
+  {
+    "id": 256,
+    "avatar_url": "resources/avatars/05.jpg",
+    "name": "Donald Rodriguez",
+    "title": "Support Engineer",
+    "company": "Saucy",
+    "bio": "Donald is a member of the engineering team and enjoys interacting with the Saucy community. He has development experience in JavaScript, Java, and C++.",
+    "sessions": ["57c49562bd1ba"]
+  },
+  {
+    "id": 226,
+    "avatar_url": "resources/avatars/06.jpg",
+    "name": "Philip Harper",
+    "title": "Senior UI Engineer",
+    "company": "Innvolas",
+    "bio": "Philip is a Senior UI Engineer and has been there for five years running. He has more than 9 years of application development experience, with a focus on web and mobile applications. He enjoys rock climbing, parachuting, and spelunking.",
+    "sessions": ["57ec58e69417a"]
+  },
+  {
+    "id": 250,
+    "avatar_url": "resources/avatars/07.jpg",
+    "name": "Frances Cox",
+    "title": "Development Engineer",
+    "company": "Saucy",
+    "bio": "Frances is a Development Engineer on the Saucy JavaScript team. She has worked on Java enterprise apps with web front-ends for about 6 years. In her spare time, she likes to play in her rock band and go parasailing.",
+    "sessions": ["57f3e44e8eebb"]
+  },
+  {
+    "id": 168,
+    "avatar_url": "resources/avatars/08.jpg",
+    "name": "Eric White",
+    "title": "Sales Engineer",
+    "company": "Saucy",
+    "bio": "Eric is a Sales Engineer. He provides pre-sales technical assistance for Saucy products. He has more than 9 years of experience developing innovative, web-based applications using a variety of technologies. He specializes in C# and JavaScript.",
+    "sessions": ["57bf72af58196"]
+  },
+  {
+    "id": 118,
+    "avatar_url": "resources/avatars/09.jpg",
+    "name": "Judith Riley",
+    "title": "Software Engineer",
+    "company": "Saucy",
+    "bio": "Judith is a Software Engineer at Saucy on the JavaScript development team. She has 12 years of experience as a developer and has focused most of her career on web development with skills in HTML5, JavaScript, and CSS. Prior to joining Saucy, Judith worked for companies in the healthcare and financial services industries.",
+    "sessions": ["57db02eb633b0"]
+  },
+  {
+    "id": 46,
+    "avatar_url": "resources/avatars/10.jpg",
+    "name": "Betty Hamilton",
+    "title": "Director of Engineering",
+    "company": "Saucy",
+    "bio": "Betty is the Engineering Director at Saucy. She has more than 11 years of software engineering experience on a broad range of platforms. Her experience includes designing web applications, network protocols, and device drivers. She loves to go hiking and biking in her spare time.",
+    "sessions": ["57b77ab44ab51"]
+  },
+  {
+    "id": 190,
+    "avatar_url": "resources/avatars/11.jpg",
+    "name": "Billy Powell",
+    "title": "President and CEO",
+    "company": "Cynterment",
+    "bio": "Billy has more than 17 years of experience in the IT field, including application development and network support. He has a Bachelor of Science degree from New Western University.",
+    "sessions": ["57d7701932d5f"]
+  },
+  {
+    "id": 225,
+    "avatar_url": "resources/avatars/12.jpg",
+    "name": "Melissa Sanders",
+    "title": "Software Developer",
+    "company": "WolfeSprint",
+    "bio": "Melissa is a software developer, focusing on building and designing web applications. Melissa speaks at JavaScript meetups and events. She enjoy motocross racing in her spare time.",
+    "sessions": ["57eb16d901948"]
+  },
+  {
+    "id": 127,
+    "avatar_url": "resources/avatars/13.jpg",
+    "name": "Philip Evans",
+    "title": "Team Leader",
+    "company": "SimpleRobot",
+    "bio": "Philip has more than 22 years of experience as an IT professional. He has developed and designed web and mobile applications. He frequently gives talks at JavaScript meetups. He spends his spare time ocean kayaking.",
+    "sessions": ["57b7809d858cc"]
+  },
+  {
+    "id": 128,
+    "avatar_url": "resources/avatars/14.jpg",
+    "name": "Theresa Reyes",
+    "title": "Software Architect",
+    "company": "OutFocus",
+    "bio": "Theresa has 5 years of experience developing web applications. She regularly speaks at open source conferences and meetups. She enjoys skiing, camping, and kite-surfing.",
+    "sessions": ["57b7809da3955"]
+  },
+  {
+    "id": 129,
+    "avatar_url": "resources/avatars/15.jpg",
+    "name": "Peter Berry",
+    "title": "System Architect",
+    "company": "Firstence",
+    "bio": "Peter has more than 20 years of IT experience, and the last 10 have been focused on web applications. He speaks at web app conferences and meetups. He enjoys french cooking and training for ironman.",
+    "sessions": ["57b7809dc2edf"]
+  },
+  {
+    "id": 47,
+    "avatar_url": "resources/avatars/16.jpg",
+    "name": "Pat Castillo",
+    "title": "Director of Product Management",
+    "company": "Saucy",
+    "bio": "Pat is director of product management at Saucy. She builds new product strategies and develops market opportunities. She has a BS degree from State University of Tallahassee.",
+    "sessions": ["57ee3b239aa2d"]
+  },
+  {
+    "id": 227,
+    "avatar_url": "resources/avatars/17.jpg",
+    "name": "Harry Patterson",
+    "title": "IT Director",
+    "company": "OrangeCamel",
+    "bio": "Harry has more than 18 years of experience in IT. Harry has a a BS degree in Computer Science. He enjoys playing cricket and ice hockey.",
+    "sessions": ["57ec58e69417a"]
+  },
+  {
+    "id": 183,
+    "avatar_url": "resources/avatars/18.jpg",
+    "name": "Diana Woods",
+    "title": "Software Engineer",
+    "company": "Advanced Mix",
+    "bio": "Diana is a software engineer focusing on building web app front-ends. Diana likes to work on new technologies, especially for the web and mobile. She spends her spare time curling and fencing.",
+    "sessions": ["57b78648cc3d2"]
+  },
+  {
+    "id": 164,
+    "avatar_url": "resources/avatars/19.jpg",
+    "name": "Doris Gutierrez",
+    "title": "Principal Software Engineer",
+    "company": "TestDrive Future",
+    "bio": "Doris is a Principal Software Engineer who focuses on software design, development, and consulting. She develops web app back-ends and has experience in JavaScript, Java, C#, and node.js. She enjoys horseback riding and rowing.",
+    "sessions": ["57b7864933d05"]
+  },
+  {
+    "id": 272,
+    "avatar_url": "resources/avatars/20.jpg",
+    "name": "Cheryl Peterson",
+    "title": "Principal Architect",
+    "company": "Saucy",
+    "bio": "Cheryl is a Principal Architect at Saucy where she helps companies design and develop web apps. She has more than 8 years of experience in web app development and testing. She enjoys sailing and playing rugby.",
+    "sessions": ["57e967cb7a729"]
+  },
+  {
+    "id": 140,
+    "avatar_url": "resources/avatars/21.jpg",
+    "name": "Nicholas Fisher",
+    "title": "COO",
+    "company": "Technology Cache",
+    "bio": "Nicholas is COO of Technology Cache and has more than 12 years of experience in running software companies. He enjoys bowling and cycling.",
+    "sessions": ["57b7850891753"]
+  },
+  {
+    "id": 131,
+    "avatar_url": "resources/avatars/22.jpg",
+    "name": "Deborah Jackson",
+    "title": "Chief Software Architect",
+    "company": "Think Lighter",
+    "bio": "Deborah has 14 years of experience in developing front-end and back-end systems. Her programming skills include JavaScript, C#, and Java. She enjoys parasailing and canoeing.",
+    "sessions": ["57b7834b7b59c"]
+  },
+  {
+    "id": 192,
+    "avatar_url": "resources/avatars/23.jpg",
+    "name": "Shawn Greene",
+    "title": "Principal Software Engineer",
+    "company": "Saucy",
+    "bio": "Shawn is a Principal Software Engineer at Saucy. He has been working in website design and web application development for nearly 12 years. He's working in the automotive and entertainment industries. Shawn enjoys playing darts and badminton.",
+    "sessions": ["57b77bd849b6b"]
+  },
+  {
+    "id": 161,
+    "avatar_url": "resources/avatars/24.jpg",
+    "name": "Gary Reid",
+    "title": "Technical Marketing Manager",
+    "company": "Saucy",
+    "bio": "Gary is a Technical Marketing Manager at Saucy. He has development experience in web and mobile applications. In his spare time, he enjoys watercolor painting and traing for triathalons.",
+    "sessions": ["57b78508e6f4b"]
+  },
+  {
+    "id": 132,
+    "avatar_url": "resources/avatars/25.jpg",
+    "name": "Ronald Wallace",
+    "title": "Software Engineer",
+    "company": "Information Loft",
+    "bio": "Ronald has experience working on website development and design as well as NodeJS applictions and enterprise web applications. He enjoys spending time in nature and horseback riding.",
+    "sessions": ["57b7834ba1bf9"]
+  },
+  {
+    "id": 169,
+    "avatar_url": "resources/avatars/26.jpg",
+    "name": "Bonnie Sanders",
+    "title": "Sr. UI Developer",
+    "company": "Interactive Cool",
+    "bio": "Bonnie is a Web UI Developer. She focuses on delivering the best user experience using the latest web tech. She enjoys snowboarding and bungee jumping.",
+    "sessions": ["57bf73a21855c"]
+  },
+  {
+    "id": 219,
+    "avatar_url": "resources/avatars/27.jpg",
+    "name": "Brian Armstrong",
+    "title": "Programmer",
+    "company": "Lelandsoft",
+    "bio": "Brian is a programmer at Lelandsoft. He has experience in several programming languages including C#, Java, and Python, but he enjoys coding in JavaScript the most. He has 6 years of development experience. He also enjoys base jumping and wingsuit flying.",
+    "sessions": ["57e97e844e3ba"]
+  },
+  {
+    "id": 252,
+    "avatar_url": "resources/avatars/28.jpg",
+    "name": "Heather Ford",
+    "title": "Sales Engineer",
+    "company": "Saucy",
+    "bio": "Heather is a sales engineer at Saucy. She has experience in both front-end and back-end development. She has also written two books on web app development. She enjoys rock climbing and sandboarding.",
+    "sessions": ["57f52245c6c93"]
+  },
+  {
+    "id": 193,
+    "avatar_url": "resources/avatars/29.jpg",
+    "name": "Joshua Fuller",
+    "title": "Sales Engineer",
+    "company": "Saucy",
+    "bio": "Joshua is a Sales Engineer with Saucy and has more than 8 years of experience in the software services industry. He has experience in JavaScript, CSS, and NodeJS. He also enjoys downhill mountain biking and parachuting.",
+    "sessions": ["57dc303243052"]
+  },
+  {
+    "id": 269,
+    "avatar_url": "resources/avatars/30.jpg",
+    "name": "Diane Moore",
+    "title": "Software Engineer",
+    "company": "Saucy",
+    "bio": "Diane is a Software Engineer at Saucy. Over the last 12 years, she’s worked on a number of enterprise application projects using her experience in C#, Java, and most recently JavaScript. She also enjoy base jumping and golf.",
+    "sessions": ["580e95c2da3eb"]
+  },
+  {
+    "id": 48,
+    "avatar_url": "resources/avatars/31.jpg",
+    "name": "Norma Flores",
+    "title": "Sr. Engineering Manager",
+    "company": "Saucy",
+    "bio": "Norma is the Senior Engineering Manager at Saucy. She has more than 12 years of experience in building enterprise applications. She enjoys judo and tennis in her spare time.",
+    "sessions": ["57ee3b239aa2d"]
+  },
+  {
+    "id": 221,
+    "avatar_url": "resources/avatars/32.jpg",
+    "name": "Kathy Bryant",
+    "title": "Senior Solutions Engineer",
+    "company": "Saucy",
+    "bio": "Kathy is a Senior Solutions Engineer at Saucy, where she develops large enterprise applications. She has experience building apps in ASP, ASP.NET, C#, and JavaScript. Kathy enjoys cycling, softball, and training for marathons.",
+    "sessions": ["57eaf54a04b4d"]
+  },
+  {
+    "id": 139,
+    "avatar_url": "resources/avatars/33.jpg",
+    "name": "Harry Tucker",
+    "title": "Founder",
+    "company": "SoftwareFLower",
+    "bio": "Harry has almost 10 years of web app development experience. He speaks at JavaScript conferences and meetups. He also enjoys zorbing and kitesurfing.",
+    "sessions": ["57b7843a58535"]
+  },
+  {
+    "id": 133,
+    "avatar_url": "resources/avatars/34.jpg",
+    "name": "Peter Gray",
+    "title": "CEO",
+    "company": "Insight Country",
+    "bio": "Peter is CEO of Insight Country. He has more than 12 years of experience in sales, services, and support. He enjoys motocross racing and mountainboarding.",
+    "sessions": ["57b78439cba52"]
+  },
+  {
+    "id": 218,
+    "avatar_url": "resources/avatars/35.jpg",
+    "name": "Howard Hawkins",
+    "title": "Senior Software Engineer",
+    "company": "Saucy",
+    "bio": "Howard is a Senior Software Engineer at Saucy. He has experience in JavaScript, NodeJS, and C#. He also enjoys rock climbing and cave diving.",
+    "sessions": ["5807f0f50cd0c"]
+  },
+  {
+    "id": 160,
+    "avatar_url": "resources/avatars/36.jpg",
+    "name": "Rose Cooper",
+    "title": "Solution Architect",
+    "company": "Amaze Exchange",
+    "bio": "Rose is a solutions architect at Amaze Exchange. She has more than 12 years of development experience in building enterprise applications. She enjoys playing pool and weightlifting.",
+    "sessions": ["57b786490433b"]
+  },
+  {
+    "id": 260,
+    "avatar_url": "resources/avatars/37.jpg",
+    "name": "Sara Walker",
+    "title": "Senior Programmer",
+    "company": "Addendum Apps",
+    "bio": "Sara is the co-creator of Addendum Apps and a Senior Programmer. She has experience designing and developing web apps for large companies. She enjoys kayaking and caving in her spare time.",
+    "sessions": ["57eb16d83d244"]
+  },
+  {
+    "id": 49,
+    "avatar_url": "resources/avatars/38.jpg",
+    "name": "James Roberts",
+    "title": "Sr. Software Architect",
+    "company": "Saucy",
+    "bio": "James has 15 years of experience in the IT industry. He has built large enterprise apps to run remote services teams. He spend his spare time doing nature photography and training for ironman.",
+    "sessions": ["57b779ba882ce"]
+  },
+  {
+    "id": 222,
+    "avatar_url": "resources/avatars/39.jpg",
+    "name": "Beverly Spencer",
+    "title": "Sales Engineer",
+    "company": "Saucy",
+    "bio": "Beverly is a Sales Engineer at Saucy and has been a software developer for more than 9 years. She has experience as a front-end developer. Beverly graduated from Thulmen University.",
+    "sessions": ["57e993a8931fe"]
+  },
+  {
+    "id": 249,
+    "avatar_url": "resources/avatars/40.jpg",
+    "name": "Raymond Kelley",
+    "title": "Founder",
+    "company": "Redefine Television",
+    "bio": "Raymond is one of the founders of Redefine Television, working on web and mobile apps for the entertainment industry. He also enjoys badminton and chess.",
+    "sessions": ["57f29732a2fed"]
+  },
+  {
+    "id": 157,
+    "avatar_url": "resources/avatars/41.jpg",
+    "name": "Amy Davis",
+    "title": "CTO",
+    "company": "WolfeSprint",
+    "bio": "Amy is a developer and architect, and she's the CTO at WolfeSrpint. She speaks at developer conferences and meetups. She enjoys snowboarding and base jumping in her spare time.",
+    "sessions": ["57b78508e6f4b"]
+  },
+  {
+    "id": 217,
+    "avatar_url": "resources/avatars/42.jpg",
+    "name": "Norma Olson",
+    "title": "Senior Software Engineer",
+    "company": "Saucy",
+    "bio": "Norma is a Senior Software Engineer at Saucy. She has more than 20 years of coding experience including developing rich user interfaces on both mobile and desktop platforms. She also enjoys playing handball and driving in formula 1 racing.",
+    "sessions": ["57e969e7e6712"]
+  },
+  {
+    "id": 159,
+    "avatar_url": "resources/avatars/43.jpg",
+    "name": "Stephen Morris",
+    "title": "CTO",
+    "company": "Think Vendors",
+    "bio": "Stephen is the Founder and CTO of Think Vendors, a software engineering services provider. He has experience in software development and testing. He also enjoys doing parkour and ice climbing.",
+    "sessions": ["57b78648cc3d2"]
+  },
+  {
+    "id": 261,
+    "avatar_url": "resources/avatars/44.jpg",
+    "name": "Daniel Fisher",
+    "title": "CTO",
+    "company": "QRU",
+    "bio": "Daniel is the founder and CTO of QRU, a software services company. He has worked on many enterprise app development projects and has experience in JavaScript, Java, and C#. He enjoys playing netball and doing gymnastics.",
+    "sessions": ["57f29731e9b87"]
+  },
+  {
+    "id": 134,
+    "avatar_url": "resources/avatars/45.jpg",
+    "name": "Ronald Richardson",
+    "title": "Software Engineer",
+    "company": "Sevler",
+    "bio": "Ronald is a software engineer Sevler. His expertise is in web development, and he prefers to code in JavaScript. He enjoys playing ultimate frisbee and the tuba.",
+    "sessions": ["57b7843a02b51"]
+  },
+  {
+    "id": 224,
+    "avatar_url": "resources/avatars/46.jpg",
+    "name": "Maria Bailey",
+    "title": "Senior Engineer",
+    "company": "Saucy",
+    "bio": "Maria is a Senior Engineer at Saucy. She has been programming for more than 20 years and has worked on web apps for more than 6 years. She also enjoys cycling and archery.",
+    "sessions": ["57ec0b3ceecce"]
+  },
+  {
+    "id": 264,
+    "avatar_url": "resources/avatars/47.jpg",
+    "name": "Jonathan Morgan",
+    "title": "Director of Application Development",
+    "company": "Approach Music",
+    "bio": "Jonathan is Director of Application Development at Approach Music. He focuses on building end-to-end enterprise web apps. He loves to work on application design and development. He spends his free time fencing and rowing.",
+    "sessions": ["5804faf328678"]
+  },
+  {
+    "id": 194,
+    "avatar_url": "resources/avatars/48.jpg",
+    "name": "Scott Long",
+    "title": "Sr. Developer",
+    "company": "Up And To The Right Tech",
+    "bio": "Scott is a Sr. Programmer at Up And To The Right Tech, where he develops apps using HTML, CSS, and JavaScript. He focuses primarily on mobile app development using web tech. He also enjoys wingsuit flying and kitesurfing.",
+    "sessions": ["57d9ba88de4c9"]
+  },
+  {
+    "id": 220,
+    "avatar_url": "resources/avatars/49.jpg",
+    "name": "Betty Murphy",
+    "title": "Lead UI Developer and Designer",
+    "company": "Lelandsoft",
+    "bio": "Betty has experience in development, UI design, and marketing. She has 9 years of experience in JavaScript and HTML programming. She also enjoys slacklining and heli-skiing.",
+    "sessions": ["57e97e844e3ba"]
+  },
+  {
+    "id": 119,
+    "avatar_url": "resources/avatars/50.jpg",
+    "name": "Howard Stevens",
+    "title": "Product Manager",
+    "company": "Saucy",
+    "bio": "Howard is a Product Manager at Saucy and is passionate about innovations in mobile and web technologies. He has an MBA from DeJohn University and an MS in Computer Science. He enjoys swimming and badminton.",
+    "sessions": ["57b77f834cd1c"]
+  },
+  {
+    "id": 135,
+    "avatar_url": "resources/avatars/51.jpg",
+    "name": "Jose Washington",
+    "title": "GIS Analyst/Developer",
+    "company": "CityNetSoft",
+    "bio": "Jose has 11 years of programming experience in C# and ASP.NET. He also has four years of JavaScript experience. He loves to focus on building mobile apps that make people's lives easier to manage. He enjoys canyoning and mountainboarding.",
+    "sessions": ["57b7843a2d59a"]
+  }
 ]
