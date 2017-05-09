@@ -13,6 +13,7 @@ export default class EditableTreeExample extends Component {
     render(){
         return (
             <Tree
+                shadow
                 title="Editable Tree"
                 store={store}
                 platformConfig={{

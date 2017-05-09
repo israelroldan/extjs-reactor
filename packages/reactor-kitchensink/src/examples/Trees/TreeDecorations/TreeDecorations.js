@@ -7,6 +7,7 @@ export default class TreeDecorationsExample extends Component {
 
     defaults = {
         rootVisible:false,
+        shadow: true,
         store:store
     }
 

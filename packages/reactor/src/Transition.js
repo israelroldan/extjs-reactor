@@ -137,11 +137,11 @@ Ext.define('Ext.reactor.Transition', {
 
     addAnimationConfigs(child) {
         child.setConfig({
-            width: '100%',
-            height: '100%',
             zIndex: 1,
             top: 0,
             left: 0,
+            bottom: 0,
+            right: 0,
             style: {
                 // prevent new view from "flashing" in before animating in safari
                 // we use visibi

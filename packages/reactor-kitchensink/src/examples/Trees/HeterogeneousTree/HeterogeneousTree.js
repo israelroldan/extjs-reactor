@@ -134,6 +134,7 @@ export default class HeterogeneousTreeExample extends Component {
         return(
             <Tree
                 ref={tree => this.tree = tree}
+                shadow
                 title="Heterogeneous Geographical Tree"
                 rootVisible={false}
                 store={this.store}

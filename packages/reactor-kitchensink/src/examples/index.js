@@ -241,7 +241,7 @@ const root = {
             { text: 'Form Fields', children: [
                 { text: 'CheckBoxField', component: CheckBoxField, layout: 'center' },
                 { text: 'ComboBoxField', component: ComboBoxField, layout: 'center' },
-                { text: 'ContainerField', component: ContainerField, layout: 'center' },
+                { text: 'ContainerField', component: ContainerField, layout: Ext.os.is.Phone ? 'auto' : 'center' },
                 { text: 'DatePickerField', component: DatePickerField, layout: 'center' },
                 { text: 'EmailField', component: EmailField , layout: 'center'},
                 { text: 'FieldSet', component: FieldSet, layout: 'center' },

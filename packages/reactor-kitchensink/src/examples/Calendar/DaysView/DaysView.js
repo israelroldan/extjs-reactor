@@ -17,10 +17,11 @@ export default class CalendarDayViewExample extends Component {
             <Panel
                 shadow
                 title={Ext.Date.format(new Date(), 'F Y')}
-                layout="fit"
+                layout="hbox"
                 header={{ titleAlign: 'center' }}
+                autoSize={false}
             >
-                {/*<Panel
+                <Panel
                     title="Calendars"
                     ui="light"
                     width={150}
@@ -28,7 +29,7 @@ export default class CalendarDayViewExample extends Component {
                     hidden={Ext.os.is.Phone}
                 >
                     <Calendar_List store={this.store}/>
-                </Panel>*/}
+                </Panel>
                 <Calendar_Day
                     store={this.store}
                     flex={1}

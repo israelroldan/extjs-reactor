@@ -12,7 +12,7 @@ export default class TreeGridExample extends Component {
 
     render() {
         return (
-            <Tree title="Tree Grid" store={this.store}>
+            <Tree title="Tree Grid" store={this.store} shadow>
                 <TreeColumn text="Name" dataIndex="text" width="200"/>
                 <NumberColumn  text="# Items" dataIndex="numItems" width="100" align="center" format="0,0"/>
             </Tree>

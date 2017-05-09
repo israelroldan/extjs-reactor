@@ -19,13 +19,9 @@ export default class CalendarWeekViewExample extends Component {
     render() {
         return (
             <Panel
-                autoSize={false}
                 shadow
                 title={Ext.Date.format(new Date(), 'F Y')}
-                layout={{
-                    type: 'hbox',
-                    align: 'stretch'
-                }}
+                layout="hbox"
                 header={{
                     layout: 'hbox',
                     items: [{
