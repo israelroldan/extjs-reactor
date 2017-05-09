@@ -78,13 +78,13 @@ class Layout extends Component {
                     onLeafItemTap={(self, list, index, target, node) => this.onNavChange(node)}
                     flex={1}
                 >
-                    { component && (
-                        <Container rel="detailCard" layout="fit">
+                    <Container rel="detailCard" layout="fit">
+                        { component && (
                             <Container key={selectedNavNode.get('text')} layout={layout} scrollable={layout==='auto'} autoSize={layout !== 'fit'}>
                                 { layout === 'fit' ? example : <Container scrollable={layout==='center'}>{ example }</Container> }
                             </Container>
-                        </Container>
-                    ) }
+                        ) }
+                    </Container>
                 </NestedList>
             )
         } else {

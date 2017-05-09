@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import { Panel, Tree } from '@extjs/ext-react';
 import { D3_Sunburst } from '@extjs/ext-react-d3';
 
-Ext.require(['Ext.util.Format']);
+Ext.require([
+    'Ext.util.Format',
+    'Ext.plugin.Responsive'
+]);
 
 export default class Sunburst extends Component {
 
@@ -58,13 +61,35 @@ export default class Sunburst extends Component {
         const { selection } = this.state;
 
         return (
-            <Panel shadow layout={{ type: 'hbox', align: 'stretch' }}>
+            <Panel 
+                shadow 
+                plugins="responsive" 
+                layout={Ext.platformTags.phone ? 'vbox' : 'hbox'}
+                responsiveConfig={{
+                    'landscape': {
+                        layout: 'hbox'
+                    },
+                    'portrait': {
+                        layout: 'vbox'
+                    }
+                }}
+            >
                 <Tree
-                    width={230}
-                    title="Folders"
                     store={this.store}
                     selection={selection}
                     onSelect={this.onSelectionChange}
+                    plugins="responsive"
+                    title={!Ext.platformTags.phone && "Folders"}
+                    responsiveConfig={{
+                        'landscape': {
+                            width: 230,
+                            height: undefined,
+                        },
+                        'portrait': {
+                            height: 200,
+                            width: undefined
+                        }
+                    }}
                 />
                 <D3_Sunburst
                     flex={1}

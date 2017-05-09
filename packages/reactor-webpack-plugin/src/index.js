@@ -13,7 +13,7 @@ import { sync as resolve } from 'resolve';
 let watching = false;
 
 /**
- * Produces a minimal build of the Ext JS framework by crawling your React source code and extracting the xtypes used
+ * Produces a minimal build of ExtReact by crawling your React source code and extracting the xtypes used
  * in JSX tags
  */
 module.exports = class ReactExtJSWebpackPlugin {
@@ -21,17 +21,17 @@ module.exports = class ReactExtJSWebpackPlugin {
     /**
      * @param {Object[]} builds
      * @param {Boolean} [debug=false] Set to true to prevent cleanup of build temporary build artifacts that might be helpful in troubleshooting issues.
-     * @param {String} sdk The full path to the Ext JS SDK
+     * @param {String} sdk The full path to the ExtReact SDK
      * @param {String} [toolkit='modern'] "modern" or "classic"
-     * @param {String} theme The name of the Ext JS theme package to use, for example "theme-material"
-     * @param {String[]} packages An array of Ext JS packages to include
+     * @param {String} theme The name of the ExtReact theme package to use, for example "theme-material"
+     * @param {String[]} packages An array of ExtReact packages to include
      * @param {String[]} overrides An array with the paths of directories or files to search. Any classes
      * declared in these locations will be automatically required and included in the build.
-     * If any file defines an Ext JS override (using Ext.define with an "override" property),
+     * If any file defines an ExtReact override (using Ext.define with an "override" property),
      * that override will in fact only be included in the build if the target class specified
      * in the "override" property is also included.
-     * @param {String} output The path to directory where the Ext JS bundle should be written
-     * @param {Boolean} asynchronous Set to true to run Sencha Cmd builds asynchronously. This makes the webpack build finish much faster, but the app may not load correctly in your browser until Sencha Cmd is finished building the Ext JS bundle
+     * @param {String} output The path to directory where the ExtReact bundle should be written
+     * @param {Boolean} asynchronous Set to true to run Sencha Cmd builds asynchronously. This makes the webpack build finish much faster, but the app may not load correctly in your browser until Sencha Cmd is finished building the ExtReact bundle
      * @param {Boolean} production Set to true for production builds.  This tell Sencha Cmd to compress the generated JS bundle.
      */
     constructor(options) {
@@ -67,7 +67,7 @@ module.exports = class ReactExtJSWebpackPlugin {
             test: /\.jsx?$/,
 
             /* begin single build only */
-            output: 'extjs',
+            output: 'ext-react',
             toolkit: 'modern',
             theme: 'theme-triton',
             packages: null,
@@ -130,12 +130,12 @@ module.exports = class ReactExtJSWebpackPlugin {
                 // copy Ext.require calls to the manifest.  This allows the users to explicitly require a class if the plugin fails to detect it.
                 parser.plugin('call Ext.require', addToManifest);
 
-                // copy Ext.define calls to the manifest.  This allows users to write standard Ext JS classes.
+                // copy Ext.define calls to the manifest.  This allows users to write standard ExtReact classes.
                 parser.plugin('call Ext.define', addToManifest);
             })
         });
 
-        // once all modules are processed, create the optimized Ext JS build.
+        // once all modules are processed, create the optimized ExtReact build.
         compiler.plugin('emit', (compilation, callback) => {
             const modules = compilation.chunks.reduce((a, b) => a.concat(b.modules), []);
             const build = this.builds[Object.keys(this.builds)[0]];
@@ -147,7 +147,7 @@ module.exports = class ReactExtJSWebpackPlugin {
                 outputPath = path.join(compiler.options.devServer.contentBase, outputPath);
             }
 
-            // the following is needed for html-webpack-plugin to include <script> and <link> tags for Ext JS
+            // the following is needed for html-webpack-plugin to include <script> and <link> tags for ExtReact
             const jsChunk = compilation.addChunk(`${this.output}-js`);
 
             jsChunk.hasRuntime = jsChunk.isInitial = () => true;
@@ -198,7 +198,7 @@ module.exports = class ReactExtJSWebpackPlugin {
     }
 
     /**
-     * Return the names of all Ext JS packages in the same parent directory as ext-react (typically node_modules/@extjs)
+     * Return the names of all ExtReact packages in the same parent directory as ext-react (typically node_modules/@extjs)
      * @private
      * @param {String} sdk Path to ext-react
      * @return {String[]}
@@ -240,17 +240,17 @@ module.exports = class ReactExtJSWebpackPlugin {
 
     /**
      /**
-     * Builds a minimal version of the Ext JS framework based on the classes used
+     * Builds a minimal version of the ExtReact framework based on the classes used
      * @param {String} name The name of the build
      * @param {Module[]} modules webpack modules
      * @param {String} output The path to where the framework build should be written
      * @param {String} [toolkit='modern'] "modern" or "classic"
      * @param {String} output The path to the directory to create which will contain the js and css bundles
-     * @param {String} theme The name of the Ext JS theme package to use, for example "theme-material"
-     * @param {String[]} packages An array of Ext JS packages to include
+     * @param {String} theme The name of the ExtReact theme package to use, for example "theme-material"
+     * @param {String[]} packages An array of ExtReact packages to include
      * @param {String[]} packageDirs Directories containing packages
      * @param {String[]} overrides An array of locations for overrides
-     * @param {String} sdk The full path to the Ext JS SDK
+     * @param {String} sdk The full path to the ExtReact SDK
      * @private
      */
     _buildExtBundle(name, modules, output, { toolkit='modern', theme, packages=[], packageDirs=[], sdk, overrides }) {
@@ -294,7 +294,7 @@ module.exports = class ReactExtJSWebpackPlugin {
                 this.manifest = js;
                 fs.writeFileSync(manifest, js, 'utf8');
                 cmdRebuildNeeded = true;
-                console.log(`\nbuilding Ext JS bundle: ${name} => ${output}`);
+                console.log(`\nbuilding ExtReact bundle: ${name} => ${output}`);
             }
 
             if (this.watch) {

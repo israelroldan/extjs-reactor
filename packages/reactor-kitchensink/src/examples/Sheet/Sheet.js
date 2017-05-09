@@ -35,6 +35,7 @@ export default class MenuExample extends Component {
                     reveal={reveal} 
                     displayed={displayed} onHide={() => this.setState({ displayed: false })}
                     layout="vbox"
+                    padding="15 0"
                 >
                     <Button text="Settings" iconCls="x-fa fa-gear" handler={this.toggleMenu} {...menuItemDefaults}/>
                     <Button text="New Item" iconCls="x-fa fa-pencil" handler={this.toggleMenu} {...menuItemDefaults}/>

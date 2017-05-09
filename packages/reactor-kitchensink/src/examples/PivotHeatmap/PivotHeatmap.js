@@ -61,7 +61,7 @@ export default class PivotHeatMapExample extends Component {
                         store: this.store,
                         leftAxis: {
                             dataIndex: 'employee',
-                            header: 'Employee',
+                            header: !Ext.platformTags.phone && 'Employee',
                             sortable: false
                         },
                         topAxis: {
@@ -74,7 +74,7 @@ export default class PivotHeatMapExample extends Component {
                             aggregator: 'sum'
                         }
                     }}
-                    padding="20 30 70 120"
+                    padding={Ext.platformTags.phone ? '20 20 60 60' : '20 30 70 120'}
                     xAxis={{
                         title: {
                             attr: {
@@ -95,7 +95,7 @@ export default class PivotHeatMapExample extends Component {
                             range: ['#ffffd9', '#49b6c4', '#225ea8']
                         }
                     }}
-                    legend={{
+                    legend={!Ext.platformTags.phone && {
                         docked: 'right',
                         padding: 50,
                         items: {

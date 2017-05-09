@@ -15,7 +15,7 @@ export default class ComboBoxFieldExample extends Component {
                     valueField="code"
                     queryMode="local"
                     labelAlign="placeholder"
-                    typeAhead
+                    clearable
                 />
             </FormPanel>
         )
