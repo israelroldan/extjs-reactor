@@ -237,8 +237,7 @@ const root = {
                 { text: 'Files', component: Files }
             ]},
             { text: 'Draw', component: Draw, navIcon: 'icon-drawing' },
-            { text: 'Sheet', component: Sheet, layout: 'center' },
-            { text: 'Form Fields', children: [
+            { text: 'Forms', navIcon: 'icon-forms', children: [
                 { text: 'CheckBoxField', component: CheckBoxField, layout: 'center' },
                 { text: 'ComboBoxField', component: ComboBoxField, layout: 'center' },
                 { text: 'ContainerField', component: ContainerField, layout: Ext.os.is.Phone ? 'auto' : 'center' },
@@ -246,11 +245,12 @@ const root = {
                 { text: 'EmailField', component: EmailField , layout: 'center'},
                 { text: 'FieldSet', component: FieldSet, layout: 'center' },
                 { text: 'FileField', component: FileField, layout: 'center' },
-                { text: 'FormPanel', component: FormPanel },
+                { text: 'FormPanel', component: FormPanel, navIcon: 'icon-form-panel' },
                 { text: 'Gauge', component: Gauge, layout: 'center' },
                 { text: 'NumberField', component: NumberField, layout: 'center' },
                 { text: 'PasswordField', component: PasswordField, layout: 'center' },
                 { text: 'RadioField', component: RadioField, layout: 'center' },
+                // { text: 'Picker', component: Picker, layout: 'center', navIcon: 'icon-picker' },
                 { text: 'SearchField', component: SearchField, layout: 'center' },
                 { text: 'SelectField', component: SelectField, layout: 'center' },
                 { text: 'SliderField', component: SliderField, layout: 'center' },
@@ -260,56 +260,54 @@ const root = {
                 { text: 'ToggleField', component: ToggleField, layout: 'center' },
                 { text: 'URLField', component: URLField, layout: 'center' }
             ] },
-            { text: 'Layouts', children: [
-                { text: 'card', component: CardLayout },
-                { text: 'center', component: CenterLayout },
-                { text: 'fit', component: FitLayout },
-                { text: 'form', component: FormLayout },
-                { text: 'hbox', component: HboxLayout, layout: 'auto' },
-                { text: 'resizable', component: Resizable },
-                { text: 'vbox', component: VboxLayout, layout: 'auto' }
+            { text: 'Layouts', navIcon: 'icon-layouts', children: [
+                { text: 'card', component: CardLayout, navIcon: 'icon-layout-card' },
+                { text: 'center', component: CenterLayout, navIcon: 'icon-layout-center' },
+                { text: 'fit', component: FitLayout, navIcon: 'icon-layout-fit' },
+                { text: 'form', component: FormLayout, navIcon: 'icon-layout-form' },
+                { text: 'hbox', component: HboxLayout, navIcon: 'icon-layout-horizontal-box', layout: 'auto' },
+                { text: 'resizable', component: Resizable, navIcon: 'icon-layout-box' },
+                { text: 'vbox', component: VboxLayout, layout: 'auto', navIcon: 'icon-layout-vertical-box' }
             ]},
-            { text: 'Lists', children: [
-                { text: 'Basic List', component: BasicList, layout: Ext.os.is.Phone ? 'fit': 'center' },
-                { text: 'Disclosure', component: DisclosureList, layout: Ext.os.is.Phone ? 'fit': 'center' },
-                { text: 'Grouped', component: GroupedList, layout: Ext.os.is.Phone ? 'fit': 'center' },
-                { text: 'NestedList', component: NestedList, layout: Ext.os.is.Phone ? 'fit': 'center' },
-                { text: 'Pull Refresh', component: PullRefreshList, layout: Ext.os.is.Phone ? 'fit': 'center' },
-                { text: 'Paging', component: PagingList, layout: Ext.os.is.Phone ? 'fit': 'center' },
-                { text: 'Swiper', children: [
-                    { text: 'Basic Accordion Swiper', component: BasicAccordionSwiper, layout: Ext.os.is.Phone ? 'fit': 'center'},
-                    { text: 'Basic Step Swiper', component: BasicStepSwiper, layout: Ext.os.is.Phone ? 'fit': 'center'},
-                    { text: 'Undoable Accordion Swiper', component: UndoableAccordionSwiper, layout: Ext.os.is.Phone ? 'fit': 'center'},
-                    { text: 'Undoable Step Swiper', component: UndoableStepSwiper, layout: Ext.os.is.Phone ? 'fit': 'center'}
-                ]}
+            { text: 'Lists', navIcon: 'icon-lists', children: [
+                { text: 'Basic List', component: BasicList, layout: Ext.os.is.Phone ? 'fit': 'center', navIcon: 'icon-basic-list' },
+                { text: 'Disclosure', component: DisclosureList, layout: Ext.os.is.Phone ? 'fit': 'center', navIcon: 'icon-disclosure-list' },
+                { text: 'Grouped', component: GroupedList, layout: Ext.os.is.Phone ? 'fit': 'center', navIcon: 'icon-grouped-list' },
+                { text: 'NestedList', component: NestedList, layout: Ext.os.is.Phone ? 'fit': 'center', navIcon: 'icon-nested-list' },
+                { text: 'Pull Refresh', component: PullRefreshList, layout: Ext.os.is.Phone ? 'fit': 'center', navIcon: 'icon-pullrefresh-list' },
+                { text: 'Paging', component: PagingList, layout: Ext.os.is.Phone ? 'fit': 'center', navIcon: 'icon-listpaging-list' },
+                { text: 'Basic Accordion Swiper', component: BasicAccordionSwiper, layout: Ext.os.is.Phone ? 'fit': 'center', navIcon: 'icon-basic-accordion-swiper'},
+                { text: 'Basic Step Swiper', component: BasicStepSwiper, layout: Ext.os.is.Phone ? 'fit': 'center', navIcon: 'icon-basic-step-swiper'},
+                { text: 'Undoable Accordion Swiper', component: UndoableAccordionSwiper, layout: Ext.os.is.Phone ? 'fit': 'center', navIcon: 'icon-undoable-accordion-swiper'},
+                { text: 'Undoable Step Swiper', component: UndoableStepSwiper, layout: Ext.os.is.Phone ? 'fit': 'center', navIcon: 'icon-undoable-step-swiper'}
             ]},
-            { text: 'Media', children: [
-                { text: 'Video', component: Video },
-                { text: 'Audio', component: Audio }
+            { text: 'Media', navIcon: 'x-fa fa-video-camera', children: [
+                { text: 'Video', navIcon: 'icon-video', component: Video },
+                { text: 'Audio', navIcon: 'icon-audio', component: Audio }
             ] },
-            { text: 'Panel', component: Panel, layout: 'center' },
-            { text: 'Picker', component: Picker, layout: 'center' },
-            { text: 'Popups', children: [
-                { text: 'Dialog', component: Dialog, layout: 'center' },
-                { text: 'Msg', component: Msg, layout: 'center' },
-                { text: 'Toast', component: Toast, layout: 'center' }
+            { text: 'Panel', component: Panel, layout: 'center', navIcon: 'icon-panel' },
+            { text: 'Popups', navIcon: 'icon-windows', children: [
+                { text: 'Dialog', component: Dialog, layout: 'center', navIcon: 'icon-basic-dialog' },
+                { text: 'Msg', component: Msg, layout: 'center', navIcon: 'icon-overlays' },
+                { text: 'Toast', component: Toast, layout: 'center', navIcon: 'icon-toast-view' }
             ]},
-            { text: 'ProgressBar', component: ProgressBar, layout: 'center' },
-            { text: 'Ripple', component: Ripple, layout: 'center' },
-            { text: 'Tabs', children: [
-                { text: 'Basic Tabs', component: BasicTabs },
-                { text: 'Bottom Tabs', component: BottomTabs },
-                { text: 'Icon Tabs', component: IconTabs },
-                { text: 'Desktop Tabs', component: DesktopTabs },
-                { text: 'Closable', component: Closable },
-                { text: 'ScrollingTabs', component: ScrollingTabs, layout: Ext.os.is.Phone ? 'fit': 'center' },
-                { text: 'TabBar', component: TabBar, layout: Ext.os.is.Phone ? 'fit': 'center' }        
+            { text: 'ProgressBar', component: ProgressBar, layout: 'center', navIcon: 'icon-progress-decorated' },
+            { text: 'Ripple', component: Ripple, layout: 'center', navIcon: 'icon-ripple' },
+            { text: 'Sheet', component: Sheet, layout: 'center', navIcon: 'icon-actionsheets' },
+            { text: 'Tabs', navIcon: 'icon-tabs', children: [
+                { text: 'Basic Tabs', component: BasicTabs, navIcon: 'icon-basic-tabs' },
+                { text: 'Bottom Tabs', component: BottomTabs, navIcon: 'icon-bottom-tabs' },
+                { text: 'Icon Tabs', component: IconTabs, navIcon: 'icon-icon-tabs' },
+                { text: 'Desktop Tabs', component: DesktopTabs, navIcon: 'icon-desktop-tabs' },
+                { text: 'Closable', component: Closable, navIcon: 'icon-closable-tabs' },
+                { text: 'ScrollingTabs', component: ScrollingTabs, layout: Ext.os.is.Phone ? 'fit': 'center', navIcon: 'icon-scrolling-tabs' },
+                { text: 'TabBar', component: TabBar, layout: Ext.os.is.Phone ? 'fit': 'center', navIcon: 'icon-tabbar' }        
             ]},
-            { text: 'TitleBar', component: TitleBar },
-            { text: 'Toolbar', component: Toolbar },
-            { text: 'ToolTip', component: ToolTip, layout: 'center'  },
-            { text: 'Touch Events', component: TouchEvents },
-            { text: 'Transition', component: Transition }
+            { text: 'TitleBar', component: TitleBar, navIcon: 'icon-titlebar' },
+            { text: 'Toolbar', component: Toolbar, navIcon: 'icon-toolbar' },
+            { text: 'ToolTip', component: ToolTip, layout: 'center', navIcon: 'icon-tooltips'  },
+            { text: 'Touch Events', component: TouchEvents, navIcon: 'icon-touch-events' },
+            { text: 'Transition', component: Transition, navIcon: 'icon-transition' }
         ]},
         { text: 'Calendar', navIcon: 'icon-calendar', children:[
             { text: 'Calendar Panel', component: Calendar, navIcon: 'icon-calendar-panel' },
@@ -434,7 +432,7 @@ const root = {
 
 function transform(node, parentUrl) {
     node.leaf = !node.hasOwnProperty('children');
-    //node.iconCls = null;
+    node.iconCls = node.navIcon;
 
     if (node.text && !node.id) {
         node.id = (parentUrl === '/' ? '' : parentUrl) + '/' + node.text.toLowerCase().replace(/\s/g, '_').replace(/[^\w]/g, '');
