@@ -15,7 +15,7 @@ export default function NavView({ node }) {
                 { node && node.childNodes.map((child, i) => (
                     <div key={i} className="app-thumbnail" onClick={e => onClick(e, child.id)}>
                         <div className="app-thumbnail-icon-wrap">
-                            <div className="app-thumbnail-icon icon-charts"></div>
+                             <div className={`app-thumbnail-icon ${child.data.navIcon}`}/>
                         </div>
                         <div className="app-thumbnail-text">{child.data.name}</div>
                         {child.data.premium && <div className="x-fa fa-star app-premium-indicator"/>}
