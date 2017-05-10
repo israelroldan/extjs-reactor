@@ -1,5 +1,6 @@
 import { Component, Children, cloneElement } from 'react';
 import ReactMultiChild from 'react-dom/lib/ReactMultiChild';
+import DOMLazyTree from 'react-dom/lib/DOMLazyTree';
 import { precacheNode } from 'react-dom/lib/ReactDOMComponentTree';
 import ReactComponentEnvironment from 'react-dom/lib/ReactComponentEnvironment';
 import Flags from 'react-dom/lib/ReactDOMComponentFlags';
@@ -180,7 +181,7 @@ export default class ExtJSComponent extends Component {
             this.el = this.cmp.renderElement.dom;
         }
 
-        return { node: this.el };
+        return { node: this.el, children: [] };
     }
 
     _applyDefaults({ defaults, children }) {
@@ -202,34 +203,30 @@ export default class ExtJSComponent extends Component {
         const items = [], dockedItems = [];
         const children = this.mountChildren(this._applyDefaults(props), transaction, context);
 
-        if (children.length === 1 && children[0].node instanceof DocumentFragment) {
-            config.html = this._toHTML(children[0].node);
-        } else {
-            for (let i=0; i<children.length; i++) {
-                const item = children[i];
+        for (let i=0; i<children.length; i++) {
+            const item = children[i];
 
-                if (item instanceof Ext.Base) {
-                    const prop = this._propForChildElement(item);
+            if (item instanceof Ext.Base) {
+                const prop = this._propForChildElement(item);
 
-                    if (prop) {
-                        item.$reactorConfig = true;
-                        const value = config;
+                if (prop) {
+                    item.$reactorConfig = true;
+                    const value = config;
 
-                        if (prop.array) {
-                            let array = config[prop.name];
-                            if (!array) array = config[prop.name] = [];
-                            array.push(item);
-                        } else {
-                            config[prop.name] = prop.value || item;
-                        }
+                    if (prop.array) {
+                        let array = config[prop.name];
+                        if (!array) array = config[prop.name] = [];
+                        array.push(item);
                     } else {
-                        (item.dock ? dockedItems : items).push(item);
+                        config[prop.name] = prop.value || item;
                     }
-                } else if (item.node) {
-                    items.push(wrapDOMElement(item.node));
                 } else {
-                    throw new Error('Could not render child item: ' + item);
+                    (item.dock ? dockedItems : items).push(item);
                 }
+            } else if (item.node) {
+                items.push(wrapDOMElement(item));
+            } else {
+                throw new Error('Could not render child item: ' + item);
             }
         }
 
@@ -568,7 +565,7 @@ const ContainerMixin = Object.assign({}, ReactMultiChild.Mixin, {
 
             if (!(childNode instanceof Ext.Base)) {
                 // we're appending a dom node
-                childNode = wrapDOMElement(childNode.node);
+                childNode = wrapDOMElement(childNode);
             }
 
             if (afterNode instanceof HTMLElement) {
@@ -609,21 +606,17 @@ const ContainerMixin = Object.assign({}, ReactMultiChild.Mixin, {
  * Wraps a dom element in an Ext Component so it can be added as a child item to an Ext Container.  We attach
  * a reference to the generated Component to the dom element so it can be destroyed later if the dom element
  * is removed when rerendering
- * @param {HTMLElement/DocumentFragment} el
+ * @param {Object} node A React node object with node, children, and text
  * @returns {Ext.Component}
  */
-function wrapDOMElement(el) {
-    let contentEl = el;
+function wrapDOMElement(node) {
+    let contentEl = node.node;
 
-    if (el instanceof DocumentFragment || el instanceof Comment) {
-        // will get here when appending text nodes
-        contentEl = document.createElement('div');
-        contentEl.appendChild(el)
-    }
+    const cmp = new Ext.Component();
+    DOMLazyTree.insertTreeBefore(cmp.element.dom, node);
 
-    const cmp = new Ext.Component({ contentEl });
     cmp.$createdByReactor = true;
-    contentEl._extCmp = el._extCmp = cmp;
+    contentEl._extCmp = cmp;
 
     // this is needed for devtools when using dangerouslyReplaceNodeWithMarkup
     // this not needed in fiber
@@ -664,7 +657,7 @@ const oldReplaceNodeWithMarkup = ReactComponentEnvironment.replaceNodeWithMarkup
 
 ReactComponentEnvironment.replaceNodeWithMarkup = function(oldChild, markup) {
     if (oldChild._extCmp) {
-        const newChild = markup instanceof Ext.Base ? markup : wrapDOMElement(markup.node);
+        const newChild = markup instanceof Ext.Base ? markup : wrapDOMElement(markup);
         const parent = oldChild.hasOwnProperty('_extParent') ? oldChild._extParent : oldChild._extCmp.getParent();
         const index = oldChild.hasOwnProperty('_extIndexInParent') ? oldChild._extIndexInParent : parent.indexOf(oldChild._extCmp);
         parent.insert(index, newChild);
