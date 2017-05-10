@@ -55,7 +55,7 @@ export default class EditableGrid extends Component {
                     formatter="usMoney" 
                     editable 
                 >
-                    <NumberField rel="editor" required validators={{type:"number", message:"Invalid price"}}/>
+                    <NumberField required validators={{type:"number", message:"Invalid price"}}/>
                 </Column>
                 <Column 
                     text="Change" 

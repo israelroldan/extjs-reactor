@@ -265,7 +265,7 @@ export default class ExtJSComponent extends Component {
         } else if (isAssignableFrom(extJSClass, CLASS_CACHE.Dialog) && CLASS_CACHE.Button && item instanceof CLASS_CACHE.Button) {
             return { name: 'buttons', array: true };
         } else if (isAssignableFrom(extJSClass, CLASS_CACHE.Column) && CLASS_CACHE.Field && item instanceof CLASS_CACHE.Field) {
-            return { name: 'editor' };
+            return { name: 'editor', array: false, value: this._cloneConfig(item) };
         }
     }
 
