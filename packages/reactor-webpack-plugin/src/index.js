@@ -297,8 +297,6 @@ module.exports = class ReactExtJSWebpackPlugin {
                 console.log(`\nbuilding ExtReact bundle: ${name} => ${output}`);
             }
 
-            console.log('sencha', sencha);
-
             if (this.watch) {
                 if (!watching) {
                     watching = fork(sencha, ['ant', 'watch'], { cwd: output, silent: true });
