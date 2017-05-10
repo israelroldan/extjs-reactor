@@ -214,20 +214,20 @@ import Handles from './DragAndDrop/Handles/Handles';
 import Groups from './DragAndDrop/Groups/Groups';
 import Data from './DragAndDrop/Data/Data';
 import Files from './DragAndDrop/Files/Files';
-
+ 
 import Transition from './Transition/Transition';
 
 const root = {
     id: '/',
     text: 'All',
     children: [
-        { text: 'Components', children: [
-            { text: 'Buttons', children: [
-                { text: 'Button', component: Button, layout: 'center' },
-                { text: 'SegmentedButton', component: SegmentedButton, layout: 'center' },
+        { text: 'Components', navIcon: 'icon-buttons', children: [
+            { text: 'Buttons', navIcon: 'icon-buttons', children: [
+                { text: 'Button', component: Button, layout: 'center', navIcon: 'icon-buttons' },
+                { text: 'SegmentedButton', component: SegmentedButton, layout: 'center', navIcon: 'icon-buttons' },
             ]},
-            { text: 'Carousel', component: Carousel },
-            { text: 'Drag & Drop', children: [
+            { text: 'Carousel', component: Carousel, navIcon: 'icon-carousel' },
+            { text: 'Drag & Drop', navIcon: 'icon-drag-drop', children: [
                 { text: 'Simple', component: SimpleDandD },
                 { text: 'Constraints', component: Constrains },
                 { text: 'Proxies', component: Proxies },
@@ -236,7 +236,7 @@ const root = {
                 { text: 'Data', component: Data },
                 { text: 'Files', component: Files }
             ]},
-            { text: 'Draw', component: Draw },
+            { text: 'Draw', component: Draw, navIcon: 'icon-drawing' },
             { text: 'Sheet', component: Sheet, layout: 'center' },
             { text: 'Form Fields', children: [
                 { text: 'CheckBoxField', component: CheckBoxField, layout: 'center' },
@@ -311,130 +311,130 @@ const root = {
             { text: 'Touch Events', component: TouchEvents },
             { text: 'Transition', component: Transition }
         ]},
-        { text: 'Calendar', children:[
-            { text: 'Calendar Panel', component: Calendar },
-            { text: 'Month View', component: MonthView },
-            { text: 'Week View', component: WeekView },
-            { text: 'Days View', component: DaysView },
-            { text: 'Timezone Support', component: TimezoneSupport },
-            { text: 'Drag Resize Validation', component: DragResizeValidation }
+        { text: 'Calendar', navIcon: 'icon-calendar', children:[
+            { text: 'Calendar Panel', component: Calendar, navIcon: 'icon-calendar-panel' },
+            { text: 'Month View', component: MonthView, navIcon: 'icon-calendar-month-view' },
+            { text: 'Week View', component: WeekView, navIcon: 'icon-calendar-week-view' },
+            { text: 'Days View', component: DaysView, navIcon: 'icon-calendar-days-view' },
+            { text: 'Timezone Support', component: TimezoneSupport, navIcon: 'icon-calendar-timezone' },
+            { text: 'Drag Resize Validation', component: DragResizeValidation, navIcon: 'icon-calendar-validation' }
         ]},
-        { text: 'Charts', premium: true, children: [
-            { text: 'Area', children: [
-                { text: 'Basic Area', component: BasicArea },
-                { text: 'Stacked Area', component: StackedArea},
-                { text: 'Full Stacked Area', component: FullStackedArea},
-                { text: 'Negative Values Area', component: NegativeValuesArea}
+        { text: 'Charts', premium: true, navIcon: 'icon-charts', children: [
+            { text: 'Area', navIcon: 'icon-area-basic', children: [
+                { text: 'Basic Area', component: BasicArea, navIcon: 'icon-area-basic' },
+                { text: 'Stacked Area', component: StackedArea, navIcon: 'icon-area-stacked'},
+                { text: 'Full Stacked Area', component: FullStackedArea, navIcon: 'icon-area-stacked-100'},
+                { text: 'Negative Values Area', component: NegativeValuesArea, navIcon: 'icon-area-negative'}
             ] },
-            { text: 'Bar', children: [
-                { text: 'Basic Bar', component: BasicBar },
-                { text: 'Stacked Bar', component: StackedBar },
-                { text: 'Full Stacked Bar', component: FullStackedBar}
+            { text: 'Bar', navIcon: 'icon-bar-basic', children: [
+                { text: 'Basic Bar', component: BasicBar, navIcon: 'icon-bar-basic' },
+                { text: 'Stacked Bar', component: StackedBar, navIcon: 'icon-bar-stacked' },
+                { text: 'Full Stacked Bar', component: FullStackedBar, navIcon: 'icon-bar-stacked-100'}
             ] },
-            { text: 'BoxPlot', component: BoxPlot },
-            { text: 'Column', children: [
-                { text: 'Basic Column', component: BasicColumn },
-                { text: 'Stacked', component: Stacked },
-                { text: 'Column With Renderer', component: ColumnWithRenderer },
-                { text: 'Multiaxis Column', component: MultiaxisColumn }
+            { text: 'BoxPlot', component: BoxPlot, navIcon: 'icon-boxplot-charts' },
+            { text: 'Column', navIcon: 'icon-column-charts', children: [
+                { text: 'Basic Column', component: BasicColumn, navIcon: 'icon-column-basic' },
+                { text: 'Stacked', component: Stacked, navIcon: 'icon-column-stacked' },
+                { text: 'Column With Renderer', component: ColumnWithRenderer, navIcon: 'icon-column-renderer' },
+                { text: 'Multiaxis Column', component: MultiaxisColumn, navIcon: 'icon-columng-multi-axis' }
             ] },
-            { text: '3D Column', children: [
-                { text: 'Basic 3D Column', component: Basic3DColumn },
-                { text: '3D Grouped', component: ThreeDGrouped },
-                { text: '3D Stacked', component: ThreeDStacked },
-                { text: 'Negative Values', component: NegativeValues },
-                { text: '3D Column With Renderer', component: ThreeDColumnWithRenderer }
+            { text: '3D Column', navIcon: 'icon-column-3d', children: [
+                { text: 'Basic 3D Column', component: Basic3DColumn, navIcon: 'icon-column-basic-3d' },
+                { text: '3D Grouped', component: ThreeDGrouped, navIcon: 'icon-column-grouped-3d' },
+                { text: '3D Stacked', component: ThreeDStacked, navIcon: 'icon-column-sacked-3d' },
+                { text: 'Negative Values', component: NegativeValues, navIcon: 'icon-column-negative-3d' },
+                { text: '3D Column With Renderer', component: ThreeDColumnWithRenderer, navIcon: 'icon-column-renerer-3d' }
             ]},
-            { text: 'Financial', children: [
-                { text: 'Candlestick', component: Candlestick },
-                { text: 'OHLC', component: OHLC }
+            { text: 'Financial', navIcon: 'icon-financial-charts', children: [
+                { text: 'Candlestick', component: Candlestick, navIcon: 'icon-financial-candlestick' },
+                { text: 'OHLC', component: OHLC, navIcon: 'icon-financial-ohlc' }
             ] },
-            { text: 'Gauge', children: [
-                { text: 'Basic Gauge', component: BasicGaugeChart }  
+            { text: 'Gauges', navIcon: 'icon-gauge-charts', children: [
+                { text: 'Basic Gauge', component: BasicGaugeChart, navIcon: 'icon-gauge-basic' }  
             ] }, 
-            { text: 'Line', children: [
-                { text: 'Basic Line', component: BasicLine },
-                { text: 'Basic Markers', component: BasicMarkers },
-                { text: 'Spline', component: Spline },
-                { text: 'Spline Markers', component: SplineMarkers },
-                { text: 'Plot', component: Plot },
-                { text: 'With Renderer', component: WithRenderer },
-                { text: 'Realtime', component: Realtime }
+            { text: 'Line', navIcon: 'icon-line-charts', children: [
+                { text: 'Basic Line', component: BasicLine, navIcon: 'icon-line-basic' },
+                { text: 'Basic Markers', component: BasicMarkers, navIcon: 'icon-line-markers' },
+                { text: 'Spline', component: Spline, navIcon: 'icon-line-spline' },
+                { text: 'Spline Markers', component: SplineMarkers, navIcon: 'icon-line-marked-spline' },
+                { text: 'Plot', component: Plot, navIcon: 'icon-line-plot' },
+                { text: 'With Renderer', component: WithRenderer, navIcon: 'icon-line-renderer' },
+                { text: 'Realtime', component: Realtime, navIcon: 'icon-line-real-time' }
             ] },
-            { text: 'Navigator', component: Navigator },
-            { text: 'Pie', children: [
-                { text: 'Basic Pie', component: BasicPie },
-                { text: 'Spie', component: Spie },
-                { text: 'Donut', component: Donut },
-                { text: 'Double Donut', component: DoubleDonut },
-                { text: '3D Pie', component: ThreeDPie } 
+            { text: 'Navigator', component: Navigator, navIcon: 'icon-navigator-charts' },
+            { text: 'Pie', navIcon: 'icon-pie-basic', children: [
+                { text: 'Basic Pie', component: BasicPie, navIcon: 'icon-pie-basic' },
+                { text: 'Spie', component: Spie, navIcon: 'icon-pie-custom' },
+                { text: 'Donut', component: Donut, navIcon: 'icon-pie-donut' },
+                { text: 'Double Donut', component: DoubleDonut, navIcon: 'icon-pie-double-donut' },
+                { text: '3D Pie', component: ThreeDPie, navIcon: 'icon-pie-3d' } 
             ] },
-            { text: 'Radar', children: [
-                { text: 'Basic Radar', component: BasicRadar },
-                { text: 'Filled', component: Filled },
-                { text: 'Marked', component: Marked },
-                { text: 'Multiaxis', component: Multiaxis }
+            { text: 'Radar', navIcon: 'icon-radar-charts', children: [
+                { text: 'Basic Radar', component: BasicRadar, navIcon: 'icon-radar-basic' },
+                { text: 'Filled', component: Filled, navIcon: 'icon-radar-filled' },
+                { text: 'Marked', component: Marked, navIcon: 'icon-radar-marked' },
+                { text: 'Multiaxis', component: Multiaxis, navIcon: 'icon-radar-multi-axis' }
             ] },
-            { text: 'Scatter', children: [
-                { text: 'Basic Scatter', component: BasicScatter },
-                { text: 'Custom Icons', component: CustomIcons },
-                { text: 'Bubble', component: Bubble }
+            { text: 'Scatter', navIcon: 'icon-scatter-charts', children: [
+                { text: 'Basic Scatter', component: BasicScatter, navIcon: 'icon-scatter-basic' },
+                { text: 'Custom Icons', component: CustomIcons, navIcon: 'icon-scatter-custom-icons' },
+                { text: 'Bubble', component: Bubble, navIcon: 'icon-scatter-bubble' }
             ] }
         ] },
-        { text: 'D3', premium: true, children: [
-            { text: 'Heatmap', children: [
-                { text: 'Purchases By Day', component: PurchasesByDay },
-                { text: 'Sales Per Employee', component: SalesPerEmployee },
-                { text: 'Pivot Heatmap', component: PivotHeatmap },
-                { text: 'Configurable Pivot Heatmap', component: ConfigurablePivotHeatmap }
+        { text: 'D3', premium: true, navIcon: 'icon-d3', children: [
+            { text: 'Heatmap', navIcon: 'icon-d3-heatmap', children: [
+                { text: 'Purchases By Day', component: PurchasesByDay, navIcon: 'icon-d3-view-heatmap-purchases' },
+                { text: 'Sales Per Employee', component: SalesPerEmployee, navIcon: 'icon-d3-view-heatmap-sales' },
+                { text: 'Pivot Heatmap', component: PivotHeatmap, navIcon: 'icon-d3-view-heatmap-pivot' },
+                { text: 'Configurable Pivot Heatmap', component: ConfigurablePivotHeatmap, navIcon: 'icon-d3-view-heatmap-pivot-configurator' }
             ]},
-            { text: 'Hierarchy', children: [
-                { text: 'D3 Tree Hierarchy', component: D3TreeHierarchy },
-                { text: 'TreeMap', component: TreeMap },
-                { text: 'TreeMap Tooltip', component: TreeMapTooltip },
-                { text: 'Configurable Pivot TreeMap', component: ConfigurablePivotTreeMap },
-                { text: 'Pack', component: Pack },
-                { text: 'Sunburst', component: Sunburst },
-                { text: 'Zoomable Sunburst', component: ZoomableSunburst }
+            { text: 'Hierarchy', navIcon: 'icon-d3-hierarchy', children: [
+                { text: 'D3 Tree Hierarchy', component: D3TreeHierarchy, navIcon: 'icon-d3-view-tree' },
+                { text: 'TreeMap', component: TreeMap, navIcon: 'icon-d3-view-treemap' },
+                { text: 'TreeMap Tooltip', component: TreeMapTooltip, navIcon: 'icon-d3-view-treemap-tooltip' },
+                { text: 'Configurable Pivot TreeMap', component: ConfigurablePivotTreeMap, navIcon: 'icon-d3-view-treemap-pivot-configurator' },
+                { text: 'Pack', component: Pack, navIcon: 'icon-d3-view-pack' },
+                { text: 'Sunburst', component: Sunburst, navIcon: 'icon-d3-view-sunburts' },
+                { text: 'Zoomable Sunburst', component: ZoomableSunburst, navIcon: 'icon-d3-view-sunburts-zoom' }
             ]}
         ] },
-        { text: 'Grids', children: [
-            { text: 'Core Features', children: [
-                { text: 'Basic Grid', component: BasicGrid},
-                { text: 'Grouped Grid', component: GroupedGrid},
-                { text: 'Editable Grid', component: EditableGrid},
-                { text: 'XML Grid', component: XMLGrid}
+        { text: 'Grids', navIcon: 'icon-grids', children: [
+            { text: 'Core Features', navIcon: 'icon-grids', children: [
+                { text: 'Basic Grid', component: BasicGrid, navIcon: 'icon-grids'},
+                { text: 'Grouped Grid', component: GroupedGrid, navIcon: 'icon-grouped-grid'},
+                { text: 'Editable Grid', component: EditableGrid, navIcon: 'icon-editable-grid'},
+                { text: 'XML Grid', component: XMLGrid, navIcon: 'icon-xml-grid'}
             ]},
-            { text: 'Add-ons', children: [
-                { text: 'Grid Tools', component: ToolGrid},
-                { text: 'Row Expander', component: RowExpanderGrid},
-                { text: 'Row Body', component: RowBodyGrid},
-                { text: 'Summary Row', component: SummaryRowGrid},
-                { text: 'View Options', component: ViewOptionsGrid}
+            { text: 'Add-ons', navIcon: 'icon-framing-buttons', children: [
+                { text: 'Grid Tools', component: ToolGrid, navIcon: 'icon-gridheader-tools'},
+                { text: 'Row Expander', component: RowExpanderGrid, navIcon: 'icon-row-expander-grid'},
+                { text: 'Row Body', component: RowBodyGrid, navIcon: 'icon-row-body-grid'},
+                { text: 'Summary Row', component: SummaryRowGrid, navIcon: 'icon-grid-summary'},
+                { text: 'View Options', component: ViewOptionsGrid, navIcon: 'icon-view-options-grid'}
             ]},
-            { text: 'Advanced Features', children:[
-                { text: 'Big Data', component: BigDataGrid },
-                { text: 'Reconfigure Grid', component: ReconfigureGrid },
-                { text: 'Stock Ticker', component: StockTickerGrid },
-                { text: 'Flexible Selection', component: FlexibleSelection }
+            { text: 'Advanced Features', navIcon: 'icon-grid-plugins', children:[
+                { text: 'Big Data', component: BigDataGrid, navIcon: 'icon-big-data-grid' },
+                { text: 'Reconfigure Grid', component: ReconfigureGrid, navIcon: 'icon-reconfigure-grid' },
+                { text: 'Stock Ticker', component: StockTickerGrid, navIcon: 'icon-ticker-grid' },
+                { text: 'Flexible Selection', component: FlexibleSelection, navIcon: 'icon-flexible-selection-grid' }
             ]},
-            { text: 'PivotGrid', premium: true, component: PivotGrid },
+            { text: 'PivotGrid', premium: true, component: PivotGrid, navIcon: 'icon-pivot-grids' },
             { text: 'Redux Grid', component: ReduxGrid }
         ] },
-        { text: 'Trees', children: [
-            { text: 'TreeList', component: TreeList, layout: Ext.os.is.Phone ? 'fit': 'center' },
-            { text: 'Tree', premium: true, component: Tree },
-            { text: 'Editable Tree', premium: true, component: EditableTree},
-            { text: 'Tree Grid', premium: true, component: TreeGrid },
-            { text: 'Tree Decorations', premium: true, component:TreeDecorations},
-            { text: 'Heterogeneous Tree', premium: true, component: HeterogeneousTree}
+        { text: 'Trees', navIcon: 'icon-trees', children: [
+            { text: 'TreeList', component: TreeList, layout: Ext.os.is.Phone ? 'fit': 'center', navIcon: 'icon-tree-list' },
+            { text: 'Tree', premium: true, component: Tree, navIcon: 'icon-trees' },
+            { text: 'Editable Tree', premium: true, component: EditableTree, navIcon: 'icon-tree-editable'},
+            { text: 'Tree Grid', premium: true, component: TreeGrid, navIcon: 'icon-tree-grid' },
+            { text: 'Tree Decorations', premium: true, component:TreeDecorations, navIcon: 'icon-tree-decorations'},
+            { text: 'Heterogeneous Tree', premium: true, component: HeterogeneousTree, navIcon: 'icon-heterogeneous-tree'}
         ] }
     ]
 };
 
 function transform(node, parentUrl) {
     node.leaf = !node.hasOwnProperty('children');
-    node.iconCls = null;
+    //node.iconCls = null;
 
     if (node.text && !node.id) {
         node.id = (parentUrl === '/' ? '' : parentUrl) + '/' + node.text.toLowerCase().replace(/\s/g, '_').replace(/[^\w]/g, '');
