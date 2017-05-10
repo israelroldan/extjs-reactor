@@ -55,13 +55,18 @@ const ensurePackagesFolder = () => {
  * Generates a workspace in the current directory (by writing a workspace.json file).
  */
 const generateWorkspace = () => {
-    console.log('Generating Sencha workspace...');
     return ensurePackagesFolder().then(() => {
         return new Promise((resolve, reject) => {
-            fs.writeFile(path.join('.', 'ext-react', 'workspace.json'), JSON.stringify(workspaceJson, null, 4), err => {
-                if(err) return reject(err);
+            if(!workspaceExists()) {
+                console.log('Generating Sencha workspace...');
+                fs.writeFile(path.join('.', 'ext-react', 'workspace.json'), JSON.stringify(workspaceJson, null, 4), err => {
+                    if(err) return reject(err);
+                    return resolve();
+                });
+            } else {
+                console.log('Using existing workspace at ext-react/workspace.json');
                 return resolve();
-            });
+            }
         }); 
     });
 }
@@ -72,7 +77,7 @@ const generateWorkspace = () => {
  */
 const workspaceExists = () => {
     try {
-        return fs.accessSync(path.join('.', 'ext-react', 'workspace.json'));
+        return fs.statSync(path.join('.', 'ext-react', 'workspace.json')).isFile();
     } catch(e) {
         return false;
     }
@@ -142,7 +147,7 @@ switch(args._.join(' ')) {
             return printUsage();
         }
 
-        return (workspaceExists() ? Promise.resolve([]) : generateWorkspace(args))
+        return generateWorkspace(args)
             .then(generateTheme.bind(null, args))
             .then((args.apply ? applyTheme.bind(null, args) : Promise.resolve([])))
             .then(() => {
