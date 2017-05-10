@@ -22,7 +22,7 @@ export default function NavMenu({
             store={{
                 root: {
                     children: [
-                        { id: '/home', text: 'Home', iconCls: 'x-fa fa-home', leaf: true },
+                        { id: '/', text: 'Home', iconCls: 'x-fa fa-home', leaf: true },
                         { id: '/about', text: 'About', iconCls: 'x-fa fa-info', leaf: true },
                     ]
                 }

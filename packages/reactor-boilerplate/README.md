@@ -1,6 +1,6 @@
 # Ext JS Reactor Boilerplate
 
-A foundation for React apps that use Ext JS components.
+A foundation for React apps built with ExtReact components.
 
 ## Quick Start
 

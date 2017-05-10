@@ -30,7 +30,6 @@ export default class Home extends Component {
                         }}
                     />
                 </Toolbar>
-
                 <Column
                     text="Name"
                     dataIndex="name"

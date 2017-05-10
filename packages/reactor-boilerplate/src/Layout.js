@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
-import { Container, TitleBar, Button, Sheet, Panel } from '@extjs/ext-react';
-import { Switch, Route, Redirect } from 'react-router-dom'
+import { Transition, Container, TitleBar, Button, Sheet, Panel } from '@extjs/ext-react';
+import { Switch, Route, Redirect, withRouter } from 'react-router-dom'
+import { medium, large } from './responsiveQueries';
 import Home from './Home/Home';
 import About from './About/About';
 import NavMenu from './NavMenu';
-import { withRouter } from 'react-router-dom'
-import { medium, large } from './responsiveQueries';
 
 /**
  * The main application view and routes
@@ -42,7 +41,7 @@ class Layout extends Component {
             <Container fullscreen layout="fit">
                 <TitleBar title="ExtReact Boilerplate" docked="top">
                     {Ext.platformTags.phone && (
-                        <Button align="left" iconCls="x-fa fa-bars" handler={this.toggleAppMenu}/>
+                        <Button align="left" iconCls="x-fa fa-bars" handler={this.toggleAppMenu} ripple={false}/>
                     )}
                 </TitleBar>
                 {Ext.platformTags.phone ? (
@@ -63,16 +62,18 @@ class Layout extends Component {
                                 },
                                 [large]: {
                                     micro: false,
-                                    width: 250
+                                    width: 200
                                 }
                             }}
                         />
                     </Panel>
                 )}
-                <Switch>
-                    <Route path="/home" component={Home}/>
-                    <Route path="/about" component={About}/>
-                </Switch>
+                <Transition type="fade">
+                    <Switch>
+                        <Route path="/" component={Home} exact/>
+                        <Route path="/about" component={About}/>
+                    </Switch>
+                </Transition>
             </Container>
         );
     }
