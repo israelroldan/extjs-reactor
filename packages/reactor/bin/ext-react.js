@@ -11,7 +11,7 @@ const workspaceJson = {
     apps: [],
     frameworks: { ext: '../node_modules/@extjs/ext-react' },
     build: { dir: '${workspace.dir}/build' },
-    packages: { dir: '${workspace.dir},${workspace.dir}/../node_modules/@extjs' },
+    packages: { dir: '${workspace.dir}/packages,${workspace.dir}/../node_modules/@extjs' },
     properties: {
         'build.web.root': '${workspace.dir}/../'
     }
@@ -36,11 +36,11 @@ printUsage = () => {
 }
 
 /**
- * Ensures a 'ext-react-packages' folder exists for the workspace and theme packages to be installed in.
+ * Ensures a 'ext-react/packages' folder exists for the workspace and theme packages to be installed in.
  */
 const ensurePackagesFolder = () => {
     return new Promise(resolve => {
-        const dir = path.join('.', 'ext-react-packages')
+        const dir = path.join('.', 'ext-react', 'packages');
         fs.stat(dir, (err, stats) => {
             if(err || !stats.isDirectory()) {
                 fs.mkdir(dir, resolve.bind(null));
@@ -58,7 +58,7 @@ const generateWorkspace = () => {
     console.log('Generating Sencha workspace...');
     return ensurePackagesFolder().then(() => {
         return new Promise((resolve, reject) => {
-            fs.writeFile(path.join('.', 'ext-react-packages', 'workspace.json'), JSON.stringify(workspaceJson, null, 4), err => {
+            fs.writeFile(path.join('.', 'ext-react', 'workspace.json'), JSON.stringify(workspaceJson, null, 4), err => {
                 if(err) return reject(err);
                 return resolve();
             });
@@ -72,7 +72,7 @@ const generateWorkspace = () => {
  */
 const workspaceExists = () => {
     try {
-        return fs.accessSync(path.join('.', 'ext-react-packages', 'workspace.json'));
+        return fs.accessSync(path.join('.', 'ext-react', 'workspace.json'));
     } catch(e) {
         return false;
     }
@@ -92,7 +92,7 @@ const generateTheme = config => {
             '--extend', config.baseTheme || 'theme-material',
             '--framework', 'ext',
             '--name', config.name
-        ].join(' '), { cwd: path.join('.', 'ext-react-packages') });
+        ].join(' '), { cwd: path.join('.', 'ext-react') });
 
         proc.once('close', resolve.bind(null));
         proc.stdout.on('data', console.log.bind(console));
@@ -109,7 +109,7 @@ const applyTheme = config => {
     console.log('Applying theme to current app...');
     return new Promise((resolve, reject) => {
         fs.writeFile('.ext-reactrc', JSON.stringify({
-            theme: path.join('.', 'ext-react-packages', config.name)
+            theme: path.join('.', 'ext-react', 'packages', config.name)
         }, null, 4), err => {
             if(err) return reject(err);
             else    return resolve();
@@ -146,7 +146,7 @@ switch(args._.join(' ')) {
             .then(generateTheme.bind(null, args))
             .then((args.apply ? applyTheme.bind(null, args) : Promise.resolve([])))
             .then(() => {
-                console.log(`Theme created at: ext-react-packages/${args.name}`);
+                console.log(`Theme created at: ext-react/packages/${args.name}`);
             })
     }
     case 'apply theme': {
