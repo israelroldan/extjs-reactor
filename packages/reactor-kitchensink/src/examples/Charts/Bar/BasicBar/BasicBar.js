@@ -85,21 +85,14 @@ export default class BasicBarChartExample extends Component {
                         fields: 'country',
                         grid: true
                     }]}
-                    sprites={[{
-                        type: 'text',
-                        text: '2011 Industry size in major economies',
-                        fontSize: 21,
-                        width: 100,
-                        height: 30,
-                        x: 40, // the sprite x position
-                        y: 35  // the sprite y position
-                    }, {
-                        type: 'text',
-                        text: 'Source: http://en.wikipedia.org/wiki/List_of_countries_by_GDP_sector_composition',
-                        fontSize: 10,
-                        x: 40,
-                        y: 50
-                    }]}
+                    captions={{
+                        title: {
+                            text: '2011 Industry size in major economies',
+                        },
+                        subtitle: {
+                            text: 'Source: http://en.wikipedia.org/wiki/List_of_countries_by_GDP_sector_composition',
+                        }
+                    }}
                 />
             </Container>            
         )

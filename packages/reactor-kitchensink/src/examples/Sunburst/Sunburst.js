@@ -80,6 +80,7 @@ export default class Sunburst extends Component {
                     onSelect={this.onSelectionChange}
                     plugins="responsive"
                     title={!Ext.platformTags.phone && "Folders"}
+                    shadow
                     responsiveConfig={{
                         'landscape': {
                             width: 230,
