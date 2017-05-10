@@ -4,8 +4,9 @@ const parseArgs = require('minimist'),
     fs = require('fs'),
     path = require('path'),
     sencha = require('@extjs/sencha-cmd'),
-    { exec } = require('child_process');
+    { fork } = require('child_process');
 
+console.log('USING sencha: ', sencha);
 // A skeleton for a ext-react workspace.json file.
 const workspaceJson = {
     apps: [],
@@ -90,18 +91,17 @@ const workspaceExists = () => {
 const generateTheme = config => {
     console.log('Generating theme package...');
     return new Promise(resolve => {
-        const proc = exec([
-            sencha,
+        const proc = fork(sencha, [
             'generate', 'package',
             '--type', 'THEME',
             '--extend', config.baseTheme || 'theme-material',
             '--framework', 'ext',
             '--name', config.name
-        ].join(' '), { cwd: path.join('.', 'ext-react') });
+        ], { cwd: path.join('.', 'ext-react'), silent: true });
 
-        proc.once('close', resolve.bind(null));
-        proc.stdout.on('data', console.log.bind(console));
-        proc.stderr.on('data', console.error.bind(console));
+        proc.once('exit', code => code > 0 ? reject(`Generating package failed with code: ${code}`) : resolve());
+        proc.stdout.pipe(process.stdout);
+        proc.stderr.pipe(process.stderr);
 
         return proc;
     });
@@ -152,6 +152,9 @@ switch(args._.join(' ')) {
             .then((args.apply ? applyTheme.bind(null, args) : Promise.resolve([])))
             .then(() => {
                 console.log(`Theme created at: ext-react/packages/${args.name}`);
+            })
+            .catch(error => {
+                console.error('Error encountered.', error);
             })
     }
     case 'apply theme': {
