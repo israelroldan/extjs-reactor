@@ -130,14 +130,10 @@ export default class BasicColumnChartExample extends Component {
                             }
                         }
                     }]}
-                    sprites={{
-                        type: 'text',
-                        text: 'Redwood City Climate Data',
-                        fontSize: 22,
-                        width: 100,
-                        height: 30,
-                        x: 30, // the sprite x position
-                        y: 30  // the sprite y position
+                    captions={{
+                        title: {
+                            text: 'Redwood City Climate Data',
+                        }
                     }}
                     onAfterRender={this.onAfterRender}
                     onBeginItemEdit={this.onBeginItemEdit}

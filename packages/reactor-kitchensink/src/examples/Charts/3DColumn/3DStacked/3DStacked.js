@@ -83,14 +83,11 @@ export default class Stacked extends Component {
                             renderer: this.onTooltipRender
                         }
                     }]}
-                    sprites={[{
-                        type: 'text',
-                        id: 'title',
-                        text: '2011 Major economies by GDP sector',
-                        fontSize: 18,
-                        textAlign: 'center',
-                        y: 25
-                    }]}
+                    captions={{
+                        title: {
+                            text: '2011 Major economies by GDP sector',
+                        }
+                    }}
                 />
             </Container>
         )

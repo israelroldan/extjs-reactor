@@ -6,7 +6,7 @@ import { sync as mkdirp } from 'mkdirp';
 import extractFromJSX from './extractFromJSX';
 import { sync as rimraf } from 'rimraf';
 import { buildXML, createAppJson, createWorkspaceJson } from './artifacts';
-import { execSync, spawn } from 'child_process';
+import { execSync, spawn, fork } from 'child_process';
 import { generate } from 'astring';
 import { sync as resolve } from 'resolve';
 
@@ -299,7 +299,7 @@ module.exports = class ReactExtJSWebpackPlugin {
 
             if (this.watch) {
                 if (!watching) {
-                    watching = spawn(sencha, ['ant', 'watch'], { cwd: output });
+                    watching = fork(sencha, ['ant', 'watch'], { cwd: output, silent: true });
                     watching.stdout.pipe(process.stdout);
                     watching.stdout.on('data', data => {
                         if (data.toString().match(/Waiting for changes\.\.\./)) {

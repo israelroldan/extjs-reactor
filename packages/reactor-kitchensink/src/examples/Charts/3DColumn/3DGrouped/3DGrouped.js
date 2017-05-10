@@ -49,22 +49,14 @@ export default class Grouped extends Component {
                     interactions="itemhighlight"
                     animation={{ duration: 200 }}
                     legend={{ type: 'sprite' }}
-                    sprites={[{
-                        type: 'text',
-                        id: 'title',
-                        text: 'Sales in Last Two Years',
-                        textAlign: 'center',
-                        fontSize: 18,
-                        fontWeight: 'bold',
-                        y: 30
-                    }, {
-                        type: 'text',
-                        id: 'subtitle',
-                        text: 'Quarter-wise comparison',
-                        textAlign: 'center',
-                        fontSize: 16,
-                        y: 50
-                    }]}
+                    captions={{
+                        title: {
+                            text: 'Sales in Last Two Years'
+                        },
+                        subtitle: {
+                            text: 'Quarter-wise comparison',
+                        }
+                    }}
                     axes={[{
                         type: 'numeric3d',
                         position: 'left',
