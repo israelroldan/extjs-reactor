@@ -33,7 +33,7 @@ class Layout extends Component {
         const { location } = this.props;
 
         const navMenuDefaults = {
-            onSelectionChange: this.navigate,
+            onItemClick: this.navigate,
             selection: location.pathname
         }
 

@@ -54,9 +54,9 @@ class SearchField extends Component {
     /**
      * Navigate to the event when an item is selected in the list
      */
-    onChange = (combo, value) => {
-        if (value) {
-            location.hash = `/schedule/${value}`
+    onSelect = (combo, record) => {
+        if (record) {
+            location.hash = `/schedule/${record.getId()}`
         }
     }
 
@@ -73,7 +73,7 @@ class SearchField extends Component {
                 onBeforeQuery={this.search}
                 clearable
                 hideTrigger
-                onChange={this.onChange}
+                onSelect={this.onSelect}
                 valueField='id'
                 matchFieldWidth={false}
                 floatedPicker={{ width: 500 }}

@@ -20,7 +20,8 @@ class Menu extends Component {
         this.props.dispatch(toggleMenu());
     };
 
-    onSelectionChange = (tree, record) => {
+    onSelectionChange = (tree, item) => {
+        const record = item.node;
         if (record && !location.hash.startsWith('#' + record.getId())) {
             location.hash = record.getId();
         }
@@ -36,7 +37,7 @@ class Menu extends Component {
                 store={store}
                 selection={selection}
                 plugins="responsive"
-                onSelectionChange={this.onSelectionChange}
+                onItemClick={this.onSelectionChange}
                 expanderFirst={false}
                 responsiveConfig={{
                     'width < 1080': {
