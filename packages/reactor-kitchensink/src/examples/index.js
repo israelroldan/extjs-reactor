@@ -222,12 +222,12 @@ const root = {
     text: 'All',
     children: [
         { text: 'Components', navIcon: 'icon-buttons', children: [
-            { text: 'Buttons', iconCls: 'icon-buttons', children: [
-                { text: 'Button', component: Button, layout: 'center', iconCls: 'icon-buttons' },
-                { text: 'SegmentedButton', component: SegmentedButton, layout: 'center', iconCls: 'icon-buttons' },
+            { text: 'Buttons', navIcon: 'icon-buttons', children: [
+                { text: 'Button', component: Button, layout: 'center', navIcon: 'icon-buttons' },
+                { text: 'SegmentedButton', component: SegmentedButton, layout: 'center', navIcon: 'icon-buttons' },
             ]},
-            { text: 'Carousel', component: Carousel, iconCls: 'icon-carousel' },
-            { text: 'Drag & Drop', iconCls: 'icon-drag-drop', children: [
+            { text: 'Carousel', component: Carousel, navIcon: 'icon-carousel' },
+            { text: 'Drag & Drop', navIcon: 'icon-drag-drop', children: [
                 { text: 'Simple', component: SimpleDandD },
                 { text: 'Constraints', component: Constrains },
                 { text: 'Proxies', component: Proxies },
@@ -236,7 +236,7 @@ const root = {
                 { text: 'Data', component: Data },
                 { text: 'Files', component: Files }
             ]},
-            { text: 'Draw', component: Draw, iconCls: 'icon-drawing' },
+            { text: 'Draw', component: Draw, navIcon: 'icon-drawing' },
             { text: 'Sheet', component: Sheet, layout: 'center' },
             { text: 'Form Fields', children: [
                 { text: 'CheckBoxField', component: CheckBoxField, layout: 'center' },
