@@ -274,17 +274,6 @@ export default class ExtJSComponent extends Component {
     }
 
     /**
-     * Converts a DocumentFragment to html
-     * @param {DocumentFragment} docFragment
-     * @return {String}
-     */
-    _toHTML(docFragment) {
-        const el = document.createElement('div');
-        el.appendChild(docFragment);
-        return el.innerHTML;
-    }
-
-    /**
      * Creates an Ext config object for this specified props
      * @param {Object} props
      * @param {Boolean} [includeEvents] true to convert on* props to listeners, false to exclude them
@@ -613,7 +602,16 @@ function wrapDOMElement(node) {
     let contentEl = node.node;
 
     const cmp = new Ext.Component();
-    DOMLazyTree.insertTreeBefore(cmp.element.dom, node);
+    
+    if (cmp.element) {
+        // modern
+        DOMLazyTree.insertTreeBefore(cmp.element.dom, node);
+    } else {
+        // classic
+        const target = document.createElement('div');
+        DOMLazyTree.insertTreeBefore(target, node);
+        cmp.contentEl = contentEl instanceof HTMLElement ? contentEl : target /* text fragment or comment */;
+    }
 
     cmp.$createdByReactor = true;
     contentEl._extCmp = cmp;

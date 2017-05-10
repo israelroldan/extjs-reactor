@@ -1,55 +1,69 @@
-import * as React from 'react';
-import { Component } from 'react';
-import { reactify } from '@extjs/reactor';
+import React, { Component } from 'react';
 
-import { Panel, TabPanel } from '@extjs/reactor/classic';
+import Person from './Person';
+import data from './data';
+import { Panel, Grid, Toolbar, TextField } from '@extjs/reactor/classic';
 
+Ext.require('Ext.window.Toast');
 
 export default class App extends Component {
-    constructor(p, c) {
-        super(p, c)
-        this.state = {
-            focus: 3,
-            items: [
-                {id: 0, text: 'example'},
-                {id: 1, text: 'example'},
-                {id: 2, text: 'example'},
-                {id: 3, text: 'example'}
-            ]
-        }
-    }
 
-    switchFocus(nextPanel) {
-        this.setState({focus: nextPanel ? `tab${nextPanel.config.itemId}` : null})
-    }
+    state = {
+        person: null
+    };
 
-    closeItem(id) {
-        this.setState(state => ({items: state.items.filter(item => item.id !== id)}))
-    }
+    store = Ext.create('Ext.data.Store', {
+        data
+    });
 
     render() {
+        const { person } = this.state;
+        
         return (
-            <Panel>
-                <TabPanel activeTab={this.state.focus}
-                          onBeforeTabChange={(tabPanel, nextPanel) => this.switchFocus(nextPanel)}>
-                    {this.state.items.map(item => (
-                        <Panel key={item.id}
-                               title={item.text}
-                               itemId={`tab${item.id}`}
-                               closable={true}
-                               layout="fit"
-                               onBeforeClose={() => {
-                                   this.closeItem(item.id)
-                                   return false
-                               }}
-                        >
-                            <Panel>{item.text}</Panel>
-                            <Panel>{item.text}</Panel>
-                        </Panel>
-                    ))}
-                </TabPanel>
+            <Panel layout="fit" title="Employees">
+                { person && (
+                    <Person
+                        person={person}
+                        onSave={this.onSavePerson}
+                        onClose={() => this.setState({ person: null })}
+                    />
+                ) }
+                <Toolbar dock="top">
+                    <TextField emptyText="Search" onChange={(field, value) => this.onSearch(value)} flex={1}/>
+                </Toolbar>
+                <Grid
+                    store={this.store}
+                    columns={[
+                        { text: 'Name', dataIndex: 'name', flex: 1 },
+                        { text: 'Email', dataIndex: 'email', flex: 1 }
+                    ]}
+                    onRowClick={(grid, record) => this.onRowClick(record.data)}
+                />
             </Panel>
-        )
+        );
     }
-}
 
+    onSearch = (value) => {
+        value = value.toLowerCase();
+        this.store.clearFilter();
+        this.store.filterBy(record => {
+            return record.get('name').toLowerCase().indexOf(value) !== -1 ||
+                record.get('email').toLowerCase().indexOf(value) !== -1
+        });
+    }
+
+    onRowClick = (person) => {
+        this.setState({ person });
+    }
+
+    onSavePerson = (person) => {
+        Ext.toast(`Person ${person.name} saved.`);
+        this.store.getById(person.id).set(person, { dirty: false });
+        this.setState({ person: null });
+    }
+
+    onPersonDialogClose = () => {
+        this.setState({ person: null });
+    }
+    
+}
