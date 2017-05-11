@@ -103,6 +103,11 @@ class Layout extends Component {
                     <Container layout="fit" flex={1}>
                         <NavTree 
                             docked="left"
+                            width="300"
+                            resizable={{
+                                edges: 'east',
+                                dynamic: true
+                            }}
                             store={navStore} 
                             selection={selectedNavNode}
                             onSelectionChange={(tree, node) => this.onNavChange(node)}
