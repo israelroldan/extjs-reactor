@@ -51,11 +51,9 @@ export default class CardLayoutExample extends Component {
                 layout={{ type: 'card', animation }}
                 activeItem={this.state.activeCard} 
                 flex={1}
-                margin={Ext.os.is.Phone ? '10' : ''}
                 shadow
                 defaults={{
-                    scrollable: 'y',
-                    padding: 20
+                    scrollable: 'y'
                 }}
             >
                 <Panel bodyStyle={colors.card.blue} shadow>
@@ -67,21 +65,17 @@ export default class CardLayoutExample extends Component {
             </Container>
         )
 
-        if (Ext.os.is.Phone) {
-            return body;            
-        } else {
-            return (
-                <Container layout="vbox" padding="5 10 10 10">
-                    <Panel shadow ui="instructions" margin="0 0 20 0">
-                        <div>
-                            A <b>card</b> layout shows one item at a time.  Each item takes on the full height and width of the container.
-                            Card layouts can optionally be configured to animate when switching cards.
-                        </div>
-                    </Panel>
-                    { body }                    
-                </Container>
-            )
-        }
+        return (
+            <Container layout="vbox" padding="10">
+                <Panel shadow ui="instructions" margin="0 0 20 0">
+                    <div>
+                        A <b>card</b> layout shows one item at a time.  Each item takes on the full height and width of the container.
+                        Card layouts can optionally be configured to animate when switching cards.
+                    </div>
+                </Panel>
+                { body }                    
+            </Container>
+        )
     }
 
 }
