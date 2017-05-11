@@ -56,7 +56,7 @@ export default class MenuExample extends Component {
                         {...formFieldDefaults}
                     />
 
-                    <Label>side</Label>
+                    <div>side</div>
                     <SegmentedButton {...formFieldDefaults}>
                         <Button text="left" handler={() => this.setState({ side: 'left' })} pressed={this.state.side === 'left'}/>
                         <Button text="right" handler={() => this.setState({ side: 'right' })} pressed={this.state.side === 'right'}/>
@@ -64,13 +64,13 @@ export default class MenuExample extends Component {
                         <Button text="bottom" handler={() => this.setState({ side: 'bottom' })} pressed={this.state.side === 'bottom'}/>
                     </SegmentedButton>
 
-                    <Label>reveal</Label>
+                    <div>reveal</div>
                     <SegmentedButton {...formFieldDefaults}>
                         <Button text="true" pressed={this.state.reveal} handler={() => this.setState({ reveal: true })}/>
                         <Button text="false" pressed={!this.state.reveal} handler={() => this.setState({ reveal: false })}/>
                     </SegmentedButton>
 
-                    <Label>modal</Label>
+                    <div>modal</div>
                     <SegmentedButton disabled={reveal}>
                         <Button text="true" pressed={this.state.modal} handler={() => this.setState({ modal: true })}/>
                         <Button text="false" pressed={!this.state.modal} handler={() => this.setState({ modal: false })}/>
