@@ -59,6 +59,7 @@ export default class CandlestickChartExample extends Component {
                     onToggleCrosshair={this.toggleCrosshair}
                     onRefreshClick={this.refresh}
                     theme={theme}
+                    onlyMidnight
                 />
                 <Cartesian
                     shadow

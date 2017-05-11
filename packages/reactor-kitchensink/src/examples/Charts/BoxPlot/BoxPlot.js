@@ -34,6 +34,7 @@ export default class BoxPlotExample extends Component {
                     onToggleZoomOnPan={this.toggleZoomOnPan}
                     onRefreshClick={this.refresh}
                     theme={theme}
+                    onlyMidnight
                 />
                 <Cartesian
                     shadow

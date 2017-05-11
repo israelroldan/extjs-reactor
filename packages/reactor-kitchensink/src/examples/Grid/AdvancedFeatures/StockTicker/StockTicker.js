@@ -116,7 +116,7 @@ export default class StockTickerGridExample extends Component {
                 <TextColumn text="Last Updated" hidden width="115" cell={{bind:'{record.LastChange:date("m/d/Y H:i:s")}'}} sortable={false}/>
                 
                 <Toolbar docked="bottom" defaults={{ margin: '0 20 0 0' }}>
-                    <Label>Tick Delay:</Label>
+                    <Label html="Tick Delay"/>
                     <SliderField
                         padding="0 5"
                         minValue={200}
