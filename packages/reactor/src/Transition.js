@@ -144,7 +144,6 @@ Ext.define('Ext.reactor.Transition', {
             right: 0,
             style: {
                 // prevent new view from "flashing" in before animating in safari
-                // we use visibi
                 visibility: 'hidden'
             }
         });

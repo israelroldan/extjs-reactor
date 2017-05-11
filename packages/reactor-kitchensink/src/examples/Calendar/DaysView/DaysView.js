@@ -19,7 +19,6 @@ export default class CalendarDayViewExample extends Component {
                 title={Ext.Date.format(new Date(), 'F Y')}
                 layout="hbox"
                 header={{ titleAlign: 'center' }}
-                autoSize={false}
             >
                 <Panel
                     title="Calendars"

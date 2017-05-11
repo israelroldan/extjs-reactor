@@ -44,7 +44,8 @@
     "lodash.defaults": "^4.2.0",
     "lodash.isequalwith": "^4.4.0",
     "lodash.union": "^4.6.0",
-    "minimist": "^1.2.0"
+    "minimist": "^1.2.0",
+    "mkdirp": "^0.5.1"
   },
   "devDependencies": {
     "@extjs/sencha-cmd": "^6.5.0-177",

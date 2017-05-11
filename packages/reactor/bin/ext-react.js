@@ -4,7 +4,8 @@ const parseArgs = require('minimist'),
     fs = require('fs'),
     path = require('path'),
     sencha = require('@extjs/sencha-cmd'),
-    { fork } = require('child_process');
+    { fork } = require('child_process'), 
+    mkdirp = require('mkdirp');
 
 console.log('USING sencha: ', sencha);
 // A skeleton for a ext-react workspace.json file.
@@ -44,7 +45,7 @@ const ensurePackagesFolder = () => {
         const dir = path.join('.', 'ext-react', 'packages');
         fs.stat(dir, (err, stats) => {
             if(err || !stats.isDirectory()) {
-                fs.mkdir(dir, resolve.bind(null));
+                mkdirp(dir, resolve.bind(null));
             } else {
                 resolve();
             }

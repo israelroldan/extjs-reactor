@@ -25,7 +25,7 @@ module.exports = function (env) {
                 'calendar', 
                 'charts'
             ] : undefined,
-            theme: './theme-kitchensink',
+            theme: 'theme-kitchensink',
             production: isProd
         }),
         new webpack.EnvironmentPlugin({

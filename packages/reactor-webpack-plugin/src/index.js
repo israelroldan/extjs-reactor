@@ -275,6 +275,13 @@ module.exports = class ReactExtJSWebpackPlugin {
             const js = statements.join(';\n');
             const manifest = path.join(output, 'manifest.js');
 
+            // add ext-react/packages automatically if present
+            const userPackages = path.join('.', 'ext-react', 'packages');
+
+            if (fs.existsSync(userPackages)) {
+                packageDirs.push(userPackages)
+            }
+
             if (fs.existsSync(path.join(sdk, 'ext'))) {
                 // local checkout of the SDK repo
                 packageDirs.push(path.join('ext', 'packages'));
