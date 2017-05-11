@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Grid, Toolbar, Label, SegmentedButton, Button, Column } from '@extjs/ext-react';
+import { Container, Grid, Toolbar, SegmentedButton, Button, Column } from '@extjs/ext-react';
 import './data';
 
 Ext.require([
@@ -33,7 +33,7 @@ export default class GroupedGridExample extends Component {
         return (
             <Container layout="vbox" padding="10">
                 <Toolbar margin="0 0 20 0" shadow>
-                    <Label margin="0 10 0 0">Grouping:</Label>
+                    <div style={{ marginRight: '10px' }}>Grouping:</div>
                     <SegmentedButton label="Grouping">
                         <Button ui="toolbar-default" pressed text="ON" handler={this.onToggleGrouping.bind(this, true)}/>
                         <Button ui="toolbar-default" text="OFF" handler={this.onToggleGrouping.bind(this, false)}/>
