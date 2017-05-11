@@ -270,8 +270,8 @@ const root = {
                 { text: 'card', component: CardLayout, navIcon: 'icon-layout-card' },
                 { text: 'center', component: CenterLayout, navIcon: 'icon-layout-center' },
                 { text: 'fit', component: FitLayout, navIcon: 'icon-layout-fit' },
-                { text: 'form', component: FormLayout, navIcon: 'icon-layout-form' },
-                { text: 'hbox', component: HboxLayout, navIcon: 'icon-layout-horizontal-box', layout: 'auto' },
+                { text: 'form', component: FormLayout, layout: 'auto', navIcon: 'icon-layout-form' },
+                { text: 'hbox', component: HboxLayout, layout: 'auto', navIcon: 'icon-layout-horizontal-box' },
                 { text: 'resizable', component: Resizable, navIcon: 'icon-layout-box' },
                 { text: 'vbox', component: VboxLayout, layout: 'auto', navIcon: 'icon-layout-vertical-box' }
             ]},
