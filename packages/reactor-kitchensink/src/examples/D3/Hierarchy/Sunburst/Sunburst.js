@@ -66,10 +66,10 @@ export default class Sunburst extends Component {
                 plugins="responsive" 
                 layout={Ext.platformTags.phone ? 'vbox' : 'hbox'}
                 responsiveConfig={{
-                    'landscape': {
+                    'width > 600': {
                         layout: 'hbox'
                     },
-                    'portrait': {
+                    'width <= 600': {
                         layout: 'vbox'
                     }
                 }}
@@ -82,11 +82,11 @@ export default class Sunburst extends Component {
                     title={!Ext.platformTags.phone && "Folders"}
                     shadow
                     responsiveConfig={{
-                        'landscape': {
+                        'width > 600': {
                             width: 230,
                             height: undefined,
                         },
-                        'portrait': {
+                        'width <= 600': {
                             height: 200,
                             width: undefined
                         }

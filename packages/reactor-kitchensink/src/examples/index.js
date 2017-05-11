@@ -184,17 +184,22 @@ import CustomIcons from './Charts/Scatter/CustomIcons/CustomIcons';
 
 import Draw from './Draw/Draw';
 import Ripple from './Ripple/Ripple';
-import SalesPerEmployee from './SalesPerEmployee/SalesPerEmployee';
-import PurchasesByDay from './PurchasesByDay/PurchasesByDay';
-import PivotHeatmap from './PivotHeatmap/PivotHeatmap';
-import ConfigurablePivotHeatmap from './ConfigurablePivotHeatmap/ConfigurablePivotHeatmap';
-import D3TreeHierarchy from './D3TreeHierarchy/D3TreeHierarchy';
-import TreeMap from './TreeMap/TreeMap';
-import TreeMapTooltip from './TreeMapTooltip/TreeMapTooltip';
-import ConfigurablePivotTreeMap from './ConfigurablePivotTreeMap/ConfigurablePivotTreeMap';
-import Pack from './Pack/Pack';
-import Sunburst from './Sunburst/Sunburst';
-import ZoomableSunburst from './ZoomableSunburst/ZoomableSunburst'; 
+
+// D3
+
+import SalesPerEmployee from './D3/HeatMap/SalesPerEmployee/SalesPerEmployee';
+import PurchasesByDay from './D3/HeatMap/PurchasesByDay/PurchasesByDay';
+import PivotHeatmap from './D3/HeatMap/PivotHeatmap/PivotHeatmap';
+import ConfigurablePivotHeatmap from './D3/HeatMap/ConfigurablePivotHeatmap/ConfigurablePivotHeatmap';
+
+import D3TreeHierarchy from './D3/Hierarchy/D3TreeHierarchy/D3TreeHierarchy';
+import D3OrgChart from './D3/Hierarchy/OrgChart/OrgChart';
+import TreeMap from './D3/Hierarchy/TreeMap/TreeMap';
+import TreeMapTooltip from './D3/Hierarchy/TreeMapTooltip/TreeMapTooltip';
+import ConfigurablePivotTreeMap from './D3/Hierarchy/ConfigurablePivotTreeMap/ConfigurablePivotTreeMap';
+import Pack from './D3/Hierarchy/Pack/Pack';
+import Sunburst from './D3/Hierarchy/Sunburst/Sunburst';
+import ZoomableSunburst from './D3/Hierarchy/ZoomableSunburst/ZoomableSunburst'; 
 
 // Layouts
 
@@ -207,6 +212,7 @@ import Resizable from './Layouts/resizable/resizable';
 import CenterLayout from './Layouts/center/center';
 
 // Drag & Drop
+
 import SimpleDandD from './DragAndDrop/Simple/Simple';
 import Constrains from './DragAndDrop/Constraints/Constraints';
 import Proxies from './DragAndDrop/Proxies/Proxies';
@@ -387,13 +393,14 @@ const root = {
                 { text: 'Configurable Pivot Heatmap', component: ConfigurablePivotHeatmap, navIcon: 'icon-d3-view-heatmap-pivot-configurator' }
             ]},
             { text: 'Hierarchy', navIcon: 'icon-d3-hierarchy', children: [
-                { text: 'D3 Tree Hierarchy', component: D3TreeHierarchy, navIcon: 'icon-d3-view-tree' },
+                { text: 'Org Chart', component: D3OrgChart, navIcon: 'icon-d3-view-sencha-tree' },
+                { text: 'Pack', component: Pack, navIcon: 'icon-d3-view-pack' },
+                { text: 'Sunburst', component: Sunburst, navIcon: 'icon-d3-view-sunburst' },
+                { text: 'Zoomable Sunburst', component: ZoomableSunburst, navIcon: 'icon-d3-view-sunburst-zoom' },
+                { text: 'Tree', component: D3TreeHierarchy, navIcon: 'icon-d3-view-tree' },
                 { text: 'TreeMap', component: TreeMap, navIcon: 'icon-d3-view-treemap' },
                 { text: 'TreeMap Tooltip', component: TreeMapTooltip, navIcon: 'icon-d3-view-treemap-tooltip' },
-                { text: 'Configurable Pivot TreeMap', component: ConfigurablePivotTreeMap, navIcon: 'icon-d3-view-treemap-pivot-configurator' },
-                { text: 'Pack', component: Pack, navIcon: 'icon-d3-view-pack' },
-                { text: 'Sunburst', component: Sunburst, navIcon: 'icon-d3-view-sunburts' },
-                { text: 'Zoomable Sunburst', component: ZoomableSunburst, navIcon: 'icon-d3-view-sunburts-zoom' }
+                { text: 'Configurable Pivot TreeMap', component: ConfigurablePivotTreeMap, navIcon: 'icon-d3-view-treemap-pivot-configurator' }
             ]}
         ] },
         { text: 'Grids', navIcon: 'icon-grids', children: [
