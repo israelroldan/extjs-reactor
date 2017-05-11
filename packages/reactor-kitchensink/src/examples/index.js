@@ -291,7 +291,7 @@ const root = {
                 { text: 'Video', navIcon: 'icon-video', component: Video },
                 { text: 'Audio', navIcon: 'icon-audio', component: Audio }
             ] },
-            { text: 'Panel', component: Panel, layout: 'center', navIcon: 'icon-panel' },
+            { text: 'Panel', component: Panel, layout: 'center', navIcon: 'icon-panels' },
             { text: 'Popups', navIcon: 'icon-windows', children: [
                 { text: 'Dialog', component: Dialog, layout: 'center', navIcon: 'icon-basic-dialog' },
                 { text: 'Msg', component: Msg, layout: 'center', navIcon: 'icon-overlays' },
@@ -340,14 +340,14 @@ const root = {
                 { text: 'Basic Column', component: BasicColumn, navIcon: 'icon-column-basic' },
                 { text: 'Stacked', component: Stacked, navIcon: 'icon-column-stacked' },
                 { text: 'Column With Renderer', component: ColumnWithRenderer, navIcon: 'icon-column-renderer' },
-                { text: 'Multiaxis Column', component: MultiaxisColumn, navIcon: 'icon-columng-multi-axis' }
+                { text: 'Multiaxis Column', component: MultiaxisColumn, navIcon: 'icon-column-multi-axis' }
             ] },
             { text: '3D Column', navIcon: 'icon-column-3d', children: [
                 { text: 'Basic 3D Column', component: Basic3DColumn, navIcon: 'icon-column-basic-3d' },
                 { text: '3D Grouped', component: ThreeDGrouped, navIcon: 'icon-column-grouped-3d' },
-                { text: '3D Stacked', component: ThreeDStacked, navIcon: 'icon-column-sacked-3d' },
+                { text: '3D Stacked', component: ThreeDStacked, navIcon: 'icon-column-stacked-3d' },
                 { text: 'Negative Values', component: NegativeValues, navIcon: 'icon-column-negative-3d' },
-                { text: '3D Column With Renderer', component: ThreeDColumnWithRenderer, navIcon: 'icon-column-renerer-3d' }
+                { text: '3D Column With Renderer', component: ThreeDColumnWithRenderer, navIcon: 'icon-column-renderer-3d' }
             ]},
             { text: 'Financial', navIcon: 'icon-financial-charts', children: [
                 { text: 'Candlestick', component: Candlestick, navIcon: 'icon-financial-candlestick' },
