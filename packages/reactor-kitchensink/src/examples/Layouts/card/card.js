@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Panel, Button } from '@extjs/ext-react';
+import colors from '../../colors';
 
 export default class CardLayoutExample extends Component {
 
@@ -11,24 +12,35 @@ export default class CardLayoutExample extends Component {
         this.setState({ activeCard: this.state.activeCard === 0 ? 1 : 0, animation });
     }
 
-    createCardContents() {
-        return [
-            { name: 'Slide Left', animation: { type: 'slide', direction: 'left', duration: 500 } },
-            { name: 'Slide Right', animation: { type: 'slide', direction: 'right', duration: 500 } },
-            { name: 'Slide Up', animation: { type: 'slide', direction: 'up', duration: 500 } },
-            { name: 'Slide Down', animation: { type: 'slide', direction: 'down', duration: 500 } },
-            { name: 'Cover Left', animation: { type: 'cover', direction: 'left', duration: 500 } },
-            { name: 'Cover Right', animation: { type: 'cover', direction: 'right', duration: 500 } },
-            { name: 'Cover Up', animation: { type: 'cover', direction: 'up', duration: 500 } },
-            { name: 'Cover Down', animation: { type: 'cover', direction: 'down', duration: 500 } },
-            { name: 'Reveal Left', animation: { type: 'reveal', direction: 'left', duration: 500 } },
-            { name: 'Reveal Right', animation: { type: 'reveal', direction: 'right', duration: 500 } },
-            { name: 'Reveal Up', animation: { type: 'reveal', direction: 'up', duration: 500 } },
-            { name: 'Reveal Down', animation: { type: 'reveal', direction: 'down', duration: 500 } },
-            { name: 'Fade', animation: { type: 'fade', duration: 500 } },
-            { name: 'Pop', animation: { type: 'pop', duration: 500 } },
-            { name: 'Flip', animation: { type: 'flip', duration: 500 } }
-        ].map(({name, animation}, i) => <Button key={i} onTap={this.switchCards.bind(this, animation)} text={name}/>);
+    createCardContents(ui) {
+        const animationDefaults = {
+            duration: 500,
+            easing: 'ease-in-out'
+        };
+
+        const contents = [
+            { text: 'Slide Left', animation: { type: 'slide', direction: 'left', ...animationDefaults } },
+            { text: 'Slide Right', animation: { type: 'slide', direction: 'right', ...animationDefaults } },
+            { text: 'Slide Up', animation: { type: 'slide', direction: 'up', ...animationDefaults } },
+            { text: 'Slide Down', margin: '0 0 20 0', animation: { type: 'slide', direction: 'down', ...animationDefaults } },
+            { text: 'Cover Left', animation: { type: 'cover', direction: 'left', ...animationDefaults } },
+            { text: 'Cover Right', animation: { type: 'cover', direction: 'right', ...animationDefaults } },
+            { text: 'Cover Up', animation: { type: 'cover', direction: 'up', ...animationDefaults } },
+            { text: 'Cover Down', margin: '0 0 20 0', animation: { type: 'cover', direction: 'down', ...animationDefaults } },
+            { text: 'Reveal Left', animation: { type: 'reveal', direction: 'left', ...animationDefaults } },
+            { text: 'Reveal Right', animation: { type: 'reveal', direction: 'right', ...animationDefaults } },
+            { text: 'Reveal Up', animation: { type: 'reveal', direction: 'up', ...animationDefaults } },
+            { text: 'Reveal Down', margin: '0 0 20 0', animation: { type: 'reveal', direction: 'down', ...animationDefaults } },
+            { text: 'Fade', animation: { type: 'fade', ...animationDefaults } },
+            { text: 'Pop', animation: { type: 'pop', ...animationDefaults } },
+            { text: 'Flip', animation: { type: 'flip', ...animationDefaults } }
+        ].map(({animation, ...props}, i) => <Button { ...props } key={i} ui={ui} onTap={this.switchCards.bind(this, animation)}/>);
+
+        return (
+            <Container layout={{ type: 'vbox', pack: 'center'}}>
+                {contents}
+            </Container>
+        )
     }
 
     render() {
@@ -41,12 +53,16 @@ export default class CardLayoutExample extends Component {
                 flex={1}
                 margin={Ext.os.is.Phone ? '10' : ''}
                 shadow
+                defaults={{
+                    scrollable: 'y',
+                    padding: 20
+                }}
             >
-                <Panel title="Card 1" layout={{ type: 'vbox', align: 'center', pack: 'center' }}>
-                    {this.createCardContents()}
+                <Panel bodyStyle={colors.card.blue} shadow>
+                    {this.createCardContents('alt')}
                 </Panel>
-                <Panel title="Card 2" layout={{ type: 'vbox', align: 'center', pack: 'center' }}>
-                    {this.createCardContents()}
+                <Panel bodyStyle={colors.card.green} shadow>
+                    {this.createCardContents('alt')}
                 </Panel>
             </Container>
         )
