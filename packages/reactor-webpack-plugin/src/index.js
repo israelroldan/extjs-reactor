@@ -190,8 +190,8 @@ module.exports = class ReactExtJSWebpackPlugin {
         if (!sdk) {
             try {
                 build.sdk = path.dirname(resolve('@extjs/ext-react', { basedir: process.cwd() }))
-                build.packageDirs = [...(build.packageDirs || []), path.dirname(build.sdk)]; 
-                build.packages = build.packages || this._findPackages(build);
+                build.packageDirs = [...(build.packageDirs || []), path.dirname(build.sdk)];
+                build.packages = build.packages || this._findPackages(build.sdk);
             } catch (e) {
                 throw new Error(`@extjs/ext-react not found.  You can install it with "npm install --save @extjs/ext-react" or, if you have a local copy of the SDK, specify the path to it using the "sdk" option in build "${name}."`);
             }
@@ -204,20 +204,21 @@ module.exports = class ReactExtJSWebpackPlugin {
      * @param {String} sdk Path to ext-react
      * @return {String[]}
      */
-    _findPackages({sdk, theme, toolkit}) {
+    _findPackages(sdk) {
         const modulesDir = path.join(sdk, '..');
       
         return fs.readdirSync(modulesDir)
-            // Filter out theme packages -- Cmd will figure these out during build.
-            .filter(dir => !dir.match(/ext-react-.*-theme/))
             // Filter out directories without 'package.json'
             .filter(dir => fs.existsSync(path.join(modulesDir, dir, 'package.json')))
             // Generate array of package names
             .map(dir => {
                 const packageInfo = JSON.parse(fs.readFileSync(path.join(modulesDir, dir, 'package.json')));
-                if(packageInfo.sencha) return packageInfo.sencha.name;
+                // Don't include theme type packages.
+                if(packageInfo.sencha && packageInfo.sencha.type !== 'theme') {
+                    return packageInfo.sencha.name;
+                }
             })
-            // Incase any undefineds make it in.
+            // Remove any undefineds from map
             .filter(name => name);
     }
 
