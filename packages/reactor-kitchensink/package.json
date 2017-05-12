@@ -33,6 +33,7 @@
     "@extjs/ext-react-treegrid": "^6.5.0",
     "@extjs/ext-react-ux": "^6.5.0",
     "@extjs/reactor": "^1.0.0",
+    "babel-polyfill": "^6.23.0",
     "babel-runtime": "^6.23.0",
     "d3": "4.5.0",
     "highlightjs": "^9.8.0",

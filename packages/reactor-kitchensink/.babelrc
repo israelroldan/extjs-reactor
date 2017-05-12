@@ -5,7 +5,7 @@
     "react"
   ],
   "plugins": [
-    "@extjs/reactor-babel-plugin",
-    "transform-runtime"
+    "transform-runtime",
+    "@extjs/reactor-babel-plugin"
   ]
 }
