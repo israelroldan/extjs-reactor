@@ -2,6 +2,7 @@
 
 import fs from 'fs';
 import path from 'path';
+import cjson from 'cjson';
 import { sync as mkdirp } from 'mkdirp';
 import extractFromJSX from './extractFromJSX';
 import { sync as rimraf } from 'rimraf';
@@ -189,8 +190,8 @@ module.exports = class ReactExtJSWebpackPlugin {
         if (!sdk) {
             try {
                 build.sdk = path.dirname(resolve('@extjs/ext-react', { basedir: process.cwd() }))
-                build.packageDirs = [...(build.packageDirs || []), path.dirname(build.sdk)];
-                build.packages = build.packages || this._findPackages(build.sdk);
+                build.packageDirs = [...(build.packageDirs || []), path.dirname(build.sdk)]; 
+                build.packages = build.packages || this._findPackages(build);
             } catch (e) {
                 throw new Error(`@extjs/ext-react not found.  You can install it with "npm install --save @extjs/ext-react" or, if you have a local copy of the SDK, specify the path to it using the "sdk" option in build "${name}."`);
             }
@@ -203,24 +204,21 @@ module.exports = class ReactExtJSWebpackPlugin {
      * @param {String} sdk Path to ext-react
      * @return {String[]}
      */
-    _findPackages(sdk) {
-        const packages = [];
+    _findPackages({sdk, theme, toolkit}) {
         const modulesDir = path.join(sdk, '..');
-        const dirs = fs.readdirSync(modulesDir);
-
-        for (let dir of dirs) {
-            const packageJson = path.join(modulesDir, dir, 'package.json');
-
-            if (fs.existsSync(packageJson)) {
-                const packageInfo = JSON.parse(fs.readFileSync(packageJson));
-
-                if (packageInfo.sencha) {
-                    packages.push(packageInfo.sencha.name);
-                }
-            }
-        }
-
-        return packages;
+      
+        return fs.readdirSync(modulesDir)
+            // Filter out theme packages -- Cmd will figure these out during build.
+            .filter(dir => !dir.match(/ext-react-.*-theme/))
+            // Filter out directories without 'package.json'
+            .filter(dir => fs.existsSync(path.join(modulesDir, dir, 'package.json')))
+            // Generate array of package names
+            .map(dir => {
+                const packageInfo = JSON.parse(fs.readFileSync(path.join(modulesDir, dir, 'package.json')));
+                if(packageInfo.sencha) return packageInfo.sencha.name;
+            })
+            // Incase any undefineds make it in.
+            .filter(name => name);
     }
 
     /**
