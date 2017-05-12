@@ -1,6 +1,6 @@
 {
   "name": "@extjs/reactor-scratch-pad",
-  "version": "0.2.18",
+  "version": "1.0.0",
   "main": "index.js",
   "private": true,
   "scripts": {
@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/sencha/extjs-reactor#readme",
   "dependencies": {
-    "@extjs/reactor": "^0.2.13",
+    "@extjs/reactor": "^1.0.0",
     "babel-runtime": "^6.23.0",
     "d3": "4.5.0",
     "highlightjs": "^9.8.0",
@@ -33,8 +33,8 @@
     "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
-    "@extjs/reactor-babel-plugin": "^0.2.9",
-    "@extjs/reactor-webpack-plugin": "^0.2.18",
+    "@extjs/reactor-babel-plugin": "^1.0.0",
+    "@extjs/reactor-webpack-plugin": "^1.0.0",
     "babel-core": "^6.17.0",
     "babel-loader": "^6.2.5",
     "babel-plugin-transform-runtime": "^6.23.0",
