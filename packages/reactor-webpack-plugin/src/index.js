@@ -2,6 +2,7 @@
 
 import fs from 'fs';
 import path from 'path';
+import cjson from 'cjson';
 import { sync as mkdirp } from 'mkdirp';
 import extractFromJSX from './extractFromJSX';
 import { sync as rimraf } from 'rimraf';
@@ -190,7 +191,7 @@ module.exports = class ReactExtJSWebpackPlugin {
             try {
                 build.sdk = path.dirname(resolve('@extjs/ext-react', { basedir: process.cwd() }))
                 build.packageDirs = [...(build.packageDirs || []), path.dirname(build.sdk)]; 
-                build.packages = build.packages || this._findPackages(build.sdk);
+                build.packages = build.packages || this._findPackages(build);
             } catch (e) {
                 throw new Error(`@extjs/ext-react not found.  You can install it with "npm install --save @extjs/ext-react" or, if you have a local copy of the SDK, specify the path to it using the "sdk" option in build "${name}."`);
             }
@@ -203,24 +204,61 @@ module.exports = class ReactExtJSWebpackPlugin {
      * @param {String} sdk Path to ext-react
      * @return {String[]}
      */
-    _findPackages(sdk) {
-        const packages = [];
+    _findPackages({sdk, theme, toolkit}) {
         const modulesDir = path.join(sdk, '..');
-        const dirs = fs.readdirSync(modulesDir);
 
-        for (let dir of dirs) {
-            const packageJson = path.join(modulesDir, dir, 'package.json');
-            
-            if (fs.existsSync(packageJson)) {
-                const packageInfo = JSON.parse(fs.readFileSync(packageJson));
+        return fs.readdirSync(modulesDir)
+            // Filter out theme packages -- add later
+            .filter(dir => !dir.match(/ext-react-.*-theme/))
+            // Filter out directories without 'package.json'
+            .filter(dir => fs.existsSync(path.join(modulesDir, dir, 'package.json')))
+            // Generate array of package names
+            .map(dir => {
+                const packageInfo = JSON.parse(fs.readFileSync(path.join(modulesDir, dir, 'package.json')));
+                if(packageInfo.sencha) return packageInfo.sencha.name;
+            })
+            // Incase any undefineds make it in.
+            .filter(name => name)
+            // Add only required theme packages.
+            .concat(this._findThemePackages(theme, toolkit));
+    }
 
-                if (packageInfo.sencha) {
-                    packages.push(packageInfo.sencha.name);
-                }
+    /**
+     * Special handling of theme packages.  Only themes that are part of the dependency tree are included
+     * in 'packages' array (which translates to app.json 'requires' array).
+     * 
+     * @private
+     * @param {String} theme Path to custom theme, or name of framework theme.
+     * @param {String} toolkit modern | classic
+     */
+    _findThemePackages(theme, toolkit, packageNames = []) {
+        let packageJson;
+        try {
+            // Try first if theme is a path to theme package.
+            packageJson = cjson.parse(fs.readFileSync(path.join(process.cwd(), theme, 'package.json'), 'utf-8'));
+            // Don't add user packages to requires, just use it to continue to walk dependency tree:
+            return this._findThemePackages((packageJson.sencha || packageJson).extend, toolkit, packageNames);
+        } catch(e) {
+            try {
+                // Otherwise look for theme in node_modules.
+                packageJson = cjson.parse(fs.readFileSync(path.join('node_modules', '@extjs', `ext-react-${toolkit}-${theme}`, 'package.json'), 'utf-8'));
+            } catch(e) {
+                // This should never happen in production.
+                throw new Error(`Could not find theme ${theme} in toolkit ${toolkit}!`);
             }
         }
 
-        return packages;
+        // This should never happen in production.
+        if(!packageJson.sencha) throw new Error(`No sencha in package.json for theme named: ${theme}`);
+
+        packageNames.push(packageJson.sencha.name);
+
+        // Once a theme no longer extends anything, we are done.
+        if(!packageJson.sencha.extend) {
+            return packageNames;
+        } else {
+            return this._findThemePackages(packageJson.sencha.extend, toolkit, packageNames);
+        }
     }
 
     /**
