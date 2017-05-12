@@ -208,7 +208,7 @@ module.exports = class ReactExtJSWebpackPlugin {
         const modulesDir = path.join(sdk, '..');
       
         return fs.readdirSync(modulesDir)
-            // Filter out theme packages -- add later
+            // Filter out theme packages -- Cmd will figure these out during build.
             .filter(dir => !dir.match(/ext-react-.*-theme/))
             // Filter out directories without 'package.json'
             .filter(dir => fs.existsSync(path.join(modulesDir, dir, 'package.json')))
@@ -218,47 +218,7 @@ module.exports = class ReactExtJSWebpackPlugin {
                 if(packageInfo.sencha) return packageInfo.sencha.name;
             })
             // Incase any undefineds make it in.
-            .filter(name => name)
-            // Add only required theme packages.
-            .concat(this._findThemePackages(theme, toolkit));
-    }
-
-    /**
-     * Special handling of theme packages.  Only themes that are part of the dependency tree are included
-     * in 'packages' array (which translates to app.json 'requires' array).
-     * 
-     * @private
-     * @param {String} theme Path to custom theme, or name of framework theme.
-     * @param {String} toolkit modern | classic
-     */
-    _findThemePackages(theme, toolkit, packageNames = []) {
-        let packageJson;
-        try {
-            // Try first if theme is a path to theme package.
-            packageJson = cjson.parse(fs.readFileSync(path.join(process.cwd(), theme, 'package.json'), 'utf-8'));
-            // Don't add user packages to requires, just use it to continue to walk dependency tree:
-            return this._findThemePackages((packageJson.sencha || packageJson).extend, toolkit, packageNames);
-        } catch(e) {
-            try {
-                // Otherwise look for theme in node_modules.
-                packageJson = cjson.parse(fs.readFileSync(path.join('node_modules', '@extjs', `ext-react-${toolkit}-${theme}`, 'package.json'), 'utf-8'));
-            } catch(e) {
-                // This should never happen in production.
-                throw new Error(`Could not find theme ${theme} in toolkit ${toolkit}!`);
-            }
-        }
-
-        // This should never happen in production.
-        if(!packageJson.sencha) throw new Error(`No sencha in package.json for theme named: ${theme}`);
-
-        packageNames.push(packageJson.sencha.name);
-
-        // Once a theme no longer extends anything, we are done.
-        if(!packageJson.sencha.extend) {
-            return packageNames;
-        } else {
-            return this._findThemePackages(packageJson.sencha.extend, toolkit, packageNames);
-        }
+            .filter(name => name);
     }
 
     /**
