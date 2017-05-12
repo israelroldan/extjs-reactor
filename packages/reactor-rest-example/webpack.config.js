@@ -11,7 +11,7 @@ module.exports = function (env) {
 
     const plugins = [
         new ExtJSReactorWebpackPlugin({
-            theme: './ext-react-packages/theme-rest-example',
+            theme: 'theme-rest-example',
             production: isProd
         }),
         new webpack.EnvironmentPlugin({
