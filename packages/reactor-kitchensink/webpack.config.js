@@ -13,7 +13,7 @@ module.exports = function (env) {
 
     const plugins = [
         new ExtJSReactorWebpackPlugin({
-            sdk: local ? 'ext' : undefined, // you need to copy the Ext JS SDK to the root of this package, or you can specify a full path to some other location
+            sdk: local ? 'ext' : undefined,
             packages: local ? [
                 'font-ext', 
                 'ux', 
@@ -26,6 +26,9 @@ module.exports = function (env) {
                 'charts'
             ] : undefined,
             theme: 'theme-kitchensink',
+            overrides: [
+                path.join('.', 'ext-react', 'overrides')
+            ],
             production: isProd
         }),
         new webpack.EnvironmentPlugin({
