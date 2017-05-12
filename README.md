@@ -53,14 +53,14 @@ Here's a minimal React app that renders an Ext.Panel using the modern toolkit:
 ```jsx
 import React from 'react';
 import { launch } from '@extjs/reactor';
-import { Panel } from '@extjs/reactor/modern';
+import { Panel } from '@extjs/ext-react';
 
 // Install the Ext JS custom renderer
 launch(
-    <Panel title="React Ext JS">
+    <Panel title="ExtReact">
         Hello World!
     </Panel>
-});
+);
 ```
 
 ### Importing Components
@@ -68,7 +68,7 @@ launch(
 Any Ext JS component can be imported by the camel-cased version of it's xtype.  For example, 
 
 ```jsx
-import { Grid } from '@extjs/reactor/modern';
+import { Grid } from '@extjs/ext-react';
 ```
 
 When using the classic toolkit, import from `@extjs/reactor/classic`:
@@ -80,7 +80,7 @@ import { Grid } from '@extjs/reactor/classic';
 Dashes in xtypes should be converted to underscores.  For example:
 
 ```jsx
-import { D3_HeatMap } from '@extjs/reactor/modern';
+import { D3_HeatMap } from '@extjs/ext-react';
 ```
 
 ### Configuring Components
@@ -89,7 +89,7 @@ React props are converted to Ext JS configs.  Here's a typical use of an Ext.gri
 
 ```jsx
 import React, { Component } from 'react';
-import { Grid } from '@extjs/reactor/modern';
+import { Grid } from '@extjs/ext-react';
 
 export default class MyComponent extends Component {
     render() {        
@@ -121,7 +121,7 @@ Any prop starting with "on" followed by a capital letter is automatically conver
 
 ```jsx
 import React, { Component } from 'react';
-import { Slider } from '@extjs/reactor/modern';
+import { Slider } from '@extjs/ext-react';
 
 export default function MyComponent() {
     return (
@@ -139,7 +139,7 @@ You can also use a listeners object as is common in traditional Ext JS:
 
 ```jsx
 import React, { Component } from 'react';
-import { Slider } from '@extjs/reactor/modern';
+import { Slider } from '@extjs/ext-react';
 
 export default function MyComponent() {
     return (
@@ -186,7 +186,7 @@ Refs point to Ext JS component instances:
 
 ```jsx
 import React, { Component } from 'react';
-import { Slider } from '@extjs/reactor/modern';
+import { Slider } from '@extjs/ext-react';
 
 export default class MyComponent {
     render() {
@@ -284,7 +284,7 @@ Ext.define('MyPackage.view.MyGrid', {
 You could import and use that component using:
 
 ```jsx
-import { MyGrid } from '@extjs/reactor/modern';
+import { MyGrid } from '@extjs/ext-react';
 ```
 
 If your component doesn't have an xtype, you can using the `reactify` function to convert any Ext JS component into a react component:
@@ -339,7 +339,7 @@ This is a monorepo that uses lerna.  After cloning, run `npm install` then `lern
 * [@extjs/reactor-webpack-plugin](https://github.com/sencha/extjs-reactor/tree/master/packages/reactor-webpack-plugin) - Integrates Webpack with Sencha Cmd to produce optimized builds of Ext JS
 * [@extjs/reactor-babel-plugin](https://github.com/sencha/extjs-reactor/tree/master/packages/reactor-babel-plugin) - Allows you to load reactified Ext JS components using ES6 import syntax.
 * [@extjs/reactor-boilerplate](https://github.com/sencha/extjs-reactor/tree/master/packages/reactor-boilerplate) - An example project using React, Webpack, and Ext JS 6 with the modern toolkit.
-* [@extjs/reactor-classic-boilerplate](https://github.com/sencha/extjs-reactor/tree/master/packages/reactor-boilerplate) - An example project using React, Webpack, and Ext JS 6 with the classic toolkit.
+* [@extjs/reactor-classic-boilerplate](https://github.com/sencha/extjs-reactor/tree/master/packages/reactor-classic-boilerplate) - An example project using React, Webpack, and Ext JS 6 with the classic toolkit.
 
 # Contributing
 

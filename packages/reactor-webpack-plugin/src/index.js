@@ -110,8 +110,8 @@ module.exports = class ReactExtJSWebpackPlugin {
 
                 if (module.resource && module.resource.match(this.test) && !module.resource.match(/node_modules/)) {
                     const doParse = () => {
-                        this.dependencies[this.currentFile] = [ 
-                            ...(this.dependencies[this.currentFile] || []), 
+                        this.dependencies[this.currentFile] = [
+                            ...(this.dependencies[this.currentFile] || []),
                             ...this.manifestExtractor(module._source._value, compilation, module)
                         ];
                     };
@@ -206,7 +206,7 @@ module.exports = class ReactExtJSWebpackPlugin {
      */
     _findPackages({sdk, theme, toolkit}) {
         const modulesDir = path.join(sdk, '..');
-
+      
         return fs.readdirSync(modulesDir)
             // Filter out theme packages -- add later
             .filter(dir => !dir.match(/ext-react-.*-theme/))

@@ -40,9 +40,9 @@ export default class ButtonExample extends Component {
             <Container padding="10">
                 <Container 
                     layout={{ type: 'hbox', pack: Ext.os.is.Phone ? 'center' : 'left'}} 
-                    width="100%"
                     margin="0 0 10 0" 
                     defaults={{ margin: "0 10 0 0" }}
+                    width={Ext.isIE && 550}
                 >
                     <Button ui="action raised" text="Style">
                         <Menu defaults={{ handler: this.onStyleChange, group: 'buttonstyle' }}>

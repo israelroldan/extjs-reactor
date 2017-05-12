@@ -61,6 +61,7 @@ export default class BasicColumnChartExample extends Component {
                     shadow
                     insetPadding="20 10"
                     store={this.store}
+                    theme={theme}
                     axes={[{
                         type: 'numeric',
                         position: 'left',
