@@ -13,7 +13,7 @@
     "type": "git",
     "url": "git+https://github.com/sencha/extjs-reactor.git"
   },
-  "author": "Sencha",
+  "author": "Sencha, Inc.",
   "license": "MIT",
   "homepage": "https://github.com/sencha/extjs-reactor/tree/master/packages/reactor-babel-plugin",
   "devDependencies": {

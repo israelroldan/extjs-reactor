@@ -14,7 +14,7 @@
     "type": "git",
     "url": "git+https://github.com/sencha/extjs-reactor.git"
   },
-  "author": "Sencha",
+  "author": "Sencha, Inc.",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/sencha/extjs-reactor/issues"
