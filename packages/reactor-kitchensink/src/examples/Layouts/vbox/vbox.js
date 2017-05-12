@@ -7,7 +7,7 @@ export default class VBoxLayoutExample extends Component {
     render() {
 
         const panelProps = {
-            minHeight: 175,
+            height: 175,
             margin: '0 0 40 0',
             defaults: {
                 layout: 'center'
