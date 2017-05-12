@@ -141,4 +141,6 @@ $content-panel-grid-background: dynamic(darken($content-panel-grid-line, 5%));
   font-size: 18px;
 }
 
-
+.app-navview > .x-body-el > .x-component {
+  max-width: 100%;
+}
