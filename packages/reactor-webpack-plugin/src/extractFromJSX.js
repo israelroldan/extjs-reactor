@@ -2,16 +2,18 @@
 
 import { parse } from 'babylon';
 import traverse from 'ast-traverse';
+import generate from 'babel-generator';
 
-const COMPONENT_MODULE_PATTERN = /^@extjs\/reactor\/(modern|classic)$/;
+const OLD_MODULE_PATTERN = /^@extjs\/reactor\/modern$/;
+const MODULE_PATTERN = /^@extjs\/(ext-react.*|reactor\/classic)$/;
 
 /**
  * Extracts Ext.create equivalents from jsx tags so that cmd knows which classes to include in the bundle
  * @param {String} js The javascript code
- * @param {String} prefix The prefix that denotes an Ext JS xtype
+ * @param {Compilation} compilation The webpack compilation object
  * @returns {Array} An array of Ext.create statements
  */
-module.exports = function extractFromJSX(js) {
+module.exports = function extractFromJSX(js, compilation, module) {
     const statements = [];
     const types = {};
 
@@ -40,8 +42,8 @@ module.exports = function extractFromJSX(js) {
      * @param {Node} reactifyArgNode The argument passed to reactify()
      */
     function addType(varName, reactifyArgNode) {
-        if (reactifyArgNode.type === 'Literal') {
-            types[varName] = { xtype: `"${reactifyArgNode.value}"` };
+        if (reactifyArgNode.type === 'StringLiteral') {
+            types[varName] = { xtype: reactifyArgNode.value };
         } else {
             types[varName] = { xclass: `"${js.slice(reactifyArgNode.start, reactifyArgNode.end)}"` };
         }
@@ -50,7 +52,12 @@ module.exports = function extractFromJSX(js) {
     traverse(ast, {
         pre: function(node) {
             if (node.type == 'ImportDeclaration') {
-                if (node.source.value.match(COMPONENT_MODULE_PATTERN)) {
+                if (node.source.value.match(OLD_MODULE_PATTERN) || node.source.value.match(MODULE_PATTERN)) {
+
+                    if (node.source.value.match(OLD_MODULE_PATTERN)) {
+                        compilation.warnings.push(`${module.resource}: ${node.source.value} is deprecated, use @extjs/ext-react instead.`);
+                    }
+
                     // look for: import { Grid } from '@extjs/reactor
                     for (let spec of node.specifiers) {
                         types[spec.local.name] = {xtype: `"${spec.imported.name.toLowerCase().replace(/_/g, '-')}"`};
@@ -87,43 +94,24 @@ module.exports = function extractFromJSX(js) {
                 }
             }
 
-            // convert reactified components to Ext.create calls to put in the manifest
-            if (node.type === 'JSXOpeningElement') {
-                const tag = node.name.name;
-                const type = types[tag];
+            // Convert React.createElement(...) calls to the equivalent Ext.create(...) calls to put in the manifest.
+            if (node.type === 'CallExpression' && node.callee.object && node.callee.object.name === 'React' && node.callee.property.name === 'createElement') {
+                const [tag, props] = node.arguments;
+                const type = types[tag.name];
 
                 if (type) {
-                    const configs = { ...type };
+                    let config;
 
-                    for (let attribute of node.attributes) {
-                        if (!attribute.name) continue; // will get here when using object spread, for example: <Panel {...props}/>
-                        const name = attribute.name.name;
-                        const valueNode = attribute.value;
-
-                        if (!valueNode) {
-                            configs[name] = 'true';
-                        } else if (valueNode.type === 'JSXExpressionContainer') {
-                            try {
-                                const { expression } = valueNode;
-
-                                if (expression.type.indexOf('Function') === -1) {
-                                    configs[name] = js.slice(expression.start, expression.end);
-                                }
-                            } catch (e) {
-                                // will get here if the value contains jsx or something else that can't be converted back to js
-                            }
-                        } else if (valueNode.type.match(/Literal$/i)) {
-                            configs[name] = `"${valueNode.value}"`;
+                    if (Array.isArray(props.properties)) {
+                        config = generate(props).code;
+                        for (let key in type) {
+                            config = `{\n  ${key}: '${type[key]}',${config.slice(1)}`;
                         }
+                    } else {
+                        config = JSON.stringify(type);
                     }
 
-                    const values = [];
-
-                    for (let name in configs) {
-                        values.push(`${name}: ${configs[name]}`)
-                    }
-
-                    statements.push(`Ext.create({${values.join(', ')}})`);
+                    statements.push(`Ext.create(${config})`);
                 }
             }
         }
@@ -132,9 +120,7 @@ module.exports = function extractFromJSX(js) {
     // ensure that all imported classes are present in the build even if they aren't used,
     // otherwise the call to reactify will fail
     for (let key in types) {
-        const type = types[key];
-        const config = Object.keys(type).map(key => `${key}: ${type[key]}`).join(', ');
-        statements.push(`Ext.create({${config}})`)
+        statements.push(`Ext.create(${JSON.stringify(types[key])})`)
     }
 
     return statements;

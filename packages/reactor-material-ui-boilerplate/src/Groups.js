@@ -1,23 +1,22 @@
 import React, { Component } from 'react';
 import { groups } from './data';
 import TextField from 'material-ui/TextField';
-import { Grid } from '@extjs/reactor/modern';
+import { Grid } from '@extjs/ext-react';
 import styles from './styles';
 
 export default class Groups extends Component {
 
-    constructor(props) {
-        super(props);
+    store = Ext.create('Ext.data.Store', {
+        data: groups
+    })
 
-        this.store = Ext.create('Ext.data.Store', {
-            data: groups
-        });
-    }
-
-    onSearch() {
+    onSearch = () => {
         let value = this.refs.query.getValue();
         value = value.toLowerCase();
         this.store.clearFilter();
+
+        console.log(`Searching for "${value}"`);
+
         this.store.filterBy(record => {
             return record.get('name').toLowerCase().indexOf(value) !== -1 ||
                 record.get('members').toLowerCase().indexOf(value) !== -1
@@ -31,7 +30,7 @@ export default class Groups extends Component {
                     ref="query"
                     hintText="Find Group..."
                     style={{ margin: '10px' }}
-                    onChange={() => this.onSearch()} 
+                    onChange={this.onSearch} 
                 />
                 <Grid
                     store={this.store}

@@ -3,10 +3,11 @@
   "version": "0.2.16",
   "description": "Use Ext JS components in React.",
   "main": "dist/index.js",
+  "module": "src/index.js",
   "typings": "index.d.ts",
   "scripts": {
-    "watch": "babel ./src --out-dir ./dist --source-maps inline --watch",
-    "build": "babel ./src --out-dir ./dist --source-maps inline",
+    "watch": "babel ./src --out-dir ./dist --source-maps --watch",
+    "build": "babel ./src --out-dir ./dist --source-maps",
     "prepublish": "npm run build",
     "create-typings": "node script/create-typings.js",
     "test": "jest"
@@ -20,7 +21,8 @@
   "keywords": [
     "Sencha",
     "Ext JS",
-    "React"
+    "React",
+    "ExtReact"
   ],
   "author": "Sencha",
   "license": "MIT",
@@ -29,19 +31,24 @@
     "type": "git",
     "url": "git+https://github.com/sencha/extjs-reactor.git"
   },
+  "bin": {
+    "ext-react": "./bin/ext-react.js"
+  },
   "peerDependencies": {
     "react": "^15.4.0",
     "react-dom": "^15.4.0"
   },
   "dependencies": {
-    "invariant": "^2.2.1",
     "lodash.capitalize": "^4.2.1",
     "lodash.clonedeepwith": "^4.5.0",
     "lodash.defaults": "^4.2.0",
-    "lodash.isequal": "^4.4.0",
-    "lodash.union": "^4.6.0"
+    "lodash.isequalwith": "^4.4.0",
+    "lodash.union": "^4.6.0",
+    "minimist": "^1.2.0",
+    "mkdirp": "^0.5.1"
   },
   "devDependencies": {
+    "@extjs/sencha-cmd": "*",
     "@types/react": "^0.14.52",
     "@types/react-dom": "^0.14.19",
     "babel-cli": "^6.14.0",

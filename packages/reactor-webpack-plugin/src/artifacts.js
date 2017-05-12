@@ -42,11 +42,12 @@ export const buildXML = function({ compress }) {
                     ]]>
                   </x-compile>
             </target>
-            <target name="build" depends="init-cmd">
+            <target name="rebuild">
                <x-compile refid="theCompiler"
                           dir="\${basedir}"
                           inheritAll="true">
                   <![CDATA[
+                  --debug
                   exclude
                   -all
                   and
@@ -59,8 +60,13 @@ export const buildXML = function({ compress }) {
                   exclude
                   -all
                   and
+                  # include theme overrides
+                  include
+                    -r
+                    -tag=overrides
+                  and
                   # include all js files needed for manifest.js
-                      include
+                  include
                       -r
                       -f=manifest.js
                   and
@@ -89,6 +95,8 @@ export const buildXML = function({ compress }) {
                       -out=resources
                   ]]>
                </x-compile>
+            </target>
+            <target name="build" depends="init-cmd,rebuild">
                <x-sencha-command dir="\${basedir}">
                    <![CDATA[
                    fashion
@@ -102,8 +110,16 @@ export const buildXML = function({ compress }) {
                </x-sencha-command>
             </target>
             <target name="watch" depends="init-cmd,build">
+                <x-fashion-watch
+                        refName="fashion-watch"
+                        inputFile="ext.scss"
+                        outputFile="ext.css"
+                        split="4095"
+                        compress="${compress ? 'true' : 'false'}"
+                        configFile="app.json"
+                        fork="true"/>
                 <x-watch compilerRef="theCompiler"
-                         targets="build"/>
+                         targets="rebuild"/>
             </target>
         </project>
     `.trim();
@@ -114,12 +130,15 @@ export const buildXML = function({ compress }) {
  * @param {String} theme The name of the theme to use.
  * @param {String[]} packages The names of packages to include in the build
  */
-export function createAppJson({ theme, packages, toolkit, overrides=[] }) {
+export function createAppJson({ theme, packages, toolkit, overrides=[], packageDirs=[] }) {
     const config = {
         framework: "ext",
         toolkit,
         requires: packages,
         overrides: overrides.map(dir => path.resolve(dir)),
+        packages: {
+            dir: packageDirs.map(dir => path.resolve(dir))
+        },
         output: {
             base: '.',
             resources: {
@@ -129,11 +148,18 @@ export function createAppJson({ theme, packages, toolkit, overrides=[] }) {
         }
     };
 
+    // if .ext-reactrc file exists, consume it and apply to app.json
+    if(fs.existsSync('./.ext-reactrc')) {
+        const senchaRc = JSON.parse(fs.readFileSync('./.ext-reactrc', 'utf-8'));
+        Object.assign(config, senchaRc);
+        theme = senchaRc.theme || theme;
+    }
+
     // if theme is local add it as an additional package dir
     if (fs.existsSync(theme)) {
         const packageInfo = cjson.load(path.join(theme, 'package.json'));
         config.theme = packageInfo.name;
-        config.packages = { dir: path.resolve(theme) };
+        config.packages.dir.push(path.resolve(theme));
     } else {
         config.theme = theme;
     }
@@ -145,13 +171,13 @@ export function createAppJson({ theme, packages, toolkit, overrides=[] }) {
  * Creates the workspace.json file
  * @param {String} sdk The path to the sdk
  */
-export function createWorkspaceJson(sdk, output) {
+export function createWorkspaceJson(sdk, packages, output) {
     return JSON.stringify({
         "frameworks": {
-            "ext": path.relative(output, path.resolve(sdk))
+            "ext": path.resolve(sdk)
         },
         "packages": {
-            "dir": "${workspace.dir}/packages/local,${workspace.dir}/packages",
+            "dir": ['${workspace.dir}/packages/local', '${workspace.dir}/packages'].concat(packages).join(','),
             "extract": "${workspace.dir}/packages/remote"
         }
     }, null, 4);

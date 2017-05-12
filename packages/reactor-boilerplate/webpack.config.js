@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtJSReactorWebpackPlugin = require('@extjs/reactor-webpack-plugin');
+const ExtReactWebpackPlugin = require('@extjs/reactor-webpack-plugin');
 
 const sourcePath = path.join(__dirname, './src');
 
@@ -10,11 +10,9 @@ module.exports = function (env) {
     const isProd = nodeEnv === 'production';
 
     const plugins = [
-        new ExtJSReactorWebpackPlugin({
-            sdk: 'ext', // you need to copy the Ext JS SDK to the root of this package, or you can specify a full path to some other location
-            theme: 'theme-material',
-            overrides: ['overrides'],
-            packages: ['charts'],
+        new ExtReactWebpackPlugin({
+            theme: 'ext-react/packages/custom-ext-react-theme',
+            overrides: ['ext-react/overrides'],
             production: isProd
         }),
         new webpack.EnvironmentPlugin({
@@ -72,7 +70,7 @@ module.exports = function (env) {
         },
 
         resolve: {
-            // The following is only needed when running this boilerplate within the extjs-reactor repo with lerna bootstrap.  You can remove this from your own projects.
+            // The following is only needed when running this boilerplate within the extjs-reactor repo.  You can remove this from your own projects.
             alias: {
                 "react-dom": path.resolve('./node_modules/react-dom'),
                 "react": path.resolve('./node_modules/react')

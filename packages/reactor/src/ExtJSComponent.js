@@ -1,12 +1,32 @@
 import { Component, Children, cloneElement } from 'react';
 import ReactMultiChild from 'react-dom/lib/ReactMultiChild';
+import DOMLazyTree from 'react-dom/lib/DOMLazyTree';
 import { precacheNode } from 'react-dom/lib/ReactDOMComponentTree';
+import ReactComponentEnvironment from 'react-dom/lib/ReactComponentEnvironment';
 import Flags from 'react-dom/lib/ReactDOMComponentFlags';
 import union from 'lodash.union';
 import capitalize from 'lodash.capitalize'
 import defaults from 'lodash.defaults';
 import cloneDeepWith from 'lodash.clonedeepwith';
-import isEqual from 'lodash.isequal';
+import isEqualWith from 'lodash.isequalwith';
+
+function isEqual(oldValue, newValue) {
+    return isEqualWith(oldValue, newValue, function customizer(objValue, otherValue) {
+        if (typeof objValue === 'function' && typeof otherValue === 'function') return true;
+    })
+}
+
+const CLASS_CACHE = {
+    Grid: Ext.ClassManager.getByAlias('widget.grid'),
+    Column: Ext.ClassManager.getByAlias('widget.gridcolumn'),
+    Button: Ext.ClassManager.getByAlias('widget.button'),
+    Menu: Ext.ClassManager.getByAlias('widget.menu'),
+    ToolTip: Ext.ClassManager.getByAlias('widget.tooltip'),
+    CellBase: Ext.ClassManager.get('Ext.grid.cell.Base'),
+    WidgetCell: Ext.ClassManager.getByAlias('widget.widgetcell'),
+    Dialog: Ext.ClassManager.getByAlias('widget.dialog'),
+    Field: Ext.ClassManager.getByAlias('widget.field')
+}
 
 export default class ExtJSComponent extends Component {
 
@@ -57,21 +77,22 @@ export default class ExtJSComponent extends Component {
             renderTo: renderToDOMNode
         };
 
-        try {
-            let result;
+        let result;
 
-            if (renderToDOMNode) {
-                result = this._renderRootComponent(renderToDOMNode, config);
-            } else {
-                result = this.cmp = this.createExtJSComponent(config);
-            }
-
-            this._precacheNode();
-            return result;
-        } catch (e) {
-            console.error('Could not create Ext JS component with config', config);
-            throw e;
+        if (renderToDOMNode) {
+            result = this._renderRootComponent(renderToDOMNode, config);
+        } else {
+            result = this.cmp = this.createExtJSComponent(config);
         }
+
+        // this allows React internals to get the mounted instance for debug tools when using dangerouslyReplaceNodeWithMarkup
+        // this is probably not needed in fiber
+        if (!result.node) Object.defineProperty(result, 'node', {
+            get: () => this.el
+        });
+
+        this._precacheNode();
+        return result;
     }
 
     /**
@@ -81,9 +102,10 @@ export default class ExtJSComponent extends Component {
      * @param context
      */
     receiveComponent(nextComponent, transaction, context) {
-        if (this.cmp.destroyed) return;
+        if (!this.cmp || this.cmp.destroyed) return;
         const props = nextComponent.props;
-        this.updateChildren(props.children, transaction, context);
+        this._rushProps(this._currentElement.props, props);
+        this.updateChildren(this._applyDefaults(props), transaction, context);
         this._applyProps(this._currentElement.props, props);
         this._currentElement = nextComponent;
     }
@@ -92,7 +114,38 @@ export default class ExtJSComponent extends Component {
      * Destroys the component
      */
     unmountComponent() {
-        this.cmp && this.cmp.destroy();
+        if (this.cmp) {
+            if (this.cmp.destroying || this.cmp.$reactorConfig) return;
+
+            const parentCmp = this.cmp.ownerCt /* classic */ || this.cmp.getParent(); /* modern */
+
+            // remember the parent and position in parent for dangerouslyReplaceNodeWithMarkup
+            // this not needed in fiber
+            let indexInParent;
+
+            if (parentCmp) {
+                if (parentCmp.indexOf) {
+                    // modern
+                    indexInParent = parentCmp.indexOf(this.cmp);
+                } else if (parentCmp.items && parentCmp.items.indexOf) {
+                    // classic
+                    indexInParent = parentCmp.items.indexOf(this.cmp);
+                }
+            }
+
+            if (this.reactorSettings.debug) console.log('destroy', this.cmp.$className);
+
+            if (Ext.navigation && Ext.navigation.View && parentCmp && parentCmp instanceof Ext.navigation.View) {
+                parentCmp.pop();
+            } else {
+                this.cmp.destroy();
+            }
+
+            // remember the parent and position in parent for dangerouslyReplaceNodeWithMarkup
+            // this not needed in fiber
+            this.el._extIndexInParent = indexInParent;
+            this.el._extParent = parentCmp;
+        }
     }
 
     /**
@@ -112,13 +165,11 @@ export default class ExtJSComponent extends Component {
     // end react renderer methods
 
     _renderRootComponent(renderToDOMNode, config) {
-        if (this.reactorSettings.viewport) {
-            defaults(config, {
-                height: '100%',
-                width: '100%'
-            });
-        }
-        
+        defaults(config, {
+            height: '100%',
+            width: '100%'
+        });
+
         config.renderTo = renderToDOMNode;
 
         this.cmp = this.createExtJSComponent(config);
@@ -130,12 +181,12 @@ export default class ExtJSComponent extends Component {
             this.el = this.cmp.renderElement.dom;
         }
 
-        return { node: this.el };
+        return { node: this.el, children: [] };
     }
 
     _applyDefaults({ defaults, children }) {
         if (defaults) {
-            return Children.map(children, child => cloneElement(child, { ...child.props, ...this.props.defaults }));
+            return Children.map(children, child => cloneElement(child, { ...defaults, ...child.props }))
         } else {
             return children;
         }
@@ -152,23 +203,30 @@ export default class ExtJSComponent extends Component {
         const items = [], dockedItems = [];
         const children = this.mountChildren(this._applyDefaults(props), transaction, context);
 
-        if (children.length === 1 && children[0].node instanceof DocumentFragment) {
-            config.html = this._toHTML(children[0].node);
-        } else {
-            for (let i=0; i<children.length; i++) {
-                const item = children[i];
+        for (let i=0; i<children.length; i++) {
+            const item = children[i];
 
-                if (item instanceof Ext.Base) {
-                    if (item.initialConfig.rel) {
-                        config[item.initialConfig.rel] = item;
+            if (item instanceof Ext.Base) {
+                const prop = this._propForChildElement(item);
+
+                if (prop) {
+                    item.$reactorConfig = true;
+                    const value = config;
+
+                    if (prop.array) {
+                        let array = config[prop.name];
+                        if (!array) array = config[prop.name] = [];
+                        array.push(item);
                     } else {
-                        (item.dock ? dockedItems : items).push(item);
+                        config[prop.name] = prop.value || item;
                     }
-                } else if (item.node) {
-                    items.push(wrapDOMElement(item.node));
                 } else {
-                    throw new Error('Could not render child item: ' + item);
+                    (item.dock ? dockedItems : items).push(item);
                 }
+            } else if (item.node) {
+                items.push(wrapDOMElement(item));
+            } else {
+                throw new Error('Could not render child item: ' + item);
             }
         }
 
@@ -179,14 +237,40 @@ export default class ExtJSComponent extends Component {
     }
 
     /**
-     * Converts a DocumentFragment to html
-     * @param {DocumentFragment} docFragment
-     * @return {String}
+     * Determines whether a child element corresponds to a config or a container item based on the presence of a rel config or
+     * matching other known relationships
+     * @param {Ext.Base} item
      */
-    _toHTML(docFragment) {
-        const el = document.createElement('div');
-        el.appendChild(docFragment);
-        return el.innerHTML;
+    _propForChildElement(item) {
+        if (item.config && item.config.rel) {
+            if (typeof item.config.rel === 'string') {
+                return { name: item.config.rel }
+            } else {
+                return item.config.rel;
+            }
+        }
+
+        const { extJSClass } = this;
+
+        if (isAssignableFrom(extJSClass, CLASS_CACHE.Button) && CLASS_CACHE.Menu && item instanceof CLASS_CACHE.Menu) {
+            return { name: 'menu', array: false };
+        } else if (isAssignableFrom(extJSClass, Ext.Component) && CLASS_CACHE.ToolTip && item instanceof CLASS_CACHE.ToolTip) {
+            return { name: 'tooltip', array: false };
+        } else if (CLASS_CACHE.Column && item instanceof CLASS_CACHE.Column) {
+            return { name: 'columns', array: true };
+        } else if (isAssignableFrom(extJSClass, CLASS_CACHE.Column) && CLASS_CACHE.CellBase && item instanceof CLASS_CACHE.CellBase) {
+            return { name: 'cell', array: false, value: this._cloneConfig(item) }
+        } else if (isAssignableFrom(extJSClass, CLASS_CACHE.WidgetCell)) {
+            return { name: 'widget', array: false, value: this._cloneConfig(item) }
+        } else if (isAssignableFrom(extJSClass, CLASS_CACHE.Dialog) && CLASS_CACHE.Button && item instanceof CLASS_CACHE.Button) {
+            return { name: 'buttons', array: true };
+        } else if (isAssignableFrom(extJSClass, CLASS_CACHE.Column) && CLASS_CACHE.Field && item instanceof CLASS_CACHE.Field) {
+            return { name: 'editor', array: false, value: this._cloneConfig(item) };
+        }
+    }
+
+    _cloneConfig(item) {
+        return { ...item.initialConfig, xclass: item.$className };
     }
 
     /**
@@ -211,8 +295,8 @@ export default class ExtJSComponent extends Component {
                 } else if (key.match(/^on[A-Z]/)) {
                     // convert all props starting with on to listeners
                     if (value && includeEvents) config.listeners[key.slice(2).toLowerCase()] = value;
-                } else if (key !== 'children') {
-                    config[key] = value;
+                } else if (key !== 'children' && key !== 'defaults') {
+                    config[key.replace(/className/, 'cls')] = value;
                 }
             }
         }
@@ -234,6 +318,19 @@ export default class ExtJSComponent extends Component {
         })
     }
 
+    _rushProps(oldProps, newProps) {
+        const rushConfigs = this.extJSClass.__reactorUpdateConfigsBeforeChildren;
+        if (!rushConfigs) return;
+        const oldConfigs = {}, newConfigs = {}
+
+        for (let name in rushConfigs) {
+            oldConfigs[name] = oldProps[name];
+            newConfigs[name] = newProps[name]
+        }
+
+        this._applyProps(oldConfigs, newConfigs);
+    }
+
     /**
      * Calls config setters for all react props that have changed
      * @private
@@ -246,14 +343,33 @@ export default class ExtJSComponent extends Component {
             if (key === 'children' || typeof newValue === 'function') continue;
 
             if (!isEqual(oldValue, newValue)) {
-                const setter = `set${this._capitalize(key)}`;
+                const setter = this._setterFor(key);
 
-                if (this.cmp[setter]) {
+                if (setter) {
                     const value = this._cloneProps(newValue);
+                    if (this.reactorSettings.debug) console.log(setter, newValue);
                     this.cmp[setter](value);
                 }
             }
         }
+    }
+
+    /**
+     * Returns the name of the setter method for a given prop.
+     * @param {String} prop
+     */
+    _setterFor(prop) {
+        const name = `set${this._capitalize(prop)}`;
+        return this.cmp[name] && name;
+    }
+
+    /**
+     * Returns the name of a getter for a given prop.
+     * @param {String} prop
+     */
+    _getterFor(prop) {
+        const name = `get${this._capitalize(prop)}`;
+        return this.cmp[name] && name;
     }
 
     /**
@@ -272,14 +388,99 @@ export default class ExtJSComponent extends Component {
         if (this.el) {
             // will get here when rendering root component
             precacheNode(this, this.el)
-        } else {
-            // when get here when rendering child components due to lazy rendering
-            this.cmp.on(Ext.isClassic ? 'afterrender' : 'painted', () => {
-                this.el = this.cmp.el.dom;
-                this.el._extCmp = this.cmp;
-                precacheNode(this, this.el)
-            }, this, { single: true });
+        } else if (this.cmp.el) {
+            this._doPrecacheNode();
+        } else if (Ext.isClassic) {
+            // we get here when rendering child components due to lazy rendering
+            this.cmp.on('afterrender', this._doPrecacheNode, this, { single: true });
         }
+    }
+
+    _doPrecacheNode() {
+        this.el = this.cmp.el.dom;
+        this.el._extCmp = this.cmp;
+        precacheNode(this, this.el)
+    }
+
+    /**
+     * Returns the child item at the given index, only counting those items which were created by Reactor
+     * @param {Number} n
+     */
+    _toReactChildIndex(n) {
+        let items = this.cmp.items;
+
+        if (!items) return n;
+        if (items.items) items = items.items;
+
+        let found=0, i, item;
+
+        for (i=0; i<items.length; i++) {
+            item = items[i];
+
+            if (item.$createdByReactor && found++ === n) {
+                return i;
+            }
+        }
+
+        return i;
+    }
+
+    /**
+     * Translates and index in props.children to an index within a config value that is an array.  Use
+     * this to determine the position of an item in props.children within the array config to which it is mapped.
+     * @param {*} prop
+     * @param {*} indexInChildren
+     */
+    _toArrayConfigIndex(prop, indexInChildren) {
+        let i=0, found=0;
+
+        Children.forEach(this.props.children, child => {
+            const propForChild = this._propForChildElement(child);
+
+            if (propForChild && propForChild.name === prop.name) {
+                if (i === indexInChildren) return found;
+                found++;
+            }
+        });
+
+        return -1;
+    }
+
+    /**
+     * Updates a config based on a child element
+     * @param {Object} prop The prop descriptor (name and array)
+     * @param {Ext.Base} value The value to set
+     * @param {Number} [index] The index of the child element in props.children
+     * @param {Boolean} [isArrayDelete=false] True if removing the item from an array
+     */
+    _mergeConfig(prop, value, index, isArrayDelete) {
+        const setter = this._setterFor(prop.name);
+        if (!setter) return;
+
+        if (value) value.$reactorConfig = true;
+
+        if (prop.array) {
+            const getter = this._getterFor(prop.name);
+            if (!getter) return;
+
+            const currentValue = this.cmp[getter]() || [];
+
+            if (isDelete) {
+                // delete
+                value = currentValue.filter(item => item !== value);
+            } else if (index !== undefined) {
+                // move
+                value = currentValue.filter(item => item !== value);
+                value = value.splice(this._toArrayConfigIndex(index, prop), 0, item);
+            } else {
+                // append
+                value = currentValue.concat(value);
+            }
+        }
+
+        if (this.reactorSettings.debug) console.log(setter, value);
+
+        this.cmp[setter](value);
     }
 }
 
@@ -294,10 +495,14 @@ const ContainerMixin = Object.assign({}, ReactMultiChild.Mixin, {
      * @param {ExtJSComponent} child Component to move.
      * @param {Component} afterNode The component to move after
      * @param {number} toIndex Destination index of the element.
-     * @param {number} lastIndex The element's previous index.
+     * @param {number} lastIndex Last index visited of the siblings of `child`.
      * @protected
      */
     moveChild(child, afterNode, toIndex, lastIndex) {
+        if (this.cmp._reactorIgnoreOrder) return; // maintaining order in certain components, like Transition's container, can cause problems with animations, _reactorIgnoreOrder gives us a way to opt out in such scenarios
+
+        if (toIndex === child._mountIndex) return; // only move child if the actual mount index has changed
+
         const fitLayout = Ext.layout && (Ext.layout.Fit || Ext.layout.FitLayout);
 
         if (fitLayout && this.cmp.layout instanceof fitLayout) {
@@ -308,14 +513,26 @@ const ContainerMixin = Object.assign({}, ReactMultiChild.Mixin, {
 
         let childComponent = toComponent(child.cmp || child.getHostNode());
 
-        if (childComponent) {
+        const prop = this._propForChildElement(childComponent);
+
+        if (prop) {
+            this._mergeConfig(prop, childComponent, toIndex);
+        } else if (childComponent) {
             if (childComponent.dock) {
                 this.cmp.insertDocked(toIndex, childComponent);
             } else {
                 // reordering docked components is known to cause issues in modern
                 // place items in a container instead
-                if (childComponent.config && (childComponent.config.docked || childComponent.config.floated)) return; 
-                this.cmp.insert(toIndex, childComponent);
+                if (childComponent.config && (childComponent.config.docked || childComponent.config.floated || childComponent.config.positioned)) return;
+
+                // removing the child first ensures that we get the new index correct
+                this.cmp.remove(childComponent, false);
+
+                const newIndex = this._toReactChildIndex(toIndex);
+
+                if (this.reactorSettings.debug) console.log(`moving ${childComponent.$className} to position ${newIndex} in ${this.cmp.$className}`);
+
+                this.cmp.insert(newIndex, childComponent);
             }
         }
     },
@@ -328,20 +545,28 @@ const ContainerMixin = Object.assign({}, ReactMultiChild.Mixin, {
      * @protected
      */
     createChild(child, afterNode, childNode) {
-        if (!(childNode instanceof Ext.Base)) {
-            // we're appending a dom node
-            childNode = wrapDOMElement(childNode.node);
-        }
+        const prop = this._propForChildElement(childNode);
 
-        if (afterNode instanceof HTMLElement) {
-            afterNode = afterNode._extCmp;
-        }
-
-        if (afterNode) {
-            const index = this.cmp[childNode.dock ? 'dockedItems' : 'items'].indexOf(afterNode);
-            this.cmp[childNode.dock ? 'insertDocked' : 'insert'](index + 1, childNode);
+        if (prop) {
+            this._mergeConfig(prop, childNode);
         } else {
-            this.cmp[childNode.dock ? 'addDocked' : 'add'](childNode);
+            if (this.reactorSettings.debug) console.log(`adding ${childNode.$className} to ${this.cmp.$className}`);
+
+            if (!(childNode instanceof Ext.Base)) {
+                // we're appending a dom node
+                childNode = wrapDOMElement(childNode);
+            }
+
+            if (afterNode instanceof HTMLElement) {
+                afterNode = afterNode._extCmp;
+            }
+
+            if (afterNode) {
+                const index = this.cmp[childNode.dock ? 'dockedItems' : 'items'].indexOf(afterNode);
+                this.cmp[childNode.dock ? 'insertDocked' : 'insert'](index + 1, childNode);
+            } else {
+                this.cmp[childNode.dock ? 'addDocked' : 'add'](childNode);
+            }
         }
     },
 
@@ -352,30 +577,49 @@ const ContainerMixin = Object.assign({}, ReactMultiChild.Mixin, {
      * @protected
      */
     removeChild(child, node) {
-        if (node instanceof HTMLElement && node._extCmp) node._extCmp.destroy();
-        // We don't need to do anything for Ext JS components because a component is automatically removed from it parent when destroyed
-    }
+        const prop = child instanceof ExtJSComponent && this._propForChildElement(child.cmp);
 
+        if (prop) {
+            this._mergeConfig(prop, null, null, true);
+        } else {
+            if (node instanceof HTMLElement && node._extCmp && !node._extCmp.destroying) {
+                if (this.reactorSettings.debug) console.log('removing', node._extCmp.$className);
+                node._extCmp.destroy();
+            }
+            // We don't need to do anything for Ext JS components because a component is automatically removed from it parent when destroyed
+        }
+    }
 });
 
 /**
  * Wraps a dom element in an Ext Component so it can be added as a child item to an Ext Container.  We attach
  * a reference to the generated Component to the dom element so it can be destroyed later if the dom element
  * is removed when rerendering
- * @param {HTMLElement/DocumentFragment} el
+ * @param {Object} node A React node object with node, children, and text
  * @returns {Ext.Component}
  */
-function wrapDOMElement(el) {
-    let contentEl = el;
+function wrapDOMElement(node) {
+    let contentEl = node.node;
 
-    if (el instanceof DocumentFragment) {
-        // will get here when appending text nodes
-        contentEl = document.createElement('div');
-        contentEl.appendChild(el)
+    const cmp = new Ext.Component();
+    
+    if (cmp.element) {
+        // modern
+        DOMLazyTree.insertTreeBefore(cmp.element.dom, node);
+    } else {
+        // classic
+        const target = document.createElement('div');
+        DOMLazyTree.insertTreeBefore(target, node);
+        cmp.contentEl = contentEl instanceof HTMLElement ? contentEl : target /* text fragment or comment */;
     }
 
-    const cmp = new Ext.Component({ contentEl });
-    contentEl._extCmp = el._extCmp = cmp;
+    cmp.$createdByReactor = true;
+    contentEl._extCmp = cmp;
+
+    // this is needed for devtools when using dangerouslyReplaceNodeWithMarkup
+    // this not needed in fiber
+    cmp.node = contentEl;
+
     return cmp;
 }
 
@@ -389,6 +633,35 @@ function toComponent(node) {
         return node;
     } else if (node) {
         return node._extCmp;
+    }
+}
+
+/**
+ * Returns true if subClass is parentClass or a sub class of parentClass
+ * @param {Ext.Class} subClass
+ * @param {Ext.Class} parentClass
+ * @return {Boolean}
+ */
+function isAssignableFrom(subClass, parentClass) {
+    if (!subClass || !parentClass) return false;
+    return subClass === parentClass || subClass.prototype instanceof parentClass;
+}
+
+// Patch replaceNodeWithMarkup to fix bugs with swapping null and components
+// A prime example of this is using react-router 4, which renders a null when a route fails
+// to match.  React does not call createChild/removeChild in this case, but takes a completely separate
+// path through the renderer
+const oldReplaceNodeWithMarkup = ReactComponentEnvironment.replaceNodeWithMarkup;
+
+ReactComponentEnvironment.replaceNodeWithMarkup = function(oldChild, markup) {
+    if (oldChild._extCmp) {
+        const newChild = markup instanceof Ext.Base ? markup : wrapDOMElement(markup);
+        const parent = oldChild.hasOwnProperty('_extParent') ? oldChild._extParent : oldChild._extCmp.getParent();
+        const index = oldChild.hasOwnProperty('_extIndexInParent') ? oldChild._extIndexInParent : parent.indexOf(oldChild._extCmp);
+        parent.insert(index, newChild);
+        oldChild._extCmp.destroy();
+    } else {
+        oldReplaceNodeWithMarkup.apply(this, arguments);
     }
 }
 

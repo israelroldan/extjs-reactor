@@ -26,93 +26,61 @@ The boilerplate project uses Ext JS 6 with the modern toolkit. There is also a [
 
 ## Basic Concepts
 
-### Configuration
+### Launching Your App
 
-First, install the reactor.  We recommend doing this in your index.js file (your webpack entry point).  This only needs to be done once in your app.
+To launch your app, add the following to your index.js file (your webpack entry point):
 
 ```jsx
-import { install } from '@extjs/reactor';
-install();
+import { launch } from '@extjs/reactor';
+import App from './App';
+
+launch(<App/>);
 ```
 
-If you choose to use an Ext JS component at the root of your app to handle the main layout, set the `viewport` option to `true` when installing the Ext JS renderer.  This will set the height of the html, body, and react root element to 100% so that your Ext JS root component will fill the full screen. For example:
+The `launch` function renders the `<App/>` component into the document body.  You do not need a separate target `<div id="root"/>` in your  index.html file.  If you have one you should remove it. The code above replaces the typical code for launching a React app, which generally looks something like:
 
-```javascript
-install({ viewport: true });
+```jsx
+import ReactDOM from 'react-dom';
+import App from './App';
+
+ReactDOM.render(<App/>, document.getElementById('root'));
 ```
 
 ### Hello World
 
-The `@extjs/reactor` package exports a function called `reactify` that creates a React component for any Ext JS component class. Here's a minimal React app that renders an Ext.Panel:
+Here's a minimal React app that renders an Ext.Panel using the modern toolkit:
 
 ```jsx
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { install, reactify } from '@extjs/reactor';
-
-// Install the Ext JS custom renderer
-install();
-
-// Create a React component to wrap Ext.Panel
-const Panel = reactify('panel');
-
-// When Ext JS loads, initialize our React app
-Ext.onReady(() => {
-    ReactDOM.render(
-        (
-            <Panel title="React Ext JS">
-                Hello World!
-            </Panel>
-        ),
-        document.getElementById('root')
-    );
-});
-```
-
-The reactify function allows you to create React components for multiple xtypes at once using array destructuring:
-
-```jsx
-import { reactify } from '@extjs/reactor';
-const [ Panel, Grid ] = reactify('panel', 'grid');
-```
-
-If you're using Babel, we recommend installing @extjs/reactor-babel-plugin, which allows you to do this instead...
-
-```jsx
-import { Panel, Grid } from '@extjs/reactor/modern';
-```
-
-... and so our Hello World app becomes ...
-
-```jsx
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { install } from '@extjs/reactor';
+import { launch } from '@extjs/reactor';
 import { Panel } from '@extjs/reactor/modern';
 
 // Install the Ext JS custom renderer
-install();
-
-// When Ext JS loads, initialize our React app
-Ext.onReady(() => {
-    ReactDOM.render(
-        (
-            <Panel title="React Ext JS">
-                Hello World!
-            </Panel>
-        ),
-        document.getElementById('root')
-    );
+launch(
+    <Panel title="React Ext JS">
+        Hello World!
+    </Panel>
 });
-
 ```
 
-All of the examples below leverage the @extjs/reactor-babel-plugin to achieve this more concise syntax.
+### Importing Components
 
-When using the classic toolkit, your import statements would look like:
+Any Ext JS component can be imported by the camel-cased version of it's xtype.  For example, 
+
+```jsx
+import { Grid } from '@extjs/reactor/modern';
+```
+
+When using the classic toolkit, import from `@extjs/reactor/classic`:
 
 ```jsx
 import { Grid } from '@extjs/reactor/classic';
+```
+
+Dashes in xtypes should be converted to underscores.  For example:
+
+```jsx
+import { D3_HeatMap } from '@extjs/reactor/modern';
 ```
 
 ### Configuring Components
@@ -184,6 +152,32 @@ export default function MyComponent() {
         />
     )
 }
+```
+
+### Special Props
+
+#### rel
+
+Some props can be replaced with a child element. To use a child element to replace a prop, set the child's "rel" prop to the name of the prop being replaced. For example, the "menu" prop on Button can be replaced with a child `<Menu>` element:
+
+```jsx
+<Button text="Theme">
+    <Menu rel="menu">
+        <MenuItem text="Triton"/>
+        <MenuItem text="iOS"/>
+        <MenuItem text="Material"/>
+    </Menu>
+</Button>
+```
+
+#### defaults
+
+Use the defaults prop to apply a set of props to all children.  For example, to use flex: 1 for all items in a container:
+
+```jsx
+<Container layout="vbox" defaults={{ flex: 1 }}>
+    <Container>Item</Container>
+</Container>
 ```
 
 ### Refs
@@ -272,6 +266,39 @@ Ext.create({
     xtype: 'panel',
     html: 'Hello World!'
 });
+```
+
+### Using Custom Ext JS Components
+
+You can import custom Ext JS components in much the same way you would those from Ext JS itself.  Just reference the camel-case version of the component's xtype.
+
+For example, given the following component:
+
+```javascript
+Ext.define('MyPackage.view.MyGrid', {
+    extend: 'Ext.grid.Grid',
+    xtype: 'mygrid'
+})
+```
+
+You could import and use that component using:
+
+```jsx
+import { MyGrid } from '@extjs/reactor/modern';
+```
+
+If your component doesn't have an xtype, you can using the `reactify` function to convert any Ext JS component into a react component:
+
+```jsx
+import { reactify } from '@extjs/reactor';
+
+const MyGrid = reactify(MyPackage.view.MyGrid);
+
+function MyComponent() {
+    return (
+        <MyGrid/>
+    )
+}
 ```
 
 ### Building
