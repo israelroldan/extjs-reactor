@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Panel, Cartesian } from '@extjs/ext-react';
+import { Container } from '@extjs/ext-react';
+import { Cartesian } from '@extjs/ext-react-charts';
 import ChartToolbar from '../../ChartToolbar';
 import storeData from './storeData';
 
@@ -20,9 +21,10 @@ export default class Spline extends Component {
         const { theme } = this.state;
 
         return (
-            <Panel shadow layout="fit">
+            <Container padding={!Ext.os.is.Phone && 10} layout="fit">
                 <ChartToolbar onThemeChange={this.changeTheme} theme={theme}/>
                 <Cartesian
+                    shadow
                     store={this.store}
                     theme={theme}
                     insetPadding="20 20 0 0"
@@ -57,7 +59,7 @@ export default class Spline extends Component {
                         showMarkers: false
                     }]}
                 />
-            </Panel>
+            </Container>
         )
     }
 }

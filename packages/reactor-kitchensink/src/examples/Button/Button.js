@@ -38,7 +38,12 @@ export default class ButtonExample extends Component {
 
         return (
             <Container padding="10">
-                <Container layout="hbox" margin="0 0 10 0" defaults={{ margin: "0 10 0 0" }}>
+                <Container 
+                    layout={{ type: 'hbox', pack: Ext.os.is.Phone ? 'center' : 'left'}} 
+                    margin="0 0 10 0" 
+                    defaults={{ margin: "0 10 0 0" }}
+                    width={Ext.isIE && 550}
+                >
                     <Button ui="action raised" text="Style">
                         <Menu defaults={{ handler: this.onStyleChange, group: 'buttonstyle' }}>
                             <MenuItem text="None" value="" iconCls={style === '' && 'x-font-icon md-icon-check'}/>
@@ -101,7 +106,6 @@ export default class ButtonExample extends Component {
 const layoutProps = Ext.os.is.Phone ? {
     height: '100%',
     width: '100%',
-    scrollable: 'y',
     className: 'demo-buttons',
     defaults: {
         margin: '20'
@@ -135,7 +139,9 @@ const buttonGroupProps = Ext.os.is.Phone ? {
 }
 
 const groupLabelProps = Ext.os.is.Phone ? {
-
+    style: {
+        margin: '0 0 5px 0'
+    }
 } : {
     style: {
         width: '70px',

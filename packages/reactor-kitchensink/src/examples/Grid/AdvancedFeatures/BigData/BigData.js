@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import { Grid, ActionSheet, Toolbar, Container, Button, SparkLineLine, WidgetCell, Column, TextColumn, CheckColumn, NumberColumn, DateColumn } from '@extjs/reactor/modern';
-import { Template } from '@extjs/reactor';
+import { Grid, ActionSheet, Container, Button, SparkLineLine, WidgetCell, Column, TextColumn, CheckColumn, NumberColumn, DateColumn, Rating } from '@extjs/reactor/modern';
 import model from './GridModel';
 import './data';
 import './style.css';
 
 Ext.require([
     'Ext.grid.plugin.*',
-    'Ext.tip.ToolTip'
+    'Ext.tip.ToolTip',
+    'Ext.data.summary.Sum',
+    'Ext.exporter.*'
 ]);
 
 export default class BigDataGridExample extends Component {
@@ -17,8 +18,8 @@ export default class BigDataGridExample extends Component {
     };
 
     store = Ext.create('Ext.data.Store', {
-        model,
         autoLoad: true,
+        model,
         groupField: 'department',
         pageSize: 0,
         proxy: {
@@ -27,16 +28,12 @@ export default class BigDataGridExample extends Component {
         }            
     });
 
-    ratingTpl = new Template ( (data) => {
-        return (
-           <div>
-               <img src={data.avatar} height="100px" style={{float:'left', margin:'0 10px 5px 0'}}/>
-                <p>
-                    {formatDate( data.dob)}
-                </p>
-            </div>
-       )
-    });
+    rowBodyTpl = data => (
+        <div>
+            <img src={data.avatar} height="100px" style={{float:'left', margin:'0 10px 5px 0'}}/>
+            <p>{formatDate( data.dob)}</p>
+        </div>
+    );
 
     nameSorter = (rec1, rec2) => {
         // Sort prioritizing surname over forename as would be expected.
@@ -52,52 +49,73 @@ export default class BigDataGridExample extends Component {
         return 0;
     }
 
+    onExportClick = () => {
+        this.setState({ showExportSheet: true })
+    }
+
     render() {
         const { showExportSheet } = this.state;
 
         return (
             <Container layout="fit" shadow>
                 <ActionSheet displayed={showExportSheet}>
-                    <Button handler={this.exportToXlsx} text="Excel xlsx (all Items)"/>
-                    <Button handler={this.exportToXml} text="Excel xml (all Items)"/>
-                    <Button handler={this.exportToCSV} text="CSV (all Items)"/>
-                    <Button handler={this.exportToTSV} text="TSV (all Items)"/>
-                    <Button handler={this.exportToHtml} text="HTML (all Items)"/>
+                    <Button handler={this.exportToXlsx} text="Excel xlsx"/>
+                    <Button handler={this.exportToXml} text="Excel xml"/>
+                    <Button handler={this.exportToCSV} text="CSV"/>
+                    <Button handler={this.exportToTSV} text="TSV"/>
+                    <Button handler={this.exportToHtml} text="HTML"/>
                     <Button handler={() => this.setState({ showExportSheet: false })} text="Cancel"/>
                 </ActionSheet>
                 <Grid
-                    ref="grid"
+                    ref={grid => this.grid = grid}
+                    title="Big Data Grid"
                     store={this.store}
                     shadow
                     grouped
                     rowNumbers
-                    plugins={[
-                        { type: 'grideditable' },
-                        { type: 'gridviewoptions' },
-                        { type: 'pagingtoolbar' },
-                        { type: 'summaryrow' },
-                        { type: 'columnresizing' },
-                        { type: 'rowexpander' },
-                        { type: 'multiselection' },
-                        { type: 'gridexporter' }
-                    ]}
+                    plugins={{
+                        grideditable: true,
+                        gridviewoptions: true,
+                        summaryrow: true,
+                        rowexpander: true,
+                        gridexporter: true,
+                        rowoperations: true
+                    }}
                     itemConfig={{
                         viewModel: {
                             type: 'grid-bigdatagrid-row'
                         },
                         body: {
-                            tpl: this.ratingTpl
+                            tpl: this.rowBodyTpl
                         }
                     }}
-                    onBeforeDocumentSave={(view) => {
+                    onBeforeDocumentSave={view => {
                         view.mask({
                             xtype: 'loadmask',
                             message: 'Document is prepared for export. Please wait ...'
                         })
                     }}
-                    onDocumentSave={(view) => view.unmask()}
+                    onDocumentSave={view => view.unmask()}
+                    titleBar={{
+                        shadow: false,
+                        items: [{
+                            align: 'right',
+                            xtype: 'button',
+                            text: `Export to${Ext.os.is.Phone ? '...' : ''}`,
+                            menu: Ext.os.is.Desktop && {
+                                indented: false,
+                                items: [
+                                    { text: 'Excel xlsx', handler: this.exportToXlsx },
+                                    { text: 'Excel xml', handler: this.exportToXml },
+                                    { text: 'CSV', handler: this.exportToCSV },
+                                    { text: 'TSV', handler: this.exportToTSV },
+                                    { text: 'HTML', handler: this.exportToHtml },
+                                ]
+                            },
+                            handler: !Ext.os.is.Desktop && this.onExportClick
+                        }]
+                    }}
                 >
-
                     <TextColumn
                         text="Id"
                         dataIndex="employeeNo"
@@ -105,9 +123,9 @@ export default class BigDataGridExample extends Component {
                         minWidth="100"
                         exportStyle={{
                             format: 'General Number',
-                                alignment: {
-                                    horizontal: 'Right'
-                                }
+                            alignment: {
+                                horizontal: 'Right'
+                            }
                         }}
                     />
                     <TextColumn
@@ -123,18 +141,17 @@ export default class BigDataGridExample extends Component {
                         dataIndex="verified"
                         headerCheckbox
                     />
-                    <Column
-                        text="Ratings"
-                    >
+                    <Column text="Ratings">
                         <NumberColumn
                             text="Avg"
                             dataIndex="averageRating"
                             width="75"
+                            summary="average"
                             cell={{
                                 cls:'big-data-ratings-cell',
-                                    bind: {
-                                        bodyCls: '{ratingGroup:pick("under4","under5","under6","over6")}'
-                                    }
+                                bind: {
+                                    bodyCls: '{ratingGroup:pick("under4","under5","under6","over6")}'
+                                }
                             }}
                         />
                         <Column
@@ -153,14 +170,14 @@ export default class BigDataGridExample extends Component {
                         editable
                         format='d-m-Y'
                         exportStyle={[{
-                            // no type key is defined here which means that me is the default style
+                            // no type key is defined here which means that this is the default style
                             // that will be used by all exporters
-                            format: 'medium Date',
+                            format: 'Medium Date',
                             alignment: {
                                 horizontal: 'Right'
                             }
                         }, {
-                            // the type key means that me style will only be used by the csv exporter
+                            // the type key means that this style will only be used by the csv exporter
                             // and for all others the default one, defined above, will be used
                             type: 'csv',
                             format: 'Short Date'
@@ -170,6 +187,16 @@ export default class BigDataGridExample extends Component {
                         text=""
                         width="100"
                         ignoreExport
+                        align="center"
+                        summaryCell={{
+                            xtype: 'widgetcell',
+                            widget: {
+                                xtype: 'button',
+                                ui: 'action',
+                                text: 'All',
+                                handler: this.onVerifyAll
+                            }
+                        }}
                     >
                         <WidgetCell>
                             <Button
@@ -185,10 +212,10 @@ export default class BigDataGridExample extends Component {
                         editable
                         format="d-m-Y"
                         exportStyle={{
-                            format: 'medium Date',
-                                alignment: {
-                                    horizontal: 'Right'
-                                }
+                            format: 'Medium Date',
+                            alignment: {
+                                horizontal: 'Right'
+                            }
                         }}
                     />
                     <TextColumn
@@ -205,29 +232,36 @@ export default class BigDataGridExample extends Component {
                             xtype:'emailfield'
                         }}
                     />
-                    <Column
-                        text='Absences'
-                    >
+                    <Column text='Absences'>
                         <TextColumn
                             text="Illness"
                             dataIndex="sickDays"
                             align='center'
-                            summaryType='sum'
+                            summary='sum'
                         />
                         <TextColumn
                             text="Holidays"
                             dataIndex="holidayDays"
                             align='center'
-                            summaryType='sum'
+                            summary='sum'
                         />
                         <TextColumn
                             text="Holiday Allowance"
                             dataIndex="holidayAllowance"
                             align='center'
-                            summaryType='sum'
+                            summary='sum'
                             summaryFormatter='number("0.00")'
                             formatter='number("0.00")'
                         />
+                    </Column>
+                    <Column 
+                        text="Rating<br/>This Year" 
+                        dataIndex="ratingThisYear"
+                        groupable={false}
+                    >
+                        <WidgetCell>
+                            <Rating tip='Set to {tracking:plural("Star")}'/>
+                        </WidgetCell>
                     </Column>
                     <TextColumn
                         text='Salary'
@@ -235,18 +269,15 @@ export default class BigDataGridExample extends Component {
                         renderer={Ext.util.Format.usMoney}
                         width='150'
                         editable
-                        summaryType='sum'
+                        summary='sum'
                         summaryRenderer={this.salarySummaryRenderer}
                         exportStyle={{
                             format: 'Currency',
-                                alignment: {
-                                    horizontal: 'Right'
-                                }
+                            alignment: {
+                                horizontal: 'Right'
+                            }
                         }}
                     />
-                    <Toolbar docked="top">
-                        <Button text="Export to..." handler={() => this.setState({ showExportSheet: true })}/>
-                    </Toolbar>
                 </Grid>
             </Container>
         )
@@ -280,7 +311,7 @@ export default class BigDataGridExample extends Component {
          this.doExport({
             type:       'tsv',
             title:      'Grid Export Demo',
-            fileName:   'GridExport.csv'
+            fileName:   'GridExport.tsv'
         });
     }
 
@@ -293,9 +324,41 @@ export default class BigDataGridExample extends Component {
     }
 
     onVerify = (btn) => {
-        const cell = btn.getParent(), record = cell.getRecord();
+        const cell = btn.up(), record = cell.getRecord();
         record.set('verified', true);
         Ext.Msg.alert('Verify', `Verify ${record.get('forename')} ${record.get('surname')}`);
+    }
+
+    onVerifyAll = (button) => {
+        let row = button.up('gridrow'),
+            group = row.getGroup(),
+            store = this.store,
+            count;
+
+        if (group) {
+            count = group.length;
+        } else {
+            count = store.getCount();
+        }
+        
+        Ext.Msg.confirm('Verify All',
+            'Are you sure you want to verify all ' + count + ' items?',
+            answer => {
+                if (answer === 'yes') {
+                    // Don't want to grid to update on each change:
+                    store.suspendEvent('update');
+
+                    (group || store).each(function (rec) {
+                        rec.set('verified', true);
+                    });
+
+                    store.resumeEvent('update');
+
+                    // Now update all the things
+                    this.grid.refresh();
+                }
+            }
+        );
     }
 
     salarySummaryRenderer = (value) => {
@@ -304,7 +367,7 @@ export default class BigDataGridExample extends Component {
 
     doExport(config) {
         this.setState({ showExportSheet: false });
-        this.refs.grid.saveDocumentAs(config);
+        this.grid.saveDocumentAs(config);
     }
 }
 

@@ -6,7 +6,7 @@ export default class HBoxLayoutExample extends Component {
 
     render() {
         const panelProps = {
-            minHeight: 75,
+            height: 75,
             margin: '0 0 40 0',
             defaults: {
                 layout: 'center'
@@ -14,7 +14,7 @@ export default class HBoxLayoutExample extends Component {
         };
 
         return (
-            <Container padding={10}>
+            <Container padding={Ext.os.is.Phone ? 20 : 30}>
                 <Panel shadow ui="instructions" margin="0 0 40 0">
                     <div>An <b>hbox</b> layout positions items horizontally with optional 'pack', and 'align' configs.</div>
                 </Panel>

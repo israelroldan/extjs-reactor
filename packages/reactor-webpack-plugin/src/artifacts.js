@@ -148,9 +148,9 @@ export function createAppJson({ theme, packages, toolkit, overrides=[], packageD
         }
     };
 
-    // if .sencharc file exists, consume it and apply to app.json
-    if(fs.existsSync('./.sencharc')) {
-        const senchaRc = JSON.parse(fs.readFileSync('./.sencharc', 'utf-8'));
+    // if .ext-reactrc file exists, consume it and apply to app.json
+    if(fs.existsSync('./.ext-reactrc')) {
+        const senchaRc = JSON.parse(fs.readFileSync('./.ext-reactrc', 'utf-8'));
         Object.assign(config, senchaRc);
         theme = senchaRc.theme || theme;
     }

@@ -11,7 +11,7 @@ Ext.require([
 ]);
 
 const toolbarItemDefaults = {
-    margin: '0 0 0 10px'
+    margin: '0 10px 0 0'
 }
 
 const downloadChart = (chart) => {
@@ -24,6 +24,7 @@ const downloadChart = (chart) => {
     
 export default function ChartToolbar({ 
     theme, 
+    onlyMidnight=false,
     onThemeChange, 
     onToggleZoomOnPan, 
     onToggleCrosshair,
@@ -32,24 +33,26 @@ export default function ChartToolbar({
     onStackGroup
 }) {
     return (
-        <Toolbar docked="top">
+        <Toolbar docked="top" ui="app-transparent-toolbar" shadow={false} margin={!Ext.os.is.Phone && "0 10"}>
             { theme && (
-                <Button iconCls="x-fa fa-picture-o" text="THEME">
-                    <Menu indented={false}>
-                        <MenuItem text="Default" handler={() => onThemeChange('default')}/>
-                        <MenuItem text="Green" handler={() => onThemeChange('green')}/>
-                        <MenuItem text="Midnight" handler={() => onThemeChange('midnight')}/>
-                        <MenuItem text="Muted" handler={() => onThemeChange('muted')}/>
-                        <MenuItem text="Red" handler={() => onThemeChange('red')}/>
-                        <MenuItem text="Sky" handler={() => onThemeChange('sky')}/>
-                        <MenuItem text="Yellow" handler={() => onThemeChange('yellow')}/>
+                <Button {...toolbarItemDefaults} iconCls="x-fa fa-picture-o" text="Theme" ui="action">
+                    <Menu>
+                        <MenuItem text="Default" handler={() => onThemeChange('default')} iconCls={theme === 'default' && 'x-font-icon md-icon-done'}/>
+                        {!onlyMidnight && <MenuItem text="Green" handler={() => onThemeChange('green')} iconCls={theme === 'green' && 'x-font-icon md-icon-done'}/>}
+                        <MenuItem text="Midnight" handler={() => onThemeChange('midnight')} iconCls={theme === 'midnight' && 'x-font-icon md-icon-done'}/>
+                        {!onlyMidnight &&<MenuItem text="Muted" handler={() => onThemeChange('muted')} iconCls={theme === 'muted' && 'x-font-icon md-icon-done'}/>}
+                        {!onlyMidnight && <MenuItem text="Red" handler={() => onThemeChange('red')} iconCls={theme === 'red' && 'x-font-icon md-icon-done'}/>}
+                        {!onlyMidnight && <MenuItem text="Sky" handler={() => onThemeChange('sky')} iconCls={theme === 'sky' && 'x-font-icon md-icon-done'}/>}
+                        {!onlyMidnight &&<MenuItem text="Yellow" handler={() => onThemeChange('yellow')} iconCls={theme === 'yellow' && 'x-font-icon md-icon-done'}/>}
                     </Menu>
                 </Button>
             )}
             { downloadChartRef && (
                 <Button 
+                    {...toolbarItemDefaults}
+                    ui="action"
                     iconCls="x-fa fa-eye" 
-                    text="PREVIEW" 
+                    text="Preview" 
                     handler={downloadChart.bind(null, downloadChartRef)}
                     platformConfig={{
                         desktop: {
@@ -60,17 +63,17 @@ export default function ChartToolbar({
                 />
             )}
             { onRefreshClick && (
-                <Button {...toolbarItemDefaults} iconCls="x-fa fa-refresh" handler={onRefreshClick} text="REFRESH"/>
+                <Button ui="action" {...toolbarItemDefaults} iconCls="x-fa fa-refresh" handler={onRefreshClick} text="REFRESH"/>
             )}
             <Spacer/>
             { onStackGroup && (
-                <SegmentedButton onToggle={onStackGroup}>
+                <SegmentedButton {...toolbarItemDefaults} onToggle={onStackGroup}>
                     <Button ui="default-toolbar" text="STACK" pressed/>
                     <Button ui="default-toolbar" text="GROUP"/>
                 </SegmentedButton>
             )}
             { onToggleZoomOnPan && !Ext.supports.Touch && (
-                <SegmentedButton {...toolbarItemDefaults}>
+                <SegmentedButton>
                     <Button ui="default-toolbar" handler={() => onToggleZoomOnPan(false)} pressed text="PAN"/>
                     <Button ui="default-toolbar" handler={() => onToggleZoomOnPan(true)} text="ZOOM"/>
                     { onToggleCrosshair && <Button ui="default-toolbar" handler={() => onToggleCrosshair(true)} text="CROSSHAIR"/> }

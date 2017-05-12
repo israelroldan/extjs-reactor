@@ -32,20 +32,36 @@ export default class SearchFieldExample extends Component {
 
                 <div style={styles.heading}>solo</div>
                 <Container layout="hbox" padding="20 20" style={{backgroundColor: '#F0F0F0'}} shadow>
+                    {/*
+                        @include textfield-ui(
+                            $ui: 'ks-search-right-trigger',
+                            $input-padding: 10px 10px 10px 15px,
+                            $input-padding-big: 7px 7px 7px 15px
+                        );                    
+                    */}
                     <SearchField 
-                        ui="solo"
+                        ui="solo ks-search-right-trigger"
                         shadow
                         placeholder="Search"
                         margin="0 10 0 0"
+                        triggerAlign="right"
+                        triggers={{
+                            search: {
+                                type: 'search',
+                                side: 'right'
+                            }
+                        }}
                         flex={1}
                     />
                     <Button 
                         iconCls="x-fa fa-arrow-right"
                         ui="action round raised"
                         height={36}
+                        width={36}
                         platformConfig={{
                             phone: {
-                                height: 40
+                                height: 40,
+                                width: 40
                             }
                         }}
                     />

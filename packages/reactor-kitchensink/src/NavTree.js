@@ -10,27 +10,26 @@ export default class NavTree extends Component {
     }
 
     containsMatches(node) {
-        const found = node.name.match(this.filterRegex) || node.childNodes.some(child => this.containsMatches(child));
+        const found = node.data.name.match(this.filterRegex) || node.childNodes.some(child => this.containsMatches(child));
         if (found) node.expand();
-        node.data.text = node.name.replace(this.filterRegex, '<span style="color:#2196F3;font-weight:bold">$1</span>')
+        node.data.text = node.data.name.replace(this.filterRegex, '<span style="color:#2196F3;font-weight:bold">$1</span>')
         return found;
     }
 
     render() {
-        const { onSelectionChange, width, store, selection } = this.props;
+        const { onSelectionChange, store, selection, ...props } = this.props;
 
         return (
             <Panel 
-                {...this.props}
+                {...props}
                 scrollable="y" 
                 shadow 
-                style={{zIndex: 100}} 
+                style={{zIndex: 100, backgroundColor: 'white'}} 
                 header={false}
                 collapsible={{ direction: 'left' }}
             >
-                <SearchField flex={1} docked="top" style={{backgroundColor: '#fafafa', padding: '5px' }} onChange={this.filterNav} />
+                <SearchField flex={1} docked="top" ui="faded" onChange={this.filterNav} margin="7" />
                 <TreeList
-                    width={265} 
                     ui="nav"
                     store={store}
                     expanderFirst={false}

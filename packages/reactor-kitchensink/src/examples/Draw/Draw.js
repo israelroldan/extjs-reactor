@@ -98,7 +98,7 @@ export default class DrawExample extends Component {
         return (
             <Panel shadow layout="fit">
                 <Toolbar docked="top">
-                    <div>Use your {Ext.supports.Touch ? 'finger' : 'mouse'} to paint on the surface below.</div>
+                    <div style={{fontSize: Ext.os.is.Phone ? '12px' : '14px'}}>Use your {Ext.supports.Touch ? 'finger' : 'mouse'} to paint on the surface below.</div>
                     <Spacer/>
                     <Button handler={this.clear} text="Clear"/>
                 </Toolbar>

@@ -1,104 +1,22 @@
 import React, { Component } from 'react';
-import { Tree, NumberColumn, TreeColumn } from '@extjs/ext-react';
+import { NumberColumn } from '@extjs/ext-react';
+import { Tree, TreeColumn } from '@extjs/ext-react-treegrid';
+import root from './data';
 
 export default class TreeGridExample extends Component {
 
-    render(){
-        return(
-            <Tree
-                title="Tree Grid"
-                bind='{navItems}'
-                viewModel={
-                    {
-                        stores: {
-                            navItems: {
-                                type: 'tree',
-                                rootVisible: true,
-                                root: {
-                                    expanded: true,
-                                    text: 'All',
-                                    iconCls: 'x-fa fa-sitemap',
-                                    children: [{
-                                        text: 'Home',
-                                        iconCls: 'x-fa fa-home',
-                                        children: [{
-                                            text: 'Messages',
-                                            numItems: 231,
-                                            iconCls: 'x-fa fa-inbox',
-                                            leaf: true
-                                        }, {
-                                            text: 'Archive',
-                                            iconCls: 'x-fa fa-database',
-                                            children: [{
-                                                text: 'First',
-                                                numItems: 7,
-                                                iconCls: 'x-fa fa-sliders',
-                                                leaf: true
-                                            }, {
-                                                text: 'No Icon',
-                                                numItems: 0,
-                                                iconCls: null,
-                                                leaf: true
-                                            }]
-                                        }, {
-                                            text: 'Music',
-                                            numItems: 3000,
-                                            iconCls: 'x-fa fa-music',
-                                            leaf: true
-                                        }, {
-                                            text: 'Video',
-                                            numItems: 1000,
-                                            iconCls: 'x-fa fa-film',
-                                            leaf: true
-                                        }]
-                                    }, {
-                                        text: 'Users',
-                                        iconCls: 'x-fa fa-user',
-                                        children: [{
-                                            text: 'Tagged',
-                                            numItems: 53,
-                                            iconCls: 'x-fa fa-tag',
-                                            leaf: true
-                                        }, {
-                                            text: 'Inactive',
-                                            numItems: 9,
-                                            iconCls: 'x-fa fa-trash',
-                                            leaf: true
-                                        }]
-                                    }, {
-                                        text: 'Groups',
-                                        numItems: 3,
-                                        iconCls: 'x-fa fa-group',
-                                        leaf: true
-                                    }, {
-                                        text: 'Settings',
-                                        iconCls: 'x-fa fa-wrench',
-                                        children: [{
-                                            text: 'Sharing',
-                                            numItems: 4,
-                                            iconCls: 'x-fa fa-share-alt',
-                                            leaf: true
-                                        }, {
-                                            text: 'Notifications',
-                                            numItems: 16,
-                                            iconCls: 'x-fa fa-flag',
-                                            leaf: true
-                                        }, {
-                                            text: 'Network',
-                                            numItems: 4,
-                                            iconCls: 'x-fa fa-signal',
-                                            leaf: true
-                                        }]
-                                    }]
-                                }
-                            }
-                        }
-                    }
-                }
-            >
-                <TreeColumn text="Name" dataIndex="text" flex="1" />
+    store = Ext.create('Ext.data.TreeStore', {
+        rootVisible: true,
+        root
+    })
+
+    render() {
+        return (
+            <Tree title="Tree Grid" store={this.store} shadow>
+                <TreeColumn text="Name" dataIndex="text" width="200"/>
                 <NumberColumn  text="# Items" dataIndex="numItems" width="100" align="center" format="0,0"/>
             </Tree>
         )
     }
+
 }

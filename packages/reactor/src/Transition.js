@@ -1,8 +1,7 @@
 import { reactify } from './reactify';
 
 Ext.require([
-    'Ext.fx.animation.*', 
-    'Ext.layout.Float'
+    'Ext.fx.animation.*'
 ]);
 
 Ext.define('Ext.reactor.Transition', {
@@ -86,7 +85,10 @@ Ext.define('Ext.reactor.Transition', {
         }
 
         items.forEach(item => {
-            requestAnimationFrame(() => item.show(animations.showAnimation));
+            requestAnimationFrame(() => {
+                item.setStyle({ visibility: 'visible' })
+                item.show(animations.showAnimation)
+            });
 
             // override destroy to first hide then destroy
             const originalDestroy = item.destroy.bind(item);
@@ -133,14 +135,17 @@ Ext.define('Ext.reactor.Transition', {
         requestAnimationFrame(() => animateDestroy());
     },
 
-    addAnimationConfigs(child, hidden=true) {
+    addAnimationConfigs(child) {
         child.setConfig({
-            hidden, 
-            width: '100%',
-            height: '100%',
             zIndex: 1,
             top: 0,
-            left: 0
+            left: 0,
+            bottom: 0,
+            right: 0,
+            style: {
+                // prevent new view from "flashing" in before animating in safari
+                visibility: 'hidden'
+            }
         });
     },
 

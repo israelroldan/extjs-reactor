@@ -54,9 +54,9 @@ class SearchField extends Component {
     /**
      * Navigate to the event when an item is selected in the list
      */
-    onChange = (combo, value) => {
-        if (value) {
-            location.hash = `/schedule/${value}`
+    onSelect = (combo, record) => {
+        if (record) {
+            location.hash = `/schedule/${record.getId()}`
         }
     }
 
@@ -65,15 +65,15 @@ class SearchField extends Component {
             <ComboBox 
                 { ...this.props }
                 ui="alt"
+                placeholder="Search"
                 ref={field => this.field = field}
                 itemTpl={this.itemTpl}
                 store={this.store}
                 queryMode="local"
                 onBeforeQuery={this.search}
-                placeholder="Search"
                 clearable
                 hideTrigger
-                onChange={this.onChange}
+                onSelect={this.onSelect}
                 valueField='id'
                 matchFieldWidth={false}
                 floatedPicker={{ width: 500 }}

@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
-import { TitleBar, Container, NestedList, Panel, Button } from '@extjs/ext-react';
+import { TitleBar, Container, NestedList, Panel, Button, ToolTip } from '@extjs/ext-react';
 import { Transition } from '@extjs/reactor';
 import hljs, { highlightBlock } from 'highlightjs';
 import NavTree from './NavTree';
 import NavView from './NavView';
 import Files from './Files';
-import Home from './Home';
 import * as actions from './actions';
 import Breadcrumbs from './Breadcrumbs';
 
@@ -34,21 +33,22 @@ class Layout extends Component {
                 anim.disable();
                 nav.goToNode(node.parentNode);
                 anim.enable();
-                nav.goToLeaf(node);
+                
+                if (node.isLeaf()) {
+                    nav.goToLeaf(node);
+                }
             }
         }
     }
 
     onNavChange = (node) => {
         if (node && node.isLeaf()) {
-            const { router, location } = this.props;
-            const path = node.getId();
-            if (location.pathname !== path) router.push(path)
+            location.hash = node.getId();
         }
     }
 
     onTitleClick = () => {
-        this.props.router.push('/');
+        location.hash = '/';
     }
 
     render() {
@@ -61,11 +61,12 @@ class Layout extends Component {
             showCode,
             showTree,
             actions,
-            layout,
-            router
+            layout
         } = this.props;
 
         let mainView;
+
+        const example = component && React.createElement(component);
 
         if (Ext.os.is.Phone) {
             // phone layout
@@ -77,13 +78,13 @@ class Layout extends Component {
                     onLeafItemTap={(self, list, index, target, node) => this.onNavChange(node)}
                     flex={1}
                 >
-                    { component && (
-                        <Container rel="detailCard" layout="fit">
-                            <Container key={selectedNavNode.get('text')} layout={layout === 'fit' ? 'fit' : 'auto' } scrollable={layout !== 'fit'}>
-                                { React.createElement(component) }
+                    <Container rel="detailCard" layout="fit">
+                        { component && (
+                            <Container key={selectedNavNode.get('text')} layout={layout} scrollable={layout==='auto'} autoSize={layout !== 'fit'}>
+                                { layout === 'fit' ? example : <Container scrollable={layout==='center'}>{ example }</Container> }
                             </Container>
-                        </Container>
-                    ) }
+                        ) }
+                    </Container>
                 </NestedList>
             )
         } else {
@@ -102,19 +103,28 @@ class Layout extends Component {
                     <Container layout="fit" flex={1}>
                         <NavTree 
                             docked="left"
+                            width="300"
+                            resizable={{
+                                edges: 'east',
+                                dynamic: true
+                            }}
                             store={navStore} 
                             selection={selectedNavNode}
                             onSelectionChange={(tree, node) => this.onNavChange(node)}
                             collapsed={!showTree}
                         /> 
-                        <Breadcrumbs docked="top" node={selectedNavNode} router={router}/>
-                        <Transition flex={1} type="slide" bindDirectionToLocation>
+                        <Breadcrumbs docked="top" node={selectedNavNode}/>
+                        <Transition type="slide" bindDirectionToLocation padding="30">
                             { component ? (
-                                <Container layout={layout} scrollable={layout !== 'fit'} padding="30" key={selectedNavNode.id}>
-                                    { React.createElement(component) }
+                                <Container layout={layout} scrollable key={selectedNavNode.id} autoSize={layout !== 'fit'}>
+                                    { layout === 'fit' ? (
+                                        <Container padding="30" layout="fit">{ example }</Container> 
+                                    ) : (
+                                        example 
+                                    )}
                                 </Container>
                             ) : selectedNavNode ? (
-                                <NavView key={selectedNavNode.id} node={selectedNavNode} router={router}/>
+                                <NavView key={selectedNavNode.id} node={selectedNavNode}/>
                             ) : null }
                         </Transition>
                     </Container>
@@ -130,11 +140,11 @@ class Layout extends Component {
                         align="right" 
                         iconCls={'x-font-icon ' + (showCode ? 'md-icon-close' : 'md-icon-code') }
                         ui="fab" 
-                        top={21}
+                        top={Ext.os.is.Desktop ? 20 : 35}
                         right={21}
                         zIndex={1000}
                         handler={actions.toggleCode} 
-                    /> 
+                    />
                 )}
                 { !Ext.os.is.Phone && files && (
                     <Panel 

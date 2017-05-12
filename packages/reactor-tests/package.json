@@ -1,6 +1,6 @@
 {
   "name": "@extjs/reactor-tests",
-  "version": "0.2.9",
+  "version": "1.0.0",
   "description": "Sencha Test suite for the reactor library.",
   "main": "index.js",
   "private": true,
@@ -14,14 +14,14 @@
     "type": "git",
     "url": "git+https://github.com/sencha/extjs-reactor.git"
   },
-  "author": "Sencha",
+  "author": "Sencha, Inc.",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/sencha/extjs-reactor/issues"
   },
   "homepage": "https://github.com/sencha/extjs-reactor#readme",
   "dependencies": {
-    "@extjs/reactor": "^0.2.9",
+    "@extjs/reactor": "^1.0.0",
     "babel-runtime": "^6.23.0",
     "d3": "4.5.0",
     "react": "^15.4.0",
@@ -32,8 +32,8 @@
     "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
-    "@extjs/reactor-babel-plugin": "^0.2.9",
-    "@extjs/reactor-webpack-plugin": "^0.2.9",
+    "@extjs/reactor-babel-plugin": "^1.0.0",
+    "@extjs/reactor-webpack-plugin": "^1.0.0",
     "babel-core": "^6.17.0",
     "babel-loader": "^6.2.5",
     "babel-plugin-transform-runtime": "^6.23.0",

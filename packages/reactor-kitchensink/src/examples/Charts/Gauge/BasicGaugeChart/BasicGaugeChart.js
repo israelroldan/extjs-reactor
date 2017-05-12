@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Polar, Panel } from '@extjs/ext-react';
+import { Container, Panel } from '@extjs/ext-react';
+import { Polar } from '@extjs/ext-react-charts';
 import createData from './createData';
 import ChartToolbar from '../../ChartToolbar';
 
@@ -24,90 +25,92 @@ export default class BasicGaugeChartExample extends Component {
 
     render() {
         return (
-            <Panel shadow layout={{type: 'vbox', align: 'stretch'}}>
+            <Container padding={!Ext.os.is.Phone && 10} layout="fit">
                 <ChartToolbar
                     onRefreshClick={this.refresh}
                 />
-                <Polar
-                    innerPadding={20}
-                    store={this.store}
-                    flex={1}
-                    animate={{
-                        easing: 'elasticIn',
-                        duration: 1000
-                    }}
-                    series={[{
-                        type: 'gauge',
-                        angleField: 'g1',
-                        minimum: 100,
-                        maximum: 800,
-                        donut: 30,
-                        colors: ["#115fa6", "lightgrey"]
-                    }]}
-                />
-                <Polar
-                    innerPadding={20}
-                    store={this.store}
-                    flex={1}
-                    animate={{
-                        easing: 'elasticIn',
-                        duration: 1000
-                    }}
-                    series={[{
-                        type: 'gauge',
-                        angleField: 'g1',
-                        donut: 30,
-                        value: 60,
-                        minimum: 100,
-                        maximum: 800,
-                        needle: true,
-                        needleLength: 95,
-                        needleWidth: 8,
-                        totalAngle: Math.PI,
-                        label: {
-                            fontSize: 12,
-                            fontWeight: 'bold'
-                        },
-                        colors: ['maroon', 'blue', 'lightgray', 'red'],
-                        sectors: [{
-                            end: 300,
-                            label: 'Cold',
-                            color: 'dodgerblue'
-                        }, {
-                            end: 300,
-                            style: {
-                                strokeStyle: 'black',
-                                strokeOpacity: 1,
-                                lineWidth: 4
-                            }
-                        }, {
-                            end: 600,
-                            label: 'Temp.',
-                            color: 'lightgray'
-                        }, {
-                            end: 600,
-                            style: {
-                                strokeStyle: 'black',
-                                strokeOpacity: 1,
-                                lineWidth: 4
-                            }
-                        }, {
-                            end: 800,
-                            label: 'Hot',
-                            color: 'tomato'
-                        }, {
-                            start: 0,
-                            style: {
-                                strokeStyle: 'gray',
-                                strokeOpacity: 1,
-                                lineWidth: 4,
-                                fillOpacity: 0
-                            }
-                        }],
-                        renderer: this.chartRenderer
-                    }]}
-                />                
-            </Panel>
+                <Panel shadow layout="vbox">
+                    <Polar
+                        innerPadding={20}
+                        store={this.store}
+                        flex={1}
+                        animate={{
+                            easing: 'elasticIn',
+                            duration: 1000
+                        }}
+                        series={[{
+                            type: 'gauge',
+                            angleField: 'g1',
+                            minimum: 100,
+                            maximum: 800,
+                            donut: 30,
+                            colors: ["#115fa6", "lightgrey"]
+                        }]}
+                    />
+                    <Polar
+                        innerPadding={20}
+                        store={this.store}
+                        flex={1}
+                        animate={{
+                            easing: 'elasticIn',
+                            duration: 1000
+                        }}
+                        series={[{
+                            type: 'gauge',
+                            angleField: 'g1',
+                            donut: 30,
+                            value: 60,
+                            minimum: 100,
+                            maximum: 800,
+                            needle: true,
+                            needleLength: 95,
+                            needleWidth: 8,
+                            totalAngle: Math.PI,
+                            label: {
+                                fontSize: 12,
+                                fontWeight: 'bold'
+                            },
+                            colors: ['maroon', 'blue', 'lightgray', 'red'],
+                            sectors: [{
+                                end: 300,
+                                label: 'Cold',
+                                color: 'dodgerblue'
+                            }, {
+                                end: 300,
+                                style: {
+                                    strokeStyle: 'black',
+                                    strokeOpacity: 1,
+                                    lineWidth: 4
+                                }
+                            }, {
+                                end: 600,
+                                label: 'Temp.',
+                                color: 'lightgray'
+                            }, {
+                                end: 600,
+                                style: {
+                                    strokeStyle: 'black',
+                                    strokeOpacity: 1,
+                                    lineWidth: 4
+                                }
+                            }, {
+                                end: 800,
+                                label: 'Hot',
+                                color: 'tomato'
+                            }, {
+                                start: 0,
+                                style: {
+                                    strokeStyle: 'gray',
+                                    strokeOpacity: 1,
+                                    lineWidth: 4,
+                                    fillOpacity: 0
+                                }
+                            }],
+                            renderer: this.chartRenderer
+                        }]}
+                    />  
+                </Panel>              
+            </Container>
         )
     }
 

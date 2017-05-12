@@ -29,7 +29,7 @@ export default class TitleBarExample extends Component {
                         <Button align="right" iconCls="x-fa fa-user" text="Profile"/>
                     )}
                     {!Ext.os.is.Phone && (
-                        <SearchField align="right" ui="alt" placeholder="Search" margin="0 0 0 10"/>
+                        <SearchField align="right" ui="alt" placeholder="Search" margin="0 10"/>
                     )}
 
                     <Button align="right" iconCls="x-fa fa-ellipsis-v" arrow={false}>

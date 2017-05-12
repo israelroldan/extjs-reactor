@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Column } from '@extjs/ext-react';
-import { Template } from '@extjs/reactor';
+import { Grid, Column, GridCell } from '@extjs/ext-react';
 
 export default class GridToolsExample extends Component {
     
@@ -17,11 +16,11 @@ export default class GridToolsExample extends Component {
         }
     })
 
-    helperTpl = new Template(data => (
+    helperTpl = data => (
         <ul>
             { data.group.items.map((item, i) => <li key={i}>{item.data.name}</li>) }
         </ul>
-    ))
+    )
 
     //-----------------------------------------------
     //Cell actions:
@@ -82,9 +81,46 @@ export default class GridToolsExample extends Component {
                     }
                 }}
             >
-                <Column text="Name" dataIndex="name" flex="1" cell={{tools:{pin:{handler:this.onPin}}}}/>
-                <Column text="Cuisine" dataIndex="cuisine" flex="1" cell={{tools:{pin:{handler:this.onGear}}}}/>
-                <Column text="Actions"  width="80" cell={{tools:{pin:{handler:this.onSearch}}}}/>
+                <Column 
+                    text="Name" 
+                    dataIndex="name" 
+                    flex={1}
+                    maxWidth="200"
+                >
+                    <GridCell 
+                        tools={{
+                            pin: {
+                                handler: this.onPin
+                            }
+                        }}
+                    />
+                </Column>
+                <Column 
+                    text="Cuisine" 
+                    dataIndex="cuisine" 
+                    flex={1}
+                    maxWidth="150"
+                >
+                    <GridCell 
+                        tools={{
+                            gear: {
+                                handler: this.onGear
+                            }
+                        }}
+                    />
+                </Column>
+                <Column 
+                    text="Actions" 
+                    width="80" 
+                >
+                    <GridCell 
+                        tools={{
+                            search: {
+                                handler: this.onSearch
+                            }
+                        }}
+                    />
+                </Column>
             </Grid>
         )
     }

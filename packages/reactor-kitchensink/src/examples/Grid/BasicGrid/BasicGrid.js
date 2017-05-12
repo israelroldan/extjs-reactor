@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Grid, Column } from '@extjs/ext-react';
-import model from './BasicGridModel';
+import model from '../CompanyModel';
 
 export default class BasicGridExample extends Component {
 
@@ -14,19 +14,6 @@ export default class BasicGridExample extends Component {
         } 
     });
 
-    signTpl = (field, format, data) => { 
-        const value = data[field];
-        const text = Ext.util.Format.number(value, format)
-
-        if (Math.abs(value) <= 0.1) {
-            return <span>{text}</span>
-        } else if (value < 0) {
-            return <span style={{color: 'red'}}>{text}</span>
-        } else {
-            return <span style={{color: 'green'}}>{text}</span>
-        }
-    }
-
     render() {
         return (
             <Grid title="Stock Prices" store={this.store} shadow grouped>
@@ -36,6 +23,16 @@ export default class BasicGridExample extends Component {
                 <Column text="% Change" dataIndex="priceChangePct" tpl={this.signTpl.bind(this, 'priceChangePct', '0.00%')} cell={{ encodeHtml: false }}/>
                 <Column text="Last Updated" width="125" dataIndex="lastChange" formatter='date("m/d/Y")'/>
             </Grid>
+        )
+    }
+
+    signTpl = (field, format, data) => {
+        const value = data[field];
+
+        return (
+            <span style={{ color: value > 0 ? 'green' : value < 0 ? 'red' : ''}}>
+                {Ext.util.Format.number(value, format)}
+            </span>
         )
     }
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Panel, Cartesian } from '@extjs/ext-react';
+import { Container } from '@extjs/ext-react';
+import { Cartesian } from '@extjs/ext-react-charts';
 import ChartToolbar from '../../ChartToolbar';
 import generateData from './generateData';
 
@@ -54,13 +55,14 @@ export default class Bubble extends Component {
         const{ theme } = this.state;
 
         return (
-            <Panel shadow layout="fit">
+            <Container padding={!Ext.os.is.Phone && 10} layout="fit">
                 <ChartToolbar
                     onThemeChange={this.changeTheme}
                     onRefreshClick={this.refreshData}
                     theme={theme}
                 />
                 <Cartesian
+                    shadow
                     store={this.store}
                     theme={theme}
                     interactions={['itemhighlight']}
@@ -104,7 +106,7 @@ export default class Bubble extends Component {
                         position: 'bottom'
                     }]}
                 />
-            </Panel>
+            </Container>
         )
     }
 }

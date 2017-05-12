@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Cartesian, Panel } from '@extjs/ext-react';
+import { Container } from '@extjs/ext-react';
+import { Cartesian } from '@extjs/ext-react-charts';
 import ChartToolbar from '../../ChartToolbar';
 
 Ext.require([
@@ -39,12 +40,13 @@ export default class BasicBarChartExample extends Component {
         const { theme } = this.state;
 
         return (
-            <Panel shadow layout="fit">
+            <Container padding={!Ext.os.is.Phone && 10} layout="fit">
                 <ChartToolbar
                     onThemeChange={this.changeTheme}
                     theme={theme}
                 />
                 <Cartesian
+                    shadow
                     insetPadding="70 40 0"
                     platformConfig={{
                         phone: {
@@ -83,23 +85,16 @@ export default class BasicBarChartExample extends Component {
                         fields: 'country',
                         grid: true
                     }]}
-                    sprites={[{
-                        type: 'text',
-                        text: '2011 Industry size in major economies',
-                        fontSize: 21,
-                        width: 100,
-                        height: 30,
-                        x: 40, // the sprite x position
-                        y: 35  // the sprite y position
-                    }, {
-                        type: 'text',
-                        text: 'Source: http://en.wikipedia.org/wiki/List_of_countries_by_GDP_sector_composition',
-                        fontSize: 10,
-                        x: 40,
-                        y: 50
-                    }]}
+                    captions={{
+                        title: {
+                            text: '2011 Industry size in major economies',
+                        },
+                        subtitle: {
+                            text: 'Source: http://en.wikipedia.org/wiki/List_of_countries_by_GDP_sector_composition',
+                        }
+                    }}
                 />
-            </Panel>            
+            </Container>            
         )
     }
 }

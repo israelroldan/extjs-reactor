@@ -3,7 +3,7 @@ import { Container, Panel, FormPanel, TextField } from '@extjs/ext-react';
 
 export default function FormLayoutExample() {
     return (
-        <Container layout="vbox" padding={10}>
+        <Container padding={Ext.os.is.Phone ? 20 : 30}>
             <Panel shadow ui="instructions" margin="0 0 30 0">
                 <div>
                     A <b>form</b> layout renders a single column of form fields, all with the same label width. 

@@ -3,16 +3,19 @@
 const parseArgs = require('minimist'),
     fs = require('fs'),
     path = require('path'),
-    { exec } = require('child_process');
+    sencha = require('@extjs/sencha-cmd'),
+    { fork } = require('child_process'), 
+    mkdirp = require('mkdirp');
 
+console.log('USING sencha: ', sencha);
 // A skeleton for a ext-react workspace.json file.
 const workspaceJson = {
     apps: [],
-    frameworks: { ext: 'node_modules/@extjs/ext-react' },
-    build: { dir: '${workspace.dir}/build/.sencha' },
-    packages: {
-        dir: '${workspace.dir}/packages,${workspace.dir}/packages/local',
-        extract: '${workspace.dir/packages/remote'
+    frameworks: { ext: '../node_modules/@extjs/ext-react' },
+    build: { dir: '${workspace.dir}/build' },
+    packages: { dir: '${workspace.dir}/packages,${workspace.dir}/../node_modules/@extjs' },
+    properties: {
+        'build.web.root': '${workspace.dir}/../'
     }
 };
 
@@ -28,25 +31,45 @@ printUsage = () => {
         ext-react generate theme --baseTheme theme-material --name my-awesome-theme
 
     Options
-        * --baseTheme -b - The theme to base your custom theme off of.
         * --name -n - The name of the theme package.
+        * --baseTheme -b - (Optional) The theme to base your custom theme off of. Defaults to 'theme-material'.
 `
     );
 }
 
-// Validate sencha Cmd in path.
-const sencha = 'node_modules/.bin/sencha';
+/**
+ * Ensures a 'ext-react/packages' folder exists for the workspace and theme packages to be installed in.
+ */
+const ensurePackagesFolder = () => {
+    return new Promise(resolve => {
+        const dir = path.join('.', 'ext-react', 'packages');
+        fs.stat(dir, (err, stats) => {
+            if(err || !stats.isDirectory()) {
+                mkdirp(dir, resolve.bind(null));
+            } else {
+                resolve();
+            }
+        })
+    });
+}
 
 /**
  * Generates a workspace in the current directory (by writing a workspace.json file).
  */
 const generateWorkspace = () => {
-    console.log('Generating Sencha workspace...');
-    return new Promise((resolve, reject) => {
-        fs.writeFile(path.join('.', 'workspace.json'), JSON.stringify(workspaceJson, null, 4), err => {
-            if(err) return reject(err);
-            return resolve();
-        });
+    return ensurePackagesFolder().then(() => {
+        return new Promise((resolve, reject) => {
+            if(!workspaceExists()) {
+                console.log('Generating Sencha workspace...');
+                fs.writeFile(path.join('.', 'ext-react', 'workspace.json'), JSON.stringify(workspaceJson, null, 4), err => {
+                    if(err) return reject(err);
+                    return resolve();
+                });
+            } else {
+                console.log('Using existing workspace at ext-react/workspace.json');
+                return resolve();
+            }
+        }); 
     });
 }
 
@@ -56,7 +79,7 @@ const generateWorkspace = () => {
  */
 const workspaceExists = () => {
     try {
-        return fs.accessSync(path.join('.', 'workspace.json'));
+        return fs.statSync(path.join('.', 'ext-react', 'workspace.json')).isFile();
     } catch(e) {
         return false;
     }
@@ -69,18 +92,17 @@ const workspaceExists = () => {
 const generateTheme = config => {
     console.log('Generating theme package...');
     return new Promise(resolve => {
-        const proc = exec([
-            sencha,
+        const proc = fork(sencha, [
             'generate', 'package',
             '--type', 'THEME',
             '--extend', config.baseTheme || 'theme-material',
             '--framework', 'ext',
             '--name', config.name
-        ].join(' '));
+        ], { cwd: path.join('.', 'ext-react'), silent: true });
 
-        proc.once('close', resolve.bind(null));
-        proc.stdout.on('data', console.log.bind(console));
-        proc.stderr.on('data', console.error.bind(console));
+        proc.once('exit', code => code > 0 ? reject(`Generating package failed with code: ${code}`) : resolve());
+        proc.stdout.pipe(process.stdout);
+        proc.stderr.pipe(process.stderr);
 
         return proc;
     });
@@ -92,8 +114,8 @@ const generateTheme = config => {
 const applyTheme = config => {
     console.log('Applying theme to current app...');
     return new Promise((resolve, reject) => {
-        fs.writeFile('.sencharc', JSON.stringify({
-            theme: path.join('.', 'packages', config.name)
+        fs.writeFile('.ext-reactrc', JSON.stringify({
+            theme: path.join('.', 'ext-react', 'packages', config.name)
         }, null, 4), err => {
             if(err) return reject(err);
             else    return resolve();
@@ -104,10 +126,12 @@ const applyTheme = config => {
 // Parse the arguments passed from command-line using minimist.
 const args = parseArgs(process.argv.slice(2), {
     string: ['name', 'baseTheme'],
+    boolean: ['apply'],
     default: { baseTheme: 'theme-material' },
     alias: {
         baseTheme: ['base', 'b'],
-        name: 'n'
+        name: 'n',
+        apply: 'a'
     }
 });
 
@@ -124,9 +148,15 @@ switch(args._.join(' ')) {
             return printUsage();
         }
 
-        return (workspaceExists() ? Promise.resolve([]) : generateWorkspace(args))
+        return generateWorkspace(args)
             .then(generateTheme.bind(null, args))
-            .then(applyTheme.bind(null, args));
+            .then((args.apply ? applyTheme.bind(null, args) : Promise.resolve([])))
+            .then(() => {
+                console.log(`Theme created at: ext-react/packages/${args.name}`);
+            })
+            .catch(error => {
+                console.error('Error encountered.', error);
+            })
     }
     case 'apply theme': {
         if(!args.name) {

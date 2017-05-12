@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Cartesian, Panel, Button } from '@extjs/ext-react';
+import { Container } from '@extjs/ext-react';
+import { Cartesian } from '@extjs/ext-react-charts';
 import ChartToolbar from '../../ChartToolbar';
 
 export default class NegativeValuesAreaChartExample extends Component {
@@ -54,13 +55,14 @@ export default class NegativeValuesAreaChartExample extends Component {
     render(){
         const { theme } = this.state;
         
-        return(
-            <Panel shadow layout="fit">
+        return (
+            <Container padding={!Ext.os.is.Phone && 10} layout="fit">
                 <ChartToolbar
                     onThemeChange={this.changeTheme}
                     theme={theme}
                 />
                 <Cartesian 
+                    shadow
                     insetPadding={'20 20 10 10'}
                     store={this.store}
                     theme={theme}
@@ -114,7 +116,7 @@ export default class NegativeValuesAreaChartExample extends Component {
                         }]
                     }
                 />
-            </Panel>
+            </Container>
         )
     }
     

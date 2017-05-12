@@ -9,8 +9,6 @@ export default class Constraints extends Component {
     render() {
         return (
             <Panel
-                height={Ext.platformTags.phone ? null : 400}
-                width={Ext.platformTags.phone ? null : 500}
                 padding={5}
                 shadow
                 ref="mainPanel"

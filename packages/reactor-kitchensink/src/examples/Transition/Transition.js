@@ -78,7 +78,7 @@ export default class TransitionExample extends Component {
                         </Menu>
                     </Button>
                     <SliderField value={duration} maxWidth={200} flex={1} minValue={100} maxValue={1000} step={100} onChange={this.setDuration}/>
-                    <div style={{lineHeight: '32px', fontSize: '16px'}}>{duration.toString()}ms</div>
+                    <Container style={{lineHeight: '32px', fontSize: '16px'}}><div>{duration.toString()}ms</div></Container>
                 </Container>
 
                 <Panel flex={1} layout="fit" shadow>

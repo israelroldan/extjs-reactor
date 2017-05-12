@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Panel, Cartesian } from '@extjs/ext-react';
+import { Container } from '@extjs/ext-react';
+import { Cartesian } from '@extjs/ext-react-charts';
 import ChartToolbar from '../../ChartToolbar';
 
 export default class Grouped extends Component {
@@ -36,9 +37,10 @@ export default class Grouped extends Component {
 
     render() {
         return (
-            <Panel shadow layout="fit">
+            <Container padding={!Ext.os.is.Phone && 10} layout="fit">
                 <ChartToolbar downloadChartRef={this.refs.chart}/>
                 <Cartesian
+                    shadow
                     ref="chart"
                     store={this.store}
                     onResize={this.onResize}
@@ -47,22 +49,14 @@ export default class Grouped extends Component {
                     interactions="itemhighlight"
                     animation={{ duration: 200 }}
                     legend={{ type: 'sprite' }}
-                    sprites={[{
-                        type: 'text',
-                        id: 'title',
-                        text: 'Sales in Last Two Years',
-                        textAlign: 'center',
-                        fontSize: 18,
-                        fontWeight: 'bold',
-                        y: 30
-                    }, {
-                        type: 'text',
-                        id: 'subtitle',
-                        text: 'Quarter-wise comparison',
-                        textAlign: 'center',
-                        fontSize: 16,
-                        y: 50
-                    }]}
+                    captions={{
+                        title: {
+                            text: 'Sales in Last Two Years'
+                        },
+                        subtitle: {
+                            text: 'Quarter-wise comparison',
+                        }
+                    }}
                     axes={[{
                         type: 'numeric3d',
                         position: 'left',
@@ -91,7 +85,7 @@ export default class Grouped extends Component {
                         highlight: true
                     }]}
                 />
-            </Panel>
+            </Container>
         )
     }
 }

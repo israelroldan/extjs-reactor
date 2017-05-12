@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Cartesian, Panel } from '@extjs/ext-react';
+import { Container } from '@extjs/ext-react';
+import { Cartesian } from '@extjs/ext-react-charts';
 import ChartToolbar from '../../ChartToolbar';
 import createData from './createData';
 
@@ -34,13 +35,14 @@ export default class BasicAreaChartExample extends Component {
         const { theme } = this.state;
 
         return (
-            <Panel shadow layout="fit">
+            <Container padding={!Ext.os.is.Phone && 10} layout="fit">
                 <ChartToolbar
                     onThemeChange={this.changeTheme}
                     onRefreshClick={this.refresh}
                     theme={theme}
                 />
                 <Cartesian
+                    shadow
                     store={this.store}
                     theme={theme}
                     insetPadding="25 35 0 10"
@@ -107,7 +109,7 @@ export default class BasicAreaChartExample extends Component {
                         }
                     }]}
                 />
-            </Panel>            
+            </Container>            
         )
     }
 }

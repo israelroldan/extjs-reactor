@@ -10,8 +10,6 @@ export default class Groups extends Component {
         return (
             <Panel 
                 ref="mainPanel"
-                height={Ext.platformTags.phone ? null : 300} 
-                width={Ext.platformTags.phone ? null : 400}
                 padding={5}
                 shadow
             >

@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Panel, FieldSet, TextField, SelectField, SliderField, Container, Spacer } from '@extjs/ext-react';
 import { connect } from 'react-redux';
 import { updateCriteria } from './actions';
@@ -33,12 +34,14 @@ class SearchOptions extends Component {
                         style={styles.field}
                         label="First Name"
                         onChange={this.onFieldChange}
+                        clearable
                     />
                     <TextField
                         ref="lastName"
                         style={styles.field}
                         label="Last Name"
                         onChange={this.onFieldChange}
+                        clearable
                     />
                     <SliderField 
                         ref="age"
@@ -48,6 +51,7 @@ class SearchOptions extends Component {
                         values={[0, 100]} 
                         label="Age"
                         onChange={this.onFieldChange}
+                        padding="5"
                     />
                     <Container layout="center" style={{paddingLeft: '5px', color: '#999'}}>
                         <div>{(criteria.age || [0, 100]).join(' - ')}</div>
@@ -56,12 +60,12 @@ class SearchOptions extends Component {
                         ref="gender"
                         style={styles.field}
                         label="Gender"
+                        onChange={this.onFieldChange}
                         options={[
-                            { text: '' },
+                            { text: 'All', value: null },
                             { text: 'Male', value: 'Male' },
                             { text: 'Female', value: 'Female' }
                         ]}
-                        onChange={this.onFieldChange}
                     />
                 </FieldSet>
             </Panel>        

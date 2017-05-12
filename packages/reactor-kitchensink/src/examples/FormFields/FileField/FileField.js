@@ -5,7 +5,7 @@ export default class SearchFieldExample extends Component {
     
     state = { };
 
-    search = (field, value) => {
+    onChange = (field, value) => {
         this.setState({ file: value });
     }
 
@@ -17,7 +17,7 @@ export default class SearchFieldExample extends Component {
                 <FileField 
                     label="Attachment"
                     value={file}
-                    onChange={this.search}
+                    onChange={this.onChange}
                 />
                 { file && <div>You selected {file}</div> }
             </Panel>

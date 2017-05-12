@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Panel, Polar } from '@extjs/ext-react';
+import { Container } from '@extjs/ext-react';
+import { Polar } from '@extjs/ext-react-charts';
 import ChartToolbar from '../../ChartToolbar';
 import {innerData, outerData} from './createData';
 
@@ -22,9 +23,10 @@ export default class DoubleDonut extends Component {
         const { theme } = this.state;
 
         return (
-            <Panel shadow layout="fit">
+            <Container padding={!Ext.os.is.Phone && 10} layout="fit">
                 <ChartToolbar onThemeChange={this.changeTheme} theme={theme}/>
                 <Polar
+                    shadow
                     insetPadding={20}
                     innerPadding={20}
                     interactions={['rotate', 'itemhighlight']}
@@ -56,7 +58,7 @@ export default class DoubleDonut extends Component {
                         }
                     }]}
                 />
-            </Panel>
+            </Container>
         )
     }
 }

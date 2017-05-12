@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Panel, Cartesian } from '@extjs/ext-react';
+import { Container } from '@extjs/ext-react';
+import { Cartesian } from '@extjs/ext-react-charts';
 import ChartToolbar from '../../ChartToolbar';
 import createData from './createData';
 import { seriesG1Renderer, seriesG2Renderer } from './renderer';
@@ -27,9 +28,10 @@ export default class ColumnWithRenderer extends Component {
         const { theme } = this.state;
 
         return (
-            <Panel shadow layout="fit">
+            <Container padding={!Ext.os.is.Phone && 10} layout="fit">
                 <ChartToolbar onRefreshClick={this.refreshData}/>
                 <Cartesian
+                    shadow
                     insetPadding="20 20 10 10"
                     innerPadding="0 10 0 10"
                     store={this.store}
@@ -69,7 +71,7 @@ export default class ColumnWithRenderer extends Component {
                         fields: 'name'
                     }]}
                 />
-            </Panel>
+            </Container>
         )
     }
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Panel, Polar } from '@extjs/ext-react';
+import { Container } from '@extjs/ext-react';
+import { Polar } from '@extjs/ext-react-charts';
 import ChartToolbar from '../../ChartToolbar';
 
 export default class Spie extends Component {
@@ -25,9 +26,10 @@ export default class Spie extends Component {
         const { theme } = this.state;
 
         return (
-            <Panel shadow layout="fit">
+            <Container padding={!Ext.os.is.Phone && 10} layout="fit">
                 <ChartToolbar onThemeChange={this.changeTheme} theme={theme}/>
                 <Polar
+                    shadow
                     store={this.store}
                     theme={theme}
                     legend={{
@@ -63,7 +65,7 @@ export default class Spie extends Component {
                         }
                     }]}
                 />
-            </Panel>
+            </Container>
         )
     }
 }

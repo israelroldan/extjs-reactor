@@ -5,7 +5,8 @@ import './data';
 export default class CalendarWeekViewExample extends Component {
 
     state = {
-        visibleDays:7
+        visibleDays: 7,
+        firstDayOfWeek: 0
     }
 
     store = Ext.create('Ext.calendar.store.Calendars', {
@@ -21,10 +22,7 @@ export default class CalendarWeekViewExample extends Component {
             <Panel
                 shadow
                 title={Ext.Date.format(new Date(), 'F Y')}
-                layout={{
-                    type: 'hbox',
-                    align: 'stretch'
-                }}
+                layout="hbox"
                 header={{
                     layout: 'hbox',
                     items: [{
@@ -36,12 +34,12 @@ export default class CalendarWeekViewExample extends Component {
                             text: Ext.os.is.Phone ? null : 'Full Week',
                             iconCls: Ext.os.is.Phone ? 'x-fa fa-calendar-check-o' : null,
                             value: 'fullweek',
-                            handler: () => this.setState({visibleDays:7})
+                            handler: () => this.setState({visibleDays:7, firstDayOfWeek: 0})
                         }, {
                             text: Ext.os.is.Phone ? null : 'Work Week',
                             iconCls: Ext.os.is.Phone ? 'x-fa fa-briefcase' : null,
                             value: 'workweek',
-                            handler: () => this.setState({visibleDays:5})
+                            handler: () => this.setState({visibleDays: 5, firstDayOfWeek: 1})
                         }]
                     }]
                 }}
@@ -61,7 +59,7 @@ export default class CalendarWeekViewExample extends Component {
                     timezoneOffset={0}
                     gestureNavigation={false}
                     value={new Date()}
-                    firstDayOfWeek={0}
+                    firstDayOfWeek={this.state.firstDayOfWeek}
                     visibleDays={this.state.visibleDays}
                 />
             </Panel>

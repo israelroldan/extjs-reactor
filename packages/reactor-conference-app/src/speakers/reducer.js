@@ -7,7 +7,7 @@ const initialState = {
     store: Ext.create('Ext.data.Store', {
         proxy: {
             type: 'ajax',
-            url: '/resources/speakers.json'
+            url: 'resources/speakers.json'
         }
     }),
 };

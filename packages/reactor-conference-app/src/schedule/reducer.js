@@ -14,7 +14,7 @@ const initialState = {
         autoLoad: true,
         proxy: {
             type: 'ajax',
-            url: '/resources/schedule.json'
+            url: 'resources/schedule.json'
         },
         listeners: {
             load: store => store.each(record => record.set('favorite', favorites.indexOf(record.getId()) !== -1))

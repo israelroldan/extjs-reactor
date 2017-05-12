@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Panel, Polar } from '@extjs/ext-react';
+import { Container } from '@extjs/ext-react';
+import { Polar } from '@extjs/ext-react-charts';
 import ChartToolbar from '../../ChartToolbar';
 
 export default class Donut extends Component {
@@ -34,9 +35,10 @@ export default class Donut extends Component {
         const { theme } = this.state;
 
         return (
-            <Panel shadow layout="fit" onResize={this.onResize}>
+            <Container padding={!Ext.os.is.Phone && 10} layout="fit">
                 <ChartToolbar onThemeChange={this.changeTheme} theme={theme}/>
                 <Polar
+                    shadow
                     ref="chart"
                     insetPadding={50}
                     store={this.store}
@@ -60,7 +62,7 @@ export default class Donut extends Component {
                         }
                     }]}
                 />
-            </Panel>
+            </Container>
         )
     }
 }

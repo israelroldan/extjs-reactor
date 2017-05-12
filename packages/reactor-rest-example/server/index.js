@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = 8082;
 const db = require('./db');
 const webpackMiddleware = require("webpack-dev-middleware");
 const webpack = require('webpack');
@@ -81,4 +81,4 @@ app.get('/employees', (req, res) => {
     })
 });
 
-app.listen(3000, () => console.log(`Server running on port ${port}.`));
+app.listen(port, () => console.log(`Server running on port ${port}.`));

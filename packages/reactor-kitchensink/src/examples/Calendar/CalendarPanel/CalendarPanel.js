@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Calendar } from '@extjs/ext-react';
-import { Template } from '@extjs/reactor';
 import '../data';
 
 export default class CalendarExample extends Component {
@@ -13,7 +12,7 @@ export default class CalendarExample extends Component {
         }
     });
 
-    titleTpl = new Template(({start, end}) => <div>{formatDate(start)} - {formatDate(end)}</div>)
+    titleTpl = ({start, end}) => <div>{formatDate(start)} - {formatDate(end)}</div>
 
     render() {
         return (

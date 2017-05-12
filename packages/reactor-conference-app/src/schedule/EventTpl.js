@@ -21,8 +21,8 @@ export function createTpl({ getQuery, showTime=true, onFavoriteClick }) {
                 { onFavoriteClick && (
                     <div 
                         onClick={e => {
-                            Ext.fly(e.target).ripple(e, { bound: false, color: '#999' })
-                            onFavoriteClick.bind(data)
+                            Ext.get(e.target).ripple(e, { bound: false, color: '#999' })
+                            onFavoriteClick(data)
                         }} 
                         className={`x-item-no-tap x-font-icon md-icon-star app-list-tool app-favorite${data.favorite ? '-selected' : ''}`}
                     />
