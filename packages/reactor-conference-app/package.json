@@ -26,6 +26,7 @@
     "@extjs/ext-react-calendar": "^6.5.0",
     "@extjs/ext-react-d3": "^6.5.0",
     "@extjs/reactor": "^1.0.0",
+    "babel-polyfill": "^6.23.0",
     "babel-runtime": "^6.23.0",
     "d3": "^4.5.0",
     "history": "^4.6.1",

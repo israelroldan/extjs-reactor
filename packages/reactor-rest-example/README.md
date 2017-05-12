@@ -18,4 +18,4 @@ If you do not have credentials, you can get them by [signing up for a trial of E
 3. `npm install`
 4. `npm start`
 
-Go to http://localhost:3000
+Go to http://localhost:8082
