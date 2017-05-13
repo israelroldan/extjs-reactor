@@ -19,7 +19,6 @@ export function generateData(items=500) {
 
     for(let i=0; i<items; i++) {
         data.push({
-            id:         i,
             company:    randomItem(companies),
             country:    randomItem(countries),
             person:     randomItem(persons),
