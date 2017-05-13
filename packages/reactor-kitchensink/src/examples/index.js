@@ -47,6 +47,7 @@ import TabularLayout from './PivotGrid/TabularLayout/TabularLayout';
 // import Collapsible from './PivotGrid/Collapsible/Collapsible';
 import DataChanges from './PivotGrid/DataChanges/DataChanges';
 import PivotGridWidgets from './PivotGrid/PivotGridWidgets/PivotGridWidgets';
+import DrilldownPlugin from './PivotGrid/DrilldownPlugin/DrilldownPlugin';
 
 // Lists 
 
@@ -446,7 +447,8 @@ const root = {
             { text: 'Tabular Layout', component: TabularLayout, navIcon: 'icon-tabular-pivot-grid' },
             // { text: 'Collapsible', component: Collapsible, navIcon: 'icon-collapsible-pivot-grid' },
             { text: 'Data Changes', component: DataChanges, navIcon: 'icon-datachanges-pivot-grid' },
-            { text: 'Pivot Grid Widgets', component: PivotGridWidgets, navIcon: 'icon-widgets-pivot-grid' }
+            { text: 'Pivot Grid Widgets', component: PivotGridWidgets, navIcon: 'icon-widgets-pivot-grid' },
+            { text: 'Drilldown Plugin', component: DrilldownPlugin, navIcon: 'icon-drilldown-pivot-grid' }
         ]}
     ]
 };
