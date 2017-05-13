@@ -3,7 +3,8 @@ import { Container, PivotGrid, Toolbar, Button, Menu, MenuRadioItem } from '@ext
 import { generateData, randomDate } from '../generateSaleData';
 import SaleModel from '../SaleModel';
 
-// TODO - Menu is not working in this example.
+// TODO - EXTJS-25191 MenuRadioItem in ExtReact throws error when it tries to reference getParent()
+// use items array in Menu to avoid this issue for now.
 export default class Collapsible extends Component {
     
     constructor() {
@@ -27,15 +28,15 @@ export default class Collapsible extends Component {
         this.store.loadData(data);
     }
 
-    reconfigureMatrix = (btn, checked) => {
-        if(!checked) return;
-
-        this.refs.pivotgrid.reconfigurePivot(btn.cfg);
-    }
-
     monthLabelRenderer = value => Ext.Date.monthNames[value]
 
+    state = {
+        collapsibleRows: false,
+        collapsibleColumns: false
+    }
+
     render() {
+        const { collapsibleRows, collapsibleColumns } = this.state;
         return (
             <Container layout="fit" height={400} width={400}>
                 <PivotGrid
@@ -44,11 +45,11 @@ export default class Collapsible extends Component {
                     matrix={{
                         type: 'local',
                         // set to "false" to make groups on rows uncollapsible
-                        collapsibleRows: false,
+                        collapsibleRows,
                         // set to "none" to disable subtotals for groups on rows
                         rowSubTotalsPosition: 'none',
                         // set to "false" to make groups on columns uncollapsible
-                        collapsibleColumns: false,
+                        collapsibleColumns,
                         // set to "none" to disable subtotals for groups on columns
                         colSubTotalsPosition: 'none',
                         // Set layout type to "tabular". If this config is missing then the
@@ -105,34 +106,24 @@ export default class Collapsible extends Component {
                         <Menu 
                             defaults={{ 
                                 group: 'collapsible', 
-                                handler: this.reconfigureMatrix,
                                 xtype: 'menuradioitem'
                             }}
                             items={[{
-                                checked: true,
                                 text: 'None',
-                                cfg: {
-                                    collapsibleRows: false,
-                                    collapsibleColumns: false
-                                }
+                                checked: (!collapsibleColumns && !collapsibleRows),
+                                handler: () => { this.setState({ collapsibleColumns: false, collapsibleRows: false })}
                             }, {
                                 text: 'Rows only',
-                                cfg: {
-                                    collapsibleRows: true,
-                                    collapsibleColumns: false
-                                }
+                                checked: (collapsibleRows && !collapsibleColumns),
+                                handler: () => { this.setState({ collapsibleColumns: false, collapsibleRows: true })}
                             }, {
                                 text: 'Columns only',
-                                cfg: {
-                                    collapsibleRows: false,
-                                    collapsibleColumns: true
-                                }
+                                checked: (collapsibleColumns && !collapsibleRows),
+                                handler: () => { this.setState({ collapsibleColumns: true, collapsibleRows: false })}
                             }, {
                                 text: 'Rows & Columns',
-                                cfg: {
-                                    collapsibleRows: true,
-                                    collapsibleColumns: true
-                                }
+                                checked: (collapsibleColumns && collapsibleRows),
+                                handler: () => { this.setState({ collapsibleColumns: true, collapsibleRows: true })}
                             }]}
                         />
                     </Button>
