@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Calendar_Day, Calendar_List, Panel } from '@extjs/ext-react';
+import { Calendar_Day, Calendar_List } from '@extjs/ext-react-calendar';
+import { Panel } from '@extjs/ext-react';
 import './data';
 
 export default class CalendarDayViewExample extends Component {

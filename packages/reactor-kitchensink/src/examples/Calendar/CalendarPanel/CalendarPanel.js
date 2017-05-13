@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Calendar } from '@extjs/ext-react';
+import { Calendar } from '@extjs/ext-react-calendar';
 import '../data';
 
 export default class CalendarExample extends Component {

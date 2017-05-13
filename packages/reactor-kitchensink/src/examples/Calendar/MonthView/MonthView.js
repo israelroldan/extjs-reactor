@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Calendar_Month, Panel, Calendar_List } from '@extjs/ext-react';
+import { Calendar_Month, Calendar_List } from '@extjs/ext-react-calendar';
+import { Panel } from '@extjs/ext-react';
 import '../data';
 
 export default class CalendarMonthViewExample extends Component {

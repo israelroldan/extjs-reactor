@@ -24,8 +24,6 @@ export default class Simple extends Component {
         const {dragText} = this.state;
         return (
             <Panel 
-                height={Ext.platformTags.phone ? null : 400}
-                width={Ext.platformTags.phone ? null : 500}
                 padding={5}
                 shadow
                 ref="dragContainer"

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Calendar_Day, Panel } from '@extjs/ext-react';
+import { Calendar_Day } from '@extjs/ext-react-calendar';
+import { Panel } from '@extjs/ext-react';
 import './data';
 
 export default class CalendarTimezoneSupportExample extends Component {
