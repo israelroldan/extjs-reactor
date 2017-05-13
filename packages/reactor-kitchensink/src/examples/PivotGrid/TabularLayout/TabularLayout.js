@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Container, PivotGrid, Toolbar, Button } from '@extjs/reactor/modern';
 import SaleModel from '../SaleModel';
-import generateData from '../generateSaleData';
+import { generateData } from '../generateSaleData';
 
 export default class TabularLayout extends Component { 
 

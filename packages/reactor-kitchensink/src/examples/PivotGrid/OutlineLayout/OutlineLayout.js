@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, PivotGrid, Toolbar, Button } from '@extjs/reactor/modern';
-import generateData from '../generateSaleData';
+import { generateData } from '../generateSaleData';
 import SaleModel from '../SaleModel';
 
 export default class OutlineLayout extends Component {

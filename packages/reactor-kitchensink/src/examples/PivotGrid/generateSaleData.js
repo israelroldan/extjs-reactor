@@ -1,20 +1,23 @@
 let rand = 37;
 const companies = ['Google', 'Apple', 'Dell', 'Microsoft', 'Adobe'],
     countries = ['Belgium', 'Netherlands', 'United Kingdom', 'Canada', 'United States', 'Australia'],
-    persons = ['John', 'Michael', 'Mary', 'Anne', 'Robert'],
-    randomItem = data => {
-        const k = rand % data.length;
+    persons = ['John', 'Michael', 'Mary', 'Anne', 'Robert'];
+    
+export function randomItem(data) {
+    const k = rand % data.length;
 
-        rand = rand * 1664525 + 1013904223;
-        rand &= 0x7FFFFFFF;
-        return data[k];
-    },
-    randomDate = (start, end) => new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime() ));
+    rand = rand * 1664525 + 1013904223;
+    rand &= 0x7FFFFFFF;
+    return data[k];
+};
+export function randomDate(start, end) {
+    return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime() ));   
+}
 
-export default function generateData() {
+export function generateData(items=500) {
     const data = [];
 
-    for(let i=0; i<500; i++) {
+    for(let i=0; i<items; i++) {
         data.push({
             id:         i,
             company:    randomItem(companies),
