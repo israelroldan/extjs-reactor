@@ -17,13 +17,23 @@ Then, run the following to clone and build the project:
     cd extjs-reactor/packages/reactor-classic-boilerplate
     npm install
 
-Copy your Ext JS SDK into packages/reactor-classic-boilerplate/ext, then run:
+Copy or link your Ext JS SDK into packages/reactor-classic-boilerplate/ext.  On Mac OS and Linux, this can be done with the following command:
+
+```
+ln -s /path/to/ExtJS ext
+```
+
+Or on windows:
+
+```
+mklink ext /path/to/ExtJS
+```
+
+Then run:
 
     npm start
 
-This will build and server the app using webpack-dev-server.  The build is done when you see the following line:
-
-    [INF] Waiting for changes...  
+This builds and serves the app using webpack-dev-server.
 
 You can view the app by pointing your browser to [http://localhost:8081](http://localhost:8081)
 
