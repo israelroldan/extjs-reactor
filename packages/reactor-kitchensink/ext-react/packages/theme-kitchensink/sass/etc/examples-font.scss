@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'Sencha-Examples';
-  src:  url('../resources/fonts/Sencha-Examples.eot?5lo7lu');
-  src:  url('../resources/fonts/Sencha-Examples.eot?5lo7lu#iefix') format('embedded-opentype'),
-    url('../resources/fonts/Sencha-Examples.ttf?5lo7lu') format('truetype'),
-    url('../resources/fonts/Sencha-Examples.woff?5lo7lu') format('woff'),
-    url('../resources/fonts/Sencha-Examples.svg?5lo7lu#Sencha-Examples') format('svg');
+  src:  url('../resources/fonts/Sencha-Examples.eot?ri4lh8');
+  src:  url('../resources/fonts/Sencha-Examples.eot?ri4lh8#iefix') format('embedded-opentype'),
+    url('../resources/fonts/Sencha-Examples.ttf?ri4lh8') format('truetype'),
+    url('../resources/fonts/Sencha-Examples.woff?ri4lh8') format('woff'),
+    url('../resources/fonts/Sencha-Examples.svg?ri4lh8#Sencha-Examples') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -23,80 +23,86 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-Closable-Tabs:before {
+  content: "\e900";
+}
+.icon-Desktop-Tabs:before {
+  content: "\e901";
+}
+.icon-Scrolling-Tabs:before {
+  content: "\e902";
+}
+.icon-Tab-Bar:before {
+  content: "\e903";
+}
 .icon-Forms-CheckBoxField:before {
-  content: "\e93d";
+  content: "\e904";
 }
 .icon-Forms-ComboBoxField:before {
-  content: "\e942";
+  content: "\e905";
 }
 .icon-Forms-ContainerField:before {
-  content: "\e943";
+  content: "\e906";
 }
 .icon-Forms-DatePickerField:before {
-  content: "\e944";
+  content: "\e907";
 }
 .icon-Forms-EmailField:before {
-  content: "\e959";
+  content: "\e908";
 }
 .icon-Forms-FieldSet:before {
-  content: "\e95a";
+  content: "\e909";
 }
 .icon-Forms-FileField:before {
-  content: "\e95b";
+  content: "\e90a";
 }
 .icon-Forms-Gauge:before {
-  content: "\e95c";
+  content: "\e90b";
 }
 .icon-Forms-NumberField:before {
-  content: "\e95d";
+  content: "\e90c";
 }
 .icon-Forms-PasswordField:before {
-  content: "\e95e";
+  content: "\e90d";
 }
 .icon-Forms-RadioField:before {
-  content: "\e95f";
+  content: "\e90e";
 }
 .icon-Forms-SearchField:before {
-  content: "\e960";
+  content: "\e90f";
 }
 .icon-Forms-SelectField:before {
-  content: "\e961";
+  content: "\e910";
 }
 .icon-Forms-SliderField:before {
-  content: "\e962";
+  content: "\e911";
 }
 .icon-Forms-SpinnerField:before {
-  content: "\e963";
+  content: "\e912";
 }
 .icon-Forms-TextAreaField:before {
-  content: "\e964";
+  content: "\e913";
 }
 .icon-Forms-TextField:before {
-  content: "\e965";
+  content: "\e914";
 }
 .icon-Forms-ToggleField:before {
-  content: "\e966";
+  content: "\e915";
 }
 .icon-Forms-URLField:before {
-  content: "\e967";
+  content: "\e916";
 }
-.icon-Grids:-Redux-Grid:before {
-  content: "\e968";
+.icon-Redux-Grid:before {
+  content: "\e917";
 }
 .icon-Ripple:before {
-  content: "\e969";
+  content: "\e918";
 }
 .icon-Title-Bar:before {
-  content: "\e96a";
+  content: "\e919";
 }
 .icon-Transition:before {
-  content: "\e96b";
-}
-.icon-code-2:before {
-  content: "\e93c";
-}
-.icon-code:before {
-  content: "\e93b";
+  content: "\e91a";
 }
 .icon-ticket:before {
   content: "\e600";
@@ -1037,255 +1043,441 @@
 .icon-sprite-events:before {
   content: "\e7bb";
 }
-.icon-line-real-time:before {
-  content: "\e7bc";
-}
 .icon-plus-circle:before {
-  content: "\e900";
-}
-.icon-minus-circle:before {
-  content: "\e901";
-}
-.icon-binding-form:before {
-  content: "\e902";
-}
-.icon-grandtotals-pivot-grid:before {
-  content: "\e903";
-}
-.icon-cellediting-pivot-grid:before {
-  content: "\e904";
-}
-.icon-grid-exporter:before {
-  content: "\e905";
-}
-.icon-drag-data:before {
-  content: "\e906";
-}
-.icon-drag-drop-element:before {
-  content: "\e907";
-}
-.icon-drag-drop-grid:before {
-  content: "\e908";
-}
-.icon-drag-group:before {
-  content: "\e909";
-}
-.icon-drag-handle:before {
-  content: "\e90a";
-}
-.icon-drag-proxy:before {
-  content: "\e90b";
-}
-.icon-drag-simple:before {
-  content: "\e90c";
-}
-.icon-drag-constraint:before {
-  content: "\e90d";
-}
-.icon-binding-algebra-binary:before {
-  content: "\e90e";
-}
-.icon-binding-algebra-formatters:before {
-  content: "\e90f";
-}
-.icon-binding-algebra-ternary:before {
-  content: "\e910";
-}
-.icon-binding-algebra-unary:before {
-  content: "\e911";
-}
-.icon-AlgebraInExpressions:before {
-  content: "\e912";
-}
-.icon-d3-view-heatmap-heatmap:before {
-  content: "\e913";
-}
-.icon-d3-heatmap:before {
-  content: "\e914";
-}
-.icon-d3-hierarchy:before {
-  content: "\e915";
-}
-.icon-d3-svg:before {
-  content: "\e916";
-}
-.icon-d3-view-custom-svg-heatmap:before {
-  content: "\e917";
-}
-.icon-d3-view-heatmap-sales:before {
-  content: "\e918";
-}
-.icon-d3-view-pack:before {
-  content: "\e919";
-}
-.icon-d3-view-particles:before {
-  content: "\e91a";
-}
-.icon-d3-view-sunburst:before {
   content: "\e91b";
 }
-.icon-d3-view-sunburst-zoom:before {
+.icon-minus-circle:before {
   content: "\e91c";
 }
-.icon-d3-view-transitions:before {
+.icon-binding-form:before {
   content: "\e91d";
 }
-.icon-d3-view-tree:before {
+.icon-grandtotals-pivot-grid:before {
   content: "\e91e";
 }
-.icon-d3-view-treemap:before {
+.icon-cellediting-pivot-grid:before {
   content: "\e91f";
 }
-.icon-d3:before {
+.icon-grid-exporter:before {
   content: "\e920";
 }
-.icon-d3-canvas:before {
+.icon-drag-data:before {
   content: "\e921";
 }
-.icon-pie-double-donut:before {
+.icon-drag-drop-element:before {
   content: "\e922";
 }
-.icon-calendar-days-view:before {
+.icon-drag-drop-grid:before {
   content: "\e923";
 }
-.icon-calendar-month-view:before {
+.icon-drag-group:before {
   content: "\e924";
 }
-.icon-calendar-panel:before {
+.icon-drag-handle:before {
   content: "\e925";
 }
-.icon-calendar-timezone:before {
+.icon-drag-proxy:before {
   content: "\e926";
 }
-.icon-calendar-validation:before {
+.icon-drag-simple:before {
   content: "\e927";
 }
-.icon-calendar-week-view:before {
+.icon-drag-constraint:before {
   content: "\e928";
 }
-.icon-locked-pivot-grid:before {
+.icon-binding-algebra-binary:before {
   content: "\e929";
 }
-.icon-animations:before {
+.icon-binding-algebra-formatters:before {
   content: "\e92a";
 }
-.icon-carousel:before {
+.icon-binding-algebra-ternary:before {
   content: "\e92b";
 }
-.icon-form-placeholder:before {
+.icon-binding-algebra-unary:before {
   content: "\e92c";
 }
-.icon-disclosure-list:before {
+.icon-AlgebraInExpressions:before {
   content: "\e92d";
 }
-.icon-tooltips:before {
+.icon-d3-view-heatmap-heatmap:before {
   content: "\e92e";
 }
-.icon-dataview-basic:before {
+.icon-d3-heatmap:before {
   content: "\e92f";
 }
-.icon-dataview-horizontal:before {
+.icon-d3-hierarchy:before {
   content: "\e930";
 }
-.icon-dataview-inline:before {
+.icon-d3-svg:before {
   content: "\e931";
 }
-.icon-ajax:before {
+.icon-d3-view-custom-svg-heatmap:before {
   content: "\e932";
 }
-.icon-jsonp:before {
+.icon-d3-view-heatmap-sales:before {
   content: "\e933";
 }
-.icon-nestedloading:before {
+.icon-d3-view-pack:before {
   content: "\e934";
 }
-.icon-yql:before {
+.icon-d3-view-particles:before {
   content: "\e935";
 }
-.icon-Data:before {
+.icon-d3-view-sunburst:before {
   content: "\e936";
 }
-.icon-form-panel:before {
+.icon-d3-view-sunburst-zoom:before {
   content: "\e937";
 }
-.icon-amf-three:before {
+.icon-d3-view-transitions:before {
   content: "\e938";
 }
-.icon-d3-view-heatmap-purchases:before {
+.icon-d3-view-tree:before {
   content: "\e939";
 }
-.icon-row-editing:before {
+.icon-d3-view-treemap:before {
   content: "\e93a";
 }
-.icon-form-sliders:before {
+.icon-d3:before {
+  content: "\e93b";
+}
+.icon-d3-canvas:before {
+  content: "\e93c";
+}
+.icon-pie-double-donut:before {
+  content: "\e93d";
+}
+.icon-calendar-days-view:before {
   content: "\e93e";
 }
-.icon-fa-icons:before {
+.icon-calendar-month-view:before {
   content: "\e93f";
 }
-.icon-vector-icons:before {
+.icon-calendar-panel:before {
   content: "\e940";
 }
-.icon-basic-list:before {
+.icon-calendar-timezone:before {
   content: "\e941";
 }
-.icon-d3-view-heatmap-pivot-configurator:before {
+.icon-calendar-validation:before {
+  content: "\e942";
+}
+.icon-calendar-week-view:before {
+  content: "\e943";
+}
+.icon-locked-pivot-grid:before {
+  content: "\e944";
+}
+.icon-animations:before {
   content: "\e945";
 }
-.icon-d3-view-treemap-pivot-configurator:before {
+.icon-carousel:before {
   content: "\e946";
 }
-.icon-d3-view-day-hour-heatmap:before {
+.icon-form-placeholder:before {
   content: "\e947";
 }
-.icon-grouped-list:before {
+.icon-disclosure-list:before {
   content: "\e948";
 }
-.icon-nested-list:before {
+.icon-tooltips:before {
   content: "\e949";
 }
-.icon-lists:before {
+.icon-dataview-basic:before {
   content: "\e94a";
 }
-.icon-audio:before {
+.icon-dataview-horizontal:before {
   content: "\e94b";
 }
-.icon-video:before {
+.icon-dataview-inline:before {
   content: "\e94c";
 }
-.icon-menus:before {
+.icon-ajax:before {
   content: "\e94d";
 }
-.icon-overlays:before {
+.icon-jsonp:before {
   content: "\e94e";
 }
-.icon-progress-bar:before {
+.icon-nestedloading:before {
   content: "\e94f";
 }
-.icon-bottom-tabs:before {
+.icon-yql:before {
   content: "\e950";
 }
-.icon-touch-events:before {
+.icon-Data:before {
   content: "\e951";
 }
-.icon-tabs:before {
+.icon-form-panel:before {
   content: "\e952";
 }
-.icon-toolbar-menus:before {
+.icon-amf-three:before {
   content: "\e953";
 }
-.icon-toolbar:before {
+.icon-d3-view-heatmap-purchases:before {
   content: "\e954";
 }
-.icon-d3-view-treemap-tooltip:before {
+.icon-row-editing:before {
   content: "\e955";
 }
-.icon-d3-view-heatmap-pivot:before {
+.icon-datachanges-pivot-grid:before {
   content: "\e956";
 }
-.icon-d3-view-words:before {
+.icon-stateful-pivot-grid:before {
   content: "\e957";
 }
-.icon-amf-one:before {
+.icon-tip-aligning:before {
   content: "\e958";
+}
+.icon-form-sliders:before {
+  content: "\e959";
+}
+.icon-fa-icons:before {
+  content: "\e95a";
+}
+.icon-vector-icons:before {
+  content: "\e95b";
+}
+.icon-basic-list:before {
+  content: "\e95c";
+}
+.icon-closable-tooltips:before {
+  content: "\e95d";
+}
+.icon-html-tooltips:before {
+  content: "\e95e";
+}
+.icon-mousetrack-tooltips:before {
+  content: "\e95f";
+}
+.icon-d3-view-heatmap-pivot-configurator:before {
+  content: "\e960";
+}
+.icon-d3-view-treemap-pivot-configurator:before {
+  content: "\e961";
+}
+.icon-d3-view-day-hour-heatmap:before {
+  content: "\e962";
+}
+.icon-grouped-list:before {
+  content: "\e963";
+}
+.icon-nested-list:before {
+  content: "\e964";
+}
+.icon-lists:before {
+  content: "\e965";
+}
+.icon-audio:before {
+  content: "\e966";
+}
+.icon-video:before {
+  content: "\e967";
+}
+.icon-menus:before {
+  content: "\e968";
+}
+.icon-overlays:before {
+  content: "\e969";
+}
+.icon-progress-bar:before {
+  content: "\e96a";
+}
+.icon-bottom-tabs:before {
+  content: "\e96b";
+}
+.icon-touch-events:before {
+  content: "\e96c";
+}
+.icon-tabs:before {
+  content: "\e96d";
+}
+.icon-toolbar-menus:before {
+  content: "\e96e";
+}
+.icon-toolbar:before {
+  content: "\e96f";
+}
+.icon-d3-view-treemap-tooltip:before {
+  content: "\e970";
+}
+.icon-d3-view-heatmap-pivot:before {
+  content: "\e971";
+}
+.icon-d3-view-words:before {
+  content: "\e972";
+}
+.icon-amf-one:before {
+  content: "\e973";
+}
+.icon-anchored-tooltips:before {
+  content: "\e974";
+}
+.icon-grid-tools:before {
+  content: "\e975";
+}
+.icon-menu-grid:before {
+  content: "\e976";
+}
+.icon-row-body-grid:before {
+  content: "\e977";
+}
+.icon-summary-row-grid:before {
+  content: "\e978";
+}
+.icon-view-options-grid:before {
+  content: "\e979";
+}
+.icon-flexible-selection-grid:before {
+  content: "\e97a";
+}
+.icon-ticker-grid:before {
+  content: "\e97b";
+}
+.icon-boxplot-charts:before {
+  content: "\e97c";
+}
+.icon-boxplot-nobel:before {
+  content: "\e97d";
+}
+.icon-navigator-line:before {
+  content: "\e97e";
+}
+.icon-navigator-charts:before {
+  content: "\e97f";
+}
+.icon-d3-view-sencha-tree:before {
+  content: "\e980";
+}
+.icon-field-validation-adv:before {
+  content: "\e981";
+}
+.icon-form-errortargets:before {
+  content: "\e982";
+}
+.icon-form-masks:before {
+  content: "\e983";
+}
+.icon-form-fieldui:before {
+  content: "\e984";
+}
+.icon-gridheader-tools:before {
+  content: "\e985";
+}
+.icon-form-validation:before {
+  content: "\e986";
+}
+.icon-form-remote-combo:before {
+  content: "\e987";
+}
+.icon-gauge-sectors:before {
+  content: "\e988";
+}
+.icon-layout-form:before {
+  content: "\e989";
+}
+.icon-layout-box:before {
+  content: "\e98a";
+}
+.icon-basic-accordion-swiper:before {
+  content: "\e98b";
+}
+.icon-undoable-accordion-swiper:before {
+  content: "\e98c";
+}
+.icon-listpaging-list:before {
+  content: "\e98d";
+}
+.icon-basic-step-swiper:before {
+  content: "\e98e";
+}
+.icon-pullrefresh-list:before {
+  content: "\e98f";
+}
+.icon-audio-basic:before {
+  content: "\e990";
+}
+.icon-video-basic:before {
+  content: "\e991";
+}
+.icon-actionsheets:before {
+  content: "\e992";
+}
+.icon-panel-date-adv:before {
+  content: "\e993";
+}
+.icon-panel-date:before {
+  content: "\e994";
+}
+.icon-panel-basic:before {
+  content: "\e995";
+}
+.icon-panel-collapsible:before {
+  content: "\e996";
+}
+.icon-panel-complex-collapsible:before {
+  content: "\e997";
+}
+.icon-panel-headerposition:before {
+  content: "\e998";
+}
+.icon-panel-handleresize:before {
+  content: "\e999";
+}
+.icon-panel-splitresize:before {
+  content: "\e99a";
+}
+.icon-collapsible-pivot-grid:before {
+  content: "\e99b";
+}
+.icon-tabular-pivot-grid:before {
+  content: "\e99c";
+}
+.icon-widgets-pivot-grid:before {
+  content: "\e99d";
+}
+.icon-basic-dialog:before {
+  content: "\e99e";
+}
+.icon-toast-view:before {
+  content: "\e99f";
+}
+.icon-progress-basic:before {
+  content: "\e9a0";
+}
+.icon-progress-decorated:before {
+  content: "\e9a1";
+}
+.icon-tree-cell-editing:before {
+  content: "\e9a2";
+}
+.icon-tree-editable:before {
+  content: "\e9a3";
+}
+.icon-tree-decorations:before {
+  content: "\e9a4";
+}
+.icon-field-validation:before {
+  content: "\e9a5";
+}
+.icon-rowoperations-grid:before {
+  content: "\e9a6";
+}
+.icon-editable-grid:before {
+  content: "\e9a7";
+}
+.icon-layout-card-indicator:before {
+  content: "\e9a8";
+}
+.icon-undoable-step-swiper:before {
+  content: "\e9a9";
+}
+.icon-line-real-time-date:before {
+  content: "\e9aa";
+}
+.icon-line-real-time-number:before {
+  content: "\e9ab";
+}
+.icon-line-real-time:before {
+  content: "\e9ac";
 }
