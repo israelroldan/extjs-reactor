@@ -66,12 +66,15 @@ export default class Home extends Component {
      * Filter the store when the user types in the search box
      */
     onSearch = () => {
-        const query = this.query.getValue();
+        const query = this.query.getValue().toLowerCase(); 
         this.store.clearFilter();
 
         if (query.length) this.store.filterBy(record => {
             const { name, email, phone } = record.data;
-            return name.indexOf(query) !== -1 || email.indexOf(query) !== -1 || phone.indexOf(query) !== -1;
+
+            return name.toLowerCase().indexOf(query) !== -1 || 
+                email.toLowerCase().indexOf(query) !== -1 || 
+                phone.toLowerCase().indexOf(query) !== -1;
         });
     }
 
