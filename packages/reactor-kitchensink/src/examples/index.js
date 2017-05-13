@@ -43,6 +43,7 @@ import HeterogeneousTree from './Trees/HeterogeneousTree/HeterogeneousTree';
 // Pivot Grids
 import OutlineLayout from './PivotGrid/OutlineLayout/OutlineLayout';
 import CompactLayout from './PivotGrid/CompactLayout/CompactLayout';
+import TabularLayout from './PivotGrid/TabularLayout/TabularLayout';
 
 // Lists 
 
@@ -437,8 +438,9 @@ const root = {
             { text: 'Heterogeneous Tree', premium: true, component: HeterogeneousTree, navIcon: 'icon-heterogeneous-tree'}
         ] },
         { text: 'Pivot Grid', premium: true, navIcon: 'icon-pivot-grids', children: [
-            { text: 'Outline Layout', premium: true, component: OutlineLayout, navIcon: 'icon-outline-pivot-grid' },
-            { text: 'Compact Layout', premium: true, component: CompactLayout, navIcon: 'icon-compact-pivot-grid' }
+            { text: 'Outline Layout', component: OutlineLayout, navIcon: 'icon-outline-pivot-grid' },
+            { text: 'Compact Layout', component: CompactLayout, navIcon: 'icon-compact-pivot-grid' },
+            { text: 'Tabular Layout', component: TabularLayout, navIcon: 'icon-tabular-pivot-grid' }
         ]}
     ]
 };
