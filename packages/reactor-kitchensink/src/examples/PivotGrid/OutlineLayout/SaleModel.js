@@ -1,17 +1,16 @@
-export default Ext.define('Sale', function() {
-    var regions = {
-        "Belgium": 'Europe',
-        "Netherlands": 'Europe',
-        "United Kingdom": 'Europe',
-        "Canada": 'North America',
-        "United States": 'North America',
-        "Australia": 'Australia'
-    };
-    
-    return {
-        extend: 'Ext.data.Model',
+const regions = {
+    "Belgium": 'Europe',
+    "Netherlands": 'Europe',
+    "United Kingdom": 'Europe',
+    "Canada": 'North America',
+    "United States": 'North America',
+    "Australia": 'Australia'
+};
 
-        fields: [
+export default Ext.define(null, {
+    extend: 'Ext.data.Model',
+
+    fields: [
             {name: 'id',        type: 'int'},
             {name: 'company',   type: 'string'},
             {name: 'country',   type: 'string'},
@@ -36,5 +35,4 @@ export default Ext.define('Sale', function() {
                 }
             }
         ]
-    };
-});
+})

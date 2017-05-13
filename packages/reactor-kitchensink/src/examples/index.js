@@ -11,7 +11,6 @@ import RowExpanderGrid from './Grid/AddonsDecorations/RowExpander/RowExpander';
 import ToolGrid from './Grid/AddonsDecorations/GridTools/GridTools';
 import StockTickerGrid from './Grid/AdvancedFeatures/StockTicker/StockTicker'; 
 import ReduxGrid from './Grid/ReduxGrid/ReduxGrid';
-import PivotGrid from './PivotGrid/PivotGrid';
 import RowBodyGrid from './Grid/AddonsDecorations/RowBody/RowBody';
 import FlexibleSelection from './Grid/AdvancedFeatures/FlexibleSelection/FlexibleSelection';
 
@@ -40,6 +39,9 @@ import EditableTree from './Trees/EditableTree/EditableTree';
 import TreeGrid from './Trees/TreeGrid/TreeGrid';
 import TreeDecorations from './Trees/TreeDecorations/TreeDecorations';
 import HeterogeneousTree from './Trees/HeterogeneousTree/HeterogeneousTree';
+
+// Pivot Grids
+import OutlineLayout from './PivotGrid/OutlineLayout/OutlineLayout';
 
 // Lists 
 
@@ -423,7 +425,6 @@ const root = {
                 { text: 'Stock Ticker', component: StockTickerGrid, navIcon: 'icon-ticker-grid' },
                 { text: 'Flexible Selection', component: FlexibleSelection, navIcon: 'icon-flexible-selection-grid' }
             ]},
-            { text: 'PivotGrid', premium: true, component: PivotGrid, navIcon: 'icon-pivot-grids' },
             { text: 'Redux Grid', component: ReduxGrid, navIcon: 'icon-Redux-Grid' }
         ] },
         { text: 'Trees', navIcon: 'icon-trees', children: [
@@ -433,7 +434,10 @@ const root = {
             { text: 'Tree Grid', premium: true, component: TreeGrid, navIcon: 'icon-tree-grid' },
             { text: 'Tree Decorations', premium: true, component:TreeDecorations, navIcon: 'icon-tree-decorations'},
             { text: 'Heterogeneous Tree', premium: true, component: HeterogeneousTree, navIcon: 'icon-heterogeneous-tree'}
-        ] }
+        ] },
+        { text: 'Pivot Grid', premium: true, navIcon: 'icon-pivot-grids', children: [
+            { text: 'Outline Layout', premium: true, component: OutlineLayout, navIcon: 'icon-outline-pivot-grid' }
+        ]}
     ]
 };
 
