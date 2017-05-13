@@ -1,7 +1,7 @@
 {
   "name": "@extjs/reactor-webpack-plugin",
   "version": "1.0.0",
-  "description": "Creates a minimal build of the Ext JS framework for use in React apps.",
+  "description": "A webpack plugin that produces minimal ExtReact and Ext JS bundles containing only those components used in your app.",
   "main": "dist/index.js",
   "scripts": {
     "watch": "babel ./src --out-dir ./dist --watch --source-maps",

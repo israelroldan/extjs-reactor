@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import { PivotGrid, Button, Toolbar} from '@extjs/ext-react';
+import { Button, Toolbar } from '@extjs/ext-react';
+import { PivotGrid } from '@extjs/ext-react-pivot'
 import model from './model';
 import './data';
 
