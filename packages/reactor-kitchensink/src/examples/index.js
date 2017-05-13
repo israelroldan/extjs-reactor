@@ -49,6 +49,7 @@ import DataChanges from './PivotGrid/DataChanges/DataChanges';
 import PivotGridWidgets from './PivotGrid/PivotGridWidgets/PivotGridWidgets';
 import DrilldownPlugin from './PivotGrid/DrilldownPlugin/DrilldownPlugin';
 import ConfiguratorPlugin from './PivotGrid/ConfiguratorPlugin/ConfiguratorPlugin';
+import RangeEditorPlugin from './PivotGrid/RangeEditorPlugin/RangeEditorPlugin';
 
 // Lists 
 
@@ -450,7 +451,8 @@ const root = {
             { text: 'Data Changes', component: DataChanges, navIcon: 'icon-datachanges-pivot-grid' },
             { text: 'Pivot Grid Widgets', component: PivotGridWidgets, navIcon: 'icon-widgets-pivot-grid' },
             { text: 'Drilldown Plugin', component: DrilldownPlugin, navIcon: 'icon-drilldown-pivot-grid' },
-            { text: 'Configurator Plugin', component: ConfiguratorPlugin, navIcon: 'icon-configurable-pivot-grid' }
+            { text: 'Configurator Plugin', component: ConfiguratorPlugin, navIcon: 'icon-configurable-pivot-grid' },
+            { text: 'Range Editor Plugin', component: RangeEditorPlugin, navIcon: 'icon-rangeeditor-pivot-grid' }
         ]}
     ]
 };
