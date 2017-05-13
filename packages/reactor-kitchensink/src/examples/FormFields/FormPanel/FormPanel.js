@@ -62,25 +62,26 @@ export default class FormPanelExample extends Component {
                         }
                     }}
                 >
-                    <FieldSet disabled={disabled} ref="personal" title="Personal Info" defaults={{labelAlign: "placeholder"}}>
-                        <TextField label="Name" required placeholder="This field is required"/>
-                        <PasswordField label="Password" required revealable/>
-                        <EmailField label="Email" placeholder="me@sencha.com"/>
-                        <TextField label="Phone Number" inputMask="(999) 999-9999" inputType="tel"/>
-                        <UrlField label="URL" placeholder="http://sencha.com"/>
-                        <SpinnerField label="Spinner" minValue={0} maxValue={1000} stepValue={1} cycle margin="15 0 0 0" labelAlign="top"/>
-                        <DatePickerField label="Start Date"/>
+                    <FieldSet ref="personal" title="Personal Info" defaults={{labelAlign: "placeholder"}}>
+                        <TextField label="Name" required placeholder="This field is required" disabled={disabled}/>
+                        <PasswordField label="Password" required revealable disabled={disabled}/>
+                        <EmailField label="Email" placeholder="me@sencha.com" disabled={disabled}/>
+                        <TextField label="Phone Number" inputMask="(999) 999-9999" inputType="tel" disabled={disabled}/>
+                        <UrlField label="URL" placeholder="http://sencha.com" disabled={disabled}/>
+                        <SpinnerField label="Spinner" minValue={0} maxValue={1000} stepValue={1} cycle margin="15 0 0 0" labelAlign="top" disabled={disabled}/>
+                        <DatePickerField label="Start Date" disabled={disabled}/>
                         <SelectField label="Rank"
+                            disabled={disabled}
                             options={[
                                 { text: 'Master', value: 'master' },
                                 { text: 'Journeyman', value: 'journeyman' },
                                 { text: 'Apprentice', value: 'apprentice' }
                             ]}
                         />
-                        <TextField label="With Error" errorMessage="This field is invalid" errorTarget="under"/>
-                        <SliderField label="Slider"/>
-                        <ToggleField label="Toggle"/>
-                        <TextAreaField label="Bio" maxRows={5}/>
+                        <TextField label="With Error" errorMessage="This field is invalid" errorTarget="under" disabled={disabled}/>
+                        <SliderField label="Slider" disabled={disabled}/>
+                        <ToggleField label="Toggle" disabled={disabled}/>
+                        <TextAreaField label="Bio" maxRows={5} disabled={disabled}/>
                     </FieldSet>
                     <FieldSet title="Roles" layout={{type: 'vbox', align: 'left'}} margin="15 0" defaults={{labelAlign: "placeholder"}}>
                         <CheckBoxField disabled={disabled} boxLabel="Admin"/>

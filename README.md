@@ -6,9 +6,9 @@ The @extjs/reactor package makes it easy to use [Ext JS](https://www.sencha.com/
 
 ## Requirements
 
+* React 15.4.0+ (peer dependency)
 * Ext JS 6.2+
 * Sencha Cmd 6.2+
-* React 15.4.0+ (peer dependency)
 
 ## Installation
 
@@ -20,9 +20,7 @@ npm install --save-dev @extjs/reactor-webpack-plugin @extjs/reactor-babel-plugin
 
 ## Getting Started
 
-We recommend you start by cloning the [boilerplate project](https://github.com/sencha/extjs-reactor/tree/master/packages/reactor-boilerplate) and following the instructions there.
-
-The boilerplate project uses Ext JS 6 with the modern toolkit. There is also a [boilerplate project using the classic toolkit](https://github.com/sencha/extjs-reactor/tree/master/packages/reactor-classic-boilerplate).
+If you're starting from scratch with Ext JS and React, we recommend cloning the [boilerplate](https://github.com/sencha/extjs-reactor/tree/master/packages/reactor-classic-boilerplate) and following the instructions there.
 
 ## Basic Concepts
 
@@ -37,7 +35,17 @@ import App from './App';
 launch(<App/>);
 ```
 
-The `launch` function renders the `<App/>` component into the document body.  You do not need a separate target `<div id="root"/>` in your  index.html file.  If you have one you should remove it. The code above replaces the typical code for launching a React app, which generally looks something like:
+The `launch` function renders `<App/>` into the document body as a fullscreen component.  If you do not want this component to be fullscreen, you can render it to a target element using:
+
+```jsx
+import ReactDOM from 'react-dom';
+import { launch } from '@extjs/reactor';
+import App from './App';
+
+launch(() => ReactDOM.render(<App/>, document.getElementById('root')));
+```
+
+The call to `launch` replaces the typical code for launching a React app, which generally looks something like:
 
 ```jsx
 import ReactDOM from 'react-dom';
@@ -48,14 +56,13 @@ ReactDOM.render(<App/>, document.getElementById('root'));
 
 ### Hello World
 
-Here's a minimal React app that renders an Ext.Panel using the modern toolkit:
+Here's a minimal React app that renders an `Ext.Panel` from the classic toolkit:
 
 ```jsx
 import React from 'react';
 import { launch } from '@extjs/reactor';
-import { Panel } from '@extjs/ext-react';
+import { Panel } from '@extjs/reactor/classic';
 
-// Install the Ext JS custom renderer
 launch(
     <Panel title="ExtReact">
         Hello World!
@@ -65,13 +72,7 @@ launch(
 
 ### Importing Components
 
-Any Ext JS component can be imported by the camel-cased version of it's xtype.  For example, 
-
-```jsx
-import { Grid } from '@extjs/ext-react';
-```
-
-When using the classic toolkit, import from `@extjs/reactor/classic`:
+Any Ext JS component can be imported by the capitalized, camel-cased version of it's xtype.  For example, 
 
 ```jsx
 import { Grid } from '@extjs/reactor/classic';
@@ -80,24 +81,22 @@ import { Grid } from '@extjs/reactor/classic';
 Dashes in xtypes should be converted to underscores.  For example:
 
 ```jsx
-import { D3_HeatMap } from '@extjs/ext-react';
+import { D3_HeatMap } from '@extjs/reactor/classic';
 ```
 
 ### Configuring Components
 
-React props are converted to Ext JS configs.  Here's a typical use of an Ext.grid.Grid:
+React props are converted to Ext JS configs.  Here's a typical use of `Ext.grid.Panel`:
 
 ```jsx
 import React, { Component } from 'react';
-import { Grid } from '@extjs/ext-react';
+import { Grid } from '@extjs/reactor/classic';
 
 export default class MyComponent extends Component {
+
     render() {        
         return (
             <Grid
-                plugins={[                
-                    { type: 'columnresizing' }
-                ]}
                 columns={[
                     { text: 'Name', dataIndex: 'name' },
                     { text: 'Email', dataIndex: 'email' }
@@ -112,6 +111,7 @@ export default class MyComponent extends Component {
             />
         )
     }
+
 }
 ```
 
@@ -121,7 +121,7 @@ Any prop starting with "on" followed by a capital letter is automatically conver
 
 ```jsx
 import React, { Component } from 'react';
-import { Slider } from '@extjs/ext-react';
+import { Slider } from '@extjs/@extjs/reactor/classic';
 
 export default function MyComponent() {
     return (
@@ -134,12 +134,22 @@ export default function MyComponent() {
 }
 ```
 
+Event handler props can also take an object with additional options:
+
+```jsx
+<Button 
+    onAfterRender={{
+        single: true, // handler will only be called once
+        fn: () => {...}
+    }}
+/>
+```
 
 You can also use a listeners object as is common in traditional Ext JS:
 
 ```jsx
 import React, { Component } from 'react';
-import { Slider } from '@extjs/ext-react';
+import { Slider } from '@extjs/reactor/classic';
 
 export default function MyComponent() {
     return (
@@ -155,20 +165,6 @@ export default function MyComponent() {
 ```
 
 ### Special Props
-
-#### rel
-
-Some props can be replaced with a child element. To use a child element to replace a prop, set the child's "rel" prop to the name of the prop being replaced. For example, the "menu" prop on Button can be replaced with a child `<Menu>` element:
-
-```jsx
-<Button text="Theme">
-    <Menu rel="menu">
-        <MenuItem text="Triton"/>
-        <MenuItem text="iOS"/>
-        <MenuItem text="Material"/>
-    </Menu>
-</Button>
-```
 
 #### defaults
 
@@ -186,13 +182,13 @@ Refs point to Ext JS component instances:
 
 ```jsx
 import React, { Component } from 'react';
-import { Slider } from '@extjs/ext-react';
+import { Slider } from '@extjs/reactor/classic';
 
 export default class MyComponent {
     render() {
         return (
             <Slider
-                ref="slider"
+                ref={ slider => this.slider = slider }
                 minValue={0}
                 maxValue={100}
                 onChange={() => this.onChange()}
@@ -201,14 +197,14 @@ export default class MyComponent {
     }
 
     onChange() {
-        console.log('Slider value', this.refs.slider.getValue()); // this.refs.slider is an Ext.slider.Slider
+        console.log('Slider value', this.slider.getValue()); // this.slider is an Ext.slider.Single
     }
 }
 ```
 
 ### Docked Items (Classic Toolkit)
 
-When using the Classic Toolkit, any component with a `dock` prop is automatically added to (dockedItems)[http://docs.sencha.com/extjs/6.2.0/classic/Ext.panel.Panel.html#cfg-dockedItems] for your convenience.
+When using the Ext JS classic toolkit, any component with a `dock` prop is automatically added to (dockedItems)[http://docs.sencha.com/extjs/6.2.0/classic/Ext.panel.Panel.html#cfg-dockedItems].
 
 Here is an example which docks a toolbar above a grid:
 
@@ -284,7 +280,7 @@ Ext.define('MyPackage.view.MyGrid', {
 You could import and use that component using:
 
 ```jsx
-import { MyGrid } from '@extjs/ext-react';
+import { MyGrid } from '@extjs/reactor/classic';
 ```
 
 If your component doesn't have an xtype, you can using the `reactify` function to convert any Ext JS component into a react component:
@@ -314,6 +310,7 @@ module.exports = {
         new ExtJSReactWebpackPlugin({
             sdk: 'ext', // location of Ext JS SDK
             theme: 'theme-material',
+            toolkit: 'classic',
             packages: ['charts']
         })
     ]
@@ -321,17 +318,24 @@ module.exports = {
 }
 ```
 
-If you're using Babel, we recommend adding @extjs/reactor-babel-plugin to your .babelrc.  For example:
+If you're using Babel, we recommend adding `@extjs/reactor-babel-plugin` to your .babelrc.  The `reactor-babel-plugin` require module compilation to be turned off.  For example:
 
 ```javascript
 {
-  "presets": ["es2015", "react"],
-  "plugins": ["@extjs/reactor-babel-plugin"]
+  "presets": [
+    [ "es2015", { "modules": false } ],
+    "stage-2",
+    "react"
+  ],
+  "plugins": [
+    "@extjs/reactor-babel-plugin",
+    "transform-runtime"
+  ]
 }
 ```
 
 # Development
-This is a monorepo that uses lerna.  After cloning, run `npm install` then `lerna bootstrap` to install dependencies.
+This is a monorepo that uses lerna.  After cloning, run `npm install` at the root of the project tree to install and link dependencies in all packages.
 
 # Packages
 
