@@ -20,13 +20,13 @@ Then, run the following to clone and build the project:
 Copy or link your Ext JS SDK into packages/reactor-classic-boilerplate/ext.  On Mac OS and Linux, this can be done with the following command:
 
 ```
-ln -s /path/to/ExtJS ext
+ln -s /path/to/ext-6.x.x ext
 ```
 
 Or on windows:
 
 ```
-mklink ext /path/to/ExtJS
+mklink ext c:\path\to\ext-6.5.x
 ```
 
 Then run:

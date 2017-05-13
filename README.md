@@ -7,8 +7,8 @@ The @extjs/reactor package makes it easy to use [Ext JS](https://www.sencha.com/
 ## Requirements
 
 * React 15.4.0+ (peer dependency)
-* Ext JS 6.2+
-* Sencha Cmd 6.2+
+* Ext JS 6.5+
+* Sencha Cmd 6.5+
 
 ## Installation
 
@@ -299,7 +299,7 @@ function MyComponent() {
 
 ### Building
 
-Select your toolkit, theme, and packages using [@extjs/reactor-webpack-plugin]. The plugin scans your code and only includes the classes you need in the final bundle.  Here's an example:
+Select your toolkit, theme, and packages using [@extjs/reactor-webpack-plugin](https://github.com/sencha/extjs-reactor/tree/master/packages/reactor-webpack-plugin). The plugin scans your code and only includes the classes you need in the final bundle.  Here's an example:
 
 ```JavaScript
 const ExtJSReactWebpackPlugin = require('@extjs/reactor-webpack-plugin');
@@ -308,8 +308,8 @@ module.exports = {
     ...
     plugins: [
         new ExtJSReactWebpackPlugin({
-            sdk: 'ext', // location of Ext JS SDK
-            theme: 'theme-material',
+            sdk: 'ext', // location of Ext JS SDK.  You can either copy the sdk into your project or create a symbolic link to it.
+            theme: 'theme-material', // the name of an Ext JS theme or a relative path to a custom theme
             toolkit: 'classic',
             packages: ['charts']
         })
@@ -317,6 +317,20 @@ module.exports = {
     ...
 }
 ```
+
+We recommend creating a symbolic link called "ext" in the root of your project that points to your local copy of the Ext JS SDK.  You can do this on Mac OS and linux with the following command:
+
+```
+ln -s /path/to/ext-6.x.x ext
+```
+
+Or on windows:
+
+```
+mklink ext c:\path\to\ext-6.5.x
+```
+
+
 
 If you're using Babel, we recommend adding `@extjs/reactor-babel-plugin` to your .babelrc.  The `reactor-babel-plugin` require module compilation to be turned off.  For example:
 
