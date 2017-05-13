@@ -50,6 +50,7 @@ import PivotGridWidgets from './PivotGrid/PivotGridWidgets/PivotGridWidgets';
 import DrilldownPlugin from './PivotGrid/DrilldownPlugin/DrilldownPlugin';
 import ConfiguratorPlugin from './PivotGrid/ConfiguratorPlugin/ConfiguratorPlugin';
 import RangeEditorPlugin from './PivotGrid/RangeEditorPlugin/RangeEditorPlugin';
+import ExporterPlugin from './PivotGrid/ExporterPlugin/ExporterPlugin';
 
 // Lists 
 
@@ -452,7 +453,8 @@ const root = {
             { text: 'Pivot Grid Widgets', component: PivotGridWidgets, navIcon: 'icon-widgets-pivot-grid' },
             { text: 'Drilldown Plugin', component: DrilldownPlugin, navIcon: 'icon-drilldown-pivot-grid' },
             { text: 'Configurator Plugin', component: ConfiguratorPlugin, navIcon: 'icon-configurable-pivot-grid' },
-            { text: 'Range Editor Plugin', component: RangeEditorPlugin, navIcon: 'icon-rangeeditor-pivot-grid' }
+            { text: 'Range Editor Plugin', component: RangeEditorPlugin, navIcon: 'icon-rangeeditor-pivot-grid' },
+            { text: 'Exporter Plugin', component: ExporterPlugin, navIcon: 'icon-exporter-pivot-grid' }
         ]}
     ]
 };
