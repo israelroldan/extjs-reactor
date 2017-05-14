@@ -1,15 +1,32 @@
 # Ext JS Reactor KitchenSink
 
-This project shows off all Ext JS components running within React.
+This project demonstrates the use of all ExtReact components.
 
-# Running Against Local SDK
+## Running
 
-1. Fork/clone this repo
-2. `git checkout kitchensink`
-3. `npm adduser --registry=test.npm.sencha.com --scope=@extjs` Use support portal credentials.  Replate "@" with ".." in username.
-4. `npm install`
-5. `cd packages/reactor-kitchensink`
-6. `ln -s /path/to/ExtJS ext` - or, for Windows: `mklink ext /path/to/ExtJS` 
-7. `npm run local`
+If you have not already, log into Sencha's NPM registry using your trial or support portal credentials:
 
-The application runs on [http://localhost:8084](http://localhost:8084)
+```
+npm login --registry=http://npm.sencha.com --scope=@extjs
+```
+
+If you do not have credentials, you can get them by [signing up for a trial of ExtReact](http://sencha.com/extreact).
+
+Then, run the following to build and launch the app:
+
+```
+git clone git@github.com:sencha/extjs-reactor.git
+cd packages/reactor-kitchensink
+npm install
+npm start
+```
+
+You can view the app by pointing your browser to [http://localhost:8084](http://localhost:8084)
+
+# Running against a local copy of the SDK repo
+
+1. `git clone git@github.com:sencha/extjs-reactor.git`
+2. `npm install`
+3. `cd packages/reactor-kitchensink`
+4. `ln -s /path/to/ExtJS ext` - or, for Windows: `mklink ext /path/to/ExtJS` 
+5. `npm run local`

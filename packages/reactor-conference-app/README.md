@@ -1,14 +1,24 @@
 # ExtReact Conference App
 
-An example app built with ExtReact
+An example app built with ExtReact, Redux, and React-Router.
 
-# Running
+## Running
 
-1. Fork/clone this repo
-2. `git checkout kitchensink`
-3. `npm login --registry=test.npm.sencha.com --scope=@extjs` (Use the email and password you use for Sencha forums.  Replace '@' with '..' in the email.)
-4. `npm install`
-5. `cd packages/reactor-conference-app`
-6. `npm start`
+If you have not already, log into Sencha's NPM registry using your trial or support portal credentials:
 
-The application runs on [http://localhost:8085](http://localhost:8085)
+```
+npm login --registry=http://npm.sencha.com --scope=@extjs
+```
+
+If you do not have credentials, you can get them by [signing up for a trial of ExtReact](http://sencha.com/extreact).
+
+Then, run the following to build and launch the app:
+
+```
+git clone git@github.com:sencha/extjs-reactor.git
+cd packages/reactor-conference-app
+npm install
+npm start
+```
+
+You can view the app by pointing your browser to [http://localhost:8085](http://localhost:8085)

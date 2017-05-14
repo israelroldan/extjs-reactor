@@ -7,7 +7,7 @@ A foundation for React apps built with ExtReact components.
 If you haven't already, sign in to Sencha's NPM registry:
 
 ```
-npm adduser --registry=http://npm.sencha.com --scope=@extjs
+npm login --registry=http://npm.sencha.com --scope=@extjs
 ```
 
 Then, run the following to clone and build the project:

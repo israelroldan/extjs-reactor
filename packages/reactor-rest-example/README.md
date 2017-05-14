@@ -8,14 +8,18 @@ node.js and SQLLite.
 If you have not already, log into Sencha's NPM registry using your trial or support portal credentials:
 
 ```
-npm adduser --registry=http://npm.sencha.com --scope=@extjs
+npm login --registry=http://npm.sencha.com --scope=@extjs
 ```
 
 If you do not have credentials, you can get them by [signing up for a trial of ExtReact](http://sencha.com/extreact).
 
-1. Clone this repository
-2. `cd packages/reactor-rest-example`
-3. `npm install`
-4. `npm start`
+Then, run the following to build and launch the app:
 
-Go to http://localhost:8082
+```
+git clone git@github.com:sencha/extjs-reactor.git
+cd packages/reactor-rest-example
+npm install
+npm start
+```
+
+You can view the app by pointing your browser to [http://localhost:8082](http://localhost:8082)
