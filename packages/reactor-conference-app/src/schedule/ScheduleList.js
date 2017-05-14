@@ -46,23 +46,6 @@ class ScheduleList extends Component {
         this.props.dispatch(toggleFavorite(data.id));
     }
 
-    ensureEventVisible = () => {
-        if (this.list) {
-            const { event, dataStore } = this.props;
-
-            if (this.list.getStore().contains(event)) {
-                this.list.ensureVisible(event, {
-                    animation: true,
-                    highlight: true,
-                    focus: true,
-                    select: true
-                });
-            } else {
-                this.list.getScrollable().scrollTo(0, 0);
-            }
-        }
-    }
-
     listRef = list => this.list = list;
 
     render() {
@@ -70,7 +53,6 @@ class ScheduleList extends Component {
 
         return (
             <List 
-                onShow={this.ensureEventVisible}
                 ref={this.listRef}
                 {...listProps}
                 store={dataStore}

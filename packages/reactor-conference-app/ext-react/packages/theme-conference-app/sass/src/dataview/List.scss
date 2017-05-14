@@ -13,9 +13,13 @@
 
 .app-favorite {
     color: #D0D0D0;
+
+    &::before {
+        font-size: 24px !important;
+    }
 }
 
-.app-favorite-selected {
+.app-favorite[data-favorite="on"] {
     color: $accent-light-color;
 }
 

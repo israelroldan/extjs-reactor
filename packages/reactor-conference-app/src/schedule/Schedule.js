@@ -15,7 +15,6 @@ class Schedule extends Component {
         super();
 
         this.storeDefaults = {
-            type: 'chained',
             source: store,
             autoDestroy: true,
             grouper: {
@@ -27,7 +26,15 @@ class Schedule extends Component {
         this.stores = [
             Ext.create('Ext.data.ChainedStore', { ...this.storeDefaults, filters: [{ property: 'date', value: 'Monday, November 7' }] }),
             Ext.create('Ext.data.ChainedStore', { ...this.storeDefaults, filters: [{ property: 'date', value: 'Tuesday, November 8' }] }),
-            Ext.create('Ext.data.ChainedStore', { ...this.storeDefaults, filters: [{ property: 'date', value: 'Wednesday, November 9' }] })
+            Ext.create('Ext.data.ChainedStore', { ...this.storeDefaults, filters: [{ property: 'date', value: 'Wednesday, November 9' }] }),
+            Ext.create('Ext.data.ChainedStore', { 
+                ...this.storeDefaults, 
+                filters: [{ property: 'favorite', value: true }],
+                grouper: {
+                    groupFn: (item) => `${item.get('date')}, ${item.get('start_time')}`,
+                    sortProperty: 'startDate'
+                }
+            })
         ]
     }
 
@@ -133,7 +140,7 @@ class Schedule extends Component {
                     <ScheduleList
                         iconCls="md-icon-star"
                         tab={{ maxWidth: Ext.os.is.Phone ? 60 : 90 }}
-                        dataStore={{ ...this.storeDefaults, filters: [{ property: 'favorite', value: true }]}}
+                        dataStore={this.stores[3]}
                         pinHeaders
                     />
                 </TabPanel>

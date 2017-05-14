@@ -48,6 +48,7 @@ class Calendar extends Component {
 
     render() {
         const { event, match } = this.props;
+        const showEvent = match.params.id && (Ext.os.is.Phone || event);
 
         return (
             <Container 
@@ -83,7 +84,7 @@ class Calendar extends Component {
                     onEventTap={this.eventTap}
                     flex={1}
                 />
-                {event && <Event event={event} flex={1} header={false}/>}
+                { (Ext.os.is.Phone || showEvent) && <Event event={event} flex={1} header={false}/> }
             </Container>
         )
     }
