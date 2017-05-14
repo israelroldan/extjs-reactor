@@ -54,6 +54,7 @@ class ScheduleList extends Component {
         return (
             <List 
                 ref={this.listRef}
+                hideMode="offsets"
                 {...listProps}
                 store={dataStore}
                 selection={event}
