@@ -1,4 +1,4 @@
-# React + Ext JS Classic Boilerplate
+# React + Ext JS Modern Boilerplate
 
 A foundation for React apps that use the Ext JS modern toolkit.
 
