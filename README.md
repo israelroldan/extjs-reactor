@@ -8,7 +8,6 @@ The @extjs/reactor package makes it easy to use [Ext JS](https://www.sencha.com/
 
 * React 15.4.0+ (peer dependency)
 * Ext JS 6.5+
-* Sencha Cmd 6.5+
 
 ## Installation
 
