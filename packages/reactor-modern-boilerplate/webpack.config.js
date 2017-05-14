@@ -13,8 +13,8 @@ module.exports = function (env) {
         new ExtJSReactorWebpackPlugin({
             sdk: 'ext', // you need to copy the Ext JS SDK to the root of this package, or you can specify a full path to some other location
             toolkit: 'modern',
-            theme: 'theme-material',
-            overrides: ['overrides'],
+            theme: 'custom-ext-react-theme',
+            overrides: ['./ext-react/overrides'],
             packages: [],
             production: isProd
         }),

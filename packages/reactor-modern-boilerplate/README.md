@@ -5,11 +5,10 @@ A foundation for React apps that use the Ext JS modern toolkit.
 ## Requirements
 
 * Ext JS 6.5+
-* Sencha Cmd 6.5+
 
 ## Quick Start
 
-If you haven't already, download Ext JS 6.5+ and Sencha Cmd 6.5+.
+If you haven't already, download Ext JS 6.5+.
 
 Then, run the following to clone and build the project:
 
