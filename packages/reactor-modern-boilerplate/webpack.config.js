@@ -12,8 +12,8 @@ module.exports = function (env) {
     const plugins = [
         new ExtJSReactorWebpackPlugin({
             sdk: 'ext', // you need to copy the Ext JS SDK to the root of this package, or you can specify a full path to some other location
-            toolkit: 'classic',
-            theme: 'theme-triton',
+            toolkit: 'modern',
+            theme: 'theme-material',
             overrides: ['overrides'],
             packages: [],
             production: isProd
@@ -91,7 +91,7 @@ module.exports = function (env) {
         devServer: {
             contentBase: './build',
             historyApiFallback: true,
-            port: 8081,
+            port: 8086,
             compress: isProd,
             inline: !isProd,
             hot: !isProd,
