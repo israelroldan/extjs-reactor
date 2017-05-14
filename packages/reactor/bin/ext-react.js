@@ -109,6 +109,29 @@ const generateTheme = config => {
 }
 
 /**
+ * Set's the Sass Namespace to "" in package.json, this is to help compatiblity with Sencha Themer.
+ */
+const setBlankSassNamespace = config => {
+    const packageJsonPath = path.join('.', 'ext-react', 'packages', config.name, 'package.json');
+
+    return new Promise((resolve, reject) => {
+        fs.readFile(packageJsonPath, 'utf-8', (err, data) => {
+            if(err) return reject(`Could not read package.json for theme named: ${config.name}`);
+
+            return resolve(data);
+        });
+    }).then(data => {
+        return new Promise((resolve, reject) => {
+            fs.writeFile(packageJsonPath, data.replace(/(\s+"sass"[\w\W]*"namespace":\s*).*/m, '$1"",'), err => {
+                if(err) return reject(`Could not write package.json for theme named: ${config.name}`);
+
+                return resolve();
+            });
+        });
+    });
+}
+
+/**
  * Applies a theme based on `name` property in config object to current app by writing to a .sencharc file.
  */
 const applyTheme = config => {
@@ -150,6 +173,7 @@ switch(args._.join(' ')) {
 
         return generateWorkspace(args)
             .then(generateTheme.bind(null, args))
+            .then(setBlankSassNamespace.bind(null, args))
             .then((args.apply ? applyTheme.bind(null, args) : Promise.resolve([])))
             .then(() => {
                 console.log(`Theme created at: ext-react/packages/${args.name}`);
