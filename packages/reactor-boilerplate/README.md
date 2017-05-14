@@ -1,4 +1,4 @@
-# Ext JS Reactor Boilerplate
+# ExtReact Boilerplate
 
 A foundation for React apps built with ExtReact components.
 
