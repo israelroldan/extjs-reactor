@@ -1,8 +1,9 @@
+import ReactDOM from 'react-dom'; // need to ensure ReactDOM is loaded before patching ReactComponentEnvironment.replaceNodeWithMarkup
+import ReactComponentEnvironment from 'react-dom/lib/ReactComponentEnvironment';
 import { Component, Children, cloneElement } from 'react';
 import ReactMultiChild from 'react-dom/lib/ReactMultiChild';
 import DOMLazyTree from 'react-dom/lib/DOMLazyTree';
 import { precacheNode } from 'react-dom/lib/ReactDOMComponentTree';
-import ReactComponentEnvironment from 'react-dom/lib/ReactComponentEnvironment';
 import Flags from 'react-dom/lib/ReactDOMComponentFlags';
 import union from 'lodash.union';
 import capitalize from 'lodash.capitalize'
@@ -646,6 +647,7 @@ function isAssignableFrom(subClass, parentClass) {
     if (!subClass || !parentClass) return false;
     return subClass === parentClass || subClass.prototype instanceof parentClass;
 }
+
 
 // Patch replaceNodeWithMarkup to fix bugs with swapping null and components
 // A prime example of this is using react-router 4, which renders a null when a route fails

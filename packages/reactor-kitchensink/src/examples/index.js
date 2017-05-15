@@ -230,7 +230,7 @@ const root = {
         { text: 'Components', navIcon: 'icon-buttons', children: [
             { text: 'Buttons', navIcon: 'icon-buttons', children: [
                 { text: 'Button', component: Button, layout: 'center', navIcon: 'icon-buttons' },
-                { text: 'SegmentedButton', component: SegmentedButton, layout: 'center', navIcon: 'icon-buttons' },
+                { text: 'SegmentedButton', component: SegmentedButton, layout: 'center', navIcon: 'icon-segmented-buttons' },
             ]},
             { text: 'Carousel', component: Carousel, navIcon: 'icon-carousel' },
             { text: 'Drag & Drop', navIcon: 'icon-drag-drop', children: [
