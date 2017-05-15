@@ -21,7 +21,7 @@ class About extends Component {
             <div style={{padding: Ext.os.is.Phone ? '0 10px': '0 20px'}}>
                 <h2 style={{fontWeight: 100}}>ExtReact Conference App</h2>
                 <p>
-                    This app is built with <a href="https://github.com/sencha/extjs-reactor">Sencha ExtReact 1.0</a> and uses the following libraries:
+                    This app is built with <a href="https://github.com/sencha/extjs-reactor">Sencha ExtReact 6.5</a> and uses the following libraries:
                     <ul style={{'list-style': 'none', padding: '0'}}>
                         <li style={listStyle}><a href="https://facebook.github.io/react/">React 15.4</a></li>
                         <li style={listStyle}><a href="http://redux.js.org/">Redux 3.6</a></li>
