@@ -9,7 +9,7 @@
     "start": "node server",
     "debug": "node --nolazy --debug-brk=5858 server",
     "build": "npm run clean && NODE_ENV=production webpack --env.prod=true",
-    "prod": "NODE_ENV=production webpack-dev-server --env.prod=true"
+    "prod": "NODE_ENV=production node server"
   },
   "repository": {
     "type": "git",

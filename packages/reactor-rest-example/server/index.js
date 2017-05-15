@@ -2,12 +2,15 @@ const express = require('express');
 const app = express();
 const port = 8082;
 const db = require('./db');
-const webpackMiddleware = require("webpack-dev-middleware");
 const webpack = require('webpack');
 const config = require('../webpack.config')();
 const path = require('path');
 
-app.use(webpackMiddleware(webpack(config)));
+if (process.env.NODE_ENV !== 'production') {
+    const webpackMiddleware = require("webpack-dev-middleware");
+    app.use(webpackMiddleware(webpack(config)));
+}
+
 app.use(express.static(path.join(__dirname, '..', 'build')));
 
 app.get('/employees', (req, res) => {
