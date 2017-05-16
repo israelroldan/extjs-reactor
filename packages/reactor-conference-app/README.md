@@ -15,7 +15,7 @@ If you do not have credentials, you can get them by [signing up for a trial of E
 Then, run the following to build and launch the app:
 
 ```
-git clone git@github.com:sencha/extjs-reactor.git
+git clone https://github.com/sencha/extjs-reactor.git
 cd packages/reactor-conference-app
 npm install
 npm start
