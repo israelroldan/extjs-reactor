@@ -44,7 +44,7 @@ export default class ToolTipExample extends Component {
                         <ToolTip align="tc-bc" anchor anchorToTarget>The anchor is centered</ToolTip>
                     </Button>
                     <Button text="Anchor with Tracking">
-                        <ToolTip align="tc-bc" trackMouse anchor align="l-r">Following the mouse with an anchor</ToolTip>
+                        <ToolTip trackMouse anchor align="l-r">Following the mouse with an anchor</ToolTip>
                     </Button>
                 </Container>
                 <Container margin="0">
