@@ -31,19 +31,21 @@ class Layout extends Component {
                 const nav = this.refs.phoneNav;
                 const anim = nav.getLayout().getAnimation();
                 anim.disable();
-                nav.goToNode(node.parentNode);
-                anim.enable();
                 
-                if (node.isLeaf()) {
+                if(node.isLeaf()) {
                     nav.goToLeaf(node);
+                } else {
+                    nav.goToNode(node);
                 }
+
+                anim.enable();
             }
         }
     }
 
-    onNavChange = (node) => {
-        if (node && node.isLeaf()) {
-            location.hash = node.getId();
+    onNavChange = (nodeId) => {
+        if(nodeId === '' || nodeId) {
+            location.hash = nodeId;
         }
     }
 
@@ -75,7 +77,13 @@ class Layout extends Component {
                     ref="phoneNav"
                     store={navStore} 
                     title='<i class="ext ext-sencha" style="position: relative; top: 1px; margin-right: 4px"></i> ExtReact Kitchen Sink'
-                    onLeafItemTap={(self, list, index, target, node) => this.onNavChange(node)}
+                    onItemTap={(self, list, index, target, node) => this.onNavChange(node && node.getId())}
+                    onBack={(self, node) => {
+                        // There is no easy way to grab the node that will be used after NestedList switches to previous List.
+                        // The 'node' here will always be the 'previous' node, which means we can just strip the last /* from the 
+                        // node's ID and use that as the new nav URL.
+                        this.onNavChange(node && node.getId().replace(/\/[^\/]*$/, ''))
+                    }}
                     flex={1}
                 >
                     <Container rel="detailCard" layout="fit">
@@ -110,7 +118,7 @@ class Layout extends Component {
                             }}
                             store={navStore} 
                             selection={selectedNavNode}
-                            onSelectionChange={(tree, node) => this.onNavChange(node)}
+                            onSelectionChange={(tree, node) => this.onNavChange(node && node.getId())}
                             collapsed={!showTree}
                         /> 
                         <Breadcrumbs docked="top" node={selectedNavNode}/>
