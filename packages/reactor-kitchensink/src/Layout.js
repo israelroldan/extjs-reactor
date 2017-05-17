@@ -31,14 +31,14 @@ class Layout extends Component {
                 const nav = this.refs.phoneNav;
                 const anim = nav.getLayout().getAnimation();
                 anim.disable();
-                // nav.goToNode(node.parentNode);
-                anim.enable();
                 
                 if(node.isLeaf()) {
                     nav.goToLeaf(node);
                 } else {
                     nav.goToNode(node);
                 }
+
+                anim.enable();
             }
         }
     }
