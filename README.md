@@ -21,7 +21,10 @@ npm install --save-dev @extjs/reactor-webpack-plugin @extjs/reactor-babel-plugin
 
 If you're starting from scratch with Ext JS and React, we recommend cloning one of the boilerplates and following the instructions there:
 
+ExtReact Customers:
 * [ExtReact Boilerplate](https://github.com/sencha/extjs-reactor/tree/master/packages/reactor-boilerplate)
+
+Ext JS Customers:
 * [React + Ext JS Classic Boilerplate](https://github.com/sencha/extjs-reactor/tree/master/packages/reactor-classic-boilerplate)
 * [React + Ext JS Modern Boilerplate](https://github.com/sencha/extjs-reactor/tree/master/packages/reactor-modern-boilerplate)
 
