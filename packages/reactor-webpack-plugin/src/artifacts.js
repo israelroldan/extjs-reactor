@@ -174,7 +174,7 @@ export function createAppJson({ theme, packages, toolkit, overrides=[], packageD
 export function createWorkspaceJson(sdk, packages, output) {
     return JSON.stringify({
         "frameworks": {
-            "ext": path.resolve(sdk)
+            "ext": path.relative(output, sdk)
         },
         "packages": {
             "dir": ['${workspace.dir}/packages/local', '${workspace.dir}/packages'].concat(packages).join(','),

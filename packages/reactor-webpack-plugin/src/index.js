@@ -70,7 +70,6 @@ module.exports = class ReactExtJSWebpackPlugin {
             /* begin single build only */
             output: 'ext-react',
             toolkit: 'modern',
-            theme: 'theme-triton',
             packages: null,
             packageDirs: [],
             overrides: [],
@@ -254,6 +253,10 @@ module.exports = class ReactExtJSWebpackPlugin {
      */
     _buildExtBundle(name, modules, output, { toolkit='modern', theme, packages=[], packageDirs=[], sdk, overrides }) {
         let sencha = this._getSenchCmdPath();
+
+        debugger;
+
+        theme = theme || (toolkit === 'classic' ? 'theme-triton' : 'theme-material');
 
         return new Promise((resolve, reject) => {
             this.onBuildComplete = resolve;
