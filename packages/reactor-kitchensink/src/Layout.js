@@ -43,6 +43,20 @@ class Layout extends Component {
         }
     }
 
+    componentDidUpdate() {
+        if(Ext.os.is.Phone) {
+            const node = this.props.selectedNavNode;
+            const nav = this.refs.phoneNav;
+            if(node) {
+                if(node.isLeaf()) {
+                    nav.goToLeaf(node);
+                } else {
+                    nav.goToNode(node);
+                }
+            }
+        }
+    }
+
     onNavChange = (nodeId) => {
         if(nodeId === '' || nodeId) {
             location.hash = nodeId;
