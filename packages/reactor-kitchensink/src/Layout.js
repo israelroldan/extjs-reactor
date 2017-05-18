@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
-import { TitleBar, Container, NestedList, Panel, Button, ToolTip } from '@extjs/ext-react';
+import { TitleBar, Container, NestedList, Panel, Button } from '@extjs/ext-react';
 import { Transition } from '@extjs/reactor';
 import hljs, { highlightBlock } from 'highlightjs';
 import NavTree from './NavTree';
@@ -43,12 +43,13 @@ class Layout extends Component {
         }
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(previousProps) {
         if(Ext.os.is.Phone) {
             const node = this.props.selectedNavNode;
             const nav = this.refs.phoneNav;
-            if(node) {
-                if(node.isLeaf()) {
+
+            if (node && previousProps.selectedNavNode !== node) {
+                if (node.isLeaf()) {
                     nav.goToLeaf(node);
                 } else {
                     nav.goToNode(node);
@@ -80,13 +81,11 @@ class Layout extends Component {
             layout
         } = this.props;
 
-        let mainView;
-
         const example = component && React.createElement(component);
 
         if (Ext.os.is.Phone) {
             // phone layout
-            mainView = (
+            return (
                 <NestedList 
                     ref="phoneNav"
                     store={navStore} 
@@ -98,7 +97,7 @@ class Layout extends Component {
                         // node's ID and use that as the new nav URL.
                         this.onNavChange(node && node.getId().replace(/\/[^\/]*$/, ''))
                     }}
-                    flex={1}
+                    fullscreen
                 >
                     <Container rel="detailCard" layout="fit">
                         { component && (
@@ -111,81 +110,77 @@ class Layout extends Component {
             )
         } else {
             // desktop + tablet layout
-            mainView = (
-                <Container layout="fit" flex={4}>
-                    <TitleBar docked="top" shadow style={{zIndex: 2}}>
-                        <Button 
-                            align="left"
-                            iconCls="x-fa fa-bars" 
-                            handler={actions.toggleTree}
-                        />
-                        <div className="ext ext-sencha" style={{margin: '0 5px 0 7px', fontSize: '20px', width: '20px'}}/>
-                        <a href="#" className="app-title">ExtReact Kitchen Sink</a>
-                    </TitleBar>
-                    <Container layout="fit" flex={1}>
-                        <NavTree 
-                            docked="left"
-                            width="300"
-                            resizable={{
-                                edges: 'east',
-                                dynamic: true
-                            }}
-                            store={navStore} 
-                            selection={selectedNavNode}
-                            onSelectionChange={(tree, node) => this.onNavChange(node && node.getId())}
-                            collapsed={!showTree}
-                        /> 
-                        <Breadcrumbs docked="top" node={selectedNavNode}/>
-                        <Transition type="slide" bindDirectionToLocation padding="30">
-                            { component ? (
-                                <Container layout={layout} scrollable key={selectedNavNode.id} autoSize={layout !== 'fit'}>
-                                    { layout === 'fit' ? (
-                                        <Container padding="30" layout="fit">{ example }</Container> 
-                                    ) : (
-                                        example 
-                                    )}
-                                </Container>
-                            ) : selectedNavNode ? (
-                                <NavView key={selectedNavNode.id} node={selectedNavNode}/>
-                            ) : null }
-                        </Transition>
+            return (
+                <Container layout="hbox" cls="main-background" fullscreen>
+                    <Container layout="fit" flex={4}>
+                        <TitleBar docked="top" shadow style={{zIndex: 2}}>
+                            <Button 
+                                align="left"
+                                iconCls="x-fa fa-bars" 
+                                handler={actions.toggleTree}
+                            />
+                            <div className="ext ext-sencha" style={{margin: '0 5px 0 7px', fontSize: '20px', width: '20px'}}/>
+                            <a href="#" className="app-title">ExtReact Kitchen Sink</a>
+                        </TitleBar>
+                        <Container layout="fit" flex={1}>
+                            <NavTree 
+                                docked="left"
+                                width="300"
+                                resizable={{
+                                    edges: 'east',
+                                    dynamic: true
+                                }}
+                                store={navStore} 
+                                selection={selectedNavNode}
+                                onSelectionChange={(tree, node) => this.onNavChange(node && node.getId())}
+                                collapsed={!showTree}
+                            /> 
+                            <Breadcrumbs docked="top" node={selectedNavNode}/>
+                            <Transition type="slide" bindDirectionToLocation padding="30">
+                                { component ? (
+                                    <Container layout={layout} scrollable key={selectedNavNode.id} autoSize={layout !== 'fit'}>
+                                        { layout === 'fit' ? (
+                                            <Container padding="30" layout="fit">{ example }</Container> 
+                                        ) : (
+                                            example 
+                                        )}
+                                    </Container>
+                                ) : selectedNavNode ? (
+                                    <NavView key={selectedNavNode.id} node={selectedNavNode}/>
+                                ) : null }
+                            </Transition>
+                        </Container>
                     </Container>
-                </Container>             
-            )
+                    { files && (
+                        <Button 
+                            align="right" 
+                            iconCls={'x-font-icon ' + (showCode ? 'md-icon-close' : 'md-icon-code') }
+                            ui="fab" 
+                            top={Ext.os.is.Desktop ? 20 : 35}
+                            right={21}
+                            zIndex={1000}
+                            handler={actions.toggleCode} 
+                        />
+                    )}
+                    { files && (
+                        <Panel 
+                            resizable={{ edges: 'west', dynamic: true }} 
+                            flex={2}
+                            layout="fit" 
+                            collapsed={!showCode}
+                            header={false}
+                            collapsible={{ direction: 'right' }}
+                            shadow 
+                            style={{zIndex: 3}}
+                            hideAnimation={{type: 'slideOut', direction: 'right', duration: 100, easing: 'ease' }}
+                            showAnimation={{type: 'slideIn', direction: 'left', duration: 100, easing: 'ease' }}
+                        >
+                            <Files files={files} /> 
+                        </Panel>
+                    )}
+                </Container>
+            );
         }
-
-        return (
-            <Container layout="hbox" cls="main-background" fullscreen>
-                { mainView }
-                { !Ext.os.is.Phone && files && (
-                    <Button 
-                        align="right" 
-                        iconCls={'x-font-icon ' + (showCode ? 'md-icon-close' : 'md-icon-code') }
-                        ui="fab" 
-                        top={Ext.os.is.Desktop ? 20 : 35}
-                        right={21}
-                        zIndex={1000}
-                        handler={actions.toggleCode} 
-                    />
-                )}
-                { !Ext.os.is.Phone && files && (
-                    <Panel 
-                        resizable={{ edges: 'west', dynamic: true }} 
-                        flex={2}
-                        layout="fit" 
-                        collapsed={!showCode}
-                        header={false}
-                        collapsible={{ direction: 'right' }}
-                        shadow 
-                        style={{zIndex: 3}}
-                        hideAnimation={{type: 'slideOut', direction: 'right', duration: 100, easing: 'ease' }}
-                        showAnimation={{type: 'slideIn', direction: 'left', duration: 100, easing: 'ease' }}
-                    >
-                        <Files files={files} /> 
-                    </Panel>
-                )}
-            </Container>
-        );
     }
 }
 

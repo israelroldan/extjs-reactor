@@ -17,7 +17,7 @@ export default class DrilldownPlugin extends Component {
 
     render() {
         return (
-            <Container layout="fit" height={400} width={600}>
+            <Container layout="fit" padding={10}>
                 <PivotGrid
                     shadow
                     ref="pivotgrid"
@@ -62,13 +62,10 @@ export default class DrilldownPlugin extends Component {
                     }}
                 />
                 <Toolbar
+                    shadow={false}
                     docked="top"
                     ui="app-transparent-toolbar"
                     padding="5 8"
-                    layout={{
-                        type: 'hbox',
-                        align: 'stretch'
-                    }}
                     defaults={{
                         margin: '0 10 0 0',
                         shadow: true,
@@ -77,6 +74,7 @@ export default class DrilldownPlugin extends Component {
                 >
                     <Button text="Expand All" handler={this.expandAll}/>
                     <Button text="Collapse All" handler={this.collapseAll}/>
+                    <div style={{fontSize: '12px', fontWeight: 'normal', marginLeft: '10px'}}>Double click an amount to drill down.</div>
                 </Toolbar>
             </Container>
         )

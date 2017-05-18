@@ -187,7 +187,13 @@ export default class ExtJSComponent extends Component {
 
     _applyDefaults({ defaults, children }) {
         if (defaults) {
-            return Children.map(children, child => cloneElement(child, { ...defaults, ...child.props }))
+            return Children.map(children, child => {
+                if (child.type.prototype instanceof ExtJSComponent) {
+                    return cloneElement(child, { ...defaults, ...child.props })
+                } else {
+                    return child;
+                }
+            })
         } else {
             return children;
         }
