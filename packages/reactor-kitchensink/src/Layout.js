@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
-import { TitleBar, Container, NestedList, Panel, Button, ToolTip } from '@extjs/ext-react';
+import { TitleBar, Container, NestedList, Panel, Button } from '@extjs/ext-react';
 import { Transition } from '@extjs/reactor';
 import hljs, { highlightBlock } from 'highlightjs';
 import NavTree from './NavTree';
@@ -43,12 +43,13 @@ class Layout extends Component {
         }
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(previousProps) {
         if(Ext.os.is.Phone) {
             const node = this.props.selectedNavNode;
             const nav = this.refs.phoneNav;
-            if(node) {
-                if(node.isLeaf()) {
+
+            if (node && previousProps.selectedNavNode !== node) {
+                if (node.isLeaf()) {
                     nav.goToLeaf(node);
                 } else {
                     nav.goToNode(node);
@@ -80,11 +81,10 @@ class Layout extends Component {
             layout
         } = this.props;
 
-        let mainView;
-
         const example = component && React.createElement(component);
 
         if (Ext.os.is.Phone) {
+            // phone layout
             return (
                 <NestedList 
                     ref="phoneNav"
@@ -109,6 +109,7 @@ class Layout extends Component {
                 </NestedList>
             )
         } else {
+            // desktop + tablet layout
             return (
                 <Container layout="hbox" cls="main-background" fullscreen>
                     <Container layout="fit" flex={4}>
@@ -131,7 +132,7 @@ class Layout extends Component {
                                 }}
                                 store={navStore} 
                                 selection={selectedNavNode}
-                                onSelectionChange={(tree, node) => this.onNavChange(node)}
+                                onSelectionChange={(tree, node) => this.onNavChange(node && node.getId())}
                                 collapsed={!showTree}
                             /> 
                             <Breadcrumbs docked="top" node={selectedNavNode}/>
@@ -149,8 +150,7 @@ class Layout extends Component {
                                 ) : null }
                             </Transition>
                         </Container>
-                    </Container>             
-                    { mainView }
+                    </Container>
                     { files && (
                         <Button 
                             align="right" 

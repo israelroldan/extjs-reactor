@@ -38,7 +38,7 @@ export default class Collapsible extends Component {
     render() {
         const { collapsibleRows, collapsibleColumns } = this.state;
         return (
-            <Container layout="fit" height={400} width={400}>
+            <Container layout="fit" padding={10}>
                 <PivotGrid
                     shadow
                     ref="pivotgrid"
@@ -89,6 +89,7 @@ export default class Collapsible extends Component {
                     }}
                 />
                 <Toolbar
+                    shadow={false}
                     docked="top"
                     ui="app-transparent-toolbar"
                     padding="5 8"

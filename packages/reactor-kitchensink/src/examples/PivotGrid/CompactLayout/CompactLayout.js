@@ -17,7 +17,7 @@ export default class CompactLayout extends Component {
 
     render() {
         return (
-            <Container layout="fit" height={400} width={600}>
+            <Container layout="fit" padding={10}>
                 <PivotGrid
                     ref="pivotgrid"
                     shadow
@@ -71,6 +71,7 @@ export default class CompactLayout extends Component {
                     docked="top"
                     ui="app-transparent-toolbar"
                     padding="5 8"
+                    shadow={false}
                     layout={{
                         type: 'hbox',
                         align: 'stretch'

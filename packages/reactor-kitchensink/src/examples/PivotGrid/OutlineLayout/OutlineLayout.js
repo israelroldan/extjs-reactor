@@ -15,7 +15,7 @@ export default class OutlineLayout extends Component {
 
     render() {
         return (
-            <Container layout="fit" height={400} width={600}>
+            <Container layout="fit" padding={10}>
                 <PivotGrid
                     ref="pivotgrid"
                     shadow
@@ -53,6 +53,7 @@ export default class OutlineLayout extends Component {
                     }}
                 />
                 <Toolbar
+                    shadow={false}
                     docked="top"
                     padding="5 8"
                     layout={{

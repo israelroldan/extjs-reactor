@@ -15,7 +15,7 @@ export default class TabularLayout extends Component {
 
     render() {
         return (
-            <Container layout="fit" height={400} width={600}>
+            <Container layout="fit" padding={10}>
                 <PivotGrid
                     shadow
                     ref="pivotgrid"
@@ -65,6 +65,7 @@ export default class TabularLayout extends Component {
                     }}
                 />
                 <Toolbar
+                    shadow={false}
                     docked="top"
                     ui="app-transparent-toolbar"
                     padding="5 8"

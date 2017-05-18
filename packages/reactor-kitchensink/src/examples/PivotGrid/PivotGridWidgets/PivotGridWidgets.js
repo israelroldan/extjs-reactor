@@ -40,7 +40,7 @@ export default class PivotGridWidgets extends Component {
 
     render() {
         return (
-            <Container layout="fit" height={400} width={600}>
+            <Container layout="fit" padding={10}>
                 <PivotGrid
                     shadow
                     selModel={{ type: 'cellmodel' }}
