@@ -75,10 +75,7 @@ export default class ExtJSComponent extends Component {
 
         this._hostParent = nativeParent; // this is needed by ReactDOMComponentTree#getNodeFromInstance
 
-        const config = {
-            ...this._createInitialConfig(element, transaction, context),
-            renderTo: renderToDOMNode
-        };
+        const config = this._createInitialConfig(element, transaction, context)
 
         let result;
 
