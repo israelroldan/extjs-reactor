@@ -12,16 +12,19 @@ export default class DataChanges extends Component {
         proxy: { type: 'memory' }
     })
 
-    addData = () => { this.store.add(generateData(1)); }
+    addData = () => { 
+        this.store.add(generateData(1)); 
+    }
+
     updateData = () => { 
         const data = generateData(1)[0],
             record = randomItem(this.store.data.items);
 
-        console.log(record, data);
         if(record) {
             record.set(data);
         }
     }
+
     removeData = () => {
         const record = randomItem(this.store.data.items);
 
@@ -29,6 +32,7 @@ export default class DataChanges extends Component {
             this.store.remove(record);
         }
     }
+
     clearData = () => { this.store.removeAll(); }
 
     render() {

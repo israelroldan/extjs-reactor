@@ -99,12 +99,9 @@ export default class PivotGridWidgets extends Component {
                 />
                 <Toolbar
                     docked="top"
+                    shadow={false}
                     ui="app-transparent-toolbar"
                     padding="5 8"
-                    layout={{
-                        type: 'hbox',
-                        align: 'stretch'
-                    }}
                     defaults={{
                         margin: '0 10 0 0',
                         shadow: true,
