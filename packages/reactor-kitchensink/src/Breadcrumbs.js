@@ -3,9 +3,16 @@ import { Toolbar, Button, Component } from '@extjs/ext-react';
 
 export default function Breadcrumbs(props) {
     let { node } = props;
+    const leaf = node.isLeaf();
     const items = [];
 
+    let premium = false;
+
     do {
+        if (node.get('premium')) {
+            premium = true;
+        }
+
         items.unshift(
             <Button 
                 text={node.get('text')} 
@@ -34,6 +41,9 @@ export default function Breadcrumbs(props) {
     return (
         <Toolbar {...props}>
             {items}
+            { premium && leaf && (
+                <div className="app-premium">Premium</div>
+            )}
         </Toolbar>
     )
 }
