@@ -1,7 +1,7 @@
 {
   "name": "@extjs/reactor-boilerplate",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A foundation for React apps built with ExtReact components.",
   "main": "index.js",
   "scripts": {
@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "@extjs/reactor-babel-plugin": "^1.0.0",
-    "@extjs/reactor-webpack-plugin": "^1.0.0",
+    "@extjs/reactor-webpack-plugin": "^1.0.1",
     "babel-core": "^6.17.0",
     "babel-loader": "^7.0.0",
     "babel-plugin-transform-runtime": "^6.23.0",
