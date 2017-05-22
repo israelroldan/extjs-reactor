@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "clean": "rimraf build",
-    "start": "webpack-dev-server --progress",
-    "build": "npm run clean && NODE_ENV=production webpack --env.prod=true",
-    "prod": "NODE_ENV=production webpack-dev-server --env.prod=true",
+    "start": "webpack-dev-server --progress --colors",
+    "build": "npm run clean && cross-env NODE_ENV=production webpack --env.prod=true --progress --colors",
+    "prod": "cross-env NODE_ENV=production webpack-dev-server --env.prod=true --progress --colors",
     "build:sdk": "touch build/extjs/app.json",
     "extract-code": "node extract-code.js"
   },
@@ -38,8 +38,7 @@
     "react-router-redux": "^5.0.0-alpha.6",
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0",
-    "topojson-client": "^3.0.0",
-    "webpack": "^2.5.0"
+    "topojson-client": "^3.0.0"
   },
   "devDependencies": {
     "@extjs/reactor-babel-plugin": "^1.0.0",
@@ -51,11 +50,12 @@
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-2": "^6.13.0",
     "copy-webpack-plugin": "^4.0.1",
+    "cross-env": "^5.0.0",
     "css-loader": "^0.26.1",
     "html-webpack-plugin": "^2.24.1",
-    "rimraf": "^2.5.4",
+    "rimraf": "^2.6.1",
     "style-loader": "^0.13.1",
-    "webpack": "^2.2.1",
-    "webpack-dev-server": "^2.4.1"
+    "webpack": "^2.5.1",
+    "webpack-dev-server": "^2.4.5"
   }
 }

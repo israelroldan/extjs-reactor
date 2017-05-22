@@ -7,8 +7,8 @@
   "scripts": {
     "clean": "rimraf build",
     "start": "webpack-dev-server --progress --colors",
-    "build": "npm run clean && NODE_ENV=production webpack --env.prod=true --progress --colors",
-    "prod": "NODE_ENV=production webpack-dev-server --env.prod=true --progress --colors"
+    "build": "npm run clean && cross-env NODE_ENV=production webpack --env.prod=true --progress --colors",
+    "prod": "cross-env NODE_ENV=production webpack-dev-server --env.prod=true --progress --colors"
   },
   "author": "Sencha, Inc.",
   "repository": {
@@ -35,7 +35,9 @@
     "babel-preset-es2015": "^6.14.0",
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-2": "^6.13.0",
+    "cross-env": "^5.0.0",
     "html-webpack-plugin": "^2.24.1",
+    "rimraf": "^2.6.1",
     "webpack": "^2.5.1",
     "webpack-dev-server": "^2.4.1"
   }
