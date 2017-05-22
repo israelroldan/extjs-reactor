@@ -278,7 +278,7 @@ module.exports = class ReactExtJSWebpackPlugin {
 
         return new Promise((resolve, reject) => {
             this.onBuildFail = reject;
-            this.onBuildComplete = resolve;
+            this.onBuildSuccess = resolve;
 
             cmdErrors = [];
             
@@ -286,7 +286,7 @@ module.exports = class ReactExtJSWebpackPlugin {
                 if (cmdErrors.length) {
                     this.onBuildFail(new Error(cmdErrors.join("")));
                 } else {
-                    this.onBuildComplete();
+                    this.onBuildSuccess();
                 }
             };
 
