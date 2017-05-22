@@ -1,15 +1,15 @@
 {
   "name": "@extjs/reactor-rest-example",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An example showing the use of ExtReact stores and proxies with a rest API.",
   "main": "index.js",
   "scripts": {
     "clean": "rimraf build",
     "start": "node server",
     "debug": "node --nolazy --debug-brk=5858 server",
-    "build": "npm run clean && NODE_ENV=production webpack --env.prod=true",
-    "prod": "NODE_ENV=production node server"
+    "build": "npm run clean && cross-env NODE_ENV=production webpack --env.prod=true",
+    "prod": "cross-env NODE_ENV=production node server"
   },
   "repository": {
     "type": "git",
@@ -30,14 +30,11 @@
     "react": "^15.4.0",
     "react-dom": "^15.4.0",
     "react-redux": "^5.0.3",
-    "redux": "^3.6.0",
-    "webpack": "^2.5.0",
-    "webpack-dev-middleware": "^1.10.2",
-    "webpack-dev-server": "^2.4.5"
+    "redux": "^3.6.0"
   },
   "devDependencies": {
     "@extjs/reactor-babel-plugin": "^1.0.0",
-    "@extjs/reactor-webpack-plugin": "^1.0.0",
+    "@extjs/reactor-webpack-plugin": "^1.0.1",
     "babel-core": "^6.17.0",
     "babel-loader": "^6.2.5",
     "babel-plugin-transform-runtime": "^6.23.0",
@@ -45,14 +42,14 @@
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-2": "^6.13.0",
     "copy-webpack-plugin": "^4.0.1",
+    "cross-env": "^5.0.0",
     "css-loader": "^0.26.1",
     "express": "^4.15.2",
     "html-webpack-plugin": "^2.24.1",
-    "rimraf": "^2.5.4",
+    "rimraf": "^2.6.1",
     "sqlite3": "^3.1.8",
     "style-loader": "^0.13.1",
-    "webpack": "^2.2.1",
-    "webpack-dev-middleware": "^1.10.1",
-    "webpack-dev-server": "^2.4.1"
+    "webpack": "^2.5.1",
+    "webpack-dev-middleware": "^1.10.2"
   }
 }

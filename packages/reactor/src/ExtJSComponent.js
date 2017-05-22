@@ -26,7 +26,9 @@ const CLASS_CACHE = {
     CellBase: Ext.ClassManager.get('Ext.grid.cell.Base'),
     WidgetCell: Ext.ClassManager.getByAlias('widget.widgetcell'),
     Dialog: Ext.ClassManager.getByAlias('widget.dialog'),
-    Field: Ext.ClassManager.getByAlias('widget.field')
+    Field: Ext.ClassManager.getByAlias('widget.field'),
+    FitLayout: Ext.ClassManager.getByAlias('layout.fit'),
+    TabPanel: Ext.ClassManager.getByAlias('widget.tabpanel')
 }
 
 export default class ExtJSComponent extends Component {
@@ -73,10 +75,7 @@ export default class ExtJSComponent extends Component {
 
         this._hostParent = nativeParent; // this is needed by ReactDOMComponentTree#getNodeFromInstance
 
-        const config = {
-            ...this._createInitialConfig(element, transaction, context),
-            renderTo: renderToDOMNode
-        };
+        const config = this._createInitialConfig(element, transaction, context)
 
         let result;
 
@@ -187,7 +186,13 @@ export default class ExtJSComponent extends Component {
 
     _applyDefaults({ defaults, children }) {
         if (defaults) {
-            return Children.map(children, child => cloneElement(child, { ...defaults, ...child.props }))
+            return Children.map(children, child => {
+                if (child.type.prototype instanceof ExtJSComponent) {
+                    return cloneElement(child, { ...defaults, ...child.props })
+                } else {
+                    return child;
+                }
+            })
         } else {
             return children;
         }
@@ -483,6 +488,18 @@ export default class ExtJSComponent extends Component {
 
         this.cmp[setter](value);
     }
+
+    _ignoreChildrenOrder() {
+        // maintaining order in certain components, like Transition's container, can cause problems with animations, _reactorIgnoreOrder gives us a way to opt out in such scenarios
+        if (this.cmp._reactorIgnoreOrder) return true; 
+
+        // moving the main child of a container with layout fit causes it to disappear.  Instead we do nothing, which
+        // should be ok because fit containers are not ordered
+        if (CLASS_CACHE.FitLayout && this.cmp.layout instanceof CLASS_CACHE.FitLayout) return true; 
+
+        // When tab to the left of the active tab is removed, the left-most tab would always be selected as the tabs to the right are reinserted
+        if (CLASS_CACHE.TabPanel && this.cmp instanceof CLASS_CACHE.TabPanel) return true;
+    }
 }
 
 /**
@@ -500,17 +517,8 @@ const ContainerMixin = Object.assign({}, ReactMultiChild.Mixin, {
      * @protected
      */
     moveChild(child, afterNode, toIndex, lastIndex) {
-        if (this.cmp._reactorIgnoreOrder) return; // maintaining order in certain components, like Transition's container, can cause problems with animations, _reactorIgnoreOrder gives us a way to opt out in such scenarios
-
+        if (this._ignoreChildrenOrder()) return;
         if (toIndex === child._mountIndex) return; // only move child if the actual mount index has changed
-
-        const fitLayout = Ext.layout && (Ext.layout.Fit || Ext.layout.FitLayout);
-
-        if (fitLayout && this.cmp.layout instanceof fitLayout) {
-            // moving the main child of a container with layout fit causes it to disappear.  Instead we do nothing, which
-            // should be ok because fit containers are not ordered
-            return;
-        }
 
         let childComponent = toComponent(child.cmp || child.getHostNode());
 

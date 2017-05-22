@@ -320,8 +320,9 @@ module.exports = class ReactExtJSWebpackPlugin {
 
                 if (!cmdRebuildNeeded) resolve(output);
             } else {
-                execSync(`${sencha} ant build`, { cwd: output, stdio: 'inherit' });
-                resolve(output);
+                const build = fork(sencha, ['ant', 'build'], { cwd: output, silent: true });
+                build.stdout.pipe(process.stdout);
+                build.on('exit', () => resolve(output));
             }
         });
     }

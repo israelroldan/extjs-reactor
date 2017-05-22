@@ -12,7 +12,7 @@ If you haven't already, download Ext JS 6.5+.
 
 Then, run the following to clone and build the project:
 
-    git clone git@github.com:sencha/extjs-reactor.git
+    git clone https://github.com/sencha/extjs-reactor.git
     cd extjs-reactor/packages/reactor-modern-boilerplate
     npm install
 

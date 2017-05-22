@@ -31,7 +31,7 @@ class Calendar extends Component {
         eventStoreDefaults: {
             proxy: {
                 type: 'ajax',
-                url: '/resources/schedule.json'
+                url: 'resources/schedule.json'
             },
             filters: item => this.favorites.indexOf(item.get('id')) >= 0
         },

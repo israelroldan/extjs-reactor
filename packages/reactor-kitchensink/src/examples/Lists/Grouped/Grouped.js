@@ -33,9 +33,12 @@ export default class GroupedListExample extends Component {
             <List
                 shadow
                 itemTpl={this.tpl}
-                indexBar
+                indexBar={{
+                    autoHide: false
+                }}
                 grouped
                 pinHeaders
+                rowLines
                 infinite
                 store={this.store}
                 onSelect={this.onSelect}

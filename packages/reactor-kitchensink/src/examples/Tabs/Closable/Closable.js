@@ -1,65 +1,75 @@
 import React, { Component } from 'react';
-import { TabPanel, Panel, Toolbar, Button } from '@extjs/ext-react'; 
-
-Ext.require('Ext.Toast');
+import { TabPanel, Container, Toolbar, Button } from '@extjs/ext-react'; 
 
 export default class Closable extends Component {
 
+    nextKey = 0;
+
     state = {
-        tabs: [1,2,3].map(i => this.createTab(i)),
-        activeTab: 0
+        tabs: [
+            this.nextKey++,
+            this.nextKey++,
+            this.nextKey++
+        ]
     }
 
+    onCloseTab = tab => {
+        const tabs = this.state.tabs.filter(t => t !== tab);
+        this.setState({ tabs })
+    }
+    
     addTab = () => {
-        const index = this.state.tabs.length;
-        
-        return this.setState({ 
-            activeTab: index,
-            tabs: [
-                ...this.state.tabs, 
-                this.createTab(index+1)
-            ]
-        });
-    } 
-
-    onCloseTab = (tab) => {
-        Ext.toast(`${tab.getTitle()} closed.`)
+        const key = this.nextKey++;
+        const tabs = [...this.state.tabs, key];
+        this.setState({ tabs })
+        this.tabPanel.setActiveItem(tabs.indexOf(key))
+        return false;
     }
 
     render() {
-        const { tabs, activeTab } = this.state;
+        const { tabs } = this.state;
 
         return (
-            <TabPanel 
-                activeItem={activeTab} 
-                tabBar={{
-                    layout: {
-                        pack: 'left'
-                    }
-                }}
-                shadow 
-            >
-                { this.state.tabs }
-                <Toolbar docked="top">
-                    <Button iconCls="x-fa fa-plus" text="Add Tab" handler={this.addTab}/>
-                </Toolbar>
-            </TabPanel>
+            <Container layout="fit" padding={10}>
+                <TabPanel 
+                    ref={tp => this.tabPanel = tp} 
+                    _reactorIgnoreOrder 
+                    shadow
+                    style={{ backgroundColor: 'white'}}
+                    activeItem={0}
+                    tabBar={{
+                        height: 48,
+                        layout: {
+                            pack: 'left'
+                        },
+                        style: {
+                            paddingRight: '52px'
+                        }
+                    }}
+                >
+                    { tabs.map(key => (
+                        <Container
+                            title={`Tab ${key}`}
+                            tab={{ flex: 1, maxWidth: 150 }}
+                            key={key}
+                            layout="center"
+                            closable
+                            onDestroy={this.onCloseTab.bind(this, key)}
+                        >
+                            <div style={{ whiteSpace: 'nowrap' }}>Tab {key} Content</div>
+                        </Container>
+                    ))}
+                </TabPanel>
+                <Button 
+                    top={18} 
+                    right={20} 
+                    iconCls="x-fa fa-plus" 
+                    handler={this.addTab}
+                    ui="alt round"
+                    tooltip="New Tab"
+                />
+            </Container>
         )
     }
 
-    createTab(i) {
-        return (
-            <Panel 
-                title={`Tab ${i}`} 
-                tab={{ flex: 1, maxWidth: 150 }}
-                key={i} 
-                cls="card"
-                layout="center"
-                closable
-                onDestroy={this.onCloseTab}
-            >
-                <div style={{ whiteSpace: 'nowrap' }}>Tab {i} Content</div>
-            </Panel>
-        )
-    }
 }
