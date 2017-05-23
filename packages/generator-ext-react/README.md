@@ -11,7 +11,13 @@ npm install -g yo @extjs/generator-ext-react
 
 ## Creating a new ExtReact App
 
-To create a new ExtReact app, run:
+If you haven't already, log into Sencha's private registry using the credentials you received in your ExtReact trial or subscription activation email.  If you don't have credentials, you can get them by [signing up for a trial of ExtReact](https://www.sencha.com/products/extreact/evaluate/).
+
+```
+npm login --registry=http://npm.sencha.com --scope=@extjs
+```
+
+Then, to create a new ExtReact app, run:
 
 ```bash
 yo @extjs/ext-react
