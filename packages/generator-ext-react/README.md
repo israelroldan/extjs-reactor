@@ -19,6 +19,20 @@ yo @extjs/ext-react
 
 The app that is generated is based on the [ExtReact Boilerplate](https://github.com/sencha/extjs-reactor/tree/master/packages/reactor-boilerplate).
 
+## Development
+
+To make changes to the generator, run:
+
+```
+git clone git@github.com:sencha/extjs-reactor.git
+cd extjs-reactor
+npm install
+cd packages/generator-ext-react
+npm link
+```
+
+Now `yo @extjs/ext-react` will use your local copy of the generator.
+
 ## License
 
 MIT © [Sencha, Inc.]()
