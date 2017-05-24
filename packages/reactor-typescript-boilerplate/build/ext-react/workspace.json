@@ -1,0 +1,9 @@
+{
+    "frameworks": {
+        "ext": "../../node_modules/@extjs/ext-react"
+    },
+    "packages": {
+        "dir": "${workspace.dir}/packages/local,${workspace.dir}/packages,/Users/mbrocato/Code/extjs-reactor/packages/reactor-typescript-boilerplate/node_modules/@extjs,ext-react/packages",
+        "extract": "${workspace.dir}/packages/remote"
+    }
+}

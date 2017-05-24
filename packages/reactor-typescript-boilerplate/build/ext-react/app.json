@@ -1,0 +1,28 @@
+{
+    "framework": "ext",
+    "toolkit": "modern",
+    "requires": [
+        "ext",
+        "core",
+        "font-awesome",
+        "font-ext",
+        "modern"
+    ],
+    "overrides": [
+        "/Users/mbrocato/Code/extjs-reactor/packages/reactor-typescript-boilerplate/ext-react/overrides"
+    ],
+    "packages": {
+        "dir": [
+            "/Users/mbrocato/Code/extjs-reactor/packages/reactor-typescript-boilerplate/node_modules/@extjs",
+            "/Users/mbrocato/Code/extjs-reactor/packages/reactor-typescript-boilerplate/ext-react/packages"
+        ]
+    },
+    "output": {
+        "base": ".",
+        "resources": {
+            "path": "./resources",
+            "shared": "./resources"
+        }
+    },
+    "theme": "custom-ext-react-theme"
+}

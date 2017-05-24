@@ -5,7 +5,7 @@ import traverse from 'ast-traverse';
 import generate from 'babel-generator';
 
 const OLD_MODULE_PATTERN = /^@extjs\/reactor\/modern$/;
-const MODULE_PATTERN = /^@extjs\/(ext-react.*|reactor\/classic)$/;
+const MODULE_PATTERN = /^@extjs\/(ext-react.*|reactor\/(classic|modern))$/;
 
 /**
  * Extracts Ext.create equivalents from jsx tags so that cmd knows which classes to include in the bundle
@@ -19,6 +19,8 @@ module.exports = function extractFromJSX(js, compilation, module) {
 
     // Aliases used for reactify
     const reactifyAliases = new Set([]);
+
+    const extReactPackages = {};
 
     const ast = parse(js, {
         plugins: [
@@ -72,6 +74,10 @@ module.exports = function extractFromJSX(js, compilation, module) {
                 }
             }
 
+            if (isExtReactPackageRequire(node)) {
+                extReactPackages[node.id.name] = true;
+            }
+
             // Look for reactify calls. Keep track of the names of each component so we can map JSX tags to xtypes and
             // convert props to configs so Sencha Cmd can discover automatic dependencies in the manifest.
             if (node.type == 'VariableDeclarator' && node.init && node.init.type === 'CallExpression' && node.init.callee && reactifyAliases.has(node.init.callee.name)) {
@@ -97,7 +103,11 @@ module.exports = function extractFromJSX(js, compilation, module) {
             // Convert React.createElement(...) calls to the equivalent Ext.create(...) calls to put in the manifest.
             if (node.type === 'CallExpression' && node.callee.object && node.callee.object.name === 'React' && node.callee.property.name === 'createElement') {
                 const [tag, props] = node.arguments;
-                const type = types[tag.name];
+                let type = types[tag.name];
+
+                if (tag.object && extReactPackages[tag.object.name]) {
+                    type = { xtype: tag.property.name.toLowerCase() }
+                }
 
                 if (type) {
                     let config;
@@ -125,3 +135,29 @@ module.exports = function extractFromJSX(js, compilation, module) {
 
     return statements;
 };
+
+/**
+ * Returns true if the node is a variable declaration like:
+ * 
+ * var ext_react_1 = require('@extjs/ext-react*');
+ * var ext_react_1 = require('@extjs/reactor/modern');
+ * var ext_react_1 = require('@extjs/reactor/classic');
+ * 
+ * @param {ASTNode} node 
+ */
+function isExtReactPackageRequire(node) {
+    const callee = node.type == 'VariableDeclarator' && 
+        node.init && 
+        node.init.type === 'CallExpression' && 
+        node.init.callee;
+
+    if (!callee) return;
+
+    const value = node.init.arguments[0];
+
+    return callee &&
+        callee.name === 'require' &&
+        value && 
+        value.type === 'StringLiteral' && 
+        value.value.match(MODULE_PATTERN);
+}
