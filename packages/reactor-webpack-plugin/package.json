@@ -20,7 +20,7 @@
     "webpack": "^2.2.1"
   },
   "dependencies": {
-    "@extjs/sencha-cmd": "^6.5.0",
+    "@extjs/sencha-cmd": "> 6.5.1-0 < 6.5.2",
     "ast-traverse": "^0.1.1",
     "astring": "^1.0.2",
     "babel-generator": "^6.24.1",
