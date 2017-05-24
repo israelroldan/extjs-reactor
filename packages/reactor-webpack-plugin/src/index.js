@@ -12,6 +12,23 @@ import { generate } from 'astring';
 import { sync as resolve } from 'resolve';
 
 let watching = false;
+let cmdErrors;
+
+/**
+ * Scrapes Sencha Cmd output, adding error messages to cmdErrors;
+ * @param {Process} build A sencha Cmd process
+ */
+const gatherErrors = (cmd) => {
+    cmd.stdout.on('data', data => {
+        const message = data.toString();
+        
+        if (message.match(/^\[ERR\]/)) {
+            cmdErrors.push(message.replace(/^\[ERR\] /gi, ''));
+        }
+    });
+
+    return cmd;
+}
 
 /**
  * Produces a minimal build of ExtReact by crawling your React source code and extracting the xtypes used
@@ -167,12 +184,11 @@ module.exports = class ReactExtJSWebpackPlugin {
                     //     cssVarChunk.files.push(cssVarPath);
                     //     cssVarChunk.id = -1;
                     // }
-
                     !this.asynchronous && callback();
                 })
                 .catch(e => {
-                    console.error(e);
                     compilation.errors.push(new Error('[@extjs/reactor-webpack-plugin]: ' + e.toString()));
+                    !this.asynchronous && callback();
                 });
         });
     }
@@ -186,7 +202,11 @@ module.exports = class ReactExtJSWebpackPlugin {
     _validateBuildConfig(name, build) {
         let { sdk } = build;
 
-        if (!sdk) {
+        if (sdk) {
+            if (!fs.existsSync(sdk)) {
+                throw new Error(`No SDK found at ${path.resolve(sdk)}.  Did you for get to link/copy your Ext JS SDK to that location?`);
+            }
+        } else {
             try {
                 build.sdk = path.dirname(resolve('@extjs/ext-react', { basedir: process.cwd() }))
                 build.packageDirs = [...(build.packageDirs || []), path.dirname(build.sdk)];
@@ -254,13 +274,21 @@ module.exports = class ReactExtJSWebpackPlugin {
     _buildExtBundle(name, modules, output, { toolkit='modern', theme, packages=[], packageDirs=[], sdk, overrides }) {
         let sencha = this._getSenchCmdPath();
 
-        debugger;
-
         theme = theme || (toolkit === 'classic' ? 'theme-triton' : 'theme-material');
 
         return new Promise((resolve, reject) => {
-            this.onBuildComplete = resolve;
             this.onBuildFail = reject;
+            this.onBuildSuccess = resolve;
+
+            cmdErrors = [];
+            
+            const onBuildDone = () => {
+                if (cmdErrors.length) {
+                    this.onBuildFail(new Error(cmdErrors.join("")));
+                } else {
+                    this.onBuildSuccess();
+                }
+            };
 
             if (!watching) {
                 rimraf(output);
@@ -308,21 +336,21 @@ module.exports = class ReactExtJSWebpackPlugin {
 
             if (this.watch) {
                 if (!watching) {
-                    watching = fork(sencha, ['ant', 'watch'], { cwd: output, silent: true });
+                    watching = gatherErrors(fork(sencha, ['ant', 'watch'], { cwd: output, silent: true }));
                     watching.stdout.pipe(process.stdout);
                     watching.stdout.on('data', data => {
                         if (data.toString().match(/Waiting for changes\.\.\./)) {
-                            this.onBuildComplete(output);
+                            onBuildDone()
                         }
                     });
-                    watching.on('exit', code => this.onBuildFail())
+                    watching.on('exit', onBuildDone)
                 }
 
-                if (!cmdRebuildNeeded) resolve(output);
+                if (!cmdRebuildNeeded) onBuildDone();
             } else {
-                const build = fork(sencha, ['ant', 'build'], { cwd: output, silent: true });
+                const build = gatherErrors(fork(sencha, ['ant', 'build'], { cwd: output, silent: true }));
                 build.stdout.pipe(process.stdout);
-                build.on('exit', () => resolve(output));
+                build.on('exit', onBuildDone);
             }
         });
     }

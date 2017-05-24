@@ -1,7 +1,7 @@
 {
   "name": "@extjs/reactor-rest-example",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An example showing the use of ExtReact stores and proxies with a rest API.",
   "main": "index.js",
   "scripts": {
@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@extjs/reactor-babel-plugin": "^1.0.0",
-    "@extjs/reactor-webpack-plugin": "^1.0.0",
+    "@extjs/reactor-webpack-plugin": "^1.0.1",
     "babel-core": "^6.17.0",
     "babel-loader": "^6.2.5",
     "babel-plugin-transform-runtime": "^6.23.0",
