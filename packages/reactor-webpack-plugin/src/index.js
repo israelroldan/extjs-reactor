@@ -309,9 +309,10 @@ module.exports = class ReactExtJSWebpackPlugin {
             if (this.watch) {
                 if (!watching) {
                     watching = fork(sencha, ['ant', 'watch'], { cwd: output, silent: true });
+                    watching.stderr.pipe(process.stderr);
                     watching.stdout.pipe(process.stdout);
                     watching.stdout.on('data', data => {
-                        if (data.toString().match(/Waiting for changes\.\.\./)) {
+                        if (data && data.toString().match(/Waiting for changes\.\.\./)) {
                             this.onBuildComplete(output);
                         }
                     });
@@ -322,6 +323,7 @@ module.exports = class ReactExtJSWebpackPlugin {
             } else {
                 const build = fork(sencha, ['ant', 'build'], { cwd: output, silent: true });
                 build.stdout.pipe(process.stdout);
+                build.stderr.pipe(process.stderr);
                 build.on('exit', () => resolve(output));
             }
         });
