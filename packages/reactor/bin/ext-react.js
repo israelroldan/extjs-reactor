@@ -4,6 +4,7 @@ const parseArgs = require('minimist'),
     fs = require('fs'),
     path = require('path'),
     sencha = require('@extjs/sencha-cmd'),
+    cjson = require('comment-json'),
     { fork } = require('child_process'), 
     mkdirp = require('mkdirp');
 
@@ -105,24 +106,28 @@ const generateTheme = config => {
         proc.stderr.pipe(process.stderr);
 
         return proc;
-    });
+    }).then(updatePackageJson.bind(null, config));
 }
 
 /**
- * Set's the Sass Namespace to "" in package.json, this is to help compatiblity with Sencha Themer.
+ * Set's the Sass Namespace to "" and toolkit to "modern" in package.json, this is to help compatiblity with Sencha Themer.
  */
-const setBlankSassNamespace = config => {
+const updatePackageJson = config => {
     const packageJsonPath = path.join('.', 'ext-react', 'packages', config.name, 'package.json');
 
     return new Promise((resolve, reject) => {
         fs.readFile(packageJsonPath, 'utf-8', (err, data) => {
             if(err) return reject(`Could not read package.json for theme named: ${config.name}`);
 
-            return resolve(data);
+            return resolve(cjson.parse(data));
         });
     }).then(data => {
+        (data.sencha || data).sass.namespace = '';
+        (data.sencha || data).toolkit = 'modern';
+        return data;
+    }).then(data => {
         return new Promise((resolve, reject) => {
-            fs.writeFile(packageJsonPath, data.replace(/(\s+"sass"[\w\W]*"namespace":\s*).*/m, '$1"",'), err => {
+            fs.writeFile(packageJsonPath, cjson.stringify(data, null, 4), err => {
                 if(err) return reject(`Could not write package.json for theme named: ${config.name}`);
 
                 return resolve();
@@ -173,7 +178,6 @@ switch(args._.join(' ')) {
 
         return generateWorkspace(args)
             .then(generateTheme.bind(null, args))
-            .then(setBlankSassNamespace.bind(null, args))
             .then((args.apply ? applyTheme.bind(null, args) : Promise.resolve([])))
             .then(() => {
                 console.log(`Theme created at: ext-react/packages/${args.name}`);
