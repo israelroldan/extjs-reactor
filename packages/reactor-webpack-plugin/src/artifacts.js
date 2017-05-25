@@ -148,13 +148,6 @@ export function createAppJson({ theme, packages, toolkit, overrides=[], packageD
         }
     };
 
-    // if .ext-reactrc file exists, consume it and apply to app.json
-    if(fs.existsSync('./.ext-reactrc')) {
-        const senchaRc = JSON.parse(fs.readFileSync('./.ext-reactrc', 'utf-8'));
-        Object.assign(config, senchaRc);
-        theme = senchaRc.theme || theme;
-    }
-
     // if theme is local add it as an additional package dir
     if (fs.existsSync(theme)) {
         const packageInfo = cjson.load(path.join(theme, 'package.json'));
