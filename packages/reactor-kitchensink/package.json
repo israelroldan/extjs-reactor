@@ -1,6 +1,6 @@
 {
   "name": "@extjs/reactor-kitchensink",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A boilerplate project showing all Ext JS modern components.",
   "main": "index.js",
   "scripts": {
@@ -47,7 +47,7 @@
   },
   "devDependencies": {
     "@extjs/reactor-babel-plugin": "^1.0.0",
-    "@extjs/reactor-webpack-plugin": "^1.0.0",
+    "@extjs/reactor-webpack-plugin": "^1.0.1",
     "babel-core": "^6.17.0",
     "babel-loader": "^6.2.5",
     "babel-plugin-transform-runtime": "^6.23.0",

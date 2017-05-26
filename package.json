@@ -2,6 +2,7 @@
   "private": true,
   "scripts": {
     "postinstall": "lerna bootstrap",
+    "increment": "lerna publish --skip-git --skip-npm",
     "clean": "lerna clean"
   },
   "devDependencies": {
