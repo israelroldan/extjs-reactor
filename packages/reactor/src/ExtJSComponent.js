@@ -45,6 +45,7 @@ export default class ExtJSComponent extends Component {
         this._currentElement = element;
         this._topLevelWrapper = null;
         this.displayName = 'ExtJSComponent';
+        this.unmountSafely = false;
     }
 
     // begin React renderer methods
@@ -91,6 +92,13 @@ export default class ExtJSComponent extends Component {
             get: () => this.el
         });
 
+        // Ensure that componentWillUnmount is called on children.
+        // We wait until the Ext JS component is destroyed rather than calling unmountChildren in unmountComponent
+        // so that we don't unmount children during a Transition's animation.
+        this.cmp.on('destroy', () => {
+            this.unmountChildren(this.unmountSafely); 
+        });
+
         this._precacheNode();
         return result;
     }
@@ -113,7 +121,9 @@ export default class ExtJSComponent extends Component {
     /**
      * Destroys the component
      */
-    unmountComponent() {
+    unmountComponent(safely) {
+        this.unmountSafely = safely;
+
         if (this.cmp) {
             if (this.cmp.destroying || this.cmp.$reactorConfig) return;
 
