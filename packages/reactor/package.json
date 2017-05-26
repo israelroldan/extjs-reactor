@@ -48,7 +48,7 @@
     "mkdirp": "^0.5.1"
   },
   "devDependencies": {
-    "@extjs/sencha-cmd": "> 6.5.1-0 < 6.5.2",
+    "@extjs/sencha-cmd": "6.5.1",
     "@types/react": "^0.14.52",
     "@types/react-dom": "^0.14.19",
     "babel-cli": "^6.14.0",
