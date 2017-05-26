@@ -34,12 +34,17 @@ const Template = Ext.define(null, {
     doInsert(where, el, values, returnElement) {
         const target = this.getCachedTarget();
         this.doRender(values, target);
-        return Ext.dom.Helper.doInsert(el, target.firstChild, returnElement, where);
+        const dom = target.firstChild;
+        const result = Ext.dom.Helper.doInsert(el, dom, returnElement, where);
+        this.unmountChildrenOnRemove(dom);
+        return result;
     },
 
     // overrides Ext.Template
     overwrite(el, values, returnElement) {
-        const dom = this.doRender(values, Ext.getDom(el));
+        const dom = Ext.getDom(el);
+        const result = this.doRender(values, dom);
+        this.unmountChildrenOnRemove(dom);
         return returnElement ? new Ext.Element(dom) : dom;
     },
 
@@ -63,6 +68,33 @@ const Template = Ext.define(null, {
         const reactElement = this.fn(values);
         ReactDOM.render(reactElement, target);
         return target.firstChild;
+    },
+
+    /**
+     * Ensures that componentWillUnmount is called on each descendent component when the target node is removed from the DOM.
+     * @param {Node} target A node containing a React tree
+     */
+    unmountChildrenOnRemove(target) {
+        const parent = target.parentNode;
+        const parentKey = '$reactorObserveRemoveChild';
+        const targetKey = '$reactorUnmountOnRemove';
+        target[targetKey] = true; // we tag the target with $reactorUnmountOnRemove so we know it has a React tree to unmount when removed
+
+        if (!parent[parentKey]) { // we tag the parent with $reactorObserveRemoveChild so we can ensure we are only observing it once
+            parent[parentKey] = true;
+
+            const observer = new MutationObserver(mutations => {
+                mutations.forEach(m => {
+                    m.removedNodes.forEach(node => {
+                        if (node[targetKey]) {
+                            ReactDOM.unmountComponentAtNode(node); // Unmount the React tree when the target dom node is removed.
+                        }
+                    })
+                })
+            });
+            
+            observer.observe(parent, { childList: true });
+        }
     }
 });
 
