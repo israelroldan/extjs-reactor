@@ -9,8 +9,8 @@ export interface LaunchOptions {
  * Launches the app and renders the specified root component into the html body
  * @param rootComponent The root component to render
  */
-export function launch<P>(rootComponent: ReactElement<P>): void;
-export function launch<P>(rootComponent: ReactElement<P>, options: Partial<LaunchOptions>): void;
+export function launch<P>(rootComponent: ReactElement<P>, options?: Partial<LaunchOptions>): void;
+export function launch<P>(callback: () => void | ReactElement<P>, options?: Partial<LaunchOptions>): void;
 
 export interface InstallOptions {
     /**
