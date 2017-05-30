@@ -7,7 +7,6 @@ module.exports = function(babel) {
     return {
         visitor: {
             ImportDeclaration: function(path) {
-
                 const { node } = path;
 
                 if (node.source && node.source.type === 'StringLiteral' && (node.source.value.match(MODULE_PATTERN) || node.source.value.match(OLD_MODULE_PATTERN))) {
