@@ -1,6 +1,6 @@
 {
   "name": "@extjs/reactor",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "Use Ext JS components in React.",
   "main": "dist/index.js",
   "typings": "index.d.ts",
