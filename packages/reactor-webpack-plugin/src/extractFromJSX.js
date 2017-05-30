@@ -20,8 +20,6 @@ module.exports = function extractFromJSX(js, compilation, module) {
     // Aliases used for reactify
     const reactifyAliases = new Set([]);
 
-    const extReactPackages = {};
-
     const ast = parse(js, {
         plugins: [
             'jsx',
