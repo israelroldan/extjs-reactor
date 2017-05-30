@@ -44,7 +44,7 @@ module.exports = function (env) {
         template: 'index.html',
         hash: true
     }), new OpenBrowserPlugin({
-        url: 'http://localhost:8080'
+        url: 'http://localhost:8087'
     }));
 
     return {
@@ -103,7 +103,7 @@ module.exports = function (env) {
         devServer: {
             contentBase: './build',
             historyApiFallback: true,
-            port: 8080,
+            port: 8087,
             compress: isProd,
             inline: !isProd,
             hot: !isProd,

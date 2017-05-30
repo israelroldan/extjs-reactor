@@ -17,14 +17,22 @@ npm install --save @extjs/reactor
 npm install --save-dev @extjs/reactor-webpack-plugin @extjs/reactor-babel-plugin
 ```
 
-## Getting Started
+## Getting Started with ExtReact
+
+To create a new ExtReact app, we recommend using the [ExtReact Yeoman Generator](https://github.com/markbrocato/extjs-reactor/tree/master/packages/generator-ext-react):
+
+```
+npm install -g yo @extjs/generator-ext-react
+yo @extjs/ext-react
+```
+
+The application it creates uses react, react-router, webpack, and babel (ES2015+) and is based off of the [ExtReact Boilerplate](https://github.com/sencha/extjs-reactor/tree/master/packages/reactor-boilerplate).
+
+
+## Getting Started with Ext JS and React
 
 If you're starting from scratch with Ext JS and React, we recommend cloning one of the boilerplates and following the instructions there:
 
-ExtReact Customers:
-* [ExtReact Boilerplate](https://github.com/sencha/extjs-reactor/tree/master/packages/reactor-boilerplate)
-
-Ext JS Customers:
 * [React + Ext JS Classic Boilerplate](https://github.com/sencha/extjs-reactor/tree/master/packages/reactor-classic-boilerplate)
 * [React + Ext JS Modern Boilerplate](https://github.com/sencha/extjs-reactor/tree/master/packages/reactor-modern-boilerplate)
 
