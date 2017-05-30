@@ -1,18 +1,21 @@
-import * as React from 'react';
-import { Component } from 'react';
-import { Container, Panel, TitleBar } from '@extjs/ext-react';
+import * as React from 'react'
+import { BrowserRouter as Router } from 'react-router-dom'
+import Layout from './Layout';
 
-export default class App extends Component<void, any> {
+declare var Ext:any;
+
+// Enable responsiveConfig app-wide. You can remove this if you don't plan to build a responsive UI.
+Ext.require('Ext.plugin.Responsive');
+
+/**
+ * The main application view
+ */
+export default function App() {
+
+    return (
+        <Router>
+            <Layout/>
+        </Router>
+    )
     
-    render() {
-        return (
-            <Container fullscreen>
-                <TitleBar docked="top" title="App"/>
-                <Panel margin="30" shadow bodyPadding="10" title="Panel">
-                    Body
-                </Panel>
-            </Container>
-        )
-    }
-
 }

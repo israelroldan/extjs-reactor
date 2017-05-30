@@ -6,22 +6,6 @@ const ExtReactWebpackPlugin = require('@extjs/reactor-webpack-plugin');
 
 const sourcePath = path.join(__dirname, './src');
 
-const babelOptions = {
-    "presets": [
-        "react",
-        [
-            "es2015",
-            {
-                "modules": false
-            }
-        ],
-        "es2016"
-    ],
-    "plugins": [
-        "@extjs/reactor-babel-plugin"
-    ]
-};
-
 module.exports = function (env) {
     const nodeEnv = env && env.prod ? 'production' : 'development';
     const isProd = nodeEnv === 'production';
@@ -84,7 +68,11 @@ module.exports = function (env) {
                     use: [
                         {
                             loader: 'babel-loader',
-                            options: babelOptions
+                            options: {
+                                "plugins": [
+                                    "@extjs/reactor-babel-plugin"
+                                ]
+                            }
                         },
                         {
                             loader: 'awesome-typescript-loader'

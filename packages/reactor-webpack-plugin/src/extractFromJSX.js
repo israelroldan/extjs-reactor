@@ -47,7 +47,7 @@ module.exports = function extractFromJSX(js, compilation, module) {
         if (reactifyArgNode.type === 'StringLiteral') {
             types[varName] = { xtype: reactifyArgNode.value };
         } else {
-            types[varName] = { xclass: `"${js.slice(reactifyArgNode.start, reactifyArgNode.end)}"` };
+            types[varName] = { xclass: js.slice(reactifyArgNode.start, reactifyArgNode.end) };
         }
     }
 
@@ -62,7 +62,7 @@ module.exports = function extractFromJSX(js, compilation, module) {
 
                     // look for: import { Grid } from '@extjs/reactor
                     for (let spec of node.specifiers) {
-                        types[spec.local.name] = {xtype: `"${spec.imported.name.toLowerCase().replace(/_/g, '-')}"`};
+                        types[spec.local.name] = { xtype: spec.imported.name.toLowerCase().replace(/_/g, '-') };
                     }
                 } else if (node.source.value === '@extjs/reactor') {
                     // identify local names of reactify based on import { reactify as foo } from '@extjs/reactor';
@@ -72,10 +72,6 @@ module.exports = function extractFromJSX(js, compilation, module) {
                         }
                     }
                 }
-            }
-
-            if (isExtReactPackageRequire(node)) {
-                extReactPackages[node.id.name] = true;
             }
 
             // Look for reactify calls. Keep track of the names of each component so we can map JSX tags to xtypes and
@@ -105,10 +101,6 @@ module.exports = function extractFromJSX(js, compilation, module) {
                 const [tag, props] = node.arguments;
                 let type = types[tag.name];
 
-                if (tag.object && extReactPackages[tag.object.name]) {
-                    type = { xtype: tag.property.name.toLowerCase() }
-                }
-
                 if (type) {
                     let config;
 
@@ -135,29 +127,3 @@ module.exports = function extractFromJSX(js, compilation, module) {
 
     return statements;
 };
-
-/**
- * Returns true if the node is a variable declaration like:
- * 
- * var ext_react_1 = require('@extjs/ext-react*');
- * var ext_react_1 = require('@extjs/reactor/modern');
- * var ext_react_1 = require('@extjs/reactor/classic');
- * 
- * @param {ASTNode} node 
- */
-function isExtReactPackageRequire(node) {
-    const callee = node.type == 'VariableDeclarator' && 
-        node.init && 
-        node.init.type === 'CallExpression' && 
-        node.init.callee;
-
-    if (!callee) return;
-
-    const value = node.init.arguments[0];
-
-    return callee &&
-        callee.name === 'require' &&
-        value && 
-        value.type === 'StringLiteral' && 
-        value.value.match(MODULE_PATTERN);
-}
