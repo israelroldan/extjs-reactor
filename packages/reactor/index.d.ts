@@ -1,4 +1,16 @@
 import React = require('react')
+import { ReactElement } from 'react';
+
+export interface LaunchOptions {
+    debug: boolean
+}
+
+/**
+ * Launches the app and renders the specified root component into the html body
+ * @param rootComponent The root component to render
+ */
+export function launch<P>(rootComponent: ReactElement<P>, options?: Partial<LaunchOptions>): void;
+export function launch<P>(callback: () => void | ReactElement<P>, options?: Partial<LaunchOptions>): void;
 
 export interface InstallOptions {
     /**
@@ -10,6 +22,7 @@ export interface InstallOptions {
 
 /**
  * Configures React.
+ * @deprecated Use launch(<App/>) instead
  */
 export function install(options?: Partial<InstallOptions>): void;
 

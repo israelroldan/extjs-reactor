@@ -4,8 +4,7 @@ import { parse } from 'babylon';
 import traverse from 'ast-traverse';
 import generate from 'babel-generator';
 
-const OLD_MODULE_PATTERN = /^@extjs\/reactor\/modern$/;
-const MODULE_PATTERN = /^@extjs\/(ext-react.*|reactor\/classic)$/;
+const MODULE_PATTERN = /^@extjs\/(ext-react.*|reactor\/(classic|modern))$/;
 
 /**
  * Extracts Ext.create equivalents from jsx tags so that cmd knows which classes to include in the bundle
@@ -45,22 +44,17 @@ module.exports = function extractFromJSX(js, compilation, module) {
         if (reactifyArgNode.type === 'StringLiteral') {
             types[varName] = { xtype: reactifyArgNode.value };
         } else {
-            types[varName] = { xclass: `"${js.slice(reactifyArgNode.start, reactifyArgNode.end)}"` };
+            types[varName] = { xclass: js.slice(reactifyArgNode.start, reactifyArgNode.end) };
         }
     }
 
     traverse(ast, {
         pre: function(node) {
             if (node.type == 'ImportDeclaration') {
-                if (node.source.value.match(OLD_MODULE_PATTERN) || node.source.value.match(MODULE_PATTERN)) {
-
-                    if (node.source.value.match(OLD_MODULE_PATTERN)) {
-                        compilation.warnings.push(`${module.resource}: ${node.source.value} is deprecated, use @extjs/ext-react instead.`);
-                    }
-
+                if (node.source.value.match(MODULE_PATTERN)) {
                     // look for: import { Grid } from '@extjs/reactor
                     for (let spec of node.specifiers) {
-                        types[spec.local.name] = {xtype: `"${spec.imported.name.toLowerCase().replace(/_/g, '-')}"`};
+                        types[spec.local.name] = { xtype: spec.imported.name.toLowerCase().replace(/_/g, '-') };
                     }
                 } else if (node.source.value === '@extjs/reactor') {
                     // identify local names of reactify based on import { reactify as foo } from '@extjs/reactor';
@@ -97,7 +91,7 @@ module.exports = function extractFromJSX(js, compilation, module) {
             // Convert React.createElement(...) calls to the equivalent Ext.create(...) calls to put in the manifest.
             if (node.type === 'CallExpression' && node.callee.object && node.callee.object.name === 'React' && node.callee.property.name === 'createElement') {
                 const [tag, props] = node.arguments;
-                const type = types[tag.name];
+                let type = types[tag.name];
 
                 if (type) {
                     let config;

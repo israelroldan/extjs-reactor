@@ -82,7 +82,7 @@ module.exports = class ReactExtJSWebpackPlugin {
             builds: {},
             debug: false,
             watch: false,
-            test: /\.jsx?$/,
+            test: /\.(j|t)sx?$/,
 
             /* begin single build only */
             output: 'ext-react',

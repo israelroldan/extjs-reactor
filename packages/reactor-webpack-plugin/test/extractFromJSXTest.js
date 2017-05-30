@@ -3,63 +3,61 @@ const extractFromJSX = require('../dist/extractFromJSX');
 
 describe('extractFromJSX', () => {
 
-    it('should parse object spread', () => {
+    it('extract xtypes from imports', () => {
         const statements = extractFromJSX(`
-            import { Panel } from '@extjs/ext-react';
-            const props = { foo: 'bar' };
-            const comp = <Panel {...props}/>
+            import { Panel, Container } from '@extjs/ext-react';
+            var panel = React.createElement(Panel, { title: 'title' });
+            var container = React.createElement(Container, { layout: 'vbox' });
         `);
 
-        expect(statements).to.include('Ext.create({xtype: "panel"})')
+        expect(statements).to.eql([
+            `Ext.create({\n  xtype: 'panel',\n  title: 'title'\n})`,
+            `Ext.create({\n  xtype: 'container',\n  layout: 'vbox'\n})`,
+            `Ext.create({"xtype":"panel"})`,
+            `Ext.create({"xtype":"container"})`
+        ])
     });
 
-    it('should handle class properties', () => {
+    it('should handle reactify(xtype)', () => {
         const statements = extractFromJSX(`
-            import { Panel } from '@extjs/ext-react';
-            import { Component, PropTypes } from 'react';
-
-            class MyComponent extends Component {
-                static propTypes = {
-                    foo: PropTypes.string.isRequired
-                }
-
-                render () {
-                    return <Panel shadow/>
-                }
-            }
+            import { reactify } from '@extjs/reactor';
+            var Panel = reactify('panel');
+            var comp = React.createElement(Panel, { title: 'title' })
         `);
 
-        expect(statements).to.include('Ext.create({xtype: "panel"})')
+        expect(statements).to.eql([
+            `Ext.create({\n  xtype: 'panel',\n  title: 'title'\n})`,
+            `Ext.create({"xtype":"panel"})`
+        ])
     });
-
-    it('should handle a prop without a value', () => {
+    
+    it('should handle reactify([xtype1, xtype2, ...])', () => {
         const statements = extractFromJSX(`
-            import { Panel } from '@extjs/ext-react';
-            import { Component, PropTypes } from 'react';
-
-            class MyComponent extends Component {
-                render () {
-                    return <Panel shadow/>
-                }
-            }
+            import { reactify } from '@extjs/reactor';
+            var [ Panel, Container ] = reactify('panel', 'container');
+            var comp = React.createElement(Panel, { title: 'title' })
+            var container = React.createElement(Container, { layout: 'vbox' });
         `);
 
-        expect(statements).to.include('Ext.create({xtype: "panel"})')
+        expect(statements).to.eql([
+            `Ext.create({\n  xtype: 'panel',\n  title: 'title'\n})`,
+            `Ext.create({\n  xtype: 'container',\n  layout: 'vbox'\n})`,
+            `Ext.create({"xtype":"panel"})`,
+            `Ext.create({"xtype":"container"})`
+        ])
     });
 
     it('should handle reactify(class)', () => {
         const statements = extractFromJSX(`
             import { reactify } from '@extjs/reactor';
-            const Panel = reactify(Ext.panel.Panel);
-
-            class MyComponent extends Component {
-                render () {
-                    return <Panel shadow/>
-                }
-            }
+            var Panel = reactify(Ext.Panel);
+            var comp = React.createElement(Panel, { title: 'title' })
         `);
 
-        expect(statements).to.include('Ext.create({xclass: "Ext.panel.Panel"})')
+        expect(statements).to.eql([
+            `Ext.create({\n  xclass: 'Ext.Panel',\n  title: 'title'\n})`,
+            `Ext.create({"xclass":"Ext.Panel"})`
+        ])
     });
     
 });
