@@ -22,6 +22,7 @@ export interface InstallOptions {
 
 /**
  * Configures React.
+ * @deprecated Use launch(<App/>) instead
  */
 export function install(options?: Partial<InstallOptions>): void;
 
