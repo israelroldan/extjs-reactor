@@ -3,7 +3,9 @@ describe("RelTooltip", function() {
         ST.navigate('#/RelTooltip')
         
         ST.play([
-            {target: '#button', type: 'mouseover'}
+            {target: '#button', type: 'pointermove', x: 46, y: 100 },
+            {target: '#button', type: 'mouseenter'},
+            {target: '#button', type: 'mouseover'},
         ]);
 
         ST.component('#tooltip')
