@@ -43,6 +43,7 @@
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.26.1",
     "html-webpack-plugin": "^2.24.1",
+    "open-browser-webpack-plugin": "0.0.5",
     "rimraf": "^2.5.4",
     "style-loader": "^0.13.1",
     "webpack": "^2.2.1",

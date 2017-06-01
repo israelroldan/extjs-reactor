@@ -3,8 +3,9 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtJSReactorWebpackPlugin = require('@extjs/reactor-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-
+const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 const sourcePath = path.join(__dirname, './src');
+const port = 8087;
 
 module.exports = function (env) {
     const nodeEnv = env && env.prod ? 'production' : 'development';
@@ -49,6 +50,8 @@ module.exports = function (env) {
     plugins.push(new HtmlWebpackPlugin({
         template: 'index.html',
         hash: true
+    }), new OpenBrowserPlugin({ 
+        url: `http://localhost:${port}`
     }));
 
     return {
@@ -103,7 +106,7 @@ module.exports = function (env) {
         devServer: {
             contentBase: './build',
             historyApiFallback: true,
-            port: 8087,
+            port,
             compress: isProd,
             inline: !isProd,
             hot: !isProd,
