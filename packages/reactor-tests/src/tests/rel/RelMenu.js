@@ -4,6 +4,7 @@ import { Container, Button, Menu, MenuItem } from '@extjs/ext-react';
 export default function RelMenu() {
     return (
         <Container>
+            <div>This tests that the menu config is automatically set when a Menu appears inside a Button. The test should verify that the button has a menu.</div>
             <Button text="Menu" itemId="button">
                 <Menu itemId="menu">
                     <MenuItem text="Option 1"/>

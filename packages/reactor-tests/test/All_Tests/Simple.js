@@ -1,7 +1,6 @@
 describe("Simple", function() {
-    ST.navigate('#/Simple')
-
     it('should render the button', function() {
+        ST.navigate('#/Simple')
         ST.component('#button')
             .visible()
             .get('text')
