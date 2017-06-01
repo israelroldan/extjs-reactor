@@ -4,7 +4,7 @@ import { Container, Button, Menu, MenuItem } from '@extjs/ext-react';
 export default class RelUpdate extends Component  {
 
     state = {
-        showMenu: true
+        showMenu: false
     }
 
     toggleMenu = () => {
@@ -16,10 +16,11 @@ export default class RelUpdate extends Component  {
 
         return (
             <Container id="RelUpdate">
+                <div>THis tests that configs can be updated by adding and removing child components.  Clicking the toggle menu button should add then remove the menu from the "Menu" button.</div>
                 <Button text="Toggle Menu" handler={this.toggleMenu}/>
                 <Button text="Menu">
                     { showMenu && (
-                        <Menu itemId="menu">
+                        <Menu itemId="menu" indented={false}>
                             <MenuItem text="Option 1"/>
                             <MenuItem text="Option 2"/>
                             <MenuItem text="Option 3"/>

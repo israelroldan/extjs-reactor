@@ -4,6 +4,7 @@ import { Container, Button, Menu, MenuItem } from '@extjs/ext-react';
 export default function Rel() {
     return (
         <Container>
+            <div>This tests that we can set a config using a child component with a "rel" prop.  The test should verify that the button has a menu.</div>
             <Button text="Menu" itemId="button">
                 <Menu rel="menu" itemId="menu">
                     <MenuItem text="Option 1"/>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { List } from '@extjs/ext-react';
+import { Container, List } from '@extjs/ext-react';
 
 export default class TemplateList extends Component {
 
@@ -13,10 +13,14 @@ export default class TemplateList extends Component {
 
     render() {
         return (
-            <List
-                store={this.store}
-                itemTpl={this.itemTpl}
-            />
+            <Container layout="vbox">
+                <div>This tests that we can render React elements in list rows.  The test should pass if the list's element contains "Mark Brocato".</div>
+                <List
+                    flex={1}
+                    store={this.store}
+                    itemTpl={this.itemTpl}
+                />
+            </Container>
         )
     }
     

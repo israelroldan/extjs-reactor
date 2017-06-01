@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Column, WidgetCell, SparkLineLine } from '@extjs/ext-react';
+import { Container, Grid, Column, WidgetCell, SparkLineLine } from '@extjs/ext-react';
 
 export default class RelGridColumn extends Component {
 
@@ -11,23 +11,28 @@ export default class RelGridColumn extends Component {
 
     render() {
         return (
-            <Grid store={this.store}
-                itemConfig={{
-                    viewModel: {
+            <Container layout="vbox">
+                <div>This tests that grid columns, cells, and widgets can be defined using children.  The test should pass if both columns show up and the sparkline is rendered.</div>
+                <Grid 
+                    flex={1}
+                    store={this.store}
+                    itemConfig={{
+                        viewModel: {
 
-                    }
-                }}
-            >
-                <Column text="Name">
-                    <Column text="First" dataIndex="first"/>
-                    <Column text="Last" dataIndex="last"/>
-                </Column>
-                <Column text="Trend">
-                    <WidgetCell forceWidth bind='{trend}'>
-                        <SparkLineLine text="Edit"/>
-                    </WidgetCell>
-                </Column>
-            </Grid>
+                        }
+                    }}
+                >
+                    <Column text="Name">
+                        <Column text="First" dataIndex="first"/>
+                        <Column text="Last" dataIndex="last"/>
+                    </Column>
+                    <Column text="Trend" dataIndex="trend">
+                        <WidgetCell forceWidth>
+                            <SparkLineLine/>
+                        </WidgetCell>
+                    </Column>
+                </Grid>
+            </Container>
         )
     }
     

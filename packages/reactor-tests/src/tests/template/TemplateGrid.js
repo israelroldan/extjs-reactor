@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Column } from '@extjs/ext-react';
+import { Container, Grid, Column } from '@extjs/ext-react';
 
 export default class TemplateList extends Component {
 
@@ -13,9 +13,12 @@ export default class TemplateList extends Component {
 
     render() {
         return (
-            <Grid store={this.store}>
-                <Column text="Name" tpl={this.nameTpl} flex={1} cell={{encodeHtml: false}}/>
-            </Grid>
+            <Container layout="vbox">
+                <div>This tests that we can render React elements in grid cells using the tpl config.  The test should pass if the cell has "Mark Brocato" in it.</div>
+                <Grid store={this.store} flex={1}>
+                    <Column text="Name" tpl={this.nameTpl} flex={1} cell={{encodeHtml: false}}/>
+                </Grid>
+            </Container>
         )
     }
     
