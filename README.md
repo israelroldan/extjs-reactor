@@ -363,7 +363,17 @@ If you're using Babel, we recommend adding `@extjs/reactor-babel-plugin` to your
 ```
 
 # Development
+You must be authenticated to Sencha's npm registry to set up a development environment.  To do this, run:
+
+`npm login --registry=https://npm.sencha.com --scope=@extjs`
+
+Use your support portal credentials.  If your username is your email address, replace "@" with "..".  For example, "developer..sencha.com".
+
 This is a monorepo that uses lerna.  After cloning, run `npm install` at the root of the project tree to install and link dependencies in all packages.
+
+## Running Tests
+
+Tests are implemented using [Sencha Test](https://www.sencha.com/products/test/). See [packages/reactor-tests](https://github.com/sencha/extjs-reactor/tree/master/packages/reactor-tests) for instructions on how to set up a test environment.
 
 # Packages
 
