@@ -1,4 +1,6 @@
 export { default as Simple } from './Simple';
+export { default as ReplaceNodeWithMarkup } from './ReplaceNodeWithMarkup';
+
 export { default as Rel } from './rel/Rel';
 export { default as RelMenu } from './rel/RelMenu';
 export { default as RelUpdate } from './rel/RelUpdate';
