@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, List } from '@extjs/ext-react';
+import { Container, List, Button } from '@extjs/ext-react';
 
 export default class TemplateList extends Component {
 
@@ -9,12 +9,17 @@ export default class TemplateList extends Component {
         ]
     });
 
-    itemTpl = ({first, last}) => <div className="item">{first} {last}</div>
+    itemTpl = ({first, last}) => (
+        <div>
+            <span className="text">{first} {last}</span>
+            <Button itemId="button" text="Button"/>
+        </div>
+    )
 
     render() {
         return (
             <Container layout="vbox">
-                <div>This tests that we can render React elements in list rows.  The test should pass if the list's element contains "Mark Brocato".</div>
+                <div>This tests that we can render React elements including ExtReact components in list rows.  The test should pass if the list's element contains "Mark Brocato".</div>
                 <List
                     flex={1}
                     store={this.store}

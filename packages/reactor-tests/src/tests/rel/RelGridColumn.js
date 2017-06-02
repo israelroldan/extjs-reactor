@@ -14,6 +14,7 @@ export default class RelGridColumn extends Component {
             <Container layout="vbox">
                 <div>This tests that grid columns, cells, and widgets can be defined using children.  The test should pass if both columns show up and the sparkline is rendered.</div>
                 <Grid 
+                    itemId="grid"
                     flex={1}
                     store={this.store}
                     itemConfig={{
@@ -28,7 +29,7 @@ export default class RelGridColumn extends Component {
                     </Column>
                     <Column text="Trend" dataIndex="trend">
                         <WidgetCell forceWidth>
-                            <SparkLineLine/>
+                            <SparkLineLine itemId="sparkLine"/>
                         </WidgetCell>
                     </Column>
                 </Grid>

@@ -9,7 +9,7 @@
     "build": "babel ./src --out-dir ./dist --source-maps",
     "prepublish": "npm run build",
     "create-typings": "node script/create-typings.js",
-    "test": "jest"
+    "test": "pushd ../reactor-tests; npm test"
   },
   "jest": {
     "rootDir": "src",
