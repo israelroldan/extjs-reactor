@@ -7,6 +7,7 @@ export { default as RelUpdate } from './rel/RelUpdate';
 export { default as RelGridColumn } from './rel/RelGridColumn';
 export { default as RelTooltip } from './rel/RelTooltip';
 export { default as RelDialog } from './rel/RelDialog';
+export { default as RelEditor } from './rel/RelEditor';
 
 export { default as TemplateList } from './template/TemplateList';
 export { default as TemplateGrid } from './template/TemplateGrid';
@@ -15,3 +16,5 @@ export { default as BasicEvent } from './event/BasicEvent';
 export { default as SingleEvent } from './event/SingleEvent';
 
 export { default as Defaults } from './defaults/Defaults';
+
+export { default as HTMLInExtReactComponent } from './html/HTMLInExtReactComponent';
