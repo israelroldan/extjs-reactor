@@ -24,7 +24,7 @@ export default class RelEditor extends Component {
                     }}
                 >
                     <Column text="Value" dataIndex="value" editable>
-                        <NumberField className="my-field"/>
+                        <NumberField className="editor"/>
                     </Column>
                 </Grid>
             </Container>
