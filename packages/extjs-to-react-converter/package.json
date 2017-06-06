@@ -5,6 +5,7 @@
   "description": "Converts Ext JS code snippets to JSX/React",
   "license": "MIT",
   "main": "index.js",
+  "private": true,
   "scripts": {
     "clean": "rimraf build",
     "start": "webpack-dev-server --progress --colors",
