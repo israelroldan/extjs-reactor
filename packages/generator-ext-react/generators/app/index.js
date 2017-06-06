@@ -6,7 +6,7 @@ const glob = require('glob');
 const path = require('path');
 const boilerplate = path.join(__dirname, '..', '..', 'node_modules', '@extjs', 'reactor-boilerplate');
 const fs = require('fs');
-const { kebabCase } = require('lodash')
+const { kebabCase, pick } = require('lodash')
 
 module.exports = class extends Generator {
 
@@ -38,6 +38,32 @@ module.exports = class extends Generator {
             message: 'What theme would you like to use?',
             choices: ['material', 'triton', 'ios']
         }, {
+            type: 'input',
+            message: 'version:',
+            name: 'version',
+            default: '1.0.0',
+        }, {
+            type: 'input',
+            message: 'description:',
+            name: 'description'
+        }, {
+            type: 'input',
+            message: 'git repository:',
+            name: 'gitRepository'
+        }, {
+            type: 'input',
+            message: 'keywords:',
+            name: 'keywords'
+        }, {
+            type: 'input',
+            message: 'author:',
+            name: 'author'
+        }, {
+            type: 'input',
+            message: 'license',
+            name: 'license',
+            default: 'ISC'
+        }, {
             type: 'confirm',
             name: 'createDirectory',
             message: 'Would you like to create a new directory for your project?',
@@ -58,8 +84,6 @@ module.exports = class extends Generator {
                 this.fs.copy(path.join(boilerplate, file), file);
             }))
 
-        const packageInfo = this.fs.readJSON('package.json');
-
         // set base theme
 
         this.baseTheme = `theme-${this.baseTheme}`;
@@ -69,15 +93,24 @@ module.exports = class extends Generator {
 
         // update package.json
 
-        delete packageInfo.author;
-        delete packageInfo.repository;
-        delete packageInfo.private;
-        delete packageInfo.description;
-        delete packageInfo.license;
+        const packageInfo = {};
 
         Object.assign(packageInfo, {
             name: this.packageName
         });
+        if (this.version) packageInfo.version = this.version;
+        if (this.description) packageInfo.description = this.description;
+        if (this.gitRepository) {
+            packageInfo.repository = {
+                type: 'git',
+                url: this.gitRepository
+            }
+        }
+        if (this.keywords) packageInfo.version = this.keywords;
+        if (this.author) packageInfo.version = this.author;
+        if (this.license) packageInfo.license = this.license;
+
+        Object.assign(packageInfo, pick(this.fs.readJSON('package.json'), 'main', 'scripts', 'dependencies', 'devDependencies'));
 
         if (this.baseTheme !== 'theme-material') {
             packageInfo.dependencies[`@extjs/ext-react-${this.baseTheme}`] = packageInfo.dependencies['@extjs/ext-react'];
