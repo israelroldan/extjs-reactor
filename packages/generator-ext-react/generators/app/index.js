@@ -107,7 +107,7 @@ module.exports = class extends Generator {
             }
         }
         if (this.keywords) packageInfo.version = this.keywords;
-        if (this.author) packageInfo.version = this.author;
+        if (this.author) packageInfo.author = this.author;
         if (this.license) packageInfo.license = this.license;
 
         Object.assign(packageInfo, pick(this.fs.readJSON('package.json'), 'main', 'scripts', 'dependencies', 'devDependencies'));
