@@ -53,7 +53,10 @@ module.exports = class ReactExtJSWebpackPlugin {
      * @param {Boolean} production Set to true for production builds.  This tell Sencha Cmd to compress the generated JS bundle.
      */
     constructor(options) {
-        options = { ...this.getDefaultOptions(), ...options };
+        // if .ext-reactrc file exists, consume it and apply it to config options.
+        const extReactRc = (fs.existsSync('.ext-reactrc') && JSON.parse(fs.readFileSync('.ext-reactrc', 'utf-8')) || {});
+
+        options = { ...this.getDefaultOptions(), ...options, ...extReactRc };
         const { builds } = options;
 
         if (Object.keys(builds).length === 0) {
