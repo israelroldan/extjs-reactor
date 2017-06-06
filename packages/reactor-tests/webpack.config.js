@@ -10,13 +10,12 @@ const port = 8087;
 module.exports = function (env) {
     const nodeEnv = env && env.prod ? 'production' : 'development';
     const isProd = nodeEnv === 'production';
+    const local = env && env.local;
 
     const plugins = [
         new ExtJSReactorWebpackPlugin({
-            sdk: 'ext', // you need to copy the Ext JS SDK to the root of this package, or you can specify a full path to some other location
-            theme: 'theme-material',
-            packages: [],
-            overrides: ['overrides'],
+            sdk: local ? 'ext' : undefined,
+            packages: local ? ['reactor'] : undefined,
             production: isProd
         }),
         new webpack.EnvironmentPlugin({

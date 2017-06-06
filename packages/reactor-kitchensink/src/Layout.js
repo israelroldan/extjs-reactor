@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
-import { TitleBar, Container, NestedList, Panel, Button } from '@extjs/ext-react';
-import { Transition } from '@extjs/reactor';
+import { TitleBar, Container, NestedList, Panel, Button, Transition } from '@extjs/ext-react';
 import hljs, { highlightBlock } from 'highlightjs';
 import NavTree from './NavTree';
 import NavView from './NavView';

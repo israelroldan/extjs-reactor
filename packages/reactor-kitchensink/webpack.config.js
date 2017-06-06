@@ -24,7 +24,8 @@ module.exports = function (env) {
                 'exporter', 
                 'pivot', 
                 'calendar', 
-                'charts'
+                'charts',
+                'reactor'
             ] : undefined,
             theme: 'theme-kitchensink',
             overrides: [
