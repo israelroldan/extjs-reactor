@@ -1,27 +1,35 @@
 import { transform } from 'babel-standalone';
+import { toPropName, toComponentName } from './nameConverter';
 
 export default function transpile(source) {
     if (source.startsWith('{')) {
         source = `Ext.create(${source})`
     }
 
-    const result = transform(source, {
-        plugins: [extJS2React]
-    });
+    let result, error;
+    
+    try {
+        result = transform(source, { plugins: [extJS2React] });
+    } catch(e) {
+        error = e;
+
+        try {
+            result = transform(`Ext.create({ xtype: 'container', ${source} })`, { plugins: [extJS2React] })
+            error = null;
+        } catch (e) {
+            // use first error
+        }
+    }
+
+    if (error) {
+        throw error;
+    }
 
     return result.code;
 }
 
-function toComponentName(xtype) {
-    return xtype ? xtype[0].toUpperCase() + xtype.slice(1) : 'unknown';
-}
-
 function lower(value) {
     return value[0].toLowerCase() + value.slice(1);
-}
-
-function capitalize(value) {
-    return value[0].toUpperCase() + value.slice(1);
 }
 
 function extJS2React(babel) {
@@ -32,6 +40,12 @@ function extJS2React(babel) {
 
         if (name === 'store' && value.type === 'StringLiteral') {
             propValue = t.jSXExpressionContainer(t.identifier(lower(value.value)))
+        } else if (name === 'handler') {
+            if (value.type === 'StringLiteral') {
+                propValue = t.jSXExpressionContainer(t.memberExpression(t.thisExpression(), t.identifier(value.value)))
+            } else if (value.type === 'FunctionExpression') {
+                propValue = t.jSXExpressionContainer(t.arrowFunctionExpression(value.params, value.body))
+            }
         } else if (value.type === 'StringLiteral') {
             propValue = value;
         } else if (value.type === 'BooleanLiteral' && value.value) {
@@ -47,7 +61,7 @@ function extJS2React(babel) {
     }
 
     function toEventProp(name, value) {
-        name = `on${capitalize(name)}`;
+        name = `on${toPropName(name)}`;
         let propValue = value;
 
         if (value.type === 'StringLiteral') {
@@ -72,8 +86,20 @@ function extJS2React(babel) {
                 xtype = value.value;
             } else if (name === 'items') {
                 if (value.type === 'ArrayExpression') {
-                    children = [...children, ...value.elements.map(toJSX)]
+                    children = [...children, ...value.elements.map(toJSX, 'Container')]
                 }
+            } else if (name === 'menu' && value.type === 'ArrayExpression') {
+                const menu = t.jSXElement(
+                    t.jSXOpeningElement(
+                        t.jSXIdentifier('Menu'),
+                        []
+                    ),
+                    t.jSXClosingElement(
+                        t.jSXIdentifier('Menu')
+                    ),
+                    value.elements.map(c => toJSX(c, 'MenuItem'))
+                )
+                children = [...children, menu]
             } else if (name === 'columns' && value.type === 'ArrayExpression') {
                 children = [...children, ...value.elements.map(c => toJSX(c, 'Column'))]
             } else if (name === 'editor' && value.type === 'ObjectExpression') {

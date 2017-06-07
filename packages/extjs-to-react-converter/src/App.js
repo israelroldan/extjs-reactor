@@ -1,17 +1,19 @@
 import React, { Component } from 'react'
-import { Container, TextAreaField, Panel, Toolbar, Button, TitleBar, Spacer } from '@extjs/ext-react';
+import { Container, TextAreaField, Panel, Toolbar, Button, TitleBar, Spacer, SliderField, Label, SpinnerField } from '@extjs/ext-react';
 import transpile from './transpile';
 import prettier from 'prettier-standalone';
 import Clipboard from 'clipboard';
+
+const savedWidth = localStorage.getItem('width');
 
 // Enable responsiveConfig app-wide. You can remove this if you don't plan to build a responsive UI.
 Ext.require([
     'Ext.Toast'
 ]);
 
-function format(output) {
+function format(output, printWidth) {
     return prettier.format(output, {
-        printWidth: 30,
+        printWidth,
         tabWidth: 4
     }).replace(/;\s*$/, '');
 }
@@ -23,6 +25,7 @@ export default class App extends Component {
 
     state = {
         output: '<Container>Hello World</Container>',
+        width: savedWidth ? parseInt(savedWidth) : 60,
         input: `
 {
     xtype: 'grid',
@@ -39,7 +42,11 @@ export default class App extends Component {
         xtype: 'toolbar', 
         items: [{
             xtype: 'button',
-            text: 'Click Me',
+            text: 'Menu',
+            menu: [
+                { text: 'Option 1', handler: "option1" },
+                { text: 'Option 2', handler: "option2" }
+            ]
         }]
     }],
     columns: [{
@@ -67,8 +74,13 @@ export default class App extends Component {
         }
     }
 
+    setWidth = (field, width) => {
+        this.setState({ width });
+        localStorage.setItem('width', width);
+    }
+
     render() {
-        const { input, output, error } = this.state;
+        const { input, output, error, width } = this.state;
 
         return (
             <Container fullscreen layout="hbox">
@@ -97,11 +109,17 @@ export default class App extends Component {
                     </Toolbar>
                     <textarea 
                         style={{ ...styles.code, color: error ? 'red' : '', whiteSpace: error ? 'pre-wrap' : 'pre' }}
-                        value={error || format(output)}
+                        value={error || format(output, width)}
                         ref={field => this.outputField = field}
                         readOnly
                     />
                 </Container>
+                <Toolbar docked="bottom" defaults={{ margin: '0 10 0 0' }}>
+                    <Spacer/>
+                    <Label html="Width:"/>
+                    <SpinnerField width={50} minValue={0} maxValue={200} stepValue={5} decimals={0} value={width} onChange={this.setWidth}/>
+                    <Label html="characters"/>
+                </Toolbar>
             </Container>
         )
     }
