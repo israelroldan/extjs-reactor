@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Transition } from '@extjs/reactor';
-import { Spacer, Panel, Button, Menu, MenuItem, NumberField, Label, Container, SliderField } from '@extjs/ext-react';
+import { Transition, Spacer, Panel, Button, Menu, MenuItem, NumberField, Label, Container, SliderField } from '@extjs/ext-react';
 import colors from '../colors';
 
 export default class TransitionExample extends Component {
@@ -83,7 +82,7 @@ export default class TransitionExample extends Component {
 
                 <Panel flex={1} layout="fit" shadow>
                     <Transition direction={direction} type={type.toLowerCase()} easing={easing} duration={duration}>
-                        <Container key={index} layout="center" style={styles[index % 3]}>
+                        <Container key={`card${index}`} layout="center" style={styles[Math.abs(index) % 3]}>
                             <div>View {index}</div>
                         </Container>
                     </Transition>
