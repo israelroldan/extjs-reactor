@@ -37,21 +37,16 @@ export default class RowBodyGridExample extends Component {
             >
                 <Column text="Company" dataIndex="name" width="150"/>
                 <Column text="Price" dataIndex="price" width="75" formatter="usMoney"/>
-                <Column text="Change" dataIndex="priceChange" width="90" renderer={this.renderChange} cell={{encodeHtml: false}}/>
-                <Column text="% Change" dataIndex="priceChangePct" width="100" renderer={this.renderPercent} cell={{encodeHtml: false}} />
+                <Column text="Change" width="100" dataIndex="priceChange" renderer={this.renderSign.bind(this, '0.00')}/>
+                <Column text="% Change" dataIndex="priceChangePct" renderer={this.renderSign.bind(this, '0.00%')}/>
                 <Column text="Last Updated" dataIndex="lastChange" width="125" formatter="date('m/d/Y')" />
             </Grid>
         )
     }
-
-    createSignTpl = format => new Template(value => (
+    
+    renderSign = (format, value) => (
         <span style={{ color: value > 0 ? 'green' : value < 0 ? 'red' : ''}}>
             {Ext.util.Format.number(value, format)}
         </span>
-    ));
-
-    changeTpl = this.createSignTpl('0.00');
-    percentTpl = this.createSignTpl('0.00%');
-    renderChange = (value) => this.changeTpl.apply(value);
-    renderPercent = (value) => this.percentTpl.apply(value);
+    )
 }

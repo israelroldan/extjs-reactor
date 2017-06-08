@@ -23,3 +23,5 @@ export { default as HTMLInExtReactComponent } from './html/HTMLInExtReactCompone
 export { default as SimplePropUpdate } from './props/SimplePropUpdate';
 
 export { default as LifecycleUnmount } from './lifecycle/LifecycleUnmount';
+
+export { default as RendererCell } from './renderercell/RendererCell';

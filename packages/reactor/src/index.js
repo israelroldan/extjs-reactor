@@ -4,7 +4,6 @@ import { configure } from './reactify';
 
 export { reactify } from './reactify';
 export { default as Template } from './Template';
-export { default as Transition } from './Transition';
 
 /**
  * Launches an ExtReact application, creating a viewport and rendering the specified root component into it.
@@ -16,6 +15,8 @@ export { default as Transition } from './Transition';
  */
 export function launch(rootComponent, options = { debug: false, viewport: false }, appConfig = { }) {
     configure(options);
+
+    Ext.namespace('Ext.reactor').ReactDOM = ReactDOM; // needed for RendererCell and any other components that can render React elements;
 
     Ext.application({
         name: '$ExtReactApp',

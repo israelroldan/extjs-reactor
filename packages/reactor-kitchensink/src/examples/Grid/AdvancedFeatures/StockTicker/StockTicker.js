@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import { Grid, Toolbar, Button, Label, SliderField, TextField, CheckBoxField, Column, TextColumn, WidgetCell, SparkLineLine, Container } from '@extjs/ext-react';
+import { Grid, Toolbar, Label, SliderField, CheckBoxField, Column, RendererCell, SparkLineLine, Container } from '@extjs/ext-react';
 import model from '../../CompanyModel';
 import './Ticker.css';
 
 export default class StockTickerGridExample extends Component {
 
     state = {
-        tickDelay: 200
+        tickDelay: 200,
+        flashBackground: false
     }
 
     store = Ext.create('Ext.data.Store', {
@@ -18,30 +19,20 @@ export default class StockTickerGridExample extends Component {
             url: 'resources/data/CompanyData.json',
             reader: {
                 type: 'json',
-                rootProperty: 'data',
-                // Do not attempt to load orders inline.
-                // They are loaded through the proxy
-                implicitIncludes: false
+                rootProperty: 'data'
             }
         }
     });
 
     init = () => {
-        if(this.store.isLoaded() && this.store.getCount()) {
-            this.startTicker(this.store);
+        if (this.store.isLoaded() && this.store.getCount()) {
+            this.onStoreLoad();
+        } else {
+            this.store.on('load', 'onStoreLoad', this);
         }
-        this.store.on('load', 'onStoreLoad', this);
     }
 
     onStoreLoad = (store) => {
-        this.startTicker(store);
-    }
-
-    startTicker = (store) => {
-        if (this.timer) {
-            return;
-        }
-        
         store.removeAt(15, 70);
 
         let count = store.getCount(),
@@ -56,11 +47,22 @@ export default class StockTickerGridExample extends Component {
             rec.endEdit(true);
         }
 
-        this.timer = setInterval(function () {
-            rec = store.getAt(Ext.Number.randomInt(0, store.getCount() - 1));
-            rec.addPriceTick();
-        }, Ext.isIE || !Ext.is.Desktop ? 100 : 20);
-        
+        this.startTicker();
+    }
+
+    startTicker = () => {
+        const { store } = this;
+
+        if (this.timer) {
+            clearInterval(this.timer);
+        }
+
+        this.timer = setInterval(() => {
+            for (let i=0; i<10; i++) {
+                const rec = store.getAt(Ext.Number.randomInt(0, store.getCount() - 1));
+                rec.addPriceTick();
+            }
+        }, this.state.tickDelay);
     }
 
     destroy = () => {
@@ -68,16 +70,13 @@ export default class StockTickerGridExample extends Component {
     }
 
     toggleFlashBackground = (checkbox) => {
-        const vm = this.viewModel;
-        vm.set('flashBackground', !vm.get('flashBackground'));
+        this.setState({ flashBackground: !this.state.flashBackground })
     }
 
     onTickDelayChange = (slider, value, oldValue) => {
         this.setState({ tickDelay: value });
-        this.viewModel.getScheduler().setTickDelay(value);
+        this.startTicker();
     }
-
-    gridRef = grid => this.viewModel = grid.getViewModel();
 
     render() {
         const { tickDelay } = this.state;
@@ -85,41 +84,27 @@ export default class StockTickerGridExample extends Component {
         return (
             <Grid 
                 title='Ticker Grid'
-                ref={this.gridRef}
                 store={this.store}
                 onInitialize={this.init}
                 shadow
-                itemConfig={{
-                    viewModel: {
-                        formulas: {
-                            cellCls: {
-                                get: get => get('flashBackground') ? Ext.util.Format.sign(get('record.change'), 'ticker-cell-loss', 'ticker-cell-gain') : ''
-                            }
-                        }
-                    }
-                }}
                 viewModel={{
                     scheduler: {
                         tickDelay
                     }
                 }}
             >
-                <TextColumn text="Company" dataIndex="name" width="150" sortable={true}/>
-                <TextColumn text="Price" width="95" align="right" cell={{bind:'{record.price:usMoney}'}} sortable={true}/>
-                <Column text="Trend" width="200">
-                    <WidgetCell forceWidth bind="{record.trend}">
-                        <SparkLineLine tipTpl='Price: {y:number("0.00")}'/>
-                    </WidgetCell>
+                <Column text="Company" dataIndex="name" width="150" sortable/>
+                <Column align="right" text="Price" width="85" dataIndex="price" formatter='usMoney' sortable/>
+                <Column text="Trend" width="200" dataIndex="trend" sortable={false}>
+                    <RendererCell forceWidth renderer={this.renderSparkline} bodyStyle={{padding: 0}}/>
                 </Column>
-                <TextColumn text="Change" width="90" align="right" cell={{bind:{value:'{record.change:number(".00")}', cls:'{cellCls}', bodyCls:'{record.change:sign("ticker-body-loss", "ticker-body-gain")}'}}} sortable={false}/>
-                <TextColumn text="% Change" width="100" align="right" cell={{bind:{value:'{record.pctChange:number(".00")}', cls:'{cellCls}', bodyCls:'{record.change:sign("ticker-body-loss", "ticker-body-gain")}'}}} sortable={false}/>
-                <TextColumn text="Last Updated" hidden width="115" cell={{bind:'{record.LastChange:date("m/d/Y H:i:s")}'}} sortable={false}/>
-                
+                <Column align="right" text="Change" width="90" dataIndex="change" renderer={this.renderSign.bind(this, '0.00')} cell={{ bodyStyle: { padding: 0 } }} sortable/>
+                <Column align="right" text="% Change" dataIndex="pctChange" renderer={this.renderSign.bind(this, '0.00%')} cell={{ bodyStyle: { padding: 0 } }} sortable/>
                 <Toolbar docked="bottom" defaults={{ margin: '0 20 0 0' }}>
                     <Label html="Tick Delay"/>
                     <SliderField
                         padding="0 5"
-                        minValue={200}
+                        minValue={25}
                         maxValue={2000}
                         increment={10}
                         onChange={this.onTickDelayChange}
@@ -136,4 +121,26 @@ export default class StockTickerGridExample extends Component {
             </Grid>
         )
     }
+
+    renderSparkline = (value) => {
+        return (
+            <SparkLineLine 
+                values={value} 
+                height={16} 
+                tipTpl='Price: {y:number("0.00")}'
+            />
+        )
+    }
+
+    renderSign = (format, value) => (
+        <div 
+            style={{ 
+                color: value > 0 ? 'green' : value < 0 ? 'red' : '',
+                padding: '10px'
+            }} 
+            className={this.state.flashBackground && (value > 0 ? 'ticker-cell-gain' : value < 0 ? 'ticker-cell-loss' : '')}
+        >
+            {Ext.util.Format.number(value, format)}
+        </div>
+    )
 }

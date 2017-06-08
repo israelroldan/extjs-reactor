@@ -25,7 +25,7 @@ export default Ext.define('KitchenSink.model.Company', {
             calculate: function(data) {
                 // Avoid circular dependency by hiding the read of trend value
                 const record = data;
-                const trend = record['trend'] || (record['trend'] = []);
+                const trend = Array.from(record['trend'] || []);
 
                 trend.push(data.price);
 
@@ -37,6 +37,8 @@ export default Ext.define('KitchenSink.model.Company', {
                 if (trend.length > 10) {
                     trend.shift();
                 }
+
+                record.trend = trend;
 
                 return trend;
             },

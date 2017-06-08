@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Grid, Column } from '@extjs/ext-react';
 
-export default class TemplateList extends Component {
+export default class TemplateGrid extends Component {
 
     store = Ext.create('Ext.data.Store', {
         data: [

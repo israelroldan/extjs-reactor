@@ -13,6 +13,7 @@ import StockTickerGrid from './Grid/AdvancedFeatures/StockTicker/StockTicker';
 import ReduxGrid from './Grid/ReduxGrid/ReduxGrid';
 import RowBodyGrid from './Grid/AddonsDecorations/RowBody/RowBody';
 import FlexibleSelection from './Grid/AdvancedFeatures/FlexibleSelection/FlexibleSelection';
+import RendererCell from './Grid/AdvancedFeatures/RendererCell/RendererCell';
 
 import Panel from './Panel/Panel';
 
@@ -334,7 +335,7 @@ const root = {
                 { text: 'XML Grid', component: XMLGrid, navIcon: 'icon-xml-grid'}
             ]},
             { text: 'Add-ons', navIcon: 'icon-framing-buttons', children: [
-                { text: 'Grid Tools', component: ToolGrid, navIcon: 'icon-gridheader-tools'},
+                { text: 'Grid Tools', component: ToolGrid, navIcon: 'icon-grid-tools'},
                 { text: 'Row Expander', component: RowExpanderGrid, navIcon: 'icon-row-expander-grid'},
                 { text: 'Row Body', component: RowBodyGrid, navIcon: 'icon-row-body-grid'},
                 { text: 'Summary Row', component: SummaryRowGrid, navIcon: 'icon-grid-summary'},
@@ -342,9 +343,10 @@ const root = {
             ]},
             { text: 'Advanced Features', navIcon: 'icon-grid-plugins', children:[
                 { text: 'Big Data', component: BigDataGrid, navIcon: 'icon-big-data-grid' },
+                { text: 'Flexible Selection', component: FlexibleSelection, navIcon: 'icon-flexible-selection-grid' },
                 { text: 'Reconfigure Grid', component: ReconfigureGrid, navIcon: 'icon-reconfigure-grid' },
-                { text: 'Stock Ticker', component: StockTickerGrid, navIcon: 'icon-ticker-grid' },
-                { text: 'Flexible Selection', component: FlexibleSelection, navIcon: 'icon-flexible-selection-grid' }
+                { text: 'Render Components in Cells', component: RendererCell, navIcon: 'icon-grid-tools' },
+                { text: 'Stock Ticker', component: StockTickerGrid, navIcon: 'icon-ticker-grid' }
             ]},
             { text: 'Redux Grid', component: ReduxGrid, navIcon: 'icon-Redux-Grid' }
         ] },

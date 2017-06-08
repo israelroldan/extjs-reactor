@@ -60,16 +60,14 @@ export default class EditableGrid extends Component {
                 <Column 
                     text="Change" 
                     width="90" 
-                    renderer={this.renderChange} 
+                    renderer={this.renderSign.bind(this, '0.00')}
                     dataIndex="change" 
-                    cell={{encodeHtml:false}}
                 />
                 <Column 
                     text="% Change" 
                     width="100" 
-                    renderer={this.renderPercent} 
+                    renderer={this.renderSign.bind(this, '0.00')}
                     dataIndex="pctChange" 
-                    cell={{encodeHtml:false}}
                 />
                 <Column 
                     text="Last Updated" 
@@ -90,8 +88,9 @@ export default class EditableGrid extends Component {
         </span>
     ));
 
-    changeTpl = this.createSignTpl('0.00');
-    percentTpl = this.createSignTpl('0.00%');
-    renderChange = (value) => this.changeTpl.apply(value);
-    renderPercent = (value) => this.percentTpl.apply(value);
+    renderSign = (format, value) => (
+        <span style={{ color: value > 0 ? 'green' : value < 0 ? 'red' : ''}}>
+            {Ext.util.Format.number(value, format)}
+        </span>
+    )
 }

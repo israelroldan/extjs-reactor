@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, ActionSheet, Container, Button, SparkLineLine, WidgetCell, Column, TextColumn, CheckColumn, NumberColumn, DateColumn, Rating } from '@extjs/reactor/modern';
+import { Grid, ActionSheet, Container, Button, SparkLineLine, RendererCell, Column, TextColumn, CheckColumn, NumberColumn, DateColumn, Rating, GridSummaryRow } from '@extjs/reactor/modern';
 import model from './GridModel';
 import './data';
 import './style.css';
@@ -81,6 +81,9 @@ export default class BigDataGridExample extends Component {
                         gridexporter: true,
                         rowoperations: true
                     }}
+                    groupFooter={{
+                        xtype: 'gridsummaryrow'
+                    }}
                     itemConfig={{
                         viewModel: {
                             type: 'grid-bigdatagrid-row'
@@ -159,9 +162,16 @@ export default class BigDataGridExample extends Component {
                             dataIndex="rating"
                             ignoreExport
                         >
-                            <WidgetCell forceWidth>
-                                <SparkLineLine tipTpl='Price: {y:number("0.00")}'/>
-                            </WidgetCell>
+                            <RendererCell 
+                                forceWidth 
+                                renderer={rating => (
+                                    <SparkLineLine 
+                                        height={16} 
+                                        values={rating} 
+                                        tipTpl='Price: {y:number("0.00")}'
+                                    />
+                                )}
+                            />
                         </Column>
                     </Column>
                     <DateColumn
@@ -187,24 +197,30 @@ export default class BigDataGridExample extends Component {
                         text=""
                         width="100"
                         ignoreExport
+                        dataIndex="verified"
                         align="center"
-                        summaryCell={{
-                            xtype: 'widgetcell',
-                            widget: {
-                                xtype: 'button',
-                                ui: 'action',
-                                text: 'All',
-                                handler: this.onVerifyAll
-                            }
-                        }}
                     >
-                        <WidgetCell>
-                            <Button
-                                text="Verify"
-                                ui="action"
-                                handler={this.onVerify}
-                            />
-                        </WidgetCell>
+                        <RendererCell
+                            renderer={(value, record) => (
+                                <Container>
+                                    <Button
+                                        text={value ? 'Verified' : 'Verify'}
+                                        ui="action"
+                                        handler={this.onVerify.bind(this, record)}
+                                    />
+                                </Container>
+                            )}
+                            summaryRenderer={(value, record, dataIndex, cell) => (
+                                <Container>
+                                    <Button 
+                                        ui="action"
+                                        text="All"
+                                        handler={this.onVerifyAll.bind(this, cell)}
+                                    />
+                                </Container>
+                            )}
+                            bodyStyle={{ padding: 0 }}
+                        />
                     </Column>
                     <DateColumn
                         text="Join Date"
@@ -258,11 +274,10 @@ export default class BigDataGridExample extends Component {
                         text="Rating<br/>This Year" 
                         dataIndex="ratingThisYear"
                         groupable={false}
-                    >
-                        <WidgetCell>
-                            <Rating tip='Set to {tracking:plural("Star")}'/>
-                        </WidgetCell>
-                    </Column>
+                        renderer={(value) => (
+                            <Rating value={value} tip='Set to {tracking:plural("Star")}'/>
+                        )}
+                    />
                     <TextColumn
                         text='Salary'
                         dataIndex='salary'
@@ -287,15 +302,19 @@ export default class BigDataGridExample extends Component {
         this.doExport({
             type: 'excel07',
             title: 'Grid Export Demo',
-            fileName: 'GridExport.xlsx'
+            fileName: 'GridExport.xlsx',
+            includeGroups: true,
+            includeSummary: true
         });
     }
 
     exportToXml = () => {
         this.doExport({
-            type:       'excel03',
-            title:      'Grid Export Demo',
-            fileName:   'GridExport.xml'
+            type: 'excel03',
+            title: 'Grid Export Demo',
+            fileName: 'GridExport.xml',
+            includeGroups: true,
+            includeSummary: true
         });
     }
 
@@ -323,14 +342,12 @@ export default class BigDataGridExample extends Component {
         });
     }
 
-    onVerify = (btn) => {
-        const cell = btn.up(), record = cell.getRecord();
-        record.set('verified', true);
-        Ext.Msg.alert('Verify', `Verify ${record.get('forename')} ${record.get('surname')}`);
+    onVerify = (record) => {
+        record.set('verified', !record.get('verified'));
     }
 
-    onVerifyAll = (button) => {
-        let row = button.up('gridrow'),
+    onVerifyAll = (cell) => {
+        let row = cell.up('gridrow'),
             group = row.getGroup(),
             store = this.store,
             count;

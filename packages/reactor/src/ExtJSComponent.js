@@ -28,7 +28,8 @@ const CLASS_CACHE = {
     Dialog: Ext.ClassManager.getByAlias('widget.dialog'),
     Field: Ext.ClassManager.getByAlias('widget.field'),
     FitLayout: Ext.ClassManager.getByAlias('layout.fit'),
-    TabPanel: Ext.ClassManager.getByAlias('widget.tabpanel')
+    TabPanel: Ext.ClassManager.getByAlias('widget.tabpanel'),
+    RendererCell: Ext.ClassManager.getByAlias('widget.renderercell')
 }
 
 export default class ExtJSComponent extends Component {
@@ -315,6 +316,13 @@ export default class ExtJSComponent extends Component {
                     config[key.replace(/className/, 'cls')] = value;
                 }
             }
+        }
+
+        const { extJSClass } = this;
+
+        if (isAssignableFrom(extJSClass, CLASS_CACHE.Column) && typeof config.renderer === 'function') {
+            config.cell = config.cell || {};
+            config.cell.xtype = 'renderercell';
         }
 
         return config;

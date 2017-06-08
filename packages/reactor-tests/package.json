@@ -7,6 +7,7 @@
   "scripts": {
     "clean": "rimraf build",
     "start": "webpack-dev-server --progress",
+    "local": "webpack-dev-server --progress --env.local=true",
     "build": "npm run clean && NODE_ENV=production webpack --env.prod=true",
     "test": "npm run build && concurrently --raw --kill-others --success=first \"pushd build; static-server --port=8087\" \"stc run -o teamcity -s test/All_Tests -p Embedded\""
   },
@@ -21,6 +22,7 @@
   },
   "homepage": "https://github.com/sencha/extjs-reactor#readme",
   "dependencies": {
+    "@extjs/ext-react": "^6.5.0",
     "@extjs/reactor": "^1.0.0",
     "babel-runtime": "^6.23.0",
     "d3": "4.5.0",

@@ -30,24 +30,19 @@ export default class ViewOptionsGridExample extends Component {
                     <div style={{fontSize: '14px', fontWeight: 'normal'}}>Long press on a column header to customize this grid.</div>
                 </Toolbar>
                 <Column text="Company" dataIndex="name" width="150"/>
-                <Column text="Phone" dataIndex="phone" width="100" hidden={true}/>
-                <Column text="Industry" dataIndex="industry" width="150" hidden={true}/>
-                <Column text="Price" dataIndex="price" width="75" formatter="usMoney" summaryFormatter="usMoney" summaryType="average"/>
-                <Column text="Change" dataIndex="priceChange" width="90" renderer={this.renderChange}  summaryType="max" cell={{encodeHtml:false}}/>
-                <Column text="% Change" dataIndex="priceChangePct" width="100" renderer={this.renderPercent} summaryFormatter="round(2)" summaryType="average" cell={{encodeHtml:false}}/>
-                <Column text="Last Updated" dataIndex="lastChange" width="125" formatter="date('m/d/Y')" summaryFormatter="date('m/d/Y')" summaryType="max"/>
+                <Column text="Phone" dataIndex="phone" width="100" hidden/>
+                <Column text="Industry" dataIndex="industry" width="150" hidden/>
+                <Column text="Price" dataIndex="price" width="75" formatter="usMoney" />
+                <Column text="Change" width="100" dataIndex="priceChange" renderer={this.renderSign.bind(this, '0.00')}/>
+                <Column text="% Change" dataIndex="priceChangePct" renderer={this.renderSign.bind(this, '0.00%')}/>
+                <Column text="Last Updated" dataIndex="lastChange" width="125" formatter="date('m/d/Y')"/>
             </Grid>
         )
     }
 
-    createSignTpl = format => new Template(value => (
+    renderSign = (format, value) => (
         <span style={{ color: value > 0 ? 'green' : value < 0 ? 'red' : ''}}>
             {Ext.util.Format.number(value, format)}
         </span>
-    ));
-
-    changeTpl = this.createSignTpl('0.00');
-    percentTpl = this.createSignTpl('0.00%');
-    renderChange = (value) => this.changeTpl.apply(value);
-    renderPercent = (value) => this.percentTpl.apply(value);
+    )
 }
