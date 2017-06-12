@@ -51,6 +51,7 @@
       "^.+\\.jsx?$": "babel-jest"
     },
     "setupFiles": [
+      "./node_modules/@extjs/reactor/jest/setup.js",
       "./build/ext-react/ext.js"
     ],
     "unmockedModulePathPatterns": [

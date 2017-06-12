@@ -8,6 +8,9 @@
     "@extjs/reactor-babel-plugin",
     "transform-runtime"
   ],
+  "ignore": [
+    "build"
+  ],
   "env": {
     "test": {
       "presets":[
