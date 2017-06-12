@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './OrgChart';
 import OrgChart from './Chart';
 import { Panel } from '@extjs/ext-react';
 import createStore from './createStore';
