@@ -30,18 +30,22 @@ export function reactify(...targets) {
     const result = [];
 
     for (let target of targets) {
+        let componentName;
+
         if (typeof(target) === 'string') {
-            const name = target;
-            target = Ext.ClassManager.getByAlias(`widget.${target}`);
-            if (!target) throw new Error(`No Ext JS component with xtype "${name}" found.  Perhaps you're missing a package?`);
+            componentName = target;
+            const xtype = target.toLowerCase().replace(/_/g, '-')
+            target = Ext.ClassManager.getByAlias(`widget.${xtype}`);
+            if (!target) throw new Error(`No Ext JS component with xtype "${xtype}" found.  Perhaps you're missing a package?`);
         }
 
-        const name = target.$className;
-        let cached = classCache[name];
+        const className = target.$className;
+        let cached = classCache[className];
+        componentName = componentName || name; // use the Ext JS class name for the node type in jest when reactifying a class directly
 
-        if (!cached) cached = classCache[name] = class extends ExtJSComponent {
+        if (!cached) cached = classCache[className] = class extends ExtJSComponent {
             static get name() {
-                return name;
+                return componentName;
             }
 
             get extJSClass() {
@@ -53,7 +57,7 @@ export function reactify(...targets) {
             }
 
             createExtJSComponent(config) {
-                if (settings.debug) console.log('create', target.$className, config);
+                if (settings.debug) console.log('create', componentName, config);
                 const result = new target(config)
                 result.$createdByReactor = true;
                 return result;

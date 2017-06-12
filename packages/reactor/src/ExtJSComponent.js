@@ -10,6 +10,7 @@ import capitalize from 'lodash.capitalize'
 import defaults from 'lodash.defaults';
 import cloneDeepWith from 'lodash.clonedeepwith';
 import isEqualWith from 'lodash.isequalwith';
+import toJSON from './toJSON';
 
 const Ext = window.Ext;
 
@@ -50,25 +51,13 @@ export default class ExtJSComponent extends Component {
         this.displayName = 'ExtJSComponent';
         this.unmountSafely = false;
 
-        const me = this;
-
-        this._renderedComponent = {
-            // get _debugID () {
-            //     this._debugID,
-            // }
-
-            toJSON: () => {
-                const { children, ...props } = this._currentElement.props;
-
-                return {
-                    type: this.extJSClass.xtype,
-                    props,
-                    children
-                };
+        // needed for serializing jest snapshots when using react-test-renderer
+        if (process.env.NODE_ENV === 'test') {
+            this._renderedNodeType = 0; // HOST
+            this._renderedComponent = {
+                toJSON: () => toJSON(this._currentElement)
             }
         }
-
-        this._renderedNodeType = 0; // HOST
     }
 
     // begin React renderer methods
