@@ -53,9 +53,10 @@ export default class ExtJSComponent extends Component {
         const me = this;
 
         this._renderedComponent = {
-            get _debugID () {
-                this._debugID,
-            },
+            // get _debugID () {
+            //     this._debugID,
+            // }
+
             toJSON: () => {
                 const { children, ...props } = this._currentElement.props;
 
