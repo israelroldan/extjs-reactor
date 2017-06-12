@@ -1,5 +1,7 @@
 import ExtJSComponent from './ExtJSComponent';
 
+const Ext = window.Ext;
+
 // map of Ext JS class name to reactified class
 const classCache = {};
 

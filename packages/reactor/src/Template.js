@@ -1,6 +1,8 @@
 import ReactDOM from 'react-dom';
 import ReactDOMServer from 'react-dom/server';
 
+const Ext = window.Ext;
+
 /**
  * A implementation of Ext.Template that supports React elements (JSX).
  * 

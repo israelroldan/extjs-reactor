@@ -11,6 +11,8 @@ import defaults from 'lodash.defaults';
 import cloneDeepWith from 'lodash.clonedeepwith';
 import isEqualWith from 'lodash.isequalwith';
 
+const Ext = window.Ext;
+
 function isEqual(oldValue, newValue) {
     return isEqualWith(oldValue, newValue, function customizer(objValue, otherValue) {
         if (typeof objValue === 'function' && typeof otherValue === 'function') return true;
@@ -47,6 +49,25 @@ export default class ExtJSComponent extends Component {
         this._topLevelWrapper = null;
         this.displayName = 'ExtJSComponent';
         this.unmountSafely = false;
+
+        const me = this;
+
+        this._renderedComponent = {
+            get _debugID () {
+                this._debugID,
+            },
+            toJSON: () => {
+                const { children, ...props } = this._currentElement.props;
+
+                return {
+                    type: this.extJSClass.xtype,
+                    props,
+                    children
+                };
+            }
+        }
+
+        this._renderedNodeType = 0; // HOST
     }
 
     // begin React renderer methods
@@ -101,6 +122,7 @@ export default class ExtJSComponent extends Component {
         });
 
         this._precacheNode();
+        
         return result;
     }
 
@@ -218,32 +240,35 @@ export default class ExtJSComponent extends Component {
         const config = this._createConfig(props, true);
 
         const items = [], dockedItems = [];
-        const children = this.mountChildren(this._applyDefaults(props), transaction, context);
+        
+        if (props.children) {
+            const children = this.mountChildren(this._applyDefaults(props), transaction, context);
 
-        for (let i=0; i<children.length; i++) {
-            const item = children[i];
+            for (let i=0; i<children.length; i++) {
+                const item = children[i];
 
-            if (item instanceof Ext.Base) {
-                const prop = this._propForChildElement(item);
+                if (item instanceof Ext.Base) {
+                    const prop = this._propForChildElement(item);
 
-                if (prop) {
-                    item.$reactorConfig = true;
-                    const value = config;
+                    if (prop) {
+                        item.$reactorConfig = true;
+                        const value = config;
 
-                    if (prop.array) {
-                        let array = config[prop.name];
-                        if (!array) array = config[prop.name] = [];
-                        array.push(item);
+                        if (prop.array) {
+                            let array = config[prop.name];
+                            if (!array) array = config[prop.name] = [];
+                            array.push(item);
+                        } else {
+                            config[prop.name] = prop.value || item;
+                        }
                     } else {
-                        config[prop.name] = prop.value || item;
+                        (item.dock ? dockedItems : items).push(item);
                     }
+                } else if (item.node) {
+                    items.push(wrapDOMElement(item));
                 } else {
-                    (item.dock ? dockedItems : items).push(item);
+                    throw new Error('Could not render child item: ' + item);
                 }
-            } else if (item.node) {
-                items.push(wrapDOMElement(item));
-            } else {
-                throw new Error('Could not render child item: ' + item);
             }
         }
 
