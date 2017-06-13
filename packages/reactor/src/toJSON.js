@@ -1,18 +1,23 @@
 import { Children } from 'react';
 
 export default function toJSON(element) {
+    if (typeof element === 'string') return element;
     const { children, ...props } = element.props;
     const jsonChildren = [];
 
     Children.forEach(children, child => jsonChildren.push(toJSON(child)))
 
-    const jsonProps = {};
-
-    return {
-        type: element.type.name,
+    const object = {
+        type: typeof element.type === 'string' ? element.type : element.type.name,
         props: includeSerializable(props),
         children: jsonChildren.length ? jsonChildren : null
-    }
+    };
+
+    Object.defineProperty(object, '$$typeof', {
+        value: Symbol['for']('react.test.json')
+    });
+
+    return object;
 }
 
 function includeSerializable(obj) {
@@ -44,6 +49,8 @@ function includeSerializable(obj) {
         } else if (typeof value === 'object') {
             if (value.constructor === Object) {
                 result[key] = includeSerializable(value);
+            } else {
+                result[key] = { $className: value.$className || value.constructor.name || 'unknown' };
             }
         } else {
             result[key] = value;

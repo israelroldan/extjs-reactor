@@ -4,13 +4,19 @@ global.__DEV__ = true;
 var script = document.createElement('script')
 document.body.appendChild(script);
 
+// quiet warning about missing viewport meta tag in modern
+var meta = document.createElement('meta');
+meta.setAttribute('name', 'viewport');
+meta.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=10, user-scalable=yes');
+document.body.appendChild(meta);
+
 // polyfill window.createRange for jsdom
 global.Range = function Range() {};
 
 const createContextualFragment = (html) => {
   const div = document.createElement('div');
   div.innerHTML = html;
-  return div.children[0]; // so hokey it's not even funny
+  return div.children[0];
 };
 
 Range.prototype.createContextualFragment = (html) => createContextualFragment(html);

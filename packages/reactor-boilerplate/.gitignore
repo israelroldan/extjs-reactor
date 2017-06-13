@@ -6,3 +6,4 @@ dist
 .idea
 .sencha
 npm-debug.log*
+/coverage

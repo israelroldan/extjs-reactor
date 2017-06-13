@@ -256,6 +256,9 @@ export default class ExtJSComponent extends Component {
                     }
                 } else if (item.node) {
                     items.push(wrapDOMElement(item));
+                } else if (typeof item === 'string') {
+                    // will get here when rendering html elements in react-test-renderer
+                    // no need to do anything
                 } else {
                     throw new Error('Could not render child item: ' + item);
                 }
