@@ -10,6 +10,9 @@ import capitalize from 'lodash.capitalize'
 import defaults from 'lodash.defaults';
 import cloneDeepWith from 'lodash.clonedeepwith';
 import isEqualWith from 'lodash.isequalwith';
+import toJSON from './toJSON';
+
+const Ext = window.Ext;
 
 function isEqual(oldValue, newValue) {
     return isEqualWith(oldValue, newValue, function customizer(objValue, otherValue) {
@@ -47,6 +50,14 @@ export default class ExtJSComponent extends Component {
         this._topLevelWrapper = null;
         this.displayName = 'ExtJSComponent';
         this.unmountSafely = false;
+
+        // needed for serializing jest snapshots when using react-test-renderer
+        if (process.env.NODE_ENV === 'test') {
+            this._renderedNodeType = 0; // HOST
+            this._renderedComponent = {
+                toJSON: () => toJSON(this._currentElement)
+            }
+        }
     }
 
     // begin React renderer methods
@@ -101,6 +112,7 @@ export default class ExtJSComponent extends Component {
         });
 
         this._precacheNode();
+        
         return result;
     }
 
@@ -218,32 +230,38 @@ export default class ExtJSComponent extends Component {
         const config = this._createConfig(props, true);
 
         const items = [], dockedItems = [];
-        const children = this.mountChildren(this._applyDefaults(props), transaction, context);
+        
+        if (props.children) {
+            const children = this.mountChildren(this._applyDefaults(props), transaction, context);
 
-        for (let i=0; i<children.length; i++) {
-            const item = children[i];
+            for (let i=0; i<children.length; i++) {
+                const item = children[i];
 
-            if (item instanceof Ext.Base) {
-                const prop = this._propForChildElement(item);
+                if (item instanceof Ext.Base) {
+                    const prop = this._propForChildElement(item);
 
-                if (prop) {
-                    item.$reactorConfig = true;
-                    const value = config;
+                    if (prop) {
+                        item.$reactorConfig = true;
+                        const value = config;
 
-                    if (prop.array) {
-                        let array = config[prop.name];
-                        if (!array) array = config[prop.name] = [];
-                        array.push(item);
+                        if (prop.array) {
+                            let array = config[prop.name];
+                            if (!array) array = config[prop.name] = [];
+                            array.push(item);
+                        } else {
+                            config[prop.name] = prop.value || item;
+                        }
                     } else {
-                        config[prop.name] = prop.value || item;
+                        (item.dock ? dockedItems : items).push(item);
                     }
+                } else if (item.node) {
+                    items.push(wrapDOMElement(item));
+                } else if (typeof item === 'string') {
+                    // will get here when rendering html elements in react-test-renderer
+                    // no need to do anything
                 } else {
-                    (item.dock ? dockedItems : items).push(item);
+                    throw new Error('Could not render child item: ' + item);
                 }
-            } else if (item.node) {
-                items.push(wrapDOMElement(item));
-            } else {
-                throw new Error('Could not render child item: ' + item);
             }
         }
 

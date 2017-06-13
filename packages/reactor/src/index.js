@@ -5,6 +5,8 @@ import { configure } from './reactify';
 export { reactify } from './reactify';
 export { default as Template } from './Template';
 
+const Ext = window.Ext;
+
 /**
  * Launches an ExtReact application, creating a viewport and rendering the specified root component into it.
  * @param {React.Component/Function} rootComponent You application's root component, or a function that returns the root component.

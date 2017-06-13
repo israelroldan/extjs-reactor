@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home should render without crashing 1`] = `
+<Grid
+  store={
+    Object {
+      "$className": "Ext.data.Store",
+    }
+  }
+>
+  <Toolbar
+    docked="top"
+  >
+    <SearchField
+      onChange={[Function]}
+      placeholder="Search..."
+      plugins="responsive"
+      responsiveConfig={
+        Object {
+          "width <= 600": Object {
+            "flex": 1,
+          },
+          "width > 600": Object {
+            "flex": undefined,
+          },
+        }
+      }
+      ui="faded"
+    />
+  </Toolbar>
+  <Column
+    dataIndex="name"
+    flex={2}
+    resizable={true}
+    text="Name"
+  />
+  <Column
+    dataIndex="email"
+    flex={3}
+    plugins="responsive"
+    resizable={true}
+    responsiveConfig={
+      Object {
+        "width <= 600": Object {
+          "hidden": true,
+        },
+        "width > 600": Object {
+          "hidden": false,
+        },
+      }
+    }
+    text="Email"
+  />
+  <Column
+    dataIndex="phone"
+    flex={2}
+    resizable={true}
+    text="Phone"
+  />
+</Grid>
+`;

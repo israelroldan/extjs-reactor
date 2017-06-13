@@ -6,6 +6,10 @@ import generate from 'babel-generator';
 
 const MODULE_PATTERN = /^@extjs\/(ext-react.*|reactor\/(classic|modern))$/;
 
+function toXtype(str) {
+    return str.toLowerCase().replace(/_/g, '-');
+}
+
 /**
  * Extracts Ext.create equivalents from jsx tags so that cmd knows which classes to include in the bundle
  * @param {String} js The javascript code
@@ -42,7 +46,7 @@ module.exports = function extractFromJSX(js, compilation, module) {
      */
     function addType(varName, reactifyArgNode) {
         if (reactifyArgNode.type === 'StringLiteral') {
-            types[varName] = { xtype: reactifyArgNode.value };
+            types[varName] = { xtype: toXtype(reactifyArgNode.value) };
         } else {
             types[varName] = { xclass: js.slice(reactifyArgNode.start, reactifyArgNode.end) };
         }
@@ -52,9 +56,9 @@ module.exports = function extractFromJSX(js, compilation, module) {
         pre: function(node) {
             if (node.type == 'ImportDeclaration') {
                 if (node.source.value.match(MODULE_PATTERN)) {
-                    // look for: import { Grid } from '@extjs/reactor
+                    // look for: import { Grid } from '@extjs/reactor'
                     for (let spec of node.specifiers) {
-                        types[spec.local.name] = { xtype: spec.imported.name.toLowerCase().replace(/_/g, '-') };
+                        types[spec.local.name] = { xtype: toXtype(spec.imported.name) };
                     }
                 } else if (node.source.value === '@extjs/reactor') {
                     // identify local names of reactify based on import { reactify as foo } from '@extjs/reactor';
@@ -83,7 +87,7 @@ module.exports = function extractFromJSX(js, compilation, module) {
                 } else {
                     // example: const Grid = reactify('grid');
                     const varName = node.id.name;
-                    const arg = node.init.arguments && node.init.arguments[0];
+                    const arg = node.init.arguments && node.init.arguments[0] && node.init.arguments[0];
                     if (varName && arg) addType(varName, arg);
                 }
             }

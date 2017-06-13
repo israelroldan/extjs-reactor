@@ -1,5 +1,7 @@
 import Template from './Template';
 
+const Ext = window.Ext;
+
 // add support for functions that return JSX elements in place of XTemplates
 
 const getTpl = Ext.XTemplate.getTpl;
