@@ -4,21 +4,21 @@ describe('rel', () => {
         ST.component('#button').click()
         const menu = ST.component('#menu')
         menu.visible();
-        ST.component('menuitem[text="Option 1"]').visible();
-        ST.component('menuitem[text="Option 2"]').visible();
-        ST.component('menuitem[text="Option 3"]').visible();
+        ST.component('MenuItem[text="Option 1"]').visible();
+        ST.component('MenuItem[text="Option 2"]').visible();
+        ST.component('MenuItem[text="Option 3"]').visible();
     });
 
     it("should update configs when child a child with rel is added or removed", () => {
         ST.navigate('#/RelUpdate');
-        ST.button('button[text="Toggle Menu"]').click();
-        ST.button('button[text="Menu"]').click();
+        ST.button('Button[text="Toggle Menu"]').click();
+        ST.button('Button[text="Menu"]').click();
         const menu = ST.component('#menu');
         menu.visible();
-        ST.component('menuitem[text="Option 1"]').visible();
-        ST.component('menuitem[text="Option 2"]').visible();
-        ST.component('menuitem[text="Option 3"]').visible();
-        ST.button('button[text="Toggle Menu"]').click();
+        ST.component('MenuItem[text="Option 1"]').visible();
+        ST.component('MenuItem[text="Option 2"]').visible();
+        ST.component('MenuItem[text="Option 3"]').visible();
+        ST.button('Button[text="Toggle Menu"]').click();
         menu.destroyed();
     });
 
@@ -26,7 +26,7 @@ describe('rel', () => {
         it('should assign child Buttons as the buttons config', () => {
             ST.navigate('#/RelDialog');
 
-            ST.component('dialog').and(dialog => {
+            ST.component('#dialog').and(dialog => {
                 expect(dialog.getButtons().items.length).toBe(1);
                 ST.button('#button').click();
             });
@@ -65,9 +65,9 @@ describe('rel', () => {
             ST.component('#button').click()
             const menu = ST.component('#menu')
             menu.visible();
-            ST.component('menuitem[text="Option 1"]').visible();
-            ST.component('menuitem[text="Option 2"]').visible();
-            ST.component('menuitem[text="Option 3"]').visible();
+            ST.component('MenuItem[text="Option 1"]').visible();
+            ST.component('MenuItem[text="Option 2"]').visible();
+            ST.component('MenuItem[text="Option 3"]').visible();
         });
     });
 
