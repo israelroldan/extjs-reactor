@@ -4,9 +4,23 @@ const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const glob = require('glob');
 const path = require('path');
-const boilerplate = path.join(__dirname, '..', '..', 'node_modules', '@extjs', 'reactor-boilerplate');
 const fs = require('fs');
 const { kebabCase, pick } = require('lodash')
+
+const CODE = {
+    EXAMPLE: 'Include some example code', 
+    BARE_BONES: 'Generate an empty app'
+};
+
+const LANGUAGE = {
+    TYPESCRIPT: 'TypeScript',
+    JAVASCRIPT: 'JavaScript'
+}
+
+const BOILERPLATE = {
+    [LANGUAGE.JAVASCRIPT]: path.join(__dirname, '..', '..', 'node_modules', '@extjs', 'reactor-boilerplate'),
+    [LANGUAGE.TYPESCRIPT]: path.join(__dirname, '..', '..', 'node_modules', '@extjs', 'reactor-typescript-boilerplate')
+};
 
 module.exports = class extends Generator {
 
@@ -37,6 +51,16 @@ module.exports = class extends Generator {
             name: 'baseTheme',
             message: 'What theme would you like to use?',
             choices: ['material', 'triton', 'ios']
+        }, {
+            type: 'list',
+            name: 'code',
+            message: 'Do you want to include example code (layout, navigation, routing, etc...), or just generate an empty app?',
+            choices: [CODE.BARE_BONES, CODE.EXAMPLE]
+        }, {
+            type: 'list',
+            message: 'Which language would you like to use?',
+            name: 'language',
+            choices: [LANGUAGE.JAVASCRIPT, LANGUAGE.TYPESCRIPT]
         }, {
             type: 'input',
             message: 'version:',
@@ -78,9 +102,17 @@ module.exports = class extends Generator {
             this.destinationRoot(this.packageName);
         }
 
-        // copy in files from reactor-boilerplate
+        const boilerplate = BOILERPLATE[this.language];
+
+        // copy in files from boilerplate
         glob.sync('**/*', { cwd: boilerplate, ignore: ['build/**', 'node_modules/**'], dot: true })
             .forEach(file => new Promise((resolve, reject) => {
+                if (this.code === CODE.BARE_BONES && file.match(/src/) && !file.match(/index/)) {
+                    return;
+                }
+                if (this.code === CODE.BARE_BONES && file.match(/__tests__/)) {
+                    return;
+                }
                 this.fs.copy(path.join(boilerplate, file), file);
             }))
 
@@ -123,10 +155,26 @@ module.exports = class extends Generator {
         const indexHtml = path.join('src', 'index.html');
         this.fs.write(indexHtml, this.fs.read(indexHtml).replace('ExtReact Boilerplate', this.appName));
 
-        // update Layout.js
-        
-        const layout = path.join('src', 'Layout.js');
-        this.fs.write(layout, this.fs.read(layout).replace('ExtReact Boilerplate', this.appName));
+        // swap out minimal App.js if the user chose not to include examples
+
+        if (this.code === CODE.BARE_BONES) {
+            this.fs.copyTpl(
+                this.templatePath(this.language === LANGUAGE.TYPESCRIPT ? 'App.minimal.tsx' : 'App.minimal.js'),
+                this.destinationPath(this.language === LANGUAGE.TYPESCRIPT ? 'src/App.tsx' : 'src/App.js'),
+                { appName: this.appName }
+            )
+
+            if (this.language === LANGUAGE.JAVASCRIPT) {
+                this.fs.copyTpl(
+                    this.templatePath('App.test.js'),
+                    this.destinationPath('__tests__/App.test.js')
+                )
+            }
+        } else {
+            // update Layout.js
+            const layout = path.join('src', 'Layout.js');
+            this.fs.write(layout, this.fs.read(layout).replace('ExtReact Boilerplate', this.appName));
+        }
     }
 
     install() {
