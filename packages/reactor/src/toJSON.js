@@ -1,16 +1,32 @@
 import { Children } from 'react';
 
-export default function toJSON(element) {
+/**
+ * Converts both ExtReact and DOM components to json for Jest snapshots
+ * @param {React.Component} component
+ * @returns {Object}
+ */
+export default function toJSON(component) {
+    const element = component._currentElement;
+    const renderedChildren = component._renderedChildren;
     if (typeof element === 'string') return element;
     const { children, ...props } = element.props;
-    const jsonChildren = [];
+    let jsonChildren = null;
 
-    Children.forEach(children, child => jsonChildren.push(toJSON(child)))
+    if (typeof children === 'string') {
+        // inner text
+        jsonChildren = [children];
+    } else if (renderedChildren) {
+        jsonChildren = Object.keys(renderedChildren).map(key => {
+            let child = renderedChildren[key];
+            child = getHostComponentFromComposite(child) || child;
+            return child.toJSON ? child.toJSON() : toJSON(child);
+        })
+    }
 
     const object = {
         type: typeof element.type === 'string' ? element.type : element.type.name,
         props: includeSerializable(props),
-        children: jsonChildren.length ? jsonChildren : null
+        children: jsonChildren
     };
 
     Object.defineProperty(object, '$$typeof', {
@@ -20,6 +36,11 @@ export default function toJSON(element) {
     return object;
 }
 
+/**
+ * Returns an object containing only the serializable keys from the source object.
+ * @param {Object} obj The source object
+ * @returns {Object}
+ */
 function includeSerializable(obj) {
     if (obj.constructor !== Object) {
         return undefined;
@@ -59,3 +80,30 @@ function includeSerializable(obj) {
 
     return result;
 }
+
+// borrowed from react-test-renderer
+
+/**
+ * Gets the inner ExtReact or DOM component from the specified component
+ * @param {React.Component} inst A component instance
+ * @returns {React.Component}
+ */
+function getHostComponentFromComposite(inst) {
+    var type;
+
+    while ((type = inst._renderedNodeType) === ReactNodeTypes.COMPOSITE) {
+        inst = inst._renderedComponent;
+    }
+
+    if (type === ReactNodeTypes.HOST) {
+        return inst._renderedComponent;
+    } else if (type === ReactNodeTypes.EMPTY) {
+        return null;
+    }
+}
+
+export const ReactNodeTypes = {
+    HOST: 0,
+    COMPOSITE: 1,
+    EMPTY: 2
+};

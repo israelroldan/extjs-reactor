@@ -1,5 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`ReactTestRenderer snapshots should not interfere with Components that do not use ExtReact 1`] = `
+<div>
+  <div
+    className="inner"
+  />
+</div>
+`;
+
 exports[`ReactTestRenderer snapshots should omit complex props 1`] = `
 <Grid
   foo={
@@ -14,6 +22,14 @@ exports[`ReactTestRenderer snapshots should omit complex props 1`] = `
   }
   title="Employees"
 />
+`;
+
+exports[`ReactTestRenderer snapshots should render composite components 1`] = `
+<Container>
+  <Panel
+    title="MyStatelessComponent"
+  />
+</Container>
 `;
 
 exports[`ReactTestRenderer snapshots should support ExtReact components inside html elements 1`] = `
@@ -50,6 +66,10 @@ exports[`ReactTestRenderer snapshots should support html child elements 1`] = `
       F
     </b>
     oo
+    <b>
+      b
+    </b>
+    ar
   </div>
   <div
     className="bar"
