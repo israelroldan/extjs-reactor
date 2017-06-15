@@ -60,6 +60,7 @@ export function reactify(...targets) {
                 if (settings.debug) console.log('create', componentName, config);
                 const result = new target(config)
                 result.$createdByReactor = true;
+                result.$reactorComponentName = componentName;
                 return result;
             }
         };
