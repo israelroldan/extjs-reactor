@@ -10,7 +10,7 @@ import capitalize from 'lodash.capitalize'
 import defaults from 'lodash.defaults';
 import cloneDeepWith from 'lodash.clonedeepwith';
 import isEqualWith from 'lodash.isequalwith';
-import toJSON from './toJSON';
+import toJSON, { ReactNodeTypes } from './toJSON';
 
 const Ext = window.Ext;
 
@@ -53,9 +53,9 @@ export default class ExtJSComponent extends Component {
 
         // needed for serializing jest snapshots when using react-test-renderer
         if (process.env.NODE_ENV === 'test') {
-            this._renderedNodeType = 0; // HOST
+            this._renderedNodeType = ReactNodeTypes.HOST; // HOST
             this._renderedComponent = {
-                toJSON: () => toJSON(this._currentElement)
+                toJSON: () => toJSON(this)
             }
         }
     }
