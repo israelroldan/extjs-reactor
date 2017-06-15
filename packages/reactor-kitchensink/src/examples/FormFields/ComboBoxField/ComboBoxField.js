@@ -12,7 +12,7 @@ export default class ComboBoxFieldExample extends Component {
                     label="State"
                     store={data}
                     displayField="name"
-                    valueField="code"
+                    valueField="abbrev"
                     queryMode="local"
                     labelAlign="placeholder"
                     clearable
