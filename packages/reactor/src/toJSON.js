@@ -16,6 +16,7 @@ export default function toJSON(component) {
         // inner text
         jsonChildren = [children];
     } else if (renderedChildren) {
+        // child components
         jsonChildren = Object.keys(renderedChildren).map(key => {
             let child = renderedChildren[key];
             child = getHostComponentFromComposite(child) || child;
@@ -42,43 +43,38 @@ export default function toJSON(component) {
  * @returns {Object}
  */
 function includeSerializable(obj) {
-    if (obj.constructor !== Object) {
-        return undefined;
-    }
+    if (Array.isArray(obj)) {
+        const result = [];
 
-    const result = {};
+        for (let item of obj) {
+            if (typeof item === 'object') {
+                const jsonItem = includeSerializable(item);
 
-    for (let key in obj) {
-        const value = obj[key];
-
-        if (Array.isArray(value)) {
-            const jsonValue = [];
-
-            for (let item of value) {
-                if (typeof item === 'object') {
-                    const jsonItem = includeSerializable(item);
-
-                    if (jsonItem !== undefined) {
-                        jsonValue.push(jsonItem);
-                    }
-                } else {
-                    jsonValue.push(item);
+                if (jsonItem !== undefined) {
+                    result.push(jsonItem);
                 }
-            }
-
-            result[key] = jsonValue;
-        } else if (typeof value === 'object') {
-            if (value.constructor === Object) {
-                result[key] = includeSerializable(value);
             } else {
-                result[key] = { $className: value.$className || value.constructor.name || 'unknown' };
+                result.push(item);
             }
-        } else {
-            result[key] = value;
         }
-    }
 
-    return result;
+        return result;
+    } else if (typeof obj === 'object') {
+        if (obj.constructor !== Object) {
+            // include only the class name for complex objects
+            return { $className: obj.$className || obj.constructor.name || 'unknown' };
+        }
+
+        const result = { };
+
+        for (let key in obj) {
+            result[key] = includeSerializable(obj[key]);
+        }
+
+        return result;
+    } else {
+        return obj;
+    }
 }
 
 // borrowed from react-test-renderer

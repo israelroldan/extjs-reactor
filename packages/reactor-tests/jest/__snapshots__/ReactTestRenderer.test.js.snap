@@ -1,5 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`ReactTestRenderer snapshots should handle nested array prop values 1`] = `
+<Container
+  data={
+    Array [
+      Array [
+        1,
+        "One",
+      ],
+      Array [
+        2,
+        "Two",
+      ],
+    ]
+  }
+/>
+`;
+
 exports[`ReactTestRenderer snapshots should not interfere with Components that do not use ExtReact 1`] = `
 <div>
   <div

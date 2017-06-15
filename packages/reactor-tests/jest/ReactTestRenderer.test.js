@@ -133,5 +133,15 @@ describe('ReactTestRenderer snapshots', () => {
         }
 
         expect(create(<TestComponent/>)).toMatchSnapshot();
+    });
+
+    it('should handle nested array prop values', () => {
+        function TestComponent() {
+            return (
+                <Container data={[[1, 'One'], [2, 'Two']]}/>
+            )
+        }
+
+        expect(create(<TestComponent/>)).toMatchSnapshot();
     })
 });
