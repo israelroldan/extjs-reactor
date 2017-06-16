@@ -11,7 +11,7 @@ If you have not already, log into Sencha's NPM registry using your trial or supp
 npm login --registry=http://npm.sencha.com --scope=@extjs
 ```
 
-If you do not have credentials, you can get them by [signing up for a trial of ExtReact](http://sencha.com/extreact).
+If you do not have credentials, you can get them by [signing up for a trial of ExtReact](https://www.sencha.com/products/extreact/evaluate/).
 
 Then, run the following to build and launch the app:
 
