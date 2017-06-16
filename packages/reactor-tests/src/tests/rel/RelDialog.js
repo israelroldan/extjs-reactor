@@ -4,11 +4,7 @@ import { Dialog, Button } from '@extjs/ext-react';
 export default class RelDialog extends Component {
 
     state = {
-        displayed: false
-    }
-
-    componentDidMount() {
-        this.setState({ displayed: true })
+        displayed: true
     }
 
     close = () => {

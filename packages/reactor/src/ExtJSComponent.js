@@ -338,7 +338,7 @@ export default class ExtJSComponent extends Component {
 
         const { extJSClass } = this;
 
-        if (isAssignableFrom(extJSClass, CLASS_CACHE.Column) && typeof config.renderer === 'function') {
+        if (isAssignableFrom(extJSClass, CLASS_CACHE.Column) && typeof config.renderer === 'function' && CLASS_CACHE.RendererCell) {
             config.cell = config.cell || {};
             config.cell.xtype = 'renderercell';
         }
