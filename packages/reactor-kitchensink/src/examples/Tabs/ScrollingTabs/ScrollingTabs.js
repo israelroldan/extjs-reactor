@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
 import { TabPanel, Panel } from '@extjs/ext-react'; 
 
+Ext.require('Ext.layout.overflow.Scroller');
+
 export default class ScrollingTabsExample extends Component {
 
     render() {
         return (
             <TabPanel 
                 shadow 
-                tabBar={{scrollable: true}} 
+                tabBar={{
+                    layout: {
+                        pack: 'start',
+                        overflow: 'scroller'
+                    }
+                }} 
                 platformConfig={{
                     "!phone": {
                         height: 600,
@@ -17,13 +24,14 @@ export default class ScrollingTabsExample extends Component {
                 defaults={{
                     layout: "center",
                     cls: 'card',
+                    bodyPadding: 20,
                     tab: {
-                        minWidth: 120
+                        minWidth: 130
                     }
                 }}
             >
                 <Panel title="Home">
-                    <div>You can set <code>scrollable: true</code> in combination with a minWidth on each tab to make the tab bar scroll when it runs out of room.</div>
+                    <div>You can set <code>{`layout: { oveflow: 'scroller' }`}</code> on the <code>tabBar</code> prop in combination with a <code>minWidth</code> on each tab to make the tab bar scroll when it runs out of room.</div>
                 </Panel>
                 <Panel title="Politics"><div>Politics</div></Panel>
                 <Panel title="Entertainment"><div>Entertainment</div></Panel>

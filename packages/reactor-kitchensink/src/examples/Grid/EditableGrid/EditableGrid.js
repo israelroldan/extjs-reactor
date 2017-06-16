@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Column, Toolbar, NumberField, DatePickerField } from '@extjs/ext-react';
+import { Grid, Column, Toolbar, NumberField, DatePickerField, RendererCell } from '@extjs/ext-react';
 import model from '../CompanyModel';
 import { Template } from '@extjs/reactor';
 
