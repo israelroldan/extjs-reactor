@@ -12,16 +12,35 @@ You must have Ext JS 6.2+ and Sencha Cmd 6.5+ to use this plugin.
 ## Options
 The ExtJSReactorWebpackPlugin constructor takes an object with the following properties:
 
-* sdk [string] The path to the Ext JS SDK
-* toolkit (optional) [string] "modern" or "classic".  Defaults to "modern".
-* theme (optional) [string] The name of the theme package to use, or the path to a custom theme package. Defaults to "theme-triton".
-* packages (optional) [string[]] Packages to include.  Values correspond to the names of directories in the packages directory of your SDK.
-* overrides (optional) [string[]] Paths to directories or files containing Ext JS overrides.
-* output (optional) [string] The path within the output directory in which the Ext JS build should be created.  Defaults to "ext-react"
-* production (optional) [boolean] Set to true for production builds.  This compresses the generated Ext JS bundle.  Defaults to false.
-* test (optional) [RegExp] All files matching this pattern will be searched for usage of Ext classes to include in the build.  Defaults to `/\.jsx?$/`
-* asynchronous (optional) [boolean] Set to true to run Sencha Cmd builds asynchronously.  This makes the webpack build finish much faster, but the app may not load correctly in your browser until Sencha Cmd is finished building the Ext JS bundle.  Defaults to false.
-* debug (optional) [boolean] True to output debug information.  Defaults to false.
+### sdk [string] 
+The path to the Ext JS SDK
+
+### toolkit (optional) [string] 
+"modern" or "classic".  Defaults to "modern".
+
+### theme (optional) [string] 
+The name of the theme package to use, or the path to a custom theme package. Defaults to "theme-triton".
+
+### packages (optional) [string[]] 
+Packages to include.  Values correspond to the names of directories in the packages directory of your SDK.
+
+### overrides (optional) [string[]] 
+Paths to directories or files containing Ext JS overrides.
+
+### output (optional) [string] 
+The path within the output directory in which the Ext JS build should be created.  Defaults to "ext-react"
+
+### production (optional) [boolean] 
+Set to true for production builds.  This compresses the generated Ext JS bundle.  Defaults to false.
+
+### test (optional) [RegExp] 
+All files matching this pattern will be searched for usage of Ext classes to include in the build.  Defaults to `/\.jsx?$/`
+
+### asynchronous (optional) [boolean] 
+Set to true to run Sencha Cmd builds asynchronously.  This makes the webpack build finish much faster, but the app may not load correctly in your browser until Sencha Cmd is finished building the Ext JS bundle.  Defaults to false.
+
+### debug (optional) [boolean] 
+True to output debug information.  Defaults to false.
 
 ## Example
 
