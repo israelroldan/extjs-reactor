@@ -371,6 +371,14 @@ Use your support portal credentials.  If your username is your email address, re
 
 This is a monorepo that uses lerna.  After cloning, run `npm install` at the root of the project tree to install and link dependencies in all packages.
 
+## Running Against ExtReact Pre-Releases
+
+You can updgrade all packages to use the latest `ext-react` and `sencha-cmd` prereleases by running:
+
+```
+npm run install:next
+``` 
+
 ## Running Tests
 
 Tests are implemented using [Sencha Test](https://www.sencha.com/products/test/). See [packages/reactor-tests](https://github.com/sencha/extjs-reactor/tree/master/packages/reactor-tests) for instructions on how to set up a test environment.
