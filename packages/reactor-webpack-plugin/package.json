@@ -1,6 +1,6 @@
 {
   "name": "@extjs/reactor-webpack-plugin",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "A webpack plugin that produces minimal ExtReact and Ext JS bundles containing only those components used in your app.",
   "main": "dist/index.js",
   "scripts": {
@@ -20,7 +20,7 @@
     "webpack": "^2.2.1"
   },
   "dependencies": {
-    "@extjs/sencha-cmd": "^6.5.1",
+    "@extjs/sencha-cmd": "^6.5.2",
     "ast-traverse": "^0.1.1",
     "astring": "^1.0.2",
     "babel-generator": "^6.24.1",
