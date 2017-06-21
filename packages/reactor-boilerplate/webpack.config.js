@@ -91,6 +91,8 @@ module.exports = function (env) {
         devServer: {
             contentBase: './build',
             historyApiFallback: true,
+            host: '0.0.0.0',
+            disableHostCheck: true,
             port: 8080,
             compress: isProd,
             inline: !isProd,

@@ -21,7 +21,7 @@ function updateToNext(dir) {
         if (extReactPackages.length) {
             const cmd = `npm i ${extReactPackages.join(' ')}`;
             console.log(`[${dir}] ${cmd}`);
-            execSync(cmd);
+            execSync(cmd, { cwd: dir });
         }
     }
 }
