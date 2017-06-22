@@ -85,9 +85,6 @@ export default class BigDataGridExample extends Component {
                         xtype: 'gridsummaryrow'
                     }}
                     itemConfig={{
-                        viewModel: {
-                            type: 'grid-bigdatagrid-row'
-                        },
                         body: {
                             tpl: this.rowBodyTpl
                         }
@@ -150,11 +147,9 @@ export default class BigDataGridExample extends Component {
                             dataIndex="averageRating"
                             width="75"
                             summary="average"
+                            renderer={this.renderRating}
                             cell={{
-                                cls:'big-data-ratings-cell',
-                                bind: {
-                                    bodyCls: '{ratingGroup:pick("under4","under5","under6","over6")}'
-                                }
+                                cls:'big-data-ratings-cell'
                             }}
                         />
                         <Column
@@ -164,6 +159,7 @@ export default class BigDataGridExample extends Component {
                         >
                             <RendererCell 
                                 forceWidth 
+                                bodyStyle={{ padding: 0 }}
                                 renderer={rating => (
                                     <SparkLineLine 
                                         height={16} 
@@ -386,27 +382,23 @@ export default class BigDataGridExample extends Component {
         this.setState({ showExportSheet: false });
         this.grid.saveDocumentAs(config);
     }
-}
 
-Ext.define('KitchenSink.view.grid.BigDataGridRowModel', {
-    extend: 'Ext.app.ViewModel',
-    alias: 'viewmodel.grid-bigdatagrid-row',
-    formulas: {
-        ratingGroup: function (get) {
-            const age = get('record.averageRating');
-            if (age < 4) {
-                return 0;
-            }
-            if (age < 5) {
-                return 1;
-            }
-            if (age < 6) {
-                return 2;
-            }
-            return 3;
+    renderRating = (value, record) => {
+        const age = record.get('averageRating');
+        let group = "over6";
+
+        if (age < 4) {
+            group = "under4";
+        } else if (age < 5) {
+            group = "under5";
+        } else if (age < 6) {
+            group = "under6";
         }
+
+        return <div className={group}>{value.toFixed(2)}</div>
+
     }
-});
+}
 
 function formatDate(date) {
      return Ext.util.Format.date(date, "d/m/Y")

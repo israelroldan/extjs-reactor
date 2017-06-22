@@ -188,7 +188,17 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return { actions: bindActionCreators(actions, dispatch) };
+    const actionCreators = {};
+
+    for (let key in actions) {
+        const action = actions[key];
+
+        if (typeof action === 'function') {
+            actionCreators[key] = action;
+        }
+    }
+
+    return { actions: bindActionCreators(actionCreators, dispatch) };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Layout)
