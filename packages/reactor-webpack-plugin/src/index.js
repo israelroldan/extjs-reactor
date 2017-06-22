@@ -208,6 +208,8 @@ module.exports = class ReactExtJSWebpackPlugin {
         if (sdk) {
             if (!fs.existsSync(sdk)) {
                 throw new Error(`No SDK found at ${path.resolve(sdk)}.  Did you for get to link/copy your Ext JS SDK to that location?`);
+            } else {
+                this._addReactorPackage(build)
             }
         } else {
             try {
@@ -217,6 +219,24 @@ module.exports = class ReactExtJSWebpackPlugin {
             } catch (e) {
                 throw new Error(`@extjs/ext-react not found.  You can install it with "npm install --save @extjs/ext-react" or, if you have a local copy of the SDK, specify the path to it using the "sdk" option in build "${name}."`);
             }
+        }
+    }
+
+    /**
+     * Adds the reactor package if present and the toolkit is modern
+     * @param {Object} build 
+     */
+    _addReactorPackage(build) {
+        if (build.toolkit === 'classic') return;
+
+        if (fs.existsSync(path.join(build.sdk, 'ext', 'modern', 'reactor')) ||  // repo
+            fs.existsSync(path.join(build.sdk, 'modern', 'reactor'))) { // production build
+
+            if (!build.packages) {
+                build.packages = [];
+            }
+
+            build.packages.push('reactor');
         }
     }
 
