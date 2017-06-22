@@ -140,7 +140,7 @@ export default class ExtJSComponent extends Component {
         if (this.cmp) {
             if (this.cmp.destroying || this.cmp.$reactorConfig) return;
 
-            const parentCmp = this.cmp.ownerCt /* classic */ || this.cmp.getParent(); /* modern */
+            const parentCmp = getParentCmp(this.cmp);
 
             // remember the parent and position in parent for dangerouslyReplaceNodeWithMarkup
             // this not needed in fiber
@@ -692,6 +692,19 @@ function isAssignableFrom(subClass, parentClass) {
     return subClass === parentClass || subClass.prototype instanceof parentClass;
 }
 
+/**
+ * Returns the parent component in both modern and classic toolkits
+ * @param {Ext.Component} cmp The child component
+ */
+function getParentCmp(cmp) {
+    if (cmp.getParent) {
+        // modern
+        return cmp.getParent();
+    } else {
+        // classic
+        return cmp.ownerCt;
+    }
+}
 
 // Patch replaceNodeWithMarkup to fix bugs with swapping null and components
 // A prime example of this is using react-router 4, which renders a null when a route fails
@@ -702,7 +715,7 @@ const oldReplaceNodeWithMarkup = ReactComponentEnvironment.replaceNodeWithMarkup
 ReactComponentEnvironment.replaceNodeWithMarkup = function(oldChild, markup) {
     if (oldChild._extCmp) {
         const newChild = markup instanceof Ext.Base ? markup : wrapDOMElement(markup);
-        const parent = oldChild.hasOwnProperty('_extParent') ? oldChild._extParent : oldChild._extCmp.getParent();
+        const parent = oldChild.hasOwnProperty('_extParent') ? oldChild._extParent : getParentCmp(oldChild._extCmp);
         const index = oldChild.hasOwnProperty('_extIndexInParent') ? oldChild._extIndexInParent : parent.indexOf(oldChild._extCmp);
         parent.insert(index, newChild);
         oldChild._extCmp.destroy();
