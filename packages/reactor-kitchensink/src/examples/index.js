@@ -13,7 +13,7 @@ import StockTickerGrid from './Grid/AdvancedFeatures/StockTicker/StockTicker';
 import ReduxGrid from './Grid/ReduxGrid/ReduxGrid';
 import RowBodyGrid from './Grid/AddonsDecorations/RowBody/RowBody';
 import FlexibleSelection from './Grid/AdvancedFeatures/FlexibleSelection/FlexibleSelection';
-import RendererCell from './Grid/AdvancedFeatures/RendererCell/RendererCell';
+import RenderComponentsInCells from './Grid/AdvancedFeatures/RenderComponentsInCells/RenderComponentsInCells';
 
 import Panel from './Panel/Panel';
 
@@ -345,7 +345,7 @@ const root = {
                 { text: 'Big Data', component: BigDataGrid, navIcon: 'icon-big-data-grid' },
                 { text: 'Flexible Selection', component: FlexibleSelection, navIcon: 'icon-flexible-selection-grid' },
                 { text: 'Reconfigure Grid', component: ReconfigureGrid, navIcon: 'icon-reconfigure-grid' },
-                { text: 'Render Components in Cells', component: RendererCell, navIcon: 'icon-grid-tools' },
+                { text: 'Render Components In Cells', component: RenderComponentsInCells, navIcon: 'icon-grid-tools' },
                 { text: 'Stock Ticker', component: StockTickerGrid, navIcon: 'icon-ticker-grid' }
             ]},
             { text: 'Redux Grid', component: ReduxGrid, navIcon: 'icon-Redux-Grid' }
