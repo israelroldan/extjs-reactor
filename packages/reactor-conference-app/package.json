@@ -7,9 +7,8 @@
     "clean": "rimraf build",
     "start": "webpack-dev-server --progress --colors",
     "build": "npm run clean && cross-env NODE_ENV=production webpack --env.prod=true --progress --colors",
-    "prod": "cross-env NODE_ENV=production webpack-dev-server --env.prod=true --progress --colors",
-    "build:sdk": "touch build/extjs/app.json",
-    "extract-code": "node extract-code.js"
+    "prod": "cd build && static-server --port 8085",
+    "build:sdk": "touch build/extjs/app.json"
   },
   "repository": {
     "type": "git",
@@ -55,6 +54,7 @@
     "html-webpack-plugin": "^2.24.1",
     "open-browser-webpack-plugin": "0.0.5",
     "rimraf": "^2.6.1",
+    "static-server": "^2.0.4",
     "style-loader": "^0.13.1",
     "webpack": "^2.5.1",
     "webpack-dev-server": "^2.4.5"
