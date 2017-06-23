@@ -81,6 +81,7 @@ class Calendar extends Component {
                     draggable={false}
                     resizeEvents={false}
                     gestureNavigation={false}
+                    allowSelection={false}
                     onEventTap={this.eventTap}
                     flex={1}
                 />
