@@ -38,6 +38,7 @@
     "react-dom": "^15.4.0"
   },
   "dependencies": {
+    "@extjs/sencha-cmd": "6.5.1",
     "babel-runtime": "^6.23.0",
     "comment-json": "^1.1.3",
     "lodash.capitalize": "^4.2.1",
@@ -49,7 +50,6 @@
     "mkdirp": "^0.5.1"
   },
   "devDependencies": {
-    "@extjs/sencha-cmd": "6.5.1",
     "@types/react": "^15.0.24",
     "@types/react-dom": "^15.5.0",
     "babel-cli": "^6.14.0",
@@ -64,7 +64,6 @@
     "react-addons-test-utils": "^15.4.0",
     "react-dom": "^15.4.0",
     "react-test-renderer": "^15.3.2",
-    "sinon": "^1.17.6",
     "typescript": "^2.2.0-dev.20161202"
   }
 }
