@@ -87,11 +87,6 @@ export default class StockTickerGridExample extends Component {
                 store={this.store}
                 onInitialize={this.init}
                 shadow
-                viewModel={{
-                    scheduler: {
-                        tickDelay
-                    }
-                }}
             >
                 <Column text="Company" dataIndex="name" width="150" sortable/>
                 <Column align="right" text="Price" width="85" dataIndex="price" formatter='usMoney' sortable/>
