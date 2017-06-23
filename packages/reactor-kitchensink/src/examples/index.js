@@ -235,6 +235,8 @@ import Files from './DragAndDrop/Files/Files';
  
 import Transition from './Transition/Transition';
 
+import Wizard from './Wizard/Wizard';
+
 const root = {
     id: '/',
     text: 'All',
@@ -325,7 +327,8 @@ const root = {
             { text: 'Toolbar', component: Toolbar, navIcon: 'icon-toolbar' },
             { text: 'ToolTip', component: ToolTip, layout: 'center', navIcon: 'icon-tooltips'  },
             { text: 'Touch Events', component: TouchEvents, navIcon: 'icon-touch-events' },
-            { text: 'Transition', component: Transition, navIcon: 'icon-Transition' }
+            { text: 'Transition', component: Transition, navIcon: 'icon-Transition' },
+            { text: 'Wizard', component: Wizard, navIcon: 'icon-layout-card-indicator', layout: Ext.os.is.Phone ? 'fit': 'center' },
         ]},
         { text: 'Grids', navIcon: 'icon-grids', children: [
             { text: 'Core Features', navIcon: 'icon-grids', children: [
