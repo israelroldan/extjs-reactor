@@ -9,7 +9,7 @@
     "local": "webpack-dev-server --progress --env.local=true",
     "build": "npm run clean && cross-env NODE_ENV=production webpack --env.prod=true",
     "build:sdk": "touch build/ext-react/app.json",
-    "prod": "pushd ./build; php -S localhost:8000; popd",
+    "prod": "cd build && static-server --port 8084",
     "extract-code": "node extract-code.js --watch"
   },
   "repository": {
@@ -62,6 +62,7 @@
     "mkdirp": "^0.5.1",
     "open-browser-webpack-plugin": "0.0.5",
     "rimraf": "^2.6.1",
+    "static-server": "^2.0.4",
     "style-loader": "^0.13.1",
     "webpack": "^2.5.1",
     "webpack-dev-server": "^2.4.5",
