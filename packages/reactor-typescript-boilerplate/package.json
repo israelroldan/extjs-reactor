@@ -1,7 +1,7 @@
 {
   "name": "@extjs/reactor-typescript-boilerplate",
   "private": true,
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "A foundation for React apps built with ExtReact components and TypeScript.",
   "main": "index.js",
   "scripts": {
@@ -25,7 +25,7 @@
     "react-router-dom": "^4.1.1"
   },
   "devDependencies": {
-    "@extjs/reactor-babel-plugin": "^1.0.0",
+    "@extjs/reactor-babel-plugin": "^1.1.0",
     "@extjs/reactor-webpack-plugin": "> 1.0.3-0 < 1.0.4",
     "@types/react": "^15.0.24",
     "@types/react-dom": "^15.5.0",
