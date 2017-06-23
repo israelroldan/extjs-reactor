@@ -1,7 +1,7 @@
 {
   "name": "@extjs/reactor-rest-example",
   "private": true,
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "An example showing the use of ExtReact stores and proxies with a rest API.",
   "main": "index.js",
   "scripts": {
@@ -23,7 +23,7 @@
   "homepage": "https://github.com/sencha/extjs-reactor#readme",
   "dependencies": {
     "@extjs/ext-react": "^6.5.0",
-    "@extjs/reactor": "^1.0.0",
+    "@extjs/reactor": "^1.1.0",
     "babel-polyfill": "^6.23.0",
     "babel-runtime": "^6.23.0",
     "prop-types": "^15.5.8",
@@ -33,8 +33,8 @@
     "redux": "^3.6.0"
   },
   "devDependencies": {
-    "@extjs/reactor-babel-plugin": "^1.0.0",
-    "@extjs/reactor-webpack-plugin": "^1.0.1",
+    "@extjs/reactor-babel-plugin": "^1.1.0",
+    "@extjs/reactor-webpack-plugin": "^1.1.0",
     "babel-core": "^6.17.0",
     "babel-loader": "^6.2.5",
     "babel-plugin-transform-runtime": "^6.23.0",

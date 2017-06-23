@@ -1,6 +1,6 @@
 {
   "name": "@extjs/reactor-kitchensink",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "A boilerplate project showing all Ext JS modern components.",
   "main": "index.js",
   "scripts": {
@@ -32,7 +32,7 @@
     "@extjs/ext-react-pivot-d3": "> 6.5.1-0 < 6.5.2",
     "@extjs/ext-react-treegrid": "> 6.5.1-0 < 6.5.2",
     "@extjs/ext-react-ux": "> 6.5.1-0 < 6.5.2",
-    "@extjs/reactor": "^1.0.0",
+    "@extjs/reactor": "^1.1.0",
     "babel-polyfill": "^6.23.0",
     "babel-runtime": "^6.23.0",
     "d3": "4.5.0",
@@ -46,8 +46,8 @@
     "redux": "^3.6.0"
   },
   "devDependencies": {
-    "@extjs/reactor-babel-plugin": "^1.0.0",
-    "@extjs/reactor-webpack-plugin": "^1.0.1",
+    "@extjs/reactor-babel-plugin": "^1.1.0",
+    "@extjs/reactor-webpack-plugin": "^1.1.0",
     "babel-core": "^6.17.0",
     "babel-loader": "^6.2.5",
     "babel-plugin-transform-runtime": "^6.23.0",
