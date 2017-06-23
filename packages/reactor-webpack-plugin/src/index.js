@@ -320,6 +320,10 @@ module.exports = class ReactExtJSWebpackPlugin {
 
             let statements = ['Ext.require(["Ext.app.Application", "Ext.Component", "Ext.Widget"])']; // for some reason command doesn't load component when only panel is required
 
+            if (packages.indexOf('reactor') !== -1) {
+                statements.push('Ext.require("Ext.reactor.RendererCell")');
+            }
+
             for (let module of modules) {
                 const deps = this.dependencies[module.resource];
                 if (deps) statements = statements.concat(deps);
