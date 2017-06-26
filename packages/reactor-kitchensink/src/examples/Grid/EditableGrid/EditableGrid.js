@@ -6,6 +6,7 @@ import { Template } from '@extjs/reactor';
 Ext.require([
     'Ext.grid.plugin.Editable',
     'Ext.grid.plugin.CellEditing',
+    'Ext.data.validator.Presence',
     'Ext.data.validator.Number',
     'Ext.data.validator.Date'
 ]);

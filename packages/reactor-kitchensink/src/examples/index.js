@@ -12,7 +12,7 @@ import ToolGrid from './Grid/AddonsDecorations/GridTools/GridTools';
 import StockTickerGrid from './Grid/AdvancedFeatures/StockTicker/StockTicker'; 
 import ReduxGrid from './Grid/ReduxGrid/ReduxGrid';
 import RowBodyGrid from './Grid/AddonsDecorations/RowBody/RowBody';
-import FlexibleSelection from './Grid/AdvancedFeatures/FlexibleSelection/FlexibleSelection';
+import SelectAndCopy from './Grid/AdvancedFeatures/SelectAndCopy/SelectAndCopy';
 import RenderComponentsInCells from './Grid/AdvancedFeatures/RenderComponentsInCells/RenderComponentsInCells';
 
 import Panel from './Panel/Panel';
@@ -346,7 +346,7 @@ const root = {
             ]},
             { text: 'Advanced Features', navIcon: 'icon-grid-plugins', children:[
                 { text: 'Big Data', component: BigDataGrid, navIcon: 'icon-big-data-grid' },
-                { text: 'Flexible Selection', component: FlexibleSelection, navIcon: 'icon-flexible-selection-grid' },
+                { text: 'Select And Copy', component: SelectAndCopy, navIcon: 'icon-flexible-selection-grid' },
                 { text: 'Reconfigure Grid', component: ReconfigureGrid, navIcon: 'icon-reconfigure-grid' },
                 { text: 'Render Components In Cells', component: RenderComponentsInCells, navIcon: 'icon-grid-tools' },
                 { text: 'Stock Ticker', component: StockTickerGrid, navIcon: 'icon-ticker-grid' }
