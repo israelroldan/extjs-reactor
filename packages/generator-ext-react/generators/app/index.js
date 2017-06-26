@@ -18,8 +18,8 @@ const LANGUAGE = {
 }
 
 const BOILERPLATE = {
-    [LANGUAGE.JAVASCRIPT]: path.join(__dirname, '..', '..', 'node_modules', '@extjs', 'reactor-boilerplate'),
-    [LANGUAGE.TYPESCRIPT]: path.join(__dirname, '..', '..', 'node_modules', '@extjs', 'reactor-typescript-boilerplate')
+    [LANGUAGE.JAVASCRIPT]: path.dirname(require.resolve('@extjs/reactor-boilerplate')),
+    [LANGUAGE.TYPESCRIPT]: path.dirname(require.resolve('@extjs/reactor-typescript-boilerplate'))
 };
 
 module.exports = class extends Generator {
@@ -105,7 +105,7 @@ module.exports = class extends Generator {
         const boilerplate = BOILERPLATE[this.language];
 
         // copy in files from boilerplate
-        glob.sync('**/*', { cwd: boilerplate, ignore: ['build/**', 'node_modules/**'], dot: true })
+        glob.sync('**/*', { cwd: boilerplate, ignore: ['build/**', 'node_modules/**', 'index.js'], dot: true })
             .forEach(file => new Promise((resolve, reject) => {
                 if (this.code === CODE.BARE_BONES && file.match(/src/) && !file.match(/index/)) {
                     return;
