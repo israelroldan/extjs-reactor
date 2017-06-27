@@ -21,6 +21,7 @@ export { default as Defaults } from './defaults/Defaults';
 export { default as HTMLInExtReactComponent } from './html/HTMLInExtReactComponent';
 
 export { default as SimplePropUpdate } from './props/SimplePropUpdate';
+export { default as UpdateClassName } from './props/UpdateClassName';
 
 export { default as LifecycleUnmount } from './lifecycle/LifecycleUnmount';
 
