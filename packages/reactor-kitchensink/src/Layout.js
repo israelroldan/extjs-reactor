@@ -27,7 +27,7 @@ class Layout extends Component {
                  * the application without user interaction
                  * (changing hash manually or first visiting via bookmark).
                  */   
-                const nav = this.refs.phoneNav;
+                const nav = this.phoneNav;
                 const anim = nav.getLayout().getAnimation();
                 anim.disable();
                 
@@ -39,13 +39,19 @@ class Layout extends Component {
 
                 anim.enable();
             }
+
+            this.phoneNav.down('titlebar').add({
+                align: 'right',
+                xtype: 'component',
+                html: '<div class="app-premium">Premium</div>'
+            })
         }
     }
 
     componentDidUpdate(previousProps) {
         if(Ext.os.is.Phone) {
             const node = this.props.selectedNavNode;
-            const nav = this.refs.phoneNav;
+            const nav = this.phoneNav;
 
             if (node && previousProps.selectedNavNode !== node) {
                 if (node.isLeaf()) {
@@ -67,6 +73,11 @@ class Layout extends Component {
         location.hash = '/';
     }
 
+    isPremium(node) {
+        if (!node) return false;
+        return node.data.premium || this.isPremium(node.parentNode);
+    }
+
     render() {
         const { 
             selectedNavNode, 
@@ -86,8 +97,9 @@ class Layout extends Component {
             // phone layout
             return (
                 <NestedList 
-                    ref="phoneNav"
+                    ref={phoneNav => this.phoneNav = phoneNav}
                     store={navStore} 
+                    className={component && this.isPremium(selectedNavNode) ? 'app-premium-component' : ''}
                     title='<i class="ext ext-sencha" style="position: relative; top: 1px; margin-right: 4px"></i> ExtReact Kitchen Sink'
                     onItemTap={(self, list, index, target, node) => this.onNavChange(node && node.getId())}
                     onBack={(self, node) => {
@@ -95,6 +107,11 @@ class Layout extends Component {
                         // The 'node' here will always be the 'previous' node, which means we can just strip the last /* from the 
                         // node's ID and use that as the new nav URL.
                         this.onNavChange(node && node.getId().replace(/\/[^\/]*$/, ''))
+                    }}
+                    listConfig={{
+                        itemTpl: (item) => {
+                            return <div>{item.text} { item.premium && <div className="x-fa fa-star app-premium-indicator"></div> }</div>
+                        }
                     }}
                     fullscreen
                 >

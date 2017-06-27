@@ -401,6 +401,9 @@ export default class ExtJSComponent extends Component {
      * @param {String} prop
      */
     _setterFor(prop) {
+        if (prop === 'className') {
+            prop = 'cls';
+        }
         const name = `set${this._capitalize(prop)}`;
         return this.cmp[name] && name;
     }
@@ -646,7 +649,11 @@ const ContainerMixin = Object.assign({}, ReactMultiChild.Mixin, {
 function wrapDOMElement(node) {
     let contentEl = node.node;
 
-    const cmp = new Ext.Component();
+    const cmp = new Ext.Component({ 
+        // We give the wrapper component a class so that developers can reset css 
+        // properties (ex. box-sizing: context-box) for third party components.
+        cls: 'x-react-element' 
+    });
     
     if (cmp.element) {
         // modern

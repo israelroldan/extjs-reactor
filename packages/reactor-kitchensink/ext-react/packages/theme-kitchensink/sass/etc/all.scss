@@ -139,6 +139,11 @@ $content-panel-grid-background: dynamic(darken($content-panel-grid-line, 5%));
   top: 2px;
   right: 0;
   font-size: 18px;
+  
+  .x-phone & {
+    right: 12px;
+    top: 15px;    
+  }
 }
 
 .app-navview > .x-body-el > .x-component {
@@ -152,4 +157,14 @@ $content-panel-grid-background: dynamic(darken($content-panel-grid-line, 5%));
   font-weight: 100;
   padding: 5px 8px;
   line-height: 10px;
+  color: black;
+
+  .x-phone & {
+    display: none;
+    font-size: 12px;
+  }
+
+  .x-phone .app-premium-component & {
+    display: block;
+  }
 }
