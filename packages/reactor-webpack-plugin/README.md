@@ -1,4 +1,4 @@
-# Ext JS Reactor Webpack Plugin
+# ExtReact Webpack Plugin
 
 This [Webpack](http://webpack.github.io/) plugin produces a minimized build of the [Sencha Ext JS](https://www.sencha.com/products/extjs) framework containing only those classes used by your React app.  Use with the react-extjs custom renderer for React.
 
@@ -9,8 +9,12 @@ files into your index.html.
 ## Dependencies
 You must have Ext JS 6.2+ and Sencha Cmd 6.5+ to use this plugin.
 
+## Plugin Order
+
+The ExtReactWebpackPlugin adds assets to the webpack build (ext.js and ext.css).  As a result it needs to appear before HtmlWebpackPlugin in the webpack config's `plugins` array.
+
 ## Options
-The ExtJSReactorWebpackPlugin constructor takes an object with the following properties:
+The ExtReactWebpackPlugin constructor takes an object with the following properties:
 
 * sdk [string] The path to the Ext JS SDK
 * toolkit (optional) [string] "modern" or "classic".  Defaults to "modern".
@@ -30,7 +34,7 @@ The ExtJSReactorWebpackPlugin constructor takes an object with the following pro
 
 const path = require('path');
 const webpack = require('webpack');
-const ExtJSReactorWebpackPlugin = require('@extjs/reactor-webpack-plugin');
+const ExtReactWebpackPlugin = require('@extjs/reactor-webpack-plugin');
 
 module.exports = {
     devtool: 'inline-source-map',
@@ -42,7 +46,7 @@ module.exports = {
         filename: 'index.js'
     },
     plugins: [
-        new ExtJSReactorWebpackPlugin({
+        new ExtReactWebpackPlugin({
             toolkit: 'modern',
             sdk: 'ext',
             theme: 'theme-material',
