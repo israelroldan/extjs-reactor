@@ -40,7 +40,7 @@
     "html-webpack-plugin": "^2.24.1",
     "open-browser-webpack-plugin": "0.0.5",
     "rimraf": "^2.6.1",
-    "typescript": "2.2.2",
+    "typescript": "^2.4.1",
     "webpack": "^2.5.1",
     "webpack-dev-server": "^2.4.1"
   }
