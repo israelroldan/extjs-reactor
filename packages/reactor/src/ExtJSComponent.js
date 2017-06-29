@@ -598,23 +598,18 @@ const ContainerMixin = Object.assign({}, ReactMultiChild.Mixin, {
         if (prop) {
             this._mergeConfig(prop, childNode);
         } else {
-            if (this.reactorSettings.debug) console.log(`adding ${childNode.$className} to ${this.cmp.$className}`);
-
             if (!(childNode instanceof Ext.Base)) {
                 // we're appending a dom node
                 childNode = wrapDOMElement(childNode);
             }
 
-            if (afterNode instanceof HTMLElement) {
-                afterNode = afterNode._extCmp;
+            const index = this._toReactChildIndex(child._mountIndex);
+            
+            if (this.reactorSettings.debug) {
+                console.log(`inserting ${childNode.$className} into ${this.cmp.$className} at position ${index}`);
             }
-
-            if (afterNode) {
-                const index = this.cmp[childNode.dock ? 'dockedItems' : 'items'].indexOf(afterNode);
-                this.cmp[childNode.dock ? 'insertDocked' : 'insert'](index + 1, childNode);
-            } else {
-                this.cmp[childNode.dock ? 'addDocked' : 'add'](childNode);
-            }
+            
+            this.cmp[childNode.dock ? 'insertDocked' : 'insert'](index, childNode);
         }
     },
 
