@@ -25,7 +25,7 @@ ln -s /path/to/ext-6.x.x ext
 Or on windows:
 
 ```
-mklink ext c:\path\to\ext-6.5.x
+mklink /J ext c:\path\to\ext-6.5.x
 ```
 
 Then run:
