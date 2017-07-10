@@ -51,6 +51,7 @@ module.exports = class ReactExtJSWebpackPlugin {
      * @param {String} output The path to directory where the ExtReact bundle should be written
      * @param {Boolean} asynchronous Set to true to run Sencha Cmd builds asynchronously. This makes the webpack build finish much faster, but the app may not load correctly in your browser until Sencha Cmd is finished building the ExtReact bundle
      * @param {Boolean} production Set to true for production builds.  This tell Sencha Cmd to compress the generated JS bundle.
+     * @param {Boolean} treeShaking Set to false to disable tree shaking in development builds.  This makes incremental rebuilds faster as all ExtReact components are included in the ext.js bundle in the initial build and thus the bundle does not need to be rebuilt after each change. Defaults to true.
      */
     constructor(options) {
         // if .ext-reactrc file exists, consume it and apply it to config options.
@@ -96,6 +97,7 @@ module.exports = class ReactExtJSWebpackPlugin {
             asynchronous: false,
             production: false,
             manifestExtractor: extractFromJSX,
+            treeShaking: true
             /* end single build only */
         }
     }
@@ -203,7 +205,11 @@ module.exports = class ReactExtJSWebpackPlugin {
      * @private
      */
     _validateBuildConfig(name, build) {
-        let { sdk } = build;
+        let { sdk, production } = build;
+
+        if (production) {
+            build.treeShaking = true;
+        }
 
         if (sdk) {
             if (!fs.existsSync(sdk)) {
@@ -318,18 +324,25 @@ module.exports = class ReactExtJSWebpackPlugin {
                 mkdirp(output);
             }
 
-            let statements = ['Ext.require(["Ext.app.Application", "Ext.Component", "Ext.Widget"])']; // for some reason command doesn't load component when only panel is required
+            let js;
 
-            if (packages.indexOf('reactor') !== -1) {
-                statements.push('Ext.require("Ext.reactor.RendererCell")');
+            if (this.treeShaking) {
+                let statements = ['Ext.require(["Ext.app.Application", "Ext.Component", "Ext.Widget"])']; // for some reason command doesn't load component when only panel is required
+
+                if (packages.indexOf('reactor') !== -1) {
+                    statements.push('Ext.require("Ext.reactor.RendererCell")');
+                }
+
+                for (let module of modules) {
+                    const deps = this.dependencies[module.resource];
+                    if (deps) statements = statements.concat(deps);
+                }
+
+                js = statements.join(';\n');
+            } else {
+                js = 'Ext.require("Ext.*")';
             }
 
-            for (let module of modules) {
-                const deps = this.dependencies[module.resource];
-                if (deps) statements = statements.concat(deps);
-            }
-
-            const js = statements.join(';\n');
             const manifest = path.join(output, 'manifest.js');
 
             // add ext-react/packages automatically if present

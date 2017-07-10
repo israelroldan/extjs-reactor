@@ -24,11 +24,17 @@ export function launch(rootComponent, options = { debug: false, viewport: false 
         name: '$ExtReactApp',
         ...appConfig,
         launch: () => {
-            if (typeof rootComponent === 'function') rootComponent = rootComponent();
-
             if (Ext.Viewport && Ext.Viewport.getRenderTarget) {
                 // modern, ext-react
-                ReactDOM.render(rootComponent, Ext.Viewport.getRenderTarget().dom)
+                const target = Ext.Viewport.getRenderTarget().dom;
+    
+                if (typeof rootComponent === 'function') {
+                    rootComponent = rootComponent(target);
+                }
+    
+                if (rootComponent) {
+                    ReactDOM.render(rootComponent, target);
+                }
             } else {
                 // classic
                 if (options.viewport || rootComponent) {
@@ -37,10 +43,15 @@ export function launch(rootComponent, options = { debug: false, viewport: false 
                     document.head.appendChild(style);
                 }
 
+                const target = document.createElement('div');
+                target.setAttribute('data-reactroot', 'on');
+                document.body.appendChild(target);
+
+                if (typeof rootComponent === 'function') {
+                    rootComponent = rootComponent(target);
+                }
+
                 if (rootComponent) {
-                    const target = document.createElement('div');
-                    target.setAttribute('data-reactroot', 'on');
-                    document.body.appendChild(target);
                     ReactDOM.render(rootComponent, target);
                 }
             }
