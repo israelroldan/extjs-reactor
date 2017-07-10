@@ -4,25 +4,22 @@ import { AppContainer } from 'react-hot-loader'
 import { launch } from '@extjs/reactor';
 import App from './App'
 
-const render = Component => {
-  const target = Ext.Viewport.getRenderTarget().dom;
+let viewport;
 
-  ReactDOM.render(
-    <AppContainer>
-      <Component />
-    </AppContainer>,
-    target
-  )
+const render = function (Component, target) {
+    ReactDOM.render(
+        <AppContainer>
+            <Component/>
+        </AppContainer>,
+        target
+    )
 }
 
-Ext.application({
-  name: 'ExtReactApp',
-  launch: () => {
-    render(App)
-  }
-})
+launch(target => {
+    viewport = target;
+    render(App, target);
+});
 
 if (module.hot) {
-  module.hot.accept('./App', () => { render(App) })
+    module.hot.accept('./App', () => render(App, viewport));
 }
-

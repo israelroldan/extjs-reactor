@@ -48,16 +48,20 @@ module.exports = function (env) {
     }));
 
     return {
-        devtool: isProd ? 'source-map' : 'eval',
+        devtool: isProd ? 'source-map' : 'cheap-module-source-map',
         context: sourcePath,
 
-        entry: [
-            './index.js'
-        ],
+        entry: {
+            'app': [
+                'babel-polyfill',
+                'react-hot-loader/patch',
+                './index.js',
+            ]
+        },
 
         output: {
-            path: path.join(__dirname, 'build'),
-            filename: 'bundle.js',
+            path: path.resolve(__dirname, './build'),
+            filename: '[name].js'
         },
 
         module: {

@@ -51,7 +51,7 @@ module.exports = function (env) {
     }));
 
     return {
-        devtool: isProd ? 'source-map' : 'eval',
+        devtool: isProd ? 'source-map' : 'cheap-module-source-map',
         context: sourcePath,
 
         entry: {
