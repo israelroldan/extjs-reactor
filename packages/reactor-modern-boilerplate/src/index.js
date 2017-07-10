@@ -6,7 +6,7 @@ import App from './App'
 
 let viewport;
 
-const render = function (Component, target) {
+const render = (Component, target) => {
     ReactDOM.render(
         <AppContainer>
             <Component/>
