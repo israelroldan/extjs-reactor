@@ -15,10 +15,7 @@ const render = function (Component, target) {
     )
 }
 
-launch(target => {
-    viewport = target;
-    render(App, target);
-});
+launch(target => render(App, viewport = target));
 
 if (module.hot) {
     module.hot.accept('./App', () => render(App, viewport));
