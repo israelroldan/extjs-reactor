@@ -15,16 +15,6 @@ export default class Grouped extends Component {
         ]
     })
 
-    onResize = () => {
-        const chart = this.refs.chart,
-            width = chart.getSize().width,
-            surface = chart.getSurface('chart');
-
-        surface.get('title').setAttributes({ x: width / 2 });
-        surface.get('subtitle').setAttributes({ x: width / 2 });
-        surface.renderFrame();
-    }
-
     onAxisLabelRender = (axis, label, layoutContext) => {
         // Custom renderer overrides the native axis label renderer.
         // Since we don't want to do anything fancy with the value
@@ -43,7 +33,6 @@ export default class Grouped extends Component {
                     shadow
                     ref="chart"
                     store={this.store}
-                    onResize={this.onResize}
                     theme="Muted"
                     insetPadding="70 40 0 10"
                     interactions="itemhighlight"

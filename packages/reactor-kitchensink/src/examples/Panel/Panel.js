@@ -11,12 +11,15 @@ export default class PanelExample extends Component {
 
     render() {
         return (
-            <Container padding={10}>
+            <Container 
+                padding={10} 
+                height={300} 
+                width={Ext.os.is.Phone ? '100%' : 500}
+                layout="fit"
+            >
                 <Panel 
                     shadow
                     title="Panel" 
-                    height={300}
-                    width={Ext.os.is.Phone ? '100%' : 500}
                     bodyPadding={10}
                     collapsible={{ dynamic: true }}
                     tools={[
