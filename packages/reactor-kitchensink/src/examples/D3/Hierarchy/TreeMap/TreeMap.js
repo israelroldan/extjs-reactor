@@ -44,7 +44,7 @@ export default class TreeMap extends Component {
                 '<div class="tip-title">{data.name}</div>',
                 '<tpl for="childNodes">',
                 '<div><span class="tip-symbol">{data.name}</span><tpl if="data.description"> - {data.description}</tpl></div>',
-                '<tpl if="xindex > 10">...{% break; %}</tpl>',
+                '<tpl if="xindex &gt; 10">...{% break; %}</tpl>',
                 '</tpl>'
             );
         }
@@ -57,7 +57,7 @@ export default class TreeMap extends Component {
         if (!template) {
             template = this.leafTemplate = new Ext.XTemplate(
                 '<div class="tip-company">{data.description}</div>',
-                '<div>Change: <tpl if="data.change > 0">+</tpl>{data.change}%</div>'
+                '<div>Change:&nbsp;<tpl if="data.change &gt; 0">+</tpl>{data.change}%</div>'
             );
         }
         return template.apply(record);
