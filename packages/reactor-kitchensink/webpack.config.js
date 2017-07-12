@@ -11,6 +11,7 @@ module.exports = function (env) {
     const nodeEnv = env && env.prod ? 'production' : 'development';
     const isProd = nodeEnv === 'production';
     const local = env && env.local;
+    const disableTreeShaking = env && env.treeShaking === 'false';
 
     const plugins = [
         new ExtJSReactorWebpackPlugin({
@@ -30,7 +31,8 @@ module.exports = function (env) {
             overrides: [
                 path.join('.', 'ext-react', 'overrides')
             ],
-            production: isProd
+            production: isProd,
+            treeShaking: !disableTreeShaking
         }),
         new webpack.EnvironmentPlugin({
             NODE_ENV: nodeEnv
@@ -50,7 +52,8 @@ module.exports = function (env) {
         new WebpackShellPlugin({
             dev: false,
             onBuildEnd: ['node extract-code.js']
-        })
+        }),
+        new webpack.NamedModulesPlugin()
     ];
 
     if (isProd) {
@@ -87,7 +90,11 @@ module.exports = function (env) {
 
         entry: {
             vendor: ['react', 'prop-types', 'react-redux', 'react-dom', 'react-router-dom', 'history', 'redux', 'd3', 'highlightjs'],
-            app: './index.js'
+            app: [
+                'babel-polyfill',
+                'react-hot-loader/patch',
+                './index.js',
+            ]
         },
 
         output: {
@@ -138,7 +145,7 @@ module.exports = function (env) {
             port: 8084,
             compress: isProd,
             inline: !isProd,
-            hot: false && !isProd,
+            hot: !isProd,
             stats: {
                 assets: true,
                 children: false,
