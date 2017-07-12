@@ -40,7 +40,7 @@ export default class SalesPerEmployee extends Component {
 
         return (
             <Panel shadow layout="vbox">
-                <Toolbar hidden docked="top" platformConfig={{'!phone': {hidden: false}}}>
+                <Toolbar docked="top">
                     <Button iconCls="x-fa fa-refresh" handler={this.refreshData} text="Refresh Data"/>
                     <Button iconCls="x-fa fa-table" handler={this.refreshSize} text="Refresh Size"/>
                 </Toolbar>
