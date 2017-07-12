@@ -1,5 +1,5 @@
 import React = require('react')
-import { ReactElement } from 'react';
+import { ReactElement, Component } from 'react';
 
 export interface LaunchOptions {
     debug: boolean
@@ -10,7 +10,13 @@ export interface LaunchOptions {
  * @param rootComponent The root component to render
  */
 export function launch<P>(rootComponent: ReactElement<P>, options?: Partial<LaunchOptions>): void;
-export function launch<P>(callback: () => void | ReactElement<P>, options?: Partial<LaunchOptions>): void;
+export function launch<P>(callback: (viewport: HTMLElement) => void | ReactElement<P>, options?: Partial<LaunchOptions>): void;
+
+/**
+ * A HOC that returns a component that delays inital rendering until ExtReact is ready.
+ * @param Component The component to wrap
+ */
+export function renderWhenReady(Component): Component;
 
 export interface InstallOptions {
     /**

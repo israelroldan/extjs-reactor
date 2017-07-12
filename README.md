@@ -36,39 +36,142 @@ If you're starting from scratch with Ext JS and React, we recommend cloning one 
 * [React + Ext JS Classic Boilerplate](https://github.com/sencha/extjs-reactor/tree/master/packages/reactor-classic-boilerplate)
 * [React + Ext JS Modern Boilerplate](https://github.com/sencha/extjs-reactor/tree/master/packages/reactor-modern-boilerplate)
 
-## Basic Concepts
+## Launching your Application
 
-### Launching Your App
+### `launch(React.Element/Function)`
 
 To launch your app, add the following to your index.js file (your webpack entry point):
 
-```jsx
+```javascript
 import { launch } from '@extjs/reactor';
 import App from './App';
 
 launch(<App/>);
 ```
 
-The `launch` function renders `<App/>` into the document body as a fullscreen component.  If you do not want this component to be fullscreen, you can render it to a target element using:
+The launch function renders the specified component into the document body. It also accepts a callback function that returns the component to be rendered:
 
-```jsx
-import ReactDOM from 'react-dom';
-import { launch } from '@extjs/reactor';
-import App from './App';
-
-launch(() => ReactDOM.render(<App/>, document.getElementById('root')));
+```javascript
+launch(() => {
+  // do some initialization before initial render
+  // ...
+  
+  // return the component to be rendered
+  return <App/>;
+})
 ```
 
-The call to `launch` replaces the typical code for launching a React app, which generally looks something like:
+The `launch` function serves two purposes:
+
+1. It delays your App's initial render until the ExtReact class system is fully initialized
+2. It creates a viewport, which is needed for creating components that take up the full height and width of the screen. 
+
+When using `launch` you do not need a separate target `<div id="root"/>` in your `index.html` file. If you have one you 
+should remove it. The code above replaces the typical code for launching a React app, which generally looks something like:
+
+```javascript
+import ReactDOM from 'react-dom';
+import App from './App';
+
+ReactDOM.render(<App/>, document.getElementById('root'));
+```    
+
+### renderWhenReady(Component)
+
+If you do not need to create fullscreen components (for example if you're using ExtReact components with another 
+layout system), you can apply the `renderWhenReady` higher-order component to topmost component containing an ExtReact 
+element, omit the launch function, and render to a target element as is customary with React.  This is especially useful
+if you're building a library of components based on ExtReact and you don't want to require the applications that 
+use your library to call `launch`.
 
 ```jsx
+// App.js
+import React, { Component } from 'react';
+import { Panel } from '@extjs/ext-react';
+import { renderWhenReady } from '@extjs/reactor';
+
+class App extends Component {
+    render() {
+        return (
+            <Panel title="ExtReact">Hello World!</Panel>
+        )
+    }
+}
+
+export default renderWhenReady(App);
+```
+
+```jsx
+// index.js
 import ReactDOM from 'react-dom';
 import App from './App';
 
 ReactDOM.render(<App/>, document.getElementById('root'));
 ```
 
-### Hello World
+### React Hot Loader
+
+Here is an example that uses the launch function's callback parameter to enable react-hot-loader.  The callback is passed a DOM element that can be used as the target when calling `ReactDOM.render`.
+
+```javascript
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { AppContainer } from 'react-hot-loader'
+import { launch } from '@extjs/reactor';
+import App from './App'
+
+let viewport;
+
+const render = (Component, target) => {
+    ReactDOM.render(
+        <AppContainer>
+            <Component/>
+        </AppContainer>,
+        target
+    )
+}
+
+launch(target => render(App, viewport = target));
+
+if (module.hot) {
+    module.hot.accept('./App', () => render(App, viewport));
+}
+```
+
+### HTML Doctype
+
+The HTML5 doctype declaration is required for ExtReact components to display properly.  Please
+make sure that this begins your HTML document:
+
+```html
+<!doctype html>
+```
+
+### Viewport Meta Tag
+
+ExtReact requires a viewport meta tag.  This should be added to the `head` element in your index.html.
+
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+```
+
+## The `fullscreen` config
+
+Most apps that use ExtReact are single-page applications that occupy the full height and width of the browser window.  To acheive this, the root ExtReact component in your app should be configured with the `fullscreen` prop set to `true`.  For example:
+
+```javascript
+import { Container } from '@extjs/ext-react';
+
+export default function App() {
+  return (
+    <Container fullscreen>
+      ...
+    </Container>
+  )
+}
+```
+
+## Hello World
 
 Here's a minimal React app that renders an `Ext.Panel` from the classic toolkit:
 
@@ -84,7 +187,7 @@ launch(
 );
 ```
 
-### Importing Components
+## Importing Components
 
 Any Ext JS component can be imported by the capitalized, camel-cased version of it's xtype.  For example, 
 
@@ -98,7 +201,7 @@ Dashes in xtypes should be converted to underscores.  For example:
 import { D3_HeatMap } from '@extjs/reactor/classic';
 ```
 
-### Configuring Components
+## Configuring Components
 
 React props are converted to Ext JS configs.  Here's a typical use of `Ext.grid.Panel`:
 
@@ -129,7 +232,7 @@ export default class MyComponent extends Component {
 }
 ```
 
-### Handling Events
+## Handling Events
 
 Any prop starting with "on" followed by a capital letter is automatically converted to an Ext JS event listener.  Since Ext JS events are all lower-case, case is not preserved.  You're free to use camel-case, which is common in React.
 
@@ -178,9 +281,9 @@ export default function MyComponent() {
 }
 ```
 
-### Special Props
+## Special Props
 
-#### defaults
+### defaults
 
 Use the defaults prop to apply a set of props to all children.  For example, to use flex: 1 for all items in a container:
 
@@ -190,7 +293,7 @@ Use the defaults prop to apply a set of props to all children.  For example, to 
 </Container>
 ```
 
-### Refs
+## Refs
 
 Refs point to Ext JS component instances:
 
@@ -216,7 +319,7 @@ export default class MyComponent {
 }
 ```
 
-### Docked Items (Classic Toolkit)
+## Docked Items (Classic Toolkit)
 
 When using the Ext JS classic toolkit, any component with a `dock` prop is automatically added to (dockedItems)[http://docs.sencha.com/extjs/6.2.0/classic/Ext.panel.Panel.html#cfg-dockedItems].
 
@@ -237,7 +340,7 @@ function MyComponent(props) {
 }
 ```
 
-### Using HTML Elements and Non-Ext JS Components Inside of Ext JS Components
+## Using HTML Elements and Non-Ext JS Components Inside of Ext JS Components
 
 HTML elements and other non-Ext JS React components are wrapped in an Ext.Component instance when they appear within an Ext JS Component.  This is allows Ext JS layouts to work with non-Ext JS components.  For example...
 
@@ -278,7 +381,7 @@ Ext.create({
 });
 ```
 
-### Using Custom Ext JS Components
+## Using Custom Ext JS Components
 
 You can import custom Ext JS components in much the same way you would those from Ext JS itself.  Just reference the camel-case version of the component's xtype.
 
@@ -311,7 +414,7 @@ function MyComponent() {
 }
 ```
 
-### Building
+## Building
 
 Select your toolkit, theme, and packages using [@extjs/reactor-webpack-plugin](https://github.com/sencha/extjs-reactor/tree/master/packages/reactor-webpack-plugin). The plugin scans your code and only includes the classes you need in the final bundle.  Here's an example:
 

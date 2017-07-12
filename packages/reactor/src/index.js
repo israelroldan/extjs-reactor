@@ -4,6 +4,7 @@ import { configure } from './reactify';
 
 export { reactify } from './reactify';
 export { default as Template } from './Template';
+export { default as renderWhenReady } from './renderWhenReady';
 
 const Ext = window.Ext;
 
