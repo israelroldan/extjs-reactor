@@ -36,3 +36,5 @@ export { default as InsertBetween } from './createChild/InsertBetween';
 export { default as ElementInsertStart } from './createChild/ElementInsertStart';
 export { default as ElementInsertEnd } from './createChild/ElementInsertEnd';
 export { default as ElementInsertBetween } from './createChild/ElementInsertBetween';
+
+export { default as RenderWhenReady } from './RenderWhenReady';
