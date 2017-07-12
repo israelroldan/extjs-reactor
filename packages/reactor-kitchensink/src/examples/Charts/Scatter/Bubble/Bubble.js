@@ -60,6 +60,7 @@ export default class Bubble extends Component {
                     onThemeChange={this.changeTheme}
                     onRefreshClick={this.refreshData}
                     theme={theme}
+                    onlyMidnight
                 />
                 <Cartesian
                     shadow

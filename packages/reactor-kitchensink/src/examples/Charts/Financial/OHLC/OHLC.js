@@ -59,6 +59,7 @@ export default class OHLCChartExample extends Component {
                     onToggleCrosshair={this.toggleCrosshair}
                     onRefreshClick={this.refresh}
                     theme={theme}
+                    onlyMidnight
                 />
                 <Cartesian
                     shadow
