@@ -39,6 +39,7 @@ export default class Plot extends Component {
                     onRefreshClick={this.refreshData}
                     onToggleZoomOnPan={this.toggleZoomOnPan}
                     theme={theme}
+                    onlyMidnight
                 />
                 <Cartesian
                     shadow
