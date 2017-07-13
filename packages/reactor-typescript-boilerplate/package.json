@@ -39,6 +39,7 @@
     "cross-env": "^5.0.0",
     "html-webpack-plugin": "^2.24.1",
     "open-browser-webpack-plugin": "0.0.5",
+    "portfinder": "^1.0.13",
     "rimraf": "^2.6.1",
     "typescript": "^2.4.1",
     "webpack": "^2.5.1",

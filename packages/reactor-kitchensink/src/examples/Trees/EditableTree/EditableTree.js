@@ -14,9 +14,9 @@ export default class EditableTreeExample extends Component {
         return (
             <Tree
                 shadow
-                title="Editable Tree"
                 store={store}
                 platformConfig={{
+                    title: "Editable Tree",
                     desktop: {
                         plugins: {
                             gridcellediting: true
