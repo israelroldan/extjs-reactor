@@ -138,7 +138,7 @@ module.exports = class extends Generator {
                 url: this.gitRepository
             }
         }
-        if (this.keywords) packageInfo.version = this.keywords;
+        if (this.keywords) packageInfo.keywords = this.keywords;
         if (this.author) packageInfo.author = this.author;
         if (this.license) packageInfo.license = this.license;
 
