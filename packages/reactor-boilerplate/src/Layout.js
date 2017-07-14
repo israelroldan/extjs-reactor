@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Transition, Container, TitleBar, Button, Sheet, Panel } from '@extjs/ext-react';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom'
-import { medium, large } from './responsiveQueries';
+import { medium, large } from './responsiveFormulas';
 import Home from './Home/Home';
 import About from './About/About';
 import NavMenu from './NavMenu';
@@ -54,7 +54,6 @@ class Layout extends Component {
                     <Panel scrollable docked="left" shadow zIndex={2}>
                         <NavMenu
                             {...navMenuDefaults}
-                            plugins="responsive"
                             responsiveConfig={{
                                 [medium]: {
                                     micro: true,
