@@ -23,7 +23,8 @@ module.exports = function (env) {
             }),
             new webpack.EnvironmentPlugin({
                 NODE_ENV: nodeEnv
-            })
+            }),
+            new webpack.NamedModulesPlugin()
         ];
 
         if (isProd) {

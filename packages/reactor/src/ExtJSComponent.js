@@ -228,6 +228,7 @@ export default class ExtJSComponent extends Component {
     _createInitialConfig(element, transaction, context) {
         const { type, props } = element;
         const config = this._createConfig(props, true);
+        this._ensureResponsivePlugin(config);
 
         const items = [], dockedItems = [];
         
@@ -344,6 +345,24 @@ export default class ExtJSComponent extends Component {
         }
 
         return config;
+    }
+
+    _ensureResponsivePlugin(config) {
+        if (config.responsiveConfig) {
+            const { plugins } = config;
+
+            if (plugins == null) {
+                config.plugins = 'responsive';
+            } else if (Array.isArray(plugins) && plugins.indexOf('responsive') === -1) {
+                plugins.push('responsive');
+            } else if (typeof plugins === 'string') {
+                if (plugins !== 'responsive') {
+                    config.plugins = [plugins, 'responsive'];
+                }
+            } else if (!plugins.resposive) {
+                plugins.responsive = true;
+            }
+        }
     }
 
     /**

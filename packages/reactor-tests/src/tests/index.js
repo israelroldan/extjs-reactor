@@ -38,3 +38,4 @@ export { default as ElementInsertEnd } from './createChild/ElementInsertEnd';
 export { default as ElementInsertBetween } from './createChild/ElementInsertBetween';
 
 export { default as RenderWhenReady } from './RenderWhenReady';
+export { default as Responsive } from './Responsive';

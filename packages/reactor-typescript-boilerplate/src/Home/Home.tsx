@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Grid, Toolbar, Button, Column, SearchField } from '@extjs/ext-react';
 import data from './data';
-import { small, notSmall } from '../responsiveQueries'
+import { small, medium } from '../responsiveFormulas';
 
 declare var Ext:any;
 
@@ -23,12 +23,11 @@ export default class Home extends React.Component<void, any> {
                         ref={field => this.query = field} 
                         placeholder="Search..." 
                         onChange={this.onSearch.bind(this)}
-                        plugins="responsive"
                         responsiveConfig={{
                             [small]: { 
                                 flex: 1
                             }, 
-                            [notSmall]: {
+                            [medium]: {
                                 flex: undefined
                             }
                         }}
@@ -45,12 +44,11 @@ export default class Home extends React.Component<void, any> {
                     dataIndex="email"
                     flex={3}
                     resizable
-                    plugins="responsive"
                     responsiveConfig={{ 
                         [small]: { 
                             hidden: true
                         }, 
-                        [notSmall]: {
+                        [medium]: {
                             hidden: false
                         }
                     }}
