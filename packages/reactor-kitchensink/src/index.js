@@ -26,7 +26,23 @@ launch(target => {
     top.on('transitionend', wrapper.destroy, wrapper, { single: true });
     wrapper.addCls('app-loaded');        
     render(App, viewport = target);
-}, { debug: false })
+}, { 
+    debug: false 
+}, {
+    quickTips: {
+        tooltip: {
+            // show qtips on tap on mobile
+            showOnTap: true
+        },
+        overflowTip: {
+            // This means that mouseover (or a touch)
+            // cancels the auto dismiss timer to give the
+            // user an opportunity to read long text.
+            // Tap outside of the tip then closes it.
+            allowOver: true
+        }
+    }    
+})
 
 if (module.hot) {
     module.hot.accept('./App', () => render(App, viewport));
