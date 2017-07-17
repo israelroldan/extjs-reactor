@@ -7,6 +7,6 @@
     "install:next": "npm install && node scripts/next.js && lerna bootstrap"
   },
   "devDependencies": {
-    "lerna": "2.0.0-beta.38"
+    "lerna": "^2.0.0"
   }
 }
