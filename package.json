@@ -4,7 +4,7 @@
     "postinstall": "lerna bootstrap",
     "increment": "lerna publish --skip-git --skip-npm",
     "clean": "lerna clean",
-    "install:next": "npm install && node scripts/next.js"
+    "install:next": "npm install && node scripts/next.js && lerna bootstrap"
   },
   "devDependencies": {
     "lerna": "2.0.0-beta.38"
