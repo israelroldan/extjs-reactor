@@ -20,18 +20,18 @@ export default class ToolTipExample extends Component {
             <Panel layout="vbox" shadow bodyPadding="20" defaults={containerDefaults}>
                 <Container defaults={buttonDefaults}>
                     <Button text="Basic Tip">
-                        <ToolTip>A simple tooltip</ToolTip>
+                        <ToolTip showOnTap>A simple tooltip</ToolTip>
                     </Button>
                     <Button text="autoHide: false">
-                        <ToolTip autoHide={false} title="Tip Title" closable>A simple tooltip</ToolTip>
+                        <ToolTip showOnTap autoHide={false} title="Tip Title" closable>A simple tooltip</ToolTip>
                     </Button>
                     <Button text="Mouse Track">
-                        <ToolTip title="Mouse Track" trackMouse>This tip will follow the mouse while it is over the element</ToolTip>
+                        <ToolTip showOnTap title="Mouse Track" trackMouse>This tip will follow the mouse while it is over the element</ToolTip>
                     </Button>
                 </Container>
                 <Container defaults={buttonDefaults}>
                     <Button text="Anchor Right, Rich Content">
-                        <ToolTip align="tl-tr" anchorToTarget anchor>
+                        <ToolTip showOnTap align="tl-tr" anchorToTarget anchor>
                             <ul style={{marginBottom: '15px'}}>
                                 <li>5 bedrooms</li>
                                 <li>Close to transport</li>
@@ -41,17 +41,17 @@ export default class ToolTipExample extends Component {
                         </ToolTip>
                     </Button>
                     <Button text="Anchor Below">
-                        <ToolTip align="tc-bc" anchor anchorToTarget>The anchor is centered</ToolTip>
+                        <ToolTip showOnTap align="tc-bc" anchor anchorToTarget>The anchor is centered</ToolTip>
                     </Button>
                     <Button text="Anchor with Tracking">
-                        <ToolTip trackMouse anchor align="l-r">Following the mouse with an anchor</ToolTip>
+                        <ToolTip showOnTap trackMouse anchor align="l-r">Following the mouse with an anchor</ToolTip>
                     </Button>
                 </Container>
                 <Container margin="0">
-                    <div style={{...styles.qTipItem, ...styles.color1}} data-qtip="This tip is inline">Inline Tip</div>
-                    <div style={{...styles.qTipItem, ...styles.color2}} data-qtip="This tip has a fixed width" data-qwidth="400">Fixed width inline tip</div>
-                    <div style={{...styles.qTipItem, ...styles.color3}} data-qtip="This tip has a title" data-qtitle="The title">Inline tip with title</div>
-                    <div style={{...styles.qTipItem, ...styles.color4}} data-qtip="Aligned top" data-qalign="bl-tl" data-qanchorToTarget="true">Inline tip align top</div>
+                    <div style={{...styles.qTipItem, ...styles.color1}} data-qtip="This tip is inline" data-qshowOnTap="true">Inline Tip</div>
+                    <div style={{...styles.qTipItem, ...styles.color2}} data-qtip="This tip has a fixed width" data-qwidth="400" data-qshowOnTap="true">Fixed width inline tip</div>
+                    <div style={{...styles.qTipItem, ...styles.color3}} data-qtip="This tip has a title" data-qtitle="The title" data-qshowOnTap="true">Inline tip with title</div>
+                    <div style={{...styles.qTipItem, ...styles.color4}} data-qtip="Aligned top" data-qalign="bl-tl" data-qanchorToTarget="true" data-qshowOnTap="true">Inline tip align top</div>
                 </Container>
             </Panel>
         )
