@@ -68,15 +68,15 @@ export default function ChartToolbar({
             <Spacer/>
             { onStackGroup && (
                 <SegmentedButton {...toolbarItemDefaults} onToggle={onStackGroup}>
-                    <Button ui="default-toolbar" text="STACK" pressed/>
-                    <Button ui="default-toolbar" text="GROUP"/>
+                    <Button iconCls="x-fa fa-bars" text="STACK" pressed/>
+                    <Button iconCls="x-fa fa-bar-chart" text="GROUP"/>
                 </SegmentedButton>
             )}
             { onToggleZoomOnPan && !Ext.supports.Touch && (
                 <SegmentedButton>
-                    <Button ui="default-toolbar" handler={() => onToggleZoomOnPan(false)} pressed text="PAN"/>
-                    <Button ui="default-toolbar" handler={() => onToggleZoomOnPan(true)} text="ZOOM"/>
-                    { onToggleCrosshair && <Button ui="default-toolbar" handler={() => onToggleCrosshair(true)} text="CROSSHAIR"/> }
+                    <Button iconCls="x-fa fa-arrows" handler={() => onToggleZoomOnPan(false)} pressed text="PAN"/>
+                    <Button iconCls="x-fa fa-search-plus" handler={() => onToggleZoomOnPan(true)} text="ZOOM"/>
+                    { onToggleCrosshair && <Button iconCls="x-fa fa-crosshairs" handler={() => onToggleCrosshair(true)} text="CROSSHAIR"/> }
                 </SegmentedButton>
             )}
         </Toolbar>
