@@ -17,7 +17,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@extjs/ext-react": "^6.5.1-214",
+    "@extjs/ext-react": "^6.5.1-345",
     "@extjs/reactor": "^1.0.0",
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
