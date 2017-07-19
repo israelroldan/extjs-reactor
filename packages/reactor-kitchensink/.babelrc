@@ -5,7 +5,6 @@
     "react"
   ],
   "plugins": [
-    "react-hot-loader/babel",
     "@extjs/reactor-babel-plugin",
     "transform-runtime"
   ],
