@@ -92,7 +92,6 @@ module.exports = function (env) {
             vendor: ['react', 'prop-types', 'react-redux', 'react-dom', 'react-router-dom', 'history', 'redux', 'd3', 'highlightjs'],
             app: [
                 'babel-polyfill',
-                'react-hot-loader/patch',
                 './index.js',
             ]
         },
@@ -108,32 +107,8 @@ module.exports = function (env) {
                     test: /\.(js|jsx)$/,
                     exclude: /(node_modules|dist)/,
                     use: {
-                        loader: 'babel-loader',
-                        query: {
-                            "presets": [
-                                [ "es2015", { "modules": false } ],
-                                "stage-2",
-                                "react"
-                            ],
-                            "plugins": [
-                                "react-hot-loader/babel",
-                                "@extjs/reactor-babel-plugin",
-                                "transform-runtime"
-                            ],
-                            "ignore": [
-                                "build"
-                            ],
-                            "env": {
-                                "test": {
-                                    "presets": [
-                                        "es2015",
-                                        "stage-2",
-                                        "react"
-                                    ]
-                                }
-                            }
-                        }
-                    },
+                        loader: 'babel-loader'
+                    }
                 },
                 {
                     test: /\.css$/,

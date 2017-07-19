@@ -62,7 +62,6 @@
     "html-webpack-plugin": "^2.24.1",
     "mkdirp": "^0.5.1",
     "open-browser-webpack-plugin": "0.0.5",
-    "react-hot-loader": "^3.0.0-beta.7",
     "rimraf": "^2.6.1",
     "static-server": "^2.0.4",
     "style-loader": "^0.13.1",
