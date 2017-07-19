@@ -106,10 +106,34 @@ module.exports = function (env) {
             rules: [
                 {
                     test: /\.(js|jsx)$/,
-                    exclude: /node_modules/,
-                    use: [
-                        'babel-loader'
-                    ],
+                    exclude: /(node_modules|dist)/,
+                    use: {
+                        loader: 'babel-loader',
+                        query: {
+                            "presets": [
+                                [ "es2015", { "modules": false } ],
+                                "stage-2",
+                                "react"
+                            ],
+                            "plugins": [
+                                "react-hot-loader/babel",
+                                "@extjs/reactor-babel-plugin",
+                                "transform-runtime"
+                            ],
+                            "ignore": [
+                                "build"
+                            ],
+                            "env": {
+                                "test": {
+                                    "presets": [
+                                        "es2015",
+                                        "stage-2",
+                                        "react"
+                                    ]
+                                }
+                            }
+                        }
+                    },
                 },
                 {
                     test: /\.css$/,
