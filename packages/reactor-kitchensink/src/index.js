@@ -1,24 +1,21 @@
 import 'babel-polyfill';
-import React from 'react'
-import { launch } from '@extjs/reactor';
-import App from './App'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App'; // app components
+import { launch } from '@extjs/reactor'; 
 import Data from './Data';
 import * as d3 from 'd3';
-
+ 
 window.d3 = d3;
-
-let viewport;
-
+   
 require('./index.css');
-
-launch(target => {
+ 
+launch(() => {         
     let top = Ext.get('loadingSplashTop'), wrapper = Ext.get('loadingSplash');
     top.on('transitionend', wrapper.destroy, wrapper, { single: true });
     wrapper.addCls('app-loaded');        
-    return <App/>
-}, { 
-    debug: false 
-}, {
+    return <App/>;
+}, { debug: false }, {
     quickTips: {
         tooltip: {
             // show qtips on tap on mobile
@@ -32,4 +29,4 @@ launch(target => {
             allowOver: true
         }
     }    
-})
+})    
