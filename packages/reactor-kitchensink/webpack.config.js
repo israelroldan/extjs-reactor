@@ -90,10 +90,7 @@ module.exports = function (env) {
 
         entry: {
             vendor: ['react', 'prop-types', 'react-redux', 'react-dom', 'react-router-dom', 'history', 'redux', 'd3', 'highlightjs'],
-            app: [
-                'babel-polyfill',
-                './index.js',
-            ]
+            app: './index.js'
         },
 
         output: {
