@@ -1,6 +1,5 @@
 import 'babel-polyfill';
 import React from 'react'
-import { AppContainer } from 'react-hot-loader'
 import { launch } from '@extjs/reactor';
 import App from './App'
 import Data from './Data';
