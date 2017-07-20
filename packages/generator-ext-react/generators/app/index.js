@@ -172,7 +172,7 @@ module.exports = class extends Generator {
             }
         } else {
             // update Layout.js
-            const layout = path.join('src', 'Layout.js');
+            const layout = path.join('src', `Layout.${this.language === LANGUAGE.TYPESCRIPT ? 'tsx' : 'js'}`);
             this.fs.write(layout, this.fs.read(layout).replace('ExtReact Boilerplate', this.appName));
         }
     }
