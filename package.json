@@ -4,7 +4,7 @@
     "postinstall": "lerna bootstrap",
     "increment": "lerna publish --skip-git --skip-npm",
     "clean": "lerna clean",
-    "install:clean": "npm cache clear && lerna clean && npm install"
+    "install:clean": "npm cache clear --force && lerna clean && npm install"
   },
   "devDependencies": {
     "lerna": "^2.0.0"
