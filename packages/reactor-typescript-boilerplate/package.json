@@ -18,15 +18,15 @@
   "license": "MIT",
   "dependencies": {
     "@extjs/ext-react": "^6.5.1",
-    "@extjs/reactor": "^1.0.0",
+    "@extjs/reactor": "^1.1.0",
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-router-dom": "^4.1.1"
   },
   "devDependencies": {
-    "@extjs/reactor-babel-plugin": "^1.0.0",
-    "@extjs/reactor-webpack-plugin": "^1.0.0",
+    "@extjs/reactor-babel-plugin": "^1.1.0",
+    "@extjs/reactor-webpack-plugin": "^1.1.0",
     "@types/react": "^15.0.33",
     "@types/react-dom": "^15.5.1",
     "awesome-typescript-loader": "^3.1.3",
