@@ -33,8 +33,8 @@ The application it creates uses react, react-router, webpack, and babel (ES2015+
 
 If you're starting from scratch with Ext JS and React, we recommend cloning one of the boilerplates and following the instructions there:
 
-* [React + Ext JS Classic Boilerplate](https://github.com/sencha/extjs-reactor/tree/master/packages/reactor-classic-boilerplate)
-* [React + Ext JS Modern Boilerplate](https://github.com/sencha/extjs-reactor/tree/master/packages/reactor-modern-boilerplate)
+* [React + Ext JS Classic Boilerplate](https://github.com/israelroldan/extjs-reactor/tree/master/packages/reactor-classic-boilerplate)
+* [React + Ext JS Modern Boilerplate](https://github.com/israelroldan/extjs-reactor/tree/master/packages/reactor-modern-boilerplate)
 
 ## Basic Concepts
 
